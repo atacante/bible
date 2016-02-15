@@ -11,7 +11,7 @@ class VersionsListEng extends Model {
     public $timestamps  = false;
 
     protected $table = 'versions_list_eng';
-    protected $fillable = ['id', 'version_name'];
+    protected $fillable = ['id', 'version_code', 'version_name'];
 
 
 

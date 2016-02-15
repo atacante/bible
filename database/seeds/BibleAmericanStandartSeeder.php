@@ -22,7 +22,7 @@ class BibleAmericanStandartSeeder extends Seeder
             DB::statement("TRUNCATE TABLE verses_american_standard_eng");
             DB::statement("TRUNCATE TABLE versions_list_eng");
             DB::statement("TRUNCATE TABLE books_list_eng CASCADE");
-            VersionsListEng::create(['version_name' => 'American Standard Version']);
+            VersionsListEng::create(['version_name' => 'American Standard Version','version_code' => str_replace(' ','_',strtolower('American Standard Version'))]);
             $prevBook = '';
             $bookId = 0;
             foreach($csv->data as $row){

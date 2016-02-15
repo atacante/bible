@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    'as' => 'reader', 'uses' => 'ReaderController@getRead'
+]);
+
+Route::controller('reader', 'ReaderController');
+Route::controller('ajax', 'AjaxController');
 
 /*
 |--------------------------------------------------------------------------
