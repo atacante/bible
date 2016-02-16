@@ -25,6 +25,57 @@ class ReaderController extends Controller
         $content['heading'] = BooksListEng::find($book)->book_name." ".$chapter;
         $content['verses'] = VersesAmericanStandardEng::query()->where('book_id', $book)->where('chapter_num',$chapter)->orderBy('verse_num')->get();
 
+        $content['pagination'] = $this->chaptersPagination($chapter,$filters['chapters'],$book,$filters['books']);
+
         return view('reader.main',['filters' => $filters,'content' => $content]);
+    }
+
+    private function chaptersPagination($currentChapter,$allChapters,$currentBook,$allBooks)
+    {
+        $params = Request::input();
+
+        /* Chapters links */
+        $prevChapter = $currentChapter-1;
+
+        if($prevChapter == 0){
+            $prevChapter = false;
+        }
+        else{
+            $params['chapter'] = $prevChapter;
+            $prevChapter = $params;
+        }
+
+        $nextChapter = $currentChapter+1;
+        if(!array_key_exists($nextChapter,$allChapters)){
+            $nextChapter = false;
+        }
+        else{
+            $params['chapter'] = $nextChapter;
+            $nextChapter = $params;
+        }
+
+        /* Books links */
+        $prevBook = $currentBook-1;
+
+        if($prevBook == 0){
+            $prevBook = false;
+        }
+        else{
+            $params['book'] = $prevBook;
+            $params['chapter'] = 1;
+            $prevBook = $params;
+        }
+
+        $nextBook = $currentBook+1;
+        if(!array_key_exists($nextBook,$allBooks)){
+            $nextBook = false;
+        }
+        else{
+            $params['book'] = $nextBook;
+            $params['chapter'] = 1;
+            $nextBook = $params;
+        }
+
+        return ['chapterPrev' => $prevChapter,'chapterNext' => $nextChapter,'prevBook' => $prevBook,'nextBook' => $nextBook];
     }
 }
