@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\BooksListEng;
-use App\VersesAmericanStandardEng;
-use App\VersionsListEng;
+use App\BaseModel;
+use App\BooksListEn;
+use App\VersesAmericanStandardEn;
+use App\VersionsListEn;
+use Illuminate\Support\Facades\Config;
 use Request;
 
 use App\Http\Requests;
@@ -14,23 +16,26 @@ class ReaderController extends Controller
 {
     public function getRead()
     {
-        $version = Request::input('version','american_standard_version');
+        $version = Request::input('version','american_standard');
         $book = Request::input('book',1);
         $chapter = Request::input('chapter',1);
 
-        $filters['versions'] = $this->prepareForSelectBox(VersionsListEng::all()->toArray(),'version_code','version_name');
-        $filters['books'] = $this->prepareForSelectBox(BooksListEng::all()->toArray(),'id','book_name');
-        $filters['chapters'] = $this->prepareChaptersForSelectBox(VersesAmericanStandardEng::select(['chapter_num','book_id'])->distinct()->with('booksListEng')->where('book_id', $book)->orderBy('chapter_num')->get()->toArray());
+        $locale = Config::get('app.locale');// temporary static variable
+        $versesModel = BaseModel::getModelByTableName('verses_'.$version.'_'.$locale);
 
-        $content['heading'] = BooksListEng::find($book)->book_name." ".$chapter;
-        $content['verses'] = VersesAmericanStandardEng::query()->where('book_id', $book)->where('chapter_num',$chapter)->orderBy('verse_num')->get();
+        $filters['versions'] = $this->prepareForSelectBox(VersionsListEn::versionsList(),'version_code','version_name');
+        $filters['books'] = $this->prepareForSelectBox(BooksListEn::all()->toArray(),'id','book_name');
+        $filters['chapters'] = $this->prepareChaptersForSelectBox($versesModel::select(['chapter_num','book_id'])->distinct()->with('booksListEn')->where('book_id', $book)->orderBy('chapter_num')->get()->toArray());
 
-        $content['pagination'] = $this->chaptersPagination($chapter,$filters['chapters'],$book,$filters['books']);
+        $content['heading'] = BooksListEn::find($book)->book_name." ".$chapter;
+        $content['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num',$chapter)->orderBy('verse_num')->get();
+
+        $content['pagination'] = $this->pagination($chapter,$filters['chapters'],$book,$filters['books']);
 
         return view('reader.main',['filters' => $filters,'content' => $content]);
     }
 
-    private function chaptersPagination($currentChapter,$allChapters,$currentBook,$allBooks)
+    private function pagination($currentChapter,$allChapters,$currentBook,$allBooks)
     {
         $params = Request::input();
 
@@ -76,6 +81,6 @@ class ReaderController extends Controller
             $nextBook = $params;
         }
 
-        return ['chapterPrev' => $prevChapter,'chapterNext' => $nextChapter,'prevBook' => $prevBook,'nextBook' => $nextBook];
+        return ['chapterPrev' => $prevChapter,'chapterNext' => $nextChapter,'bookPrev' => $prevBook,'bookNext' => $nextBook];
     }
 }

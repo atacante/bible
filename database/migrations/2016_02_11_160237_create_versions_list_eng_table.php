@@ -12,10 +12,10 @@ class CreateVersionsListEngTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('versions_list_eng', function(Blueprint $table)
+		Schema::create('versions_list_en', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('version_name')->unique('versions_list_eng_version_name_key');
+			$table->string('version_name')->unique('versions_list_en_version_name_key');
 		});
 	}
 
@@ -27,7 +27,7 @@ class CreateVersionsListEngTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('versions_list_eng');
+		Schema::drop('versions_list_en');
 	}
 
 }

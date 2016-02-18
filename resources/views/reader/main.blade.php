@@ -15,18 +15,20 @@
             {!! $verse->verse_text !!}
         @endforeach
     </div>
-    <div class="row col-md-12" style="margin-top: 20px; margin-bottom:20px; text-align: center;">
-        @if($prevBook = $content['pagination']['prevBook'])
-            {{ Html::link(url('reader/read?'.http_build_query($prevBook),[],false), 'Prev Book', ['class' => 'btn btn-default','style' => 'width:120px;'], true)}}
-        @endif
-        @if($prevChapter = $content['pagination']['chapterPrev'])
-            {{ Html::link(url('reader/read?'.http_build_query($prevChapter),[],false), 'Prev Chapter', ['class' => 'btn btn-default','style' => 'width:120px;'], true)}}
-        @endif
-        @if($nextChapter = $content['pagination']['chapterNext'])
-            {{ Html::link(url('reader/read?'.http_build_query($nextChapter),[],false), 'Next Chapter', ['class' => 'btn btn-default','style' => 'width:120px;'], true)}}
-        @endif
-        @if($nextBook = $content['pagination']['nextBook'])
-            {{ Html::link(url('reader/read?'.http_build_query($nextBook),[],false), 'Next Book', ['class' => 'btn btn-default','style' => 'width:120px;'], true)}}
-        @endif
+    <div class="row col-md-12 pagination" style="text-align: center;">
+        <div class="btn-group" role="group" aria-label="...">
+            @if($prevBook = $content['pagination']['bookPrev'])
+                {{ Html::link(url('reader/read?'.http_build_query($prevBook),[],false), 'Prev Book', ['class' => 'btn btn-default btn-danger','style' => 'width:120px;'], true)}}
+            @endif
+            @if($prevChapter = $content['pagination']['chapterPrev'])
+                {{ Html::link(url('reader/read?'.http_build_query($prevChapter),[],false), 'Prev Chapter', ['class' => 'btn btn-default btn-danger','style' => 'width:120px;'], true)}}
+            @endif
+            @if($nextChapter = $content['pagination']['chapterNext'])
+                {{ Html::link(url('reader/read?'.http_build_query($nextChapter),[],false), 'Next Chapter', ['class' => 'btn btn-default btn-primary','style' => 'width:120px;'], true)}}
+            @endif
+            @if($nextBook = $content['pagination']['bookNext'])
+                {{ Html::link(url('reader/read?'.http_build_query($nextBook),[],false), 'Next Book', ['class' => 'btn btn-default btn-primary','style' => 'width:120px;'], true)}}
+            @endif
+        </div>
     </div>
 @stop

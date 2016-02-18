@@ -27,7 +27,7 @@ class Controller extends BaseController
         $chaptersArr = [];
         if(count($chapters)){
             foreach($chapters as $chapter){
-                $chaptersArr[$chapter['chapter_num']] = $chapter['books_list_eng']['book_name'].' '.$chapter['chapter_num'];
+                $chaptersArr[$chapter['chapter_num']] = $chapter['books_list_en']['book_name'].' '.$chapter['chapter_num'];
             }
         }
         return $chaptersArr;

@@ -12,7 +12,7 @@ class CreateVersesAmericanStandardEngTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('verses_american_standard_eng', function(Blueprint $table)
+		Schema::create('verses_american_standard_en', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('book_id');
@@ -30,7 +30,7 @@ class CreateVersesAmericanStandardEngTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('verses_american_standard_eng');
+		Schema::drop('verses_american_standard_en');
 	}
 
 }

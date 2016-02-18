@@ -66,6 +66,7 @@ return [
     */
 
     'locale' => 'en',
+    'locales' => ['en' => 'English'],
 
     /*
     |--------------------------------------------------------------------------
@@ -159,6 +160,9 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
 
+        'Way\Generators\GeneratorsServiceProvider',
+        'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
+        'User11001\EloquentModelGenerator\EloquentModelGeneratorProvider',
     ],
 
     /*

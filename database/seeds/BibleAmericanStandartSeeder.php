@@ -1,8 +1,8 @@
 <?php
 
-use App\BooksListEng;
-use App\VersesAmericanStandardEng;
-use App\VersionsListEng;
+use App\BooksListEn;
+use App\VersesAmericanStandardEn;
+use App\VersionsListEn;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -19,10 +19,10 @@ class BibleAmericanStandartSeeder extends Seeder
         $csv = new \parseCSV(base_path('resources/data/bibles.csv'));
         $data = [];
         if(count($csv->data)){
-            DB::statement("TRUNCATE TABLE verses_american_standard_eng");
-            DB::statement("TRUNCATE TABLE versions_list_eng");
-            DB::statement("TRUNCATE TABLE books_list_eng CASCADE");
-            VersionsListEng::create(['version_name' => 'American Standard Version','version_code' => str_replace(' ','_',strtolower('American Standard Version'))]);
+            DB::statement("TRUNCATE TABLE verses_american_standard_en");
+            DB::statement("TRUNCATE TABLE versions_list_en");
+            DB::statement("TRUNCATE TABLE books_list_en CASCADE");
+            VersionsListEn::create(['version_name' => 'American Standard Version','version_code' => str_replace(' ','_',strtolower('American Standard Version'))]);
             $prevBook = '';
             $bookId = 0;
             foreach($csv->data as $row){
@@ -33,7 +33,7 @@ class BibleAmericanStandartSeeder extends Seeder
                 $book = implode(' ',$bookAndChapter);//array_pop() result
                 $verse = $row['American Standard Version'];
                 if($book != $prevBook){
-                    $bookModel = BooksListEng::create(['id' => $bookId+1,'book_name' => $book]);
+                    $bookModel = BooksListEn::create(['id' => $bookId+1,'book_name' => $book]);
                     $prevBook = $book;
                     $bookId = $bookModel->id;
                 }
@@ -46,8 +46,8 @@ class BibleAmericanStandartSeeder extends Seeder
                     'verse_num' => $verse_num,
                     'verse_text' => $verse
                 ];
-                VersesAmericanStandardEng::insert($verse);
-//                VersesAmericanStandardEng::create($verse);
+                VersesAmericanStandardEn::insert($verse);
+//                VersesAmericanStandardEn::create($verse);
             }
         }
     }
