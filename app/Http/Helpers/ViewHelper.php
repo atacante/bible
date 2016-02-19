@@ -1,17 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Helpers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
-class Controller extends BaseController
+class ViewHelper
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    protected function prepareForSelectBox($items,$value,$text)
+    public static function prepareForSelectBox($items,$value,$text)
     {
         $optionsArr = [];
         if(count($items)){
@@ -22,7 +15,7 @@ class Controller extends BaseController
         return $optionsArr;
     }
 
-    protected function prepareChaptersForSelectBox($chapters)
+    public static function prepareChaptersForSelectBox($chapters)
     {
         $chaptersArr = [];
         if(count($chapters)){

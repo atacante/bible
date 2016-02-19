@@ -12,10 +12,10 @@ class CreateBooksListEngTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('books_list_eng', function(Blueprint $table)
+		Schema::create('books_list_en', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('book_name')->unique('books_list_eng_book_name_key');
+			$table->string('book_name')->unique('books_list_en_book_name_key');
 		});
 	}
 
@@ -27,7 +27,7 @@ class CreateBooksListEngTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('books_list_eng');
+		Schema::drop('books_list_en');
 	}
 
 }
