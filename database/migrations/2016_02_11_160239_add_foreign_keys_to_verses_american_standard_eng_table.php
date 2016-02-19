@@ -12,9 +12,9 @@ class AddForeignKeysToVersesAmericanStandardEngTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('verses_american_standard_eng', function(Blueprint $table)
+		Schema::table('verses_american_standard_en', function(Blueprint $table)
 		{
-			$table->foreign('book_id', 'verses_american_standard_eng_fk')->references('id')->on('books_list_eng')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+			$table->foreign('book_id', 'verses_american_standard_en_fk')->references('id')->on('books_list_en')->onUpdate('RESTRICT')->onDelete('RESTRICT');
 		});
 	}
 
@@ -26,9 +26,9 @@ class AddForeignKeysToVersesAmericanStandardEngTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('verses_american_standard_eng', function(Blueprint $table)
+		Schema::table('verses_american_standard_en', function(Blueprint $table)
 		{
-			$table->dropForeign('verses_american_standard_eng_fk');
+			$table->dropForeign('verses_american_standard_en_fk');
 		});
 	}
 
