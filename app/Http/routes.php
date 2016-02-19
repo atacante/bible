@@ -32,3 +32,5 @@ Route::controller('ajax', 'AjaxController');
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+View::composer('reader.filters', 'App\Http\Composers\BibleFiltersComposer');

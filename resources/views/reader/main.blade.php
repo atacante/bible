@@ -11,8 +11,9 @@
     </div>
     <div class="row col-md-12" style="line-height: 30px;">
         @foreach($content['verses'] as $verse)
-            <b>{!! link_to('#', $title = $verse->verse_num) !!}</b>
-            {!! $verse->verse_text !!}
+            <span style="word-wrap: normal">
+                <b>{!! link_to('#', $title = $verse->verse_num) !!}</b>&nbsp;{!! $verse->verse_text !!}
+            </span>
         @endforeach
     </div>
     <div class="row col-md-12 pagination" style="text-align: center;">

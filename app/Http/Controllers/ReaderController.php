@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\BaseModel;
 use App\BooksListEn;
+use App\Helpers\ViewHelper;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Redirect;
 use Request;
 
 use App\Http\Requests;
@@ -16,71 +18,88 @@ class ReaderController extends Controller
 {
     public function getRead()
     {
-        $version = Request::input('version','american_standard');
-        $book = Request::input('book',1);
-        $chapter = Request::input('chapter',1);
+        $version = Request::input('version', Config::get('app.defaultBibleVersion'));
+        if($version == 'all'){
+            return Redirect::to('/reader/overview?'.http_build_query(Request::input()));
+        }
+        $book = Request::input('book', Config::get('app.defaultBookNumber'));
+        $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
 
-        $locale = Config::get('app.locale');// temporary static variable
-        $versesModel = BaseModel::getModelByTableName('verses_'.$version.'_'.$locale);
+        $versesModel = BaseModel::getVersesModelByVersionCode($version);
 
-        $filters['versions'] = $this->prepareForSelectBox(VersionsListEn::versionsList(),'version_code','version_name');
-        $filters['books'] = $this->prepareForSelectBox(BooksListEn::all()->toArray(),'id','book_name');
-        $filters['chapters'] = $this->prepareChaptersForSelectBox($versesModel::select(['chapter_num','book_id'])->distinct()->with('booksListEn')->where('book_id', $book)->orderBy('chapter_num')->get()->toArray());
+//        $filters['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsList(), 'version_code', 'version_name');
 
-        $content['heading'] = BooksListEn::find($book)->book_name." ".$chapter;
-        $content['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num',$chapter)->orderBy('verse_num')->get();
+        $content['heading'] = BooksListEn::find($book)->book_name . " " . $chapter;
+        $content['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
 
-        $content['pagination'] = $this->pagination($chapter,$filters['chapters'],$book,$filters['books']);
+        $content['pagination'] = $this->pagination($chapter, $book);
 
-        return view('reader.main',['filters' => $filters,'content' => $content]);
+        return view('reader.main', [/*'filters' => $filters, */'content' => $content]);
     }
 
-    private function pagination($currentChapter,$allChapters,$currentBook,$allBooks)
+    public function getOverview()
+    {
+        $book = Request::input('book', Config::get('app.defaultBookNumber'));
+        $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
+
+        $content['heading'] = BooksListEn::find($book)->book_name . " " . $chapter;
+        $content['verses'] = [];
+        $versions = VersionsListEn::versionsList();
+        if ($versions) {
+            foreach ($versions as $version) {
+                $versesModel = BaseModel::getVersesModelByVersionCode($version['version_code']);
+                $content['versions'][$version['version_code']]['version_name'] = $version['version_name'];
+                $content['versions'][$version['version_code']]['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->limit(3)->get();
+            }
+        }
+        return view('reader.overview', [/*'filters' => $filters,*/ 'content' => $content]);
+    }
+
+    private function pagination($currentChapter, $currentBook)
     {
         $params = Request::input();
 
-        /* Chapters links */
-        $prevChapter = $currentChapter-1;
+        $allBooks = ViewHelper::prepareForSelectBox(BooksListEn::all()->toArray(), 'id', 'book_name');
+        $allChapters = ViewHelper::prepareChaptersForSelectBox(BaseModel::getChapters($currentBook));
 
-        if($prevChapter == 0){
+        /* Chapters links */
+        $prevChapter = $currentChapter - 1;
+
+        if ($prevChapter == 0) {
             $prevChapter = false;
-        }
-        else{
+        } else {
             $params['chapter'] = $prevChapter;
             $prevChapter = $params;
         }
 
-        $nextChapter = $currentChapter+1;
-        if(!array_key_exists($nextChapter,$allChapters)){
+        $nextChapter = $currentChapter + 1;
+        if (!array_key_exists($nextChapter, $allChapters)) {
             $nextChapter = false;
-        }
-        else{
+        } else {
             $params['chapter'] = $nextChapter;
             $nextChapter = $params;
         }
 
         /* Books links */
-        $prevBook = $currentBook-1;
+        $prevBook = $currentBook - 1;
 
-        if($prevBook == 0){
+        if ($prevBook == 0) {
             $prevBook = false;
-        }
-        else{
+        } else {
             $params['book'] = $prevBook;
             $params['chapter'] = 1;
             $prevBook = $params;
         }
 
-        $nextBook = $currentBook+1;
-        if(!array_key_exists($nextBook,$allBooks)){
+        $nextBook = $currentBook + 1;
+        if (!array_key_exists($nextBook, $allBooks)) {
             $nextBook = false;
-        }
-        else{
+        } else {
             $params['book'] = $nextBook;
             $params['chapter'] = 1;
             $nextBook = $params;
         }
 
-        return ['chapterPrev' => $prevChapter,'chapterNext' => $nextChapter,'bookPrev' => $prevBook,'bookNext' => $nextBook];
+        return ['chapterPrev' => $prevChapter, 'chapterNext' => $nextChapter, 'bookPrev' => $prevBook, 'bookNext' => $nextBook];
     }
 }
