@@ -16,7 +16,12 @@
             @endif
             @foreach($content['verses'] as $verse)
                 <span style="word-wrap: normal">
-                <b>{!! link_to('#', $title = $verse->verse_num) !!}</b>&nbsp;{!! $verse->verse_text !!}
+                <b>{!! link_to('reader/verse?'.http_build_query([
+                                                                'version' => $content['version_code'],
+                                                                'book' => $verse->book_id,
+                                                                'chapter' => $verse->chapter_num,
+                                                                'verse' => $verse->verse_num,
+                                                            ]), $title = $verse->verse_num) !!}</b>&nbsp;{!! $verse->verse_text !!}
             </span>
             @endforeach
         </div>
@@ -25,7 +30,12 @@
                 <h4 class="text-center">{!! $compare['version'] !!} ({!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff') !!})</h4>
                 @foreach($compare['verses'] as $verse)
                     <span style="word-wrap: normal">
-                        <b>{!! link_to('#', $title = $verse->verse_num) !!}</b>&nbsp;{!! $verse->verse_text !!}
+                        <b>{!! link_to('reader/verse?'.http_build_query([
+                                                                'version' => $compare['version_code'],
+                                                                'book' => $verse->book_id,
+                                                                'chapter' => $verse->chapter_num,
+                                                                'verse' => $verse->verse_num,
+                                                            ]), $title = $verse->verse_num) !!}</b>&nbsp;{!! $verse->verse_text !!}
                     </span>
                 @endforeach
             </div>

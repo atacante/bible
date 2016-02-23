@@ -10,4 +10,16 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('.j-verses-filters').on('change','select[name=chapter ]',function(){
+        $.ajax({
+            method: "GET",
+            url: "/ajax/verses-list",
+            dataType: "json",
+            data:{book_id:$(this).val()},
+            success:function(data){
+                site.fillSelect('select[name=verse]',data);
+            }
+        });
+    });
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BaseModel;
 use App\BooksListEn;
+use App\Helpers\ViewHelper;
 use App\VersesAmericanStandardEn;
 use Illuminate\Support\Facades\Config;
 use Request;
@@ -33,5 +34,13 @@ class AjaxController extends Controller
         return response()->json($chapters);
 
         */
+    }
+
+    public function getVersesList()
+    {
+        $book = Request::input('book_id',Config::get('app.defaultBookNumber'));
+        $chapter = Request::input('chapter',Config::get('app.defaultChapterNumber'));
+        $verses = ViewHelper::prepareVersesForSelectBox(BaseModel::getVerses($book,$chapter));
+        return response()->json($verses);
     }
 }

@@ -19,8 +19,8 @@ class ReaderController extends Controller
     public function getRead()
     {
         $version = Request::input('version', Config::get('app.defaultBibleVersion'));
-        if($version == 'all'){
-            return Redirect::to('/reader/overview?'.http_build_query(Request::input()));
+        if ($version == 'all') {
+            return Redirect::to('/reader/overview?' . http_build_query(Request::input()));
         }
         $book = Request::input('book', Config::get('app.defaultBookNumber'));
         $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
@@ -28,6 +28,7 @@ class ReaderController extends Controller
         $versesModel = BaseModel::getVersesModelByVersionCode($version);
 
         $content['version'] = VersionsListEn::getVersionByCode($version);
+        $content['version_code'] = $version;
         $content['heading'] = BooksListEn::find($book)->book_name . " " . $chapter;
         $content['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
 
@@ -38,22 +39,23 @@ class ReaderController extends Controller
         unset($compareResetParams['compare']);
         unset($compareResetParams['diff']);
         $compare['resetParams'] = $compareResetParams;
-        if($compareVersion = Request::input('compare', false)){
+        if ($compareVersion = Request::input('compare', false)) {
             $compare['version'] = VersionsListEn::getVersionByCode($compareVersion);
+            $compare['version_code'] = $compareVersion;
             $compareVersesModel = BaseModel::getVersesModelByVersionCode($compareVersion);
             $compare['verses'] = $compareVersesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
 
-            if(Request::input('diff', false)){
+            if (Request::input('diff', false)) {
                 $diff = new \cogpowered\FineDiff\Diff(new \cogpowered\FineDiff\Granularity\Word);
-                if(count($compare['verses']) && count($content['verses'])){
-                    foreach($content['verses'] as $key => $verse){
-                        $compare['verses'][$key]->verse_text = $diff->render(strip_tags($verse->verse_text),strip_tags($compare['verses'][$key]->verse_text));
+                if (count($compare['verses']) && count($content['verses'])) {
+                    foreach ($content['verses'] as $key => $verse) {
+                        $compare['verses'][$key]->verse_text = $diff->render(strip_tags($verse->verse_text), strip_tags($compare['verses'][$key]->verse_text));
                     }
                 }
             }
         }
 
-        return view('reader.main', ['compare' => $compare,'content' => $content]);
+        return view('reader.main', ['compare' => $compare, 'content' => $content]);
     }
 
     public function getOverview()
@@ -71,10 +73,53 @@ class ReaderController extends Controller
                 $content['versions'][$version['version_code']]['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->limit(3)->get();
             }
         }
-        return view('reader.overview', [/*'filters' => $filters,*/ 'content' => $content]);
+        return view('reader.overview', [/*'filters' => $filters,*/
+            'content' => $content]);
     }
 
-    private function pagination($currentChapter, $currentBook)
+    public function getVerse()
+    {
+        $version_code = Request::input('version', Config::get('app.defaultBibleVersion'));
+        $book = Request::input('book', Config::get('app.defaultBookNumber'));
+        $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
+        $verse = Request::input('verse', false);
+
+        $versions = VersionsListEn::versionsList();
+
+        if ($verse) {
+            $verseModel = BaseModel::getVersesModelByVersionCode($version_code);
+            $content['main_verse']['version_name'] = VersionsListEn::getVersionByCode($version_code);
+            $content['main_verse']['verse'] = $verseModel::query()
+                ->where('book_id', $book)
+                ->where('chapter_num', $chapter)
+                ->where('verse_num', $verse)
+                ->first();
+
+            foreach ($versions as $version) {
+                if ($version['version_code'] != $version_code) {
+                    $versesModel = BaseModel::getVersesModelByVersionCode($version['version_code']);
+                    $content['verse'][$version['version_code']]['version_name'] = $version['version_name'];
+                    $content['verse'][$version['version_code']]['verse'] =
+                        $versesModel::query()
+                            ->where('book_id', $book)
+                            ->where('chapter_num', $chapter)
+                            ->where('verse_num', $verse)
+                            ->first();
+                }
+            }
+
+            if (Request::input('diff', false)) {
+                $diff = new \cogpowered\FineDiff\Diff(new \cogpowered\FineDiff\Granularity\Word);
+                foreach ($content['verse'] as $key => $version) {
+                    $content['verse'][$key]['verse']->verse_text = $diff->render(strip_tags($content['main_verse']['verse']->verse_text), strip_tags($version['verse']->verse_text));
+                }
+            }
+        }
+        $content['pagination'] = $this->pagination($chapter, $book, $verse);
+        return view('reader.verse', ['content' => $content, 'filterAction' => 'verse']);
+    }
+
+    private function pagination($currentChapter, $currentBook, $currentVerse = false)
     {
         $params = Request::input();
 
@@ -119,6 +164,45 @@ class ReaderController extends Controller
             $nextBook = $params;
         }
 
-        return ['chapterPrev' => $prevChapter, 'chapterNext' => $nextChapter, 'bookPrev' => $prevBook, 'bookNext' => $nextBook];
+        /* Verse links */
+        $prevVerse = false;
+        $nextVerse = false;
+        if ($currentVerse) {
+            $allVerses = ViewHelper::prepareVersesForSelectBox(BaseModel::getVerses($currentBook, $currentChapter));
+            $prevVerse = $currentVerse - 1;
+
+            if ($prevVerse == 0) {
+                $prevVerse = false;
+            } else {
+                $params['verse'] = $prevVerse;
+                $params['chapter'] = $currentChapter;
+                $params['book'] = $currentBook;
+                $prevVerse = $params;
+            }
+
+            $nextVerse = $currentVerse + 1;
+            if (!array_key_exists($nextVerse, $allVerses)) {
+                $nextVerse = false;
+            } else {
+                $params['verse'] = $nextVerse;
+                $params['chapter'] = $currentChapter;
+                $params['book'] = $currentBook;
+                $nextVerse = $params;
+            }
+        }
+
+        return [
+            'chapterPrev' => $prevChapter,
+            'chapterNext' => $nextChapter,
+            'bookPrev' => $prevBook,
+            'bookNext' => $nextBook,
+            'versePrev' => $prevVerse,
+            'verseNext' => $nextVerse,
+        ];
+    }
+
+    private function versesPagination($currentChapter, $currentBook, $currentVerse)
+    {
+
     }
 }

@@ -39,4 +39,23 @@ class BaseModel extends Model {
             ->get()
             ->toArray();
     }
+
+    public static function getVerses($book,$chapter,$version = false){
+        if(!$version){ //If no params exist will be used default version to get list of verses, because all are the same for each Bible version
+            $version = Request::input('version',Config::get('app.defaultBibleVersion'));
+            if($version == 'all'){
+                $version = Config::get('app.defaultChaptersVersion');
+            }
+        }
+        $versesModel = self::getVersesModelByVersionCode($version);
+        return $versesModel::
+        select(['chapter_num', 'book_id','verse_num'])
+            ->distinct()
+            ->with('booksListEn')
+            ->where('book_id', $book)
+            ->where('chapter_num', $chapter)
+            ->orderBy('verse_num')
+            ->get()
+            ->toArray();
+    }
 }

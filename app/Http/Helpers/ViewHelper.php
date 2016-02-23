@@ -25,4 +25,15 @@ class ViewHelper
         }
         return $chaptersArr;
     }
+
+    public static function prepareVersesForSelectBox($verses)
+    {
+        $versesArr = [];
+        if(count($verses)){
+            foreach($verses as $verse){
+                $versesArr[$verse['verse_num']] = 'Verse'.' '.$verse['verse_num'];
+            }
+        }
+        return $versesArr;
+    }
 }

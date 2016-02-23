@@ -26,9 +26,11 @@ class BibleFiltersComposer {
     public function compose(View $view)
     {
         $book = Request::input('book', Config::get('app.defaultBookNumber'));
+        $chapter = Request::input('chapter',Config::get('app.defaultChapterNumber'));
         $filters['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsList(), 'version_code', 'version_name');
         $filters['books'] = ViewHelper::prepareForSelectBox(BooksListEn::all()->toArray(), 'id', 'book_name');
         $filters['chapters'] = ViewHelper::prepareChaptersForSelectBox(BaseModel::getChapters($book));
+        $filters['verses'] = ViewHelper::prepareVersesForSelectBox(BaseModel::getVerses($book,$chapter));
         $view->with('filters', $filters);
     }
 
