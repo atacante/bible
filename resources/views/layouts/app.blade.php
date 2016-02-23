@@ -16,9 +16,11 @@
     @show
         {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')!!}
 {{--        {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css')!!}--}}
+        {!!Html::style('css/style.css')!!}
 
         {!!Html::script('//code.jquery.com/jquery-2.2.0.min.js')!!}
         {!!Html::script('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')!!}
+        {!!Html::script('js/jsdiff/diff.min.js')!!}
         {!!Html::script('js/main.js')!!}
         {!!Html::script('js/functions.js')!!}
 

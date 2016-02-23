@@ -1,12 +1,13 @@
 <?php namespace App;
 
-class VersionsListEn extends BaseModel {
+class VersionsListEn extends BaseModel
+{
 
     /**
      * Generated
      */
 
-    public $timestamps  = false;
+    public $timestamps = false;
 
     protected $table = 'versions_list_en';
     protected $fillable = ['id', 'version_code', 'version_name'];
@@ -59,4 +60,12 @@ class VersionsListEn extends BaseModel {
         ];
     }
 
+    public static function getVersionByCode($code)
+    {
+        foreach (self::versionsList() as $version) {
+            if($version['version_code'] == $code){
+                return $version['version_name'];
+            }
+        }
+    }
 }

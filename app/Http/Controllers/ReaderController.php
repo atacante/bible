@@ -27,14 +27,33 @@ class ReaderController extends Controller
 
         $versesModel = BaseModel::getVersesModelByVersionCode($version);
 
-//        $filters['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsList(), 'version_code', 'version_name');
-
+        $content['version'] = VersionsListEn::getVersionByCode($version);
         $content['heading'] = BooksListEn::find($book)->book_name . " " . $chapter;
         $content['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
 
         $content['pagination'] = $this->pagination($chapter, $book);
 
-        return view('reader.main', [/*'filters' => $filters, */'content' => $content]);
+        $compare['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsList(), 'version_code', 'version_name');
+        $compareResetParams = Request::input();
+        unset($compareResetParams['compare']);
+        unset($compareResetParams['diff']);
+        $compare['resetParams'] = $compareResetParams;
+        if($compareVersion = Request::input('compare', false)){
+            $compare['version'] = VersionsListEn::getVersionByCode($compareVersion);
+            $compareVersesModel = BaseModel::getVersesModelByVersionCode($compareVersion);
+            $compare['verses'] = $compareVersesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
+
+            if(Request::input('diff', false)){
+                $diff = new \cogpowered\FineDiff\Diff(new \cogpowered\FineDiff\Granularity\Word);
+                if(count($compare['verses']) && count($content['verses'])){
+                    foreach($content['verses'] as $key => $verse){
+                        $compare['verses'][$key]->verse_text = $diff->render(strip_tags($verse->verse_text),strip_tags($compare['verses'][$key]->verse_text));
+                    }
+                }
+            }
+        }
+
+        return view('reader.main', ['compare' => $compare,'content' => $content]);
     }
 
     public function getOverview()

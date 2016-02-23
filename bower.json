@@ -1,0 +1,6 @@
+{
+  "name": "Bible",
+  "dependencies": {
+    "jsdiff": "~2.2.1"
+  }
+}

@@ -9,12 +9,27 @@
     <div class="row col-md-12">
         <h3 class="text-center">{!! $content['heading'] !!}</h3>
     </div>
-    <div class="row col-md-12" style="line-height: 30px;">
-        @foreach($content['verses'] as $verse)
-            <span style="word-wrap: normal">
+    <div class="row">
+        <div class="j-reader-block {!! Request::input('compare',false)?'col-md-6':"row col-md-12" !!}" style="line-height: 30px;">
+            @if(Request::input('compare',false))
+                <h4 class="text-center">{!! $content['version'] !!}</h4>
+            @endif
+            @foreach($content['verses'] as $verse)
+                <span style="word-wrap: normal">
                 <b>{!! link_to('#', $title = $verse->verse_num) !!}</b>&nbsp;{!! $verse->verse_text !!}
             </span>
-        @endforeach
+            @endforeach
+        </div>
+        @if(Request::input('compare',false))
+            <div class="col-md-6 j-diff-block" style="line-height: 30px;">
+                <h4 class="text-center">{!! $compare['version'] !!} ({!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff') !!})</h4>
+                @foreach($compare['verses'] as $verse)
+                    <span style="word-wrap: normal">
+                        <b>{!! link_to('#', $title = $verse->verse_num) !!}</b>&nbsp;{!! $verse->verse_text !!}
+                    </span>
+                @endforeach
+            </div>
+        @endif
     </div>
     <div class="row col-md-12 pagination" style="text-align: center;">
         <div class="btn-group" role="group" aria-label="...">
