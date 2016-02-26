@@ -8,9 +8,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Bible Reader</a>
+            <a class="navbar-brand" href="/">Bible Reader</a>
         </div>
-
+        <div class="pull-left" style="width: 450px; margin: 8px 30px;">
+            {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
+            {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:400px; margin-right:5px;']) !!}
+            {!! Form::submit('Go',['class' => 'btn btn-primary pull-left']) !!}
+            {!! Form::close() !!}
+        </div>
         {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--}}
             {{--<ul class="nav navbar-nav">--}}
                 {{--<li class="{{ (Request::is('/') ? 'active' : '') }}">--}}

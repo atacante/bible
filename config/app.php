@@ -246,7 +246,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'defaultBibleVersion' => 'all',// use 'all' if not needed specific version
+    'defaultBibleVersion' => 'american_standard',// use 'all' if not needed specific version
     'defaultChaptersVersion' => 'american_standard',
     'defaultBookNumber' => 1,
     'defaultChapterNumber' => 1,

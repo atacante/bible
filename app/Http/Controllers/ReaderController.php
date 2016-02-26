@@ -7,7 +7,9 @@ use App\BooksListEn;
 use App\Helpers\ViewHelper;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
+use FineDiffTests\Usage\Base;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Request;
 
@@ -75,6 +77,54 @@ class ReaderController extends Controller
         }
         return view('reader.overview', [/*'filters' => $filters,*/
             'content' => $content]);
+    }
+
+    public function getSearch()
+    {
+        $q = Request::input('q', false);
+        $version = Request::input('version', Config::get('app.defaultBibleVersion'));
+
+        $versions = VersionsListEn::versionsList();
+        $content = [];
+
+        $versesModel = BaseModel::getVersesModelByVersionCode($version);
+//        $content['verses'] = $versesModel::query()
+//                                ->with('booksListEn')
+//                                ->where('verse_text', 'ilike', '%'.$q.'%')
+//                                ->orderBy('book_id')
+//                                ->orderBy('chapter_num')
+//                                ->orderBy('verse_num')
+//                                ->paginate(10)
+                                /*->get()*/;
+//        $content['verses'] = $versesModel::query()
+//                                ->select(DB::raw('
+//                                    ts_rank_cd(searchtext, queryPhrase) rankPhrase,
+//                                    ts_rank_cd(searchtext, queryWord) rankWord,
+//                                    ts_headline(\'english\',verse_text,queryPhrase,\'HighlightAll=TRUE\') highlighted_verse_text,
+//                                    *
+//                                '))
+//                                ->from(DB::raw('
+//                                    bible_test,
+//                                    to_tsquery(\'Better & is & the & end\') queryPhrase,
+//                                    to_tsquery(\'Better | is | the | end\') queryWord
+//                                '))
+////                                ->with('booksListEn')
+//                                ->whereRaw(DB::raw('
+//                                    searchtext @@ queryPhrase OR searchtext @@ queryWord
+//                                '))
+////                                ->orderBy('rankPhrase','DESC')
+////                                ->orderBy('rankWord','DESC')
+//                                ->orderByRaw(DB::raw('rankPhrase DESC,rankWord DESC'))
+//                                ->paginate(10);
+
+//        if ($versions && $q) {
+//            foreach ($versions as $version) {
+//                $versesModel = BaseModel::getVersesModelByVersionCode($version['version_code']);
+//                $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->limit(3)->get();
+//            }
+//        }
+        $content['verses'] = BaseModel::searchEverywhere($q)->paginate(10);
+        return view('reader.search', ['content' => $content]);
     }
 
     public function getVerse()
@@ -199,10 +249,5 @@ class ReaderController extends Controller
             'versePrev' => $prevVerse,
             'verseNext' => $nextVerse,
         ];
-    }
-
-    private function versesPagination($currentChapter, $currentBook, $currentVerse)
-    {
-
     }
 }
