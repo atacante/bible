@@ -43,4 +43,18 @@ class AjaxController extends Controller
         $verses = ViewHelper::prepareVersesForSelectBox(BaseModel::getVerses($book,$chapter));
         return response()->json($verses);
     }
+
+    public function getPrintChapter()
+    {
+        $version = Request::input('version', Config::get('app.defaultBibleVersion'));
+        $book = Request::input('book', Config::get('app.defaultBookNumber'));
+        $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
+
+        $versesModel = BaseModel::getVersesModelByVersionCode($version);
+        $content['version_code'] = $version;
+        $content['heading'] = BooksListEn::find($book)->book_name . " " . $chapter;
+        $content['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
+
+        return view('reader.printchapter', ['content' => $content]);
+    }
 }

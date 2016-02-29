@@ -22,4 +22,27 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('.j-chapter-content').parent().on('click','.j-print-chapter',function(e){
+        e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: "/ajax/print-chapter",
+            dataType: "html",
+            data:$('.j-verses-filters form').serialize(),
+            success:function(data){
+                //var printContents = data;
+                //var originalContents = $('body').html();
+                //$('body').html(printContents);
+                //window.print();
+                //$('body').html(originalContents);
+                //location.reload();
+
+                var printChapter = window.open('', '', 'height='+$(window).height()+',width='+$(window).width());
+                printChapter.document.write(data);
+                printChapter.print();
+                printChapter.close();
+            }
+        });
+    });
 });
