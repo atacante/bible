@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('/', [
-    'as' => 'reader', 'uses' => 'ReaderController@getRead'
-]);
-
-Route::controller('reader', 'ReaderController');
-Route::controller('ajax', 'AjaxController');
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +24,17 @@ Route::controller('ajax', 'AjaxController');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', [
+        'as' => 'reader', 'uses' => 'ReaderController@getRead'
+    ]);
+
+    Route::controller('reader', 'ReaderController');
+    Route::controller('ajax', 'AjaxController');
+
+    Route::controllers([
+        'auth' => 'Auth\AuthController',
+        'password' => 'Auth\PasswordController',
+    ]);
 });
 
 View::composer('reader.filters', 'App\Http\Composers\BibleFiltersComposer');

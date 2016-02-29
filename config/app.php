@@ -161,6 +161,9 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Arcanedev\NoCaptcha\NoCaptchaServiceProvider::class,
+        Krucas\Notification\NotificationServiceProvider::class,
 
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
@@ -239,6 +242,11 @@ return [
         'Tabbable' => 'Bootstrapper\Facades\Tabbable',
         'Table' => 'Bootstrapper\Facades\Table',
         'Thumbnail' => 'Bootstrapper\Facades\Thumbnail',
+
+
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Captcha' => Arcanedev\NoCaptcha\Facades\NoCaptcha::class,
+        'Notification' => Krucas\Notification\Facades\Notification::class,
     ],
     /*
     |--------------------------------------------------------------------------

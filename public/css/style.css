@@ -8,3 +8,9 @@ ins {
     background: #dfd;
     text-decoration: none;
 }
+label {
+    font-weight: normal;
+}
+.fa-btn {
+    margin-right: 6px;
+}

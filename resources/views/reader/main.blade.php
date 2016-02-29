@@ -9,7 +9,7 @@
     <div class="row col-md-12">
         <h3 class="text-center">{!! $content['heading'] !!}</h3>
     </div>
-    <div class="row">
+    <div class="row col-md-12">
         <div class="j-reader-block {!! Request::input('compare',false)?'col-md-6':"row col-md-12" !!}" style="line-height: 30px;">
             @if(Request::input('compare',false))
                 <h4 class="text-center">{!! $content['version'] !!}</h4>
