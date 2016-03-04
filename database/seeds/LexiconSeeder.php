@@ -16,7 +16,7 @@ class LexiconSeeder extends Seeder
      */
     public function run()
     {
-        ini_set('memory_limit', '512M');
+        ini_set('memory_limit', '768M');
         $csv = new \parseCSV(base_path('resources/data/lexicon_short.csv'));
         $data = [];
         if(count($csv->data)){
