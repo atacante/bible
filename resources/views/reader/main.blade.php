@@ -32,7 +32,7 @@
             @if(Request::input('compare',false))
                 <div class="col-md-6 j-diff-block" style="line-height: 30px; text-align: justify;">
                     <h4 class="text-center">{!! $compare['version'] !!}
-                        ({!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff') !!})
+                        {!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}
                     </h4>
                     @foreach($compare['verses'] as $verse)
                         <span style="word-wrap: normal">
