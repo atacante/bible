@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\BaseModel;
 use App\BooksListEn;
 use App\Helpers\ViewHelper;
+use App\LexiconKjv;
 use App\VersesAmericanStandardEn;
 use Illuminate\Support\Facades\Config;
 use Request;
@@ -56,5 +57,11 @@ class AjaxController extends Controller
         $content['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
 
         return view('reader.printchapter', ['content' => $content]);
+    }
+
+    public function getLexiconInfo(){
+        $definitionId = Request::input('definition_id');
+        $lexiconinfo = LexiconKjv::query()->where('id',$definitionId)->first();
+        return view('reader.lexiconinfo', ['lexiconinfo' => $lexiconinfo]);
     }
 }

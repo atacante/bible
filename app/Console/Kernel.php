@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Inspire::class,
-        'App\Console\Commands\ParseCsvCommand',
+        Commands\ParseCsvCommand::class,
+        Commands\CacheLexicon::class,
     ];
 
     /**

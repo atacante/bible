@@ -33,6 +33,35 @@ class ReaderController extends Controller
         $content['version_code'] = $version;
         $content['heading'] = BooksListEn::find($book)->book_name . " " . $chapter;
         $content['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
+//        if ($version == 'king_james') {
+//            foreach ($content['verses'] as $verse) {
+//                $lexicon = $verse->lexicon();
+//                if ($lexicon) {
+//                    $parts = [];
+//                    foreach($lexicon as $vesrePart){
+//                        $parts[$vesrePart->id] = $vesrePart->verse_part;
+//                    }
+//
+//                    $parts = array_unique($parts);
+//                    uasort($parts,function($a,$b){
+//                        return strlen($b)-strlen($a);
+//                    });
+//
+//                    foreach ($parts as $key => $part) {
+//                        $part = str_replace('[','<i>',$part);
+//                        $part = str_replace(']','</i>',$part);
+//                        $verse->verse_text = str_replace($part,"<-$key->".$part."<|>",$verse->verse_text);
+//                    }
+//
+//                    $verse->verse_text = str_replace("<-","<span class='word-definition' data-lexid=\"",$verse->verse_text);
+//                    $verse->verse_text = str_replace("->",'">',$verse->verse_text);
+//                    $verse->verse_text = str_replace("<|>","</span>",$verse->verse_text);
+//
+////                    $verse->verse_text = str_replace("<->","<span class='word-definition' data-lexid=\"$key\">",$verse->verse_text);
+////                    $verse->verse_text = str_replace("<-!>","</span>",$verse->verse_text);
+//                }
+//            }
+//        }
 
         $content['pagination'] = $this->pagination($chapter, $book);
 
@@ -95,7 +124,7 @@ class ReaderController extends Controller
 //                                ->orderBy('chapter_num')
 //                                ->orderBy('verse_num')
 //                                ->paginate(10)
-                                /*->get()*/;
+        /*->get()*/;
 //        $content['verses'] = $versesModel::query()
 //                                ->select(DB::raw('
 //                                    ts_rank_cd(searchtext, queryPhrase) rankPhrase,

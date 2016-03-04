@@ -25,15 +25,15 @@
                                                                 'book' => $verse->book_id,
                                                                 'chapter' => $verse->chapter_num,
                                                                 'verse' => $verse->verse_num,
-                                                            ]), $title = $verse->verse_num) !!}</b>&nbsp;{!! $verse->verse_text !!}
+                                                            ]), $title = $verse->verse_num) !!}</b>&nbsp;{!! !empty($verse->verse_text_with_lexicon)?$verse->verse_text_with_lexicon:$verse->verse_text !!}
             </span>
                 @endforeach
             </div>
             @if(Request::input('compare',false))
                 <div class="col-md-6 j-diff-block" style="line-height: 30px; text-align: justify;">
                     <h4 class="text-center">{!! $compare['version'] !!}
-                        ({!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff') !!}
-                        )</h4>
+                        ({!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff') !!})
+                    </h4>
                     @foreach($compare['verses'] as $verse)
                         <span style="word-wrap: normal">
                         <b>{!! link_to('reader/verse?'.http_build_query([
