@@ -25,7 +25,7 @@
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', [
-        'as' => 'reader', 'uses' => 'ReaderController@getRead'
+        'as' => 'reader', 'uses' => 'ReaderController@getOverview'
     ]);
 
     Route::controller('reader', 'ReaderController');
