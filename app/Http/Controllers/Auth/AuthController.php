@@ -9,6 +9,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Request;
 
 class AuthController extends Controller
 {
@@ -85,4 +86,9 @@ class AuthController extends Controller
         Session::flush();
         return redirect('/');
     }
+
+//    protected function authenticated(\Illuminate\Http\Request $request, User $user)
+//    {
+//        return redirect()->intended('/dashboard');
+//    }
 }

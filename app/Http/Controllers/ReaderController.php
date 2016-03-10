@@ -8,6 +8,7 @@ use App\Helpers\ViewHelper;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use FineDiffTests\Usage\Base;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
