@@ -42,7 +42,8 @@ Route::group(['middleware' => ['web']], function () {
 //    return redirect('/admin/lexicon/view');
 //});
 Route::get('admin', [
-    'middleware' => ['auth'],
+    'middleware' => ['auth', 'acl'],
+    'is' => 'administrator',
     'as' => 'lexicon',
     'uses' => 'Admin\LexiconController@getView'
 ]);
@@ -50,7 +51,8 @@ Route::get('admin', [
 $router->group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
-    'middleware' => ['auth'],
+    'middleware' => ['auth', 'acl'],
+    'is' => 'administrator',
 ], function () {
     Route::controllers([
         'lexicon' => 'LexiconController',
@@ -59,3 +61,4 @@ $router->group([
 });
 
 View::composer('reader.filters', 'App\Http\Composers\BibleFiltersComposer');
+View::composer('admin.partials.filters', 'App\Http\Composers\BibleFiltersComposer');

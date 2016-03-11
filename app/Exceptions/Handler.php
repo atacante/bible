@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Response;
+use Krucas\Notification\Facades\Notification;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -46,6 +48,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e->getStatusCode() == 401){
+            Notification::error($e->getMessage());
+            Notification::info($e->getMessage());
+//            var_dump(Notification::showAll());
+            return redirect()->guest('auth/login');
+        }
+
         return parent::render($request, $e);
     }
 }

@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Kodeine\Acl\Traits\HasRole;
 
 class User extends Authenticatable
 {
+    use HasRole;
     /**
      * The attributes that are mass assignable.
      *

@@ -165,6 +165,8 @@ return [
         Arcanedev\NoCaptcha\NoCaptchaServiceProvider::class,
         Krucas\Notification\NotificationServiceProvider::class,
 
+        Kodeine\Acl\AclServiceProvider::class,
+
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
         'User11001\EloquentModelGenerator\EloquentModelGeneratorProvider',

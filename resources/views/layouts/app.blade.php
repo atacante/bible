@@ -40,7 +40,7 @@
 @include('partials.nav')
 
 <div class="container">
-{!! Notification::showAll() !!}
+@notification()
 @yield('content')
 </div>
 @include('partials.footer')
