@@ -28,9 +28,11 @@ class VersesKingJamesEn extends BaseModel {
 //            ->where('verse_num',$this->verse_num);
 //    }
 
-    public static function cacheLexicon(){
+    public static function cacheLexicon($verses = []){
         ini_set('memory_limit', '512M');
-        $verses = self::query()->get();
+        if(!count($verses)){
+            $verses = self::query()->get();
+        }
         $versesCount = count($verses);
         $progressBarPersentStep = 1;
         $progressBarPart = round($versesCount/(100/$progressBarPersentStep));

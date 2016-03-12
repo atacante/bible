@@ -22,11 +22,11 @@
                         <tbody>
                         <tr>
                             <th>KJV Verse</th>
-                            <th>Verse text</th>
+                            <th>Verse Text</th>
                             <th>Strong's</th>
                             <th>Transliteration</th>
                             <th>One word definition</th>
-                            <th>Actions</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                         @if(count($content['lexiconinfo']))
                             @foreach($content['lexiconinfo'] as $lexiconinfo)
@@ -36,8 +36,8 @@
                                     <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
                                     <td>{!! $lexiconinfo->transliteration !!}</td>
                                     <td>{!! $lexiconinfo->strong_1_word_def !!}</td>
-                                    <td>
-
+                                    <td class="text-center">
+                                        <a href="{!! url('/admin/lexicon/update/'.$lexiconCode.'/'.$lexiconinfo->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em;"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

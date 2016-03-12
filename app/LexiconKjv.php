@@ -16,4 +16,12 @@ class LexiconKjv extends BaseModel {
         return $this->belongsTo(BooksListEn::class, 'book_id', 'id');
     }
 
+    public function cacheVerse(){
+        $verses[] = VersesKingJamesEn::query()
+            ->where('book_id',$this->book_id)
+            ->where('chapter_num',$this->chapter_num)
+            ->where('verse_num',$this->verse_num)
+            ->first();
+        VersesKingJamesEn::cacheLexicon($verses);
+    }
 }
