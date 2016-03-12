@@ -1,44 +1,62 @@
 @extends('admin.layouts.layout')
 
 @section('content')
-    <div class='row'>
-        <div class='col-md-6'>
-            <!-- Box -->
+    <div class="row">
+        <div class="col-xs-12">
             <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Randomly Generated Tasks</h3>
-                    <div class="box-tools pull-right">
-                        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                <div class="box-header" style="height: 44px;">
+                    <h3 class="box-title">Filters</h3>
+
+                    <div class="box-tools">
+                        @include('admin.partials.filters')
                     </div>
                 </div>
-                <div class="box-body">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-success">
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <th>KJV Verse</th>
+                            <th>Verse text</th>
+                            <th>Strong's</th>
+                            <th>Transliteration</th>
+                            <th>One word definition</th>
+                            <th>Actions</th>
+                        </tr>
+                        @if(count($content['lexiconinfo']))
+                            @foreach($content['lexiconinfo'] as $lexiconinfo)
+                                <tr>
+                                    <td>{!! $lexiconinfo->booksListEn->book_name.' '.$lexiconinfo->chapter_num.':'.$lexiconinfo->verse_num !!}</td>
+                                    <td>{!! $lexiconinfo->verse_part !!}</td>
+                                    <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
+                                    <td>{!! $lexiconinfo->transliteration !!}</td>
+                                    <td>{!! $lexiconinfo->strong_1_word_def !!}</td>
+                                    <td>
 
-                </div><!-- /.box-body -->
-                <div class="box-footer">
-                    <form action='#'>
-                        <input type='text' placeholder='New task' class='form-control input-sm' />
-                    </form>
-                </div><!-- /.box-footer-->
-            </div><!-- /.box -->
-        </div><!-- /.col -->
-        <div class='col-md-6'>
-            <!-- Box -->
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Second Box</h3>
-                    <div class="box-tools pull-right">
-                        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-                    </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td>
+                                    <p class="text-center">No any results found</p>
+                                </td>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
                 </div>
-                <div class="box-body">
-                    A separate section to add any kind of widget. Feel free
-                    to explore all of AdminLTE widgets by visiting the demo page
-                    on <a href="https://almsaeedstudio.com">Almsaeed Studio</a>.
-                </div><!-- /.box-body -->
-            </div><!-- /.box -->
-        </div><!-- /.col -->
-
-    </div><!-- /.row -->
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <div class="text-center">
+                {!! $content['lexiconinfo']->appends(Request::input())->links() !!}
+            </div>
+        </div>
+    </div>
 @endsection

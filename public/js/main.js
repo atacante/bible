@@ -60,6 +60,27 @@ $(document).ready(function(){
         });
     });
 
+    $('.j-admin-verses-filters').on('change','select[name=book]',function(){
+        var value = $(this).val();
+        $.ajax({
+            method: "GET",
+            url: "/ajax/chapters-list",
+            dataType: "json",
+            data:{book_id:value},
+            success:function(data){
+                $('select[name=verse]').empty().append($("<option></option>").attr("value", 0).text('All Verses')).attr('disabled',true);
+                site.fillSelect('select[name=chapter]',data);
+                $('select[name=chapter]').prepend($("<option></option>").attr("value", 0).text('All Chapters'));
+                if(value == 0){
+                    $('select[name=chapter]').attr('disabled',true);
+                }
+                else{
+                    $('select[name=chapter]').removeAttr('disabled');
+                }
+            }
+        });
+    });
+
     $('.j-verses-filters').on('change','select[name=chapter]',function(){
         $.ajax({
             method: "GET",
@@ -68,6 +89,26 @@ $(document).ready(function(){
             data:{book_id:$('select[name=book]').val(),chapter:$('select[name=chapter]').val()},
             success:function(data){
                 site.fillSelect('select[name=verse]',data);
+            }
+        });
+    });
+
+    $('.j-admin-verses-filters').on('change','select[name=chapter]',function(){
+        var value = $(this).val();
+        $.ajax({
+            method: "GET",
+            url: "/ajax/verses-list",
+            dataType: "json",
+            data:{book_id:$('select[name=book]').val(),chapter:$('select[name=chapter]').val()},
+            success:function(data){
+                site.fillSelect('select[name=verse]',data);
+                $('select[name=verse]').prepend($("<option></option>").attr("value", 0).text('All Verses'));
+                if(value == 0){
+                    $('select[name=verse]').attr('disabled',true);
+                }
+                else{
+                    $('select[name=verse]').removeAttr('disabled');
+                }
             }
         });
     });

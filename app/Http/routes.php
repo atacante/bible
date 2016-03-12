@@ -45,7 +45,7 @@ Route::get('admin', [
     'middleware' => ['auth', 'acl'],
     'is' => 'administrator',
     'as' => 'lexicon',
-    'uses' => 'Admin\LexiconController@getView'
+    'uses' => 'Admin\LexiconController@getList'
 ]);
 
 $router->group([

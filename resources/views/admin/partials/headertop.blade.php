@@ -2,7 +2,7 @@
     <nav class="navbar navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="../../index2.html" class="navbar-brand"><b>Bible</b></a>
+                <a href="/" class="navbar-brand"><b>Bible</b></a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
@@ -11,9 +11,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#"><span>Lexicon</span></a></li>
-                    <li><a href="#"><span>Bible Versions</span></a></li>
-                    <li><a href="#"><span>Bible Verses</span></a></li>
+                    <li class="active"><a href="{{ url('admin/lexicon/list') }}"><span>Lexicons</span></a></li>
+                    <li><a href="{{ url('admin/bible/overview') }}"><span>Bibles</span></a></li>
                     {{--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
