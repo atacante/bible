@@ -48,3 +48,24 @@ Breadcrumbs::register('verse', function($breadcrumbs,$versionCode,$versionName,$
     $breadcrumbs->push($verseNumber);
 });
 
+// Admin > Users
+Breadcrumbs::register('users', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Users', url('admin/user/list'));
+});
+
+// Admin > Users > [CreateUser]
+Breadcrumbs::register('userCreate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('users');
+    $breadcrumbs->push("Create new user");
+});
+
+// Admin > Users > [UpdateUser]
+Breadcrumbs::register('userUpdate', function($breadcrumbs, $user)
+{
+    $breadcrumbs->parent('users');
+    $breadcrumbs->push('Edit '.$user->name);
+});
+

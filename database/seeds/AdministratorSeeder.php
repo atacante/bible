@@ -6,6 +6,7 @@ use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use Illuminate\Console\Command;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Kodeine\Acl\Models\Eloquent\Role;
 
@@ -18,7 +19,7 @@ class AdministratorSeeder extends Seeder
      */
     public function run()
     {
-        $adminRole = 'administrator';
+        $adminRole = Config::get('app.role.admin');
         $admin = User::query()->where('email','admin@admin.com')->first();
         if($admin){
             $admin->revokeRole($adminRole);

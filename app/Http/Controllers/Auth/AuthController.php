@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -73,11 +74,17 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        if($user){
+            $user->assignRole(Config::get('app.role.user'));
+        }
+
+        return $user;
     }
 
     public function getLogout()

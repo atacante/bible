@@ -57,6 +57,7 @@ $router->group([
     Route::controllers([
         'lexicon' => 'LexiconController',
         'bible' => 'BibleController',
+        'user' => 'UserController',
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });

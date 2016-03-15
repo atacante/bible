@@ -5,6 +5,7 @@ use App\User;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Kodeine\Acl\Models\Eloquent\Role;
 
@@ -19,7 +20,7 @@ class BasicRolesSeeder extends Seeder
     {
         /* Create User type and role */
 
-        $userRole = 'user';
+        $userRole = Config::get('app.role.user');
         $user = User::query()->where('email','user@user.com')->first();
         if($user){
             $user->revokeAllRoles();
@@ -46,7 +47,7 @@ class BasicRolesSeeder extends Seeder
 
         /* Create Teacher type and role */
 
-        $teacherRole = 'teacher';
+        $teacherRole = Config::get('app.role.teacher');
         $teacher = User::query()->where('email','teacher@teacher.com')->first();
         if($teacher){
             $teacher->revokeAllRoles();
@@ -69,6 +70,6 @@ class BasicRolesSeeder extends Seeder
         $role->description = 'basic teacher functionality';
         $role->save();
 
-        $user->assignRole($teacherRole);
+        $teacher->assignRole($teacherRole);
     }
 }

@@ -261,4 +261,14 @@ return [
     'defaultChaptersVersion' => 'american_standard',
     'defaultBookNumber' => 1,
     'defaultChapterNumber' => 1,
+
+    /*
+     * User Roles
+     */
+
+    'role' => [
+        'admin' => 'administrator',
+        'teacher' => 'teacher',
+        'user' => 'user'
+    ],
 ];

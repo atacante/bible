@@ -39,14 +39,13 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>44</h3>
-
-                    <p>User Registrations</p>
+                    <h3>{!! $content['totalUsersCount'] !!}</h3>
+                    <p>User{!! $content['totalUsersCount'] > 1?'s':'' !!}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="{{ url('admin/user/list') }}" class="small-box-footer">
                     View All <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
