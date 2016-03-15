@@ -19,6 +19,7 @@ class VersesKingJamesEn extends BaseModel {
             ->where('book_id',$this->book_id)
             ->where('chapter_num',$this->chapter_num)
             ->where('verse_num',$this->verse_num)
+            ->orderBy('id')
             ->get();
     }
 

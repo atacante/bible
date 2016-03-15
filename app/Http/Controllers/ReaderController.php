@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\BaseModel;
 use App\BooksListEn;
 use App\Helpers\ViewHelper;
+use App\LexiconKjv;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use FineDiffTests\Usage\Base;
@@ -174,6 +175,13 @@ class ReaderController extends Controller
                 ->where('chapter_num', $chapter)
                 ->where('verse_num', $verse)
                 ->first();
+
+            $content['lexicon'] = LexiconKjv::query()
+                ->where('book_id',$book)
+                ->where('chapter_num',$chapter)
+                ->where('verse_num',$verse)
+                ->orderBy('id')
+                ->get();
 
             foreach ($versions as $version) {
                 if ($version['version_code'] != $version_code) {

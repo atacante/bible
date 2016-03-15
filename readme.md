@@ -50,6 +50,11 @@ Execute data seeders
 php artisan db:seed
 ~~~
 
+Process data
+~~~
+php artisan lexicon:cache
+~~~
+
 FINISH
 ----------------
 Point virtual host document root to `public`.

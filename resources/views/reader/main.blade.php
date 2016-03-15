@@ -10,10 +10,10 @@
         <div class="row" style="position: relative;">
             <h3 class="text-center">{!! $content['heading'] !!}</h3>
             <a href="#" class="j-print-chapter"><i class="fa fa-print fa-2x"
-                                                   style="position: absolute; right: 15px; top: 5px; padding: 15px;"></i></a>
+                                                   style="position: absolute; right: 0px; top: 5px; padding: 15px;"></i></a>
         </div>
         <div class="row">
-            <div class="j-reader-block {!! Request::input('compare',false)?'col-md-6':"row col-md-12" !!}"
+            <div class="j-reader-block {!! Request::input('compare',false)?'col-md-6':"col-md-12" !!}"
                  style="line-height: 30px; text-align: justify;">
                 @if(Request::input('compare',false))
                     <h4 class="text-center">{!! $content['version'] !!}</h4>

@@ -5,7 +5,34 @@
 @stop
 
 @section('content')
-    @include('reader.filters')
+    <div class="row col-md-12">
+        @include('reader.filters')
+    </div>
+    <div class="row col-md-12">
+        <h3 class="text-center">KJV Lexicon</h3>
+    </div>
+    <div class="row col-md-12">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Verse</th>
+                <th>Definition</th>
+                <th>Strong's</th>
+                <th>Transliteration</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($content['lexicon'] as $lexiconinfo)
+                <tr>
+                    <td>{!! $lexiconinfo->verse_part !!}</td>
+                    <td>{!! $lexiconinfo->strong_1_word_def !!}</td>
+                    <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
+                    <td>{!! $lexiconinfo->transliteration !!}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
     <div class="row col-md-12">
         <h3 class="text-center">Parallel Verses {!! link_to('reader/verse?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}</h3>
     </div>
