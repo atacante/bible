@@ -52,7 +52,8 @@ class LexiconController extends Controller
                 'page_title' => $lexicon,
                 'content' => $content,
                 'filterAction' => 'lexicon/view/'.$code,
-                'lexiconCode' => $code
+                'lexiconCode' => $code,
+                'lexiconName' => $lexicon
             ]);
     }
 
@@ -62,6 +63,7 @@ class LexiconController extends Controller
             Session::keep('backUrl');
         }
         $lexiconModel = BaseModel::getModelByTableName('lexicon_'.$code);
+        $lexiconName = LexiconsListEn::getLexiconByCode($code);
         $lexicon = $lexiconModel::find($id);
         if (Request::isMethod('put')) {
             $this->validate($request, [
@@ -75,6 +77,12 @@ class LexiconController extends Controller
                 ? Redirect::to($url)
                 : Redirect::to('/admin/lexicon/view/'.$code);
         }
-        return view('admin.lexicon.update', ['page_title' => 'Update Lexicon Item','model' => $lexicon,'lexiconCode' => $code]);
+        return view('admin.lexicon.update',
+            [
+                'page_title' => 'Update Lexicon Item',
+                'model' => $lexicon,
+                'lexiconCode' => $code,
+                'lexiconName' => $lexiconName,
+            ]);
     }
 }

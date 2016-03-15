@@ -13,7 +13,8 @@
         "barryvdh/laravel-debugbar": "^2.2",
         "edvinaskrucas/notification": "5.*",
         "arcanedev/no-captcha":"~2.2",
-        "kodeine/laravel-acl": "~1.0@dev"
+        "kodeine/laravel-acl": "~1.0@dev",
+        "davejamesmiller/laravel-breadcrumbs": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -44,8 +44,8 @@ Route::group(['middleware' => ['web']], function () {
 Route::get('admin', [
     'middleware' => ['auth', 'acl'],
     'is' => 'administrator',
-    'as' => 'lexicon',
-    'uses' => 'Admin\LexiconController@getList'
+    'as' => 'dashboard',
+    'uses' => 'Admin\DashboardController@index'
 ]);
 
 $router->group([
@@ -56,6 +56,7 @@ $router->group([
 ], function () {
     Route::controllers([
         'lexicon' => 'LexiconController',
+        'bible' => 'BibleController',
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });

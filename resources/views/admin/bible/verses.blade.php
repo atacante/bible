@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('breadcrumbs', Breadcrumbs::render('lexicon',$lexiconCode,$lexiconName))
+@section('breadcrumbs', Breadcrumbs::render('version',$versionCode,$versionName))
 
 @section('content')
     <div class="row">
@@ -23,23 +23,17 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
-                            <th>KJV Verse</th>
+                            <th style="width: 150px">Verse Number</th>
                             <th>Verse Text</th>
-                            <th>Strong's</th>
-                            <th>Transliteration</th>
-                            <th>One word definition</th>
                             <th class="text-center">Actions</th>
                         </tr>
-                        @if(count($content['lexiconinfo']))
-                            @foreach($content['lexiconinfo'] as $lexiconinfo)
+                        @if(count($content['verses']))
+                            @foreach($content['verses'] as $verses)
                                 <tr>
-                                    <td>{!! $lexiconinfo->booksListEn->book_name.' '.$lexiconinfo->chapter_num.':'.$lexiconinfo->verse_num !!}</td>
-                                    <td>{!! $lexiconinfo->verse_part !!}</td>
-                                    <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
-                                    <td>{!! $lexiconinfo->transliteration !!}</td>
-                                    <td>{!! $lexiconinfo->strong_1_word_def !!}</td>
+                                    <td>{!! $verses->booksListEn->book_name.' '.$verses->chapter_num.':'.$verses->verse_num !!}</td>
+                                    <td>{!! $verses->verse_text !!}</td>
                                     <td class="text-center" style="width: 50px;">
-                                        <a href="{!! url('/admin/lexicon/update/'.$lexiconCode.'/'.$lexiconinfo->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em;"></i></a>
+                                        <a href="{!! url('/admin/bible/update/'.$versionCode.'/'.$verses->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em;"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -57,7 +51,7 @@
             </div>
             <!-- /.box -->
             <div class="text-center">
-                {!! $content['lexiconinfo']->appends(Request::input())->links() !!}
+                {!! $content['verses']->appends(Request::input())->links() !!}
             </div>
         </div>
     </div>

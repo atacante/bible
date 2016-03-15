@@ -7,7 +7,7 @@ class LexiconsListEn extends BaseModel
     {
         return [
             [
-                'lexicon_name' => 'King James Version',
+                'lexicon_name' => 'King James Lexicon',
                 'lexicon_code' => 'kjv',
             ],
         ];

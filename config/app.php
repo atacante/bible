@@ -164,8 +164,8 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Arcanedev\NoCaptcha\NoCaptchaServiceProvider::class,
         Krucas\Notification\NotificationServiceProvider::class,
-
         Kodeine\Acl\AclServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
@@ -249,6 +249,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Captcha' => Arcanedev\NoCaptcha\Facades\NoCaptcha::class,
         'Notification' => Krucas\Notification\Facades\Notification::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
     /*
     |--------------------------------------------------------------------------

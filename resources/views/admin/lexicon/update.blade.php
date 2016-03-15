@@ -1,5 +1,7 @@
 @extends('admin.layouts.layout')
 
+@section('breadcrumbs', Breadcrumbs::render('lexiconItem',$lexiconCode,$lexiconName,($model->booksListEn->book_name.' '.$model->chapter_num.':'.$model->verse_num)))
+
 @section('content')
     <div class="box box-primary">
         <div class="box-header with-border">
