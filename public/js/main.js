@@ -48,6 +48,15 @@ $(document).ready(function(){
         $(that).popover('show');
     });
 
+    $('a[data-confirm]').click(function(ev) {
+        var href = $(this).attr('href');
+        $('#confirm-delete').find('.modal-header .modal-title').text($(this).attr('data-header'));
+        $('#confirm-delete').find('.modal-body').text($(this).attr('data-confirm'));
+        $('#confirm-delete').find('.btn-ok').attr('href', href);
+        $('#confirm-delete').modal({show:true});
+        return false;
+    });
+
     $('.j-verses-filters').on('change','select[name=book]',function(){
         $.ajax({
             method: "GET",

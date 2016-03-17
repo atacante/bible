@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\LexiconKjv;
+use App\User;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +30,22 @@ class AppServiceProvider extends ServiceProvider
                 $model->cacheVerse();
             }
             return true; //if false the model wont save!
+        });
+
+        User::saving(function($model)
+        {
+            if( $model->isDirty('password')){
+                $model->password = bcrypt($model->password);
+            }
+
+            return true; //if false the model wont save!
+        });
+        User::saved(function($model)
+        {
+            if($role = Request::input('role',false)){
+//                $model->assignRole($role);
+                $model->syncRoles($role);
+            }
         });
     }
 

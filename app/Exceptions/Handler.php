@@ -49,8 +49,8 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if ($e instanceof HttpException && $e->getStatusCode() == 401){
-            Notification::error($e->getMessage());
-            Notification::info($e->getMessage());
+//            Notification::error($e->getMessage());
+//            Notification::info($e->getMessage());
 //            var_dump(Notification::showAll());
             return redirect()->guest('auth/login');
         }

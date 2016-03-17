@@ -18,7 +18,8 @@
     </div>--}}
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-success">
+            {!! Html::link('/admin/user/create','Create User', ['class'=>'btn btn-success','style' => 'margin-bottom:10px;']) !!}
+            <div class="box box-success ">
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tbody>
@@ -47,8 +48,9 @@
                                     <td class="text-center" style="width: 50px;">
                                         <a href="{!! url('/admin/user/update',$user->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
                                         @if($role->slug != Config::get('app.role.admin'))
-                                            <a href="{!! url('/admin/user/delete',$user->id) !!}"><i class="fa fa-trash"
+                                            <a href="{!! url('/admin/user/delete',$user->id) !!}" data-toggle="modal" data-target="#confirm-delete" data-header="Delete Confirmation" data-confirm="Are you sure you want to delete this item?"><i class="fa fa-trash"
                                                                                                      style="color: #367fa9; font-size: 1.4em;"></i></a>
+                                            @include('admin.user.deletepop')
                                         @endif
                                     </td>
                                 </tr>

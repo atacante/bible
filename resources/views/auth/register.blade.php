@@ -24,19 +24,19 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            {!! Form::label('username', 'Username', array('class' => 'col-md-4 control-label')) !!}
+                        {{--<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">--}}
+                            {{--{!! Form::label('username', 'Username', array('class' => 'col-md-4 control-label')) !!}--}}
 
-                            <div class="col-md-6">
-                                {!! Form::text('username', old('username'), array('class' => 'form-control')) !!}
+                            {{--<div class="col-md-6">--}}
+                                {{--{!! Form::text('username', old('username'), array('class' => 'form-control')) !!}--}}
 
-                                @if ($errors->has('username'))
-                                    <span class="help-block">
-                                        {{ $errors->first('username') }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                {{--@if ($errors->has('username'))--}}
+                                    {{--<span class="help-block">--}}
+                                        {{--{{ $errors->first('username') }}--}}
+                                    {{--</span>--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             {!! Form::label('email', 'Email', array('class' => 'col-md-4 control-label')) !!}
