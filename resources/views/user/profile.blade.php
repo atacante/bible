@@ -51,7 +51,7 @@
 
                 <div class="box-footer">
                     {!! Form::button('Save', ['type'=>'submit','class'=>'btn btn-primary']) !!}
-                    {!! Html::link((($url = Session::get('backUrl'))?$url:'/admin/user/list/'),'Cancel', ['class'=>'btn btn-default']) !!}
+{{--                    {!! Html::link((($url = Session::get('backUrl'))?$url:'/admin/user/list/'),'Cancel', ['class'=>'btn btn-default']) !!}--}}
                 </div>
                 {!! Form::close() !!}
             </div>

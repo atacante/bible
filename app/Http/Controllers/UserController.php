@@ -14,6 +14,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Kodeine\Acl\Models\Eloquent\Role;
+use Krucas\Notification\Facades\Notification;
 use Validator;
 
 
@@ -56,7 +57,9 @@ class UserController extends Controller
         $user = User::find(Auth::user()->id);
         if (Request::isMethod('put')) {
             $this->validator($request,$user);
-            $user->update(Input::all());
+            if($user->update(Input::all())){
+                Notification::successInstant('Your profile info successfully saved');
+            }
         }
         return view('user.profile',
             [
