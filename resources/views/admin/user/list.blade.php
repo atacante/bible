@@ -3,19 +3,19 @@
 @section('breadcrumbs', Breadcrumbs::render('users'))
 
 @section('content')
-    {{--<div class="row">
+    <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header" style="height: 44px;">
                     <h3 class="box-title">Filters</h3>
 
                     <div class="box-tools">
-                        @include('admin.partials.filters')
+                        @include('admin.user.filters')
                     </div>
                 </div>
             </div>
         </div>
-    </div>--}}
+    </div>
     <div class="row">
         <div class="col-xs-12">
             {!! Html::link('/admin/user/create','Create User', ['class'=>'btn btn-success','style' => 'margin-bottom:10px;']) !!}

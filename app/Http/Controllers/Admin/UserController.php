@@ -54,14 +54,22 @@ class UserController extends Controller
     public function getList()
     {
         Session::flash('backUrl', Request::fullUrl());
-        $content['users'] = User::query()
-            ->with('roles')
-            ->orderBy('created_at','DESC')
-            ->paginate(20);
+        $role = Request::input('role',0);
+        $users = User::query()
+            ->with('roles');
+        if($role){
+            $users->whereHas('roles', function ($q) use ($role)
+                {
+                    $q->where('slug', $role);
+                })
+            ;
+        }
+        $content['users'] = $users->orderBy('users.created_at','DESC')->paginate(20);
         return view('admin.user.list',
             [
                 'page_title' => 'Users',
-                'content' => $content
+                'content' => $content,
+                'filterAction' => 'user/list/',
             ]);
     }
 

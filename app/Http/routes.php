@@ -104,3 +104,4 @@ Route::group([
 
 View::composer('reader.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.partials.filters', 'App\Http\Composers\BibleFiltersComposer');
+View::composer('admin.user.filters', 'App\Http\Composers\UserFiltersComposer');
