@@ -10,7 +10,7 @@
         <!-- /.box-header -->
         <!-- form start -->
         {{--<form role="form">--}}
-        {!! Form::model($model, [/*'url' => '/admin/lexicon/update/'.$lexiconCode.'/'.$model->id, */'method' => 'put', 'class' => 'panel','role' => 'form']) !!}
+        {!! Form::model($model, [/*'url' => ViewHelper::adminUrlSegment().'/lexicon/update/'.$lexiconCode.'/'.$model->id, */'method' => 'put', 'class' => 'panel','role' => 'form']) !!}
         <div class="box-body">
             <div class="form-group {{ $errors->has('verse_part') ? ' has-error' : '' }}">
                 {!! Form::label('verse_part', 'Verse Text:') !!}

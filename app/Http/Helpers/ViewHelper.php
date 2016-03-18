@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Route;
+
 class ViewHelper
 {
     public static function prepareForSelectBox($items,$value,$text)
@@ -48,5 +50,13 @@ class ViewHelper
             $segment++;
         }
         return ' active';
+    }
+
+    public static function adminUrlSegment()
+    {
+        if(\Request::is('admin*')){
+            return '/admin';
+        }
+        return '';
     }
 }

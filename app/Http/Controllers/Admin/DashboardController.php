@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\ViewHelper;
 use App\LexiconsListEn;
 use App\VersionsListEn;
 use Illuminate\Foundation\Auth\User;

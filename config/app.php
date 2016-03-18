@@ -218,6 +218,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'ViewHelper' => App\Helpers\ViewHelper::class,
+//        'ViewHelper' => App\Facades\ViewHelperFacade::class,
 
         /* Bootstrapper */
         'Accordion' => 'Bootstrapper\Facades\Accordion',

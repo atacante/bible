@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\BaseModel;
+use App\Helpers\ViewHelper;
 use App\VersionsListEn;
 use Illuminate\Http\Request as httpRequest;
 
@@ -70,7 +71,7 @@ class BibleController extends Controller
             $verse->update(Input::all());
             return ($url = Session::get('backUrl'))
                 ? Redirect::to($url)
-                : Redirect::to('/admin/bible/verses/'.$code);
+                : Redirect::to(ViewHelper::adminUrlSegment().'/bible/verses/'.$code);
         }
         return view('admin.bible.update',
             [

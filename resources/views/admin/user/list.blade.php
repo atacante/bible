@@ -45,16 +45,25 @@
                                     <td>{!! $user->name !!}</td>
                                     <td><a href="mailto:{!! $user->email !!}">{!! $user->email !!}</a></td>
                                     <td>{!! date('F d, Y', strtotime($user->created_at)) !!}</td>
-                                    <td class="text-center" style="width: 50px;">
-                                        <a href="{!! url('/admin/user/update',$user->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
+                                    <td class="text-center" style="width: 100px;">
+                                        @if(!$user->is(Config::get('app.role.admin')) && Auth::user()->id != $user->id)
+                                            <a title="Login as user" href="{!! url('/admin/user/authorize',$user->id) !!}"><i
+                                                        class="fa fa-user-secret"
+                                                        style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
+                                        @endif
+                                        <a title="Edit user" href="{!! url('/admin/user/update',$user->id) !!}"><i class="fa fa-edit"
+                                                                                                 style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
                                         @if($role->slug != Config::get('app.role.admin'))
-                                            <a href="{!! url('/admin/user/delete',$user->id) !!}" data-toggle="modal" data-target="#confirm-delete" data-header="Delete Confirmation" data-confirm="Are you sure you want to delete this item?"><i class="fa fa-trash"
-                                                                                                     style="color: #367fa9; font-size: 1.4em;"></i></a>
-                                            @include('admin.user.deletepop')
+                                            <a title="Delete user" href="{!! url('/admin/user/delete',$user->id) !!}" data-toggle="modal"
+                                               data-target="#confirm-delete" data-header="Delete Confirmation"
+                                               data-confirm="Are you sure you want to delete this item?"><i
+                                                        class="fa fa-trash"
+                                                        style="color: #367fa9; font-size: 1.4em;"></i></a>
                                         @endif
                                     </td>
                                 </tr>
                             @endforeach
+                            @include('admin.user.deletepop')
                         @else
                             <tr>
                                 <td>

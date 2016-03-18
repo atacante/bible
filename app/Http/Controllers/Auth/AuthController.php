@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\ViewHelper;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -41,7 +42,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => ['getLogout','getAdminLogout']]);
     }
 
     /**
@@ -92,6 +93,20 @@ class AuthController extends Controller
         Auth::Logout();
         Session::flush();
         return redirect('/');
+    }
+
+    public function getAdminLogout()
+    {
+        Auth::Logout();
+        $adminId = Session::get('adminId');
+        $adminBackUrl = Session::get('adminBackUrl');
+        $adminAuthToken = Session::get('adminAuthToken');
+        $admin = User::where('id', $adminId)->where('auth_token', $adminAuthToken)->first();
+        Session::flush();
+        if($admin){
+            Auth::login($admin, $remember = true);
+        }
+        return redirect($adminBackUrl?$adminBackUrl:ViewHelper::adminUrlSegment());
     }
 
 //    protected function authenticated(\Illuminate\Http\Request $request, User $user)

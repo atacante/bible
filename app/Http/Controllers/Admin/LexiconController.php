@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\BaseModel;
+use App\Helpers\ViewHelper;
 use App\LexiconKjv;
 use App\LexiconsListEn;
 use Illuminate\Support\Facades\Input;
@@ -75,7 +76,7 @@ class LexiconController extends Controller
             $lexicon->update(Input::all());
             return ($url = Session::get('backUrl'))
                 ? Redirect::to($url)
-                : Redirect::to('/admin/lexicon/view/'.$code);
+                : Redirect::to(ViewHelper::adminUrlSegment().'/lexicon/view/'.$code);
         }
         return view('admin.lexicon.update',
             [

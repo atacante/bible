@@ -23,24 +23,10 @@
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    Route::get('/', [
-        'as' => 'reader', 'uses' => 'ReaderController@getOverview'
-    ]);
-
-    Route::controller('reader', 'ReaderController');
-    Route::controller('ajax', 'AjaxController');
-
-    Route::controllers([
-        'auth' => 'Auth\AuthController',
-        'password' => 'Auth\PasswordController',
-    ]);
-});
-
 // Admin area
-//Route::get('admin', function () {
-//    return redirect('/admin/lexicon/view');
-//});
+/*
+| Option for route {domain}.{tld}/admin
+*/
 Route::get('admin', [
     'middleware' => ['auth', 'acl'],
     'is' => 'administrator',
@@ -61,6 +47,46 @@ $router->group([
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });
+
+/*
+| Option for route admin.{domain}.{tld}
+*/
+//Route::group([
+//    'domain' => 'admin.{domain}.{tld}',
+//    'prefix' => 'admin',
+//    'namespace' => 'Admin',
+//    'middleware' => ['auth', 'acl'],
+//    'is' => 'administrator',
+//], function() {
+//    Route::get('/', [
+//        'middleware' => ['auth', 'acl'],
+//        'is' => 'administrator',
+//        'as' => 'dashboard',
+//        'uses' => 'DashboardController@index'
+//    ]);
+//    Route::controllers([
+//        'lexicon' => 'LexiconController',
+//        'bible' => 'BibleController',
+//        'user' => 'UserController',
+////        'auth' => 'AdminAuth\AuthController',
+//    ]);
+//});
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/', [
+        'as' => 'reader', 'uses' => 'ReaderController@getOverview'
+    ]);
+
+    Route::controller('reader', 'ReaderController');
+    Route::controller('ajax', 'AjaxController');
+
+    Route::controllers([
+        'auth' => 'Auth\AuthController',
+        'password' => 'Auth\PasswordController',
+    ]);
+});
+
+
 
 View::composer('reader.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.partials.filters', 'App\Http\Composers\BibleFiltersComposer');

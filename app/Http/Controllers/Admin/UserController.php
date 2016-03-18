@@ -72,7 +72,7 @@ class UserController extends Controller
         if (Request::isMethod('post')) {
             $this->validator($request,$model);
             $model->create(Input::all());
-            return Redirect::to('/admin/user/list/');
+            return Redirect::to(ViewHelper::adminUrlSegment().'/user/list/');
         }
         return view('admin.user.create',
             [
@@ -94,7 +94,7 @@ class UserController extends Controller
             $model->update(Input::all());
             return ($url = Session::get('backUrl'))
                 ? Redirect::to($url)
-                : Redirect::to('/admin/user/list/');
+                : Redirect::to(ViewHelper::adminUrlSegment().'/user/list/');
         }
 //        var_dump($model);exit;
         return view('admin.user.update',
@@ -112,6 +112,23 @@ class UserController extends Controller
         User::destroy($id);
         return ($url = Session::get('backUrl'))
             ? Redirect::to($url)
-            : Redirect::to('/admin/user/list/');
+            : Redirect::to(ViewHelper::adminUrlSegment().'/user/list/');
+    }
+
+    public function getAuthorize($id)
+    {
+        $user = User::query()->find($id);
+        $admin = User::find(Auth::user()->id);
+        $admin->auth_token = str_random(40);
+        $admin->save();
+        Auth::login($user, $remember = false);
+        if(!$adminBackUrl = Session::get('backUrl')){
+            $adminBackUrl = ViewHelper::adminUrlSegment().'/user/list/';
+        }
+        Session::put('adminAsUser', true);
+        Session::put('adminId', $admin->id);
+        Session::put('adminBackUrl', $adminBackUrl);
+        Session::put('adminAuthToken', $admin->auth_token);
+        return Redirect::to('/');
     }
 }

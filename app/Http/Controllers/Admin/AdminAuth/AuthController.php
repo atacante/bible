@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\AdminAuth;
 
+use App\Helpers\ViewHelper;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -39,6 +40,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+        $this->redirectTo = ViewHelper::adminUrlSegment();
         $this->middleware('admin', ['except' => 'getLogout']);
     }
 
@@ -83,6 +85,6 @@ class AuthController extends Controller
     {
         Auth::Logout();
         Session::flush();
-        return redirect('/admin');
+        return redirect(ViewHelper::adminUrlSegment());
     }
 }
