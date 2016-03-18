@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\LexiconKjv;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,8 +35,10 @@ class AppServiceProvider extends ServiceProvider
 
         User::saving(function($model)
         {
-            if($model->exited && $model->isDirty('password')){
-                $model->password = bcrypt($model->password);
+            if($model->isDirty('password')){
+                if (Hash::needsRehash($model->password)) {
+                    $model->password = bcrypt($model->password);//Hash::make('plain-text')
+                }
             }
 
             return true; //if false the model wont save!
