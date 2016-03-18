@@ -87,6 +87,20 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 
+/*
+| User routes
+*/
+Route::group([
+    'middleware' => ['auth', 'acl'],
+    'is' => 'user'
+    ],
+    function () {
+        Route::controllers([
+            'user' => 'UserController',
+        ]);
+    });
+
+
 
 View::composer('reader.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.partials.filters', 'App\Http\Composers\BibleFiltersComposer');
