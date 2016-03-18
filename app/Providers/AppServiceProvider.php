@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
 
         User::saving(function($model)
         {
-            if( $model->isDirty('password')){
+            if($model->exited && $model->isDirty('password')){
                 $model->password = bcrypt($model->password);
             }
 
