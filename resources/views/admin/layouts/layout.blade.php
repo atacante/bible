@@ -78,6 +78,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{{ asset ("/themes/admin-lte/dist/js/app.min.js") }}" type="text/javascript"></script>
 
+{!!Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js')!!}
+{{--<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>--}}
+<script>
+    if($("#symbolism").length > 0){
+        CKEDITOR.replace('symbolism', {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+        });
+    }
+</script>
+
 {!!Html::script('js/main.js')!!}
 {!!Html::script('js/functions.js')!!}
 

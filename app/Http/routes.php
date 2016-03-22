@@ -48,6 +48,26 @@ $router->group([
     ]);
 });
 
+/*Route::group([
+        'before' => ['auth', 'acl'],
+        'is' => 'administrator',
+    ], function ()
+{
+    Route::get('/laravel-filemanager', '\Unisharp\Laravelfilemanager\controllers\LfmController@show');
+    Route::post('/laravel-filemanager/upload', '\Unisharp\Laravelfilemanager\controllers\LfmController@upload');
+    Route::controllers([
+        'laravel-filemanager' => '\Unisharp\Laravelfilemanager\controllers\LfmController',
+        'laravel-filemanager' => '\Unisharp\Laravelfilemanager\controllers\CropController',
+        'laravel-filemanager' => '\Unisharp\Laravelfilemanager\controllers\DeleteController',
+        'laravel-filemanager' => '\Unisharp\Laravelfilemanager\controllers\DownloadController',
+        'laravel-filemanager' => '\Unisharp\Laravelfilemanager\controllers\FolderController',
+        'laravel-filemanager' => '\Unisharp\Laravelfilemanager\controllers\ItemsController',
+        'laravel-filemanager' => '\Unisharp\Laravelfilemanager\controllers\RenameController',
+        'laravel-filemanager' => '\Unisharp\Laravelfilemanager\controllers\ResizeController',
+        'laravel-filemanager' => '\Unisharp\Laravelfilemanager\controllers\UploadController',
+    ]);
+});*/
+
 /*
 | Option for route admin.{domain}.{tld}
 */

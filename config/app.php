@@ -166,6 +166,9 @@ return [
         Krucas\Notification\NotificationServiceProvider::class,
         Kodeine\Acl\AclServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
@@ -251,6 +254,7 @@ return [
         'Captcha' => Arcanedev\NoCaptcha\Facades\NoCaptcha::class,
         'Notification' => Krucas\Notification\Facades\Notification::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
     /*
     |--------------------------------------------------------------------------

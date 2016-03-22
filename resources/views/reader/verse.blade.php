@@ -16,6 +16,7 @@
             <thead>
             <tr>
                 <th>Verse</th>
+                <th>Symbolism</th>
                 <th>Definition</th>
                 <th>Strong's</th>
                 <th>Transliteration</th>
@@ -25,6 +26,7 @@
             @foreach($content['lexicon'] as $lexiconinfo)
                 <tr>
                     <td>{!! $lexiconinfo->verse_part !!}</td>
+                    <td class="j-with-images">{!! $lexiconinfo->symbolism !!}</td>
                     <td>{!! $lexiconinfo->strong_1_word_def !!}</td>
                     <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
                     <td>{!! $lexiconinfo->transliteration !!}</td>

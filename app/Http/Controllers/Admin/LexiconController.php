@@ -47,7 +47,7 @@ class LexiconController extends Controller
         if(!empty($verse)){
             $lexiconinfo->where('verse_num',$verse);
         }
-        $content['lexiconinfo'] = $lexiconinfo->orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num')->paginate(20);
+        $content['lexiconinfo'] = $lexiconinfo->orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num')->orderBy('id')->paginate(20);
         return view('admin.lexicon.view',
             [
                 'page_title' => $lexicon,

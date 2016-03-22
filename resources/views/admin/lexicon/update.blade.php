@@ -48,6 +48,15 @@
                     </span>
                 @endif
             </div>
+            <div class="form-group {{ $errors->has('symbolism') ? ' has-error' : '' }}">
+                {!! Form::label('symbolism', 'Symbolism:') !!}
+                {!! Form::textarea('symbolism') !!}
+                @if ($errors->has('symbolism'))
+                    <span class="help-block">
+                        {{ $errors->first('symbolism') }}
+                    </span>
+                @endif
+            </div>
         </div>
         <!-- /.box-body -->
 

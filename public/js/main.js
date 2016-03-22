@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    $(".j-with-images img").each(function (i) {
+        $(this).bind('click', function () {
+            site.fancyBoxMe(i);
+        }); //bind
+    });
+
     $('body .word-definition .word-definition').on('mouseenter mouseleave', function(e) {
         if(e.type === 'mouseenter'){
             $(this).parent().css('background', "none");

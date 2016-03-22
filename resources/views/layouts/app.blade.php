@@ -22,6 +22,12 @@
 
         {!!Html::script('//code.jquery.com/jquery-2.2.0.min.js')!!}
         {!!Html::script('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')!!}
+
+        <!-- Add mousewheel plugin (this is optional) -->
+        {!!Html::script('js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js')!!}
+        <!-- Add fancyBox main JS and CSS files -->
+        {!!Html::script('js/fancybox/source/jquery.fancybox.js?v=2.1.5"')!!}
+        {!!Html::style('js/fancybox/source/jquery.fancybox.css?v=2.1.5')!!}
 {{--        {!!Html::script('js/jsdiff/diff.min.js')!!}--}}
         {!!Html::script('js/main.js')!!}
         {!!Html::script('js/functions.js')!!}
