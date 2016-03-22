@@ -16,6 +16,10 @@
             {!! Form::submit('Go',['class' => 'btn btn-primary pull-left']) !!}
             {!! Form::close() !!}
         </div>
+        <div class="pull-left" style="margin: 8px 30px;">
+            {!! Form::label('readerMode', 'Reader Mode',['class' => 'pull-left','style' => 'line-height: 35px; margin-right: 10px;']) !!}
+            {!! Form::select('readerMode',Config::get('app.readerModes'), (($mode = Request::cookie('readerMode',false))?$mode:Config::get('app.defaultReaderMode')),['class' => 'pull-left j-reader-mode', 'style' => 'width: 135px; margin-right:10px;']) !!}
+        </div>
         {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--}}
             {{--<ul class="nav navbar-nav">--}}
                 {{--<li class="{{ (Request::is('/') ? 'active' : '') }}">--}}

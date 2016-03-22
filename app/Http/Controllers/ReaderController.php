@@ -11,8 +11,10 @@ use App\VersionsListEn;
 use FineDiffTests\Usage\Base;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use Request;
 
 use App\Http\Requests;
@@ -20,6 +22,8 @@ use App\Http\Controllers\Controller;
 
 class ReaderController extends Controller
 {
+    private $readerMode = 'beginner';
+
     public function getRead()
     {
         $version = Request::input('version', Config::get('app.defaultBibleVersion'));
@@ -287,5 +291,11 @@ class ReaderController extends Controller
             'versePrev' => $prevVerse,
             'verseNext' => $nextVerse,
         ];
+    }
+
+    public function anyMode($mode)
+    {
+        Cookie::queue(Cookie::forever('readerMode', $mode));
+        return Redirect::to(URL::previous());
     }
 }

@@ -276,4 +276,15 @@ return [
         'teacher' => 'teacher',
         'user' => 'user'
     ],
+
+    /*
+     * Reader Modes
+     */
+
+    'defaultReaderMode' => 'beginner',
+
+    'readerModes' => [
+        'beginner' => 'Beginner',
+        'intermediate' => 'Intermediate',
+    ],
 ];

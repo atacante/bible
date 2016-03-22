@@ -43,7 +43,7 @@ $(document).ready(function(){
                     {
                         html: true,
                         placement:'top',
-                        title: "Lexicon",
+                        title: "Lexicon - \""+$(that).html()+'"',
                         content: '<div class="j-lex-content text-center" style="">'+data+'</div>',//loader <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
                     }
                 );
@@ -61,6 +61,10 @@ $(document).ready(function(){
         $('#confirm-delete').find('.btn-ok').attr('href', href);
         $('#confirm-delete').modal({show:true});
         return false;
+    });
+
+    $('.navbar').on('change','select[name=readerMode]',function(){
+        location.href = '/reader/mode/'+$(this).val();
     });
 
     $('.j-verses-filters').on('change','select[name=book]',function(){
