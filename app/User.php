@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Request;
 use Kodeine\Acl\Traits\HasRole;
 
 class User extends Authenticatable
@@ -25,4 +26,27 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function rules()
+    {
+        $rules = [
+            'name' => 'required|max:255',
+//            'role' => 'required',
+//            'username' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+            'password_confirmation' => 'required',
+        ];
+
+        switch(Request::method())
+        {
+            case 'PUT':
+            {
+                $rules['email'] = 'required|email|max:255|unique:users,email,'.$this->id;
+            }
+                break;
+        }
+
+        return $rules;
+    }
 }

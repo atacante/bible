@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Request;
 
 class BaseModel extends Model {
 
+    public function rules(){
+        return [];
+    }
+
     public static function getModelByTableName($name)
     {
         $modelName = __NAMESPACE__.'\\'.ucfirst(camel_case($name));

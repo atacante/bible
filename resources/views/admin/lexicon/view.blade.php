@@ -45,7 +45,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td>
+                                <td colspan="6">
                                     <p class="text-center">No any results found</p>
                                 </td>
                             </tr>

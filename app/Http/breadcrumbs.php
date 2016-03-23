@@ -66,6 +66,26 @@ Breadcrumbs::register('userCreate', function($breadcrumbs)
 Breadcrumbs::register('userUpdate', function($breadcrumbs, $user)
 {
     $breadcrumbs->parent('users');
-    $breadcrumbs->push('Edit '.$user->name);
+    $breadcrumbs->push('Edit user');
 });
 
+// Admin > Locations
+Breadcrumbs::register('locations', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Locations', url('admin/location/list'));
+});
+
+// Admin > Locations > [CreateLocation]
+Breadcrumbs::register('locationCreate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('locations');
+    $breadcrumbs->push("Create new location");
+});
+
+// Admin > Locations > [UpdateLocation]
+Breadcrumbs::register('locationUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('locations');
+    $breadcrumbs->push('Edit location');
+});

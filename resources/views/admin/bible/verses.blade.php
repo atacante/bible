@@ -39,7 +39,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td>
+                                <td colspan="3">
                                     <p class="text-center">No any results found</p>
                                 </td>
                             </tr>

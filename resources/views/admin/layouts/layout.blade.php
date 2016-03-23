@@ -58,8 +58,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Main content -->
             <section class="content">
+                @notification()
                 <!-- Your Page Content Here -->
                 @yield('content')
+                @include('admin.partials.deletepop')
             </section><!-- /.content -->
         </div><!-- /.content-wrapper -->
     </div>
@@ -79,10 +81,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset ("/themes/admin-lte/dist/js/app.min.js") }}" type="text/javascript"></script>
 
 {!!Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js')!!}
-{{--<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>--}}
+{!!Html::script('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')!!}
 <script>
-    if($("#symbolism").length > 0){
-        CKEDITOR.replace('symbolism', {
+    if($("#symbolism,#location-desc").length > 0){
+        $('#symbolism,#location-desc').ckeditor({
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
             filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
             filebrowserBrowseUrl: '/laravel-filemanager?type=Files',

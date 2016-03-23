@@ -14,6 +14,7 @@
                     <li class="{!! ViewHelper::classActivePath('admin.lexicon') !!}"><a href="{{ url('admin/lexicon/list') }}"><span>Lexicons</span></a></li>
                     <li class="{!! ViewHelper::classActivePath('admin.bible') !!}"><a href="{{ url('admin/bible/versions') }}"><span>Bibles</span></a></li>
                     <li class="{!! ViewHelper::classActivePath('admin.user') !!}"><a href="{{ url('admin/user/list') }}"><span>Users</span></a></li>
+                    <li class="{!! ViewHelper::classActivePath('admin.location') !!}"><a href="{{ url('admin/location/list') }}"><span>Locations</span></a></li>
                     {{--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

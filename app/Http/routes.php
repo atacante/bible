@@ -44,6 +44,7 @@ $router->group([
         'lexicon' => 'LexiconController',
         'bible' => 'BibleController',
         'user' => 'UserController',
+        'location' => 'LocationController',
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });
