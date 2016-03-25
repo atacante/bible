@@ -13,7 +13,7 @@ class Location extends BaseModel {
     public $timestamps  = true;
 
     protected $table = 'locations';
-    protected $fillable = ['id',/*'book_id','chapter_num','verse_num',*/'location_name','location_description'];
+    protected $fillable = ['id','location_name','location_description'];
 
     public function rules()
     {
@@ -25,6 +25,10 @@ class Location extends BaseModel {
 
     public function booksListEn() {
         return $this->belongsTo(BooksListEn::class, 'book_id', 'id');
+    }
+
+    public function images() {
+        return $this->hasMany(LocationImages::class, 'location_id', 'id');
     }
 
     /* Experimental method */

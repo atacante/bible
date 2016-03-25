@@ -169,6 +169,7 @@ return [
         Unisharp\Ckeditor\ServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
 
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
@@ -255,6 +256,7 @@ return [
         'Notification' => Krucas\Notification\Facades\Notification::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
     ],
     /*
     |--------------------------------------------------------------------------
@@ -287,4 +289,10 @@ return [
         'beginner' => 'Beginner',
         'intermediate' => 'Intermediate',
     ],
+
+    /*
+     * Upload paths
+     */
+
+    'locationImages' => '/uploads/locations/'
 ];

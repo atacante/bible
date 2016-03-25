@@ -29,6 +29,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    {!!Html::style('js/dropzone/dist/min/basic.min.css')!!}
+    {!!Html::style('js/dropzone/dist/min/dropzone.min.css')!!}
+    {!!Html::style('css/style.css')!!}
 </head>
 <body class="skin-blue layout-top-nav">
 <div class="wrapper">
@@ -82,6 +85,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 {!!Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js')!!}
 {!!Html::script('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')!!}
+
+{{--<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>--}}
+{{--{!!Html::script(asset('vendor/jsvalidation/js/jsvalidation.js'))!!}--}}
+{{--{!! isset($jsValidator)?$jsValidator:'' !!}--}}
 <script>
     if($("#symbolism,#location-desc").length > 0){
         $('#symbolism,#location-desc').ckeditor({
@@ -95,6 +102,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 {!!Html::script('js/main.js')!!}
 {!!Html::script('js/functions.js')!!}
+
+{!!Html::script('js/dropzone/dist/min/dropzone.min.js')!!}
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the

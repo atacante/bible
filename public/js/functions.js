@@ -58,3 +58,74 @@ reader.showDiff = function(first,second){
     });
     display.html(text);
 }
+
+site.dropzoneInit = function(){
+    //Dropzone.js Options - Upload an image via AJAX.
+    var fileList = new Array;
+    var i =0;
+    Dropzone.options.myDropzone = {
+        uploadMultiple: false,
+        previewsContainer: '#img-thumb-preview',
+        previewTemplate: $('#preview-template').html(),
+        addRemoveLinks: false,
+        dictDefaultMessage: '',
+        autoProcessQueue: true,
+        init: function() {
+            this.on("addedfile", function(file) {
+            });
+            this.on("thumbnail", function(file, dataUrl) {
+            });
+            this.on("success", function(file, res) {
+                fileList[i] = {"serverFileName" : res.filename, "fileName" : file.name,"fileId" : i };
+                console.log(fileList);
+                i++;
+            });
+            this.on("removedfile", function(file) {
+                var rmvFile = "";
+                if(fileList.length > 0){
+                    var f;
+                    for(f in fileList){
+                        console.log(fileList[f].fileName);
+                        if(fileList[f].fileName == file.name)
+                        {
+                            rmvFile = fileList[f].serverFileName;
+                            fileList.splice(f,1);
+                            console.log(fileList);
+                        }
+                    }
+                }
+
+                $('input[name="images"]').val();
+
+                if (rmvFile){
+                    $.ajax({
+                        type: 'POST',
+                        url: '/admin/location/delete-image',
+                        data: {filename: rmvFile,'_token':$('input[name="_token"]').val()},
+                        dataType: 'html',
+                        success: function(data){
+                            /*var rep = JSON.parse(data);
+                             if(rep.code == 200)
+                             {
+
+                             }*/
+                        }
+                    });
+                }
+            } );
+        }
+    };
+    //myDropzone = new Dropzone("#my-dropzone",{
+    //    url: "/admin/location/upload-image",
+    //    headers: {
+    //        'X-CSRF-Token': $('input[name="_token"]').val()
+    //    }
+    //});
+
+    $('.j-select-image').on('click', function(e) {
+        //trigger file upload select
+        $("#my-dropzone").trigger('click');
+    });
+
+    Dropzone.autoDiscover = false;
+}

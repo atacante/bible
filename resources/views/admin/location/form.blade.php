@@ -1,4 +1,4 @@
-{!! Form::model($model, ['method' => ($model->exists?'put':'post'), 'class' => 'panel','role' => 'form']) !!}
+{!! Form::model($model, ['method' => ($model->exists?'put':'post'), 'id' => 'location-form', 'class' => 'panel','role' => 'form','files' => true]) !!}
 <div class="box-body">
     <div class="form-group {{ $errors->has('location_name') ? ' has-error' : '' }}">
         {!! Form::label('location_name', 'Name:') !!}
@@ -6,6 +6,35 @@
         @if ($errors->has('location_name'))
             <span class="help-block">
                         {{ $errors->first('location_name') }}
+                    </span>
+        @endif
+    </div>
+    <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }}">
+        {!! Form::label('image', 'Images:') !!}
+        <div class="clearfix">
+            <div id="img-thumb-preview" class="edit-images-thumbs pull-left">
+                @if($model->images)
+                    @foreach($model->images as $image)
+                        <div class="img-thumb pull-left">
+                            <img height="100" width="100" src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}" />
+                            <i data-filename="{!! $image->image !!}" class="j-remove-image fa fa-times-circle fa-4x" style="position:absolute; top: 24px; left: 28px; color: #f4645f; cursor: pointer; opacity: 0;"></i>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+            <div class="fallback pull-left"> <!-- this is the fallback if JS isn't working -->
+                <input name="file[]" type="file" multiple />
+            </div>
+        </div>
+        {{--<div id="my-dropzone" class="dropzone clearfix">--}}
+            {{--<div id="img-thumb-preview" class="pull-left">--}}
+            {{--</div>--}}
+            {{--<i class="j-select-image pull-left fa fa-plus-circle fa-4x" style="color: #367fa9; padding: 46px; cursor: pointer;"></i>--}}
+        {{--</div>--}}
+
+        @if ($errors->has('image'))
+            <span class="help-block">
+                        {{ $errors->first('image') }}
                     </span>
         @endif
     </div>
@@ -26,3 +55,4 @@
     {!! Html::link((($url = Session::get('backUrl'))?$url:'/admin/user/list/'),'Cancel', ['class'=>'btn btn-default']) !!}
 </div>
 {!! Form::close() !!}
+@include('admin.partials.imageupload')

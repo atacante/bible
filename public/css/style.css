@@ -51,3 +51,43 @@ label {
 .j-with-images img{
     cursor: pointer;
 }
+
+.dropzone{
+    border-width: 1px;
+    border-color: #d2d6de;
+    padding: 0;
+}
+
+.dropzone .dz-message{
+    display: none;
+}
+
+.dropzone .dz-preview .dz-image{
+    border-radius: 5px;
+}
+
+.dropzone .dz-preview {
+    margin-right: 0px;
+}
+
+.edit-images-thumbs{
+
+}
+.edit-images-thumbs .img-thumb{
+    position: relative;
+    margin-right:10px;
+}
+
+.edit-images-thumbs .img-thumb img{
+    border-radius: 5px;
+}
+
+.edit-images-thumbs .img-thumb:hover{
+    /*background-color: #FFF;
+    opacity: 0.5;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+    -o-transition: opacity .25s ease-in-out;
+    -ms-transition: opacity .25s ease-in-out;*/
+}

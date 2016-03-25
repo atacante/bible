@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\ViewHelper;
 use App\LexiconsListEn;
+use App\Location;
 use App\VersionsListEn;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class DashboardController extends Controller
             ->where('roles.slug',Config::get('app.role.user'))
             ->count();
         $content['totalUsersCount'] = User::query()->count();
+        $content['locationsCount'] = Location::query()->count();
         return view('admin.dashboard.main',
             [
                 'page_title' => 'Dashboard',

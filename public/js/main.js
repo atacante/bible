@@ -154,4 +154,39 @@ $(document).ready(function(){
             }
         });
     });
+
+    //$('.edit-images-thumbs').on('mouseover','.img-thumb',function(){
+    //    console.log('hover');
+    //    $(this).find('img').fadeTo(500, 0.5);
+    //});
+    //$('.edit-images-thumbs').on('mouseout','.img-thumb',function(){
+    //    console.log('out');
+    //    $(this).find('img').fadeTo(500, 1);
+    //});
+
+    $(".img-thumb").hover(
+    function() {
+        $(this).find('img').stop().animate({"opacity": "0.5"}, "slow");
+        $(this).find('.j-remove-image').stop().animate({"opacity": "1"}, "slow");
+    },
+    function() {
+        $(this).find('img').stop().animate({"opacity": "1"}, "slow");
+        $(this).find('.j-remove-image').stop().animate({"opacity": "0"}, "slow");
+    });
+
+    $('.edit-images-thumbs').on('click','.j-remove-image',function(){
+        var that = this;
+        $.ajax({
+            type: 'POST',
+            url: '/admin/location/delete-image',
+            data: {filename: $(this).data('filename'),'_token':$('input[name="_token"]').val()},
+            dataType: 'html',
+            success: function(data){
+                var rep = JSON.parse(data);
+                $(that).parent().remove();
+            }
+        });
+    });
+
+    site.dropzoneInit();
 });

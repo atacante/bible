@@ -23,19 +23,19 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
-                            {{--<th style="width: 150px">Verse Number</th>--}}
                             <th>Name</th>
                             <th>Description</th>
+                            <th class="text-center" style="width: 150px">Verse</th>
                             <th class="text-center">Actions</th>
                         </tr>
                         @if(count($content['locations']))
                             @foreach($content['locations'] as $location)
                                 <tr>
-{{--                                    <td>{!! $location->booksListEn->book_name.' '.$location->chapter_num.':'.$location->verse_num !!}</td>--}}
                                     <td>{!! $location->location_name !!}</td>
                                     <td>{!! $location->location_description !!}</td>
+                                    <td class="text-center"> - {{--{!! $location->booksListEn->book_name.' '.$location->chapter_num.':'.$location->verse_num !!}--}}</td>
                                     <td class="text-center" style="width: 50px;">
-                                        <a title="Edit location" href="{!! url('/admin/location/update/'.$location->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em;"></i></a>
+                                        <a title="Edit location" href="{!! url('/admin/location/update/'.$location->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
                                         <a title="Delete location" href="{!! url('/admin/location/delete',$location->id) !!}" data-toggle="modal"
                                            data-target="#confirm-delete" data-header="Delete Confirmation"
                                            data-confirm="Are you sure you want to delete this item?"><i
