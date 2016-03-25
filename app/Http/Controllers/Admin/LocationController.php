@@ -9,6 +9,7 @@ use App\Location;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\LocationImages;
+use App\VersesKingJamesEn;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -181,5 +182,17 @@ class LocationController extends Controller
         if (is_file($tmpThumbPath)) {
             unlink($tmpThumbPath);
         }
+    }
+
+    public function anyVerses($id)
+    {
+        $location = Location::query()->with('verses')->find($id);
+        var_dump($location->verses);exit;
+    }
+
+    public function anyLocations($id)
+    {
+        $verse = VersesKingJamesEn::query()->with('locations')->find($id);
+        var_dump($verse->locations);exit;
     }
 }

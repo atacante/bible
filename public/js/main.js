@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $("#j-select-locations").select2();
+
     $(".j-with-images img").each(function (i) {
         $(this).bind('click', function () {
             site.fancyBoxMe(i);

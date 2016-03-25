@@ -16,5 +16,7 @@ class VersesAmericanStandardEn extends BaseModel {
         return $this->belongsTo(\App\BooksListEn::class, 'book_id', 'id');
     }
 
-
+    public function locations() {
+        return $this->belongsToMany(Location::class, 'location_verse', 'verse_id', 'location_id');
+    }
 }

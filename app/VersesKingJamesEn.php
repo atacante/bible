@@ -14,6 +14,10 @@ class VersesKingJamesEn extends BaseModel {
         return $this->belongsTo(BooksListEn::class, 'book_id', 'id');
     }
 
+    public function locations() {
+        return $this->belongsToMany(Location::class, 'location_verse', 'verse_id', 'location_id');
+    }
+
     public function lexicon() {
         return LexiconKjv::query()
             ->where('book_id',$this->book_id)

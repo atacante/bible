@@ -31,6 +31,11 @@ class Location extends BaseModel {
         return $this->hasMany(LocationImages::class, 'location_id', 'id');
     }
 
+    public function verses()
+    {
+        return $this->belongsToMany(VersesKingJamesEn::class, 'location_verse', 'verse_id', 'location_id');
+    }
+
     /* Experimental method */
     public function validate()
     {

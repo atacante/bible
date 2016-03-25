@@ -21,6 +21,10 @@
                     </span>
                 @endif
             </div>
+            <div class="form-group">
+                {!! Form::label('locations', 'Locations:') !!}
+                {!! Form::select('locations[]', $locations, $model->locations->pluck('id')->toArray(), ['id' => 'j-select-locations','multiple' => 'multiple']) !!}
+            </div>
         </div>
         <!-- /.box-body -->
 
