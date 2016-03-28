@@ -190,5 +190,5 @@ $(document).ready(function(){
         });
     });
 
-    site.dropzoneInit();
+    //site.dropzoneInit();
 });

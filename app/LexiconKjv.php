@@ -24,4 +24,8 @@ class LexiconKjv extends BaseModel {
             ->first();
         VersesKingJamesEn::cacheLexicon($verses);
     }
+
+    public function locations() {
+        return $this->belongsToMany(Location::class, 'location_lexicon', 'lexicon_id', 'location_id');
+    }
 }

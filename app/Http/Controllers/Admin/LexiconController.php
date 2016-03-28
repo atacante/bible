@@ -6,6 +6,7 @@ use App\BaseModel;
 use App\Helpers\ViewHelper;
 use App\LexiconKjv;
 use App\LexiconsListEn;
+use App\Location;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use \Illuminate\Support\Facades\Request;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Krucas\Notification\Facades\Notification;
 
 class LexiconController extends Controller
 {
@@ -65,7 +67,8 @@ class LexiconController extends Controller
         }
         $lexiconModel = BaseModel::getModelByTableName('lexicon_'.$code);
         $lexiconName = LexiconsListEn::getLexiconByCode($code);
-        $lexicon = $lexiconModel::find($id);
+        $lexicon = $lexiconModel::with('locations')->find($id);
+        $locations = ViewHelper::prepareForSelectBox(Location::query()->get()->toArray(),'id','location_name');
         if (Request::isMethod('put')) {
             $this->validate($request, [
                 'verse_part' => 'required',
@@ -73,7 +76,11 @@ class LexiconController extends Controller
                 'transliteration' => 'required',
                 'strong_1_word_def' => 'required',
             ]);
-            $lexicon->update(Input::all());
+            if ($lexicon->update(Input::all())) {
+                $lexicon->locations()->sync(Input::get('locations'));
+                Notification::success('Lexicon has been successfully updated');
+            }
+
             return ($url = Session::get('backUrl'))
                 ? Redirect::to($url)
                 : Redirect::to(ViewHelper::adminUrlSegment().'/lexicon/view/'.$code);
@@ -84,6 +91,7 @@ class LexiconController extends Controller
                 'model' => $lexicon,
                 'lexiconCode' => $code,
                 'lexiconName' => $lexiconName,
+                'locations' => $locations,
             ]);
     }
 }

@@ -17,12 +17,14 @@
     @show
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css')!!}
         {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')!!}
+        {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css')!!}
 {{--        {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css')!!}--}}
         {!!Html::style('css/style.css')!!}
 
         {!!Html::script('//code.jquery.com/jquery-2.2.0.min.js')!!}
         {!!Html::script('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')!!}
-
+        {!!Html::script('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js')!!}
+        {!!Html::script('js/dropzone/dist/min/dropzone.min.js')!!}
         <!-- Add mousewheel plugin (this is optional) -->
         {!!Html::script('js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js')!!}
         <!-- Add fancyBox main JS and CSS files -->
