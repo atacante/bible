@@ -21,51 +21,57 @@
     @if($lexiconinfo->locations->count())
         <div class="text-left">
             <h3 class="text-left">Location{!! ($lexiconinfo->locations->count() > 0?'s':'') !!}</h3>
-        @foreach($lexiconinfo->locations as $location)
-            <div class="clearfix">
-                <h4>{!! $location->location_name !!}</h4>
-                <div class="pull-left" style="margin-right: 10px;">
-                    @if($location->images->count())
-                    <div id="location-{!! $location->id !!}" class="carousel slide" data-ride="carousel" style="width: 150px">
-                        <!-- Indicators -->
-                        @if($location->images->count() > 1)
-                        <ol class="carousel-indicators">
-                            @foreach($location->images as $key => $image)
-                            <li data-target="#location-{!! $location->id !!}" data-slide-to="{!! $key !!}" class="{!! ($key == 0?'active':'') !!}"></li>
-                            @endforeach
-                        </ol>
-                        @endif
+            @foreach($lexiconinfo->locations as $location)
+                <div class="clearfix">
+                    <h4>{!! $location->location_name !!}</h4>
+                    <div class="pull-left" style="margin-right: 10px;">
+                        @if($location->images->count())
+                            <div id="location-{!! $location->id !!}" class="carousel slide" data-ride="carousel"
+                                 style="width: 150px">
+                                <!-- Indicators -->
+                                @if($location->images->count() > 1)
+                                    <ol class="carousel-indicators">
+                                        @foreach($location->images as $key => $image)
+                                            <li data-target="#location-{!! $location->id !!}"
+                                                data-slide-to="{!! $key !!}"
+                                                class="{!! ($key == 0?'active':'') !!}"></li>
+                                        @endforeach
+                                    </ol>
+                                    @endif
 
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner" role="listbox">
-                            @foreach($location->images as $key => $image)
-                            <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
-                                <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}" alt="" style="cursor: pointer;">
-                                <div class="carousel-caption">
-                                </div>
+                                            <!-- Wrapper for slides -->
+                                    <div class="carousel-inner" role="listbox">
+                                        @foreach($location->images as $key => $image)
+                                            <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
+                                                <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}"
+                                                     alt="" style="cursor: pointer;">
+                                                <div class="carousel-caption">
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                                    <!-- Controls -->
+                                    @if($location->images->count() > 1)
+                                        <a class="left carousel-control" href="#location-{!! $location->id !!}"
+                                           role="button" data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="right carousel-control" href="#location-{!! $location->id !!}"
+                                           role="button" data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    @endif
                             </div>
-                            @endforeach
-                        </div>
-
-                        <!-- Controls -->
-                        @if($location->images->count() > 1)
-                        <a class="left carousel-control" href="#location-{!! $location->id !!}" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#location-{!! $location->id !!}" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                         @endif
                     </div>
-                    @endif
+                    <div>
+                        {!! $location->location_description !!}
+                    </div>
                 </div>
-                <div>
-                    {!! $location->location_description !!}
-                </div>
-            </div>
-        @endforeach
+            @endforeach
         </div>
     @endif
 </div>

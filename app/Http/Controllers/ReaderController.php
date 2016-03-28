@@ -175,6 +175,7 @@ class ReaderController extends Controller
             $verseModel = BaseModel::getVersesModelByVersionCode($version_code);
             $content['main_verse']['version_name'] = VersionsListEn::getVersionByCode($version_code);
             $content['main_verse']['verse'] = $verseModel::query()
+                ->with('locations')
                 ->where('book_id', $book)
                 ->where('chapter_num', $chapter)
                 ->where('verse_num', $verse)

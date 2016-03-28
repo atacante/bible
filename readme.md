@@ -24,6 +24,7 @@ php composer.phar install
 ~~~
 Copy `.env.example` file with name `.env`
 Run `php artisan key:generate` command
+Create writable (chmod 777) folder `uploads` at `PROJECT_ROOT/public`
 ~~~
 
 ### Database
