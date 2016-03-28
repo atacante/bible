@@ -61,7 +61,7 @@ class AjaxController extends Controller
 
     public function getLexiconInfo(){
         $definitionId = Request::input('definition_id');
-        $lexiconinfo = LexiconKjv::query()->where('id',$definitionId)->first();
+        $lexiconinfo = LexiconKjv::query()->with('locations')->where('id',$definitionId)->first();
         $view = 'symbolism';
         if(Request::cookie('readerMode') == 'intermediate'){
             $view = 'lexiconinfo';

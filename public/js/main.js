@@ -18,12 +18,14 @@ $(document).ready(function(){
     });
 
     $('body').on('click', function (e) {
-        $('.word-definition').each(function () {
-            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                $(this).popover('hide');
-                $(this).popover('destroy');
-            }
-        });
+        if($('.fancybox-image').length == 0){
+            $('.word-definition').each(function () {
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                    $(this).popover('hide');
+                    $(this).popover('destroy');
+                }
+            });
+        }
     });
 
     $('body').on('click','.word-definition',function(e){
@@ -44,7 +46,7 @@ $(document).ready(function(){
                 $(that).popover(
                     {
                         html: true,
-                        placement:'top',
+                        placement:'auto',
                         title: "Lexicon - \""+$(that).html()+'"',
                         content: '<div class="j-lex-content text-center" style="">'+data+'</div>',//loader <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
                     }
@@ -55,6 +57,14 @@ $(document).ready(function(){
 
         $(that).popover('show');
     });
+
+    $('body').on('shown.bs.popover', function () {
+        $(".j-with-images img").each(function (i) {
+            $(this).bind('click', function () {
+                site.fancyBoxMe(i);
+            }); //bind
+        });
+    })
 
     $('a[data-confirm]').click(function(ev) {
         var href = $(this).attr('href');
