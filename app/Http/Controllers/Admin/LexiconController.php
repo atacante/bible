@@ -77,7 +77,7 @@ class LexiconController extends Controller
                 'strong_1_word_def' => 'required',
             ]);
             if ($lexicon->update(Input::all())) {
-                $lexicon->locations()->sync(Input::get('locations'));
+                $lexicon->locations()->sync(Input::get('locations',[]));
                 Notification::success('Lexicon has been successfully updated');
             }
 

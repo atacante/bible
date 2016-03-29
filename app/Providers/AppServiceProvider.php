@@ -33,6 +33,14 @@ class AppServiceProvider extends ServiceProvider
             return true; //if false the model wont save!
         });
 
+        LexiconKjv::saved(function($model)
+        {
+            if($model->isDirty('symbolism')){
+                $model->cacheSymbolismForBeginnerMode();
+            }
+            return true; //if false the model wont save!
+        });
+
         User::saving(function($model)
         {
             if($model->isDirty('password')){

@@ -25,6 +25,15 @@ class LexiconKjv extends BaseModel {
         VersesKingJamesEn::cacheLexicon($verses);
     }
 
+    public function cacheSymbolismForBeginnerMode(){
+        $verses[] = VersesKingJamesEn::query()
+            ->where('book_id',$this->book_id)
+            ->where('chapter_num',$this->chapter_num)
+            ->where('verse_num',$this->verse_num)
+            ->first();
+        VersesKingJamesEn::cacheSymbolismForBeginnerMode($verses);
+    }
+
     public function locations() {
         return $this->belongsToMany(Location::class, 'location_lexicon', 'lexicon_id', 'location_id');
     }

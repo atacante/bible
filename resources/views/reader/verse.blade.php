@@ -97,7 +97,7 @@
     <div class="row col-md-12" style="line-height: 30px;">
         <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => Request::input('version')])),[],false), $content['main_verse']['version_name'], ['class' => '','style' => ''], true)}}</h4>
             <span style="">
-                {!! !empty($content['main_verse']['verse']->verse_text_with_lexicon)?$content['main_verse']['verse']->verse_text_with_lexicon:$content['main_verse']['verse']->verse_text !!}
+                {!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}
             </span>
     </div>
     <div class="row col-md-12"><hr></div>
@@ -105,7 +105,7 @@
         @foreach($content['verse'] as $code => $version)
             <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[],false), $version['version_name'], ['class' => '','style' => ''], true)}}</h4>
             <span style="">
-                {!! !empty($version['verse']->verse_text_with_lexicon)?$version['verse']->verse_text_with_lexicon:$version['verse']->verse_text !!}
+                {!! ViewHelper::prepareVerseText($version['verse']) !!}
             </span>
         @endforeach
     </div>

@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\Inspire::class,
         Commands\ParseCsvCommand::class,
         Commands\CacheLexicon::class,
+        Commands\CacheSymbolism::class,
     ];
 
     /**

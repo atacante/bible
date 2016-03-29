@@ -54,6 +54,7 @@ php artisan db:seed
 Process data
 ~~~
 php artisan lexicon:cache
+php artisan symbolism:cache
 ~~~
 
 FINISH

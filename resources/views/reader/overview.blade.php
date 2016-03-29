@@ -19,7 +19,7 @@
                                                                 'book' => $verse->book_id,
                                                                 'chapter' => $verse->chapter_num,
                                                                 'verse' => $verse->verse_num,
-                                                            ]), $title = $verse->verse_num) !!}</b>&nbsp;{!! !empty($verse->verse_text_with_lexicon)?$verse->verse_text_with_lexicon:$verse->verse_text !!}
+                                                            ]), $title = $verse->verse_num) !!}</b>&nbsp;{!! ViewHelper::prepareVerseText($verse) !!}
                 </span>
             @endforeach
         @endforeach

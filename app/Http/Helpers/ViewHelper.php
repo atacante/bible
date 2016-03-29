@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 class ViewHelper
@@ -58,5 +59,18 @@ class ViewHelper
             return '/admin';
         }
         return '';
+    }
+
+    public static function prepareVerseText($verse, $allowDiff = false)
+    {
+        if(Request::cookie('readerMode',false) == 'beginner' && !empty($verse->verse_text_with_symbolism) && (!Request::input('diff',false) || $allowDiff)){
+            return $verse->verse_text_with_symbolism;
+        }
+        elseif(!empty($verse->verse_text_with_lexicon) && (!Request::input('diff',false) || $allowDiff)){
+            return $verse->verse_text_with_lexicon;
+        }
+        else{
+            return $verse->verse_text;
+        }
     }
 }

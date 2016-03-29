@@ -74,7 +74,7 @@ class BibleController extends Controller
             ]);
             if($verse->update(Input::all())){
 //                $this->updateLocations($verse);
-                $verse->locations()->sync(Input::get('locations'));
+                $verse->locations()->sync(Input::get('locations',[]));
                 Notification::success('Verse has been successfully updated');
             }
             return ($url = Session::get('backUrl'))
