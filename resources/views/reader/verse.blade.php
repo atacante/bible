@@ -39,12 +39,11 @@
     <div class="row col-md-12">
         <h3 class="text-center">Location{!! ($content['main_verse']['verse']->locations->count() > 0?'s':'') !!}</h3>
         @foreach($content['main_verse']['verse']->locations as $location)
-            <div class="clearfix">
+            <div class="clearfix location-item">
                 <h4>{!! $location->location_name !!}</h4>
                 <div class="pull-left" style="margin-right: 10px;">
                     @if($location->images->count())
-                        <div id="location-{!! $location->id !!}" class="carousel slide" data-ride="carousel"
-                             style="width: 200px">
+                        <div id="location-{!! $location->id !!}" class="carousel slide" data-ride="carousel" data-interval="{!! rand(5000,7000) !!}">
                             <!-- Indicators -->
                             @if($location->images->count() > 1)
                                 <ol class="carousel-indicators">
@@ -61,9 +60,9 @@
                                     @foreach($location->images as $key => $image)
                                         <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
                                             <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}"
-                                                 alt="" style="cursor: pointer;">
-                                            <div class="carousel-caption">
-                                            </div>
+                                                 class="img-thumbnail" alt="" style="cursor: pointer;">
+                                            {{--<div class="carousel-caption">--}}
+                                            {{--</div>--}}
                                         </div>
                                     @endforeach
                                 </div>

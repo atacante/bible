@@ -10,32 +10,24 @@
             </button>
             <a class="navbar-brand" href="/">Bible Reader</a>
         </div>
-        <div class="pull-left" style="width: 450px; margin: 8px 30px;">
+        <div class="pull-left" style="">
+            <ul class="nav navbar-nav">
+                <li class="{{ ViewHelper::classActivePath('locations.list') }}">
+                    <a href="{{ URL::to('/locations/list') }}"><i class="fa fa-map-marker"></i> Locations</a>
+                </li>
+            </ul>
+        </div>
+        <div class="pull-left" style="width: 450px; margin: 8px 15px 0;">
             {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
             {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:400px; margin-right:5px;']) !!}
             {!! Form::submit('Go',['class' => 'btn btn-primary pull-left']) !!}
             {!! Form::close() !!}
         </div>
-        <div class="pull-left" style="margin: 8px 30px;">
+        <div class="pull-left" style="margin: 8px 10px 0;">
             {!! Form::label('readerMode', 'Reader Mode',['class' => 'pull-left','style' => 'line-height: 35px; margin-right: 10px;']) !!}
             {!! Form::select('readerMode',Config::get('app.readerModes'), (($mode = Request::cookie('readerMode',false))?$mode:Config::get('app.defaultReaderMode')),['class' => 'pull-left j-reader-mode', 'style' => 'width: 135px; margin-right:10px;']) !!}
         </div>
-        {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--}}
-            {{--<ul class="nav navbar-nav">--}}
-                {{--<li class="{{ (Request::is('/') ? 'active' : '') }}">--}}
-                    {{--<a href="{{ URL::to('') }}"><i class="fa fa-home"></i> Home</a>--}}
-                {{--</li>--}}
-                {{--<li class="{{ (Request::is('articles') ? 'active' : '') }}">--}}
-                    {{--<a href="{{ URL::to('articles') }}">Articles</a>--}}
-                {{--</li>--}}
-                {{--<li class="{{ (Request::is('about') ? 'active' : '') }}">--}}
-                    {{--<a href="{{ URL::to('about') }}">About</a>--}}
-                {{--</li>--}}
-                {{--<li class="{{ (Request::is('contact') ? 'active' : '') }}">--}}
-                    {{--<a href="{{ URL::to('contact') }}">Contact</a>--}}
-                {{--</li>--}}
-            {{--</ul>--}}
-
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::to('auth/login') }}"><i

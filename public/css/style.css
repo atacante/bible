@@ -104,3 +104,53 @@ label {
 .select2-container--default .select2-selection--multiple{
     border-color: #d2d6de;
 }
+
+.location-item{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.location-item h4{
+    margin-top: 0px;
+}
+
+.location-item .slide{
+    width: 140px;
+}
+
+.box{
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.box-header {
+    color: #444;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+
+.box-header .box-title {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+}
+
+.carousel-control{
+    background-image: none !important;
+}
+
+.box-header>.box-tools {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}

@@ -33,7 +33,7 @@ class Location extends BaseModel {
 
     public function verses()
     {
-        return $this->belongsToMany(VersesKingJamesEn::class, 'location_verse', 'verse_id', 'location_id');
+        return $this->belongsToMany(VersesKingJamesEn::class, 'location_verse', 'location_id','verse_id');
     }
 
     /* Experimental method */
