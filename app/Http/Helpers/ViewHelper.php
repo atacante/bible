@@ -63,7 +63,8 @@ class ViewHelper
 
     public static function prepareVerseText($verse, $allowDiff = false)
     {
-        if(Request::cookie('readerMode',false) == 'beginner' && !empty($verse->verse_text_with_symbolism) && (!Request::input('diff',false) || $allowDiff)){
+        $readerMode = Request::cookie('readerMode',false);
+        if((!$readerMode || $readerMode == 'beginner') && !empty($verse->verse_text_with_symbolism) && (!Request::input('diff',false) || $allowDiff)){
             return $verse->verse_text_with_symbolism;
         }
         elseif(!empty($verse->verse_text_with_lexicon) && (!Request::input('diff',false) || $allowDiff)){
