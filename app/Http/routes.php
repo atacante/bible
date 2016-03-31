@@ -45,6 +45,7 @@ $router->group([
         'bible' => 'BibleController',
         'user' => 'UserController',
         'location' => 'LocationController',
+        'peoples' => 'PeoplesController',
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });
@@ -128,3 +129,5 @@ View::composer('reader.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.partials.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.user.filters', 'App\Http\Composers\UserFiltersComposer');
 View::composer('locations.filters', 'App\Http\Composers\BibleFiltersComposer');
+View::composer('admin.location.filters', 'App\Http\Composers\BibleFiltersComposer');
+View::composer('admin.peoples.filters', 'App\Http\Composers\BibleFiltersComposer');

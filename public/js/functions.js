@@ -129,3 +129,18 @@ site.dropzoneInit = function(){
 
     Dropzone.autoDiscover = false;
 }
+
+site.deleteImage = function(element,url){
+    var that = element;
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {filename: $(element).data('filename'),'_token':$('input[name="_token"]').val()},
+        dataType: 'html',
+        success: function(data){
+            var rep = JSON.parse(data);
+            $(that).parent().remove();
+        }
+    });
+}
+

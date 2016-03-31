@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('breadcrumbs', Breadcrumbs::render('locations'))
+@section('breadcrumbs', Breadcrumbs::render('peoples'))
 
 @section('content')
     <div class="row">
@@ -9,7 +9,7 @@
                 <div class="box-header" style="height: 44px;">
                     <h3 class="box-title">Filters</h3>
                     <div class="box-tools">
-                        @include('admin.location.filters')
+                        @include('admin.peoples.filters')
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            {!! Html::link('/admin/location/create','Create Location', ['class'=>'btn btn-success','style' => 'margin-bottom:10px;']) !!}
+            {!! Html::link('/admin/peoples/create','Create People', ['class'=>'btn btn-success','style' => 'margin-bottom:10px;']) !!}
             <div class="box box-success">
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
@@ -26,27 +26,25 @@
                             <th>Image</th>
                             <th>Name</th>
                             <th>Description</th>
-                            <th class="text-center" style="width: 150px">Verse</th>
                             <th class="text-center">Actions</th>
                         </tr>
-                        @if(count($content['locations']))
-                            @foreach($content['locations'] as $location)
+                        @if(count($content['peoples']))
+                            @foreach($content['peoples'] as $people)
                                 <tr>
                                     <td class="img-column">
-                                        @if($location->images->count())
-                                            <img class="img-thumbnail"  src="{!! Config::get('app.locationImages').'thumbs/'.$location->images[0]->image !!}" />
+                                        @if($people->images->count())
+                                            <img class="img-thumbnail"  src="{!! Config::get('app.peopleImages').'thumbs/'.$people->images[0]->image !!}" />
                                         @else
                                             <div class="no-image img-thumbnail">
                                                 <div class="no-image-text text-center">No image</div>
                                             </div>
                                         @endif
                                     </td>
-                                    <td>{!! $location->location_name !!}</td>
-                                    <td>{!! str_limit(strip_tags($location->location_description), $limit = 500, $end = '...') !!}</td>
-                                    <td class="text-center"> - {{--{!! $location->booksListEn->book_name.' '.$location->chapter_num.':'.$location->verse_num !!}--}}</td>
+                                    <td>{!! $people->people_name !!}</td>
+                                    <td>{!! str_limit(strip_tags($people->people_description), $limit = 500, $end = '...') !!}</td>
                                     <td class="text-center" style="width: 50px;">
-                                        <a title="Edit location" href="{!! url('/admin/location/update/'.$location->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
-                                        <a title="Delete location" href="{!! url('/admin/location/delete',$location->id) !!}" data-toggle="modal"
+                                        <a title="Edit people" href="{!! url('/admin/peoples/update/'.$people->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
+                                        <a title="Delete people" href="{!! url('/admin/peoples/delete',$people->id) !!}" data-toggle="modal"
                                            data-target="#confirm-delete" data-header="Delete Confirmation"
                                            data-confirm="Are you sure you want to delete this item?"><i
                                                     class="fa fa-trash"
@@ -56,7 +54,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="5">
+                                <td colspan="4">
                                     <p class="text-center">No any results found</p>
                                 </td>
                             </tr>
@@ -68,7 +66,7 @@
             </div>
             <!-- /.box -->
             <div class="text-center">
-                {!! $content['locations']->appends(Request::input())->links() !!}
+                {!! $content['peoples']->appends(Request::input())->links() !!}
             </div>
         </div>
     </div>

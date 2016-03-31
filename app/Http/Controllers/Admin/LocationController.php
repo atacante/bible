@@ -22,29 +22,51 @@ use Proengsoft\JsValidation\Facades\JsValidatorFacade;
 
 class LocationController extends Controller
 {
+    private $searchFilter;
+    private $bookFilter;
+    private $chapterFilter;
+    private $verseFilter;
+
+    private function prepareFilters($locationsModel){
+        $this->searchFilter = Request::input('search', false);
+        $this->bookFilter = Request::input('book', false);
+        $this->chapterFilter = Request::input('chapter', false);
+        $this->verseFilter = Request::input('verse', false);
+
+        if(!empty($this->searchFilter)){
+            $locationsModel->where('location_name', 'ilike', '%'.$this->searchFilter.'%');
+            $locationsModel->orWhere('location_description', 'ilike', '%'.$this->searchFilter.'%');
+        }
+
+        if(!empty($this->bookFilter)){
+            $locationsModel->whereHas('verses', function($q){
+                $q->where('book_id',$this->bookFilter);
+            });
+        }
+
+        if(!empty($this->chapterFilter)){
+            $locationsModel->whereHas('verses', function($q){
+                $q->where('chapter_num',$this->chapterFilter);
+            });
+        }
+
+        if(!empty($this->verseFilter)){
+            $locationsModel->whereHas('verses', function($q){
+                $q->where('verse_num',$this->verseFilter);
+            });
+        }
+        return $locationsModel;
+    }
+
     public function getList()
     {
         Session::flash('backUrl', Request::fullUrl());
 
-        $book = Request::input('book', false);
-        $chapter = Request::input('chapter', false);
-        $verse = Request::input('verse', false);
+        $locationsModel = new Location();
 
-        $locations = Location::query()->with('booksListEn');
+        $locationsModel = $this->prepareFilters($locationsModel->query());
 
-        if (!empty($book)) {
-            $locations->where('book_id', $book);
-        }
-
-        if (!empty($chapter)) {
-            $locations->where('chapter_num', $chapter);
-        }
-
-        if (!empty($verse)) {
-            $locations->where('verse_num', $verse);
-        }
-
-        $content['locations'] = $locations->/*orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num')->*/
+        $content['locations'] = $locationsModel->/*orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num')->*/
         paginate(20);
         return view('admin.location.list',
             [
@@ -115,7 +137,7 @@ class LocationController extends Controller
         }
         return ($url = Session::get('backUrl'))
             ? Redirect::to($url)
-            : Redirect::to(ViewHelper::adminUrlSegment() . '/user/list/');
+            : Redirect::to(ViewHelper::adminUrlSegment() . '/location/list/');
     }
 
     public function anyUploadImage($locationId)

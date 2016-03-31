@@ -1,22 +1,22 @@
-{!! Form::model($model, ['method' => ($model->exists?'put':'post'), 'id' => 'location-form', 'class' => 'panel','role' => 'form','files' => true]) !!}
+{!! Form::model($model, ['method' => ($model->exists?'put':'post'), 'id' => 'people-form', 'class' => 'panel','role' => 'form','files' => true]) !!}
 <div class="box-body">
-    <div class="form-group {{ $errors->has('location_name') ? ' has-error' : '' }}">
-        {!! Form::label('location_name', 'Name:') !!}
-        {!! Form::text('location_name') !!}
-        @if ($errors->has('location_name'))
+    <div class="form-group {{ $errors->has('people_name') ? ' has-error' : '' }}">
+        {!! Form::label('people_name', 'Name:') !!}
+        {!! Form::text('people_name') !!}
+        @if ($errors->has('people_name'))
             <span class="help-block">
-                        {{ $errors->first('location_name') }}
+                        {{ $errors->first('people_name') }}
                     </span>
         @endif
     </div>
     <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }}">
         {!! Form::label('image', 'Images:') !!}
         <div class="clearfix">
-            <div id="img-thumb-preview" class="edit-images-thumbs location-images pull-left">
+            <div id="img-thumb-preview" class="edit-images-thumbs people-images pull-left">
                 @if($model->images)
                     @foreach($model->images as $image)
                         <div class="img-thumb pull-left">
-                            <img height="100" width="100" src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}" />
+                            <img height="100" width="100" src="{!! Config::get('app.peopleImages').'thumbs/'.$image->image !!}" />
                             <i data-filename="{!! $image->image !!}" class="j-remove-image fa fa-times-circle fa-4x" style="position:absolute; top: 24px; left: 28px; color: #f4645f; cursor: pointer; opacity: 0;"></i>
                         </div>
                     @endforeach
@@ -38,12 +38,12 @@
                     </span>
         @endif
     </div>
-    <div class="form-group {{ $errors->has('location_description') ? ' has-error' : '' }}">
-        {!! Form::label('location_description', 'Description:') !!}
-        {!! Form::textarea('location_description',null,['id' => 'location-desc']) !!}
-        @if ($errors->has('location_description'))
+    <div class="form-group {{ $errors->has('people_description') ? ' has-error' : '' }}">
+        {!! Form::label('people_description', 'Description:') !!}
+        {!! Form::textarea('people_description',null,['id' => 'location-desc']) !!}
+        @if ($errors->has('people_description'))
             <span class="help-block">
-                {{ $errors->first('location_description') }}
+                {{ $errors->first('people_description') }}
             </span>
         @endif
     </div>
@@ -52,7 +52,7 @@
 
 <div class="box-footer">
     {!! Form::button('Save', ['type'=>'submit','class'=>'btn btn-primary']) !!}
-    {!! Html::link((($url = Session::get('backUrl'))?$url:'/admin/location/list/'),'Cancel', ['class'=>'btn btn-default']) !!}
+    {!! Html::link((($url = Session::get('backUrl'))?$url:'/admin/peoples/list/'),'Cancel', ['class'=>'btn btn-default']) !!}
 </div>
 {!! Form::close() !!}
-@include('admin.partials.imageupload')
+{{--@include('admin.partials.imageupload')--}}

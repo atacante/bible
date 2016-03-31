@@ -186,18 +186,12 @@ $(document).ready(function(){
         $(this).find('.j-remove-image').stop().animate({"opacity": "0"}, "slow");
     });
 
-    $('.edit-images-thumbs').on('click','.j-remove-image',function(){
-        var that = this;
-        $.ajax({
-            type: 'POST',
-            url: '/admin/location/delete-image',
-            data: {filename: $(this).data('filename'),'_token':$('input[name="_token"]').val()},
-            dataType: 'html',
-            success: function(data){
-                var rep = JSON.parse(data);
-                $(that).parent().remove();
-            }
-        });
+    $('.edit-images-thumbs.location-images').on('click','.j-remove-image',function(){
+        site.deleteImage(this,'/admin/location/delete-image');
+    });
+
+    $('.edit-images-thumbs.people-images').on('click','.j-remove-image',function(){
+        site.deleteImage(this,'/admin/peoples/delete-image');
     });
 
     //site.dropzoneInit();

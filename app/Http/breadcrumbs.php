@@ -89,3 +89,24 @@ Breadcrumbs::register('locationUpdate', function($breadcrumbs)
     $breadcrumbs->parent('locations');
     $breadcrumbs->push('Edit location');
 });
+
+// Admin > Peoples
+Breadcrumbs::register('peoples', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Peoples', url('admin/peoples/list'));
+});
+
+// Admin > Peoples > [CreatePeople]
+Breadcrumbs::register('peopleCreate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('peoples');
+    $breadcrumbs->push("Create new people");
+});
+
+// Admin > Peoples > [UpdatePeople]
+Breadcrumbs::register('peopleUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('peoples');
+    $breadcrumbs->push('Edit people');
+});

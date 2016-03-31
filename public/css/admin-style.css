@@ -106,14 +106,10 @@ label {
 }
 
 .location-item{
-    border-bottom: 1px solid #ddd;
-    border-radius: 0;
-    padding-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
     margin-bottom: 15px;
-}
-
-.location-item:last-child{
-    border: 0;
 }
 
 .location-item h4{
@@ -157,4 +153,21 @@ label {
     position: absolute;
     right: 10px;
     top: 5px;
+}
+
+.img-column{
+    width: 116px;
+}
+
+.img-column img, .img-column .no-image{
+    width: 100px;
+    height: 100px;
+}
+
+.img-column .no-image .no-image-text{
+    height: 90px;
+    width: 90px;
+    border: 1px solid #f4f4f4;
+    line-height: 90px;
+    color: #ddd;
 }

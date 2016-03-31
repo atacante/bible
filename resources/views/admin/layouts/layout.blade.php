@@ -32,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     {!!Html::style('js/dropzone/dist/min/basic.min.css')!!}
     {!!Html::style('js/dropzone/dist/min/dropzone.min.css')!!}
     {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css')!!}
-    {!!Html::style('css/style.css')!!}
+    {!!Html::style('css/admin-style.css')!!}
 </head>
 <body class="skin-blue layout-top-nav">
 <div class="wrapper">

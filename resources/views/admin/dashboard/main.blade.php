@@ -8,7 +8,7 @@
                 <div class="inner">
                     <h3>{!! $content['lexiconsCount'] !!}</h3>
 
-                    <p>Lexicon{!! $content['lexiconsCount'] > 1?'s':'' !!}</p>
+                    <p>Lexicon{!! $content['lexiconsCount'] != 1?'s':'' !!}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-university"></i>
@@ -24,7 +24,7 @@
             <div class="small-box bg-green">
                 <div class="inner">
                     <h3>{!! $content['bibleVersionsCount'] !!}</h3>
-                    <p>Bible Version{!! $content['bibleVersionsCount'] > 1?'s':'' !!}</p>
+                    <p>Bible Version{!! $content['bibleVersionsCount'] != 1?'s':'' !!}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-ios-book"></i>
@@ -40,7 +40,7 @@
             <div class="small-box bg-yellow">
                 <div class="inner">
                     <h3>{!! $content['totalUsersCount'] !!}</h3>
-                    <p>User{!! $content['totalUsersCount'] > 1?'s':'' !!}</p>
+                    <p>User{!! $content['totalUsersCount'] != 1?'s':'' !!}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
@@ -56,7 +56,7 @@
             <div class="small-box bg-red">
                 <div class="inner">
                     <h3>{!! $content['locationsCount'] !!}</h3>
-                    <p>Location{!! $content['locationsCount'] > 1?'s':'' !!}</p>
+                    <p>Location{!! $content['locationsCount'] != 1?'s':'' !!}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-ios-location"></i>
@@ -83,6 +83,22 @@
                 </a>
             </div>
         </div>--}}
-        <!-- ./col -->
+                <!-- ./col -->
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-red" style="background-color: #e44ad7 !important;">
+                <div class="inner">
+                    <h3>{!! $content['peoplesCount'] !!}</h3>
+                    <p>People{!! $content['peoplesCount'] != 1?'s':'' !!}</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-ios-location"></i>
+                </div>
+                <a href="{{ url('admin/peoples/list') }}" class="small-box-footer">
+                    View All <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
     </div>
 @endsection
