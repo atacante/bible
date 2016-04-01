@@ -102,6 +102,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::controller('reader', 'ReaderController');
     Route::controller('ajax', 'AjaxController');
     Route::controller('locations', 'LocationsController');
+    Route::controller('peoples', 'PeoplesController');
 
     Route::controllers([
         'auth' => 'Auth\AuthController',
@@ -131,3 +132,4 @@ View::composer('admin.user.filters', 'App\Http\Composers\UserFiltersComposer');
 View::composer('locations.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.location.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.peoples.filters', 'App\Http\Composers\BibleFiltersComposer');
+View::composer('peoples.filters', 'App\Http\Composers\BibleFiltersComposer');

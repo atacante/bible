@@ -8,7 +8,7 @@
     {{--    @include('reader.filters')--}}
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-center">Locations</h3>
+            <h3 class="text-center">Peoples</h3>
         </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
                     <h3 class="box-title">Filters</h3>
                     <div class="box-tools">
                         <div class="pull-right">
-                            @include('locations.filters')
+                            @include('peoples.filters')
                         </div>
                     </div>
                 </div>
@@ -27,18 +27,18 @@
     </div>
     <div class="row">
         <div class="col-md-12" style="line-height: 30px;">
-            @if(count($content['locations']))
-                @foreach($content['locations'] as $location)
-                    <div class="clearfix location-item">
-                        <h4>{!! $location->location_name !!}</h4>
+            @if(count($content['peoples']))
+                @foreach($content['peoples'] as $people)
+                    <div class="clearfix people-item">
+                        <h4>{!! $people->people_name !!}</h4>
                         <div class="pull-left" style="margin-right: 10px;">
-                            @if($location->images->count())
-                                <div id="location-{!! $location->id !!}" class="carousel slide" data-ride="carousel" data-interval="{!! rand(5000,7000) !!}">
+                            @if($people->images->count())
+                                <div id="people-{!! $people->id !!}" class="carousel slide" data-ride="carousel" data-interval="{!! rand(5000,7000) !!}">
                                     <!-- Indicators -->
-                                    @if($location->images->count() > 1)
+                                    @if($people->images->count() > 1)
                                         <ol class="carousel-indicators">
-                                            @foreach($location->images as $key => $image)
-                                                <li data-target="#location-{!! $location->id !!}"
+                                            @foreach($people->images as $key => $image)
+                                                <li data-target="#people-{!! $people->id !!}"
                                                     data-slide-to="{!! $key !!}"
                                                     class="{!! ($key == 0?'active':'') !!}"></li>
                                             @endforeach
@@ -47,9 +47,9 @@
 
                                                 <!-- Wrapper for slides -->
                                         <div class="carousel-inner" role="listbox">
-                                            @foreach($location->images as $key => $image)
+                                            @foreach($people->images as $key => $image)
                                                 <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
-                                                    <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}"
+                                                    <img src="{!! Config::get('app.peopleImages').'thumbs/'.$image->image !!}"
                                                          class="img-thumbnail" alt="" style="cursor: pointer;">
                                                     {{--<div class="carousel-caption">--}}
                                                     {{--</div>--}}
@@ -58,14 +58,14 @@
                                         </div>
 
                                         <!-- Controls -->
-                                        @if($location->images->count() > 1)
-                                            <a class="left carousel-control" href="#location-{!! $location->id !!}"
+                                        @if($people->images->count() > 1)
+                                            <a class="left carousel-control" href="#people-{!! $people->id !!}"
                                                role="button" data-slide="prev">
                                                 <span class="glyphicon glyphicon-chevron-left"
                                                       aria-hidden="true"></span>
                                                 <span class="sr-only">Previous</span>
                                             </a>
-                                            <a class="right carousel-control" href="#location-{!! $location->id !!}"
+                                            <a class="right carousel-control" href="#people-{!! $people->id !!}"
                                                role="button" data-slide="next">
                                                 <span class="glyphicon glyphicon-chevron-right"
                                                       aria-hidden="true"></span>
@@ -76,7 +76,7 @@
                             @endif
                         </div>
                         <div>
-                            {!! str_limit(strip_tags($location->location_description), $limit = 500, $end = '... '.Html::link(url('/locations/view/'.$location->id,[],false), 'View Details', ['class' => 'btn btn-success','style' => 'padding: 0 5px;'], true)) !!}
+                            {!! str_limit(strip_tags($people->people_description), $limit = 500, $end = '... '.Html::link(url('/peoples/view/'.$people->id,[],false), 'View Details', ['class' => 'btn btn-success','style' => 'padding: 0 5px;'], true)) !!}
                         </div>
                     </div>
                 @endforeach
@@ -87,7 +87,7 @@
     </div>
     <div class="row">
         <div class="text-center">
-            {!! $content['locations']->appends(Request::input())->links() !!}
+            {!! $content['peoples']->appends(Request::input())->links() !!}
         </div>
     </div>
 @stop

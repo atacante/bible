@@ -105,23 +105,35 @@ label {
     border-color: #d2d6de;
 }
 
-.location-item{
+.location-item, .people-item{
     border-bottom: 1px solid #ddd;
     border-radius: 0;
     padding-bottom: 20px;
     margin-bottom: 15px;
 }
 
-.location-item:last-child{
+.location-item:last-child, .people-item:last-child{
     border: 0;
 }
 
-.location-item h4{
+.location-item h4, .people-item h4{
     margin-top: 0px;
 }
 
-.location-item .slide{
+.location-item .slide, .people-item .slide{
     width: 140px;
+}
+
+.location-item-details .slide, .people-item-details .slide{
+    width: 200px;
+}
+
+a.view-details{
+    font-weight:bold;
+}
+
+a.view-details:hover{
+    text-decoration: none;
 }
 
 .box{

@@ -93,7 +93,7 @@
                     <p>People{!! $content['peoplesCount'] != 1?'s':'' !!}</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-ios-location"></i>
+                    <i class="ion ion-ios-people"></i>
                 </div>
                 <a href="{{ url('admin/peoples/list') }}" class="small-box-footer">
                     View All <i class="fa fa-arrow-circle-right"></i>

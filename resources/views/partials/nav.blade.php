@@ -12,8 +12,11 @@
         </div>
         <div class="pull-left" style="">
             <ul class="nav navbar-nav">
-                <li class="{{ ViewHelper::classActivePath('locations.list') }}">
+                <li class="{{ ViewHelper::classActivePath('locations') }}">
                     <a href="{{ URL::to('/locations/list') }}"><i class="fa fa-map-marker"></i> Locations</a>
+                </li>
+                <li class="{{ ViewHelper::classActivePath('peoples') }}">
+                    <a href="{{ URL::to('/peoples/list') }}"><i class="fa fa-users"></i> Peoples</a>
                 </li>
             </ul>
         </div>
@@ -24,8 +27,8 @@
             {!! Form::close() !!}
         </div>
         <div class="pull-left" style="margin: 8px 10px 0;">
-            {!! Form::label('readerMode', 'Reader Mode',['class' => 'pull-left','style' => 'line-height: 35px; margin-right: 10px;']) !!}
-            {!! Form::select('readerMode',Config::get('app.readerModes'), (($mode = Request::cookie('readerMode',false))?$mode:Config::get('app.defaultReaderMode')),['class' => 'pull-left j-reader-mode', 'style' => 'width: 135px; margin-right:10px;']) !!}
+{{--            {!! Form::label('readerMode', 'Reader Mode',['class' => 'pull-left','style' => 'line-height: 35px; margin-right: 10px;']) !!}--}}
+            {!! Form::select('readerMode',Config::get('app.readerModes'), (($mode = Request::cookie('readerMode',false))?$mode:Config::get('app.defaultReaderMode')),['title' => 'Reader Mode','class' => 'pull-left j-reader-mode', 'style' => 'width: 135px; margin-right:10px;']) !!}
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
