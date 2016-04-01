@@ -61,7 +61,9 @@ class VersesKingJamesEn extends BaseModel {
             if ($lexicon) {
                 $parts = [];
                 foreach($lexicon as $vesrePart){
-                    $parts[$vesrePart->id] = $vesrePart->verse_part;
+                    if(!empty($vesrePart->symbolism)){
+                        $parts[$vesrePart->id] = $vesrePart->verse_part;
+                    }
                 }
 
                 $parts = array_unique($parts);
