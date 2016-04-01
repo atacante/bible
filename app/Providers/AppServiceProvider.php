@@ -36,7 +36,9 @@ class AppServiceProvider extends ServiceProvider
         LexiconKjv::saved(function($model)
         {
             if($model->isDirty('symbolism')){
-                $model->cacheSymbolismForBeginnerMode();
+                if(!empty($model->symbolism)){
+                    $model->cacheSymbolismForBeginnerMode();
+                }
             }
             return true; //if false the model wont save!
         });
