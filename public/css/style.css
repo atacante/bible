@@ -170,3 +170,7 @@ a.view-details:hover{
     right: 10px;
     top: 5px;
 }
+
+.reset-filter{
+    margin-left: 5px;
+}

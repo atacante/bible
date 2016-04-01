@@ -8,5 +8,6 @@
 {!! Form::select('verse',array_merge([0 => 'All Verses'],(Request::input('chapter') == 0?[]:$filters['verses'])), Request::input('verse'),['class' => 'pull-left', (Request::input('chapter') == 0?'disabled':''), 'style' => 'width: 115px; margin-right:10px;']) !!}
 {!! Form::token() !!}
 {!! Form::button('Go',['type' => 'submit','class' => 'btn btn-primary pull-left']) !!}
+{!! Html::link('/admin/'.(isset($filterAction)?$filterAction:''),'Reset', ['class'=>'btn btn-danger pull-left reset-filter']) !!}
 {!! Form::close() !!}
 </div>
