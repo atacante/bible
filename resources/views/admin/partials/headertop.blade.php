@@ -11,11 +11,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="{!! ViewHelper::classActivePath('admin.lexicon') !!}"><a href="{{ url('admin/lexicon/list') }}"><span>Lexicons</span></a></li>
-                    <li class="{!! ViewHelper::classActivePath('admin.bible') !!}"><a href="{{ url('admin/bible/versions') }}"><span>Bibles</span></a></li>
-                    <li class="{!! ViewHelper::classActivePath('admin.user') !!}"><a href="{{ url('admin/user/list') }}"><span>Users</span></a></li>
-                    <li class="{!! ViewHelper::classActivePath('admin.location') !!}"><a href="{{ url('admin/location/list') }}"><span>Locations</span></a></li>
-                    <li class="{!! ViewHelper::classActivePath('admin.peoples') !!}"><a href="{{ url('admin/peoples/list') }}"><span>Peoples</span></a></li>
+                    <li class="{!! ViewHelper::classActivePath('admin.lexicon') !!}"><a href="{{ url('admin/lexicon/list') }}"><span><i class="ion ion-university"></i> Lexicons</span></a></li>
+                    <li class="{!! ViewHelper::classActivePath('admin.bible') !!}"><a href="{{ url('admin/bible/versions') }}"><span><i class="ion ion-ios-book"></i> Bibles</span></a></li>
+                    <li class="{!! ViewHelper::classActivePath('admin.user') !!}"><a href="{{ url('admin/user/list') }}"><span><i class="ion ion-person-add"></i> Users</span></a></li>
+                    <li class="{!! ViewHelper::classActivePath('admin.location') !!}"><a href="{{ url('admin/location/list') }}"><span><i class="ion ion-ios-location"></i> Locations</span></a></li>
+                    <li class="{!! ViewHelper::classActivePath('admin.peoples') !!}"><a href="{{ url('admin/peoples/list') }}"><span><i class="ion ion-ios-people"></i> Peoples</span></a></li>
                     {{--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
