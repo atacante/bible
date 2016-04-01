@@ -61,9 +61,7 @@ class VersesKingJamesEn extends BaseModel {
             if ($lexicon) {
                 $parts = [];
                 foreach($lexicon as $vesrePart){
-                    if(!empty($vesrePart->symbolism)){
-                        $parts[$vesrePart->id] = $vesrePart->verse_part;
-                    }
+                    $parts[$vesrePart->id] = $vesrePart->verse_part;
                 }
 
                 $parts = array_unique($parts);
@@ -107,23 +105,28 @@ class VersesKingJamesEn extends BaseModel {
             if ($lexicon) {
                 $parts = [];
                 foreach($lexicon as $vesrePart){
-                    $parts[$vesrePart->id] = $vesrePart->verse_part;
+                    if(!empty($vesrePart->symbolism)){
+                        $parts[$vesrePart->id] = $vesrePart->verse_part;
+                    }
                 }
 
-                $parts = array_unique($parts);
-                uasort($parts,function($a,$b){
-                    return strlen($b)-strlen($a);
-                });
+                if(count($parts)){
+                    $parts = array_unique($parts);
+                    uasort($parts,function($a,$b){
+                        return strlen($b)-strlen($a);
+                    });
 
-                foreach ($parts as $key => $part) {
-                    $part = str_replace('[','<i>',$part);
-                    $part = str_replace(']','</i>',$part);
-                    $verse->verse_text_with_symbolism = str_replace($part,"<-$key->".$part."<|>",$verse->verse_text_with_symbolism);
+                    foreach ($parts as $key => $part) {
+                        $part = str_replace('[','<i>',$part);
+                        $part = str_replace(']','</i>',$part);
+                        $verse->verse_text_with_symbolism = str_replace($part,"<-$key->".$part."<|>",$verse->verse_text_with_symbolism);
+                    }
+
+                    $verse->verse_text_with_symbolism = str_replace("<-","<span class='word-definition' data-lexid=\"",$verse->verse_text_with_symbolism);
+                    $verse->verse_text_with_symbolism = str_replace("->",'">',$verse->verse_text_with_symbolism);
+                    $verse->verse_text_with_symbolism = str_replace("<|>","</span>",$verse->verse_text_with_symbolism);
                 }
 
-                $verse->verse_text_with_symbolism = str_replace("<-","<span class='word-definition' data-lexid=\"",$verse->verse_text_with_symbolism);
-                $verse->verse_text_with_symbolism = str_replace("->",'">',$verse->verse_text_with_symbolism);
-                $verse->verse_text_with_symbolism = str_replace("<|>","</span>",$verse->verse_text_with_symbolism);
                 $verse->save();
             }
             if($i == $progressBarPart){
