@@ -35,7 +35,7 @@ class LocationController extends Controller
 
         if(!empty($this->searchFilter)){
             $locationsModel->where('location_name', 'ilike', '%'.$this->searchFilter.'%');
-            $locationsModel->orWhere('location_description', 'ilike', '%'.$this->searchFilter.'%');
+//            $locationsModel->orWhere('location_description', 'ilike', '%'.$this->searchFilter.'%');
         }
 
         if(!empty($this->bookFilter)){
