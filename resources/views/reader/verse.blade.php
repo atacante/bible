@@ -8,6 +8,7 @@
     <div class="row col-md-12">
         @include('reader.filters')
     </div>
+    @if($content['lexicon']->count())
     <div class="row col-md-12">
         <h3 class="text-center">KJV Lexicon</h3>
     </div>
@@ -35,6 +36,7 @@
             </tbody>
         </table>
     </div>
+    @endif
     @if($content['main_verse']['verse']->locations->count())
     <div class="row col-md-12">
         <h3 class="text-center">Location{!! ($content['main_verse']['verse']->locations->count() > 0?'s':'') !!}</h3>
@@ -102,10 +104,12 @@
     <div class="row col-md-12"><hr></div>
     <div class="row col-md-12" style="line-height: 30px;">
         @foreach($content['verse'] as $code => $version)
+            @if($version['verse'])
             <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[],false), $version['version_name'], ['class' => '','style' => ''], true)}}</h4>
             <span style="">
                 {!! ViewHelper::prepareVerseText($version['verse']) !!}
             </span>
+            @endif
         @endforeach
     </div>
     <div class="row col-md-12 pagination" style="text-align: center;">

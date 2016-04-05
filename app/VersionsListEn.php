@@ -29,6 +29,10 @@ class VersionsListEn extends BaseModel
                 'version_code' => 'king_james',
             ],
             [
+                'version_name' => 'Berean Bible',
+                'version_code' => 'berean',
+            ],
+            [
                 'version_name' => 'Douay-Rheims Bible',
                 'version_code' => 'douay_rheims',
             ],

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
+use Krucas\Notification\Facades\Notification;
 use Request;
 
 use App\Http\Requests;
@@ -23,6 +24,11 @@ use App\Http\Controllers\Controller;
 class ReaderController extends Controller
 {
     private $readerMode = 'beginner';
+
+    private function flashNotification($message){
+        Notification::info($message);
+        return Redirect::to((URL::previous() && URL::previous() != Request::fullUrl())?URL::previous():'/reader/overview');
+    }
 
     public function getRead()
     {
@@ -39,6 +45,9 @@ class ReaderController extends Controller
         $content['version_code'] = $version;
         $content['heading'] = BooksListEn::find($book)->book_name . " " . $chapter;
         $content['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
+        if(!$content['verses']->count()){
+            return $this->flashNotification('Requested content does not provided in '.$content['version'].' version');
+        }
 //        if ($version == 'king_james') {
 //            foreach ($content['verses'] as $verse) {
 //                $lexicon = $verse->lexicon();
@@ -82,6 +91,9 @@ class ReaderController extends Controller
             $compareVersesModel = BaseModel::getVersesModelByVersionCode($compareVersion);
             $compare['verses'] = $compareVersesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
 
+            if(!$compare['verses']->count()){
+                return $this->flashNotification('Requested content does not provided in '.$compare['version'].' version');
+            }
             if (Request::input('diff', false)) {
                 $diff = new \cogpowered\FineDiff\Diff(new \cogpowered\FineDiff\Granularity\Word);
                 if (count($compare['verses']) && count($content['verses'])) {
@@ -181,6 +193,10 @@ class ReaderController extends Controller
                 ->where('verse_num', $verse)
                 ->first();
 
+            if(!$content['main_verse']['verse']){
+                return $this->flashNotification('Requested content does not provided in '.VersionsListEn::getVersionByCode($version_code).' version');
+            }
+
             $content['lexicon'] = LexiconKjv::query()
                 ->where('book_id',$book)
                 ->where('chapter_num',$chapter)
@@ -191,13 +207,14 @@ class ReaderController extends Controller
             foreach ($versions as $version) {
                 if ($version['version_code'] != $version_code) {
                     $versesModel = BaseModel::getVersesModelByVersionCode($version['version_code']);
-                    $content['verse'][$version['version_code']]['version_name'] = $version['version_name'];
-                    $content['verse'][$version['version_code']]['verse'] =
-                        $versesModel::query()
-                            ->where('book_id', $book)
-                            ->where('chapter_num', $chapter)
-                            ->where('verse_num', $verse)
-                            ->first();
+                    $query = $versesModel::query()
+                        ->where('book_id', $book)
+                        ->where('chapter_num', $chapter)
+                        ->where('verse_num', $verse);
+                    if($query->count()){
+                        $content['verse'][$version['version_code']]['version_name'] = $version['version_name'];
+                        $content['verse'][$version['version_code']]['verse'] = $query->first();
+                    }
                 }
             }
 
@@ -215,8 +232,14 @@ class ReaderController extends Controller
     private function pagination($currentChapter, $currentBook, $currentVerse = false)
     {
         $params = Request::input();
+        $version = Request::input('version',false);
 
-        $allBooks = ViewHelper::prepareForSelectBox(BooksListEn::all()->toArray(), 'id', 'book_name');
+        $booksQuery = BooksListEn::all();
+        if($version == 'berean'){
+            $booksQuery = BooksListEn::where('id', '>', 39)->get();
+        }
+
+        $allBooks = ViewHelper::prepareForSelectBox($booksQuery->toArray(), 'id', 'book_name');
         $allChapters = ViewHelper::prepareChaptersForSelectBox(BaseModel::getChapters($currentBook));
 
         /* Chapters links */
@@ -240,7 +263,7 @@ class ReaderController extends Controller
         /* Books links */
         $prevBook = $currentBook - 1;
 
-        if ($prevBook == 0) {
+        if ($prevBook == 0 || ($prevBook == 39 && $version == 'berean')) {
             $prevBook = false;
         } else {
             $params['book'] = $prevBook;

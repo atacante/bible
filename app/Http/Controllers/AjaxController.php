@@ -17,8 +17,15 @@ class AjaxController extends Controller
 {
     public function getBooksList()
     {
-        $versions = BooksListEn::all();
-        return response()->json($versions);
+        $version = Request::input('version',false);
+        if($version == 'berean'){
+            $booksQuery = BooksListEn::where('id', '>', 39)->get();
+        }
+        else{
+            $booksQuery = BooksListEn::all();
+        }
+
+        return response()->json(ViewHelper::prepareForSelectBox($booksQuery,'id','book_name'));
     }
     public function getChaptersList()
     {

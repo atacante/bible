@@ -79,6 +79,19 @@ $(document).ready(function(){
         location.href = '/reader/mode/'+$(this).val();
     });
 
+    $('.j-verses-filters').on('change','select[name=version]',function(){
+        $.ajax({
+            method: "GET",
+            url: "/ajax/books-list",
+            dataType: "json",
+            data:{version:$(this).val()},
+            success:function(data){
+                site.fillSelect('select[name=book]',data);
+                $('select[name=book]').change();
+            }
+        });
+    });
+
     $('.j-verses-filters').on('change','select[name=book]',function(){
         $.ajax({
             method: "GET",
