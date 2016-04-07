@@ -27,7 +27,7 @@
                             <th>Verse Text</th>
                             <th>Strong's</th>
                             <th>Transliteration</th>
-                            <th>One word definition</th>
+                            <th>Definition</th>
                             <th class="text-center">Actions</th>
                         </tr>
                         @if(count($content['lexiconinfo']))
@@ -37,7 +37,7 @@
                                     <td>{!! $lexiconinfo->verse_part !!}</td>
                                     <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
                                     <td>{!! $lexiconinfo->transliteration !!}</td>
-                                    <td>{!! $lexiconinfo->strong_1_word_def !!}</td>
+                                    <td>{!! $lexiconinfo->definition !!}</td>
                                     <td class="text-center" style="width: 50px;">
                                         <a href="{!! url('/admin/lexicon/update/'.$lexiconCode.'/'.$lexiconinfo->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em;"></i></a>
                                     </td>

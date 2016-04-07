@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\BaseModel;
+use App\Helpers\ModelHelper;
+use App\LexiconsListEn;
 use App\VersesKingJamesEn;
 use Illuminate\Console\Command;
 
@@ -39,6 +41,7 @@ class CacheLexicon extends Command
      */
     public function handle()
     {
+        ini_set('memory_limit', '768M');
         if(!$version = $this->option('ver')){
             $version = 'king_james';
         }
@@ -47,7 +50,8 @@ class CacheLexicon extends Command
             $this->info('Bible Version - '.$version);
             $versesModel = BaseModel::getVersesModelByVersionCode($version);
             $this->info('Caching in process...');
-            $versesModel::cacheLexicon();
+//            $versesModel::cacheLexicon();
+            ModelHelper::cacheLexicon($versesModel::query()->get(),LexiconsListEn::getLexiconCodeByBibleVersion($version));
             $this->info('Caching has been completed successfully!');
         }
         else{

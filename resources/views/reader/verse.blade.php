@@ -28,7 +28,7 @@
                 <tr>
                     <td>{!! $lexiconinfo->verse_part !!}</td>
                     <td class="j-with-images">{!! $lexiconinfo->symbolism !!}</td>
-                    <td>{!! $lexiconinfo->strong_1_word_def !!}</td>
+                    <td>{!! $lexiconinfo->definition !!}</td>
                     <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
                     <td>{!! $lexiconinfo->transliteration !!}</td>
                 </tr>

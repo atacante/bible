@@ -74,7 +74,7 @@ class LexiconController extends Controller
                 'verse_part' => 'required',
                 'strong_num' => 'required',
                 'transliteration' => 'required',
-                'strong_1_word_def' => 'required',
+                'definition' => 'required',
             ]);
             if ($lexicon->update(Input::all())) {
                 $lexicon->locations()->sync(Input::get('locations',[]));

@@ -53,8 +53,10 @@ php artisan db:seed
 
 Process data
 ~~~
-php artisan lexicon:cache
-php artisan symbolism:cache
+php artisan lexicon:cache --ver=king_james
+php artisan lexicon:cache --ver=berean
+php artisan symbolism:cache --ver=king_james
+php artisan symbolism:cache --ver=berean
 ~~~
 
 FINISH

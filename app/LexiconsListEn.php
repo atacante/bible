@@ -9,6 +9,12 @@ class LexiconsListEn extends BaseModel
             [
                 'lexicon_name' => 'King James Lexicon',
                 'lexicon_code' => 'kjv',
+                'bible_version' => 'king_james'
+            ],
+            [
+                'lexicon_name' => 'Berean Lexicon',
+                'lexicon_code' => 'berean',
+                'bible_version' => 'berean'
             ],
         ];
     }
@@ -18,6 +24,15 @@ class LexiconsListEn extends BaseModel
         foreach (self::lexiconsList() as $version) {
             if($version['lexicon_code'] == $code){
                 return $version['lexicon_name'];
+            }
+        }
+    }
+
+    public static function getLexiconCodeByBibleVersion($bVersion)
+    {
+        foreach (self::lexiconsList() as $version) {
+            if($version['bible_version'] == $bVersion){
+                return $version['lexicon_code'];
             }
         }
     }

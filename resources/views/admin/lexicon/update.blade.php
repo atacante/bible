@@ -39,12 +39,21 @@
                     </span>
                 @endif
             </div>
-            <div class="form-group {{ $errors->has('strong_1_word_def') ? ' has-error' : '' }}">
+            {{--<div class="form-group {{ $errors->has('strong_1_word_def') ? ' has-error' : '' }}">
                 {!! Form::label('strong_1_word_def', 'One word definition:') !!}
                 {!! Form::text('strong_1_word_def') !!}
                 @if ($errors->has('strong_1_word_def'))
                     <span class="help-block">
                         {{ $errors->first('strong_1_word_def') }}
+                    </span>
+                @endif
+            </div>--}}
+            <div class="form-group {{ $errors->has('definition') ? ' has-error' : '' }}">
+                {!! Form::label('definition', 'Definition:') !!}
+                {!! Form::text('definition') !!}
+                @if ($errors->has('definition'))
+                    <span class="help-block">
+                        {{ $errors->first('definition') }}
                     </span>
                 @endif
             </div>

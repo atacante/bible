@@ -43,6 +43,7 @@ class LexiconSeeder extends Seeder
                     $data[$key]['verse_part'] = utf8_encode($row["kjv + Other Sources"]);
                     $data[$key]['strong_num'] = utf8_encode($row["Strong's - Troidl and Kimball - http://openscriptures.org"]);
                     $data[$key]['strong_1_word_def'] = utf8_encode($row["Strong's 1-word def"]);
+                    $data[$key]['definition'] = utf8_encode($row["Strong's 1-word def"]);
                     $data[$key]['transliteration'] = utf8_encode($row['Translit Romanized']);
                 }
 

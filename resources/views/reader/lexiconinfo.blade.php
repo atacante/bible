@@ -12,7 +12,7 @@
         <tbody>
         <tr>
             <td>{!! $lexiconinfo->symbolism?$lexiconinfo->symbolism:'-' !!}</td>
-            <td>{!! $lexiconinfo->strong_1_word_def !!}</td>
+            <td>{!! $lexiconinfo->definition !!}</td>
             <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
             <td>{!! $lexiconinfo->transliteration !!}</td>
         </tr>

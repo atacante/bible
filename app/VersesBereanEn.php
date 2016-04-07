@@ -19,4 +19,23 @@ class VersesBereanEn extends Model
     public function locations() {
         return $this->belongsToMany(Location::class, 'location_verse', 'verse_id', 'location_id');
     }
+
+    public function lexicon() {
+        return LexiconBerean::query()
+            ->where('book_id',$this->book_id)
+            ->where('chapter_num',$this->chapter_num)
+            ->where('verse_num',$this->verse_num)
+            ->orderBy('id')
+            ->get();
+    }
+
+    public function symbolism() {
+        return LexiconBerean::query()
+            ->where('book_id',$this->book_id)
+            ->where('chapter_num',$this->chapter_num)
+            ->where('verse_num',$this->verse_num)
+            ->whereNotNull('symbolism')
+            ->orderBy('id')
+            ->get();
+    }
 }

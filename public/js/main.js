@@ -30,6 +30,7 @@ $(document).ready(function(){
 
     $('body').on('click','.word-definition',function(e){
         var definitionId = $(this).data('lexid');
+        var lexversion = $(this).data('lexversion');
         e.stopPropagation();
         $('.word-definition').each(function(){
             $(this).popover('destroy');
@@ -40,7 +41,7 @@ $(document).ready(function(){
             method: "GET",
             url: "/ajax/lexicon-info",
             dataType: "html",
-            data:{version:'king_james',definition_id:definitionId},
+            data:{lexversion:lexversion,definition_id:definitionId},
             success:function(data){
                 $(that).popover('destroy');
                 $(that).popover(
