@@ -29,10 +29,14 @@ class BaseModel extends Model {
 
     public static function getLexiconModelByVersionCode($name)
     {
-        $tables_prefix = 'lexicon';
-        $table_name = $tables_prefix.ucfirst(camel_case($name));
-        $modelName = __NAMESPACE__.'\\'.ucfirst(camel_case($table_name));
-        return new $modelName();
+        $lexicon_code = LexiconsListEn::getLexiconByCode($name);
+        if($lexicon_code){
+            $tables_prefix = 'lexicon';
+            $table_name = $tables_prefix.ucfirst(camel_case($name));
+            $modelName = __NAMESPACE__.'\\'.ucfirst(camel_case($table_name));
+            return new $modelName();
+        }
+
     }
 
     public static function getVersesTableByVersionCode($name)

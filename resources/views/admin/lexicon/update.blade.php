@@ -70,6 +70,10 @@
                 {!! Form::label('locations', 'Locations:') !!}
                 {!! Form::select('locations[]', $locations, $model->locations->pluck('id')->toArray(), ['id' => 'j-select-locations','multiple' => 'multiple']) !!}
             </div>
+            <div class="form-group">
+                {!! Form::label('peoples', 'Peoples:') !!}
+                {!! Form::select('peoples[]', $peoples, $model->peoples->pluck('id')->toArray(), ['id' => 'j-select-peoples','multiple' => 'multiple']) !!}
+            </div>
         </div>
         <!-- /.box-body -->
 

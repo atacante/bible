@@ -6,6 +6,7 @@ use App\BaseModel;
 use App\Helpers\ViewHelper;
 use App\Location;
 use App\LocationVerse;
+use App\People;
 use App\VersionsListEn;
 use Illuminate\Http\Request as httpRequest;
 
@@ -68,6 +69,7 @@ class BibleController extends Controller
         $version = VersionsListEn::getVersionByCode($code);
         $verse = $versesModel::find($id);
         $locations = ViewHelper::prepareForSelectBox(Location::query()->get()->toArray(),'id','location_name');
+        $peoples = ViewHelper::prepareForSelectBox(People::query()->get()->toArray(),'id','people_name');
         if (Request::isMethod('put')) {
             $this->validate($request, [
                 'verse_text' => 'required',
@@ -75,6 +77,7 @@ class BibleController extends Controller
             if($verse->update(Input::all())){
 //                $this->updateLocations($verse);
                 $verse->locations()->sync(Input::get('locations',[]));
+                $verse->peoples()->sync(Input::get('peoples',[]));
                 Notification::success('Verse has been successfully updated');
             }
             return ($url = Session::get('backUrl'))
@@ -89,6 +92,7 @@ class BibleController extends Controller
                 'versionCode' => $code,
                 'versionName' => $version,
                 'locations' => $locations,
+                'peoples' => $peoples,
             ]);
     }
 

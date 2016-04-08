@@ -6,6 +6,7 @@ use App\BaseModel;
 use App\BooksListEn;
 use App\Helpers\ViewHelper;
 use App\LexiconKjv;
+use App\LexiconsListEn;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use FineDiffTests\Usage\Base;
@@ -197,14 +198,16 @@ class ReaderController extends Controller
                 return $this->flashNotification('Requested content does not provided in '.VersionsListEn::getVersionByCode($version_code).' version');
             }
 
-            $lexiconModel = BaseModel::getLexiconModelByVersionCode($version_code);
-
-            $content['lexicon'] = $lexiconModel::query()
-                ->where('book_id',$book)
-                ->where('chapter_num',$chapter)
-                ->where('verse_num',$verse)
-                ->orderBy('id')
-                ->get();
+            $content['lexicon'] = [];
+            $lexiconModel = BaseModel::getLexiconModelByVersionCode(LexiconsListEn::getLexiconCodeByBibleVersion($version_code));
+            if($lexiconModel){
+                $content['lexicon'] = $lexiconModel::query()
+                    ->where('book_id',$book)
+                    ->where('chapter_num',$chapter)
+                    ->where('verse_num',$verse)
+                    ->orderBy('id')
+                    ->get();
+            }
 
             foreach ($versions as $version) {
                 if ($version['version_code'] != $version_code) {

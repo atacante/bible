@@ -26,6 +26,7 @@ class LexiconsListEn extends BaseModel
                 return $version['lexicon_name'];
             }
         }
+        return false;
     }
 
     public static function getLexiconCodeByBibleVersion($bVersion)
@@ -35,5 +36,6 @@ class LexiconsListEn extends BaseModel
                 return $version['lexicon_code'];
             }
         }
+        return false;
     }
 }

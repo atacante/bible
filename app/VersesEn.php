@@ -4,13 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VersesBereanEn extends Model
+class VersesEn extends Model
 {
     public $timestamps  = false;
 
-    protected $table = 'verses_berean_en';
+    protected $table = 'verses_king_james_en';
     protected $fillable = ['id', 'book_id', 'chapter_num', 'verse_num', 'verse_text'];
 
+    public function __construct($value = null, array $attributes = array())
+    {
+        parent::__construct($attributes);
+        if($value){
+            $this->table = $value;
+        }
+    }
 
     public function booksListEn() {
         return $this->belongsTo(\App\BooksListEn::class, 'book_id', 'id');
@@ -18,6 +25,10 @@ class VersesBereanEn extends Model
 
     public function locations() {
         return $this->belongsToMany(Location::class, 'location_verse', 'verse_id', 'location_id');
+    }
+
+    public function peoples() {
+        return $this->belongsToMany(People::class, 'people_verse', 'verse_id', 'people_id');
     }
 
     public function lexicon() {
@@ -37,9 +48,5 @@ class VersesBereanEn extends Model
             ->whereNotNull('symbolism')
             ->orderBy('id')
             ->get();
-    }
-
-    public function peoples() {
-        return $this->belongsToMany(People::class, 'people_verse', 'verse_id', 'people_id');
     }
 }

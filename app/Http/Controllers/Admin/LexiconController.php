@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\BaseModel;
 use App\Helpers\ViewHelper;
+use App\Lexicon;
 use App\LexiconKjv;
 use App\LexiconsListEn;
 use App\Location;
+use App\People;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use \Illuminate\Support\Facades\Request;
@@ -68,7 +70,12 @@ class LexiconController extends Controller
         $lexiconModel = BaseModel::getModelByTableName('lexicon_'.$code);
         $lexiconName = LexiconsListEn::getLexiconByCode($code);
         $lexicon = $lexiconModel::with('locations')->find($id);
+
+//        $lexiconModel = new Lexicon('lexicon_'.$code);
+//        $lexicon = $lexiconModel->with('locations')->find($id);
+
         $locations = ViewHelper::prepareForSelectBox(Location::query()->get()->toArray(),'id','location_name');
+        $peoples = ViewHelper::prepareForSelectBox(People::query()->get()->toArray(),'id','people_name');
         if (Request::isMethod('put')) {
             $this->validate($request, [
                 'verse_part' => 'required',
@@ -78,6 +85,7 @@ class LexiconController extends Controller
             ]);
             if ($lexicon->update(Input::all())) {
                 $lexicon->locations()->sync(Input::get('locations',[]));
+                $lexicon->peoples()->sync(Input::get('peoples',[]));
                 Notification::success('Lexicon has been successfully updated');
             }
 
@@ -92,6 +100,7 @@ class LexiconController extends Controller
                 'lexiconCode' => $code,
                 'lexiconName' => $lexiconName,
                 'locations' => $locations,
+                'peoples' => $peoples,
             ]);
     }
 }

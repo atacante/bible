@@ -19,4 +19,8 @@ class VersesAmericanStandardEn extends BaseModel {
     public function locations() {
         return $this->belongsToMany(Location::class, 'location_verse', 'verse_id', 'location_id');
     }
+
+    public function peoples() {
+        return $this->belongsToMany(People::class, 'people_verse', 'verse_id', 'people_id');
+    }
 }

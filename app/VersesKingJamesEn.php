@@ -18,6 +18,10 @@ class VersesKingJamesEn extends BaseModel {
         return $this->belongsToMany(Location::class, 'location_verse', 'verse_id', 'location_id');
     }
 
+    public function peoples() {
+        return $this->belongsToMany(People::class, 'people_verse', 'verse_id', 'people_id');
+    }
+
     public function lexicon() {
         return LexiconKjv::query()
             ->where('book_id',$this->book_id)
