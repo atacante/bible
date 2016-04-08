@@ -197,7 +197,9 @@ class ReaderController extends Controller
                 return $this->flashNotification('Requested content does not provided in '.VersionsListEn::getVersionByCode($version_code).' version');
             }
 
-            $content['lexicon'] = LexiconKjv::query()
+            $lexiconModel = BaseModel::getLexiconModelByVersionCode($version_code);
+
+            $content['lexicon'] = $lexiconModel::query()
                 ->where('book_id',$book)
                 ->where('chapter_num',$chapter)
                 ->where('verse_num',$verse)

@@ -110,6 +110,7 @@ label {
     border-radius: 0;
     padding-bottom: 20px;
     margin-bottom: 15px;
+    line-height: 26px;
 }
 
 .location-item:last-child, .people-item:last-child{

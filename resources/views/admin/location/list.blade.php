@@ -42,7 +42,7 @@
                                         @endif
                                     </td>
                                     <td>{!! $location->location_name !!}</td>
-                                    <td>{!! str_limit(strip_tags($location->location_description), $limit = 500, $end = '...') !!}</td>
+                                    <td>{!! str_limit(strip_tags($location->location_description,'<p></p>'), $limit = 500, $end = '...') !!}</td>
                                     <td class="text-center"> - {{--{!! $location->booksListEn->book_name.' '.$location->chapter_num.':'.$location->verse_num !!}--}}</td>
                                     <td class="text-center" style="width: 50px;">
                                         <a title="Edit location" href="{!! url('/admin/location/update/'.$location->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>

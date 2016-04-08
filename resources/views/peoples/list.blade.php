@@ -76,7 +76,7 @@
                             @endif
                         </div>
                         <div>
-                            {!! str_limit(strip_tags($people->people_description), $limit = 500, $end = '... '.Html::link(url('/peoples/view/'.$people->id,[],false), 'View Details', ['class' => 'btn btn-success','style' => 'padding: 0 5px;'], true)) !!}
+                            {!! str_limit(strip_tags($people->people_description,'<p></p>'), $limit = 500, $end = '... '.Html::link(url('/peoples/view/'.$people->id,[],false), 'View Details', ['class' => 'btn btn-success','style' => 'padding: 0 5px;'], true)) !!}
                         </div>
                     </div>
                 @endforeach

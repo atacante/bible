@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(BasicRolesSeeder::class);
         $this->call(BibleAllVersionsSeeder::class);
         $this->call(LexiconSeeder::class);
+        $this->call(BibleBereanSeeder::class);
+        $this->call(BereanLexiconSeeder::class);
+        $this->call(LocationsSeeder::class);
     }
 }

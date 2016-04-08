@@ -41,7 +41,7 @@
                                         @endif
                                     </td>
                                     <td>{!! $people->people_name !!}</td>
-                                    <td>{!! str_limit(strip_tags($people->people_description), $limit = 500, $end = '...') !!}</td>
+                                    <td>{!! str_limit(strip_tags($people->people_description,'<p></p>'), $limit = 500, $end = '...') !!}</td>
                                     <td class="text-center" style="width: 50px;">
                                         <a title="Edit people" href="{!! url('/admin/peoples/update/'.$people->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
                                         <a title="Delete people" href="{!! url('/admin/peoples/delete',$people->id) !!}" data-toggle="modal"
