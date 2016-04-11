@@ -1,6 +1,7 @@
 <?php
 
 use App\BooksListEn;
+use App\Helpers\ProgressBarHelper;
 use App\LexiconKjv;
 use App\Location;
 use App\LocationImages;
@@ -25,10 +26,8 @@ class LocationsSeeder extends Seeder
         ini_set('memory_limit', '768M');
         $csv = new \parseCSV(base_path('resources/data/locations/atlascontent.csv'));
         if(count($csv->data)){
-            $progressBarPersentStep = 10;
-            $progressBarPart = round(count($csv->data)/(100/$progressBarPersentStep));
-            $progressBarStatus = 0;
-            $i = 0;
+            $progressBar = new ProgressBarHelper(count($csv->data),10);
+            $progressBar->start('Started seeding locations data');
 
             DB::statement("TRUNCATE TABLE locations CASCADE");
             DB::statement("ALTER SEQUENCE locations_id_seq RESTART WITH 1");
@@ -37,7 +36,6 @@ class LocationsSeeder extends Seeder
             File::deleteDirectory($locationDir, true);
             File::makeDirectory($locationDir.'thumbs/');
             foreach($csv->data as $key => $row){
-                $i++;
                 $location['location_name'] = $row['name_advanced'];
                 $location['location_description'] = $row['description'];
                 $locationModel = Location::create($location);
@@ -65,12 +63,9 @@ class LocationsSeeder extends Seeder
                         LocationImages::create($regionalImage);
                     }
                 }
-                if($i == $progressBarPart){
-                    echo "Progress ".($progressBarStatus+$progressBarPersentStep)."%\n";
-                    $progressBarStatus = $progressBarStatus+$progressBarPersentStep;
-                    $i = 0;
-                }
+                $progressBar->update();
             }
+            $progressBar->finish();
         }
     }
 }

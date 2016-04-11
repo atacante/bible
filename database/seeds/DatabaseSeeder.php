@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BibleBereanSeeder::class);
         $this->call(BereanLexiconSeeder::class);
         $this->call(LocationsSeeder::class);
+        $this->call(BibleNasbSeeder::class);
     }
 }

@@ -12,13 +12,9 @@ class ModelHelper
         if(!count($verses)){
             $verses = self::query()->get();
         }
-        $versesCount = count($verses);
-        $progressBarPersentStep = 1;
-        $progressBarPart = round($versesCount/(100/$progressBarPersentStep));
-        $progressBarStatus = 0;
-        $i = 0;
+        $progressBar = new ProgressBarHelper(count($verses),10);
+        $progressBar->start('Started caching lexicon for '.$version.' version');
         foreach ($verses as $verse) {
-            $i++;
             $verse->verse_text_with_lexicon = $verse->verse_text;
             $lexicon = $verse->lexicon();
             if ($lexicon) {
@@ -52,12 +48,9 @@ class ModelHelper
                 $verse->verse_text_with_lexicon = str_replace("<|>","</span>",$verse->verse_text_with_lexicon);
                 $verse->save();
             }
-            if($i == $progressBarPart){
-                echo "Progress ".($progressBarStatus+$progressBarPersentStep)."%\n";
-                $progressBarStatus++;
-                $i = 0;
-            }
+            $progressBar->update();
         }
+        $progressBar->finish();
     }
 
     public static function cacheSymbolismForBeginnerMode($verses = [],$version = false){
@@ -65,13 +58,9 @@ class ModelHelper
         if(!count($verses)){
             $verses = self::query()->get();
         }
-        $versesCount = count($verses);
-        $progressBarPersentStep = 1;
-        $progressBarPart = round($versesCount/(100/$progressBarPersentStep));
-        $progressBarStatus = 0;
-        $i = 0;
+        $progressBar = new ProgressBarHelper(count($verses),10);
+        $progressBar->start('Started caching symbolism for '.$version.' version');
         foreach ($verses as $verse) {
-            $i++;
             $verse->verse_text_with_symbolism = $verse->verse_text;
             $lexicon = $verse->symbolism();
             if ($lexicon) {
@@ -101,11 +90,8 @@ class ModelHelper
 
                 $verse->save();
             }
-            if($i == $progressBarPart){
-                echo "Progress ".($progressBarStatus+$progressBarPersentStep)."%\n";
-                $progressBarStatus++;
-                $i = 0;
-            }
+            $progressBar->update();
         }
+        $progressBar->finish();
     }
 }

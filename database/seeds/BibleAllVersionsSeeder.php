@@ -2,6 +2,7 @@
 
 use App\BaseModel;
 use App\BooksListEn;
+use App\Helpers\ProgressBarHelper;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,9 @@ class BibleAllVersionsSeeder extends Seeder
         $data = [];
         if(count($csv->data)){
             /* !!!IMPORTANT!!!  "version_name" value should match with headers in bibles.csv during seeding data */
+            $progressBar = new ProgressBarHelper(count($csv->data)*9, 10);
+            $progressBar->start('Started seeding data for 9 Bible versions');
+
             $versions = VersionsListEn::versionsList();
             if ($versions) {
                 foreach ($versions as $version) {
@@ -69,8 +73,10 @@ class BibleAllVersionsSeeder extends Seeder
                     $locale = Config::get('app.locale');// temporary static variable
                     $modelName = BaseModel::getModelByTableName('verses_'.$version['version_code'].'_'.$locale);
                     $modelName::insert($verse);
+                    $progressBar->update();
                 }
             }
+            $progressBar->finish();
         }
     }
 }

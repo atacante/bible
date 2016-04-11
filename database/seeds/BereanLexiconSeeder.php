@@ -1,6 +1,7 @@
 <?php
 
 use App\BooksListEn;
+use App\Helpers\ProgressBarHelper;
 use App\LexiconBerean;
 use App\LexiconKjv;
 use App\VersesAmericanStandardEn;
@@ -21,6 +22,9 @@ class BereanLexiconSeeder extends Seeder
         $csv = new \parseCSV(base_path('resources/data/berean_lexicon_goog.csv'));
         $data = [];
         if (count($csv->data)) {
+            $progressBar = new ProgressBarHelper(count($csv->data),10);
+            $progressBar->start('Started seeding data for Berean lexicon');
+
             DB::statement("TRUNCATE TABLE lexicon_berean");
             DB::statement("ALTER SEQUENCE lexicon_berean_id_seq RESTART WITH 312513");
             $part = 0;
@@ -54,8 +58,10 @@ class BereanLexiconSeeder extends Seeder
                         $part = 0;
                     }
                 }
+                $progressBar->update();
             }
             LexiconBerean::insert($data);
+            $progressBar->finish();
         }
     }
 }

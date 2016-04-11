@@ -1,6 +1,7 @@
 <?php
 
 use App\BooksListEn;
+use App\Helpers\ProgressBarHelper;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,8 @@ class BibleAmericanStandartSeeder extends Seeder
         $csv = new \parseCSV(base_path('resources/data/bibles.csv'));
         $data = [];
         if(count($csv->data)){
+            $progressBar = new ProgressBarHelper(count($csv->data), 10);
+            $progressBar->start('Started seeding data for American Standard version');
             DB::statement("TRUNCATE TABLE verses_american_standard_en");
             DB::statement("TRUNCATE TABLE versions_list_en");
             DB::statement("TRUNCATE TABLE books_list_en CASCADE");
@@ -48,7 +51,9 @@ class BibleAmericanStandartSeeder extends Seeder
                 ];
                 VersesAmericanStandardEn::insert($verse);
 //                VersesAmericanStandardEn::create($verse);
+                $progressBar->update();
             }
+            $progressBar->finish();
         }
     }
 }

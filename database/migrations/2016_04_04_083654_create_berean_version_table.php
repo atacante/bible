@@ -42,6 +42,6 @@ class CreateBereanVersionTable extends Migration
     public function down()
     {
         $this->tableName = 'verses_' . $this->version . '_en';
-        Schema::drop('verses_' . $this->tableName . '_en');
+        Schema::drop($this->tableName);
     }
 }

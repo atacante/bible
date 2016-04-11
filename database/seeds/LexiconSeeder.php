@@ -1,6 +1,7 @@
 <?php
 
 use App\BooksListEn;
+use App\Helpers\ProgressBarHelper;
 use App\LexiconKjv;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
@@ -20,6 +21,8 @@ class LexiconSeeder extends Seeder
         $csv = new \parseCSV(base_path('resources/data/lexicon_short.csv'));
         $data = [];
         if(count($csv->data)){
+            $progressBar = new ProgressBarHelper(count($csv->data),10);
+            $progressBar->start('Started seeding data for KVJ lexicon');
             DB::statement("TRUNCATE TABLE lexicon_kjv");
             DB::statement("ALTER SEQUENCE lexicon_kjv_id_seq RESTART WITH 1");
             $part = 0;
@@ -47,6 +50,8 @@ class LexiconSeeder extends Seeder
                     $data[$key]['transliteration'] = utf8_encode($row['Translit Romanized']);
                 }
 
+                $progressBar->update();
+
                 if($part == 500){
                     LexiconKjv::insert($data);
                     $data = [];
@@ -54,6 +59,7 @@ class LexiconSeeder extends Seeder
                 }
             }
             LexiconKjv::insert($data);
+            $progressBar->finish();
         }
     }
 }

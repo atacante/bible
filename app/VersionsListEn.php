@@ -25,6 +25,10 @@ class VersionsListEn extends BaseModel
                 'version_code' => 'american_standard',
             ],
             [
+                'version_name' => 'New American Standard Version',
+                'version_code' => 'nasb',
+            ],
+            [
                 'version_name' => 'King James Bible',
                 'version_code' => 'king_james',
             ],
