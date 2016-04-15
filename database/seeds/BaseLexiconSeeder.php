@@ -25,12 +25,11 @@ class BaseLexiconSeeder extends Seeder
         ini_set('memory_limit', '768M');
         $oldTestament = new \parseCSV(base_path('resources/data/lexicon_short.csv'));
         $oldTestamentHe = new \parseCSV(base_path('resources/data/kjv_lexicon_only_he.csv'));
-//        $newTestament = new \parseCSV(base_path('resources/data/berean_lexicon_goog.csv'));
-        $newTestament = [1];
+
         $data = [];
-        if (count($oldTestament->data) && count($oldTestament->data) == count($oldTestamentHe->data) && count($newTestament->data)) {
-            $progressBar = new ProgressBarHelper((count($oldTestament->data)+count($newTestament->data)), 10);
-            $progressBar->start('Started seeding data for lexicon BASE');
+        if (count($oldTestament->data) && count($oldTestament->data) == count($oldTestamentHe->data)) {
+            $progressBar = new ProgressBarHelper((count($oldTestament->data)), 10);
+            $progressBar->start('Started seeding data for lexicon BASE - OLD Testament');
 
             DB::statement("TRUNCATE TABLE lexicon_base");
             DB::statement("ALTER SEQUENCE lexicon_base_id_seq RESTART WITH 1");
@@ -62,36 +61,45 @@ class BaseLexiconSeeder extends Seeder
                 $progressBar->update();
             }
             LexiconBase::insert($data);
+            $progressBar->finish('');
 
             /* Process new testament */
-            /*$part = 0;
-            $data = [];
-            foreach ($newTestament->data as $key => $row) {
-                if(!empty($row["Transliteration"])) {
-                    $part++;
-                    $book = explode(':', trim($row['Verse']));
-                    $bookAndChapter = explode('|', $book[0]);
-                    $chapter = array_pop($bookAndChapter);
-                    $book_name = implode(' ', $bookAndChapter);
-                    $bookObj = BooksListEn::query()->where('book_name', 'ilike', $book_name)->first(['id']);
-                    $verse_num = $book[1];
+            $oldTestament = [];
+            $oldTestamentHe = [];
+            $newTestament = new \parseCSV(base_path('resources/data/berean_lexicon_goog.csv'));
+            if(count($newTestament->data)){
+                $progressBar = new ProgressBarHelper(count($newTestament->data), 10);
+                $progressBar->start('Started seeding data for lexicon BASE - New Testament');
+                $part = 0;
+                $data = [];
+                foreach ($newTestament->data as $key => $row) {
+                    if(!empty($row["Transliteration"])) {
+                        $part++;
+                        $book = explode(':', trim($row['Verse']));
+                        $bookAndChapter = explode('|', $book[0]);
+                        $chapter = array_pop($bookAndChapter);
+                        $book_name = implode(' ', $bookAndChapter);
+                        $bookObj = BooksListEn::query()->where('book_name', 'ilike', $book_name)->first(['id']);
+                        $verse_num = $book[1];
 
-                    $data[$key]['book_id'] = $bookObj->id;
-                    $data[$key]['chapter_num'] = $chapter;
-                    $data[$key]['verse_num'] = $verse_num;
-                    $data[$key]['strong_num'] = utf8_encode("H" . $row["Strong's"]);
-                    $data[$key]['transliteration'] = $row['Transliteration'];
-                    $data[$key]['verse_part_el'] = mb_convert_encoding($row['BGB - Berean Greek Bible'],'UTF-8');
+                        $data[$key]['book_id'] = $bookObj->id;
+                        $data[$key]['chapter_num'] = $chapter;
+                        $data[$key]['verse_num'] = $verse_num;
+                        $data[$key]['strong_num'] = utf8_encode("H" . $row["Strong's"]);
+                        $data[$key]['transliteration'] = $row['Transliteration'];
+                        $data[$key]['verse_part_el'] = mb_convert_encoding($row['BGB - Berean Greek Bible'],'UTF-8');
 
-                    if ($part == 500) {
-                        LexiconBase::insert($data);
-                        $data = [];
-                        $part = 0;
+                        if ($part == 500) {
+                            LexiconBase::insert($data);
+                            $data = [];
+                            $part = 0;
+                        }
                     }
+                    $progressBar->update();
                 }
-                $progressBar->update();
+                LexiconBase::insert($data);
             }
-            LexiconBase::insert($data);*/
+
 
             $progressBar->finish();
         }
