@@ -25,7 +25,8 @@ class BaseLexiconSeeder extends Seeder
         ini_set('memory_limit', '768M');
         $oldTestament = new \parseCSV(base_path('resources/data/lexicon_short.csv'));
         $oldTestamentHe = new \parseCSV(base_path('resources/data/kjv_lexicon_only_he.csv'));
-        $newTestament = new \parseCSV(base_path('resources/data/berean_lexicon_goog.csv'));
+//        $newTestament = new \parseCSV(base_path('resources/data/berean_lexicon_goog.csv'));
+        $newTestament = [1];
         $data = [];
         if (count($oldTestament->data) && count($oldTestament->data) == count($oldTestamentHe->data) && count($newTestament->data)) {
             $progressBar = new ProgressBarHelper((count($oldTestament->data)+count($newTestament->data)), 10);
@@ -63,7 +64,7 @@ class BaseLexiconSeeder extends Seeder
             LexiconBase::insert($data);
 
             /* Process new testament */
-            $part = 0;
+            /*$part = 0;
             $data = [];
             foreach ($newTestament->data as $key => $row) {
                 if(!empty($row["Transliteration"])) {
@@ -90,7 +91,7 @@ class BaseLexiconSeeder extends Seeder
                 }
                 $progressBar->update();
             }
-            LexiconBase::insert($data);
+            LexiconBase::insert($data);*/
 
             $progressBar->finish();
         }
