@@ -55,8 +55,10 @@ Process data
 ~~~
 php artisan lexicon:cache --ver=king_james
 php artisan lexicon:cache --ver=berean
+php artisan lexicon:cache --ver=nasb
 php artisan symbolism:cache --ver=king_james
 php artisan symbolism:cache --ver=berean
+php artisan symbolism:cache --ver=nasb
 ~~~
 
 FINISH

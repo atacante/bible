@@ -22,7 +22,7 @@ class BaseLexiconSeeder extends Seeder
      */
     public function run()
     {
-        ini_set('memory_limit', '1024M');
+        ini_set('memory_limit', '768M');
         $oldTestament = new \parseCSV(base_path('resources/data/lexicon_short.csv'));
         $oldTestamentHe = new \parseCSV(base_path('resources/data/kjv_lexicon_only_he.csv'));
         $newTestament = new \parseCSV(base_path('resources/data/berean_lexicon_goog.csv'));
