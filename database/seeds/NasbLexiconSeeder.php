@@ -28,8 +28,8 @@ class NasbLexiconSeeder extends Seeder
         })->get();
         $data = [];
         if (count($excelData)) {
-//            DB::statement("TRUNCATE TABLE lexicon_nasb");
-//            DB::statement("ALTER SEQUENCE lexicon_nasb_id_seq RESTART WITH 1");
+            DB::statement("TRUNCATE TABLE lexicon_nasb");
+            DB::statement("ALTER SEQUENCE lexicon_nasb_id_seq RESTART WITH 1");
 
             $progressBar = new ProgressBarHelper(count($excelData), 10);
             $progressBar->start('Started seeding data for NASB lexicon');
@@ -94,14 +94,14 @@ class NasbLexiconSeeder extends Seeder
                 }
 
                 if ($part == 50) {
-                    exit("Process finished. Ignored phrases: ".$ignored);
-//                    LexiconNasb::insert($data);
+//                    exit("Process finished. Ignored phrases: ".$ignored);
+                    LexiconNasb::insert($data);
                     $data = [];
                     $part = 0;
                 }
                 $progressBar->update();
             }
-//            LexiconNasb::insert($data);
+            LexiconNasb::insert($data);
             $progressBar->finish("Process finished. Ignored phrases: ".$ignored);
         }
     }
