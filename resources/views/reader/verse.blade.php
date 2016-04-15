@@ -8,9 +8,23 @@
     <div class="row col-md-12">
         @include('reader.filters')
     </div>
+    <div class="row col-md-12 text-center" style="line-height: 30px;">
+        <span style="">
+            <h3 class="text-center" style="margin-bottom: 20px;">
+                @if($versePrev = $content['pagination']['versePrev'])
+                    {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn btn-default btn-danger','style' => 'padding: 2px 5px;'], true)}}
+                @endif
+                {!! $content['main_verse']['verse']->booksListEn->book_name.' '.$content['main_verse']['verse']->chapter_num.':'.$content['main_verse']['verse']->verse_num !!}
+                @if($verseNext = $content['pagination']['verseNext'])
+                    {{ Html::link(url('reader/verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn btn-default btn-primary','style' => 'padding: 2px 5px;'], true)}}
+                @endif
+            </h3>
+            <h4>{!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}</h4>
+        </span>
+    </div>
     @if(count($content['lexicon']))
         <div class="row col-md-12">
-            <h3 class="text-center">KJV Lexicon</h3>
+            <h3 class="text-center">Lexicon</h3>
         </div>
         <div class="row col-md-12">
             <table class="table table-bordered">
