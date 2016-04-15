@@ -86,6 +86,8 @@ class LexiconController extends Controller
             if ($lexicon->update(Input::all())) {
                 $lexicon->locations()->sync(Input::get('locations',[]));
                 $lexicon->peoples()->sync(Input::get('peoples',[]));
+                $this->updateLexicons($id);
+
                 Notification::success('Lexicon has been successfully updated');
             }
 
@@ -93,6 +95,17 @@ class LexiconController extends Controller
                 ? Redirect::to($url)
                 : Redirect::to(ViewHelper::adminUrlSegment().'/lexicon/view/'.$code);
         }
+
+        $lexiconsList = LexiconsListEn::lexiconsList();
+        $lexicons = [];
+        foreach ($lexiconsList as $key => $lexiconsItem) {
+            $lexiconListModel = LexiconsListEn::getLexiconModelByVersionCode($lexiconsItem['lexicon_code']);
+            if($lexiconsListItem = $lexiconListModel->find($id)){
+                $lexicons[$key] = $lexiconsItem;
+                $lexicons[$key]['phrase'] = $lexiconsListItem->verse_part;
+            }
+        }
+
         return view('admin.lexicon.update',
             [
                 'page_title' => 'Update Lexicon Item',
@@ -101,6 +114,20 @@ class LexiconController extends Controller
                 'lexiconName' => $lexiconName,
                 'locations' => $locations,
                 'peoples' => $peoples,
+                'lexicons' => $lexicons,
             ]);
+    }
+
+    private function updateLexicons($id)
+    {
+        if($lexicons = Input::get("lexicons",false)){
+            foreach ($lexicons as $lexiconCode) {
+                $lexiconModel = LexiconsListEn::getLexiconModelByVersionCode($lexiconCode);
+                if($lexicon = $lexiconModel->find($id)){
+                    $lexicon->symbolism = Input::get("symbolism");
+                    $lexicon->save();
+                }
+            }
+        }
     }
 }

@@ -67,6 +67,17 @@
                 @endif
             </div>
             <div class="form-group">
+                {!! Form::label('lexicons', 'Save symbolism also for:') !!}
+                @foreach($lexicons as $lexicon)
+                    @if($lexicon['lexicon_code'] != $lexiconCode)
+                    <div>
+                        {!! Form::checkbox('lexicons[]', $lexicon['lexicon_code'], (!Request::has('lexicons') || in_array($lexicon['lexicon_code'],Request::get('lexicons',[])))) !!}
+                        {!! $lexicon['lexicon_name'] !!} - <i>{!! $lexicon['phrase'] !!}</i>
+                    </div>
+                    @endif
+                @endforeach
+            </div>
+            <div class="form-group">
                 {!! Form::label('locations', 'Locations:') !!}
                 {!! Form::select('locations[]', $locations, $model->locations->pluck('id')->toArray(), ['id' => 'j-select-locations','multiple' => 'multiple']) !!}
             </div>
