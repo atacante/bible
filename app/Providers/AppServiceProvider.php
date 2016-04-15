@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\LexiconBerean;
 use App\LexiconKjv;
+use App\LexiconNasb;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
@@ -51,6 +52,22 @@ class AppServiceProvider extends ServiceProvider
         });
 
         LexiconBerean::saved(function($model)
+        {
+            if($model->isDirty('symbolism')){
+                $model->cacheSymbolismForBeginnerMode();
+            }
+            return true; //if false the model wont save!
+        });
+
+        LexiconNasb::saved(function($model)
+        {
+            if($model->isDirty('verse_part')){
+                $model->cacheVerse();
+            }
+            return true; //if false the model wont save!
+        });
+
+        LexiconNasb::saved(function($model)
         {
             if($model->isDirty('symbolism')){
                 $model->cacheSymbolismForBeginnerMode();

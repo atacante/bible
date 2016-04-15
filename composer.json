@@ -18,7 +18,9 @@
         "unisharp/laravel-ckeditor": "^4.5",
         "unisharp/laravel-filemanager": "^1.2",
         "intervention/image": "^2.3",
-        "proengsoft/laravel-jsvalidation": "~1.1"
+        "proengsoft/laravel-jsvalidation": "~1.1",
+        "yangqi/htmldom": "dev-master",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

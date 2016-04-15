@@ -14,10 +14,12 @@ class DatabaseSeeder extends Seeder
         $this->call(AdministratorSeeder::class);
         $this->call(BasicRolesSeeder::class);
         $this->call(BibleAllVersionsSeeder::class);
+        $this->call(BaseLexiconSeeder::class);
         $this->call(LexiconSeeder::class);
         $this->call(BibleBereanSeeder::class);
         $this->call(BereanLexiconSeeder::class);
         $this->call(LocationsSeeder::class);
         $this->call(BibleNasbSeeder::class);
+        $this->call(NasbLexiconSeeder::class);
     }
 }

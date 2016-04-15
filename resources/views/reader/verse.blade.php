@@ -25,6 +25,7 @@
                 </thead>
                 <tbody>
                 @foreach($content['lexicon'] as $lexiconinfo)
+                    @if(!empty($lexiconinfo->verse_part))
                     <tr>
                         <td>{!! $lexiconinfo->verse_part !!}</td>
                         <td class="j-with-images">{!! $lexiconinfo->symbolism !!}</td>
@@ -32,6 +33,7 @@
                         <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
                         <td>{!! $lexiconinfo->transliteration !!}</td>
                     </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>

@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\BaseModel;
+use App\LexiconBase;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -92,6 +94,37 @@ class ModelHelper
             }
             $progressBar->update();
         }
+        $progressBar->finish();
+    }
+
+    public static function createLexiconStructure($lexiconCode)
+    {
+        ini_set('memory_limit', '1024M');
+        $lexiconModel = BaseModel::getLexiconModelByVersionCode($lexiconCode);
+        $lexiconBaseCount = LexiconBase::count();
+        $partCount = 500;
+        $offset = 0;
+        $parts = ceil($lexiconBaseCount/$partCount);
+
+        $progressBar = new ProgressBarHelper($lexiconBaseCount,10);
+        $progressBar->start('Creating BASE lexicon structure');
+        for($i = 1;$i<=$parts;$i++){
+            $lexiconBase = LexiconBase::skip($offset)->take($partCount)->orderBy('id')->get();
+            $data = [];
+            foreach ($lexiconBase as $key => $lexiconItem) {
+                $data[$key]['book_id'] = $lexiconItem->book_id;
+                $data[$key]['chapter_num'] = $lexiconItem->chapter_num;
+                $data[$key]['verse_num'] = $lexiconItem->verse_num;
+                $data[$key]['strong_num'] = $lexiconItem->strong_num;
+                $data[$key]['transliteration'] = $lexiconItem->transliteration;
+                $data[$key]['verse_part_he'] = $lexiconItem->verse_part_he;
+                $data[$key]['verse_part_el'] = $lexiconItem->verse_part_el;
+                $progressBar->update();
+            }
+            $lexiconModel::insert($data);
+            $offset += $partCount;
+        }
+
         $progressBar->finish();
     }
 }

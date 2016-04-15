@@ -12,6 +12,11 @@ class LexiconsListEn extends BaseModel
                 'bible_version' => 'king_james'
             ],
             [
+                'lexicon_name' => 'NASB Lexicon',
+                'lexicon_code' => 'nasb',
+                'bible_version' => 'nasb'
+            ],
+            [
                 'lexicon_name' => 'Berean Lexicon',
                 'lexicon_code' => 'berean',
                 'bible_version' => 'berean'

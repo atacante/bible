@@ -174,6 +174,9 @@ return [
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
         'User11001\EloquentModelGenerator\EloquentModelGeneratorProvider',
+
+        'Yangqi\Htmldom\HtmldomServiceProvider',
+        'Maatwebsite\Excel\ExcelServiceProvider',
     ],
 
     /*
@@ -257,6 +260,8 @@ return [
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
+        'Htmldom' => 'Yangqi\Htmldom\Htmldom',
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
     ],
     /*
     |--------------------------------------------------------------------------

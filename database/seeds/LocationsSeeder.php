@@ -36,8 +36,8 @@ class LocationsSeeder extends Seeder
             File::deleteDirectory($locationDir, true);
             File::makeDirectory($locationDir.'thumbs/');
             foreach($csv->data as $key => $row){
-                $location['location_name'] = $row['name_advanced'];
-                $location['location_description'] = $row['description'];
+                $location['location_name'] = str_replace('|','"',$row['name_advanced']);
+                $location['location_description'] = str_replace('|','"',$row['description']);
                 $locationModel = Location::create($location);
                 /* Area Map */
                 $areaImageFromPath = base_path('resources/data/locations/area_maps_400x400/'.$row['image_name']);
