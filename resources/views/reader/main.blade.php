@@ -10,21 +10,23 @@
         <div class="row" style="position: relative;">
             <h3 class="text-center" style="margin: 30px auto 20px;">
                 <div class="btn-group" role="group" aria-label="...">
-                    @if($prevBook = $content['pagination']['bookPrev'])
-                        {{ Html::link(url('reader/read?'.http_build_query($prevBook),[],false), 'Prev Book', ['class' => 'btn btn-default btn-danger','style' => 'padding: 2px 5px;'], true)}}
-                    @endif
+                    {{--@if($prevBook = $content['pagination']['bookPrev'])--}}
+                        {{--{{ Html::link(url('reader/read?'.http_build_query($prevBook),[],false), 'Prev Book', ['class' => 'btn btn-default btn-danger','style' => 'padding: 2px 5px;'], true)}}--}}
+                    {{--@endif--}}
                     @if($prevChapter = $content['pagination']['chapterPrev'])
-                        {{ Html::link(url('reader/read?'.http_build_query($prevChapter),[],false), 'Prev Chapter', ['class' => 'btn btn-default btn-danger','style' => 'padding: 2px 5px;'], true)}}
+                        <a title="Prev Chapter" href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}"><i class="glyphicon glyphicon-chevron-left"></i></a>
+{{--                        {{ Html::link(url('reader/read?'.http_build_query($prevChapter),[],false), 'Prev Chapter', ['class' => 'btn btn-default btn-danger','style' => 'padding: 2px 5px;'], true)}}--}}
                     @endif
                 </div>
                 {!! $content['heading'] !!}
                 <div class="btn-group" role="group" aria-label="...">
                     @if($nextChapter = $content['pagination']['chapterNext'])
-                        {{ Html::link(url('reader/read?'.http_build_query($nextChapter),[],false), 'Next Chapter', ['class' => 'btn btn-default btn-primary','style' => 'padding: 2px 5px;'], true)}}
+                        <a title="Next Chapter" href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}"><i class="glyphicon glyphicon-chevron-right"></i></a>
+{{--                        {{ Html::link(url('reader/read?'.http_build_query($nextChapter),[],false), 'Next Chapter', ['class' => 'btn btn-default btn-primary','style' => 'padding: 2px 5px;'], true)}}--}}
                     @endif
-                    @if($nextBook = $content['pagination']['bookNext'])
-                        {{ Html::link(url('reader/read?'.http_build_query($nextBook),[],false), 'Next Book', ['class' => 'btn btn-default btn-primary','style' => 'padding: 2px 5px;'], true)}}
-                    @endif
+                    {{--@if($nextBook = $content['pagination']['bookNext'])--}}
+                        {{--{{ Html::link(url('reader/read?'.http_build_query($nextBook),[],false), 'Next Book', ['class' => 'btn btn-default btn-primary','style' => 'padding: 2px 5px;'], true)}}--}}
+                    {{--@endif--}}
                 </div>
             </h3>
             <a href="#" class="j-print-chapter"><i class="fa fa-print fa-2x"

@@ -12,11 +12,13 @@
         <span style="">
             <h3 class="text-center" style="margin-bottom: 20px;">
                 @if($versePrev = $content['pagination']['versePrev'])
-                    {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn btn-default btn-danger','style' => 'padding: 2px 5px;'], true)}}
+                    <a title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[],false) !!}"><i class="glyphicon glyphicon-chevron-left"></i></a>
+{{--                    {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn btn-default btn-danger','style' => 'padding: 2px 5px;'], true)}}--}}
                 @endif
                 {!! $content['main_verse']['verse']->booksListEn->book_name.' '.$content['main_verse']['verse']->chapter_num.':'.$content['main_verse']['verse']->verse_num !!}
                 @if($verseNext = $content['pagination']['verseNext'])
-                    {{ Html::link(url('reader/verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn btn-default btn-primary','style' => 'padding: 2px 5px;'], true)}}
+                        <a title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[],false) !!}"><i class="glyphicon glyphicon-chevron-right"></i></a>
+{{--                    {{ Html::link(url('reader/verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn btn-default btn-primary','style' => 'padding: 2px 5px;'], true)}}--}}
                 @endif
             </h3>
             <h4>{!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}</h4>
