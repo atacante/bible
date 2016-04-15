@@ -89,7 +89,7 @@ class NasbLexiconSeeder extends Seeder
                 }
 
                 if(count($trs)-1 > $matches){
-                    echo $book_name." ".$chapter.":".$verse_num."\n";
+//                    echo $book_name." ".$chapter.":".$verse_num."\n";
                     $ignored++;
                 }
 
