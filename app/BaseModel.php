@@ -121,7 +121,7 @@ class BaseModel extends Model {
                                 '));
     }
 
-    public static function searchEverywhere($q)
+    public static function searchEverywhere($q,$testament = false)
     {
         $versions = VersionsListEn::versionsList();
         $combinedUnion = self::prepareVersesUnionQuery(Config::get('app.defaultBibleVersion'),$q);
@@ -163,6 +163,13 @@ class BaseModel extends Model {
             ->groupBy(DB::raw('book_id,chapter_num,verse_num'))
             ->orderByRaw(DB::raw('rankPhrase DESC,rankWord DESC,book_id'))
         ;
+
+        if($testament == 'old'){
+            $finalQuery->where('book_id','<',40);
+        }
+        elseif($testament == 'new'){
+            $finalQuery->where('book_id','>',39);
+        }
 
         return $finalQuery;
     }
