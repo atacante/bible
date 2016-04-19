@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LocationsSeeder::class);
         $this->call(BibleNasbSeeder::class);
         $this->call(NasbLexiconSeeder::class);
+        $this->call(StrongsConcordanceSeeder::class);
+        $this->call(StrongsNasecSeeder::class);
     }
 }

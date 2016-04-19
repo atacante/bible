@@ -34,7 +34,7 @@ class PeoplesController extends Controller
         $content['peoples'] = $peoplesModel->orderBy('peoples.created_at','DESC')->paginate(10);
         return view('admin.peoples.list',
             [
-                'page_title' => 'Peoples',
+                'page_title' => 'People',
                 'content' => $content,
                 'filterAction' => 'peoples/list/',
             ]);

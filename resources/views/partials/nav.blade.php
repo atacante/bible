@@ -16,7 +16,7 @@
                     <a href="{{ URL::to('/locations/list') }}"><i class="fa fa-map-marker"></i> Locations</a>
                 </li>
                 <li class="{{ ViewHelper::classActivePath('peoples') }}">
-                    <a href="{{ URL::to('/peoples/list') }}"><i class="fa fa-users"></i> Peoples</a>
+                    <a href="{{ URL::to('/peoples/list') }}"><i class="fa fa-users"></i> People</a>
                 </li>
             </ul>
         </div>

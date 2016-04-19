@@ -90,7 +90,7 @@
             <div class="small-box bg-red" style="background-color: #e44ad7 !important;">
                 <div class="inner">
                     <h3>{!! $content['peoplesCount'] !!}</h3>
-                    <p>People{!! $content['peoplesCount'] != 1?'s':'' !!}</p>
+                    <p>People{{--{!! $content['peoplesCount'] != 1?'s':'' !!}--}}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-ios-people"></i>

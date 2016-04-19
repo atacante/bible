@@ -115,7 +115,7 @@
     @if($content['main_verse']['verse']->peoples->count())
         <div class="row col-md-12">
             <h3 class="text-center">
-                People{!! ($content['main_verse']['verse']->peoples->count() > 0?'s':'') !!}</h3>
+                People{{--{!! ($content['main_verse']['verse']->peoples->count() > 0?'s':'') !!}--}}</h3>
             @foreach($content['main_verse']['verse']->peoples as $people)
                 <div class="clearfix people-item">
                     <h4>{!! $people->people_name !!}</h4>

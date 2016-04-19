@@ -76,7 +76,7 @@
     @if($lexiconinfo->peoples->count())
         <div class="row col-md-12 text-left">
             <h3 class="text-left">
-                People{!! ($lexiconinfo->peoples->count() > 0?'s':'') !!}</h3>
+                People{{--{!! ($lexiconinfo->peoples->count() > 0?'s':'') !!}--}}</h3>
             @foreach($lexiconinfo->peoples as $people)
                 <div class="clearfix people-item">
                     <h4>{!! $people->people_name !!}</h4>

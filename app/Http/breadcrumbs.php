@@ -90,21 +90,21 @@ Breadcrumbs::register('locationUpdate', function($breadcrumbs)
     $breadcrumbs->push('Edit location');
 });
 
-// Admin > Peoples
+// Admin > People
 Breadcrumbs::register('peoples', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Peoples', url('admin/peoples/list'));
+    $breadcrumbs->push('People', url('admin/peoples/list'));
 });
 
-// Admin > Peoples > [CreatePeople]
+// Admin > People > [CreatePeople]
 Breadcrumbs::register('peopleCreate', function($breadcrumbs)
 {
     $breadcrumbs->parent('peoples');
     $breadcrumbs->push("Create new people");
 });
 
-// Admin > Peoples > [UpdatePeople]
+// Admin > People > [UpdatePeople]
 Breadcrumbs::register('peopleUpdate', function($breadcrumbs)
 {
     $breadcrumbs->parent('peoples');
