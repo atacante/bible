@@ -7,13 +7,19 @@ use App\BooksListEn;
 use App\Helpers\ViewHelper;
 use App\LexiconKjv;
 use App\LexiconsListEn;
+use App\StrongsConcordance;
+use App\StrongsNasec;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use FineDiffTests\Usage\Base;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\PaginationServiceProvider;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Krucas\Notification\Facades\Notification;
@@ -233,6 +239,120 @@ class ReaderController extends Controller
         }
         $content['pagination'] = $this->pagination($chapter, $book, $verse);
         return view('reader.verse', ['content' => $content, 'filterAction' => 'verse']);
+    }
+
+    public function anyStrongs($num,$dictionaryType)
+    {
+        $content['strongs_concordance'] = StrongsConcordance::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
+        $content['strongs_nasec'] = StrongsNasec::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
+
+        $references =  $this->getReferences($num,$dictionaryType);
+
+        $content['references'] = $references['data'];
+        $content['totalReferences'] = $references['totalRef'];
+
+        $strong_num = $content['title'] = $num;
+        if($content['strongs_concordance']->count()){
+            $strong_num .= " - ".$content['strongs_concordance']->transliteration;
+        }
+        elseif($content['strongs_nasec']->count()){
+            $strong_num .= " - ".$content['strongs_nasec']->transliteration;
+        }
+        $content['title'] = $strong_num;
+        $content['strongNum'] = $num;
+        $content['dictionaryType'] = $dictionaryType;
+        $content['pages'] = $this->strongsPagination($num,$dictionaryType);
+        return view('reader.strongs', ['content' => $content]);
+    }
+
+    private function getReferences($num,$dictionaryType,$limit = 5,$offset = 0){
+        $lexiconsList = LexiconsListEn::lexiconsList();
+        $lexicons = [];
+        $totalRef = 0;
+        $bigestLexicon = Config::get('app.defaultLexicon');
+        foreach($lexiconsList as $lexicon){
+            $lexiconModel = BaseModel::getLexiconModelByVersionCode($lexicon['lexicon_code']);
+            $referencesQuery = $lexiconModel::with('booksListEn')->where('strong_num',"H".$num)->orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num');
+            if($dictionaryType == 'hebrew'){
+                $referencesQuery->where('book_id','<',40);
+            }
+            elseif($dictionaryType == 'greek'){
+                $referencesQuery->where('book_id','>',39);
+            }
+            if($limit){
+                $referencesQuery->limit($limit);
+                $referencesQuery->offset($offset);
+            }
+            $lexicons[$lexicon['lexicon_code']] = $referencesQuery->get();
+            $t = $lexiconModel::where('strong_num',"H".$num)->count();
+            if($t > $totalRef){
+                $totalRef = $t;
+                $bigestLexicon = $lexicon['lexicon_code'];
+            }
+        }
+        $references = [];
+        $links= [];
+        if(count($lexicons)){
+            foreach ($lexicons as $lexiconCode => $lexiconData) {
+                if(count($lexiconData)){
+                    foreach ($lexiconData as $lexiconItem) {
+                        $title = $lexiconItem->booksListEn->book_name.' '.$lexiconItem->chapter_num.':'.$lexiconItem->verse_num;
+                        $references[$title]['data'][$lexiconCode][] = $lexiconItem->toArray();
+                        $references[$title]['bible_version'][$lexiconCode] = LexiconsListEn::getLexiconItemByCode($lexiconCode)['bible_version'];
+                        $references[$title]['link'] = ['book_id' => $lexiconItem->book_id,'chapter_num' => $lexiconItem->chapter_num,'verse_num' => $lexiconItem->verse_num];
+                        $verseModel = BaseModel::getVersesModelByVersionCode(LexiconsListEn::getLexiconItemByCode($lexiconCode)['bible_version']);
+                        $references[$title]['verse'][$lexiconCode] = $verseModel::where('book_id',$lexiconItem->book_id)->where('chapter_num',$lexiconItem->chapter_num)->where('verse_num', $lexiconItem->verse_num)->first()->toArray();
+                    }
+                }
+            }
+        }
+        return ['data' => $references,'totalRef' => $totalRef,'bigestLexicon' => $bigestLexicon];
+    }
+
+    public function getStrongsReferences($num,$dictionaryType)
+    {
+        $limit = 10;
+        $page = Input::get('page',1);
+        $offset = $limit*($page-1);
+        $references =  $this->getReferences($num,$dictionaryType,10,$offset);
+
+        $content['references'] = $references['data'];
+        $content['totalReferences'] = $references['totalRef'];
+        $content['strongNum'] = $num;
+        $links = new LengthAwarePaginator(
+            $references['data'],
+            $references['totalRef'],
+            10,
+            \Illuminate\Pagination\Paginator::resolveCurrentPage(), //resolve the path
+            ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+        $content['dictionaryType'] = $dictionaryType;
+        $content['pagination'] = $links;
+        $content['pages'] = $this->strongsPagination($num,$dictionaryType);
+        return view('reader.strongsref', ['content' => $content]);
+    }
+
+    private function strongsPagination($currentNum,$dictionaryType){
+        $strongQuery = new StrongsConcordance();
+        $strong = $strongQuery->where('strong_num',$currentNum)->where('dictionary_type',$dictionaryType)->first();
+        if(!$strong){
+            $strongQuery = new StrongsNasec();
+            $strong = $strongQuery->where('strong_num',$currentNum)->where('dictionary_type',$dictionaryType)->first();
+        }
+
+        $minId = $strongQuery->where('dictionary_type',$dictionaryType)->min('id');
+        $maxId = $strongQuery->where('dictionary_type',$dictionaryType)->max('id');
+        $pagination['prevNum'] = false;
+        $pagination['nextNum'] = false;
+        if(($prevId = $strong->id-1) > $minId){
+            $pagination['prevNum'] = $strongQuery->find($prevId)->strong_num;
+        }
+        if(($nextId = $strong->id+1) < $maxId){
+            $pagination['nextNum'] = $strongQuery->find($nextId)->strong_num;
+        }
+
+        return $pagination;
+
     }
 
     private function pagination($currentChapter, $currentBook, $currentVerse = false)

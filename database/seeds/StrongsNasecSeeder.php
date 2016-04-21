@@ -46,7 +46,23 @@ class StrongsNasecSeeder extends Seeder
                 }
                 $data[$key]['strong_num'] = intval($row['number']);
                 $data[$key]['strong_num_suffix'] = preg_replace('/[0-9]+/', '', $row['number']);
-                $data[$key]['original_word'] = $row['word_origin'];
+
+                $searchHe = "~/hebrew/(.*?).htm~";
+                $searchEl = "~/greek/(.*?).htm~";
+                preg_match($searchHe, $row['word_origin'], $outputHe);
+                preg_match($searchEl, $row['word_origin'], $outputEl);
+                if(isset($outputHe[1])){
+                    $num = $outputHe[1];
+                    $replace = "/reader/strongs/".$num."/hebrew";
+                    $row['word_origin'] =  preg_replace($searchHe,$replace,$row['word_origin']);
+                }
+                if(isset($outputEl[1])){
+                    $num = $outputEl[1];
+                    $replace = "/reader/strongs/".$num."/greek";
+                    $row['word_origin'] =  preg_replace($searchEl,$replace,$row['word_origin']);
+                }
+                $data[$key]['original_word'] = str_replace('|','"',$row['word_origin']);
+
                 $data[$key]['definition'] = $row['definition'];
                 $data[$key]['nasb_translation'] = $row['nasb_translation'];
                 if ($part == 500) {

@@ -274,6 +274,8 @@ return [
     'defaultBookNumber' => 1,
     'defaultChapterNumber' => 1,
 
+    'defaultLexicon' => 'kjv',
+
     /*
      * User Roles
      */

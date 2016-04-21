@@ -34,6 +34,16 @@ class LexiconsListEn extends BaseModel
         return false;
     }
 
+    public static function getLexiconItemByCode($code)
+    {
+        foreach (self::lexiconsList() as $version) {
+            if($version['lexicon_code'] == $code){
+                return $version;
+            }
+        }
+        return false;
+    }
+
     public static function getLexiconCodeByBibleVersion($bVersion)
     {
         foreach (self::lexiconsList() as $version) {

@@ -81,15 +81,23 @@ $(document).ready(function(){
         location.href = '/reader/mode/'+$(this).val();
     });
 
+    $('.j-verses-filters').on('focus','select[name=version]',function(){
+        $(this).data('prevval', $(this).val());
+    });
+
     $('.j-verses-filters').on('change','select[name=version]',function(){
+        var prevVal = $(this).data('prevval');
+        var curVal = $(this).val();
         $.ajax({
             method: "GET",
             url: "/ajax/books-list",
             dataType: "json",
-            data:{version:$(this).val()},
+            data:{version:curVal},
             success:function(data){
-                site.fillSelect('select[name=book]',data);
-                $('select[name=book]').change();
+                if(prevVal == 'berean' || curVal == 'berean'){
+                    site.fillSelect('select[name=book]',data);
+                    $('select[name=book]').change();
+                }
             }
         });
     });
@@ -102,6 +110,7 @@ $(document).ready(function(){
             data:{book_id:$(this).val()},
             success:function(data){
                 site.fillSelect('select[name=chapter]',data);
+                $('select[name=chapter]').change();
             }
         });
     });

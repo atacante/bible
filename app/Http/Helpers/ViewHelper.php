@@ -74,4 +74,21 @@ class ViewHelper
             return $verse->verse_text;
         }
     }
+
+    public static function highlightLexiconText($phrase,$text)
+    {
+        $phrase = str_replace('[','<i>',$phrase);
+        $phrase = str_replace(']','</i>',$phrase);
+        $text = str_replace($phrase,'<i><span class="text-red">'.$phrase.'</span></i>',$text);
+        return $text;
+    }
+
+    public static function detectStrongsDictionary($lexiconinfo)
+    {
+        if($lexiconinfo->book_id < 40){
+            return 'hebrew';
+        }
+        return 'greek';
+
+    }
 }

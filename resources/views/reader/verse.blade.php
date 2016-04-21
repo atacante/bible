@@ -46,7 +46,7 @@
                         <td>{!! $lexiconinfo->verse_part !!}</td>
                         <td class="j-with-images">{!! $lexiconinfo->symbolism !!}</td>
                         <td>{!! $lexiconinfo->definition !!}</td>
-                        <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
+                        <td>{!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num) !!}</td>
                         <td>{!! $lexiconinfo->transliteration !!}</td>
                     </tr>
                     @endif

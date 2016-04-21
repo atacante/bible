@@ -49,7 +49,21 @@ class StrongsConcordanceSeeder extends Seeder
                 $data[$key]['transliteration'] = $row['word'];
                 $data[$key]['definition_short'] = $row['tag'];
                 $data[$key]['definition_full'] = $row['meaning'];
-                $data[$key]['exhaustive_concordance'] = $row['strongs_exhaustive_concordance'];
+                $searchHe = "~/hebrew/(.*?).htm~";
+                $searchEl = "~/greek/(.*?).htm~";
+                preg_match($searchHe, $row['strongs_exhaustive_concordance'], $outputHe);
+                preg_match($searchEl, $row['strongs_exhaustive_concordance'], $outputEl);
+                if(isset($outputHe[1])){
+                    $num = $outputHe[1];
+                    $replace = "/reader/strongs/".$num."/hebrew";
+                    $row['strongs_exhaustive_concordance'] =  preg_replace($searchHe,$replace,$row['strongs_exhaustive_concordance']);
+                }
+                if(isset($outputEl[1])){
+                    $num = $outputEl[1];
+                    $replace = "/reader/strongs/".$num."/greek";
+                    $row['strongs_exhaustive_concordance'] =  preg_replace($searchEl,$replace,$row['strongs_exhaustive_concordance']);
+                }
+                $data[$key]['exhaustive_concordance'] = str_replace('|','"',$row['strongs_exhaustive_concordance']);
                 if ($part == 500) {
                     StrongsConcordance::insert($data);
                     $data = [];
