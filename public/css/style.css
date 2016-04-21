@@ -15,6 +15,14 @@ label {
     margin-right: 6px;
 }
 
+.word-definition{
+    border-bottom: 1px dotted;
+}
+
+.word-definition .word-definition{
+    border: none;
+}
+
 .word-definition:hover, .word-definition > span:hover{
     background: #2ca02c;
     border-radius: 3px;

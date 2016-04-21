@@ -37,6 +37,39 @@ class LocationsSeeder extends Seeder
             File::makeDirectory($locationDir.'thumbs/', 0777, true);
             foreach($csv->data as $key => $row){
                 $location['location_name'] = str_replace('|','"',$row['name_advanced']);
+
+                /*$searchLink = "~http://bible.cc/(.*?).htm~";
+                preg_match_all($searchLink, $row['description'], $outputLinks);
+                if(count($outputLinks)){
+                    foreach ($outputLinks[1] as $key => $outputLink) {
+                        $params = explode('/',$outputLink);
+                        $bookName = str_replace('_',' ',$params[0]);
+                        if($bookName == 'psalms'){
+                            $bookName = 'psalm';
+                        }
+                        if($bookName == 'songs'){
+                            $bookName = 'Song of Solomon';
+                        }
+                        if($bookName == '1ch'){
+                            $bookName = '1 chronicles';
+                        }
+                        $bookId = BooksListEn::where('book_name','ilike',$bookName)->first()->id;
+                        $chapterVerse = explode('-',$params[1]);
+                        $chapter = $chapterVerse[0];
+                        $verse = $chapterVerse[1];
+
+                        $replace = '/reader/verse?'.http_build_query([
+                                'book' => $bookId,
+                                'chapter' => $chapter,
+                                'verse' => $verse,
+                            ]);
+                        $row['description'] =  str_replace($outputLinks[0][$key],$replace,$row['description']);
+                    }
+                }*/
+
+                $row['description'] = $this->replaceVerseLinks($row['description']);
+                $row['description'] = $this->replaceChapterLinks($row['description']);
+
                 $location['location_description'] = str_replace('|','"',$row['description']);
                 $locationModel = Location::create($location);
                 /* Area Map */
@@ -67,5 +100,69 @@ class LocationsSeeder extends Seeder
             }
             $progressBar->finish();
         }
+    }
+
+    private function replaceVerseLinks($text){
+        $searchLink = "~http://bible.cc/(.*?).htm~";
+        preg_match_all($searchLink, $text, $outputLinks);
+        if(count($outputLinks)){
+            foreach ($outputLinks[1] as $key => $outputLink) {
+                $params = explode('/',$outputLink);
+                $bookName = str_replace('_',' ',$params[0]);
+                if($bookName == 'psalms'){
+                    $bookName = 'psalm';
+                }
+                if($bookName == 'songs'){
+                    $bookName = 'Song of Solomon';
+                }
+                if($bookName == '1ch'){
+                    $bookName = '1 chronicles';
+                }
+                $bookId = BooksListEn::where('book_name','ilike',$bookName)->first()->id;
+                $chapterVerse = explode('-',$params[1]);
+                $chapter = $chapterVerse[0];
+                $verse = $chapterVerse[1];
+
+                $replace = '/reader/verse?'.http_build_query([
+                        'book' => $bookId,
+                        'chapter' => $chapter,
+                        'verse' => $verse,
+                    ]);
+                $text = str_replace($outputLinks[0][$key],$replace,$text);
+            }
+        }
+        return $text;
+    }
+
+    private function replaceChapterLinks($text){
+        $searchLink = "~http://nasb.scripturetext.com/(.*?).htm~";
+        http://nasb.scripturetext.com/joshua/7.htm
+        preg_match_all($searchLink, $text, $outputLinks);
+        if(count($outputLinks)){
+            foreach ($outputLinks[1] as $key => $outputLink) {
+                $params = explode('/',$outputLink);
+                $bookName = str_replace('_',' ',$params[0]);
+
+                if($bookName == 'psalms'){
+                    $bookName = 'psalm';
+                }
+                if($bookName == 'songs'){
+                    $bookName = 'Song of Solomon';
+                }
+                if($bookName == '1ch'){
+                    $bookName = '1 chronicles';
+                }
+
+                $bookId = BooksListEn::where('book_name','ilike',$bookName)->first()->id;
+                $chapter = $params[1];
+
+                $replace = '/reader/overview?'.http_build_query([
+                        'book' => $bookId,
+                        'chapter' => $chapter
+                    ]);
+                $text = str_replace($outputLinks[0][$key],$replace,$text);
+            }
+        }
+        return $text;
     }
 }
