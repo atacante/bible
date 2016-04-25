@@ -121,6 +121,18 @@ class BaseModel extends Model {
                                 '));
     }
 
+    private static function prepareVersesUnionQuerySimple($version,$q){
+        $defaultVersesTable = self::getVersesTableByVersionCode($version);
+        $versesModel = self::getVersesModelByVersionCode($version);
+        return $versesModel::query()
+            ->select(DB::raw('*'))
+            ->from(DB::raw($defaultVersesTable))
+//            ->where('verse_text','ilike',$q);
+            ->whereRaw(DB::raw('
+                                    verse_text ILIKE \''.$q.'\'
+                                '));
+    }
+
     public static function searchEverywhere($q,$testament = false)
     {
         $versions = VersionsListEn::versionsList();
@@ -150,6 +162,7 @@ class BaseModel extends Model {
         $versesModel = self::getVersesModelByVersionCode(Config::get('app.defaultBibleVersion'));
         $finalQuery = $versesModel::query()
             ->select(DB::raw('
+                id,
                 book_id,
                 chapter_num,
                 verse_num,
@@ -160,8 +173,41 @@ class BaseModel extends Model {
             ->from(DB::raw('('.$combinedUnion->toSql().') bibles'))
 //            ->from($combinedUnion->toSql())
 //            ->whereRaw(DB::raw(''))
-            ->groupBy(DB::raw('book_id,chapter_num,verse_num'))
-            ->orderByRaw(DB::raw('rankPhrase DESC,rankWord DESC,book_id'))
+            ->groupBy(DB::raw('id,book_id,chapter_num,verse_num'))
+            ->orderByRaw(DB::raw('id,rankPhrase DESC,rankWord DESC,book_id'))
+        ;
+
+        if($testament == 'old'){
+            $finalQuery->where('book_id','<',40);
+        }
+        elseif($testament == 'new'){
+            $finalQuery->where('book_id','>',39);
+        }
+
+        return $finalQuery;
+    }
+
+    public static function searchEverywhereSimple($q,$testament = false)
+    {
+        $versions = VersionsListEn::versionsList();
+        $combinedUnion = self::prepareVersesUnionQuerySimple(Config::get('app.defaultBibleVersion'),$q);
+        if ($versions) {
+            foreach ($versions as $version) {
+                if(Config::get('app.defaultBibleVersion') != $version['version_code']){
+                    $union = self::prepareVersesUnionQuerySimple($version['version_code'],$q);
+                    $combinedUnion->union($union);
+                }
+            }
+        }
+
+        $versesModel = self::getVersesModelByVersionCode(Config::get('app.defaultBibleVersion'));
+        $finalQuery = $versesModel::query()
+            ->select(DB::raw('
+                id
+                '))
+            ->from(DB::raw('('.$combinedUnion->toSql().') bibles'))
+            ->groupBy(DB::raw('id'))
+            ->orderByRaw(DB::raw('id'))
         ;
 
         if($testament == 'old'){

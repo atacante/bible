@@ -30,12 +30,14 @@ class LocationsSeeder extends Seeder
             $progressBar->start('Started seeding locations data');
 
             DB::statement("TRUNCATE TABLE locations CASCADE");
+            DB::statement("TRUNCATE TABLE location_verse");
             DB::statement("ALTER SEQUENCE locations_id_seq RESTART WITH 1");
             DB::statement("ALTER SEQUENCE location_images_id_seq RESTART WITH 1");
             $locationDir = public_path(Config::get('app.locationImages'));
             File::deleteDirectory($locationDir, true);
             File::makeDirectory($locationDir.'thumbs/', 0777, true);
             foreach($csv->data as $key => $row){
+                $location['associate_verses'] = true;
                 $location['location_name'] = str_replace('|','"',$row['name_advanced']);
 
                 /*$searchLink = "~http://bible.cc/(.*?).htm~";

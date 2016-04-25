@@ -5,8 +5,11 @@ namespace App\Providers;
 use App\LexiconBerean;
 use App\LexiconKjv;
 use App\LexiconNasb;
+use App\Location;
+use App\People;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
 
@@ -91,6 +94,46 @@ class AppServiceProvider extends ServiceProvider
 //                $model->assignRole($role);
                 $model->syncRoles($role);
             }
+        });
+
+        People::saved(function($model)
+        {
+            if($model->isDirty('people_name') && !$model->isDirty('associate_verses') && $model->associate_verses){
+                $model->associateVerses('detach');
+                $model->associateVerses('attach');
+            }
+            if($model->isDirty('associate_verses')){
+                if($model->associate_verses){
+                    $model->associateVerses('attach');
+                }
+                else{
+                    $model->associateVerses('detach');
+                }
+            }
+        });
+        People::deleted(function($model)
+        {
+            $model->verses()->sync([]);
+        });
+
+        Location::saved(function($model)
+        {
+            if($model->isDirty('location_name') && !$model->isDirty('associate_verses') && $model->associate_verses){
+                $model->associateVerses('detach');
+                $model->associateVerses('attach');
+            }
+            if($model->isDirty('associate_verses')){
+                if($model->associate_verses){
+                    $model->associateVerses('attach');
+                }
+                else{
+                    $model->associateVerses('detach');
+                }
+            }
+        });
+        Location::deleted(function($model)
+        {
+            $model->verses()->sync([]);
         });
     }
 

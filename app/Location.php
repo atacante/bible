@@ -13,7 +13,7 @@ class Location extends BaseModel {
     public $timestamps  = true;
 
     protected $table = 'locations';
-    protected $fillable = ['id','location_name','location_description'];
+    protected $fillable = ['id','location_name','location_description','associate_verses'];
 
     public function rules()
     {
@@ -50,5 +50,23 @@ class Location extends BaseModel {
             return redirect()->refresh()->withErrors($v->errors());
         }
         return true;
+    }
+
+    public function associateVerses($action = 'attach'){
+        $locationName = $this->location_name;
+        if($action == 'detach'){
+            $locationName = $this->getOriginal('location_name');
+        }
+        $verses = BaseModel::searchEverywhere(pg_escape_string($locationName));
+        if($verses->get()->count()){
+            switch($action){
+                case 'attach':
+                    $this->verses()->attach($verses->lists('id')->toArray());
+                    break;
+                case 'detach':
+                    $this->verses()->detach($verses->lists('id')->toArray());
+                    break;
+            }
+        }
     }
 }

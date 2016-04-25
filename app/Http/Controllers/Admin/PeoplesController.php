@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 //use Illuminate\Http\Request;
 
+use App\BaseModel;
 use App\Helpers\ViewHelper;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -31,7 +32,7 @@ class PeoplesController extends Controller
         }
 
         $peoplesModel->with('images');
-        $content['peoples'] = $peoplesModel->orderBy('peoples.created_at','DESC')->paginate(10);
+        $content['peoples'] = $peoplesModel->orderBy('people_name')->paginate(10);
         return view('admin.peoples.list',
             [
                 'page_title' => 'People',
@@ -66,7 +67,9 @@ class PeoplesController extends Controller
         $model = People::query()->with('images')->find($id);
         if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
-            if ($model->update(Input::all())) {
+            $data = Input::all();
+            $data['associate_verses'] = (boolean)$data['associate_verses'];
+            if ($model->update($data)) {
                 $this->anyUploadImage($model->id);
                 Notification::success('People has been successfully updated');
             }

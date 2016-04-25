@@ -66,7 +66,7 @@ class LocationController extends Controller
 
         $locationsModel = $this->prepareFilters($locationsModel->query());
 
-        $content['locations'] = $locationsModel->/*orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num')->*/
+        $content['locations'] = $locationsModel->with('images')->orderBy('location_name')->/*orderBy('chapter_num')->orderBy('verse_num')->*/
         paginate(20);
         return view('admin.location.list',
             [
@@ -105,7 +105,9 @@ class LocationController extends Controller
         $validator = JsValidatorFacade::make($model->rules());
         if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
-            if ($model->update(Input::all())) {
+            $data = Input::all();
+            $data['associate_verses'] = (boolean)$data['associate_verses'];
+            if ($model->update($data)) {
                 $this->anyUploadImage($model->id);
                 Notification::success('Location has been successfully updated');
             }

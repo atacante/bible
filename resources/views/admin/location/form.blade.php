@@ -9,6 +9,15 @@
                     </span>
         @endif
     </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                {!! Form::hidden('associate_verses', 0) !!}
+                {!! Form::checkbox('associate_verses', 1,true) !!}
+                <span>Associate name with verses <i>(Will be associated with all the verses found by location name)</i></span>
+            </label>
+        </div>
+    </div>
     <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }}">
         {!! Form::label('image', 'Images:') !!}
         <div class="clearfix">
