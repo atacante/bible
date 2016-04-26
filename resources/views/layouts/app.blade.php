@@ -50,11 +50,26 @@
 <div class="container">
 @notification()
 @yield('content')
+@include('admin.partials.deletepop')
+@include('partials.popup')
 </div>
 @include('partials.footer')
 
 <!-- Scripts -->
 @yield('scripts')
 {!! Captcha::script() !!}
+{!!Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js')!!}
+{!!Html::script('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')!!}
+<script>
+    if($("#note-text").length > 0){
+        $('#note-text').ckeditor({
+            customConfig: '/js/ckeditor/config.js',
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+        });
+    }
+</script>
 </body>
 </html>

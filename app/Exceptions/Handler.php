@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\URL;
 use Krucas\Notification\Facades\Notification;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Validation\ValidationException;
@@ -48,6 +49,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof HttpException && $e->getStatusCode() == 404){
+            Notification::error("Requested content does not exist");
+            return redirect('/');
+        }
         if ($e instanceof HttpException && $e->getStatusCode() == 401){
             Notification::error($e->getMessage());
 //            Notification::info($e->getMessage());

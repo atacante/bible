@@ -192,3 +192,7 @@ a.view-details:hover{
 .text-red{
     color: red;
 }
+
+.note-text{
+    cursor: pointer;
+}

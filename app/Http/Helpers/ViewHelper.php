@@ -91,4 +91,8 @@ class ViewHelper
         return 'greek';
 
     }
+
+    public static function getVerseNum($verseModel){
+        return $verseModel?$verseModel->booksListEn->book_name." ".$verseModel->chapter_num.":".$verseModel->verse_num:'-';
+    }
 }

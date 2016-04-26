@@ -110,6 +110,13 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 });
 
+Route::group([
+        'middleware' => ['auth', 'acl'],
+        'is' => 'user'
+], function () {
+    Route::controller('notes', 'NotesController');
+});
+
 
 /*
 | User routes

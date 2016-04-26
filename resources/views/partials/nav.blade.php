@@ -44,7 +44,10 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('user/profile') }}"><i class="fa fa-btn fa-sign-out"></i>My Profile</a></li>
+                            @role('user')
+                            <li><a href="{{ url('notes/list') }}"><i class="fa fa-btn fa-sticky-note"></i>My Notes</a></li>
+                            <li><a href="{{ url('user/profile') }}"><i class="fa fa-btn fa-user"></i>My Profile</a></li>
+                            @endrole
                             <li><a href="{{ url('auth/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             @if(Session::has('adminAsUser'))
                             <li><a href="{{ url('auth/admin-logout') }}"><i class="fa fa-btn fa-sign-out"></i>Back To Admin</a></li>

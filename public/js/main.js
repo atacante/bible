@@ -77,6 +77,21 @@ $(document).ready(function(){
         return false;
     });
 
+    $('.j-note-text').click(function(ev) {
+        var id = $(this).data('noteid');
+        $.ajax({
+            method: "GET",
+            url: "/ajax/view-note",
+            dataType: "html",
+            data:{id:id},
+            success:function(data){
+                $('#popup').find('.modal-header .modal-title').text('Note');
+                $('#popup').find('.modal-body').html(data);
+                $('#popup').modal({show:true});
+            }
+        });
+    });
+
     $('.navbar').on('change','select[name=readerMode]',function(){
         location.href = '/reader/mode/'+$(this).val();
     });

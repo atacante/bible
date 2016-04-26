@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Helpers\ViewHelper;
+use App\Note;
+//use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use \Illuminate\Support\Facades\Request;
+
+use App\Http\Requests;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+use Krucas\Notification\Facades\Notification;
+
+class NotesController extends Controller
+{
+    protected  $sortby;
+    protected  $order;
+
+    public function getList(){
+        $this->sortby = Input::get('sortby','created_at');
+        $this->order = Input::get('order','desc');
+
+        $notesModel = Note::query();
+
+        $content['notes'] = $notesModel->with('verse.booksListEn')->where('user_id',Auth::user()->id)->orderBy($this->sortby,$this->order)->paginate(10);
+
+        $content['action'] = 'notes/list';
+        $content['columns'] = Note::$columns;
+
+        $content['sortby'] = $this->sortby;
+        $content['order'] = $this->order;
+
+        return view('notes.list', ['content' => $content]);
+    }
+
+    public function anyCreate(\Illuminate\Http\Request $request)
+    {
+        $model = new Note();
+        if (Request::isMethod('post')) {
+            $this->validate($request, $model->rules());
+            $data = Input::all();
+            $data['user_id'] = Auth::user()->id;
+            if ($model = $model->create($data)) {
+                Notification::success('Note has been successfully created');
+            }
+            return Redirect::to('/notes/list/');
+        }
+        return view('notes.create',
+            [
+                'model' => $model
+            ]);
+    }
+
+    public function anyUpdate(\Illuminate\Http\Request $request, $id)
+    {
+        if (Session::has('backUrl')) {
+            Session::keep('backUrl');
+        }
+        $model = Note::query()->where('user_id',Auth::user()->id)->find($id);
+        if(!$model){
+            abort(404);
+        }
+        if (Request::isMethod('put')) {
+            $this->validate($request, $model->rules());
+            if ($model->update(Input::all())) {
+                Notification::success('Note has been successfully updated');
+            }
+            return ($url = Session::get('backUrl'))
+                ? Redirect::to($url)
+                : Redirect::to('/notes/list/');
+        }
+        return view('notes.update',
+            [
+                'model' => $model
+            ]);
+    }
+
+    public function anyDelete($id)
+    {
+        if (Session::has('backUrl')) {
+            Session::keep('backUrl');
+        }
+        $model = Note::query()->where('user_id',Auth::user()->id)->find($id);
+        if(!$model){
+            abort(404);
+        }
+        if ($model->destroy($id)) {
+            Notification::success('Note has been successfully deleted');
+        }
+        return ($url = Session::get('backUrl'))
+            ? Redirect::to($url)
+            : Redirect::to('/notes/list/');
+    }
+}

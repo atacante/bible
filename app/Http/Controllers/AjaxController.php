@@ -6,7 +6,9 @@ use App\BaseModel;
 use App\BooksListEn;
 use App\Helpers\ViewHelper;
 use App\LexiconKjv;
+use App\Note;
 use App\VersesAmericanStandardEn;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Request;
 
@@ -75,5 +77,11 @@ class AjaxController extends Controller
             $view = 'lexiconinfo';
         }
         return view('reader.'.$view, ['lexiconinfo' => $lexiconinfo]);
+    }
+
+    public function getViewNote(){
+        $id = Request::input('id');
+        $note = Note::query()->where('user_id',Auth::user()->id)->find($id);
+        return view('notes.view', ['model' => $note]);
     }
 }
