@@ -87,6 +87,7 @@ $(document).ready(function(){
             success:function(data){
                 $('#popup').find('.modal-header .modal-title').text('Note');
                 $('#popup').find('.modal-body').html(data);
+                $('#popup').find('.modal-footer').html('<a title="Print note" href="#" data-noteid="'+id+'" class="j-print-note pull-left"><i class="fa fa-print fa-2x"style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>');
                 $('#popup').modal({show:true});
             }
         });
@@ -204,6 +205,55 @@ $(document).ready(function(){
                 printChapter.close();
             }
         });
+    });
+
+    $('.j-my-notes-list').parent().on('click','.j-print-note',function(e){
+        e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: "/ajax/print-note",
+            dataType: "html",
+            data:{id:$(this).data('noteid')},
+            success:function(data){
+                var printNote = window.open('', '', 'height='+$(window).height()+',width='+$(window).width());
+                printNote.document.write(data);
+                printNote.print();
+                printNote.close();
+            }
+        });
+    });
+
+    $('.j-my-notes-list').parent().on('click','.j-print-all-notes',function(e){
+        e.preventDefault();
+        var checks = $('input[class="check"]:checked');
+        if(checks.length == 0){
+            $('#popup').find('.modal-header .modal-title').text('Warning');
+            $('#popup').find('.modal-body').html("Please select notes witch you want to print");
+            $('#popup').find('.modal-footer').html('');
+            $('#popup').modal({show:true});
+            return false;
+        }
+        var noteIds = [];
+        $('input:checkbox[class="check"]:checked').each(function(){
+            noteIds.push($(this).data('noteid'));
+        });
+
+        $.ajax({
+            method: "GET",
+            url: "/ajax/print-note",
+            dataType: "html",
+            data:{id:noteIds},
+            success:function(data){
+                var printNote = window.open('', '', 'height='+$(window).height()+',width='+$(window).width());
+                printNote.document.write(data);
+                printNote.print();
+                printNote.close();
+            }
+        });
+    });
+
+    $("#checkAll").click(function () {
+        $(".check").prop('checked', $(this).prop('checked'));
     });
 
     //$('.edit-images-thumbs').on('mouseover','.img-thumb',function(){

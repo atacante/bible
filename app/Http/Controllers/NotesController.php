@@ -20,11 +20,47 @@ class NotesController extends Controller
     protected  $sortby;
     protected  $order;
 
+    private $searchFilter;
+    private $bookFilter;
+    private $chapterFilter;
+    private $verseFilter;
+
+    private function prepareFilters($noteModel){
+        $this->searchFilter = Request::input('search', false);
+        $this->bookFilter = Request::input('book', false);
+        $this->chapterFilter = Request::input('chapter', false);
+        $this->verseFilter = Request::input('verse', false);
+
+        if(!empty($this->searchFilter)){
+            $noteModel->where('note_text', 'ilike', '%'.$this->searchFilter.'%');
+        }
+
+        if(!empty($this->bookFilter)){
+            $noteModel->whereHas('verse', function($q){
+                $q->where('book_id',$this->bookFilter);
+            });
+        }
+
+        if(!empty($this->chapterFilter)){
+            $noteModel->whereHas('verse', function($q){
+                $q->where('chapter_num',$this->chapterFilter);
+            });
+        }
+
+        if(!empty($this->verseFilter)){
+            $noteModel->whereHas('verse', function($q){
+                $q->where('verse_num',$this->verseFilter);
+            });
+        }
+        return $noteModel;
+    }
+
     public function getList(){
         $this->sortby = Input::get('sortby','created_at');
         $this->order = Input::get('order','desc');
 
         $notesModel = Note::query();
+        $notesModel = $this->prepareFilters($notesModel);
 
         $content['notes'] = $notesModel->with('verse.booksListEn')->where('user_id',Auth::user()->id)->orderBy($this->sortby,$this->order)->paginate(10);
 

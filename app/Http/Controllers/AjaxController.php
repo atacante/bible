@@ -84,4 +84,10 @@ class AjaxController extends Controller
         $note = Note::query()->where('user_id',Auth::user()->id)->find($id);
         return view('notes.view', ['model' => $note]);
     }
+
+    public function getPrintNote(){
+        $ids = (array)Request::input('id');
+        $notes = Note::query()->where('user_id',Auth::user()->id)->whereIn('id',$ids)->orderBy('created_at','desc')->get();
+        return view('notes.print', ['model' => $notes]);
+    }
 }

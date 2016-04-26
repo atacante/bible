@@ -140,3 +140,4 @@ View::composer('locations.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.location.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.peoples.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('peoples.filters', 'App\Http\Composers\BibleFiltersComposer');
+View::composer('notes.filters', 'App\Http\Composers\BibleFiltersComposer');
