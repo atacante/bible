@@ -15,7 +15,7 @@ class AlterVersesTables extends Migration
     public function up()
     {
         DB::transaction(function () {
-            $versions = VersionsListEn::versionsList();
+            $versions = VersionsListEn::versionsListAll();
             if ($versions) {
                 foreach ($versions as $version) {
                     $this->version = $version['version_code'];
@@ -40,7 +40,7 @@ class AlterVersesTables extends Migration
     public function down()
     {
         DB::transaction(function () {
-            $versions = VersionsListEn::versionsList();
+            $versions = VersionsListEn::versionsListAll();
             if ($versions) {
                 foreach ($versions as $version) {
                     $this->version = $version['version_code'];

@@ -1,6 +1,8 @@
 <?php
 namespace App;
 
+use App\Helpers\ModelHelper;
+
 class LexiconKjv extends BaseModel {
 
     /**
@@ -22,7 +24,8 @@ class LexiconKjv extends BaseModel {
             ->where('chapter_num',$this->chapter_num)
             ->where('verse_num',$this->verse_num)
             ->first();
-        VersesKingJamesEn::cacheLexicon($verses);
+//        VersesKingJamesEn::cacheLexicon($verses);
+        ModelHelper::cacheLexicon($verses,'kjv');
     }
 
     public function cacheSymbolismForBeginnerMode(){
@@ -31,7 +34,8 @@ class LexiconKjv extends BaseModel {
             ->where('chapter_num',$this->chapter_num)
             ->where('verse_num',$this->verse_num)
             ->first();
-        VersesKingJamesEn::cacheSymbolismForBeginnerMode($verses);
+//        VersesKingJamesEn::cacheSymbolismForBeginnerMode($verses);
+        ModelHelper::cacheSymbolismForBeginnerMode($verses,'kjv');
     }
 
     public function locations() {

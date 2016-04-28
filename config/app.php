@@ -269,8 +269,8 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'defaultBibleVersion' => 'american_standard',// use 'all' if not needed specific version
-    'defaultChaptersVersion' => 'american_standard',
+    'defaultBibleVersion' => 'king_james',// use 'all' if not needed specific version
+    'defaultChaptersVersion' => 'king_james',
     'defaultBookNumber' => 1,
     'defaultChapterNumber' => 1,
 

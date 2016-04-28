@@ -27,7 +27,7 @@ class BibleAllVersionsSeeder extends Seeder
             $progressBar = new ProgressBarHelper(count($csv->data)*9, 10);
             $progressBar->start('Started seeding data for 9 Bible versions');
 
-            $versions = VersionsListEn::versionsList();
+            $versions = VersionsListEn::versionsListAll();
             if ($versions) {
                 foreach ($versions as $version) {
                     $this->version = $version['version_code'];
