@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\VersionsListEn;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -94,5 +95,9 @@ class ViewHelper
 
     public static function getVerseNum($verseModel){
         return $verseModel?$verseModel->booksListEn->book_name." ".$verseModel->chapter_num.":".$verseModel->verse_num:'-';
+    }
+
+    public static function getVersionName($versionCode){
+        return VersionsListEn::getVersionByCode($versionCode);
     }
 }

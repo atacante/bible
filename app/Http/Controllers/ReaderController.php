@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Krucas\Notification\Facades\Notification;
 use Request;
@@ -39,6 +40,8 @@ class ReaderController extends Controller
 
     public function getRead()
     {
+        Session::flash('backUrl', Request::fullUrl());
+
         $version = Request::input('version', Config::get('app.defaultBibleVersion'));
         if ($version == 'all') {
             return Redirect::to('/reader/overview?' . http_build_query(Request::input()));
@@ -116,6 +119,8 @@ class ReaderController extends Controller
 
     public function getOverview()
     {
+        Session::flash('backUrl', Request::fullUrl());
+
         $book = Request::input('book', Config::get('app.defaultBookNumber'));
         $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
 
@@ -135,6 +140,8 @@ class ReaderController extends Controller
 
     public function getSearch()
     {
+        Session::flash('backUrl', Request::fullUrl());
+
         $q = Request::input('q', false);
         $version = Request::input('version', Config::get('app.defaultBibleVersion'));
 
@@ -184,6 +191,8 @@ class ReaderController extends Controller
 
     public function getVerse()
     {
+        Session::flash('backUrl', Request::fullUrl());
+
         $version_code = Request::input('version', Config::get('app.defaultBibleVersion'));
         $book = Request::input('book', Config::get('app.defaultBookNumber'));
         $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
@@ -194,6 +203,7 @@ class ReaderController extends Controller
         if ($verse) {
             $verseModel = BaseModel::getVersesModelByVersionCode($version_code);
             $content['main_verse']['version_name'] = VersionsListEn::getVersionByCode($version_code);
+            $content['main_verse']['version_code'] = $version_code;
             $content['main_verse']['verse'] = $verseModel::query()
                 ->with('locations')
                 ->where('book_id', $book)
@@ -243,6 +253,8 @@ class ReaderController extends Controller
 
     public function anyStrongs($num,$dictionaryType)
     {
+        Session::flash('backUrl', Request::fullUrl());
+
         $content['strongs_concordance'] = StrongsConcordance::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
         $content['strongs_nasec'] = StrongsNasec::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
 
@@ -266,6 +278,8 @@ class ReaderController extends Controller
     }
 
     private function getReferences($num,$dictionaryType,$limit = 5,$offset = 0){
+        Session::flash('backUrl', Request::fullUrl());
+
         $lexiconsList = LexiconsListEn::lexiconsList();
         $lexicons = [];
         $totalRef = 0;

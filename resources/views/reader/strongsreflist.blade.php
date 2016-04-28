@@ -1,4 +1,5 @@
 @if(count($content['references']))
+    <div class="j-bible-text">
     @foreach($content['references'] as $title => $reference)
         <div>
             <b>{!! link_to(
@@ -20,11 +21,12 @@
                                                    'verse' => $reference['link']['verse_num'],
                                                ]),
                                            strtoupper($lexiconCode)).": " !!}
-                    {!! ViewHelper::highlightLexiconText($lexiconData[0]['verse_part'],$reference['verse'][$lexiconCode]['verse_text']) !!}
+                    <span class="j-verse-text" data-version="{!! $reference['bible_version'][$lexiconCode] !!}" data-verseid="{!! $reference['verse'][$lexiconCode]['id'] !!}">{!! ViewHelper::highlightLexiconText($lexiconData[0]['verse_part'],$reference['verse'][$lexiconCode]['verse_text']) !!}</span>
                 </div>
             @endforeach
         </div>
     @endforeach
+        </div>
 @else
     <p class="text-center">No any results found</p>
 @endif

@@ -96,6 +96,9 @@ $(document).ready(function(){
     $('.navbar').on('change','select[name=readerMode]',function(){
         location.href = '/reader/mode/'+$(this).val();
     });
+    $('.navbar').on('change','input[type=radio][name=readerMode]',function(){
+        location.href = '/reader/mode/'+$(this).val();
+    });
 
     $('.j-verses-filters').on('focus','select[name=version]',function(){
         $(this).data('prevval', $(this).val());
@@ -284,4 +287,54 @@ $(document).ready(function(){
     });
 
     //site.dropzoneInit();
+    $("body").mousedown(function(eventObject) {
+        if(!$(eventObject.target).hasClass('j-create-note') && !$(eventObject.target).parent().hasClass('j-create-note')){
+            $('.j-create-note').remove();
+        }
+    });
+    $(".j-bible-text").mouseup(function(eventObject) {
+        var selectedObject = site.getSelected();
+        var text = selectedObject.toString();
+        if(text){
+            var startElement = selectedObject.anchorNode.parentElement;
+            var endElement = selectedObject.focusNode.parentElement;
+            var version = $(startElement).data('version');
+            if(!version){
+                version = $(startElement).parents('.j-verse-text').data('version');
+            }
+            if(!version){
+                version = $(endElement).data('version');
+                if(!version){
+                    version = $(endElement).parents('.j-verse-text').data('version');
+                }
+            }
+
+            var startVerseId = $(startElement).data('verseid');
+            if(!startVerseId){
+                startVerseId = $(startElement).parents('.j-verse-text').data('verseid');
+            }
+            var endVerseId = $(endElement).data('verseid');
+            if(!endVerseId){
+                endVerseId = $(endElement).parents('.j-verse-text').data('verseid');
+            }
+
+            var verseId = 0;
+            if(!startVerseId || !endVerseId){
+                verseId = Math.max((startVerseId || 0), (endVerseId || 0));
+            }
+            else{
+                verseId = Math.min((startVerseId || 0), (endVerseId || 0));
+            }
+
+
+            $('body').append('<a href="/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-note" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>');
+            $('.j-create-note').css({
+                top: ($(endElement).offset().top-26) + "px",
+                left: (eventObject.pageX-15) + "px"
+            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
+        }
+        else {
+            $('.j-create-note').remove();
+        }
+    });
 });

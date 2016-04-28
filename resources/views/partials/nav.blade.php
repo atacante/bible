@@ -20,15 +20,27 @@
                 </li>
             </ul>
         </div>
-        <div class="pull-left" style="width: 450px; margin: 8px 15px 0;">
+        <div class="pull-left" style="width: 405px; margin: 8px 15px 0;">
             {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
-            {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:400px; margin-right:5px;']) !!}
+            {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:355px; margin-right:5px;']) !!}
             {!! Form::submit('Go',['class' => 'btn btn-primary pull-left']) !!}
             {!! Form::close() !!}
         </div>
-        <div class="pull-left" style="margin: 8px 10px 0;">
+        <div class="pull-left" style="margin: 14px 10px 0;">
 {{--            {!! Form::label('readerMode', 'Reader Mode',['class' => 'pull-left','style' => 'line-height: 35px; margin-right: 10px;']) !!}--}}
-            {!! Form::select('readerMode',Config::get('app.readerModes'), (($mode = Request::cookie('readerMode',false))?$mode:Config::get('app.defaultReaderMode')),['title' => 'Reader Mode','class' => 'pull-left j-reader-mode', 'style' => 'width: 135px; margin-right:10px;']) !!}
+{{--            {!! Form::select('readerMode',Config::get('app.readerModes'), (($mode = Request::cookie('readerMode',false))?$mode:Config::get('app.defaultReaderMode')),['title' => 'Reader Mode','class' => 'pull-left j-reader-mode', 'style' => 'width: 135px; margin-right:10px;']) !!}--}}
+            <div class="radio-inline">
+                <label>
+                    {!! Form::radio('readerMode', 'beginner', (Request::cookie('readerMode',false) == 'beginner'),['class' => 'j-reader-mode']) !!}
+                    {!! Config::get('app.readerModes.beginner') !!}
+                </label>
+            </div>
+            <div class="radio-inline">
+                <label>
+                    {!! Form::radio('readerMode', 'intermediate', (Request::cookie('readerMode',false) == 'intermediate'),['class' => 'j-reader-mode']) !!}
+                    {!! Config::get('app.readerModes.intermediate') !!}
+                </label>
+            </div>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">

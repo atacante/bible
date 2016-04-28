@@ -9,7 +9,7 @@ class Note extends Model
     public $timestamps  = true;
 
     protected $table = 'notes';
-    protected $fillable = ['id','user_id','verse_id','lexicon_id','highlighted_text','note_text'];
+    protected $fillable = ['id','user_id','verse_id','lexicon_id','highlighted_text','note_text','bible_version'];
 
     public function rules()
     {

@@ -13,6 +13,7 @@ CKEDITOR.editorConfig = function( config ) {
 		['NumberedList','BulletedList','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
 		['Image','Table','-','Link','Flash','Smiley','TextColor','BGColor']
 	]
+	//config.startupFocus  = true,
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 };

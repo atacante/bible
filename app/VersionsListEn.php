@@ -75,5 +75,6 @@ class VersionsListEn extends BaseModel
                 return $version['version_name'];
             }
         }
+        return false;
     }
 }

@@ -28,39 +28,42 @@
     <div class="row j-my-notes-list">
         <div class="col-md-12 {!! $content['notes']->count()?'':'text-center' !!}" style="line-height: 30px;">
             @if(!$content['notes']->count())
-            <div><p>
-                    @if(Request::has('search') || Request::has('book') || Request::has('chapter') || Request::has('verse'))
-                        You haven’t got any notes according to search criteria. Click at the button below to create new.
-                    @else
-                        You haven’t got any notes yet. Click at the button below to create new.
-                    @endif
-                </p>
-            </div>
+                <div><p>
+                        @if(Request::has('search') || Request::has('book') || Request::has('chapter') || Request::has('verse'))
+                            You haven’t got any notes according to search criteria. Click at the button below to create
+                            new.
+                        @else
+                            You haven’t got any notes yet. Click at the button below to create new.
+                        @endif
+                    </p>
+                </div>
             @endif
             {!! Html::link('/notes/create','Create Note', ['class'=>'btn btn-success','style' => 'margin-bottom:10px;']) !!}
-                <a title="Print selected notes" href="#" class="pull-right j-print-all-notes"><i class="fa fa-print fa-2x"style=""></i></a>
-                @if($content['notes']->count())
+            @if($content['notes']->count())
+                <a title="Print selected notes" href="#" class="pull-right j-print-all-notes"><i
+                            class="fa fa-print fa-2x" style=""></i></a>
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th width="20"><input type="checkbox" id="checkAll" /></th>
+                        <th width="20"><input type="checkbox" id="checkAll"/></th>
                         {{--<th>Note Text</th>--}}
                         {{--<th width="150">Verse</th>--}}
                         {{--<th width="150">Created <i class="fa fa-fw fa-sort-asc"></i></th>--}}
                         @foreach(array_keys($content['columns']) as $column)
                             <th {!! ($content['columns'][$column] == 'verse_id' || $content['columns'][$column] == 'created_at')?'width="150"':'' !!}>
-                            @if ($content['sortby'] == $content['columns'][$column] && $content['order'] == 'asc')
-                            {{link_to(
-                              $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'desc'])),
-                              $column
-                            )}}
-                            @else
-                            {{link_to(
-                              $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'asc'])),
-                              $column
-                            )}}
-                            @endif
-                                <i class="fa fa-fw fa-sort-{!! ($content['sortby'] == $content['columns'][$column])?$content['order']:'' !!}" style="color: #367fa9;"></i>
+                                @if ($content['sortby'] == $content['columns'][$column] && $content['order'] == 'asc')
+                                    {{link_to(
+                                      $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'desc'])),
+                                      $column
+                                    )}}
+                                @else
+                                    {{link_to(
+                                      $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'asc'])),
+                                      $column
+                                    )}}
+                                @endif
+                                <i class="fa fa-fw fa-sort-{!! ($content['sortby'] == $content['columns'][$column])?$content['order']:'' !!}"
+                                   style="color: #367fa9;"></i>
                             </th>
                         @endforeach
                         <th width="90">Actions</th>
@@ -70,20 +73,29 @@
                     @foreach($content['notes'] as $note)
                         <tr>
                             <td width="20"><input data-noteid="{!! $note->id !!}" type="checkbox" class="check"></td>
-                            <td><div class="note-text j-note-text" data-noteid="{!! $note->id !!}">{!! str_limit(strip_tags($note->note_text,'<p></p>'), $limit = 300, $end = '...') !!}</div></td>
+                            <td>
+                                <div class="note-text j-note-text"
+                                     data-noteid="{!! $note->id !!}">{!! str_limit(strip_tags($note->note_text,'<p></p>'), $limit = 300, $end = '...') !!}</div>
+                            </td>
                             <td>{!! ViewHelper::getVerseNum($note->verse) !!}</td>
                             <td>{!! $note->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">
-                                <a title="Print note" href="#" data-noteid="{!! $note->id !!}" class="j-print-note"><i class="fa fa-print fa-2x"style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
-                                <a title="Edit note" href="{!! url('/notes/update/'.$note->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
+                                <a title="Print note" href="#" data-noteid="{!! $note->id !!}" class="j-print-note"><i
+                                            class="fa fa-print fa-2x"
+                                            style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
+                                <a title="Edit note" href="{!! url('/notes/update/'.$note->id) !!}"><i
+                                            class="fa fa-edit"
+                                            style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
                                 <a title="Delete note" href="{!! url('/notes/delete',$note->id) !!}" data-toggle="modal"
                                    data-target="#confirm-delete" data-header="Delete Confirmation"
-                                   data-confirm="Are you sure you want to delete this item?"><i class="fa fa-trash"style="color: #367fa9; font-size: 1.4em;"></i></a></td>
+                                   data-confirm="Are you sure you want to delete this item?"><i class="fa fa-trash"
+                                                                                                style="color: #367fa9; font-size: 1.4em;"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-                @endif
+            @endif
         </div>
     </div>
     <div class="row">

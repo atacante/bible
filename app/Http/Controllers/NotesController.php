@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
+use App\BaseModel;
 use App\Helpers\ViewHelper;
 use App\Note;
 //use Illuminate\Http\Request;
+use App\VersionsListEn;
+use FineDiffTests\Usage\Base;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use \Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Request;
 
-use App\Http\Requests;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Krucas\Notification\Facades\Notification;
@@ -56,6 +60,8 @@ class NotesController extends Controller
     }
 
     public function getList(){
+        Session::flash('backUrl', Request::fullUrl());
+
         $this->sortby = Input::get('sortby','created_at');
         $this->order = Input::get('order','desc');
 
@@ -75,7 +81,28 @@ class NotesController extends Controller
 
     public function anyCreate(\Illuminate\Http\Request $request)
     {
+        if (Session::has('backUrl')) {
+            Session::keep('backUrl');
+        }
+
         $model = new Note();
+        $model->bible_version = Input::get('version',false);
+        $model->verse_id = Input::get('verse_id',false);
+        $model->note_text = Input::get('text',false);
+        if($model->note_text){
+            $model->note_text = "<i>".$model->note_text."</i><p></p>";
+        }
+        $model->verse = false;
+        if($model->verse_id){
+            if($model->bible_version){
+                $versesModel = BaseModel::getVersesModelByVersionCode($model->bible_version);
+            }
+            else{
+                $versesModel = BaseModel::getVersesModelByVersionCode(Config::get('app.defaultBibleVersion'));
+            }
+            $model->verse = $versesModel::find($model->verse_id);
+        }
+
         if (Request::isMethod('post')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
@@ -83,11 +110,13 @@ class NotesController extends Controller
             if ($model = $model->create($data)) {
                 Notification::success('Note has been successfully created');
             }
-            return Redirect::to('/notes/list/');
+            return ($url = Session::get('backUrl'))
+                ? Redirect::to($url)
+                : Redirect::to('/notes/list/');
         }
         return view('notes.create',
             [
-                'model' => $model
+                'model' => $model,
             ]);
     }
 

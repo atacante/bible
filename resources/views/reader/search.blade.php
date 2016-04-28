@@ -11,7 +11,7 @@
             <h3 class="text-center">Bible Search</h3>
         </div>
     </div>
-    <div class="row" style="line-height: 30px;">
+    <div class="row j-bible-text" style="line-height: 30px;">
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12">
@@ -31,7 +31,7 @@
                             $verse->booksListEn->book_name." ".$verse->chapter_num  .":".$verse->verse_num) !!}
                         </b>
                     </div>
-                    <div> {!! $verse->highlighted_verse_text !!}</div>
+                    <div class="j-verse-text" data-version="" data-verseid="{!! $verse->id !!}"> {!! $verse->highlighted_verse_text !!}</div>
                 @endforeach
             @else
                 <p class="text-center">No any results found</p>
@@ -56,7 +56,7 @@
                             $verse->booksListEn->book_name." ".$verse->chapter_num  .":".$verse->verse_num) !!}
                         </b>
                     </div>
-                    <div> {!! $verse->highlighted_verse_text !!}</div>
+                    <div class="j-verse-text" data-version="" data-verseid="{!! $verse->id !!}"> {!! $verse->highlighted_verse_text !!}</div>
                 @endforeach
             @else
                 <p class="text-center">No any results found</p>

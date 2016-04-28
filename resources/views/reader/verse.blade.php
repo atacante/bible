@@ -21,7 +21,7 @@
 {{--                    {{ Html::link(url('reader/verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn btn-default btn-primary','style' => 'padding: 2px 5px;'], true)}}--}}
                 @endif
             </h3>
-            <h4>{!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}</h4>
+            <h4 class="j-bible-text"><span class="j-verse-text" data-version="{!! $content['main_verse']['version_code'] !!}" data-verseid="{!! $content['main_verse']['verse']->id !!}">{!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}</span></h4>
         </span>
     </div>
     @if(count($content['lexicon']))
@@ -173,20 +173,20 @@
         <h3 class="text-center">Parallel
             Verses {!! link_to('reader/verse?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}</h3>
     </div>
-    <div class="row col-md-12" style="line-height: 30px;">
+    <div class="row col-md-12 j-bible-text" style="line-height: 30px;">
         <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => Request::input('version')])),[],false), $content['main_verse']['version_name'], ['class' => '','style' => ''], true)}}</h4>
-            <span style="">
+            <span class="j-verse-text" data-version="{!! $content['main_verse']['version_code'] !!}"  data-verseid="{!! $content['main_verse']['verse']->id !!}" style="">
                 {!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}
             </span>
     </div>
     <div class="row col-md-12">
         <hr>
     </div>
-    <div class="row col-md-12" style="line-height: 30px;">
+    <div class="row col-md-12 j-bible-text" style="line-height: 30px;">
         @foreach($content['verse'] as $code => $version)
             @if($version['verse'])
                 <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[],false), $version['version_name'], ['class' => '','style' => ''], true)}}</h4>
-                <span style="">
+                <span class="j-verse-text" data-version="{!! $code !!}"  data-verseid="{!! $version['verse']->id !!}" style="">
                 {!! ViewHelper::prepareVerseText($version['verse']) !!}
             </span>
             @endif

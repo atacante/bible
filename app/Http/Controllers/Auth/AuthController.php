@@ -88,6 +88,14 @@ class AuthController extends Controller
         return $user;
     }
 
+    public function getLogin()
+    {
+        if (Session::has('backUrl')) {
+            Session::keep('backUrl');
+        }
+        return $this->showLoginForm();
+    }
+
     public function getLogout()
     {
         Auth::Logout();

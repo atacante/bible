@@ -33,13 +33,13 @@
                                                    style="position: absolute; right: 0px; top: 5px; padding: 15px;"></i></a>
         </div>
         <div class="row">
-            <div class="j-reader-block {!! Request::input('compare',false)?'col-md-6':"col-md-12" !!}"
+            <div class="j-reader-block j-bible-text {!! Request::input('compare',false)?'col-md-6':"col-md-12" !!}"
                  style="line-height: 30px; text-align: justify;">
                 @if(Request::input('compare',false))
                     <h4 class="text-center">{!! $content['version'] !!}</h4>
                 @endif
                 @foreach($content['verses'] as $verse)
-                    <span style="word-wrap: normal">
+                    <span class="j-verse-text" data-version="{!! $content['version_code'] !!}" data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
                 <b>{!! link_to('reader/verse?'.http_build_query([
                                                                 'version' => $content['version_code'],
                                                                 'book' => $verse->book_id,
@@ -50,19 +50,19 @@
                 @endforeach
             </div>
             @if(Request::input('compare',false))
-                <div class="col-md-6 j-diff-block" style="line-height: 30px; text-align: justify;">
+                <div class="col-md-6 j-diff-block j-bible-text" data-version="{!! $compare['version_code'] !!}" style="line-height: 30px; text-align: justify;">
                     <h4 class="text-center">{!! $compare['version'] !!}
                         {!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}
                     </h4>
                     @foreach($compare['verses'] as $verse)
-                        <span style="word-wrap: normal">
+                        <span class="j-verse-text" data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
                         <b>{!! link_to('reader/verse?'.http_build_query([
                                                                 'version' => $compare['version_code'],
                                                                 'book' => $verse->book_id,
                                                                 'chapter' => $verse->chapter_num,
                                                                 'verse' => $verse->verse_num,
                                                             ]), $title = $verse->verse_num) !!}</b>&nbsp;{!! ViewHelper::prepareVerseText($verse) !!}
-                    </span>
+                        </span>
                     @endforeach
                 </div>
             @endif

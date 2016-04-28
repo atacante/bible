@@ -2,8 +2,10 @@
 <div class="box-body">
     @if($model->verse)
     <div class="form-group">
+        {!! Form::hidden('bible_version') !!}
+        {!! Form::hidden('verse_id') !!}
         {!! Form::label('verse_num', 'Verse:') !!}
-        <div>{!! ViewHelper::getVerseNum($model->verse) !!}</div>
+        <div>{!! ViewHelper::getVerseNum($model->verse).($model->bible_version?' ('.ViewHelper::getVersionName($model->bible_version).')':'') !!}</div>
     </div>
     @endif
     <div class="form-group {{ $errors->has('note_text') ? ' has-error' : '' }}">
