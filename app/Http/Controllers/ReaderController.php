@@ -286,6 +286,7 @@ class ReaderController extends Controller
         $bigestLexicon = Config::get('app.defaultLexicon');
         foreach($lexiconsList as $lexicon){
             $lexiconModel = BaseModel::getLexiconModelByVersionCode($lexicon['lexicon_code']);
+
             $referencesQuery = $lexiconModel::with('booksListEn')->where('strong_num',"H".$num)->orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num');
             if($dictionaryType == 'hebrew'){
                 $referencesQuery->where('book_id','<',40);
@@ -298,7 +299,14 @@ class ReaderController extends Controller
                 $referencesQuery->offset($offset);
             }
             $lexicons[$lexicon['lexicon_code']] = $referencesQuery->get();
-            $t = $lexiconModel::where('strong_num',"H".$num)->count();
+            $t = $lexiconModel::where('strong_num',"H".$num);
+            if($dictionaryType == 'hebrew'){
+                $t->where('book_id','<',40);
+            }
+            elseif($dictionaryType == 'greek'){
+                $t->where('book_id','>',39);
+            }
+            $t = $t->count();
             if($t > $totalRef){
                 $totalRef = $t;
                 $bigestLexicon = $lexicon['lexicon_code'];
@@ -320,6 +328,7 @@ class ReaderController extends Controller
                 }
             }
         }
+//        var_dump($references);
         return ['data' => $references,'totalRef' => $totalRef,'bigestLexicon' => $bigestLexicon];
     }
 
