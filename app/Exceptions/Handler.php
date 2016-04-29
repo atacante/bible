@@ -51,8 +51,8 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if ($e instanceof HttpException && !Request::ajax() && $e->getStatusCode() == 404){
-            Notification::error("Requested content does not exist");
-            return redirect('/');
+//            Notification::error("Requested content does not exist");
+//            return redirect('/');
         }
         if ($e instanceof HttpException && $e->getStatusCode() == 401){
             Notification::error($e->getMessage());
