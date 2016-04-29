@@ -235,3 +235,7 @@ a.view-details:hover{
 #popup iframe{
     width: 568px;
 }
+
+.main-container{
+    min-height: 400px;
+}

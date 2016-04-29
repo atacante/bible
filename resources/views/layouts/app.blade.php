@@ -47,7 +47,7 @@
 <body>
 @include('partials.nav')
 
-<div class="container">
+<div class="container main-container">
 @notification()
 @yield('content')
 @include('admin.partials.deletepop')
