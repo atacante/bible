@@ -226,6 +226,24 @@ $(document).ready(function(){
         });
     });
 
+    $('.j-locations-list').parent().on('click','.j-view-embed-map',function(e){
+        e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: "/ajax/location-map-embed-code",
+            dataType: "html",
+            data:{id:$(this).data('locationid')},
+            success:function(data){
+                if(data){
+                    $('#popup').find('.modal-header .modal-title').text('Location Map');
+                    $('#popup').find('.modal-body').html(data);
+                    $('#popup').find('.modal-footer').html('');
+                    $('#popup').modal({show:true});
+                }
+            }
+        });
+    });
+
     $('.j-my-notes-list').parent().on('click','.j-print-all-notes',function(e){
         e.preventDefault();
         var checks = $('input[class="check"]:checked');

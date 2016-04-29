@@ -6,6 +6,7 @@ use App\BaseModel;
 use App\BooksListEn;
 use App\Helpers\ViewHelper;
 use App\LexiconKjv;
+use App\Location;
 use App\Note;
 use App\VersesAmericanStandardEn;
 use Illuminate\Support\Facades\Auth;
@@ -89,5 +90,14 @@ class AjaxController extends Controller
         $ids = (array)Request::input('id');
         $notes = Note::query()->where('user_id',Auth::user()->id)->whereIn('id',$ids)->orderBy('created_at','desc')->get();
         return view('notes.print', ['model' => $notes]);
+    }
+
+    public function getLocationMapEmbedCode(){
+        $id = Request::input('id');
+        $location = Location::find($id);
+        if($location){
+            return $location->g_map;
+        }
+        return 0;
     }
 }

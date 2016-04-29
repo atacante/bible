@@ -13,13 +13,15 @@ class Location extends BaseModel {
     public $timestamps  = true;
 
     protected $table = 'locations';
-    protected $fillable = ['id','location_name','location_description','associate_verses'];
+    protected $fillable = ['id','location_name','location_description','associate_verses','g_map'];
 
     public function rules()
     {
         return  [
             'location_name' => 'required',
             'location_description' => 'required',
+//            'g_map' => 'url',
+            'g_map' => ['regex:/iframe/','regex:/embed/'],
         ];
     }
 

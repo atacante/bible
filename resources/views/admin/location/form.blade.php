@@ -56,6 +56,15 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('g_map') ? ' has-error' : '' }}">
+        {!! Form::label('g_map', 'Map Embed Code:') !!}
+        {!! Form::textarea('g_map',null,['rows' => 3,'placeholder' => 'Example: <iframe src="https://www.google.com/maps/embed?pb=PARAMS" frameborder="0" style="border:0" allowfullscreen></iframe>']) !!}
+        @if ($errors->has('g_map'))
+            <span class="help-block">
+                {{ $errors->first('g_map') }}
+            </span>
+        @endif
+    </div>
 </div>
 <!-- /.box-body -->
 

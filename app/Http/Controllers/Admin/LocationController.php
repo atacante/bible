@@ -103,7 +103,7 @@ class LocationController extends Controller
         }
         $model = Location::query()->with('images')->find($id);
         $validator = JsValidatorFacade::make($model->rules());
-        if (Request::isMethod('put')) {
+        if (Request::isMethod('put')){
             $this->validate($request, $model->rules());
             $data = Input::all();
             $data['associate_verses'] = (boolean)$data['associate_verses'];

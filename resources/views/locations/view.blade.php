@@ -57,8 +57,17 @@
                                     </a>
                                 @endif
                         </div>
+                    @else
+                        <div class="no-image img-thumbnail">
+                            <div class="no-image-text text-center">No image</div>
+                        </div>
                     @endif
                 </div>
+                @if($model->g_map)
+                    <div class="pull-right g-map-embed">
+                        {!! $model->g_map !!}
+                    </div>
+                @endif
                 <div>
                     {!! $model->location_description !!}
                 </div>

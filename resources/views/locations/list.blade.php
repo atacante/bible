@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12" style="line-height: 30px;">
+        <div class="col-md-12 locations-list j-locations-list" style="line-height: 30px;">
             @if(count($content['locations']))
                 @foreach($content['locations'] as $location)
                     <div class="clearfix location-item">
@@ -72,6 +72,15 @@
                                                 <span class="sr-only">Next</span>
                                             </a>
                                         @endif
+                                </div>
+                            @else
+                                <div class="no-image img-thumbnail">
+                                    <div class="no-image-text text-center">No image</div>
+                                </div>
+                            @endif
+                            @if($location->g_map)
+                                <div class="text-center location-map-btn">
+                                    {!! Html::link('#', 'View Map', ['class' => 'btn btn-warning j-view-embed-map','style' => 'padding: 0 5px;','data-locationid' => $location->id], true) !!}
                                 </div>
                             @endif
                         </div>
