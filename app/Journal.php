@@ -4,22 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Note extends BaseModel
+class Journal extends BaseModel
 {
     public $timestamps  = true;
 
-    protected $table = 'notes';
-    protected $fillable = ['id','user_id','verse_id','lexicon_id','highlighted_text','note_text','bible_version'];
+    protected $table = 'journal';
+    protected $fillable = ['id','user_id','bible_version','verse_id','lexicon_id','highlighted_text','journal_text'];
 
     public function rules()
     {
         return  [
-            'note_text' => 'required',
+            'journal_text' => 'required',
         ];
     }
 
     public static $columns = [
-        "Note Text"=>"note_text",
+        "Journal Text"=>"journal_text",
         "Verse"=>"verse_id",
         "Created"=>"created_at"
     ];

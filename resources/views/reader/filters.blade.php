@@ -2,7 +2,7 @@
 ?>
 <div class="j-verses-filters">
 {!! Form::open(['method' => 'get','url' => '/reader/'.(isset($filterAction)?$filterAction:'read')]) !!}
-{!! Form::select('version', array_merge(['all' => 'All Versions'],$filters['versions']), Request::input('version','all'),['class' => 'pull-left', 'style' => 'width: 245px; margin-right:10px;']) !!}
+{!! Form::select('version', array_merge((Request::segment(2) == 'verse'?[]:['all' => 'All Versions']),$filters['versions']), Request::input('version','all'),['class' => 'pull-left', 'style' => 'width: 245px; margin-right:10px;']) !!}
 {!! Form::select('book', $filters['books'], Request::input('book'),['class' => 'pull-left', 'style' => 'width: 170px; margin-right:10px;']) !!}
 {!! Form::select('chapter',$filters['chapters'], Request::input('chapter'),['class' => 'pull-left', 'style' => 'width: 170px; margin-right:10px;']) !!}
 @if(Request::segment(2) == 'verse')

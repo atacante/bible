@@ -194,6 +194,9 @@ class ReaderController extends Controller
         Session::flash('backUrl', Request::fullUrl());
 
         $version_code = Request::input('version', Config::get('app.defaultBibleVersion'));
+        if($version_code == 'all'){
+            $version_code = Config::get('app.defaultBibleVersion');
+        }
         $book = Request::input('book', Config::get('app.defaultBookNumber'));
         $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
         $verse = Request::input('verse', false);

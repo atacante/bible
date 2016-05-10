@@ -115,6 +115,7 @@ Route::group([
         'is' => 'user'
 ], function () {
     Route::controller('notes', 'NotesController');
+    Route::controller('journal', 'JournalController');
 });
 
 
@@ -141,3 +142,4 @@ View::composer('admin.location.filters', 'App\Http\Composers\BibleFiltersCompose
 View::composer('admin.peoples.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('peoples.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('notes.filters', 'App\Http\Composers\BibleFiltersComposer');
+View::composer('journal.filters', 'App\Http\Composers\BibleFiltersComposer');

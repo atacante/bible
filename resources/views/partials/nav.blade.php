@@ -58,6 +58,7 @@
                         <ul class="dropdown-menu" role="menu">
                             @role('user')
                             <li><a href="{{ url('notes/list') }}"><i class="fa fa-btn fa-sticky-note"></i>My Notes</a></li>
+                            <li><a href="{{ url('journal/list') }}"><i class="fa fa-btn fa-book"></i>My Journal</a></li>
                             <li><a href="{{ url('user/profile') }}"><i class="fa fa-btn fa-user"></i>My Profile</a></li>
                             @endrole
                             <li><a href="{{ url('auth/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
