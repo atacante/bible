@@ -15,6 +15,8 @@ class CreateJournalTable extends Migration
         Schema::create('journal', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('note_id')->nullable();
+            $table->integer('prayer_id')->nullable();
             $table->string('bible_version')->nullable();
             $table->integer('verse_id')->nullable();
             $table->integer('lexicon_id')->nullable();

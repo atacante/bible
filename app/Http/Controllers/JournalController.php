@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\BaseModel;
 use App\Http\Requests;
 use App\Journal;
+use App\Note;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
@@ -85,6 +86,7 @@ class JournalController extends Controller
         $model->bible_version = Input::get('version',false);
         $model->verse_id = Input::get('verse_id',false);
         $model->journal_text = Input::get('text',false);
+
         if($model->journal_text){
             $model->journal_text = "<i>".$model->journal_text."</i><p></p>";
         }
@@ -104,12 +106,17 @@ class JournalController extends Controller
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
             if ($model = $model->create($data)) {
+                if($model->note_text = Input::get('note_text',false)){
+                    $model->note_id = $this->saveNote($model);
+                    $model->save();
+                }
                 Notification::success('Journal record has been successfully created');
             }
             return ($url = Session::get('backUrl'))
                 ? Redirect::to($url)
                 : Redirect::to('/journal/list/');
         }
+
         return view('journal.create',
             [
                 'model' => $model,
@@ -122,12 +129,17 @@ class JournalController extends Controller
             Session::keep('backUrl');
         }
         $model = Journal::query()->where('user_id',Auth::user()->id)->find($id);
+        $model->note_text = Input::get('note_text',false);
         if(!$model){
             abort(404);
         }
         if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             if ($model->update(Input::all())) {
+                if($model->note_text){
+                    $model->note_id = $this->saveNote($model);
+                    $model->save();
+                }
                 Notification::success('Journal record has been successfully updated');
             }
             return ($url = Session::get('backUrl'))
@@ -155,5 +167,22 @@ class JournalController extends Controller
         return ($url = Session::get('backUrl'))
             ? Redirect::to($url)
             : Redirect::to('/journal/list/');
+    }
+
+    private function saveNote($model)
+    {
+        $noteModel = new Note();
+        if($model->note){
+            $noteModel = $model->note;
+        }
+        $noteModel->user_id = $model->user_id;
+        $noteModel->verse_id = $model->verse_id;
+        $noteModel->lexicon_id = $model->lexicon_id;
+        $noteModel->journal_id = $model->id;
+        $noteModel->bible_version = $model->bible_version;
+        $noteModel->note_text = $model->note_text;
+        if($noteModel->save()){
+            return $noteModel->id;
+        }
     }
 }

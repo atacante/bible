@@ -17,6 +17,50 @@
             </span>
         @endif
     </div>
+        <div class="form-group {{ $errors->has('journal_text') ? ' has-error' : '' }}">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" class="collapsed" data-toggle="collapse" data-parent="#none"
+                               href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                {!! ($model->exists && $model->journal)?'Related Journal Entry':'Add a Journal Entry' !!}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse {!! (($model->exists && $model->journal) || (old() && old()['journal_text']))?'in':'' !!}" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            {!! Form::textarea('journal_text',($model->exists && $model->journal)?$model->journal->journal_text:null,['id' => 'journal-text']) !!}
+                            @if ($errors->has('journal_text'))
+                                <span class="help-block">
+                                {{ $errors->first('journal_text') }}
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                {{--<div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#none"
+                               href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Add a Prayer
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            {!! Form::textarea('journal_text',null,['id' => 'journal-text']) !!}
+                            @if ($errors->has('journal_text'))
+                                <span class="help-block">
+                                    {{ $errors->first('journal_text') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                </div>--}}
+            </div>
+        </div>
 </div>
 <!-- /.box-body -->
 

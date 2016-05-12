@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\BaseModel;
 use App\Helpers\ViewHelper;
+use App\Journal;
 use App\Note;
 //use Illuminate\Http\Request;
 use App\VersionsListEn;
@@ -89,6 +90,7 @@ class NotesController extends Controller
         $model->bible_version = Input::get('version',false);
         $model->verse_id = Input::get('verse_id',false);
         $model->note_text = Input::get('text',false);
+
         if($model->note_text){
             $model->note_text = "<i>".$model->note_text."</i><p></p>";
         }
@@ -108,6 +110,10 @@ class NotesController extends Controller
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
             if ($model = $model->create($data)) {
+                if($model->journal_text = Input::get('journal_text',false)){
+                    $model->journal_id = $this->saveJournal($model);
+                    $model->save();
+                }
                 Notification::success('Note has been successfully created');
             }
             return ($url = Session::get('backUrl'))
@@ -126,12 +132,17 @@ class NotesController extends Controller
             Session::keep('backUrl');
         }
         $model = Note::query()->where('user_id',Auth::user()->id)->find($id);
+        $model->journal_text = Input::get('journal_text',false);
         if(!$model){
             abort(404);
         }
         if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             if ($model->update(Input::all())) {
+                if($model->journal_text){
+                    $model->journal_id = $this->saveJournal($model);
+                    $model->save();
+                }
                 Notification::success('Note has been successfully updated');
             }
             return ($url = Session::get('backUrl'))
@@ -159,5 +170,22 @@ class NotesController extends Controller
         return ($url = Session::get('backUrl'))
             ? Redirect::to($url)
             : Redirect::to('/notes/list/');
+    }
+
+    private function saveJournal($model)
+    {
+        $journalModel = new Journal();
+        if($model->journal){
+            $journalModel = $model->journal;
+        }
+        $journalModel->user_id = $model->user_id;
+        $journalModel->verse_id = $model->verse_id;
+        $journalModel->lexicon_id = $model->lexicon_id;
+        $journalModel->note_id = $model->id;
+        $journalModel->bible_version = $model->bible_version;
+        $journalModel->journal_text = $model->journal_text;
+        if($journalModel->save()){
+            return $journalModel->id;
+        }
     }
 }

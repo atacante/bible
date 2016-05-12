@@ -61,8 +61,8 @@
 {!!Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js')!!}
 {!!Html::script('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')!!}
 <script>
-    if($("#note-text").length > 0){
-        $('#note-text').ckeditor({
+    if($("#note-text,#journal-text").length > 0){
+        $('#note-text,#journal-text').ckeditor({
             customConfig: '/js/ckeditor/config.js',
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
             filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
