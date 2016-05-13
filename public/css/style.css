@@ -239,3 +239,19 @@ a.view-details:hover{
 .main-container{
     min-height: 400px;
 }
+
+.my-journal-list .box-header,.my-notes-list .box-header{
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.my-journal-list .box-body,.my-notes-list .box-body{
+    padding: 10px;
+}
+
+.input-daterange input:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.input-daterange input:last-child {
+    border-radius: 0 4px 4px 0;
+}

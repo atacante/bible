@@ -31,6 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <![endif]-->
     {!!Html::style('js/dropzone/dist/min/basic.min.css')!!}
     {!!Html::style('js/dropzone/dist/min/dropzone.min.css')!!}
+    {!!Html::style('js/bootstrap-datepicker/css/bootstrap-datepicker3.css')!!}
     {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css')!!}
     {!!Html::style('css/admin-style.css')!!}
 </head>
@@ -106,6 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 {!!Html::script('js/functions.js')!!}
 
 {!!Html::script('js/dropzone/dist/min/dropzone.min.js')!!}
+{!!Html::script('js/bootstrap-datepicker/js/bootstrap-datepicker.min.js')!!}
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the

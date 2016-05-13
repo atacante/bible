@@ -26,18 +26,36 @@ class NotesController extends Controller
     protected  $order;
 
     private $searchFilter;
+    private $dateFrom;
+    private $dateTo;
+    private $version;
     private $bookFilter;
     private $chapterFilter;
     private $verseFilter;
 
     private function prepareFilters($noteModel){
         $this->searchFilter = Request::input('search', false);
+        $this->dateFrom = Request::input('date_from', false);
+        $this->dateTo = Request::input('date_to', false);
+        $this->version = Request::input('version', false);
         $this->bookFilter = Request::input('book', false);
         $this->chapterFilter = Request::input('chapter', false);
         $this->verseFilter = Request::input('verse', false);
 
         if(!empty($this->searchFilter)){
             $noteModel->where('note_text', 'ilike', '%'.$this->searchFilter.'%');
+        }
+
+        if(!empty($this->dateFrom)){
+            $noteModel->whereRaw('created_at >= to_timestamp('.strtotime($this->dateFrom).")");
+        }
+
+        if(!empty($this->dateTo)){
+            $noteModel->whereRaw('created_at <= to_timestamp('.strtotime($this->dateTo." 23:59:59").")");
+        }
+
+        if(!empty($this->version) && $this->version != 'all'){
+            $noteModel->where('bible_version', $this->version);
         }
 
         if(!empty($this->bookFilter)){

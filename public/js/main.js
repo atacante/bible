@@ -2,6 +2,33 @@ $(document).ready(function(){
     $("#j-select-locations").select2();
     $("#j-select-peoples").select2();
 
+    $('.datepicker').datepicker(
+        {
+            autoclose:true
+        }
+    ).on('changeDate', function(e) {
+        var name = $(this).attr('name');
+        var dateFromField = $('input[name="date_from"]');
+        var dateToField = $('input[name="date_to"]');
+        var timeFrom = (new Date(dateFromField.val()).getTime());
+        var timeTo = (new Date(dateToField.val()).getTime());
+        if(dateFromField.val() && dateToField.val() && timeFrom > timeTo){
+            $('#popup-sm').find('.modal-header .modal-title').text('Warning');
+            $('#popup-sm').find('.modal-body').html("End date must be larger than start date");
+            $('#popup-sm').find('.modal-footer').html('<a class="btn btn-danger btn-ok" data-dismiss="modal">Ok</a>');
+            $('#popup-sm').modal({show:true});
+            $(this).val('');
+        }
+        switch (name){
+            case 'date_from':
+                console.log(e.timeStamp);
+                break;
+            case 'date_to':
+                console.log(e.timeStamp);
+                break;
+        }
+    });
+
     $(".j-with-images img").each(function (i) {
         $(this).bind('click', function () {
             site.fancyBoxMe(i);

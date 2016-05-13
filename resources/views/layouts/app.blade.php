@@ -18,6 +18,7 @@
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css')!!}
         {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')!!}
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css')!!}
+        {!!Html::style('js/bootstrap-datepicker/css/bootstrap-datepicker3.css')!!}
 {{--        {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css')!!}--}}
         {!!Html::style('css/style.css')!!}
 
@@ -60,6 +61,7 @@
 {!! Captcha::script() !!}
 {!!Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js')!!}
 {!!Html::script('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')!!}
+{!!Html::script('js/bootstrap-datepicker/js/bootstrap-datepicker.min.js')!!}
 <script>
     if($("#note-text,#journal-text").length > 0){
         $('#note-text,#journal-text').ckeditor({

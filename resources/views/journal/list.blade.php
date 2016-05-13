@@ -8,25 +8,34 @@
     {{--    @include('reader.filters')--}}
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-center">My Journal</h3>
+
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12">
-            <div class="box box-primary">
-                <div class="box-header" style="height: 44px;">
+
+    </div>
+    <div class="row my-journal-list j-my-journal-list">
+        <div class="col-md-3">
+            <div class="box">
+                <div class="box-header with-border">
                     <h3 class="box-title">Filters</h3>
-                    <div class="box-tools">
-                        <div class="pull-right">
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
                             @include('journal.filters')
                         </div>
                     </div>
                 </div>
+                <div class="box-footer">
+                    <div class="row">
+
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row j-my-journal-list">
-        <div class="col-md-12 {!! $content['journal']->count()?'':'text-center' !!}" style="line-height: 30px;">
+        <div class="col-md-9 {!! $content['journal']->count()?'':'text-center' !!}" style="line-height: 30px;">
+            <h3 class="text-center">My Journal</h3>
             @if(!$content['journal']->count())
                 <div><p>
                         @if(Request::has('search') || Request::has('book') || Request::has('chapter') || Request::has('verse'))
