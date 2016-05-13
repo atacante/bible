@@ -193,7 +193,7 @@ a.view-details:hover{
     color: red;
 }
 
-.note-text{
+.note-text,.journal-text{
     cursor: pointer;
 }
 

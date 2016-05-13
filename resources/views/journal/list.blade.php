@@ -77,7 +77,20 @@
                                 <div class="journal-text j-journal-text"
                                      data-journalid="{!! $entry->id !!}">{!! str_limit(strip_tags($entry->journal_text,'<p></p>'), $limit = 300, $end = '...') !!}</div>
                             </td>
-                            <td>{!! ViewHelper::getVerseNum($entry->verse) !!}</td>
+                            <td>
+                                @if($entry->verse)
+                                    {!! Html::link('/reader/verse?'.http_build_query(
+                                        [
+                                            'version' => $entry->bible_version,
+                                            'book' => $entry->verse->book_id,
+                                            'chapter' => $entry->verse->chapter_num,
+                                            'verse' => $entry->verse->verse_num
+                                        ]
+                                        ),ViewHelper::getVerseNum($entry->verse), ['class'=>'label label-success','style' => 'margin-bottom:10px;']) !!}
+                                @else
+                                    -
+                                @endif
+                            </td>
                             <td>{!! $entry->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">
                                 {{--<a title="Print journal entry" href="#" data-journalid="{!! $entry->id !!}" class="j-print-journal"><i

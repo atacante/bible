@@ -77,7 +77,20 @@
                                 <div class="note-text j-note-text"
                                      data-noteid="{!! $note->id !!}">{!! str_limit(strip_tags($note->note_text,'<p></p>'), $limit = 300, $end = '...') !!}</div>
                             </td>
-                            <td>{!! ViewHelper::getVerseNum($note->verse) !!}</td>
+                            <td>
+                                @if($note->verse)
+                                {!! Html::link('/reader/verse?'.http_build_query(
+                                    [
+                                        'version' => $note->bible_version,
+                                        'book' => $note->verse->book_id,
+                                        'chapter' => $note->verse->chapter_num,
+                                        'verse' => $note->verse->verse_num
+                                    ]
+                                    ),ViewHelper::getVerseNum($note->verse), ['class'=>'label label-success','style' => 'margin-bottom:10px;']) !!}
+                                @else
+                                    -
+                                @endif
+                            </td>
                             <td>{!! $note->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">
                                 <a title="Print note" href="#" data-noteid="{!! $note->id !!}" class="j-print-note"><i

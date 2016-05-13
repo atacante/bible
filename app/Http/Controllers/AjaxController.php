@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\BaseModel;
 use App\BooksListEn;
 use App\Helpers\ViewHelper;
+use App\Journal;
 use App\LexiconKjv;
 use App\Location;
 use App\Note;
@@ -90,6 +91,12 @@ class AjaxController extends Controller
         $ids = (array)Request::input('id');
         $notes = Note::query()->where('user_id',Auth::user()->id)->whereIn('id',$ids)->orderBy('created_at','desc')->get();
         return view('notes.print', ['model' => $notes]);
+    }
+
+    public function getViewJournal(){
+        $id = Request::input('id');
+        $note = Journal::query()->where('user_id',Auth::user()->id)->find($id);
+        return view('journal.view', ['model' => $note]);
     }
 
     public function getLocationMapEmbedCode(){
