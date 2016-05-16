@@ -407,4 +407,15 @@ $(document).ready(function(){
             $('.j-create-journal').remove();
         }
     });
+
+    if($('.j-reader-block.j-bible-text').length > 0){
+        var hash = window.location.hash;
+        var param = hash.replace(/[0-9]/g, '');
+        var value = hash.replace( /^\D+/g, '');
+        if(param == '#verse'){
+            var target = $(".j-verse-text[data-verseid="+value+"]");
+            $('body').scrollTo(target,500,{offset:-100});
+            target.effect( "highlight", {color:"#669966"}, 5000);
+        }
+    }
 });

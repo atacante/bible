@@ -102,7 +102,7 @@
                                             'version' => $entry->bible_version,
                                             'book' => $entry->verse->book_id,
                                             'chapter' => $entry->verse->chapter_num,
-                                        ]),[],false), 'Go to Reader', ['class' => 'label label-primary','style' => ''], true)}}
+                                        ])."#verse".$entry->verse->id,[],false), 'Go to Reader', ['class' => 'label label-primary','style' => ''], true)}}
                                 @else
                                     -
                                 @endif

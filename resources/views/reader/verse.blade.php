@@ -13,7 +13,7 @@
             'version' => $content['main_verse']['version_code'],
             'book' => $content['main_verse']['verse']->book_id,
             'chapter' => $content['main_verse']['verse']->chapter_num
-        ]),[],false) !!}" class="btn btn-default btn-success btn-to-reader" style="">Go to <br /> Reader</a>
+        ])."#verse".$content['main_verse']['verse']->id,[],false) !!}" class="btn btn-default btn-success btn-to-reader" style="">Go to <br /> Reader</a>
     {{--{{ Html::link(url('reader/read?'.http_build_query(
         [
             'version' => $content['main_verse']['version_code'],

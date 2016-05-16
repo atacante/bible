@@ -101,7 +101,7 @@
                                             'version' => $note->bible_version,
                                             'book' => $note->verse->book_id,
                                             'chapter' => $note->verse->chapter_num,
-                                        ]),[],false), 'Go to Reader', ['class' => 'label label-primary','style' => ''], true)}}
+                                        ])."#verse".$note->verse->id,[],false), 'Go to Reader', ['class' => 'label label-primary','style' => ''], true)}}
                                 @else
                                     -
                                 @endif
