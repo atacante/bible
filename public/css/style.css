@@ -262,6 +262,8 @@ a.view-details:hover{
     top: 125px;
     z-index: 999;
     opacity: 0.3;
+    padding: 6px 8px;
+    font-size: 13px;
 }
 
 .btn-to-reader:hover{
