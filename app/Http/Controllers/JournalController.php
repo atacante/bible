@@ -43,7 +43,7 @@ class JournalController extends Controller
         }
 
         if(!empty($this->dateFrom)){
-            $journalModel->whereRaw('created_at >= to_timestamp('.strtotime($this->dateFrom).")");
+            $journalModel->whereRaw('created_at >= to_timestamp('.strtotime($this->dateFrom." 00:00:00").")");
         }
 
         if(!empty($this->dateTo)){
