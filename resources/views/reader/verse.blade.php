@@ -8,6 +8,18 @@
     <div class="row col-md-12">
         @include('reader.filters')
     </div>
+    <a href="{!! url('reader/read?'.http_build_query(
+        [
+            'version' => $content['main_verse']['version_code'],
+            'book' => $content['main_verse']['verse']->book_id,
+            'chapter' => $content['main_verse']['verse']->chapter_num
+        ]),[],false) !!}" class="btn btn-default btn-success btn-to-reader" style="">Go to <br /> Reader</a>
+    {{--{{ Html::link(url('reader/read?'.http_build_query(
+        [
+            'version' => $content['main_verse']['version_code'],
+            'book' => $content['main_verse']['verse']->book_id,
+            'chapter' => $content['main_verse']['verse']->chapter_num
+        ]),[],false), 'Go to Reader', ['class' => 'btn btn-default btn-success btn-to-reader','style' => ''], true)}}--}}
     <div class="row col-md-12 text-center" style="line-height: 30px;">
         <span style="">
             <h3 class="text-center" style="margin-bottom: 20px;">

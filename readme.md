@@ -14,7 +14,8 @@ git config core.filemode false
 
 ~~~
 curl -sS https://getcomposer.org/installer | php
-php composer.phar install
+php composer.phar install --no-scripts
+php composer.phar update
 ~~~
 
 

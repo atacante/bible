@@ -95,6 +95,13 @@
                                         'verse' => $note->verse->verse_num
                                     ]
                                     ),ViewHelper::getVerseNum($note->verse), ['class'=>'label label-success','style' => 'margin-bottom:10px;']) !!}
+                                    <br />
+                                    {{ Html::link(url('reader/read?'.http_build_query(
+                                        [
+                                            'version' => $note->bible_version,
+                                            'book' => $note->verse->book_id,
+                                            'chapter' => $note->verse->chapter_num,
+                                        ]),[],false), 'Go to Reader', ['class' => 'label label-primary','style' => ''], true)}}
                                 @else
                                     -
                                 @endif

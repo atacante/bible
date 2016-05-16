@@ -255,3 +255,15 @@ a.view-details:hover{
 .input-daterange input:last-child {
     border-radius: 0 4px 4px 0;
 }
+
+.btn-to-reader{
+    position: fixed;
+    left: 5px;
+    top: 125px;
+    z-index: 999;
+    opacity: 0.3;
+}
+
+.btn-to-reader:hover{
+    opacity:1;
+}

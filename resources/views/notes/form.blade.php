@@ -66,6 +66,6 @@
 
 <div class="box-footer">
     {!! Form::button('Save', ['type'=>'submit','class'=>'btn btn-primary']) !!}
-    {!! Html::link((($url = Session::get('backUrl'))?$url:'/notes/list/'),'Cancel', ['class'=>'btn btn-default']) !!}
+    {!! Html::link((($url = Session::get('backUrl'))?$url:'/notes/list/'),'Cancel', ['class'=>'btn btn-danger']) !!}
 </div>
 {!! Form::close() !!}
