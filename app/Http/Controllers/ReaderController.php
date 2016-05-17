@@ -90,7 +90,7 @@ class ReaderController extends Controller
 
         $content['pagination'] = $this->pagination($chapter, $book);
 
-        $compare['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsList(), 'version_code', 'version_name');
+        $compare['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsToCompareList(), 'version_code', 'version_name');
         $compareResetParams = Request::input();
         unset($compareResetParams['compare']);
         unset($compareResetParams['diff']);

@@ -22,7 +22,7 @@ class BibleController extends Controller
 {
     public function getVersions()
     {
-        $content['versions'] = VersionsListEn::versionsList();
+        $content['versions'] = VersionsListEn::allVersionsList();
         return view('admin.bible.versions', ['page_title' => "Bible Versions",'content' => $content]);
     }
 

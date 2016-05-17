@@ -418,4 +418,19 @@ $(document).ready(function(){
             target.effect( "highlight", {color:"#669966"}, 5000);
         }
     }
+
+    $('.j-version-status').change(function(){
+        var data = {};
+        data.version_code = $(this).data('version');
+        data[$(this).attr('name')] = $(this).is(':checked');
+
+        $.ajax({
+            method: "GET",
+            url: "/ajax/update-version",
+            data:data,
+            success:function(data){
+
+            }
+        });
+    });
 });

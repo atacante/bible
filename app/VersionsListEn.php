@@ -23,76 +23,98 @@ class VersionsListEn extends BaseModel
             [
                 'version_name' => 'American Standard Version',
                 'version_code' => 'american_standard',
-                'enabled'      => false
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
             ],
             [
                 'version_name' => 'New American Standard Version',
                 'version_code' => 'nasb',
-                'enabled'      => true
+                'enabled'      => true,
+                'enabled_to_compare'      => true,
             ],
             [
                 'version_name' => 'King James Bible',
                 'version_code' => 'king_james',
-                'enabled'      => true
+                'enabled'      => true,
+                'enabled_to_compare'      => true,
             ],
             [
                 'version_name' => 'Berean Bible',
                 'version_code' => 'berean',
-                'enabled'      => true
+                'enabled'      => true,
+                'enabled_to_compare'      => true,
             ],
             [
                 'version_name' => 'Douay-Rheims Bible',
                 'version_code' => 'douay_rheims',
-                'enabled'      => false
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
             ],
             [
                 'version_name' => 'Darby Bible Translation',
                 'version_code' => 'darby_bible_translation',
-                'enabled'      => false
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
             ],
             [
                 'version_name' => 'English Revised Version',
                 'version_code' => 'english_revised',
-                'enabled'      => false
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
             ],
             [
                 'version_name' => 'Webster Bible Translation',
                 'version_code' => 'webster_bible',
-                'enabled'      => false
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
             ],
             [
                 'version_name' => 'World English Bible',
                 'version_code' => 'world_english',
-                'enabled'      => false
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
             ],
             [
                 'version_name' => 'Young\'s Literal Translation',
                 'version_code' => 'youngs_literal',
-                'enabled'      => false
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
             ],
             [
                 'version_name' => 'American King James Version',
                 'version_code' => 'american_king_james',
-                'enabled'      => false
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
             ],
 
         ];
     }
 
+    public static function allVersionsList()
+    {
+        return VersionsListEn::query()->orderBy('id')->get()->toArray();
+    }
+
     public static function versionsList()
     {
-        $versions = [];
+        /*$versions = [];
         foreach (self::versionsListAll() as $version) {
             if($version['enabled']){
                 $versions[] = $version;
             }
         }
-        return $versions;
+        return $versions;*/
+        return VersionsListEn::query()->where('enabled',true)->get()->toArray();
+    }
+
+    public static function versionsToCompareList()
+    {
+        return VersionsListEn::query()->where('enabled_to_compare',true)->get()->toArray();
     }
 
     public static function getVersionByCode($code)
     {
-        foreach (self::versionsList() as $version) {
+        foreach (self::versionsListAll() as $version) {
             if($version['version_code'] == $code){
                 return $version['version_name'];
             }

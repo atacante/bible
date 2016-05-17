@@ -10,6 +10,7 @@ use App\LexiconKjv;
 use App\Location;
 use App\Note;
 use App\VersesAmericanStandardEn;
+use App\VersionsListEn;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Request;
@@ -106,5 +107,12 @@ class AjaxController extends Controller
             return $location->g_map;
         }
         return 0;
+    }
+
+    public function anyUpdateVersion()
+    {
+        $version = Request::input('version_code');
+        $versionModel = VersionsListEn::where('version_code', $version);
+        $versionModel->update(Request::input());
     }
 }
