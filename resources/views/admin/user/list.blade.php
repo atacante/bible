@@ -28,7 +28,10 @@
                             <th>Role</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Register Date</th>
+                            <th class="text-center">Login Status</th>
+                            <th class="text-center">Last Login</th>
+                            <th class="text-center">Premium Upgraded</th>
+                            <th class="text-center">Register Date</th>
                             <th class="text-center">Actions</th>
                         </tr>
                         @if(count($content['users']))
@@ -44,7 +47,12 @@
                                     </td>
                                     <td>{!! $user->name !!}</td>
                                     <td><a href="mailto:{!! $user->email !!}">{!! $user->email !!}</a></td>
-                                    <td>{!! date('F d, Y', strtotime($user->created_at)) !!}</td>
+                                    <td class="text-center">
+                                        <span class="label label-danger">offline</span>
+                                    </td>
+                                    <td class="text-center">{!! $user->last_login_at?$user->last_login_at->format('m/d/Y'):'-' !!}</td>
+                                    <td class="text-center">{!! $user->upgraded_at?$user->upgraded_at->format('m/d/Y'):'-' !!}</td>
+                                    <td class="text-center">{!! $user->created_at->format('m/d/Y') !!}</td>
                                     <td class="text-center" style="width: 100px;">
                                         @if(!$user->is(Config::get('app.role.admin')) && Auth::user()->id != $user->id)
                                             <a title="Login as user" href="{!! url('/admin/user/authorize',$user->id) !!}"><i
