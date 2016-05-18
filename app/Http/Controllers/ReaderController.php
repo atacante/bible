@@ -95,20 +95,22 @@ class ReaderController extends Controller
         unset($compareResetParams['compare']);
         unset($compareResetParams['diff']);
         $compare['resetParams'] = $compareResetParams;
-        if ($compareVersion = Request::input('compare', false)) {
-            $compare['version'] = VersionsListEn::getVersionByCode($compareVersion);
-            $compare['version_code'] = $compareVersion;
-            $compareVersesModel = BaseModel::getVersesModelByVersionCode($compareVersion);
-            $compare['verses'] = $compareVersesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
+        if ($compareVersions = Request::input('compare', false)) {
+            foreach ($compareVersions as $compareVersion) {
+                $compare['data'][$compareVersion]['version'] = VersionsListEn::getVersionByCode($compareVersion);
+                $compare['data'][$compareVersion]['version_code'] = $compareVersion;
+                $compareVersesModel = BaseModel::getVersesModelByVersionCode($compareVersion);
+                $compare['data'][$compareVersion]['verses'] = $compareVersesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
 
-            if(!$compare['verses']->count()){
-                return $this->flashNotification('Requested content does not provided in '.$compare['version'].' version');
-            }
-            if (Request::input('diff', false)) {
-                $diff = new \cogpowered\FineDiff\Diff(new \cogpowered\FineDiff\Granularity\Word);
-                if (count($compare['verses']) && count($content['verses'])) {
-                    foreach ($content['verses'] as $key => $verse) {
-                        $compare['verses'][$key]->verse_text = $diff->render(strip_tags($verse->verse_text), strip_tags($compare['verses'][$key]->verse_text));
+                if(!$compare['data'][$compareVersion]['verses']->count()){
+                    return $this->flashNotification('Requested content does not provided in '.$compare['version'].' version');
+                }
+                if (Request::input('diff', false)) {
+                    $diff = new \cogpowered\FineDiff\Diff(new \cogpowered\FineDiff\Granularity\Word);
+                    if (count($compare['data'][$compareVersion]['verses']) && count($content['verses'])) {
+                        foreach ($content['verses'] as $key => $verse) {
+                            $compare['data'][$compareVersion]['verses'][$key]->verse_text = $diff->render(strip_tags($verse->verse_text), strip_tags($compare['data'][$compareVersion]['verses'][$key]->verse_text));
+                        }
                     }
                 }
             }

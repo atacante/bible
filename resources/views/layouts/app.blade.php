@@ -26,7 +26,7 @@
         {!!Html::script('//code.jquery.com/ui/1.11.4/jquery-ui.js')!!}
         {!!Html::script('//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js')!!}
         {!!Html::script('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')!!}
-        {!!Html::script('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js')!!}
+        {!!Html::script('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.full.min.js')!!}
         {!!Html::script('js/dropzone/dist/min/dropzone.min.js')!!}
         <!-- Add mousewheel plugin (this is optional) -->
         {!!Html::script('js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js')!!}

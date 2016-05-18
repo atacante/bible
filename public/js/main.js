@@ -419,6 +419,11 @@ $(document).ready(function(){
         }
     }
 
+    $(".j-compare-versions").select2({
+        maximumSelectionLength: 2,
+        placeholder: "Compare with...",
+    });
+
     $('.j-version-status').change(function(){
         var data = {};
         data.version_code = $(this).data('version');
