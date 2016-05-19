@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\BaseModel;
 use App\BooksListEn;
 use App\Helpers\ViewHelper;
+use App\Journal;
 use App\LexiconKjv;
 use App\LexiconsListEn;
+use App\Note;
 use App\StrongsConcordance;
 use App\StrongsNasec;
 use App\VersesAmericanStandardEn;
@@ -115,6 +117,8 @@ class ReaderController extends Controller
                 }
             }
         }
+
+        $content['relatedItems'] = $this->getRelatedItems($version,$book,$chapter);
 
         return view('reader.main', ['compare' => $compare, 'content' => $content]);
     }
@@ -381,6 +385,24 @@ class ReaderController extends Controller
 
         return $pagination;
 
+    }
+
+    private function getRelatedItems($bibleVersion,$book,$chapter){
+        $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
+        $versesIds = $versesModel::where('book_id',$book)->where('chapter_num',$chapter)->lists('id')->toArray();
+        $journalQuery = Journal::with('verse')
+            ->selectRaw('id,verse_id,created_at,journal_text as text,\'journal\' as type')
+            ->where('user_id',Auth::user()?Auth::user()->id:null)
+            ->whereIn('verse_id',$versesIds);
+        $items = Note::with('verse')
+                    ->selectRaw('id,verse_id,created_at,note_text as text,\'note\' as type')
+                    ->where('user_id',Auth::user()?Auth::user()->id:null)
+                    ->whereIn('verse_id',$versesIds)
+                    ->union($journalQuery)
+                    ->orderBy('verse_id')
+                    ->orderBy('created_at','desc')
+                    ->get();
+        return $items;
     }
 
     private function pagination($currentChapter, $currentBook, $currentVerse = false)

@@ -106,34 +106,29 @@ $(document).ready(function(){
 
     $('.j-note-text').click(function(ev) {
         var id = $(this).data('noteid');
-        $.ajax({
-            method: "GET",
-            url: "/ajax/view-note",
-            dataType: "html",
-            data:{id:id},
-            success:function(data){
-                $('#popup').find('.modal-header .modal-title').text('Note');
-                $('#popup').find('.modal-body').html(data);
-                $('#popup').find('.modal-footer').html('<a title="Print note" href="#" data-noteid="'+id+'" class="j-print-note pull-left"><i class="fa fa-print fa-2x"style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>');
-                $('#popup').modal({show:true});
-            }
-        });
+        site.getNote(id);
+    });
+
+    $('.j-item-body').click(function(ev) {
+        var id = $(this).data('itemid');
+        var type = $(this).data('itemtype');
+        console.log(type);
+        switch (type){
+            case 'note':
+                site.getNote(id);
+                break;
+            case 'journal':
+                site.getJournal(id);
+                break;
+            case 'prayer':
+                site.getPrayer(id);
+                break;
+        }
     });
 
     $('.j-journal-text').click(function(ev) {
         var id = $(this).data('journalid');
-        $.ajax({
-            method: "GET",
-            url: "/ajax/view-journal",
-            dataType: "html",
-            data:{id:id},
-            success:function(data){
-                $('#popup').find('.modal-header .modal-title').text('Journal Entry');
-                $('#popup').find('.modal-body').html(data);
-                //$('#popup').find('.modal-footer').html('<a title="Print note" href="#" data-noteid="'+id+'" class="j-print-journal pull-left"><i class="fa fa-print fa-2x"style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>');
-                $('#popup').modal({show:true});
-            }
-        });
+        site.getJournal(id);
     });
 
     $('.navbar').on('change','select[name=readerMode]',function(){

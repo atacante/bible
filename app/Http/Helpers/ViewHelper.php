@@ -100,4 +100,20 @@ class ViewHelper
     public static function getVersionName($versionCode){
         return VersionsListEn::getVersionByCode($versionCode);
     }
+
+    public static function getRelatedItemIcon($type){
+        $icon = '';
+        switch($type){
+            case 'note':
+                $icon = 'fa-sticky-note';
+                break;
+            case 'journal':
+                $icon = 'fa-book';
+                break;
+            case 'prayer':
+                $icon = 'fa-hand-paper-o';
+                break;
+        }
+        return $icon;
+    }
 }
