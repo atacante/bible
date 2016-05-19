@@ -48,7 +48,11 @@
                                     <td>{!! $user->name !!}</td>
                                     <td><a href="mailto:{!! $user->email !!}">{!! $user->email !!}</a></td>
                                     <td class="text-center">
-                                        <span class="label label-danger">offline</span>
+                                        @if($user->isOnline())
+                                            <span class="label label-success">online</span>
+                                        @else
+                                            <span class="label label-danger">offline</span>
+                                        @endif
                                     </td>
                                     <td class="text-center">{!! $user->last_login_at?$user->last_login_at->format('m/d/Y'):'-' !!}</td>
                                     <td class="text-center">{!! $user->upgraded_at?$user->upgraded_at->format('m/d/Y'):'-' !!}</td>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
 use Kodeine\Acl\Traits\HasRole;
 
@@ -50,5 +51,18 @@ class User extends Authenticatable
         }
 
         return $rules;
+    }
+
+    public function isOnline()
+    {
+        $isOnline = Cache::has('user-is-online-' . $this->id);
+        if($isOnline){
+            $this->is_online = true;
+        }
+        else{
+            $this->is_online = false;
+        }
+        $this->save();
+        return $isOnline;
     }
 }

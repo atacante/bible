@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \Krucas\Notification\Middleware\NotificationMiddleware::class,
         \App\Http\Middleware\VerifyCsrfToken::class,
+        \App\Http\Middleware\LogLastUserActivity::class,
     ];
 
     /**
