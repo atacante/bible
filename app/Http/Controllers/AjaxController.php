@@ -9,6 +9,7 @@ use App\Journal;
 use App\LexiconKjv;
 use App\Location;
 use App\Note;
+use App\Prayer;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use Illuminate\Support\Facades\Auth;
@@ -96,8 +97,14 @@ class AjaxController extends Controller
 
     public function getViewJournal(){
         $id = Request::input('id');
-        $note = Journal::query()->where('user_id',Auth::user()->id)->find($id);
-        return view('journal.view', ['model' => $note]);
+        $journal = Journal::query()->where('user_id',Auth::user()->id)->find($id);
+        return view('journal.view', ['model' => $journal]);
+    }
+
+    public function getViewPrayer(){
+        $id = Request::input('id');
+        $prayer = Prayer::query()->where('user_id',Auth::user()->id)->find($id);
+        return view('prayers.view', ['model' => $prayer]);
     }
 
     public function getLocationMapEmbedCode(){

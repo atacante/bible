@@ -9,6 +9,7 @@ use App\Journal;
 use App\LexiconKjv;
 use App\LexiconsListEn;
 use App\Note;
+use App\Prayer;
 use App\StrongsConcordance;
 use App\StrongsNasec;
 use App\VersesAmericanStandardEn;
@@ -393,12 +394,20 @@ class ReaderController extends Controller
         $journalQuery = Journal::with('verse')
             ->selectRaw('id,verse_id,created_at,journal_text as text,\'journal\' as type')
             ->where('user_id',Auth::user()?Auth::user()->id:null)
+            ->where('bible_version',$bibleVersion)
+            ->whereIn('verse_id',$versesIds);
+        $prayersQuery = Prayer::with('verse')
+            ->selectRaw('id,verse_id,created_at,prayer_text as text,\'prayer\' as type')
+            ->where('user_id',Auth::user()?Auth::user()->id:null)
+            ->where('bible_version',$bibleVersion)
             ->whereIn('verse_id',$versesIds);
         $items = Note::with('verse')
                     ->selectRaw('id,verse_id,created_at,note_text as text,\'note\' as type')
                     ->where('user_id',Auth::user()?Auth::user()->id:null)
+                    ->where('bible_version',$bibleVersion)
                     ->whereIn('verse_id',$versesIds)
                     ->union($journalQuery)
+                    ->union($prayersQuery)
                     ->orderBy('verse_id')
                     ->orderBy('created_at','desc')
                     ->get();
