@@ -35,6 +35,6 @@ class Note extends BaseModel
     }
 
     public function prayer() {
-//        return $this->belongsTo(\App\Prayer::class, 'prayer_id', 'id');
+        return $this->belongsTo(\App\Prayer::class, 'prayer_id', 'id');
     }
 }

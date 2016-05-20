@@ -350,6 +350,9 @@ $(document).ready(function(){
         if(!$(eventObject.target).hasClass('j-create-journal') && !$(eventObject.target).parent().hasClass('j-create-journal')){
             $('.j-create-journal').remove();
         }
+        if(!$(eventObject.target).hasClass('j-create-prayer') && !$(eventObject.target).parent().hasClass('j-create-prayer')){
+            $('.j-create-prayer').remove();
+        }
     });
     $(".j-bible-text").mouseup(function(eventObject) {
         var selectedObject = site.getSelected();
@@ -385,8 +388,9 @@ $(document).ready(function(){
                 verseId = Math.min((startVerseId || 0), (endVerseId || 0));
             }
 
-            var menu = '<a href="/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-note" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>';
-            menu += '<a href="/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-journal" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-book"></i></a>';
+            var menu = '<a title="Create note" href="/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-note" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>';
+            menu += '<a title="Create Journal Entry" href="/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-journal" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-book"></i></a>';
+            menu += '<a title="Create prayer" href="/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-prayer" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 8px;"><i class="fa fa-btn fa-hand-paper-o"></i></a>';
             $('body').append(menu);
             $('.j-create-note').css({
                 top: ($(endElement).offset().top-26) + "px",
@@ -395,6 +399,10 @@ $(document).ready(function(){
             $('.j-create-journal').css({
                 top: ($(endElement).offset().top-26) + "px",
                 left: (eventObject.pageX+20) + "px"
+            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
+            $('.j-create-prayer').css({
+                top: ($(endElement).offset().top-26) + "px",
+                left: (eventObject.pageX+55) + "px"
             }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
         }
         else {

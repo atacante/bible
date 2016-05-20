@@ -240,11 +240,11 @@ a.view-details:hover{
     min-height: 400px;
 }
 
-.my-journal-list .box-header,.my-notes-list .box-header{
+.my-journal-list .box-header,.my-notes-list .box-header, .my-prayers-list .box-header{
     border-bottom: 1px solid #f4f4f4;
 }
 
-.my-journal-list .box-body,.my-notes-list .box-body{
+.my-journal-list .box-body,.my-notes-list .box-body, .my-prayers-list .box-body{
     padding: 10px;
 }
 

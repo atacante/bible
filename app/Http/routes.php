@@ -116,6 +116,7 @@ Route::group([
 ], function () {
     Route::controller('notes', 'NotesController');
     Route::controller('journal', 'JournalController');
+    Route::controller('prayers', 'PrayersController');
 });
 
 
@@ -143,3 +144,4 @@ View::composer('admin.peoples.filters', 'App\Http\Composers\BibleFiltersComposer
 View::composer('peoples.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('notes.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('journal.filters', 'App\Http\Composers\BibleFiltersComposer');
+View::composer('prayers.filters', 'App\Http\Composers\BibleFiltersComposer');

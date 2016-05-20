@@ -8,6 +8,7 @@ use App\Helpers\ViewHelper;
 use App\Journal;
 use App\Note;
 //use Illuminate\Http\Request;
+use App\Prayer;
 use App\VersionsListEn;
 use FineDiffTests\Usage\Base;
 use Illuminate\Support\Facades\Auth;
@@ -132,6 +133,10 @@ class NotesController extends Controller
                     $model->journal_id = $this->saveJournal($model);
                     $model->save();
                 }
+                if($model->prayer_text = Input::get('prayer_text',false)){
+                    $model->prayer_id = $this->savePrayer($model);
+                    $model->save();
+                }
                 Notification::success('Note has been successfully created');
             }
             return ($url = Session::get('backUrl'))
@@ -151,6 +156,7 @@ class NotesController extends Controller
         }
         $model = Note::query()->where('user_id',Auth::user()->id)->find($id);
         $model->journal_text = Input::get('journal_text',false);
+        $model->prayer_text = Input::get('prayer_text',false);
         if(!$model){
             abort(404);
         }
@@ -159,6 +165,10 @@ class NotesController extends Controller
             if ($model->update(Input::all())) {
                 if($model->journal_text){
                     $model->journal_id = $this->saveJournal($model);
+                    $model->save();
+                }
+                if($model->prayer_text){
+                    $model->prayer_id = $this->savePrayer($model);
                     $model->save();
                 }
                 Notification::success('Note has been successfully updated');
@@ -204,6 +214,23 @@ class NotesController extends Controller
         $journalModel->journal_text = $model->journal_text;
         if($journalModel->save()){
             return $journalModel->id;
+        }
+    }
+
+    private function savePrayer($model)
+    {
+        $prayerModel = new Prayer();
+        if($model->prayer){
+            $prayerModel = $model->prayer;
+        }
+        $prayerModel->user_id = $model->user_id;
+        $prayerModel->verse_id = $model->verse_id;
+        $prayerModel->lexicon_id = $model->lexicon_id;
+        $prayerModel->note_id = $model->id;
+        $prayerModel->bible_version = $model->bible_version;
+        $prayerModel->prayer_text = $model->prayer_text;
+        if($prayerModel->save()){
+            return $prayerModel->id;
         }
     }
 }
