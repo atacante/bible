@@ -102,11 +102,11 @@ class PrayersController extends Controller
         $model = new Prayer();
         $model->bible_version = Input::get('version',false);
         $model->verse_id = Input::get('verse_id',false);
-        $model->prayer_text = Input::get('text',false);
 
-        if($model->prayer_text){
-            $model->prayer_text = "<i>".$model->prayer_text."</i><p></p>";
+        if($prayerText = Input::get('text',false)){
+            $model->highlighted_text = $prayerText;
         }
+
         $model->verse = false;
         if($model->verse_id){
             if($model->bible_version){

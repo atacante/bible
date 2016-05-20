@@ -392,25 +392,25 @@ class ReaderController extends Controller
         $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
         $versesIds = $versesModel::where('book_id',$book)->where('chapter_num',$chapter)->lists('id')->toArray();
         $journalQuery = Journal::with('verse')
-            ->selectRaw('id,verse_id,created_at,journal_text as text,\'journal\' as type')
+            ->selectRaw('id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type')
             ->where('user_id',Auth::user()?Auth::user()->id:null)
             ->where('bible_version',$bibleVersion)
             ->whereIn('verse_id',$versesIds);
         $prayersQuery = Prayer::with('verse')
-            ->selectRaw('id,verse_id,created_at,prayer_text as text,\'prayer\' as type')
+            ->selectRaw('id,verse_id,created_at,highlighted_text,prayer_text as text,\'prayer\' as type')
             ->where('user_id',Auth::user()?Auth::user()->id:null)
             ->where('bible_version',$bibleVersion)
             ->whereIn('verse_id',$versesIds);
         $items = Note::with('verse')
-                    ->selectRaw('id,verse_id,created_at,note_text as text,\'note\' as type')
-                    ->where('user_id',Auth::user()?Auth::user()->id:null)
-                    ->where('bible_version',$bibleVersion)
-                    ->whereIn('verse_id',$versesIds)
-                    ->union($journalQuery)
-                    ->union($prayersQuery)
-                    ->orderBy('verse_id')
-                    ->orderBy('created_at','desc')
-                    ->get();
+            ->selectRaw('id,verse_id,created_at,highlighted_text,note_text as text,\'note\' as type')
+            ->where('user_id',Auth::user()?Auth::user()->id:null)
+            ->where('bible_version',$bibleVersion)
+            ->whereIn('verse_id',$versesIds)
+            ->union($journalQuery)
+            ->union($prayersQuery)
+            ->orderBy('verse_id')
+            ->orderBy('created_at','desc')
+            ->get();
         return $items;
     }
 

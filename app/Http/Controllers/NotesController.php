@@ -108,10 +108,9 @@ class NotesController extends Controller
         $model = new Note();
         $model->bible_version = Input::get('version',false);
         $model->verse_id = Input::get('verse_id',false);
-        $model->note_text = Input::get('text',false);
 
-        if($model->note_text){
-            $model->note_text = "<i>".$model->note_text."</i><p></p>";
+        if($noteText = Input::get('text',false)){
+            $model->highlighted_text = $noteText;
         }
         $model->verse = false;
         if($model->verse_id){

@@ -4,8 +4,21 @@
         <div class="form-group">
             {!! Form::hidden('bible_version') !!}
             {!! Form::hidden('verse_id') !!}
-            {!! Form::label('verse_num', 'Verse:') !!}
-            <div>{!! ViewHelper::getVerseNum($model->verse).($model->bible_version?' ('.ViewHelper::getVersionName($model->bible_version).')':'') !!}</div>
+            {!! Form::hidden('highlighted_text') !!}
+            <div style="margin-bottom:10px;">
+                {!! Html::link('/reader/verse?'.http_build_query(
+                    [
+                        'version' => $model->bible_version,
+                        'book' => $model->verse->book_id,
+                        'chapter' => $model->verse->chapter_num,
+                        'verse' => $model->verse->verse_num
+                    ]
+                    ),ViewHelper::getVerseNum($model->verse).($model->bible_version?' ('.ViewHelper::getVersionName($model->bible_version).')':''), ['class'=>'label label-success','style' => '']) !!}
+            </div>
+            <div>
+                {!! Form::label('verse_num', 'Verse:') !!}
+                <i>{!! $model->highlighted_text !!}</i>
+            </div>
         </div>
     @endif
     <div class="form-group {{ $errors->has('prayer_text') ? ' has-error' : '' }}">

@@ -104,10 +104,9 @@ class JournalController extends Controller
         $model = new Journal();
         $model->bible_version = Input::get('version',false);
         $model->verse_id = Input::get('verse_id',false);
-        $model->journal_text = Input::get('text',false);
 
-        if($model->journal_text){
-            $model->journal_text = "<i>".$model->journal_text."</i><p></p>";
+        if($journalText = Input::get('text',false)){
+            $model->highlighted_text = $journalText;
         }
         $model->verse = false;
         if($model->verse_id){

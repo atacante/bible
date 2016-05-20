@@ -73,7 +73,8 @@
                                     {{--                            {!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
                                 </h4>
                                 @foreach($version['verses'] as $verse)
-                                    <span class="j-verse-text" data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
+                                    <span class="j-verse-text" data-verseid="{!! $verse->id !!}"
+                                          style="word-wrap: normal">
                         <b>{!! link_to('reader/verse?'.http_build_query([
                                                                 'version' => $version['version_code'],
                                                                 'book' => $verse->book_id,
@@ -110,13 +111,19 @@
                 @foreach($content['relatedItems'] as $item)
                     <div class="related-item">
                         <div class="item-header">
-                            <i title="{!! ucfirst($item->type) !!} Entry" class="pull-left fa fa-btn {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
+                            <i title="{!! ucfirst($item->type) !!} Entry"
+                               class="pull-left fa fa-btn {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
                             <div class="pull-left">
                                 {!! ViewHelper::getVerseNum($item->verse) !!}
                             </div>
                             <div class="pull-right">{!! $item->created_at->format('m/d/Y') !!}</div>
                         </div>
-                        <div class="item-body j-item-body" data-itemid="{!! $item->id !!}", data-itemtype="{!! $item->type !!}">
+                        <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" , data-itemtype="{!! $item->type !!}">
+                                @if($item->highlighted_text)
+                                <div class="verse-block">
+                                    Verse: <i>{!! $item->highlighted_text !!}</i>
+                                </div>
+                                @endif
                             {!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}
                         </div>
                     </div>
