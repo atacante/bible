@@ -138,7 +138,12 @@ class PrayersController extends Controller
                 : Redirect::to('/prayers/list/');
         }
 
-        return view('prayers.create',
+        $view = 'prayers.create';
+        if(Request::ajax()){
+            $view = 'prayers.form';
+        }
+
+        return view($view,
             [
                 'model' => $model,
             ]);

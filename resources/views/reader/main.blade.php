@@ -105,7 +105,7 @@
                 </div>
             </div>
         </div>
-        @if($content['relatedItems']->count() || !Request::input('compare',false))
+        @if($content['relatedItems']->count() && !Request::input('compare',false))
             <div class="col-md-3">
                 <h3 class="text-center" style="margin: 30px auto 30px;">Related Records</h3>
                 @foreach($content['relatedItems'] as $item)

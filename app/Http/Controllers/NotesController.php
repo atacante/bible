@@ -142,7 +142,11 @@ class NotesController extends Controller
                 ? Redirect::to($url)
                 : Redirect::to('/notes/list/');
         }
-        return view('notes.create',
+        $view = 'notes.create';
+        if(Request::ajax()){
+            $view = 'notes.form';
+        }
+        return view($view,
             [
                 'model' => $model,
             ]);

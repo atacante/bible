@@ -139,7 +139,12 @@ class JournalController extends Controller
                 : Redirect::to('/journal/list/');
         }
 
-        return view('journal.create',
+        $view = 'journal.create';
+        if(Request::ajax()){
+            $view = 'journal.form';
+        }
+
+        return view($view,
             [
                 'model' => $model,
             ]);

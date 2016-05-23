@@ -344,7 +344,7 @@ $(document).ready(function(){
 
     //site.dropzoneInit();
     $("body").mousedown(function(eventObject) {
-        if(!$(eventObject.target).hasClass('j-create-note') && !$(eventObject.target).parent().hasClass('j-create-note')){
+        /*if(!$(eventObject.target).hasClass('j-create-note') && !$(eventObject.target).parent().hasClass('j-create-note')){
             $('.j-create-note').remove();
         }
         if(!$(eventObject.target).hasClass('j-create-journal') && !$(eventObject.target).parent().hasClass('j-create-journal')){
@@ -352,6 +352,9 @@ $(document).ready(function(){
         }
         if(!$(eventObject.target).hasClass('j-create-prayer') && !$(eventObject.target).parent().hasClass('j-create-prayer')){
             $('.j-create-prayer').remove();
+        }*/
+        if(!$(eventObject.target).hasClass('j-reader-actions') && !$(eventObject.target).parent().parent().hasClass('j-reader-actions')){
+            $('.j-reader-actions').remove();
         }
     });
     $(".j-bible-text").mouseup(function(eventObject) {
@@ -388,11 +391,20 @@ $(document).ready(function(){
                 verseId = Math.min((startVerseId || 0), (endVerseId || 0));
             }
 
-            var menu = '<a title="Create note" href="/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-note" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>';
+            /*var menu = '<a title="Create note" href="/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-note" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>';
             menu += '<a title="Create Journal Entry" href="/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-journal" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-book"></i></a>';
-            menu += '<a title="Create prayer" href="/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-prayer" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 8px;"><i class="fa fa-btn fa-hand-paper-o"></i></a>';
-            $('body').append(menu);
-            $('.j-create-note').css({
+            menu += '<a title="Create prayer" href="/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-prayer" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 8px;"><i class="fa fa-btn fa-hand-paper-o"></i></a>';*/
+
+            $('body').append(reader.getActionsHtml());
+            $('.j-create-note').attr('href','/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+            $('.j-create-journal').attr('href','/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+            $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+
+            $('.j-reader-actions').css({
+                top: ($(endElement).offset().top-26) + "px",
+                left: (eventObject.pageX-15) + "px"
+            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
+            /*$('.j-create-note').css({
                 top: ($(endElement).offset().top-26) + "px",
                 left: (eventObject.pageX-15) + "px"
             }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
@@ -403,12 +415,65 @@ $(document).ready(function(){
             $('.j-create-prayer').css({
                 top: ($(endElement).offset().top-26) + "px",
                 left: (eventObject.pageX+55) + "px"
-            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
+            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );*/
         }
         else {
-            $('.j-create-note').remove();
+            /*$('.j-create-note').remove();
             $('.j-create-journal').remove();
+            $('.j-create-prayer').remove();*/
+            $('.j-reader-actions').remove();
         }
+    });
+
+    $("body").on('click','.j-create-note',function (e) {
+        e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: $(this).attr('href'),
+            data:{},
+            success:function(data){
+                $('#popup').find('.modal-header .modal-title').text('Create Note');
+                $('#popup').find('.modal-body').html(data);
+                $('#popup').find('.modal-footer').html('');
+                $('#popup').modal({show:true});
+                site.initCkeditors();
+            }
+        });
+        return false;
+    });
+
+    $("body").on('click','.j-create-journal',function (e) {
+        e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: $(this).attr('href'),
+            data:{},
+            success:function(data){
+                $('#popup').find('.modal-header .modal-title').text('Create Journal Entry');
+                $('#popup').find('.modal-body').html(data);
+                $('#popup').find('.modal-footer').html('');
+                $('#popup').modal({show:true});
+                site.initCkeditors();
+            }
+        });
+        return false;
+    });
+
+    $("body").on('click','.j-create-prayer',function (e) {
+        e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: $(this).attr('href'),
+            data:{},
+            success:function(data){
+                $('#popup').find('.modal-header .modal-title').text('Create Prayer');
+                $('#popup').find('.modal-body').html(data);
+                $('#popup').find('.modal-footer').html('');
+                $('#popup').modal({show:true});
+                site.initCkeditors();
+            }
+        });
+        return false;
     });
 
     if($('.j-reader-block.j-bible-text').length > 0){
