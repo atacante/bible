@@ -27,7 +27,7 @@ class BibleAllVersionsSeeder extends Seeder
             $progressBar = new ProgressBarHelper(count($csv->data)*9, 10);
             $progressBar->start('Started seeding data for 9 Bible versions');
 
-            $versions = VersionsListEn::versionsListAll();
+            $versions = $this->versionsList();
             if ($versions) {
                 foreach ($versions as $version) {
                     $this->version = $version['version_code'];
@@ -78,5 +78,71 @@ class BibleAllVersionsSeeder extends Seeder
             }
             $progressBar->finish();
         }
+    }
+
+    private function versionsList()
+    {
+        /*
+            !!!IMPORTANT!!!
+            Changing "version_code" value requires changing corresponding DB tables names. Tables format: "verses_[version_code]_[lang]"
+            "version_name" value should match with headers in bibles.csv during seeding data
+        */
+        return [
+            [
+                'version_name' => 'American Standard Version',
+                'version_code' => 'american_standard',
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
+            ],
+            [
+                'version_name' => 'King James Bible',
+                'version_code' => 'king_james',
+                'enabled'      => true,
+                'enabled_to_compare'      => true,
+            ],
+            [
+                'version_name' => 'Douay-Rheims Bible',
+                'version_code' => 'douay_rheims',
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
+            ],
+            [
+                'version_name' => 'Darby Bible Translation',
+                'version_code' => 'darby_bible_translation',
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
+            ],
+            [
+                'version_name' => 'English Revised Version',
+                'version_code' => 'english_revised',
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
+            ],
+            [
+                'version_name' => 'Webster Bible Translation',
+                'version_code' => 'webster_bible',
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
+            ],
+            [
+                'version_name' => 'World English Bible',
+                'version_code' => 'world_english',
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
+            ],
+            [
+                'version_name' => 'Young\'s Literal Translation',
+                'version_code' => 'youngs_literal',
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
+            ],
+            [
+                'version_name' => 'American King James Version',
+                'version_code' => 'american_king_james',
+                'enabled'      => false,
+                'enabled_to_compare'      => true,
+            ],
+
+        ];
     }
 }
