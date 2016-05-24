@@ -427,16 +427,25 @@ $(document).ready(function(){
 
     $("body").on('click','.j-create-note',function (e) {
         e.preventDefault();
+        var url = $(this).attr('href');
         $.ajax({
             method: "GET",
-            url: $(this).attr('href'),
+            url: url,
             data:{},
             success:function(data){
-                $('#popup').find('.modal-header .modal-title').text('Create Note');
+                $('#popup').find('.modal-header .modal-title').html('');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left">Create Note</div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+url+'" data-type="note" class="label label-primary full-screen-btn j-full-screen-btn">Full screen</a></div>');
+                //$('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><button type="submit" class="btn btn-primary full-screen-btn j-full-screen-btn">Full screen</button></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
                 $('#popup').modal({show:true});
                 site.initCkeditors();
+            },
+            error:function(e){
+                if(e.status = 401){
+                    location.href = url;
+                }
             }
         });
         return false;
@@ -444,16 +453,23 @@ $(document).ready(function(){
 
     $("body").on('click','.j-create-journal',function (e) {
         e.preventDefault();
+        var url = $(this).attr('href');
         $.ajax({
             method: "GET",
             url: $(this).attr('href'),
             data:{},
             success:function(data){
-                $('#popup').find('.modal-header .modal-title').text('Create Journal Entry');
+                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left">Create Journal Entry</div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+url+'" data-type="journal" class="label label-primary full-screen-btn j-full-screen-btn">Full screen</a></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
                 $('#popup').modal({show:true});
                 site.initCkeditors();
+            },
+            error:function(e){
+                if(e.status = 401){
+                    location.href = url;
+                }
             }
         });
         return false;
@@ -461,19 +477,55 @@ $(document).ready(function(){
 
     $("body").on('click','.j-create-prayer',function (e) {
         e.preventDefault();
+        var url = $(this).attr('href');
         $.ajax({
             method: "GET",
             url: $(this).attr('href'),
             data:{},
             success:function(data){
-                $('#popup').find('.modal-header .modal-title').text('Create Prayer');
+                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left">Create Prayer</div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+url+'" data-type="prayer" class="label label-primary full-screen-btn j-full-screen-btn">Full screen</a></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
                 $('#popup').modal({show:true});
                 site.initCkeditors();
+            },
+            error:function(e){
+                if(e.status = 401){
+                    location.href = url;
+                }
             }
         });
         return false;
+    });
+
+    $("body").on('click','.j-full-screen-btn',function (e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var type = $(this).data('type');
+        $('#'+type+'-form input[name="full_screen"]').val(1);
+        $('#'+type+'-form').attr('action',url);
+        $('#'+type+'-form').submit();
+
+        //var noteText = $('textarea[name="note_text"]').val();
+        //var journalText = $('textarea[name="journal_text"]').val();
+        //var prayerText = $('textarea[name="prayer_text"]').val();
+        //
+        //alert(noteText);
+        //
+        //var url = $(this).attr('href');
+        //
+        //if(noteText){
+        //    url = url+'&note_text='+noteText;
+        //}
+        //if(journalText){
+        //    url = url+'&journal_text='+journalText;
+        //}
+        //if(prayerText){
+        //    url = url+'&prayer_text='+prayerText;
+        //}
+        //alert(url);
+        //location.href = url;
     });
 
     if($('.j-reader-block.j-bible-text').length > 0){

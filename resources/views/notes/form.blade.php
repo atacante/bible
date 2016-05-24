@@ -2,6 +2,7 @@
 <div class="box-body">
     @if($model->verse)
         <div class="form-group">
+            {!! Form::hidden('full_screen',0) !!}
             {!! Form::hidden('bible_version') !!}
             {!! Form::hidden('verse_id') !!}
             {!! Form::hidden('highlighted_text') !!}

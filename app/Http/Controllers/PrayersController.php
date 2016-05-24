@@ -118,7 +118,7 @@ class PrayersController extends Controller
             $model->verse = $versesModel::find($model->verse_id);
         }
 
-        if (Request::isMethod('post')) {
+        if (Request::isMethod('post') && Input::get('full_screen') == 0) {
             $this->validate($request, $model->rules());
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;

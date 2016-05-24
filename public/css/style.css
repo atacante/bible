@@ -309,3 +309,9 @@ a.view-details:hover{
     margin-bottom: 10px;
     border-bottom: 1px solid #e1e1e8;
 }
+
+#popup .full-screen-btn{
+    font-size: 12px;
+    padding: 3px 8px;
+    margin: 0 10px;
+}
