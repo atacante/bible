@@ -21,6 +21,6 @@ class BibleVersionsListSeeder extends Seeder
     {
         DB::statement('TRUNCATE TABLE versions_list_en');
         DB::statement('ALTER SEQUENCE versions_list_en_id_seq RESTART WITH 1');
-        VersionsListEn::insert(VersionsListEn::versionsStaticListAll());
+        VersionsListEn::insert(VersionsListEn::versionsListAll());
     }
 }

@@ -44,7 +44,7 @@ class BibleAllVersionsSeeder extends Seeder
             DB::statement("ALTER SEQUENCE versions_list_en_id_seq RESTART WITH 1");
             DB::statement("ALTER SEQUENCE books_list_en_id_seq RESTART WITH 1");
 
-            VersionsListEn::create(['version_name' => 'American Standard Version','version_code' => str_replace(' ','_',strtolower('American Standard Version'))]);
+//            VersionsListEn::create(['version_name' => 'American Standard Version','version_code' => str_replace(' ','_',strtolower('American Standard Version'))]);
             $prevBook = '';
             $bookId = 0;
             foreach($csv->data as $row){
