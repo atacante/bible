@@ -80,7 +80,7 @@ class ViewHelper
     {
         $phrase = str_replace('[','<i>',$phrase);
         $phrase = str_replace(']','</i>',$phrase);
-        $text = str_replace($phrase,'<i><span class="text-red">'.$phrase.'</span></i>',$text);
+        $text = str_replace($phrase,'<i><span><strong>'.$phrase.'</strong></span></i>',$text);
         return $text;
     }
 
