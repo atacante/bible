@@ -38,10 +38,10 @@ class BibleAllVersionsSeeder extends Seeder
                     }
                 }
             }
-            DB::statement("TRUNCATE TABLE versions_list_en");
+//            DB::statement("TRUNCATE TABLE versions_list_en");
             DB::statement("TRUNCATE TABLE books_list_en CASCADE");
 
-            DB::statement("ALTER SEQUENCE versions_list_en_id_seq RESTART WITH 1");
+//            DB::statement("ALTER SEQUENCE versions_list_en_id_seq RESTART WITH 1");
             DB::statement("ALTER SEQUENCE books_list_en_id_seq RESTART WITH 1");
 
 //            VersionsListEn::create(['version_name' => 'American Standard Version','version_code' => str_replace(' ','_',strtolower('American Standard Version'))]);
