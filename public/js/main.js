@@ -104,7 +104,8 @@ $(document).ready(function(){
         return false;
     });
 
-    $('.j-note-text').click(function(ev) {
+    $('body').on('click','.j-note-text',function(ev) {
+        ev.preventDefault();
         var id = $(this).data('noteid');
         site.getNote(id);
     });
@@ -126,9 +127,16 @@ $(document).ready(function(){
         }
     });
 
-    $('.j-journal-text').click(function(ev) {
+    $('body').on('click','.j-journal-text',function(ev) {
+        ev.preventDefault();
         var id = $(this).data('journalid');
         site.getJournal(id);
+    });
+
+    $('body').on('click','.j-prayer-text',function(ev) {
+        ev.preventDefault();
+        var id = $(this).data('prayersid');
+        site.getPrayer(id);
     });
 
     $('.navbar').on('change','select[name=readerMode]',function(){

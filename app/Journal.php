@@ -23,6 +23,7 @@ class Journal extends BaseModel
     public static $columns = [
         "Journal Text"=>"journal_text",
         "Verse"=>"verse_id",
+        "Relations"=>false,
         "Created"=>"created_at"
     ];
 

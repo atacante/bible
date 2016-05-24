@@ -23,6 +23,7 @@ class Prayer extends BaseModel
     public static $columns = [
         "Prayer Text"=>"prayer_text",
         "Verse"=>"verse_id",
+        "Relations"=>false,
         "Created"=>"created_at"
     ];
 

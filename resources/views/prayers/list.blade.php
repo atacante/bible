@@ -60,14 +60,18 @@
                                       $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'desc'])),
                                       $column
                                     )}}
+                                @elseif(!$content['columns'][$column])
+                                    {!! $column !!}
                                 @else
                                     {{link_to(
                                       $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'asc'])),
                                       $column
                                     )}}
                                 @endif
+                                @if($content['columns'][$column])
                                 <i class="fa fa-fw fa-sort-{!! ($content['sortby'] == $content['columns'][$column])?$content['order']:'' !!}"
                                    style="color: #367fa9;"></i>
+                                @endif
                             </th>
                         @endforeach
                         <th width="90">Actions</th>
@@ -78,7 +82,7 @@
                         <tr>
                             {{--<td width="20"><input data-journalid="{!! $entry->id !!}" type="checkbox" class="check"></td>--}}
                             <td>
-                                <div class="prayers-text j-prayers-text"
+                                <div class="prayer-text j-prayer-text"
                                      data-prayersid="{!! $entry->id !!}">{!! str_limit(strip_tags($entry->prayer_text,'<p></p>'), $limit = 300, $end = '...') !!}</div>
                             </td>
                             <td>
@@ -102,6 +106,24 @@
                                     -
                                 @endif
 
+                            </td>
+                            <td>
+                                @if($entry->note)
+                                    {{ Html::link(url('ajax/view-note?'.http_build_query(
+                                        [
+                                            'id' => $entry->note->id,
+                                        ]),[],false), 'note', ['class' => 'label label-primary j-note-text','data-noteid' => $entry->note->id], true)}}
+                                    <br />
+                                @endif
+                                @if($entry->journal)
+                                    {{ Html::link(url('ajax/view-journal?'.http_build_query(
+                                        [
+                                            'id' => $entry->journal->id,
+                                        ]),[],false), 'journal', ['class' => 'label label-primary j-journal-text','data-journalid' => $entry->journal->id], true)}}
+                                @endif
+                                @if(!$entry->note && !$entry->journal)
+                                    -
+                                @endif
                             </td>
                             <td>{!! $entry->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">

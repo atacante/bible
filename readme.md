@@ -34,10 +34,10 @@ Setup in `.env` with real data:
 
 
 ```
-DB_HOST=169.45.129.25
-DB_DATABASE=bible
-DB_USERNAME=bible
-DB_PASSWORD=MYpb0wB0IxMB
+DB_HOST=*.*.*.*
+DB_DATABASE=***
+DB_USERNAME=***
+DB_PASSWORD=*******
 DB_CONNECTION=pgsql
 
 ```

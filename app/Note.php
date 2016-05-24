@@ -23,6 +23,7 @@ class Note extends BaseModel
     public static $columns = [
         "Note Text"=>"note_text",
         "Verse"=>"verse_id",
+        "Relations"=>false,
         "Created"=>"created_at"
     ];
 

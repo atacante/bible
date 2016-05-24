@@ -65,14 +65,18 @@
                                       $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'desc'])),
                                       $column
                                     )}}
+                                @elseif(!$content['columns'][$column])
+                                    {!! $column !!}
                                 @else
                                     {{link_to(
                                       $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'asc'])),
                                       $column
                                     )}}
                                 @endif
-                                <i class="fa fa-fw fa-sort-{!! ($content['sortby'] == $content['columns'][$column])?$content['order']:'' !!}"
-                                   style="color: #367fa9;"></i>
+                                @if($content['columns'][$column])
+                                    <i class="fa fa-fw fa-sort-{!! ($content['sortby'] == $content['columns'][$column])?$content['order']:'' !!}"
+                                       style="color: #367fa9;"></i>
+                                @endif
                             </th>
                         @endforeach
                         <th width="90">Actions</th>
@@ -107,6 +111,24 @@
                                     -
                                 @endif
 
+                            </td>
+                            <td>
+                                @if($entry->note)
+                                    {{ Html::link(url('ajax/view-note?'.http_build_query(
+                                        [
+                                            'id' => $entry->note->id,
+                                        ]),[],false), 'note', ['class' => 'label label-primary j-note-text','data-noteid' => $entry->note->id], true)}}
+                                    <br />
+                                @endif
+                                @if($entry->prayer)
+                                    {{ Html::link(url('ajax/view-prayer?'.http_build_query(
+                                        [
+                                            'id' => $entry->prayer->id,
+                                        ]),[],false), 'prayer', ['class' => 'label label-primary j-prayer-text','data-prayersid' => $entry->prayer->id], true)}}
+                                @endif
+                                @if(!$entry->prayer && !$entry->note)
+                                    -
+                                @endif
                             </td>
                             <td>{!! $entry->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">

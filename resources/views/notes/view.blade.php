@@ -22,4 +22,21 @@
     <div>
         {!! $model->note_text !!}
     </div>
+    @if($model->journal || $model->prayer)
+        <div>
+            Relations:
+            @if($model->journal)
+                {{ Html::link(url('ajax/view-journal?'.http_build_query(
+                    [
+                        'id' => $model->journal->id,
+                    ]),[],false), 'journal', ['class' => 'label label-primary j-journal-text','data-journalid' => $model->journal->id], true)}}
+            @endif
+            @if($model->prayer)
+                {{ Html::link(url('ajax/view-prayer?'.http_build_query(
+                    [
+                        'id' => $model->prayer->id,
+                    ]),[],false), 'prayer', ['class' => 'label label-primary j-prayer-text','data-prayersid' => $model->prayer->id], true)}}
+            @endif
+        </div>
+    @endif
 </div>
