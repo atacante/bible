@@ -130,6 +130,14 @@
                                     -
                                 @endif
                             </td>
+                            <td>
+                                @if(count($entry->tags))
+                                    @foreach($entry->tags as $tag)
+                                        {{ Html::link(url('journal/list?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
+                                        <br />
+                                    @endforeach
+                                @endif
+                            </td>
                             <td>{!! $entry->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">
                                 {{--<a title="Print journal entry" href="#" data-journalid="{!! $entry->id !!}" class="j-print-journal"><i

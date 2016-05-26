@@ -27,6 +27,7 @@ class PrayersController extends Controller
     private $bookFilter;
     private $chapterFilter;
     private $verseFilter;
+    private $tags;
 
     private function prepareFilters($prayerModel){
         $this->searchFilter = Request::input('search', false);
@@ -36,6 +37,7 @@ class PrayersController extends Controller
         $this->bookFilter = Request::input('book', false);
         $this->chapterFilter = Request::input('chapter', false);
         $this->verseFilter = Request::input('verse', false);
+        $this->tags = Request::input('tags', []);
 
         if(!empty($this->searchFilter)){
             $prayerModel->where('prayer_text', 'ilike', '%'.$this->searchFilter.'%');
@@ -70,6 +72,16 @@ class PrayersController extends Controller
                 $q->where('verse_num',$this->verseFilter);
             });
         }
+
+        if (!empty($this->tags)) {
+            $prayerModel->whereHas('tags', function ($q) {
+                $q->where(function($ow) {
+                    foreach ($this->tags as $tag) {
+                        $ow->orWhere('tag_id', $tag);
+                    }
+                });
+            });
+        }
         return $prayerModel;
     }
 
@@ -82,7 +94,7 @@ class PrayersController extends Controller
         $prayerModel = Prayer::query();
         $prayerModel = $this->prepareFilters($prayerModel);
 
-        $content['prayers'] = $prayerModel->with('verse.booksListEn')->where('user_id',Auth::user()->id)->orderBy($this->sortby,$this->order)->paginate(10);
+        $content['prayers'] = $prayerModel->with(['verse.booksListEn','journal','note','tags'])->where('user_id',Auth::user()->id)->orderBy($this->sortby,$this->order)->paginate(10);
 
         $content['action'] = 'prayers/list';
         $content['columns'] = Prayer::$columns;
@@ -123,6 +135,7 @@ class PrayersController extends Controller
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
             if ($model = $model->create($data)) {
+                $model->syncTags(Input::get('tags'));
                 if($model->note_text = Input::get('note_text',false)){
                     $model->note_id = $this->saveNote($model);
                     $model->save();
@@ -163,6 +176,7 @@ class PrayersController extends Controller
         if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             if ($model->update(Input::all())) {
+                $model->syncTags(Input::get('tags'));
                 if($model->note_text){
                     $model->note_id = $this->saveNote($model);
                     $model->save();

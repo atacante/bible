@@ -128,6 +128,14 @@
                                     -
                                 @endif
                             </td>
+                            <td>
+                                @if(count($note->tags))
+                                    @foreach($note->tags as $tag)
+                                        {{ Html::link(url('notes/list?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
+                                        <br />
+                                    @endforeach
+                                @endif
+                            </td>
                             <td>{!! $note->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">
                                 <a title="Print note" href="#" data-noteid="{!! $note->id !!}" class="j-print-note"><i

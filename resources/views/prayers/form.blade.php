@@ -31,6 +31,10 @@
             </span>
         @endif
     </div>
+    <div class="form-group">
+        {!! Form::label('tags', 'Tags:') !!}
+        {!! Form::select('tags[]', $model->availableTags(), $model->tags->pluck('id')->toArray(),['placeholder' => '','multiple' => true,'class' => 'clear-fix j-tags', 'style' => '']) !!}
+    </div>
     <div class="form-group {{ $errors->has('note_text') ? ' has-error' : '' }}">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">

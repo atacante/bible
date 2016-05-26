@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Journal extends BaseModel
 {
@@ -24,6 +25,7 @@ class Journal extends BaseModel
         "Journal Text"=>"journal_text",
         "Verse"=>"verse_id",
         "Relations"=>false,
+        "Tags"=>false,
         "Created"=>"created_at"
     ];
 
@@ -37,5 +39,34 @@ class Journal extends BaseModel
 
     public function prayer() {
         return $this->belongsTo(\App\Prayer::class, 'prayer_id', 'id');
+    }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class, 'journal_tags', 'journal_id', 'tag_id');
+    }
+
+    public function availableTags()
+    {
+        return Tag::where('type', Tag::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->lists('tag_name','id')->toArray();
+    }
+
+    public function syncTags($tags){
+        $tagsToSync = [];
+        if(count($tags)){
+            foreach ($tags as $tag) {
+                if(is_numeric($tag)){
+                    $tagsToSync[] = $tag;
+                }
+                else{
+                    $tagModel = new Tag();
+                    $tagModel->user_id = Auth::user()->id;
+                    $tagModel->type = $tagModel::TYPE_USER;
+                    $tagModel->tag_name = $tag;
+                    $tagModel->save();
+                    $tagsToSync[] = $tagModel->id;
+                }
+            }
+        }
+        $this->tags()->sync($tagsToSync);
     }
 }

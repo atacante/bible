@@ -1,7 +1,7 @@
 <?php
 ?>
 <div class="j-admin-verses-filters">
-{!! Form::open(['method' => 'get','url' => '/journal/list']) !!}
+{!! Form::open(['method' => 'get','url' => '/prayers/list']) !!}
     <div class="form-group">
         {!! Form::label('search', 'Search') !!}
         {!! Form::text('search',Request::input('search'),['placeholder' => 'Keyword...','class' => 'form-control','style' => '']) !!}
@@ -38,10 +38,14 @@
         {!! Form::label('verse', 'Verse') !!}
         {!! Form::select('verse',array_merge([0 => 'All Verses'],(Request::input('chapter') == 0?[]:$filters['verses'])), Request::input('verse'),['class' => 'form-control', (Request::input('chapter') == 0?'disabled':''), 'style' => '']) !!}
     </div>
+    <div class="form-group">
+        {!! Form::label('tags', 'Tags') !!}
+        {!! Form::select('tags[]', $filters['tags'], Request::input('tags'),['placeholder' => '','multiple' => true,'class' => 'clear-fix j-tags', 'style' => '']) !!}
+    </div>
     {!! Form::token() !!}
     <div class="form-group">
         {!! Form::button('Go',['type' => 'submit','class' => 'btn btn-primary pull-left']) !!}
-        {!! Html::link('/journal/list','Reset', ['class'=>'btn btn-danger pull-left reset-filter']) !!}
+        {!! Html::link('/prayers/list','Reset', ['class'=>'btn btn-danger pull-left reset-filter']) !!}
     </div>
 {!! Form::close() !!}
 </div>

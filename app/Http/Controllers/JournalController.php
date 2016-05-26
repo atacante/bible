@@ -29,6 +29,7 @@ class JournalController extends Controller
     private $bookFilter;
     private $chapterFilter;
     private $verseFilter;
+    private $tags;
 
     private function prepareFilters($journalModel){
         $this->searchFilter = Request::input('search', false);
@@ -38,6 +39,7 @@ class JournalController extends Controller
         $this->bookFilter = Request::input('book', false);
         $this->chapterFilter = Request::input('chapter', false);
         $this->verseFilter = Request::input('verse', false);
+        $this->tags = Request::input('tags', []);
 
         if(!empty($this->searchFilter)){
             $journalModel->where('journal_text', 'ilike', '%'.$this->searchFilter.'%');
@@ -72,6 +74,15 @@ class JournalController extends Controller
                 $q->where('verse_num',$this->verseFilter);
             });
         }
+        if (!empty($this->tags)) {
+            $journalModel->whereHas('tags', function ($q) {
+                $q->where(function($ow) {
+                    foreach ($this->tags as $tag) {
+                        $ow->orWhere('tag_id', $tag);
+                    }
+                });
+            });
+        }
         return $journalModel;
     }
 
@@ -84,7 +95,7 @@ class JournalController extends Controller
         $notesModel = Journal::query();
         $notesModel = $this->prepareFilters($notesModel);
 
-        $content['journal'] = $notesModel->with('verse.booksListEn')->where('user_id',Auth::user()->id)->orderBy($this->sortby,$this->order)->paginate(10);
+        $content['journal'] = $notesModel->with(['verse.booksListEn','note','prayer','tags'])->where('user_id',Auth::user()->id)->orderBy($this->sortby,$this->order)->paginate(10);
 
         $content['action'] = 'journal/list';
         $content['columns'] = Journal::$columns;
@@ -124,6 +135,7 @@ class JournalController extends Controller
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
             if ($model = $model->create($data)) {
+                $model->syncTags(Input::get('tags'));
                 if($model->note_text = Input::get('note_text',false)){
                     $model->note_id = $this->saveNote($model);
                     $model->save();
@@ -164,6 +176,7 @@ class JournalController extends Controller
         if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             if ($model->update(Input::all())) {
+                $model->syncTags(Input::get('tags'));
                 if($model->note_text){
                     $model->note_id = $this->saveNote($model);
                     $model->save();

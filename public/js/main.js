@@ -1,6 +1,12 @@
 $(document).ready(function(){
     $("#j-select-locations").select2();
     $("#j-select-peoples").select2();
+    $(".j-compare-versions").select2({
+        maximumSelectionLength: 2,
+        placeholder: "Compare with...",
+    });
+
+    site.initTagging();
 
     $('.datepicker').datepicker(
         {
@@ -449,6 +455,7 @@ $(document).ready(function(){
                 $('#popup').find('.modal-footer').html('');
                 $('#popup').modal({show:true});
                 site.initCkeditors();
+                site.initTagging();
             },
             error:function(e){
                 if(e.status = 401){
@@ -473,6 +480,7 @@ $(document).ready(function(){
                 $('#popup').find('.modal-footer').html('');
                 $('#popup').modal({show:true});
                 site.initCkeditors();
+                site.initTagging();
             },
             error:function(e){
                 if(e.status = 401){
@@ -497,6 +505,7 @@ $(document).ready(function(){
                 $('#popup').find('.modal-footer').html('');
                 $('#popup').modal({show:true});
                 site.initCkeditors();
+                site.initTagging();
             },
             error:function(e){
                 if(e.status = 401){
@@ -546,11 +555,6 @@ $(document).ready(function(){
             target.effect( "highlight", {color:"#669966"}, 5000);
         }
     }
-
-    $(".j-compare-versions").select2({
-        maximumSelectionLength: 2,
-        placeholder: "Compare with...",
-    });
 
     $('.j-version-status').change(function(){
         var data = {};

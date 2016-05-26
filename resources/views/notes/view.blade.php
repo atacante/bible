@@ -39,4 +39,12 @@
             @endif
         </div>
     @endif
+    @if($model->tags)
+        <div>
+            Tags:
+            @foreach($model->tags as $tag)
+                {{ Html::link(url('notes/list?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
+            @endforeach
+        </div>
+    @endif
 </div>
