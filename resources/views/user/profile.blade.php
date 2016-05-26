@@ -46,6 +46,25 @@
                         </span>
                         @endif
                     </div>
+                    <div class="form-group {{ $errors->has('plan_type') ? ' has-error' : '' }}">
+                        {!! Form::label('plan_type', "Subscription plan:") !!}
+
+                        <div>
+                            <label class="radio-inline">
+                                {!! Form::radio('plan_type', 'free', true) !!}
+                                Free
+                            </label>
+                            <label class="radio-inline">
+                                {!! Form::radio('plan_type', 'premium', false) !!}
+                                Premium
+                            </label>
+                            @if ($errors->has('plan_type'))
+                                <span class="help-block">
+                                        {{ $errors->first('plan_type') }}
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box-body -->
 

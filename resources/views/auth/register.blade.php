@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Register</div>
+                    <div class="panel-body">
                         {!! Form::open(array('url' => URL::to('auth/register'), 'method' => 'post', 'files'=> true,'class' =>'form-horizontal')) !!}
                         {!! csrf_field() !!}
 
@@ -25,17 +25,17 @@
                         </div>
 
                         {{--<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">--}}
-                            {{--{!! Form::label('username', 'Username', array('class' => 'col-md-4 control-label')) !!}--}}
+                        {{--{!! Form::label('username', 'Username', array('class' => 'col-md-4 control-label')) !!}--}}
 
-                            {{--<div class="col-md-6">--}}
-                                {{--{!! Form::text('username', old('username'), array('class' => 'form-control')) !!}--}}
+                        {{--<div class="col-md-6">--}}
+                        {{--{!! Form::text('username', old('username'), array('class' => 'form-control')) !!}--}}
 
-                                {{--@if ($errors->has('username'))--}}
-                                    {{--<span class="help-block">--}}
-                                        {{--{{ $errors->first('username') }}--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
+                        {{--@if ($errors->has('username'))--}}
+                        {{--<span class="help-block">--}}
+                        {{--{{ $errors->first('username') }}--}}
+                        {{--</span>--}}
+                        {{--@endif--}}
+                        {{--</div>--}}
                         {{--</div>--}}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -80,6 +80,26 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('plan_type') ? ' has-error' : '' }}">
+                            {!! Form::label('plan_type', "Subscription plan", array('class' => 'col-md-4 control-label')) !!}
+
+                            <div class="col-md-6">
+                                <label class="radio-inline">
+                                    {!! Form::radio('plan_type', 'free', true) !!}
+                                    Free
+                                </label>
+                                <label class="radio-inline">
+                                    {!! Form::radio('plan_type', 'premium', false) !!}
+                                    Premium
+                                </label>
+                                @if ($errors->has('plan_type'))
+                                    <span class="help-block">
+                                        {{ $errors->first('plan_type') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         {{--<div class="form-group  {{ $errors->has('g-recaptcha-response') ? 'has-error' : '' }}">
                             {!! Form::label('', null, array('class' => 'col-md-4 control-label')) !!}
                             <div class="col-md-6">
@@ -99,10 +119,10 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

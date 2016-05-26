@@ -10,13 +10,16 @@ use Kodeine\Acl\Traits\HasRole;
 class User extends Authenticatable
 {
     use HasRole;
+
+    const PLAN_FREE = 'free';
+    const PLAN_PREMIUM = 'premium';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','plan_type',
     ];
 
     /**
