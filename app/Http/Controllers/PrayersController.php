@@ -225,6 +225,7 @@ class PrayersController extends Controller
         $noteModel->lexicon_id = $model->lexicon_id;
         $noteModel->prayer_id = $model->id;
         $noteModel->bible_version = $model->bible_version;
+        $noteModel->highlighted_text = $model->highlighted_text;
         $noteModel->note_text = $model->note_text;
         if($noteModel->save()){
             return $noteModel->id;
@@ -242,6 +243,7 @@ class PrayersController extends Controller
         $journalModel->lexicon_id = $model->lexicon_id;
         $journalModel->prayer_id = $model->id;
         $journalModel->bible_version = $model->bible_version;
+        $journalModel->highlighted_text = $model->highlighted_text;
         $journalModel->journal_text = $model->journal_text;
         if($journalModel->save()){
             return $journalModel->id;

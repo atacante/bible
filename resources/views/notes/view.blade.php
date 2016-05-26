@@ -39,7 +39,7 @@
             @endif
         </div>
     @endif
-    @if($model->tags)
+    @if(count($model->tags))
         <div>
             Tags:
             @foreach($model->tags as $tag)

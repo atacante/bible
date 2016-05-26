@@ -149,7 +149,7 @@ class ReaderController extends Controller
     {
         Session::flash('backUrl', Request::fullUrl());
 
-        $q = Request::input('q', false);
+        $q = pg_escape_string(Request::input('q', false));
         $version = Request::input('version', Config::get('app.defaultBibleVersion'));
 
         $versions = VersionsListEn::versionsList();

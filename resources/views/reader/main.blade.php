@@ -121,7 +121,7 @@
                         <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" , data-itemtype="{!! $item->type !!}">
                                 @if($item->highlighted_text)
                                 <div class="verse-block">
-                                    Verse: <i>{!! $item->highlighted_text !!}</i>
+                                    Verse: <i>{!! str_limit(strip_tags($item->highlighted_text,'<p></p>'), $limit = 100, $end = '...') !!}</i>
                                 </div>
                                 @endif
                             {!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}

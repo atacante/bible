@@ -197,6 +197,7 @@ $(document).ready(function(){
                 $('select[name=verse]').empty().append($("<option></option>").attr("value", 0).text('All Verses')).attr('disabled',true);
                 site.fillSelect('select[name=chapter]',data);
                 $('select[name=chapter]').prepend($("<option></option>").attr("value", 0).text('All Chapters'));
+                $('select[name=chapter]').val(0);
                 if(value == 0){
                     $('select[name=chapter]').attr('disabled',true);
                 }
@@ -229,6 +230,7 @@ $(document).ready(function(){
             success:function(data){
                 site.fillSelect('select[name=verse]',data);
                 $('select[name=verse]').prepend($("<option></option>").attr("value", 0).text('All Verses'));
+                $('select[name=verse]').val(0);
                 if(value == 0){
                     $('select[name=verse]').attr('disabled',true);
                 }
