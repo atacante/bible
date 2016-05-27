@@ -8,6 +8,7 @@ use App\LexiconNasb;
 use App\Location;
 use App\People;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -38,12 +39,28 @@ class AppServiceProvider extends ServiceProvider
             return true; //if false the model wont save!
         });
 
+        LexiconKjv::saving(function($model)
+        {
+            if($model->isDirty('symbolism')){
+                $model->symbolism_updated_at = Carbon::now();
+            }
+            return true;
+        });
+
         LexiconKjv::saved(function($model)
         {
             if($model->isDirty('symbolism')){
                 $model->cacheSymbolismForBeginnerMode();
             }
             return true; //if false the model wont save!
+        });
+
+        LexiconBerean::saving(function($model)
+        {
+            if($model->isDirty('symbolism')){
+                $model->symbolism_updated_at = Carbon::now();
+            }
+            return true;
         });
 
         LexiconBerean::saved(function($model)
@@ -60,6 +77,14 @@ class AppServiceProvider extends ServiceProvider
                 $model->cacheSymbolismForBeginnerMode();
             }
             return true; //if false the model wont save!
+        });
+
+        LexiconNasb::saving(function($model)
+        {
+            if($model->isDirty('symbolism')){
+                $model->symbolism_updated_at = Carbon::now();
+            }
+            return true;
         });
 
         LexiconNasb::saved(function($model)
