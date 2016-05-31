@@ -46,6 +46,7 @@ $router->group([
         'user' => 'UserController',
         'location' => 'LocationController',
         'peoples' => 'PeoplesController',
+        'coupons' => 'CouponsController',
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });

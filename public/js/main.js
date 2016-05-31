@@ -1,6 +1,8 @@
 $(document).ready(function(){
-    $("#j-select-locations").select2();
-    $("#j-select-peoples").select2();
+    $("#j-select-locations,#j-select-peoples").select2();
+    $(".j-select-user").select2({
+        placeholder: "Select user...",
+    });
     $(".j-compare-versions").select2({
         maximumSelectionLength: 2,
         placeholder: "Compare with...",
@@ -8,9 +10,17 @@ $(document).ready(function(){
 
     site.initTagging();
 
+    $('.coupon-datepicker').datepicker(
+        {
+            autoclose:true,
+            startDate: '+1d'
+        }
+    );
+
     $('.datepicker').datepicker(
         {
-            autoclose:true
+            autoclose:true,
+            //format: 'mm/dd/yyyy'
         }
     ).on('changeDate', function(e) {
         var name = $(this).attr('name');
@@ -569,6 +579,17 @@ $(document).ready(function(){
             data:data,
             success:function(data){
 
+            }
+        });
+    });
+
+    $('.j-generate-coupon-code').click(function(e){
+        e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: "/admin/coupons/get-code",
+            success:function(data){
+                $('#coupon_code').val(data);
             }
         });
     });

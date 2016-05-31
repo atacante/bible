@@ -175,3 +175,22 @@ label {
 .reset-filter{
     margin-left: 5px;
 }
+
+.select2-container--default .select2-selection--single{
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #d2d6de;
+    height: 34px;
+}
+
+.datepicker{
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #d2d6de;
+}
+
+.generate-coupon-code{
+    margin: 10px 0 0;
+    padding: 3px 10px;
+}
+

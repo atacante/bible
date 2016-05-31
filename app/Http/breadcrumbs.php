@@ -110,3 +110,24 @@ Breadcrumbs::register('peopleUpdate', function($breadcrumbs)
     $breadcrumbs->parent('peoples');
     $breadcrumbs->push('Edit people');
 });
+
+// Admin > Coupons
+Breadcrumbs::register('coupons', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Coupons', url('admin/coupons/list'));
+});
+
+// Admin > Coupons > [CreateCoupon]
+Breadcrumbs::register('couponCreate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('coupons');
+    $breadcrumbs->push("Create new coupon");
+});
+
+// Admin > Coupons > [UpdateCoupon]
+Breadcrumbs::register('couponUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('coupons');
+    $breadcrumbs->push('Edit coupon');
+});
