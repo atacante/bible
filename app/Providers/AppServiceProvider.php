@@ -2,16 +2,19 @@
 
 namespace App\Providers;
 
+use App\Coupon;
 use App\LexiconBerean;
 use App\LexiconKjv;
 use App\LexiconNasb;
 use App\Location;
 use App\People;
 use App\User;
+use App\Validators\CheckCouponValidator;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -111,13 +114,25 @@ class AppServiceProvider extends ServiceProvider
                 }
             }
 
+            if($model->isDirty('plan_type')){
+                if($model->plan_type == $model::PLAN_PREMIUM){
+//                    $model->upgraded_at = Carbon::now();
+                }
+            }
+
             return true; //if false the model wont save!
         });
+
         User::saved(function($model)
         {
             if($role = Request::input('role',false)){
-//                $model->assignRole($role);
                 $model->syncRoles($role);
+            }
+
+            if($model->isDirty('plan_type')){
+                if($model->plan_type == $model::PLAN_PREMIUM){
+                    $model->upgradeToPremium();
+                }
             }
         });
 
@@ -159,6 +174,14 @@ class AppServiceProvider extends ServiceProvider
         Location::deleted(function($model)
         {
             $model->verses()->sync([]);
+        });
+
+        Coupon::saving(function($model)
+        {
+            if($model->exist && $model->isDirty('used') && $model->uses_limit == $model->used){
+                $model->status = false;
+            }
+            return true; //if false the model wont save!
         });
     }
 

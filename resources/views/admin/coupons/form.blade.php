@@ -12,7 +12,7 @@
     </div>
     <div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
         {!! Form::label('user_id', 'User (coupon will be assigned to specific user):') !!}
-        {!! Form::select('user_id', array_merge([0 => 'All Users'],$users), Request::input('user_id'),['placeholder' => 'Select User...','class' => 'j-select-user', 'id' => '']) !!}
+        {!! Form::select('user_id', [0 => 'All Users']+$users, Request::input('user_id'),['placeholder' => 'Select User...','class' => 'j-select-user', 'id' => '']) !!}
         @if ($errors->has('user_id'))
             <span class="help-block">
                         {{ $errors->first('user_id') }}
@@ -20,7 +20,7 @@
         @endif
     </div>
     <div class="form-group {{ $errors->has('amount') ? ' has-error' : '' }}">
-        {!! Form::label('amount', 'Discount amount:') !!}
+        {!! Form::label('amount', 'Discount amount ($):') !!}
         {!! Form::text('amount') !!}
         @if ($errors->has('amount'))
             <span class="help-block">

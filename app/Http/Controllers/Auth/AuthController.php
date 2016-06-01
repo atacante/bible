@@ -59,6 +59,7 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
+            'coupon_code' => 'coupon_exist|coupon_expire|coupon_uses',
 //            'g-recaptcha-response' => 'required|captcha',
         ],
         [

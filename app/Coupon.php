@@ -44,4 +44,18 @@ class Coupon extends BaseModel
         "Already Used"=>false,
         "Created"=>"created_at"
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function setUsesLimitAttribute($value)
+    {
+        $this->attributes['uses_limit'] = $value?$value:null;
+    }
+
+    public function setExpireAtAttribute($value)
+    {
+        $this->attributes['expire_at'] = $value?strtotime($value):null;
+    }
 }

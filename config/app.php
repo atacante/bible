@@ -158,6 +158,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\HelpersServiceProvider::class,
+        App\Providers\ValidatorsServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,

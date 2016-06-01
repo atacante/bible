@@ -24,7 +24,7 @@ class CouponsController extends Controller
 
         $couponsModel = new Coupon();
 
-        $content['coupons'] = $couponsModel->query()->orderBy('id')->paginate(20);
+        $content['coupons'] = $couponsModel->query()->with('user')->orderBy('id')->paginate(20);
         return view('admin.coupons.list',
             [
                 'page_title' => 'Coupons',
@@ -39,7 +39,8 @@ class CouponsController extends Controller
         if (Request::isMethod('post')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
-            $data['expire_at'] = $data['expire_at']?strtotime($data['expire_at']):null;
+//            $data['expire_at'] = $data['expire_at']?strtotime($data['expire_at']):null;
+//            $data['uses_limit'] = $data['uses_limit']?$data['uses_limit']:null;
             if ($model = $model->create($data)) {
                 Notification::success('Coupon has been successfully created');
             }
@@ -66,7 +67,8 @@ class CouponsController extends Controller
         if (Request::isMethod('put')){
             $this->validate($request, $model->rules());
             $data = Input::all();
-            $data['expire_at'] = $data['expire_at']?strtotime($data['expire_at']):null;
+//            $data['expire_at'] = $data['expire_at']?strtotime($data['expire_at']):null;
+//            $data['uses_limit'] = $data['uses_limit']?$data['uses_limit']:null;
             if ($model->update($data)) {
                 Notification::success('Coupons has been successfully updated');
             }

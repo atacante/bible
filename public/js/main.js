@@ -593,4 +593,16 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('input[name="plan_type"]').change(function(){
+        switch ($(this).val()){
+            case "free":
+                $('#coupon_code').parents('.form-group').addClass('hidden');
+                $('#coupon_code').val('');
+                break;
+            case "premium":
+                $('#coupon_code').parents('.form-group').removeClass('hidden');
+                break;
+        }
+    });
 });

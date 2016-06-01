@@ -56,7 +56,7 @@
                             </label>
                             <label class="radio-inline">
                                 {!! Form::radio('plan_type', 'premium', false) !!}
-                                Premium
+                                Premium ({!! $model->isPremiumPaid()?'paid':"$".App\User::PLAN_PREMIUM_COST !!})
                             </label>
                             @if ($errors->has('plan_type'))
                                 <span class="help-block">
@@ -64,6 +64,15 @@
                                     </span>
                             @endif
                         </div>
+                    </div>
+                    <div class="form-group {!! $model->plan_type == 'free'?'hidden':'' !!} {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
+                        {!! Form::label('coupon_code', 'Coupon Code:') !!}
+                        {!! Form::text('coupon_code') !!}
+                        @if ($errors->has('coupon_code'))
+                            <span class="help-block">
+                            {{ $errors->first('coupon_code') }}
+                        </span>
+                        @endif
                     </div>
                 </div>
                 <!-- /.box-body -->

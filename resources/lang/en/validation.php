@@ -107,4 +107,12 @@ return [
 
     'attributes' => [],
 
+    'custom' => [
+        'coupon_code' => [
+            'coupon_exist' => 'Coupon code is not exist',
+            'coupon_expire' => 'Coupon code is expired',
+            'coupon_uses' => 'Coupon code uses limit is reached',
+        ],
+    ],
+
 ];
