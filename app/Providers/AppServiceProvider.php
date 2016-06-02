@@ -178,8 +178,11 @@ class AppServiceProvider extends ServiceProvider
 
         Coupon::saving(function($model)
         {
-            if($model->exist && $model->isDirty('used') && $model->uses_limit == $model->used){
+            if($model->exists && $model->isDirty('used') && $model->uses_limit == $model->used){
                 $model->status = false;
+            }
+            if($model->isDirty('uses_limit') && $model->uses_limit > $model->used){
+                $model->status = true;
             }
             return true; //if false the model wont save!
         });

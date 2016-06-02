@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
 
 class CustomValidator{
-
     public function validateCouponExist($attribute, $value, $parameters)
     {
         $coupon = Coupon::where('coupon_code', $value)->first();
