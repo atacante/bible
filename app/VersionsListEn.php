@@ -1,5 +1,9 @@
 <?php namespace App;
 
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
+
 class VersionsListEn extends BaseModel
 {
 
@@ -107,9 +111,27 @@ class VersionsListEn extends BaseModel
         return VersionsListEn::query()->where('enabled',true)->get()->toArray();
     }
 
-    public static function versionsToCompareList()
+    public static function versionsToCompareList($basicVersion,$book)
     {
-        return VersionsListEn::query()->where('enabled_to_compare',true)->get()->toArray();
+        $basicVersion = Input::get('version',Config::get('app.defaultBibleVersion'));
+        $versionsToCheck = VersionsListEn::query()->where('enabled_to_compare',true)->whereNotIn('version_code',[$basicVersion]);
+        /* Manual Exception for Berean (this version does not contain books before 40) */
+        if($book <= 40){
+            $versionsToCheck->whereNotIn('version_code',['berean']);
+        }
+        return $versionsToCheck->get()->toArray();
+
+        /* Check each version on book existing. Automatic exceptions */
+//        $versionsToCheck = VersionsListEn::query()->where('enabled_to_compare',true)->whereNotIn('version_code',[$basicVersion])->get();
+//        $versions = [];
+//        foreach($versionsToCheck as $version){
+//            $versesModel = BaseModel::getVersesModelByVersionCode($version->version_code);
+//            $verses = $versesModel::where('book_id',$book)->first();
+//            if($verses){
+//                $versions[] = $version->version_code;
+//            }
+//        }
+//        return VersionsListEn::query()->whereIn('version_code',$versions)->get()->toArray();
     }
 
     public static function getVersionByCode($code)

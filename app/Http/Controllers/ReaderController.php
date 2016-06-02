@@ -93,7 +93,7 @@ class ReaderController extends Controller
 
         $content['pagination'] = $this->pagination($chapter, $book);
 
-        $compare['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsToCompareList(), 'version_code', 'version_name');
+        $compare['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsToCompareList($version,$book), 'version_code', 'version_name');
         $compareResetParams = Request::input();
         unset($compareResetParams['compare']);
         unset($compareResetParams['diff']);
@@ -106,7 +106,7 @@ class ReaderController extends Controller
                 $compare['data'][$compareVersion]['verses'] = $compareVersesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
 
                 if(!$compare['data'][$compareVersion]['verses']->count()){
-                    return $this->flashNotification('Requested content does not provided in '.$compare['version'].' version');
+                    return $this->flashNotification('Requested content does not provided in '.$compareVersion.' version');
                 }
                 if (Request::input('diff', false)) {
                     $diff = new \cogpowered\FineDiff\Diff(new \cogpowered\FineDiff\Granularity\Word);
@@ -388,7 +388,12 @@ class ReaderController extends Controller
 
     }
 
+    public function getRelations(){
+        $content['relatedItems'] = $this->getRelatedItems($version,$book,$chapter);
+    }
+
     private function getRelatedItems($bibleVersion,$book,$chapter){
+        $orderDirection = Input::get('relations-order','desc');
         $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
         $versesIds = $versesModel::where('book_id',$book)->where('chapter_num',$chapter)->lists('id')->toArray();
         $journalQuery = Journal::with('verse')
@@ -409,7 +414,7 @@ class ReaderController extends Controller
             ->union($journalQuery)
             ->union($prayersQuery)
             ->orderBy('verse_id')
-            ->orderBy('created_at','desc')
+            ->orderBy('created_at',$orderDirection)
             ->get();
         return $items;
     }

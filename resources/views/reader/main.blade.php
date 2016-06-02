@@ -106,8 +106,14 @@
             </div>
         </div>
         @if($content['relatedItems']->count() && !Request::input('compare',false))
-            <div class="col-md-3">
+            <div class="col-md-3 related-records">
                 <h3 class="text-center" style="margin: 30px auto 30px;">Related Records</h3>
+                <div class="date-order-btn">
+                    <a href="{!! url('reader/read?'.http_build_query(array_merge(Request::input(),['relations-order' => Request::get('relations-order','desc') == 'asc'?'desc':'asc'])),[],false) !!}">
+                        <span class="fa fa-calendar"></span>
+                        <span class="fa fa-sort-amount-{!! Request::get('relations-order','desc') !!}"></span>
+                    </a>
+                </div>
                 @foreach($content['relatedItems'] as $item)
                     <div class="related-item">
                         <div class="item-header">

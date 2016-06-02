@@ -25,6 +25,7 @@ label {
 
 .word-definition:hover, .word-definition > span:hover{
     background: #2ca02c;
+    color: white;
     border-radius: 3px;
     cursor: pointer;
 }
@@ -315,4 +316,15 @@ a.view-details:hover{
     font-size: 12px;
     padding: 3px 8px;
     margin: 0 10px;
+}
+
+.related-records .date-order-btn{
+    position: absolute;
+    top: 63px;
+    right: 22px;
+    color: #337ab7;
+}
+
+.related-records .date-order-btn a{
+    text-decoration: none;
 }

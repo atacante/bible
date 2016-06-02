@@ -54,6 +54,7 @@ $(document).ready(function(){
     $('body .word-definition .word-definition').on('mouseenter mouseleave', function(e) {
         if(e.type === 'mouseenter'){
             $(this).parent().css('background', "none");
+            $(this).parent().css('color', "#333");
         }
         else{
             $(this).parent().attr('style','');
