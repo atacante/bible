@@ -35,6 +35,35 @@
         {!! Form::label('tags', 'Tags:') !!}
         {!! Form::select('tags[]', $model->availableTags(), $model->tags->pluck('id')->toArray(),['placeholder' => '','multiple' => true,'class' => 'clear-fix j-tags', 'style' => '']) !!}
     </div>
+    <div class="form-group {{ $errors->has('access_level') ? ' has-error' : '' }}">
+        {!! Form::label('access_level', "Accessibility:") !!}
+        <div class="radio">
+            <label>
+                {!! Form::radio('access_level', App\Note::ACCESS_PRIVATE, true) !!}
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                Private
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                {!! Form::radio('access_level', App\Note::ACCESS_PUBLIC_ALL, false) !!}
+                <i class="fa fa-globe" aria-hidden="true"></i>
+                Public - share with everyone
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                {!! Form::radio('access_level', App\Note::ACCESS_PUBLIC_GROUPS, false) !!}
+                <i class="fa fa-users" aria-hidden="true"></i>
+                Public - share with Groups I am member of
+            </label>
+        </div>
+        @if ($errors->has('access_level'))
+            <span class="help-block">
+                {{ $errors->first('access_level') }}
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('note_text') ? ' has-error' : '' }}">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">

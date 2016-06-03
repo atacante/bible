@@ -133,6 +133,7 @@
                                     @endforeach
                                 @endif
                             </td>
+                            <td class="text-center">{!! ViewHelper::getAccessLevelIcon($entry->access_level) !!}</td>
                             <td>{!! $entry->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">
                                 {{--<a title="Print journal entry" href="#" data-journalid="{!! $entry->id !!}" class="j-print-journal"><i

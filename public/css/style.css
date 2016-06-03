@@ -328,3 +328,15 @@ a.view-details:hover{
 .related-records .date-order-btn a{
     text-decoration: none;
 }
+
+#note-form .fa,#journal-form .fa,#prayer-form .fa{
+    color: #90949c;
+    width: 15px;
+    text-align: center;
+}
+
+.my-notes-list .fa, .my-journal-list .fa, .my-prayers-list .fa{
+    /*color: #90949c;*/
+    color: #367fa9;
+    font-size: 1.4em;
+}

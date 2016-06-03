@@ -136,6 +136,7 @@
                                     @endforeach
                                 @endif
                             </td>
+                            <td class="text-center">{!! ViewHelper::getAccessLevelIcon($note->access_level) !!}</td>
                             <td>{!! $note->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">
                                 <a title="Print note" href="#" data-noteid="{!! $note->id !!}" class="j-print-note"><i

@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Note;
 use App\VersionsListEn;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -115,5 +116,24 @@ class ViewHelper
                 break;
         }
         return $icon;
+    }
+
+    public static function getAccessLevelIcon($level)
+    {
+        $html = '';
+
+        switch($level){
+            case Note::ACCESS_PRIVATE:
+                $html = '<i title="Private" class="fa fa-lock" aria-hidden="true"></i>';
+                break;
+            case Note::ACCESS_PUBLIC_ALL:
+                $html = '<i title="Public - share with everyone" class="fa fa-globe" aria-hidden="true"></i>';
+                break;
+            case Note::ACCESS_PUBLIC_GROUPS:
+                $html = '<i title="Public - share with Groups I am member of" class="fa fa-users" aria-hidden="true"></i>';
+                break;
+        }
+
+        return $html;
     }
 }

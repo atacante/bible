@@ -7,12 +7,16 @@ use Illuminate\Support\Facades\Auth;
 
 class Journal extends BaseModel
 {
+    const ACCESS_PRIVATE = 'private';
+    const ACCESS_PUBLIC_ALL = 'public_for_all';
+    const ACCESS_PUBLIC_GROUPS = 'public_for_groups';
+
     public $timestamps = true;
     public $note_text;
     public $prayer_text;
 
     protected $table = 'journal';
-    protected $fillable = ['id','user_id','note_id','prayer_id','bible_version','verse_id','lexicon_id','highlighted_text','journal_text'];
+    protected $fillable = ['id','user_id','note_id','prayer_id','bible_version','verse_id','lexicon_id','highlighted_text','journal_text','access_level'];
 
     public function rules()
     {
@@ -26,6 +30,7 @@ class Journal extends BaseModel
         "Verse"=>"verse_id",
         "Relations"=>false,
         "Tags"=>false,
+        "Accessibility"=>false,
         "Created"=>"created_at"
     ];
 
