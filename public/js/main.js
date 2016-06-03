@@ -59,7 +59,6 @@ $(document).ready(function(){
         else{
             $(this).parent().attr('style','');
         }
-
     });
 
     $('body').on('click', function (e) {
