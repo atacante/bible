@@ -291,6 +291,13 @@ a.view-details:hover{
     color: #337ab7;
     font-size: 19px;
 }
+
+.related-item .item-header .fa.fa-pencil, .related-item .item-header .fa.fa-location-arrow{
+    color: #337ab7;
+    font-size: 15px;
+    padding: 2px 0px 2px 2px;
+}
+
 .related-item .item-body{
     padding: 5px 10px;
     min-height: 50px;
@@ -339,4 +346,8 @@ a.view-details:hover{
     /*color: #90949c;*/
     color: #367fa9;
     font-size: 1.4em;
+}
+
+.my-notes-list h4, .my-journal-list h4, .my-prayers-list h4{
+    color: #367fa9;
 }

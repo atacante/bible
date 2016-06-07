@@ -49,12 +49,12 @@
             @endif
             {!! Html::link('/journal/create','Create Journal Entry', ['class'=>'btn btn-success','style' => 'margin-bottom:10px;']) !!}
             @if($content['journal']->count())
-                {{--<a title="Print selected entry" href="#" class="pull-right j-print-all-journal"><i
-                            class="fa fa-print fa-2x" style=""></i></a>--}}
+                <a title="Print selected entry" href="#" class="pull-right j-print-all-journal"><i
+                            class="fa fa-print fa-2x" style=""></i></a>
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        {{--<th width="20"><input type="checkbox" id="checkAll"/></th>--}}
+                        <th width="20"><input type="checkbox" id="checkAll"/></th>
                         {{--<th>Journal Entry Text</th>--}}
                         {{--<th width="150">Verse</th>--}}
                         {{--<th width="150">Created <i class="fa fa-fw fa-sort-asc"></i></th>--}}
@@ -79,13 +79,13 @@
                                 @endif
                             </th>
                         @endforeach
-                        <th width="90">Actions</th>
+                        <th width="100">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($content['journal'] as $entry)
                         <tr>
-                            {{--<td width="20"><input data-journalid="{!! $entry->id !!}" type="checkbox" class="check"></td>--}}
+                            <td width="20"><input data-journalid="{!! $entry->id !!}" type="checkbox" class="check"></td>
                             <td>
                                 <div class="journal-text j-journal-text"
                                      data-journalid="{!! $entry->id !!}">{!! str_limit(strip_tags($entry->journal_text,'<p></p>'), $limit = 300, $end = '...') !!}</div>
@@ -141,12 +141,24 @@
                             <td class="text-center">{!! ViewHelper::getAccessLevelIcon($entry->access_level) !!}</td>
                             <td>{!! $entry->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">
-                                {{--<a title="Print journal entry" href="#" data-journalid="{!! $entry->id !!}" class="j-print-journal"><i
+                                <a title="Print journal entry" href="#" data-journalid="{!! $entry->id !!}" class="j-print-journal"><i
                                             class="fa fa-print fa-2x"
-                                            style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>--}}
-                                <a title="Edit journal entry" href="{!! url('/journal/update/'.$entry->id) !!}"><i
-                                            class="fa fa-edit"
                                             style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
+                                {{--<a title="Edit journal entry" href="{!! url('/journal/update/'.$entry->id) !!}"><i
+                                            class="fa fa-edit"
+                                            style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>--}}
+                                <a title="My Study {!! ($entry->verse?'Verse':'Item') !!}" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                    http_build_query(
+                                        $entry->verse?[
+                                            'version' => $entry->bible_version,
+                                            'book' => $entry->verse->book_id,
+                                            'chapter' => $entry->verse->chapter_num,
+                                            'verse' => $entry->verse->verse_num
+                                        ]:[
+                                            'rel' => $entry->rel_code,
+                                        ])) !!}">
+                                    <i class="fa fa-graduation-cap" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i>
+                                </a>
                                 <a title="Delete journal entry" href="{!! url('/journal/delete',$entry->id) !!}" data-toggle="modal"
                                    data-target="#confirm-delete" data-header="Delete Confirmation"
                                    data-confirm="Are you sure you want to delete this item?"><i class="fa fa-trash"

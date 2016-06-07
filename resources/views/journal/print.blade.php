@@ -9,15 +9,15 @@
     }
 </style>
 <div>
-@foreach($model as $note)
+@foreach($model as $journal)
 <div class="print-journal-item">
-    @if($note->verse)
+    @if($journal->verse)
     <div>
-        <div>{!! ViewHelper::getVerseNum($note->verse) !!}</div>
+        <div>{!! ViewHelper::getVerseNum($journal->verse) !!}</div>
     </div>
     @endif
     <div>
-        {!! $note->journal_text !!}
+        {!! $journal->journal_text !!}
     </div>
 </div>
 @endforeach

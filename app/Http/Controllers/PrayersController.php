@@ -134,6 +134,14 @@ class PrayersController extends Controller
             $this->validate($request, $model->rules());
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
+            if(!$model->verse){
+                if($rel = Input::get('rel', false)){
+                    $data['rel_code'] = $rel;
+                }
+                else{
+                    $data['rel_code'] = BaseModel::generateRelationCode();
+                }
+            }
             if ($model = $model->create($data)) {
                 $model->syncTags(Input::get('tags'));
                 if($model->note_text = Input::get('note_text',false)){
@@ -146,9 +154,14 @@ class PrayersController extends Controller
                 }
                 Notification::success('Prayer record has been successfully created');
             }
-            return ($url = Session::get('backUrl'))
-                ? Redirect::to($url)
-                : Redirect::to('/prayers/list/');
+            if(!Request::ajax()){
+                return ($url = Session::get('backUrl'))
+                    ? Redirect::to($url)
+                    : Redirect::to('/prayers/list/');
+            }
+            else{
+                return 1;
+            }
         }
 
         $view = 'prayers.create';
@@ -187,11 +200,22 @@ class PrayersController extends Controller
                 }
                 Notification::success('Prayer has been successfully updated');
             }
-            return ($url = Session::get('backUrl'))
-                ? Redirect::to($url)
-                : Redirect::to('/prayers/list/');
+            if(!Request::ajax()){
+                return ($url = Session::get('backUrl'))
+                    ? Redirect::to($url)
+                    : Redirect::to('/prayers/list/');
+            }
+            else{
+                return 1;
+            }
         }
-        return view('prayers.update',
+
+        $view = 'prayers.update';
+        if(Request::ajax()){
+            $view = 'prayers.form';
+        }
+
+        return view($view,
             [
                 'model' => $model
             ]);
@@ -227,6 +251,7 @@ class PrayersController extends Controller
         $noteModel->bible_version = $model->bible_version;
         $noteModel->highlighted_text = $model->highlighted_text;
         $noteModel->note_text = $model->note_text;
+        $noteModel->rel_code = $model->rel_code;
         if($noteModel->save()){
             return $noteModel->id;
         }
@@ -245,6 +270,7 @@ class PrayersController extends Controller
         $journalModel->bible_version = $model->bible_version;
         $journalModel->highlighted_text = $model->highlighted_text;
         $journalModel->journal_text = $model->journal_text;
+        $journalModel->rel_code = $model->rel_code;
         if($journalModel->save()){
             return $journalModel->id;
         }

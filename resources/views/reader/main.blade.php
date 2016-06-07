@@ -122,6 +122,15 @@
                             <div class="pull-left">
                                 {!! ViewHelper::getVerseNum($item->verse) !!}
                             </div>
+                            <a title="My Study Verse" href="{!! url('reader/my-study-verse?'.http_build_query([
+                                'version' => $content['version_code'],
+                                'book' => $item->verse->book_id,
+                                'chapter' => $item->verse->chapter_num,
+                                'verse' => $item->verse->verse_num,
+                            ]),[],false) !!}">
+                                {{--<i class="fa fa-pencil pull-right" aria-hidden="true"></i>--}}
+                                <i class="fa fa-location-arrow fa-graduation-cap pull-right" aria-hidden="true"></i>
+                            </a>
                             <div class="pull-right">{!! $item->created_at->format('m/d/Y') !!}</div>
                         </div>
                         <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" , data-itemtype="{!! $item->type !!}">

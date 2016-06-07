@@ -95,6 +95,18 @@ class AjaxController extends Controller
         return view('notes.print', ['model' => $notes]);
     }
 
+    public function getPrintJournal(){
+        $ids = (array)Request::input('id');
+        $journal = Journal::query()->where('user_id',Auth::user()->id)->whereIn('id',$ids)->orderBy('created_at','desc')->get();
+        return view('journal.print', ['model' => $journal]);
+    }
+
+    public function getPrintPrayer(){
+        $ids = (array)Request::input('id');
+        $prayers = Prayer::query()->where('user_id',Auth::user()->id)->whereIn('id',$ids)->orderBy('created_at','desc')->get();
+        return view('prayers.print', ['model' => $prayers]);
+    }
+
     public function getViewJournal(){
         $id = Request::input('id');
         $journal = Journal::query()->where('user_id',Auth::user()->id)->find($id);

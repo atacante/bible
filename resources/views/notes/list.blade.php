@@ -46,7 +46,7 @@
                     </p>
                 </div>
             @endif
-            {!! Html::link('/notes/create','Create Note', ['class'=>'btn btn-success','style' => 'margin-bottom:10px;']) !!}
+            {!! Html::link('/notes/create?extraFields=1','Create Note', ['class'=>'btn btn-success','style' => 'margin-bottom:10px;']) !!}
             @if($content['notes']->count())
                 <a title="Print selected notes" href="#" class="pull-right j-print-all-notes"><i
                             class="fa fa-print fa-2x" style=""></i></a>
@@ -78,7 +78,7 @@
                                 @endif
                             </th>
                         @endforeach
-                        <th width="90">Actions</th>
+                        <th width="100">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -142,9 +142,21 @@
                                 <a title="Print note" href="#" data-noteid="{!! $note->id !!}" class="j-print-note"><i
                                             class="fa fa-print fa-2x"
                                             style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
-                                <a title="Edit note" href="{!! url('/notes/update/'.$note->id) !!}"><i
+                                {{--<a title="Edit note" href="{!! url('/notes/update/'.$note->id) !!}"><i
                                             class="fa fa-edit"
-                                            style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
+                                            style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>--}}
+                                <a title="My Study {!! ($note->verse?'Verse':'Item') !!}" href="{!! url('/reader/my-study-'.($note->verse?'verse':'item').'?'.
+                                    http_build_query(
+                                        $note->verse?[
+                                            'version' => $note->bible_version,
+                                            'book' => $note->verse->book_id,
+                                            'chapter' => $note->verse->chapter_num,
+                                            'verse' => $note->verse->verse_num
+                                        ]:[
+                                            'rel' => $note->rel_code,
+                                        ])) !!}">
+                                    <i class="fa fa-graduation-cap" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i>
+                                </a>
                                 <a title="Delete note" href="{!! url('/notes/delete',$note->id) !!}" data-toggle="modal"
                                    data-target="#confirm-delete" data-header="Delete Confirmation"
                                    data-confirm="Are you sure you want to delete this item?"><i class="fa fa-trash"

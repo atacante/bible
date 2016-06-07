@@ -95,6 +95,12 @@ $router->group([
 //    ]);
 //});
 
+Route::get('/reader/my-study-verse', [
+    'uses'          => 'ReaderController@getMyStudyVerse',
+    'middleware'    => ['auth', 'acl'],
+    'is'            => 'user'
+]);
+
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', [
         'as' => 'reader', 'uses' => 'ReaderController@getOverview'
@@ -115,6 +121,7 @@ Route::group([
         'middleware' => ['auth', 'acl'],
         'is' => 'user'
 ], function () {
+//    Route::resource('reader', 'ReaderController@getMyStudyVersev');
     Route::controller('notes', 'NotesController');
     Route::controller('journal', 'JournalController');
     Route::controller('prayers', 'PrayersController');

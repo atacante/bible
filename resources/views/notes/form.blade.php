@@ -21,6 +21,8 @@
                 <i>{!! $model->highlighted_text !!}</i>
             </div>
         </div>
+    @else
+        {!! Form::hidden('rel',Request::get('rel')) !!}
     @endif
     <div class="form-group {{ $errors->has('note_text') ? ' has-error' : '' }}">
         {!! Form::label('note_text', 'Description:') !!}
@@ -65,7 +67,7 @@
         @endif
     </div>
 </div>
-<div class="form-group {{ $errors->has('journal_text') ? ' has-error' : '' }}">
+<div class="form-group {!! Request::get('extraFields')?'':'hidden' !!} {{ $errors->has('journal_text') ? ' has-error' : '' }}">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
@@ -91,7 +93,7 @@
         </div>
     </div>
 </div>
-<div class="form-group {{ $errors->has('prayer_text') ? ' has-error' : '' }}">
+<div class="form-group {!! Request::get('extraFields')?'':'hidden' !!} {{ $errors->has('prayer_text') ? ' has-error' : '' }}">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingTwo">

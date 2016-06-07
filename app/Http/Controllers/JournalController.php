@@ -134,6 +134,14 @@ class JournalController extends Controller
             $this->validate($request, $model->rules());
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
+            if(!$model->verse){
+                if($rel = Input::get('rel', false)){
+                    $data['rel_code'] = $rel;
+                }
+                else{
+                    $data['rel_code'] = BaseModel::generateRelationCode();
+                }
+            }
             if ($model = $model->create($data)) {
                 $model->syncTags(Input::get('tags'));
                 if($model->note_text = Input::get('note_text',false)){
@@ -146,9 +154,12 @@ class JournalController extends Controller
                 }
                 Notification::success('Journal record has been successfully created');
             }
-            return ($url = Session::get('backUrl'))
-                ? Redirect::to($url)
-                : Redirect::to('/journal/list/');
+            if(!Request::ajax()) {
+                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/journal/list/');
+            }
+            else{
+                return 1;
+            }
         }
 
         $view = 'journal.create';
@@ -187,11 +198,20 @@ class JournalController extends Controller
                 }
                 Notification::success('Journal record has been successfully updated');
             }
-            return ($url = Session::get('backUrl'))
-                ? Redirect::to($url)
-                : Redirect::to('/journal/list/');
+            if(!Request::ajax()) {
+                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/journal/list/');
+            }
+            else{
+                return 1;
+            }
         }
-        return view('journal.update',
+
+        $view = 'journal.update';
+        if(Request::ajax()){
+            $view = 'journal.form';
+        }
+
+        return view($view,
             [
                 'model' => $model
             ]);
@@ -227,6 +247,7 @@ class JournalController extends Controller
         $noteModel->bible_version = $model->bible_version;
         $noteModel->highlighted_text = $model->highlighted_text;
         $noteModel->note_text = $model->note_text;
+        $noteModel->rel_code = $model->rel_code;
         if($noteModel->save()){
             return $noteModel->id;
         }
@@ -245,6 +266,7 @@ class JournalController extends Controller
         $prayerModel->bible_version = $model->bible_version;
         $prayerModel->highlighted_text = $model->highlighted_text;
         $prayerModel->prayer_text = $model->prayer_text;
+        $prayerModel->rel_code = $model->rel_code;
         if($prayerModel->save()){
             return $prayerModel->id;
         }

@@ -140,6 +140,14 @@ class NotesController extends Controller
             $this->validate($request, $model->rules());
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
+            if(!$model->verse){
+                if($rel = Input::get('rel', false)){
+                    $data['rel_code'] = $rel;
+                }
+                else{
+                    $data['rel_code'] = BaseModel::generateRelationCode();
+                }
+            }
             if ($model = $model->create($data)) {
                 $model->syncTags(Input::get('tags'));
                 if ($model->journal_text = Input::get('journal_text', false)) {
@@ -152,7 +160,12 @@ class NotesController extends Controller
                 }
                 Notification::success('Note has been successfully created');
             }
-            return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/notes/list/');
+            if (!Request::ajax()) {
+                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/notes/list/');
+            }
+            else{
+                return 1;
+            }
         }
         $view = 'notes.create';
         if (Request::ajax()) {
@@ -169,6 +182,7 @@ class NotesController extends Controller
         $model = Note::query()->where('user_id', Auth::user()->id)->find($id);
         $model->journal_text = Input::get('journal_text', false);
         $model->prayer_text = Input::get('prayer_text', false);
+//        $model->rel_code = Input::get('rel_code', false);
         if (!$model) {
             abort(404);
         }
@@ -187,9 +201,19 @@ class NotesController extends Controller
                 }
                 Notification::success('Note has been successfully updated');
             }
-            return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/notes/list/');
+            if (!Request::ajax()) {
+                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/notes/list/');
+            }
+            else{
+                return 1;
+            }
         }
-        return view('notes.update', ['model' => $model]);
+
+        $view = 'notes.update';
+        if (Request::ajax()) {
+            $view = 'notes.form';
+        }
+        return view($view, ['model' => $model]);
     }
 
     public function anyDelete($id)
@@ -202,6 +226,8 @@ class NotesController extends Controller
             abort(404);
         }
         if ($model->destroy($id)) {
+            $model->journals()->detach();
+            $model->prayers()->detach();
             Notification::success('Note has been successfully deleted');
         }
         return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/notes/list/');
@@ -220,7 +246,9 @@ class NotesController extends Controller
         $journalModel->bible_version = $model->bible_version;
         $journalModel->highlighted_text = $model->highlighted_text;
         $journalModel->journal_text = $model->journal_text;
+        $journalModel->rel_code = $model->rel_code;
         if ($journalModel->save()) {
+//            $journalModel->notes()->attach($model->id);
             return $journalModel->id;
         }
     }
@@ -238,7 +266,9 @@ class NotesController extends Controller
         $prayerModel->bible_version = $model->bible_version;
         $prayerModel->highlighted_text = $model->highlighted_text;
         $prayerModel->prayer_text = $model->prayer_text;
+        $prayerModel->rel_code = $model->rel_code;
         if ($prayerModel->save()) {
+//            $prayerModel->notes()->attach($model->id);
             return $prayerModel->id;
         }
     }

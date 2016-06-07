@@ -261,6 +261,51 @@ class ReaderController extends Controller
         return view('reader.verse', ['content' => $content, 'filterAction' => 'verse']);
     }
 
+    public function getMyStudyVerse()
+    {
+        Session::flash('backUrl', Request::fullUrl());
+
+        $version_code = Request::input('version', Config::get('app.defaultBibleVersion'));
+        $book = Request::input('book', Config::get('app.defaultBookNumber'));
+        $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
+        $verse = Request::input('verse', false);
+
+        if ($verse) {
+            $verseModel = BaseModel::getVersesModelByVersionCode($version_code);
+            $content['verse']['version_name'] = VersionsListEn::getVersionByCode($version_code);
+            $content['verse']['version_code'] = $version_code;
+            $content['verse']['verse'] = $verseModel::query()
+                ->where('book_id', $book)
+                ->where('chapter_num', $chapter)
+                ->where('verse_num', $verse)
+                ->first();
+
+            if(!$content['verse']['verse']){
+                return $this->flashNotification('Requested content does not provided in '.VersionsListEn::getVersionByCode($version_code).' version');
+            }
+        }
+
+        $content['notes'] = Note::with(['verse.booksListEn','journal','prayer','tags'])->where('user_id', Auth::user()->id)->where('verse_id',$content['verse']['verse']->id)->orderBy('created_at','desc')->get();
+        $content['journal'] = Journal::with(['verse.booksListEn','note','prayer','tags'])->where('user_id', Auth::user()->id)->where('verse_id',$content['verse']['verse']->id)->orderBy('created_at','desc')->get();
+        $content['prayers'] = Prayer::with(['verse.booksListEn','journal','note','tags'])->where('user_id', Auth::user()->id)->where('verse_id',$content['verse']['verse']->id)->orderBy('created_at','desc')->get();
+
+        $content['pagination'] = $this->pagination($chapter, $book, $verse);
+        return view('reader.my-study-verse', ['content' => $content]);
+    }
+
+    public function getMyStudyItem()
+    {
+        Session::flash('backUrl', Request::fullUrl());
+
+        $rel = Request::input('rel', false);
+
+        $content['notes'] = Note::with(['verse.booksListEn','journal','prayer','tags'])->where('user_id', Auth::user()->id)->where('rel_code',$rel)->orderBy('created_at','desc')->get();
+        $content['journal'] = Journal::with(['verse.booksListEn','note','prayer','tags'])->where('user_id', Auth::user()->id)->where('rel_code',$rel)->orderBy('created_at','desc')->get();
+        $content['prayers'] = Prayer::with(['verse.booksListEn','journal','note','tags'])->where('user_id', Auth::user()->id)->where('rel_code',$rel)->orderBy('created_at','desc')->get();
+
+        return view('reader.my-study-item', ['content' => $content]);
+    }
+
     public function anyStrongs($num,$dictionaryType)
     {
         Session::flash('backUrl', Request::fullUrl());

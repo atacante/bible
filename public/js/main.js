@@ -151,7 +151,7 @@ $(document).ready(function(){
 
     $('body').on('click','.j-prayer-text',function(ev) {
         ev.preventDefault();
-        var id = $(this).data('prayersid');
+        var id = $(this).data('prayerid');
         site.getPrayer(id);
     });
 
@@ -290,6 +290,38 @@ $(document).ready(function(){
         });
     });
 
+    $('.j-my-journal-list').parent().on('click','.j-print-journal',function(e){
+        e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: "/ajax/print-journal",
+            dataType: "html",
+            data:{id:$(this).data('journalid')},
+            success:function(data){
+                var printNote = window.open('', '', 'height='+$(window).height()+',width='+$(window).width());
+                printNote.document.write(data);
+                printNote.print();
+                printNote.close();
+            }
+        });
+    });
+
+    $('.j-my-prayers-list').parent().on('click','.j-print-prayer',function(e){
+        e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: "/ajax/print-prayer",
+            dataType: "html",
+            data:{id:$(this).data('prayerid')},
+            success:function(data){
+                var printNote = window.open('', '', 'height='+$(window).height()+',width='+$(window).width());
+                printNote.document.write(data);
+                printNote.print();
+                printNote.close();
+            }
+        });
+    });
+
     $('.j-locations-list').parent().on('click','.j-view-embed-map',function(e){
         e.preventDefault();
         $.ajax({
@@ -328,6 +360,64 @@ $(document).ready(function(){
             url: "/ajax/print-note",
             dataType: "html",
             data:{id:noteIds},
+            success:function(data){
+                var printNote = window.open('', '', 'height='+$(window).height()+',width='+$(window).width());
+                printNote.document.write(data);
+                printNote.print();
+                printNote.close();
+            }
+        });
+    });
+
+    $('.j-my-journal-list').parent().on('click','.j-print-all-journal',function(e){
+        e.preventDefault();
+        var checks = $('input[class="check"]:checked');
+        if(checks.length == 0){
+            $('#popup').find('.modal-header .modal-title').text('Warning');
+            $('#popup').find('.modal-body').html("Please select journal entries witch you want to print");
+            $('#popup').find('.modal-footer').html('');
+            $('#popup').modal({show:true});
+            return false;
+        }
+        var journalIds = [];
+        $('input:checkbox[class="check"]:checked').each(function(){
+            journalIds.push($(this).data('journalid'));
+        });
+
+        $.ajax({
+            method: "GET",
+            url: "/ajax/print-journal",
+            dataType: "html",
+            data:{id:journalIds},
+            success:function(data){
+                var printNote = window.open('', '', 'height='+$(window).height()+',width='+$(window).width());
+                printNote.document.write(data);
+                printNote.print();
+                printNote.close();
+            }
+        });
+    });
+
+    $('.j-my-prayers-list').parent().on('click','.j-print-all-prayers',function(e){
+        e.preventDefault();
+        var checks = $('input[class="check"]:checked');
+        if(checks.length == 0){
+            $('#popup').find('.modal-header .modal-title').text('Warning');
+            $('#popup').find('.modal-body').html("Please select prayers witch you want to print");
+            $('#popup').find('.modal-footer').html('');
+            $('#popup').modal({show:true});
+            return false;
+        }
+        var prayersIds = [];
+        $('input:checkbox[class="check"]:checked').each(function(){
+            prayersIds.push($(this).data('prayerid'));
+        });
+
+        $.ajax({
+            method: "GET",
+            url: "/ajax/print-prayer",
+            dataType: "html",
+            data:{id:prayersIds},
             success:function(data){
                 var printNote = window.open('', '', 'height='+$(window).height()+',width='+$(window).width());
                 printNote.document.write(data);
@@ -454,6 +544,17 @@ $(document).ready(function(){
     $("body").on('click','.j-create-note',function (e) {
         e.preventDefault();
         var url = $(this).attr('href');
+        if($('.j-my-stady-verse').length > 0){
+            url += '?version='+$('input[name="bible_version"]').val()
+            url += '&verse_id='+$('input[name="verse_id"]').val();
+            url += '&text='+$('.j-verse-text').text();
+        }
+        if($('.j-my-stady-item').length > 0){
+            url += '?rel='+$('input[name="rel"]').val()
+        }
+        if($(this).parent('.j-reader-actions').length > 0){
+            url += '&extraFields=1'
+        }
         $.ajax({
             method: "GET",
             url: url,
@@ -465,6 +566,7 @@ $(document).ready(function(){
                 //$('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><button type="submit" class="btn btn-primary full-screen-btn j-full-screen-btn">Full screen</button></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
+                //$('#popup input[name="verse_id"]').val('');
                 $('#popup').modal({show:true});
                 site.initCkeditors();
                 site.initTagging();
@@ -481,9 +583,20 @@ $(document).ready(function(){
     $("body").on('click','.j-create-journal',function (e) {
         e.preventDefault();
         var url = $(this).attr('href');
+        if($('.j-my-stady-verse').length > 0){
+            url += '?version='+$('input[name="bible_version"]').val()
+            url += '&verse_id='+$('input[name="verse_id"]').val();
+            url += '&text='+$('.j-verse-text').text();
+        }
+        if($('.j-my-stady-item').length > 0){
+            url += '?rel='+$('input[name="rel"]').val()
+        }
+        if($(this).parent('.j-reader-actions').length > 0){
+            url += '&extraFields=1'
+        }
         $.ajax({
             method: "GET",
-            url: $(this).attr('href'),
+            url: url,
             data:{},
             success:function(data){
                 $('#popup').find('.modal-header .modal-title').html('<div class="pull-left">Create Journal Entry</div>');
@@ -506,9 +619,20 @@ $(document).ready(function(){
     $("body").on('click','.j-create-prayer',function (e) {
         e.preventDefault();
         var url = $(this).attr('href');
+        if($('.j-my-stady-verse').length > 0){
+            url += '?version='+$('input[name="bible_version"]').val()
+            url += '&verse_id='+$('input[name="verse_id"]').val();
+            url += '&text='+$('.j-verse-text').text();
+        }
+        if($('.j-my-stady-item').length > 0){
+            url += '?rel='+$('input[name="rel"]').val()
+        }
+        if($(this).parent('.j-reader-actions').length > 0){
+            url += '&extraFields=1'
+        }
         $.ajax({
             method: "GET",
-            url: $(this).attr('href'),
+            url: url,
             data:{},
             success:function(data){
                 $('#popup').find('.modal-header .modal-title').html('<div class="pull-left">Create Prayer</div>');
@@ -604,5 +728,26 @@ $(document).ready(function(){
                 $('#coupon_code').parents('.form-group').removeClass('hidden');
                 break;
         }
+    });
+
+    $('.j-popup-form').click(function(e){
+        e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: $(this).attr('href'),
+            success:function(data){
+                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left">'+$(this).text()+'</div>');
+                //$('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+url+'" data-type="prayer" class="label label-primary full-screen-btn j-full-screen-btn">Full screen</a></div>');
+                $('#popup').find('.modal-body').html(data);
+                $('#popup').find('.modal-footer').html('');
+                $('#popup').modal({show:true});
+            }
+        });
+    });
+
+    $('#popup').on('click','#note-form button[type="submit"], #journal-form button[type="submit"],#prayer-form button[type="submit"]',function(e){
+        e.preventDefault();
+        var form = $(this).parents('form');
+        site.ajaxForm(form);
     });
 });

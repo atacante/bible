@@ -16,7 +16,7 @@ class Prayer extends BaseModel
     public $journal_text;
 
     protected $table = 'prayers';
-    protected $fillable = ['id','user_id','note_id','journal_id','bible_version','verse_id','lexicon_id','highlighted_text','prayer_text','access_level'];
+    protected $fillable = ['id','user_id','note_id','journal_id','bible_version','verse_id','lexicon_id','highlighted_text','prayer_text','access_level','rel_code'];
 
     public function rules()
     {
@@ -42,8 +42,16 @@ class Prayer extends BaseModel
         return $this->belongsTo(\App\Note::class, 'id', 'prayer_id');
     }
 
+    public function notes() {
+        return $this->belongsToMany(Note::class, 'notes_journal_prayers', 'prayer_id', 'note_id');
+    }
+
     public function journal() {
         return $this->belongsTo(\App\Journal::class, 'journal_id', 'id');
+    }
+
+    public function journals() {
+        return $this->belongsToMany(Journal::class, 'notes_journal_prayers', 'prayer_id', 'journal_id');
     }
 
     public function tags() {

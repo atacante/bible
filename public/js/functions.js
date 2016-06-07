@@ -230,3 +230,27 @@ site.initTagging = function(){
     });
 }
 
+site.ajaxForm = function(form){
+    var url = form.attr('action');
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: form.serialize(),
+        success:function(data){
+            $('#popup').modal('hide');
+            location.reload();
+        },
+        error:function(data){
+            $('.form-group').removeClass('has-error');
+            $('.help-block').remove();
+            $.each(data.responseJSON, function(index,value){
+                console.log(index);
+                console.log(value[0]);
+                var formGroup = $(':input[name='+index+']').parents('.form-group');
+                formGroup.addClass('has-error');
+                formGroup.append('<span class="help-block">'+value[0]+'</span>');
+            });
+        }
+    });
+}
+

@@ -219,4 +219,19 @@ class BaseModel extends Model {
 
         return $finalQuery;
     }
+
+    public static function generateRelationCode()
+    {
+        $code = str_random(10);
+        if(Note::where('rel_code', $code)->exists()){
+            self::generateRelationCode();
+        }
+        if(Journal::where('rel_code', $code)->exists()){
+            self::generateRelationCode();
+        }
+        if(Prayer::where('rel_code', $code)->exists()){
+            self::generateRelationCode();
+        }
+        return $code;
+    }
 }
