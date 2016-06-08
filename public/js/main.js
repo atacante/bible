@@ -544,6 +544,7 @@ $(document).ready(function(){
     $("body").on('click','.j-create-note',function (e) {
         e.preventDefault();
         var url = $(this).attr('href');
+        var fullScreenLabel = 'Full screen';
         if($('.j-my-stady-verse').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
@@ -552,9 +553,13 @@ $(document).ready(function(){
         if($('.j-my-stady-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
         }
+        var fullScreenUrl = url;
         if($(this).parent('.j-reader-actions').length > 0){
-            url += '&extraFields=1'
+            url += '&extraFields=1';
+            fullScreenLabel = 'My Study Verse';
+            fullScreenUrl = $.trim(url.replace('/notes/create','/reader/my-study-verse'));
         }
+
         $.ajax({
             method: "GET",
             url: url,
@@ -562,7 +567,7 @@ $(document).ready(function(){
             success:function(data){
                 $('#popup').find('.modal-header .modal-title').html('');
                 $('#popup').find('.modal-header .modal-title').append('<div class="pull-left">Create Note</div>');
-                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+url+'" data-type="note" class="label label-primary full-screen-btn j-full-screen-btn">Full screen</a></div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+fullScreenUrl+'" data-type="note" class="label label-primary full-screen-btn j-full-screen-btn">'+fullScreenLabel+'</a></div>');
                 //$('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><button type="submit" class="btn btn-primary full-screen-btn j-full-screen-btn">Full screen</button></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
@@ -583,6 +588,7 @@ $(document).ready(function(){
     $("body").on('click','.j-create-journal',function (e) {
         e.preventDefault();
         var url = $(this).attr('href');
+        var fullScreenLabel = 'Full screen';
         if($('.j-my-stady-verse').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
@@ -591,8 +597,11 @@ $(document).ready(function(){
         if($('.j-my-stady-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
         }
+        var fullScreenUrl = url;
         if($(this).parent('.j-reader-actions').length > 0){
-            url += '&extraFields=1'
+            url += '&extraFields=1';
+            fullScreenLabel = 'My Study Verse';
+            fullScreenUrl = $.trim(url.replace('/journal/create','/reader/my-study-verse'));
         }
         $.ajax({
             method: "GET",
@@ -600,7 +609,7 @@ $(document).ready(function(){
             data:{},
             success:function(data){
                 $('#popup').find('.modal-header .modal-title').html('<div class="pull-left">Create Journal Entry</div>');
-                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+url+'" data-type="journal" class="label label-primary full-screen-btn j-full-screen-btn">Full screen</a></div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+fullScreenUrl+'" data-type="journal" class="label label-primary full-screen-btn j-full-screen-btn">'+fullScreenLabel+'</a></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
                 $('#popup').modal({show:true});
@@ -619,6 +628,7 @@ $(document).ready(function(){
     $("body").on('click','.j-create-prayer',function (e) {
         e.preventDefault();
         var url = $(this).attr('href');
+        var fullScreenLabel = 'Full screen';
         if($('.j-my-stady-verse').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
@@ -627,8 +637,11 @@ $(document).ready(function(){
         if($('.j-my-stady-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
         }
+        var fullScreenUrl = url;
         if($(this).parent('.j-reader-actions').length > 0){
-            url += '&extraFields=1'
+            url += '&extraFields=1';
+            fullScreenLabel = 'My Study Verse';
+            fullScreenUrl = $.trim(url.replace('/prayers/create','/reader/my-study-verse'));
         }
         $.ajax({
             method: "GET",
@@ -636,7 +649,7 @@ $(document).ready(function(){
             data:{},
             success:function(data){
                 $('#popup').find('.modal-header .modal-title').html('<div class="pull-left">Create Prayer</div>');
-                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+url+'" data-type="prayer" class="label label-primary full-screen-btn j-full-screen-btn">Full screen</a></div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+fullScreenUrl+'" data-type="prayer" class="label label-primary full-screen-btn j-full-screen-btn">'+fullScreenLabel+'</a></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
                 $('#popup').modal({show:true});
@@ -653,12 +666,14 @@ $(document).ready(function(){
     });
 
     $("body").on('click','.j-full-screen-btn',function (e) {
-        e.preventDefault();
-        var url = $(this).attr('href');
-        var type = $(this).data('type');
-        $('#'+type+'-form input[name="full_screen"]').val(1);
-        $('#'+type+'-form').attr('action',url);
-        $('#'+type+'-form').submit();
+        if($('.j-my-stady-verse').length > 0 || $('.j-my-stady-item').length > 0){
+            e.preventDefault();
+            var url = $(this).attr('href');
+            var type = $(this).data('type');
+            $('#'+type+'-form input[name="full_screen"]').val(1);
+            $('#'+type+'-form').attr('action',url);
+            $('#'+type+'-form').submit();
+        }
 
         //var noteText = $('textarea[name="note_text"]').val();
         //var journalText = $('textarea[name="journal_text"]').val();

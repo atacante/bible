@@ -269,16 +269,23 @@ class ReaderController extends Controller
         $book = Request::input('book', Config::get('app.defaultBookNumber'));
         $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
         $verse = Request::input('verse', false);
+        $verse_id = Request::input('verse_id', false);
 
-        if ($verse) {
+        if ($verse || $verse_id) {
             $verseModel = BaseModel::getVersesModelByVersionCode($version_code);
             $content['verse']['version_name'] = VersionsListEn::getVersionByCode($version_code);
             $content['verse']['version_code'] = $version_code;
-            $content['verse']['verse'] = $verseModel::query()
+            $verseModel = $verseModel::query();
+            if($verse_id && !$verse){
+                $verseModel->where('id',$verse_id);
+            }
+            else{
+                $verseModel
                 ->where('book_id', $book)
                 ->where('chapter_num', $chapter)
-                ->where('verse_num', $verse)
-                ->first();
+                ->where('verse_num', $verse);
+            }
+            $content['verse']['verse'] = $verseModel->first();
 
             if(!$content['verse']['verse']){
                 return $this->flashNotification('Requested content does not provided in '.VersionsListEn::getVersionByCode($version_code).' version');
@@ -289,7 +296,7 @@ class ReaderController extends Controller
         $content['journal'] = Journal::with(['verse.booksListEn','note','prayer','tags'])->where('user_id', Auth::user()->id)->where('verse_id',$content['verse']['verse']->id)->orderBy('created_at','desc')->get();
         $content['prayers'] = Prayer::with(['verse.booksListEn','journal','note','tags'])->where('user_id', Auth::user()->id)->where('verse_id',$content['verse']['verse']->id)->orderBy('created_at','desc')->get();
 
-        $content['pagination'] = $this->pagination($chapter, $book, $verse);
+        $content['pagination'] = $this->pagination($content['verse']['verse']->chapter_num, $content['verse']['verse']->book_id, $content['verse']['verse']->verse_num);
         return view('reader.my-study-verse', ['content' => $content]);
     }
 
@@ -467,6 +474,9 @@ class ReaderController extends Controller
     private function pagination($currentChapter, $currentBook, $currentVerse = false)
     {
         $params = Request::input();
+        unset($params['verse_id']);
+        unset($params['text']);
+        unset($params['extraFields']);
         $version = Request::input('version',false);
 
         $booksQuery = BooksListEn::all();
