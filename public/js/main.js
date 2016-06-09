@@ -1,5 +1,8 @@
 $(document).ready(function(){
     $("#j-select-locations,#j-select-peoples").select2();
+    $(".j-entry-types").select2({
+        placeholder: "All types",
+    });
     $(".j-select-user").select2({
         placeholder: "Select user...",
     });
@@ -274,7 +277,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-my-notes-list').parent().on('click','.j-print-note',function(e){
+    $('.j-my-notes-list,.j-my-entries-list').parent().on('click','.j-print-note',function(e){
         e.preventDefault();
         $.ajax({
             method: "GET",
@@ -290,7 +293,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-my-journal-list').parent().on('click','.j-print-journal',function(e){
+    $('.j-my-journal-list,.j-my-entries-list').parent().on('click','.j-print-journal',function(e){
         e.preventDefault();
         $.ajax({
             method: "GET",
@@ -306,7 +309,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-my-prayers-list').parent().on('click','.j-print-prayer',function(e){
+    $('.j-my-prayers-list,.j-my-entries-list').parent().on('click','.j-print-prayer',function(e){
         e.preventDefault();
         $.ajax({
             method: "GET",

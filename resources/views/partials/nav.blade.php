@@ -57,6 +57,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             @role('user')
+                            <li><a href="{{ url('user/my-journey') }}"><i class="fa fa-btn fa-location-arrow"></i>My Journey</a></li>
                             <li><a href="{{ url('notes/list') }}"><i class="fa fa-btn fa-sticky-note"></i>My Notes</a></li>
                             <li><a href="{{ url('journal/list') }}"><i class="fa fa-btn fa-book"></i>My Journal</a></li>
                             <li><a href="{{ url('prayers/list') }}"><i class="fa fa-btn fa-hand-paper-o"></i>My Prayers</a></li>

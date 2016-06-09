@@ -242,11 +242,11 @@ a.view-details:hover{
     min-height: 400px;
 }
 
-.my-journal-list .box-header,.my-notes-list .box-header, .my-prayers-list .box-header{
+.my-journal-list .box-header,.my-notes-list .box-header, .my-prayers-list .box-header, .my-entries-list .box-header{
     border-bottom: 1px solid #f4f4f4;
 }
 
-.my-journal-list .box-body,.my-notes-list .box-body, .my-prayers-list .box-body{
+.my-journal-list .box-body,.my-notes-list .box-body, .my-prayers-list .box-body, .my-entries-list .box-body{
     padding: 10px;
 }
 
@@ -342,12 +342,102 @@ a.view-details:hover{
     text-align: center;
 }
 
-.my-notes-list .fa, .my-journal-list .fa, .my-prayers-list .fa{
+.my-notes-list .fa, .my-journal-list .fa, .my-prayers-list .fa, .my-entries-list .fa{
     /*color: #90949c;*/
     color: #367fa9;
     font-size: 1.4em;
 }
 
+.my-entries-list .create-btns .fa{
+    color: white;
+    font-size: 1em;
+}
+
 .my-notes-list h4, .my-journal-list h4, .my-prayers-list h4{
     color: #367fa9;
+}
+
+.section-title{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+/*
+ * Component: Small Box
+ * --------------------
+ */
+.small-box {
+    color: white;
+    border-radius: 2px;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.small-box > .inner {
+    padding: 10px;
+}
+.small-box > .small-box-footer {
+    position: relative;
+    text-align: center;
+    padding: 3px 0;
+    color: #fff;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+.small-box > .small-box-footer:hover {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.15);
+}
+.small-box h3 {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    padding: 0;
+}
+.small-box p {
+    font-size: 15px;
+}
+.small-box p > small {
+    display: block;
+    color: #f9f9f9;
+    font-size: 13px;
+    margin-top: 5px;
+}
+.small-box h3,
+.small-box p {
+    z-index: 5px;
+}
+.small-box .icon {
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    z-index: 0;
+    font-size: 90px;
+    color: rgba(0, 0, 0, 0.15);
+}
+.small-box:hover {
+    text-decoration: none;
+    color: #f9f9f9;
+}
+.small-box:hover .icon {
+    font-size: 95px;
+}
+@media (max-width: 767px) {
+    .small-box {
+        text-align: center;
+    }
+    .small-box .icon {
+        display: none;
+    }
+    .small-box p {
+        font-size: 12px;
+    }
 }

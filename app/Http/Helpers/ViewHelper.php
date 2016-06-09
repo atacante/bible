@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Note;
+use App\Tag;
 use App\VersionsListEn;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -135,5 +136,49 @@ class ViewHelper
         }
 
         return $html;
+    }
+
+    public static function getEntryControllerName($entryType)
+    {
+        $action = '';
+
+        switch($entryType){
+            case 'note':
+                $action = 'notes';
+                break;
+            case 'journal':
+                $action = 'journal';
+                break;
+            case 'prayer':
+                $action = 'prayers';
+                break;
+        }
+
+        return $action;
+    }
+
+    public static function getEntryTags($entryType,$entryId)
+    {
+        $tags = '';
+
+        switch($entryType){
+            case 'note':
+                $tags = Tag::whereHas('notes', function ($q) use($entryId) {
+                    $q->where('notes.id',$entryId);
+                });
+                break;
+            case 'journal':
+                $tags = Tag::whereHas('journal', function ($q) use($entryId) {
+                    $q->where('journal.id',$entryId);
+                });
+                break;
+            case 'prayer':
+                $tags = Tag::whereHas('prayers', function ($q) use($entryId) {
+                    $q->where('prayers.id',$entryId);
+                });
+                break;
+        }
+
+        return $tags->get();
     }
 }
