@@ -65,6 +65,15 @@ $(document).ready(function(){
     });
 
     $('body').on('click', function (e) {
+        console.log($(e.target));
+        console.log($(e.target).parents('.related-item').length);
+        console.log($(e.target).parents('.modal').length);
+        console.log($(e.target).parents('.modal-backdrop').length);
+        if(!$(e.target).hasClass('j-highlight-verse') && $(e.target).parents('.related-item').length == 0 && !$(e.target).hasClass('modal') && $(e.target).parents('.modal').length == 0){
+            $('.j-verse-text').removeClass('highlight');
+            $('.related-item').removeClass('highlight');
+            $('.related-item').removeClass('blur');
+        }
         if($('.fancybox-image').length == 0){
             $('.word-definition').each(function () {
                 if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
@@ -767,5 +776,18 @@ $(document).ready(function(){
         e.preventDefault();
         var form = $(this).parents('form');
         site.ajaxForm(form);
+    });
+
+    $('.related-records').on('click','.j-highlight-verse',function(e){
+        e.preventDefault();
+        var verseId = $(this).data('verseid');
+        $('.related-item').addClass('blur');
+        $('.related-item').removeClass('highlight');
+        $(this).parents('.related-item').addClass('highlight');
+        var target = $(".j-verse-text[data-verseid="+verseId+"]");
+        $('body').scrollTo(target,500,{offset:-100});
+        $('.j-verse-text').removeClass('highlight');
+        target.addClass('highlight');
+        //target.effect( "highlight", {color:"#e1e1e8"});
     });
 });

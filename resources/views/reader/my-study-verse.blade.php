@@ -33,7 +33,7 @@
                                 class="glyphicon glyphicon-chevron-right"></i></a>
                 @endif
             </h4>
-            <div style="font-size: 16px;"><i><span class="j-verse-text"
+            <div style="font-size: 16px;"><i><span class="verse-text j-verse-text"
                                                    data-version="{!! $content['verse']['version_code'] !!}"
                                                    data-verseid="{!! $content['verse']['verse']->id !!}">{!! ViewHelper::prepareVerseText($content['verse']['verse'],true) !!}</span></i>
             </div>

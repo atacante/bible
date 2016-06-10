@@ -14,7 +14,7 @@
             @if($version['verses']->count())
                 <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[],false), $version['version_name'], ['class' => '','style' => ''], true)}}</h4>
                 @foreach($version['verses'] as $verse)
-                    <span class="j-verse-text" data-version="{!! $code !!}" data-verseid="{!! $verse->id !!}" style="">
+                    <span class="verse-text j-verse-text" data-version="{!! $code !!}" data-verseid="{!! $verse->id !!}" style="">
                     <b>{!! link_to('reader/verse?'.http_build_query([
                                                                 'version' => $code,
                                                                 'book' => $verse->book_id,

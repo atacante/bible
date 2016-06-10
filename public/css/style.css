@@ -441,3 +441,22 @@ a.view-details:hover{
         font-size: 12px;
     }
 }
+
+.verse-text.highlight{
+    background: #e1e1e8;
+    /*background: #f7f7f9;*/
+}
+
+.related-item.highlight{
+    border-color: #367fa9;
+    border-width: 2px;
+    position: fixed;
+    width: 262px;
+    top:100px;
+    opacity: 1 !important;
+    z-index: 1;
+}
+
+.related-item.blur{
+    opacity:0.3;
+}

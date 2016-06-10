@@ -52,7 +52,7 @@
                             <h4 class="text-center">{!! $content['version'] !!}</h4>
                         @endif
                         @foreach($content['verses'] as $verse)
-                            <span class="j-verse-text" data-version="{!! $content['version_code'] !!}"
+                            <span class="verse-text j-verse-text" data-version="{!! $content['version_code'] !!}"
                                   data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
                 <b>{!! link_to('reader/verse?'.http_build_query([
                                                                 'version' => $content['version_code'],
@@ -73,7 +73,7 @@
                                     {{--                            {!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
                                 </h4>
                                 @foreach($version['verses'] as $verse)
-                                    <span class="j-verse-text" data-verseid="{!! $verse->id !!}"
+                                    <span class="verse-text j-verse-text" data-verseid="{!! $verse->id !!}"
                                           style="word-wrap: normal">
                         <b>{!! link_to('reader/verse?'.http_build_query([
                                                                 'version' => $version['version_code'],
@@ -120,7 +120,7 @@
                             <i title="{!! ucfirst($item->type) !!} Entry"
                                class="pull-left fa fa-btn {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
                             <div class="pull-left">
-                                {!! ViewHelper::getVerseNum($item->verse) !!}
+                                <a href="#verse{!! $item->verse->id !!}" data-verseid="{!! $item->verse->id !!}" class="j-highlight-verse">{!! ViewHelper::getVerseNum($item->verse) !!}</a>
                             </div>
                             <a title="My Study Verse" href="{!! url('reader/my-study-verse?'.http_build_query([
                                 'version' => $content['version_code'],
