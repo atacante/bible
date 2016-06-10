@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 
@@ -56,6 +57,6 @@ class Coupon extends BaseModel
 
     public function setExpireAtAttribute($value)
     {
-        $this->attributes['expire_at'] = $value?strtotime($value):null;
+        $this->attributes['expire_at'] = $value?Carbon::createFromTimestamp(strtotime($value)):null;
     }
 }
