@@ -195,8 +195,13 @@ a.view-details:hover{
     color: red;
 }
 
-.note-text,.journal-text,.prayer-text{
+.note-text,.journal-text,.prayer-text,.entry-text{
     cursor: pointer;
+}
+
+.entry-text a{
+    text-decoration: none;
+    color: inherit;
 }
 
 .no-image{
@@ -442,6 +447,101 @@ a.view-details:hover{
     }
 }
 
+
+/*
+ * Component: Mini Box
+ * --------------------
+ */
+.mini-box {
+    color: white;
+    border-radius: 2px;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.mini-box > .inner {
+    padding: 5px 15px;
+}
+
+.mini-box > .inner .count{
+    display: inline-block;
+    font-size: 26px;
+}
+
+.mini-box > .inner .count-text{
+    display: inline-block;
+    vertical-align: 0.45ex;
+    margin-left: 5px;
+}
+
+.mini-box > .mini-box-footer {
+    position: relative;
+    text-align: center;
+    padding: 3px 0;
+    color: #fff;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+.mini-box > .mini-box-footer:hover {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.15);
+}
+.mini-box h3 {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    padding: 0;
+}
+.mini-box p {
+    font-size: 15px;
+}
+.mini-box p > small {
+    display: block;
+    color: #f9f9f9;
+    font-size: 13px;
+    margin-top: 5px;
+}
+.mini-box h3,
+.mini-box p {
+    z-index: 5px;
+}
+.mini-box .icon {
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    z-index: 0;
+    font-size: 35px;
+    color: rgba(0, 0, 0, 0.15);
+}
+.mini-box:hover {
+    text-decoration: none;
+    color: #f9f9f9;
+}
+.mini-box:hover .icon {
+    font-size: 38px;
+}
+@media (max-width: 767px) {
+    .mini-box {
+        text-align: center;
+    }
+    .mini-box .icon {
+        display: none;
+    }
+    .mini-box p {
+        font-size: 12px;
+    }
+}
+
+
+
 .verse-text.highlight{
     background: #e1e1e8;
     /*background: #f7f7f9;*/
@@ -460,3 +560,118 @@ a.view-details:hover{
 .related-item.blur{
     opacity:0.3;
 }
+
+.stars-block{
+    position: relative;
+    width: 99px;
+}
+
+.my-entries-list .stars-block{
+    width: 80px;
+}
+
+.my-study-item .stars-block {
+    position: absolute;
+    top: -5px;
+    right: 360px;
+    line-height: initial;
+}
+
+.my-study-verse .stars-block {
+    position: absolute;
+    top: 15px;
+    right: 300px;
+    line-height: initial;
+}
+
+.stars-block a{
+    text-decoration: none;
+}
+
+.stars-block .star-link {
+    position: relative;
+    display: inline-block;
+}
+
+.stars-block .star-link.notes {
+    position: absolute; top: 0; left: 31px;
+}
+.stars-block .star-link.journal {
+    position: absolute; top: 22px; left: 0;
+}
+.stars-block .star-link.prayers {
+    position: absolute; top: 22px; right: 0;
+}
+
+.stars-block .star-link .fa-star {
+    font-size: 40px;
+    color: #d2d6de;
+}
+
+.my-entries-list .stars-block .star-link .fa-star{
+    font-size: 30px;
+}
+
+.stars-block .star-link .fa-star.active {
+    color: #ffd001;
+}
+
+.stars-block .star-link .star-label {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+.my-entries-list .stars-block .star-link .star-label{
+    top: 9px;
+    left: 10px;
+    font-size: 11px;
+}
+
+.stars-block .star-line{
+    display: inline-block;
+}
+.stars-block .star-j,.stars-block .star-n,.stars-block .star-p{
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #d2d6de;
+    padding: 6px 9px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #d2d6de;
+    border-radius: 100%;
+}
+.stars-block .star-j{
+
+}
+.stars-block .star-n{
+    display: inline-block;
+}
+.stars-block .star-p{
+    display: inline-block;
+}
+.stars-block .star.active{
+    background-color: #ffd001;
+    border-color: #ffd001;
+    color: #fff;
+}
+.stars-block .star-n.active{
+    /*background-color: #f0ad4e;
+    border-color: #f0ad4e;
+    color: #fff;*/
+}
+.stars-block .star-j.active{
+    /*background-color: #449d44;
+    border-color: #449d44;
+    color: #fff;*/
+}
+.stars-block .star-p.active{
+    /*background-color: #337ab7;
+    border-color: #337ab7;
+    color: #fff;*/
+}
+
+

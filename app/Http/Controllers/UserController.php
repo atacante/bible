@@ -44,9 +44,10 @@ class UserController extends Controller
         "Type"=>false,
         "Text"=>"text",
         "Verse"=>"verse_id",
-//        "Relations"=>false,
+        "Relations v1"=>false,
+        "Relations v2"=>false,
         "Tags"=>false,
-        "Accessibility"=>false,
+        "Access"=>false,
         "Created"=>"created_at"
     ];
 
@@ -141,7 +142,11 @@ class UserController extends Controller
         $this->order = Input::get('order', 'desc');
 
         $journalQuery = Journal::with(['verse.booksListEn','tags'])
-            ->selectRaw('id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,rel_code,access_level')
+            ->selectRaw('id,verse_id,note_id,null as journal_id,prayer_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,rel_code,access_level,
+            CASE WHEN journal.verse_id IS NOT NULL THEN (SELECT count(*) FROM notes WHERE journal.verse_id = notes.verse_id) ELSE (SELECT count(*) FROM notes WHERE journal.rel_code = notes.rel_code) END as notesCount,
+            CASE WHEN journal.verse_id IS NOT NULL THEN (SELECT count(*) FROM journal as j WHERE j.verse_id = journal.verse_id) ELSE (SELECT count(*) FROM journal as j WHERE j.rel_code = journal.rel_code) END as journalCount,
+            CASE WHEN journal.verse_id IS NOT NULL THEN (SELECT count(*) FROM prayers WHERE journal.verse_id = prayers.verse_id) ELSE (SELECT count(*) FROM prayers WHERE journal.rel_code = prayers.rel_code) END as prayersCount
+            ')
             ->where('user_id',Auth::user()?Auth::user()->id:null)
             /*->whereHas('tags', function($q){
                 $q->where('journal_tags.journal_id', '=', 53);
@@ -149,10 +154,15 @@ class UserController extends Controller
         $content['journalCount'] = $journalQuery->count();
         $journalQuery = $this->prepareFilters($journalQuery,'journal');
         $content['tags']['journal'] = $journalQuery->get()->pluck('tags','id');
+        $content['journal']['notesCount'] = $journalQuery->get()->pluck('tags','id');
         $journalCount = $journalQuery->count();
 
         $prayersQuery = Prayer::with(['verse.booksListEn','tags'])
-            ->selectRaw('id,verse_id,created_at,highlighted_text,prayer_text as text,\'prayer\' as type,rel_code,access_level')
+            ->selectRaw('id,verse_id,note_id,journal_id,null as prayer_id,created_at,highlighted_text,prayer_text as text,\'prayer\' as type,rel_code,access_level,
+            CASE WHEN prayers.verse_id IS NOT NULL THEN (SELECT count(*) FROM notes WHERE prayers.verse_id = notes.verse_id) ELSE (SELECT count(*) FROM notes WHERE prayers.rel_code = notes.rel_code) END as notesCount,
+            CASE WHEN prayers.verse_id IS NOT NULL THEN (SELECT count(*) FROM journal WHERE prayers.verse_id = journal.verse_id) ELSE (SELECT count(*) FROM journal WHERE prayers.rel_code = journal.rel_code) END as journalCount,
+            CASE WHEN prayers.verse_id IS NOT NULL THEN (SELECT count(*) FROM prayers as p WHERE p.verse_id = prayers.verse_id) ELSE (SELECT count(*) FROM prayers as p WHERE p.rel_code = prayers.rel_code) END as prayersCount
+            ')
             ->where('user_id',Auth::user()?Auth::user()->id:null);
         $content['prayersCount'] = $prayersQuery->count();
         $prayersQuery = $this->prepareFilters($prayersQuery,'prayer');
@@ -160,7 +170,11 @@ class UserController extends Controller
         $prayersCount = $prayersQuery->count();
 
         $notesQuery = Note::with(['verse.booksListEn','tags'])
-            ->selectRaw('id,verse_id,created_at,highlighted_text,note_text as text,\'note\' as type,rel_code,access_level')
+            ->selectRaw('id,verse_id,null as note_id,journal_id,prayer_id,created_at,highlighted_text,note_text as text,\'note\' as type,rel_code,access_level,
+            CASE WHEN notes.verse_id IS NOT NULL THEN (SELECT count(*) FROM notes as n WHERE notes.verse_id = n.verse_id) ELSE (SELECT count(*) FROM notes as n WHERE notes.rel_code = n.rel_code) END as notesCount,
+            CASE WHEN notes.verse_id IS NOT NULL THEN (SELECT count(*) FROM journal WHERE notes.verse_id = journal.verse_id) ELSE (SELECT count(*) FROM journal WHERE notes.rel_code = journal.rel_code) END as journalCount,
+            CASE WHEN notes.verse_id IS NOT NULL THEN (SELECT count(*) FROM prayers WHERE notes.verse_id = prayers.verse_id) ELSE (SELECT count(*) FROM prayers WHERE notes.rel_code = prayers.rel_code) END as prayersCount
+            ')
             ->where('user_id',Auth::user()?Auth::user()->id:null);
         $content['notesCount'] = $notesQuery->count();
         $notesQuery = $this->prepareFilters($notesQuery,'note');

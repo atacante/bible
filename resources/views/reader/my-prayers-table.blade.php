@@ -1,4 +1,4 @@
-<div class="verse-prayers my-prayers-list j-my-prayers-list">
+<div id="prayers" class="verse-prayers my-prayers-list j-my-prayers-list">
     <h4>My Prayers for this Study Verse</h4>
     {!! Html::link('/prayers/create','Create Prayer', ['class'=>'btn btn-success j-create-prayer','style' => 'margin-bottom:10px;']) !!}
     {{--<a title="Print selected prayers" href="#" class="pull-right j-print-all-prayers"><i--}}

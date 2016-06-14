@@ -790,4 +790,10 @@ $(document).ready(function(){
         target.addClass('highlight');
         //target.effect( "highlight", {color:"#e1e1e8"});
     });
+
+    $('.my-study-verse .star-link,.my-study-item .star-link').click(function(e){
+        e.preventDefault();
+        var type = $(this).data('type')
+        $('body').scrollTo($('#'+type),500,{offset:-20});
+    });
 });

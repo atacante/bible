@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
+use App\Journal;
 use App\Note;
+use App\Prayer;
 use App\Tag;
 use App\VersionsListEn;
 use Illuminate\Support\Facades\Request;
@@ -138,6 +140,25 @@ class ViewHelper
         return $html;
     }
 
+    public static function getEntryIcon($type)
+    {
+        $html = '';
+
+        switch($type){
+            case 'note':
+                $html = '<i title="Note" class="fa fa-btn fa-sticky-note"></i>';
+                break;
+            case 'journal':
+                $html = '<i title="Journal" class="fa fa-btn fa-book"></i>';
+                break;
+            case 'prayer':
+                $html = '<i title="Prayer" class="fa fa-btn fa-hand-paper-o"></i>';
+                break;
+        }
+
+        return $html;
+    }
+
     public static function getEntryControllerName($entryType)
     {
         $action = '';
@@ -180,5 +201,30 @@ class ViewHelper
         }
 
         return $tags->get();
+    }
+
+    public static function getEntriesCount($entryType,$model)
+    {
+        switch($entryType){
+            case 'note':
+                $entryModel = new Note();
+                break;
+            case 'journal':
+                $entryModel = new Journal();
+
+                break;
+            case 'prayer':
+                $entryModel = new Prayer();
+                break;
+        }
+
+        if($model->verse_id){
+            $entryModel = $entryModel->where('verse_id',$model->verse_id);
+        }
+        else{
+            $entryModel = $entryModel->where('rel_code',$model->rel_code);
+        }
+
+        return $entryModel->count();
     }
 }

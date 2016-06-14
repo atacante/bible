@@ -15,31 +15,33 @@
            style="">Go to Reader</a>
         {!! Form::hidden('bible_version',$content['verse']['version_code']) !!}
         {!! Form::hidden('verse_id',$content['verse']['verse']->id) !!}
-        <div class="row text-center" style="line-height: 30px;">
+        <div class="row text-center my-study-verse" style="line-height: 30px; margin-bottom: 15px;">
             <div class="col-md-12">
-        <span style="">
-            <h3 class="text-center">My Study Verse</h3>
-            <h4 class="text-center">
-                @if($versePrev = $content['pagination']['versePrev'])
-                    <a title="Prev Verse"
-                       href="{!! url('reader/my-study-verse?'.http_build_query($versePrev),[],false) !!}"><i
-                                class="glyphicon glyphicon-chevron-left"></i></a>
-                @endif
-                {!! $content['verse']['verse']->booksListEn->book_name.' '.$content['verse']['verse']->chapter_num.':'.$content['verse']['verse']->verse_num !!}
-                ({!! $content['verse']['version_name'] !!})
-                @if($verseNext = $content['pagination']['verseNext'])
-                    <a title="Next Verse"
-                       href="{!! url('reader/my-study-verse?'.http_build_query($verseNext),[],false) !!}"><i
-                                class="glyphicon glyphicon-chevron-right"></i></a>
-                @endif
-            </h4>
-            <div style="font-size: 16px;"><i><span class="verse-text j-verse-text"
-                                                   data-version="{!! $content['verse']['version_code'] !!}"
-                                                   data-verseid="{!! $content['verse']['verse']->id !!}">{!! ViewHelper::prepareVerseText($content['verse']['verse'],true) !!}</span></i>
-            </div>
-        </span>
+                @include('reader.entry-stars')
+                <span style="">
+                    <h3 class="text-center">My Study Verse</h3>
+                    <h4 class="text-center">
+                        @if($versePrev = $content['pagination']['versePrev'])
+                            <a title="Prev Verse"
+                               href="{!! url('reader/my-study-verse?'.http_build_query($versePrev),[],false) !!}"><i
+                                        class="glyphicon glyphicon-chevron-left"></i></a>
+                        @endif
+                        {!! $content['verse']['verse']->booksListEn->book_name.' '.$content['verse']['verse']->chapter_num.':'.$content['verse']['verse']->verse_num !!}
+                        ({!! $content['verse']['version_name'] !!})
+                        @if($verseNext = $content['pagination']['verseNext'])
+                            <a title="Next Verse"
+                               href="{!! url('reader/my-study-verse?'.http_build_query($verseNext),[],false) !!}"><i
+                                        class="glyphicon glyphicon-chevron-right"></i></a>
+                        @endif
+                    </h4>
+                    <div style="font-size: 16px;"><i><span class="verse-text j-verse-text"
+                                                           data-version="{!! $content['verse']['version_code'] !!}"
+                                                           data-verseid="{!! $content['verse']['verse']->id !!}">{!! ViewHelper::prepareVerseText($content['verse']['verse'],true) !!}</span></i>
+                    </div>
+                </span>
             </div>
         </div>
+        @include('reader.entry-counters')
 
         @include('reader.my-notes-table')
         @include('reader.my-journal-table')

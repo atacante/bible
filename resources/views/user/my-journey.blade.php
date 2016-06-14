@@ -106,7 +106,7 @@
                                 @endif
                             </th>
                         @endforeach
-                        <th width="140">Actions</th>
+                        <th width="40">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -114,10 +114,22 @@
 {{--                        {!! var_dump(get_class($entry)) !!}--}}
                         <tr>
                             {{--<td width="20"><input data-prayerid="{!! $entry->id !!}" type="checkbox" class="check"></td>--}}
-                            <td>{!! $entry->type !!}</td>
+                            <td>{!! ViewHelper::getEntryIcon($entry->type) !!}</td>
                             <td>
-                                <div class="entry-text j-entry-text"
-                                     data-prayersid="{!! $entry->id !!}">{!! str_limit(strip_tags($entry->text,'<p></p>'), $limit = 300, $end = '...') !!}</div>
+                                <div class="entry-text j-entry-text" data-prayersid="{!! $entry->id !!}">
+                                    <a title="My Study {!! ($entry->verse?'Verse':'Item') !!}" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                    http_build_query(
+                                        $entry->verse?[
+                                            'version' => $entry->bible_version,
+                                            'book' => $entry->verse->book_id,
+                                            'chapter' => $entry->verse->chapter_num,
+                                            'verse' => $entry->verse->verse_num
+                                        ]:[
+                                            'rel' => $entry->rel_code,
+                                        ])) !!}">
+                                        {!! str_limit(strip_tags($entry->text,'<p></p>'), $limit = 300, $end = '...') !!}
+                                    </a>
+                                </div>
                             </td>
                             <td>
                                 @if($entry->verse)
@@ -141,9 +153,94 @@
                                 @endif
 
                             </td>
-                            {{--<td>
-
-                            </td>--}}
+                            <td width="120" class="text-center">
+                                <div class="stars-block">
+                                    <div class="star-line">
+                                        <a title="Notes" class="star-link" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                            http_build_query(
+                                                $entry->verse?[
+                                                    'version' => $entry->bible_version,
+                                                    'book' => $entry->verse->book_id,
+                                                    'chapter' => $entry->verse->chapter_num,
+                                                    'verse' => $entry->verse->verse_num
+                                                ]:[
+                                                    'rel' => $entry->rel_code,
+                                                ])) !!}#notes">
+                                            {{--<div class="star star-n {!! $entry->notescount > 0?'active':'' !!}">N</div>--}}{{-- ViewHelper::getEntriesCount('note',$entry) > 0 --}}
+                                            <span class="fa fa-star {!! $entry->notescount > 0?'active':'' !!}" aria-hidden="true" style=""></span>
+                                            <span class="star-label" style="">N</span>
+                                        </a>
+                                    </div>
+                                    <div class="star-line">
+                                        <a title="Journal Entries" class="star-link" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                            http_build_query(
+                                                $entry->verse?[
+                                                    'version' => $entry->bible_version,
+                                                    'book' => $entry->verse->book_id,
+                                                    'chapter' => $entry->verse->chapter_num,
+                                                    'verse' => $entry->verse->verse_num
+                                                ]:[
+                                                    'rel' => $entry->rel_code,
+                                                ])) !!}#journal">
+                                            {{--<div class="star star-j {!! $entry->journalcount > 0?'active':'' !!}">J</div>--}}
+                                            <span class="fa fa-star {!! $entry->journalcount > 0?'active':'' !!}" aria-hidden="true" style=""></span>
+                                            <span class="star-label" style="">J</span>
+                                        </a>
+                                        <a title="Prayers" class="star-link" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                            http_build_query(
+                                                $entry->verse?[
+                                                    'version' => $entry->bible_version,
+                                                    'book' => $entry->verse->book_id,
+                                                    'chapter' => $entry->verse->chapter_num,
+                                                    'verse' => $entry->verse->verse_num
+                                                ]:[
+                                                    'rel' => $entry->rel_code,
+                                                ])) !!}#prayers">
+{{--                                            <div class="star star-p {!! $entry->prayerscount > 0?'active':'' !!}">P</div>--}}
+                                            <span class="fa fa-star {!! $entry->prayerscount > 0?'active':'' !!}" aria-hidden="true" style=""></span>
+                                            <span class="star-label" style="">P</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td width="85" class="">
+                                <a title="Notes" class="label label-warning" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                    http_build_query(
+                                        $entry->verse?[
+                                            'version' => $entry->bible_version,
+                                            'book' => $entry->verse->book_id,
+                                            'chapter' => $entry->verse->chapter_num,
+                                            'verse' => $entry->verse->verse_num
+                                        ]:[
+                                            'rel' => $entry->rel_code,
+                                        ])) !!}#notes">
+                                    {!! $entry->notescount !!} note{!! $entry->notescount != 1?'s':'' !!}
+                                </a>
+                                <a title="Journal Entries" class="label label-success" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                    http_build_query(
+                                        $entry->verse?[
+                                            'version' => $entry->bible_version,
+                                            'book' => $entry->verse->book_id,
+                                            'chapter' => $entry->verse->chapter_num,
+                                            'verse' => $entry->verse->verse_num
+                                        ]:[
+                                            'rel' => $entry->rel_code,
+                                        ])) !!}#journal">
+                                    {!! $entry->journalcount !!} journal entr{!! $entry->journalcount != 1?'ies':'y' !!}
+                                </a>
+                                <a title="Prayers" class="label label-primary" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                    http_build_query(
+                                        $entry->verse?[
+                                            'version' => $entry->bible_version,
+                                            'book' => $entry->verse->book_id,
+                                            'chapter' => $entry->verse->chapter_num,
+                                            'verse' => $entry->verse->verse_num
+                                        ]:[
+                                            'rel' => $entry->rel_code,
+                                        ])) !!}#prayers">
+                                    {!! $entry->prayerscount !!} prayer{!! $entry->prayerscount != 1?'s':'' !!}
+                                </a>
+                            </td>
                             <td>
                                 {{--@if($tags = ViewHelper::getEntryTags($entry->type,$entry->id))
                                     @foreach($tags as $tag)
@@ -161,9 +258,9 @@
                             <td class="text-center">{!! ViewHelper::getAccessLevelIcon($entry->access_level) !!}</td>
                             <td>{!! $entry->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
                             <td class="text-center">
-                                <a title="Print {!! $entry->type !!} entry" href="#" data-{!! $entry->type !!}id="{!! $entry->id !!}" class="j-print-{!! $entry->type !!}"><i
+                                {{--<a title="Print {!! $entry->type !!} entry" href="#" data-{!! $entry->type !!}id="{!! $entry->id !!}" class="j-print-{!! $entry->type !!}"><i
                                             class="fa fa-print fa-2x"
-                                            style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
+                                            style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>--}}
                                 <a title="My Study {!! ($entry->verse?'Verse':'Item') !!}" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
                                     http_build_query(
                                         $entry->verse?[
@@ -176,13 +273,13 @@
                                         ])) !!}">
                                     <i class="fa fa-graduation-cap" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i>
                                 </a>
-                                <a title="Edit {!! $entry->type !!}" class="j-create-{!! $entry->type !!}" href="{!! url('/'.ViewHelper::getEntryControllerName($entry->type).'/update/'.$entry->id) !!}"><i
+                                {{--<a title="Edit {!! $entry->type !!}" class="j-create-{!! $entry->type !!}" href="{!! url('/'.ViewHelper::getEntryControllerName($entry->type).'/update/'.$entry->id) !!}"><i
                                             class="fa fa-edit"
-                                            style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
-                                <a title="Delete prayer" href="{!! url('/'.ViewHelper::getEntryControllerName($entry->type).'/delete',$entry->id) !!}" data-toggle="modal"
+                                            style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>--}}
+                                {{--<a title="Delete prayer" href="{!! url('/'.ViewHelper::getEntryControllerName($entry->type).'/delete',$entry->id) !!}" data-toggle="modal"
                                    data-target="#confirm-delete" data-header="Delete Confirmation"
                                    data-confirm="Are you sure you want to delete this item?"><i class="fa fa-trash"
-                                                                                                style="color: #367fa9; font-size: 1.4em;"></i></a>
+                                                                                                style="color: #367fa9; font-size: 1.4em;"></i></a>--}}
                             </td>
                         </tr>
                     @endforeach

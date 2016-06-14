@@ -1,4 +1,4 @@
-<div class="verse-notes my-notes-list j-my-notes-list">
+<div id="notes" class="verse-notes my-notes-list j-my-notes-list">
     <h4>My Notes for this Study Verse</h4>
     {!! Html::link('/notes/create','Create Note', ['class'=>'btn btn-success j-create-note','style' => 'margin-bottom:10px;']) !!}
     {{--<a title="Print selected notes" href="#" class="pull-right j-print-all-notes"><i--}}

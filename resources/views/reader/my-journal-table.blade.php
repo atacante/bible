@@ -1,4 +1,4 @@
-<div class="verse-journal my-journal-list j-my-journal-list">
+<div id="journal" class="verse-journal my-journal-list j-my-journal-list">
     <h4>My Journal Entries for this Study Verse</h4>
     {!! Html::link('/journal/create','Create Journal Entry', ['class'=>'btn btn-success j-create-journal','style' => 'margin-bottom:10px;']) !!}
     {{--<a title="Print selected journal entries" href="#" class="pull-right j-print-all-journal"><i--}}
