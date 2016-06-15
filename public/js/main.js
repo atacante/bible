@@ -796,4 +796,19 @@ $(document).ready(function(){
         var type = $(this).data('type')
         $('body').scrollTo($('#'+type),500,{offset:-20});
     });
+
+    $('.j-select-role').change(function(e){
+        var role = $(this).val();
+        $.ajax({
+            method: "GET",
+            url: '/admin/user/get-users-by-role?role='+role,
+            dataType:'json',
+            success:function(data){
+                site.fillSelect('.j-select-user',data);
+                $('.j-select-user').prepend($('<option selected="selected"></option>').attr("value", 0).text('All Users'));
+                $(".j-select-user").select2("destroy");
+                $(".j-select-user").select2();
+            }
+        });
+    });
 });

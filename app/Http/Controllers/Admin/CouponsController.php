@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Kodeine\Acl\Models\Eloquent\Role;
 use Krucas\Notification\Facades\Notification;
 
 class CouponsController extends Controller
@@ -51,6 +52,7 @@ class CouponsController extends Controller
             [
                 'model' => $model,
                 'page_title' => 'Create New Coupon',
+                'userRoles' => Role::whereNotIn('slug',[Config::get('app.role.admin')])->get()->pluck('name','slug')->toArray(),
                 'users' => User::whereHas('roles', function ($q)
                 {
                     $q->whereNotIn('slug',[Config::get('app.role.admin')]);
@@ -80,10 +82,15 @@ class CouponsController extends Controller
             [
                 'model' => $model,
                 'page_title' => 'Edit Coupon',
-                'users' => User::whereHas('roles', function ($q)
+                'userRoles' => Role::whereNotIn('slug',[Config::get('app.role.admin')])->get()->pluck('name','slug')->toArray(),
+                'users' => User::whereHas('roles', function ($q) use($model)
                 {
                     $q->whereNotIn('slug',[Config::get('app.role.admin')]);
-                })->get()->pluck('name','id')->toArray()
+                    if($model->member_type){
+                        $q->where('slug',$model->member_type);
+                    }
+                }
+                )->get()->pluck('name','id')->toArray()
             ]);
     }
 

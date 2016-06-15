@@ -27,6 +27,7 @@
                             {{--<th>Coupon Type</th>--}}
                             <th>Status</th>
                             <th>Amount</th>
+                            <th>Member Type</th>
                             <th>User</th>
                             <th class="text-center">Expiration</th>
                             <th class="text-center"># of uses</th>
@@ -41,6 +42,7 @@
 {{--                                    <td>{!! $coupon->coupon_type !!}</td>--}}
                                     <td>{!! $coupon->status?'<span class="label label-success">active</span>':'<span class="label label-danger">exhausted</span>' !!}</td>
                                     <td>{!! $coupon->amount !!}</td>
+                                    <td>{!! $coupon->member_type?$coupon->member_type:'all' !!}</td>
                                     <td>{!! $coupon->user?$coupon->user->name:'all' !!}</td>
                                     <td class="text-center">{!! $coupon->expire_at?$coupon->expire_at->format('m/d/Y'):'&#8734' !!}</td>
                                     <td class="text-center">{!! $coupon->uses_limit?$coupon->uses_limit:"&#8734" !!}</td>

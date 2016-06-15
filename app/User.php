@@ -50,7 +50,7 @@ class User extends Authenticatable
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
-            'coupon_code' => 'coupon_exist|coupon_expire|coupon_uses'
+            'coupon_code' => 'coupon_exist|coupon_expire|coupon_uses|coupon_user_uses'
         ];
 
         switch(Request::method())
@@ -87,6 +87,8 @@ class User extends Authenticatable
                 $premiumCost -= $coupon->amount;
                 $coupon->used++;
                 $coupon->save();
+                $coupon->users()->detach($this->id);
+                $coupon->users()->attach($this->id,['is_used' => true]);
                 if(Request::is('user/profile')){
                     Notification::successInstant('Coupon was applied');
                 }

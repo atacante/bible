@@ -113,4 +113,23 @@ class UserController extends Controller
         Session::put('adminAuthToken', $admin->auth_token);
         return Redirect::to('/');
     }
+
+    public function getGetUsersByRole()
+    {
+        $role = Request::input('role',0);
+
+        $users = User::whereHas('roles', function ($q) use($role)
+        {
+            $q->whereIn('slug',[$role]);
+        }
+        )->get()->pluck('name','id');
+        $users->toArray();
+        $result = [];
+        if(count($users)){
+            foreach ($users as $key => $user) {
+                $result[] = ['id' => $key,'text'=>$user];
+            }
+        }
+        return $users;
+    }
 }

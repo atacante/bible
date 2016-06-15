@@ -11,7 +11,7 @@ class Coupon extends BaseModel
     public $timestamps = true;
 
     protected $table = 'coupons';
-    protected $fillable = ['id','user_id','member_type','coupon_type','status','amount','coupon_code','uses_limit','uses','expire_at'];
+    protected $fillable = ['id','user_id','member_type','coupon_type','status','amount','coupon_code','uses_limit','uses','expire_at','is_permanent'];
 
     protected $dates = ['created_at', 'updated_at', 'expire_at'];
 
@@ -58,5 +58,9 @@ class Coupon extends BaseModel
     public function setExpireAtAttribute($value)
     {
         $this->attributes['expire_at'] = $value?Carbon::createFromTimestamp(strtotime($value)):null;
+    }
+
+    public function users() {
+        return $this->belongsToMany(User::class, 'coupons_users', 'coupon_id', 'user_id')->withPivot('is_used');
     }
 }

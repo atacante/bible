@@ -10,6 +10,15 @@
                     </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('member_type') ? ' has-error' : '' }}">
+        {!! Form::label('member_type', 'Member Type (coupon will be assigned to specific users member type):') !!}
+        {!! Form::select('member_type', [0 => 'All Member Types']+$userRoles, Request::input('user_id'),['placeholder' => 'Select Member Type...','class' => 'j-select-role', 'id' => '']) !!}
+        @if ($errors->has('member_type'))
+            <span class="help-block">
+                        {{ $errors->first('user_id') }}
+                    </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
         {!! Form::label('user_id', 'User (coupon will be assigned to specific user):') !!}
         {!! Form::select('user_id', [0 => 'All Users']+$users, Request::input('user_id'),['placeholder' => 'Select User...','class' => 'j-select-user', 'id' => '']) !!}
@@ -35,6 +44,20 @@
             <span class="help-block">
                         {{ $errors->first('expire_at') }}
                     </span>
+        @endif
+    </div>
+    <div class="form-group {{ $errors->has('is_permanent') ? ' has-error' : '' }}">
+        <div class="checkbox">
+            <label>
+                {!! Form::hidden('is_permanent', 0) !!}
+                {!! Form::checkbox('is_permanent', 1,false) !!}
+                Is permanent (will offer a permanently reduced membership rate for all future occurrences of the monthly bill):
+            </label>
+        </div>
+        @if ($errors->has('is_permanent'))
+            <span class="help-block">
+                {{ $errors->first('is_permanent') }}
+            </span>
         @endif
     </div>
     <div class="form-group {{ $errors->has('uses_limit') ? ' has-error' : '' }}">
