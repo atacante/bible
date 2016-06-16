@@ -270,6 +270,8 @@ return [
     |--------------------------------------------------------------------------
     */
 
+    'contactEmail' => 'info@bibleproject.com',
+
     'defaultBibleVersion' => 'king_james',// use 'all' if not needed specific version
     'defaultChaptersVersion' => 'king_james',
     'defaultBookNumber' => 1,

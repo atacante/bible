@@ -112,7 +112,7 @@
                             </div>
                         </div>
 
-                        {{--<div class="form-group  {{ $errors->has('g-recaptcha-response') ? 'has-error' : '' }}">
+                        <div class="form-group  {{ $errors->has('g-recaptcha-response') ? 'has-error' : '' }}">
                             {!! Form::label('', null, array('class' => 'col-md-4 control-label')) !!}
                             <div class="col-md-6">
                                 {!! Captcha::display() !!}
@@ -122,7 +122,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>--}}
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

@@ -21,6 +21,7 @@
         {!!Html::style('js/bootstrap-datepicker/css/bootstrap-datepicker3.css')!!}
 {{--        {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css')!!}--}}
         {!!Html::style('css/style.css')!!}
+        {!!Html::style('css/ionicons-2.0.1/css/ionicons.min.css')!!}
 
         {!!Html::script('//code.jquery.com/jquery-2.2.0.min.js')!!}
         {!!Html::script('//code.jquery.com/ui/1.11.4/jquery-ui.js')!!}

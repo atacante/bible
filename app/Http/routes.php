@@ -103,13 +103,19 @@ Route::get('/reader/my-study-verse', [
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', [
-        'as' => 'reader', 'uses' => 'ReaderController@getOverview'
+        'as' => 'reader', 'uses' => 'SiteController@getHome'
     ]);
 
     Route::controller('reader', 'ReaderController');
     Route::controller('ajax', 'AjaxController');
     Route::controller('locations', 'LocationsController');
     Route::controller('peoples', 'PeoplesController');
+    Route::controller('site', 'SiteController');
+    Route::controller('community', 'CommunityController');
+
+    Route::get('/community', [
+        'as' => 'community', 'uses' => 'CommunityController@getWall'
+    ]);
 
     Route::controllers([
         'auth' => 'Auth\AuthController',

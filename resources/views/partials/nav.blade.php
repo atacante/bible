@@ -8,21 +8,71 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Bible Reader</a>
+            <a title="Bible" class="navbar-brand" href="/"><i class="ion ion-ios-book ion-ios-book-outline"></i></a>
+            {{--<a class="navbar-brand" href="/">Bible</a>--}}
         </div>
         <div class="pull-left" style="">
             <ul class="nav navbar-nav">
-                <li class="{{ ViewHelper::classActivePath('locations') }}">
-                    <a href="{{ URL::to('/locations/list') }}"><i class="fa fa-map-marker"></i> Locations</a>
+                <li class="dropdown">
+                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-home"></i>
+                        Main
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="drop1">
+                        <li><a href="{{ URL::to('/') }}">{{--<i class="fa fa-home"></i>--}} Home</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ URL::to('/site/about') }}">About As</a></li>
+                        <li><a href="{{ URL::to('/site/faq') }}">FAQ</a></li>
+                        <li><a href="{{ URL::to('/site/contact') }}">Contact Us</a></li>
+                    </ul>
                 </li>
-                <li class="{{ ViewHelper::classActivePath('peoples') }}">
-                    <a href="{{ URL::to('/peoples/list') }}"><i class="fa fa-users"></i> People</a>
+                {{--<li class="{{ ViewHelper::classActivePath('/') }}">--}}
+                    {{--<a href="{{ URL::to('/') }}"><i class="fa fa-home"></i> Home</a>--}}
+                {{--</li>--}}
+                <li class="dropdown">
+                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="ion ion-ios-book"></i>
+                        Reader
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="drop1">
+                        <li><a href="{{ URL::to('/reader/overview') }}">{{--<i class="ion ion-ios-book"></i>--}} Read</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ URL::to('/locations/list') }}">{{--<i class="fa fa-map-marker"></i>--}} Locations</a></li>
+                        <li><a href="{{ URL::to('/peoples/list') }}">{{--<i class="fa fa-users"></i>--}} People</a></li>
+                    </ul>
                 </li>
+                {{--<li class="{{ ViewHelper::classActivePath('/') }}">
+                    <a href="{{ URL::to('/reader/overview') }}"><i class="ion ion-ios-book"></i> Reader</a>
+                </li>--}}
+                <li class="{{ ViewHelper::classActivePath('/') }}">
+                <li class="dropdown">
+                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-users"></i>
+                        Community
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="drop1">
+                        <li><a href="{{ URL::to('/community') }}"> Wall</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ URL::to('/community/groups') }}">{{--<i class="fa fa-users"></i>--}} Groups</a></li>
+                        <li><a href="{{ URL::to('/community/blog') }}">{{--<i class="fa fa-map-marker"></i>--}} Blog</a></li>
+                    </ul>
+                </li>
+                </li>
+                {{--<li class="{{ ViewHelper::classActivePath('locations') }}">--}}
+                    {{--<a href="{{ URL::to('/locations/list') }}"><i class="fa fa-map-marker"></i> Locations</a>--}}
+                {{--</li>--}}
+                {{--<li class="{{ ViewHelper::classActivePath('peoples') }}">--}}
+                    {{--<a href="{{ URL::to('/peoples/list') }}"><i class="fa fa-users"></i> People</a>--}}
+                {{--</li>--}}
             </ul>
         </div>
-        <div class="pull-left" style="width: 405px; margin: 8px 15px 0;">
+        @if(Request::segment(1) == 'reader')
+        <div class="pull-left" style="width: 345px; margin: 8px 15px 0;">
             {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
-            {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:355px; margin-right:5px;']) !!}
+            {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:290px; margin-right:5px;']) !!}
             {!! Form::submit('Go',['class' => 'btn btn-primary pull-left']) !!}
             {!! Form::close() !!}
         </div>
@@ -42,6 +92,7 @@
                 </label>
             </div>
         </div>
+        @endif
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())

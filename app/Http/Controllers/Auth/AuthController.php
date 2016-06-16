@@ -60,7 +60,7 @@ class AuthController extends Controller
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
             'coupon_code' => 'coupon_exist|coupon_expire|coupon_uses',
-//            'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
         ],
         [
             'g-recaptcha-response.required' => 'The recaptcha field is required.',

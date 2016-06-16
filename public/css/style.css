@@ -674,4 +674,27 @@ a.view-details:hover{
     color: #fff;*/
 }
 
+.navbar-nav .fa-home{
+    font-size: 17px;
+}
+.navbar-nav .ion-ios-book{
+    font-size: 17px;
+}
+.navbar-nav .fa-users{
+    font-size: 14px;
+}
+
+.navbar-header .navbar-brand{
+    padding: 5px 15px;
+    line-height: 33px;
+}
+.navbar-header .ion-ios-book, .navbar-header .ion-ios-book-outline{
+    font-size: 42px;
+    color: #337ab7;
+}
+
+#contact-info dd{
+    margin-bottom: 20px;
+}
+
 
