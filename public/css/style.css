@@ -697,4 +697,10 @@ a.view-details:hover{
     margin-bottom: 20px;
 }
 
+.nav-left .divider{
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px 0;
+}
+
 
