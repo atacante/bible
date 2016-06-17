@@ -3,11 +3,14 @@
 namespace App\Providers;
 
 use App\Coupon;
+use App\Journal;
 use App\LexiconBerean;
 use App\LexiconKjv;
 use App\LexiconNasb;
 use App\Location;
+use App\Note;
 use App\People;
+use App\Prayer;
 use App\User;
 use App\Validators\CheckCouponValidator;
 use Carbon\Carbon;
@@ -183,6 +186,30 @@ class AppServiceProvider extends ServiceProvider
             }
             if($model->isDirty('uses_limit') && $model->uses_limit > $model->used){
                 $model->status = true;
+            }
+            return true; //if false the model wont save!
+        });
+
+        Note::saving(function($model)
+        {
+            if($model->isDirty('access_level') && $model->access_level != Note::ACCESS_PRIVATE){
+                $model->published_at = Carbon::now();
+            }
+            return true; //if false the model wont save!
+        });
+
+        Journal::saving(function($model)
+        {
+            if($model->isDirty('access_level') && $model->access_level != Journal::ACCESS_PRIVATE){
+                $model->published_at = Carbon::now();
+            }
+            return true; //if false the model wont save!
+        });
+
+        Prayer::saving(function($model)
+        {
+            if($model->isDirty('access_level') && $model->access_level != Prayer::ACCESS_PRIVATE){
+                $model->published_at = Carbon::now();
             }
             return true; //if false the model wont save!
         });

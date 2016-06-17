@@ -54,7 +54,7 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="drop1">
-                        <li><a href="{{ URL::to('/community') }}"> Wall</a></li>
+                        <li><a href="{{ URL::to('/community') }}"> Public Wall</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ URL::to('/community/groups') }}">{{--<i class="fa fa-users"></i>--}} Groups</a></li>
                         <li><a href="{{ URL::to('/community/blog') }}">{{--<i class="fa fa-map-marker"></i>--}} Blog</a></li>
@@ -108,12 +108,14 @@
 
                         <ul class="dropdown-menu" role="menu">
                             @role('user')
+                            {{--<li><a href="{{ url('user/wall') }}"><i class="fa fa-btn fa-tasks"></i>Public Wall</a></li>--}}
                             <li><a href="{{ url('user/my-journey') }}"><i class="fa fa-btn fa-location-arrow"></i>My Journey</a></li>
-                            <li><a href="{{ url('notes/list') }}"><i class="fa fa-btn fa-sticky-note"></i>My Notes</a></li>
+                            {{--<li><a href="{{ url('notes/list') }}"><i class="fa fa-btn fa-sticky-note"></i>My Notes</a></li>
                             <li><a href="{{ url('journal/list') }}"><i class="fa fa-btn fa-book"></i>My Journal</a></li>
-                            <li><a href="{{ url('prayers/list') }}"><i class="fa fa-btn fa-hand-paper-o"></i>My Prayers</a></li>
+                            <li><a href="{{ url('prayers/list') }}"><i class="fa fa-btn fa-hand-paper-o"></i>My Prayers</a></li>--}}
                             <li><a href="{{ url('user/profile') }}"><i class="fa fa-btn fa-user"></i>My Profile</a></li>
                             @endrole
+                            <li role="separator" class="divider"></li>
                             <li><a href="{{ url('auth/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             @if(Session::has('adminAsUser'))
                             <li><a href="{{ url('auth/admin-logout') }}"><i class="fa fa-btn fa-sign-out"></i>Back To Admin</a></li>

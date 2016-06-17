@@ -39,11 +39,11 @@
             @endif
         </div>
     @endif
-    @if(count($model->tags))
+    @if(Auth::user() && $model->user_id == Auth::user()->id  && count($model->tags))
         <div>
             Tags:
             @foreach($model->tags as $tag)
-                {{ Html::link(url('journal/list?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
+                {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
             @endforeach
         </div>
     @endif

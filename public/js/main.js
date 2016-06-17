@@ -138,7 +138,7 @@ $(document).ready(function(){
         site.getNote(id);
     });
 
-    $('.j-item-body').click(function(ev) {
+    $('body').on('click','.j-item-body',function(ev) {
         var id = $(this).data('itemid');
         var type = $(this).data('itemtype');
         console.log(type);
@@ -808,6 +808,20 @@ $(document).ready(function(){
                 $('.j-select-user').prepend($('<option selected="selected"></option>').attr("value", 0).text('All Users'));
                 $(".j-select-user").select2("destroy");
                 $(".j-select-user").select2();
+            }
+        });
+    });
+
+    $('.public-wall').on('click','.load-more',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            method: "GET",
+            url: url,
+            dataType:'html',
+            success:function(data){
+                $('.load-more-block').remove();
+                $('.public-wall').append(data);
             }
         });
     });

@@ -85,7 +85,7 @@ class AjaxController extends Controller
 
     public function getViewNote(){
         $id = Request::input('id');
-        $note = Note::query()->where('user_id',Auth::user()->id)->find($id);
+        $note = Note::query()->/*where('user_id',Auth::user()->id)->*/find($id);
         return view('notes.view', ['model' => $note]);
     }
 
@@ -109,13 +109,13 @@ class AjaxController extends Controller
 
     public function getViewJournal(){
         $id = Request::input('id');
-        $journal = Journal::query()->where('user_id',Auth::user()->id)->find($id);
+        $journal = Journal::query()->/*where('user_id',Auth::user()->id)->*/find($id);
         return view('journal.view', ['model' => $journal]);
     }
 
     public function getViewPrayer(){
         $id = Request::input('id');
-        $prayer = Prayer::query()->where('user_id',Auth::user()->id)->find($id);
+        $prayer = Prayer::query()->/*where('user_id',Auth::user()->id)->*/find($id);
         return view('prayers.view', ['model' => $prayer]);
     }
 

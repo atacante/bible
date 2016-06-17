@@ -16,6 +16,7 @@ class Journal extends BaseModel
     public $prayer_text;
 
     protected $table = 'journal';
+    protected $dates = ['published_at'];
     protected $fillable = ['id','user_id','note_id','prayer_id','bible_version','verse_id','lexicon_id','highlighted_text','journal_text','access_level','rel_code'];
 
     public function rules()
@@ -33,6 +34,10 @@ class Journal extends BaseModel
         "Accessibility"=>false,
         "Created"=>"created_at"
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
     public function verse() {
         return $this->belongsTo(\App\VersesKingJamesEn::class, 'verse_id', 'id');

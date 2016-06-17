@@ -165,7 +165,8 @@ site.getNote = function(id){
         success:function(data){
             $('#popup').find('.modal-header .modal-title').text('Note');
             $('#popup').find('.modal-body').html(data);
-            $('#popup').find('.modal-footer').html('<a title="Print note" href="#" data-noteid="'+id+'" class="j-print-note pull-left"><i class="fa fa-print fa-2x"style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>');
+            //$('#popup').find('.modal-footer').html('<a title="Print note" href="#" data-noteid="'+id+'" class="j-print-note pull-left"><i class="fa fa-print fa-2x"style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>');
+            $('#popup').find('.modal-footer').html('');
             $('#popup').modal({show:true});
         }
     });

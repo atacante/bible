@@ -16,6 +16,7 @@ class Note extends BaseModel
     public $prayer_text;
 
     protected $table = 'notes';
+    protected $dates = ['published_at'];
     protected $fillable = ['id','user_id','journal_id','prayer_id','verse_id','lexicon_id','highlighted_text','note_text','bible_version','access_level','rel_code'];
 
     public function rules()
@@ -33,6 +34,11 @@ class Note extends BaseModel
         "Accessibility"=>false,
         "Created"=>"created_at"
     ];
+
+    public function user() {
+        return $this->belongsTo(\App\User::class, 'user_id', 'id');
+        return $this->belongsTo(\App\User::class, 'user_id', 'id');
+    }
 
     public function verse() {
         return $this->belongsTo(\App\VersesKingJamesEn::class, 'verse_id', 'id');
