@@ -42,6 +42,8 @@
             </div>
         </div>
     @endforeach
+@else
+    <p class="text-center">No any results found</p>
 @endif
 @if( $content['nextPage'])
     <div class="row load-more-block">

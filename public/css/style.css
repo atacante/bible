@@ -251,7 +251,7 @@ a.view-details:hover{
     border-bottom: 1px solid #f4f4f4;
 }
 
-.my-journal-list .box-body,.my-notes-list .box-body, .my-prayers-list .box-body, .my-entries-list .box-body{
+.my-journal-list .box-body,.my-notes-list .box-body, .my-prayers-list .box-body, .my-entries-list .box-body,.friends-list .box-body, .wall .box-body{
     padding: 10px;
 }
 
@@ -701,6 +701,28 @@ a.view-details:hover{
     height: 1px;
     background-color: #ccc;
     margin: 10px 0;
+}
+
+.friends-list .friend-item{
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.friends-list .friend-item:last-child{
+    border: 0;
+}
+
+.wall-nav,.friends-nav{
+    margin-bottom: 20px;
+}
+
+.wall-nav.nav-pills>li>a, .friends-nav.nav-pills>li>a{
+    padding: 3px 15px;
+    line-height: 20px;
+}
+
+.wall-nav.nav-pills>li.active>a{
+    /*background-color: #5bc0de;*/
 }
 
 

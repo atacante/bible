@@ -1,32 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+    <div class="row wall">
         <div class="col-md-2">
-            <ul class="nav nav-pills nav-stacked nav-left" role="menu">
-                <li class="{{ (Request::is('community/wall') || Request::is('community') ? 'active' : '') }}" role="presentation">
-                    <a href="{{ url('community/wall') }}"><i class="fa fa-btn fa-tasks"></i>Public Wall</a>
-                </li>
-                <li role="separator" class="divider" style=""></li>
-                <li class="{{ (Request::is('community/groups') ? 'active' : '') }}" role="presentation">
-                    <a href="#"><i class="fa fa-btn fa-users"></i>Groups</a>
-                </li>
-                @role('user')
-                <li class="{{ (Request::is('community/groups') ? 'active' : '') }}" role="presentation">
-                    <a href="#"><i class="fa fa-btn fa-plus"></i>Create Group</a>
-                </li>
-                @endrole
-                <li role="separator" class="divider" style=""></li>
-                <li class="{{ (Request::is('user/friends') ? 'active' : '') }}" role="presentation">
-                    <a href="#"><i class="fa-btn ion-person-stalker" style="font-size: 16px;"></i>Friends</a>
-                </li>
-                <li class="{{ (Request::is('community/blog') ? 'active' : '') }}" role="presentation">
-                    <a href="#"><i class="fa fa-btn fa-newspaper-o"></i>Blog</a>
-                </li>
-            </ul>
+            @include('community.menu')
         </div>
         <div class="col-md-10 related-records public-wall">
+            <ul class="nav nav-pills wall-nav">
+                <li role="presentation" class="{!! (!Request::get('type') || Request::get('type') == 'all')?'active':'' !!}">
+                    <a href="{!! url('/community/wall?type=all') !!}">All public records</a>
+                </li>
+                <li role="presentation" class="{!! (Request::get('type') == 'friends')?'active':'' !!}">
+                    <a href="{!! url('/community/wall?type=friends') !!}">My friends records</a>
+                </li>
+            </ul>
             @include('community.wall-items')
         </div>
+        {{--<div class="col-md-3">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Filters</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @include('community.wall-filters')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>--}}
     </div>
 @endsection

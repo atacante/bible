@@ -825,4 +825,32 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('.j-friends-list').on('click','.j-follow-friend',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $(that).parent().children('.j-remove-friend').toggleClass('hidden');
+                $(that).toggleClass('hidden');
+            }
+        });
+    });
+
+    $('.j-friends-list').on('click','.j-remove-friend',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $(that).parent().children('.j-follow-friend').toggleClass('hidden');
+                $(that).toggleClass('hidden');
+            }
+        });
+    });
 });

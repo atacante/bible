@@ -238,4 +238,28 @@ class UserController extends Controller
 
         return view('user.my-journey', ['content' => $content]);
     }
+
+    public function getFollowFriend($id)
+    {
+        $user = User::find($id);
+        Auth::user()->followFriend($user);
+
+        if(Request::ajax()){
+            return 1;
+        }
+
+        return Redirect::back();
+    }
+
+    public function getRemoveFriend($id)
+    {
+        $user = User::find($id);
+        Auth::user()->removeFriend($user);
+
+        if(Request::ajax()){
+            return 1;
+        }
+
+        return Redirect::back();
+    }
 }

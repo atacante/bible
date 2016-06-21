@@ -65,6 +65,21 @@ class User extends Authenticatable
         return $rules;
     }
 
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'users_friends', 'user_id', 'friend_id')->withTimestamps();
+    }
+
+    public function followFriend(User $user)
+    {
+        $this->friends()->attach($user->id);
+    }
+
+    public function removeFriend(User $user)
+    {
+        $this->friends()->detach($user->id);
+    }
+
     public function isOnline()
     {
         $isOnline = Cache::has('user-is-online-' . $this->id);
