@@ -137,15 +137,35 @@ Route::group([
 /*
 | User routes
 */
+
 Route::group([
     'middleware' => ['auth', 'acl'],
-    'is' => 'user'
+    'is' => 'administrator|user'
     ],
     function () {
         Route::controllers([
             'user' => 'UserController',
         ]);
     });
+
+//Route::get('user/delete-avatar', [
+//    'uses'        => 'UserController@anyDeleteAvatar',
+//    'middleware'   => ['auth', 'acl'],
+//    'is'           => 'administrator',
+//]);
+
+/*Route::group([
+    'middleware' => ['auth', 'acl'],
+    'is' => 'administrator|user',
+],
+    function () {
+//        Route::get('user/delete-avatar', [
+//            'uses' => 'UserController@anyDeleteAvatar',
+//        ]);
+        Route::controllers([
+            'user' => 'UserController',
+        ]);
+    });*/
 
 
 

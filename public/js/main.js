@@ -65,10 +65,6 @@ $(document).ready(function(){
     });
 
     $('body').on('click', function (e) {
-        console.log($(e.target));
-        console.log($(e.target).parents('.related-item').length);
-        console.log($(e.target).parents('.modal').length);
-        console.log($(e.target).parents('.modal-backdrop').length);
         if(!$(e.target).hasClass('j-highlight-verse') && $(e.target).parents('.related-item').length == 0 && !$(e.target).hasClass('modal') && $(e.target).parents('.modal').length == 0){
             $('.j-verse-text').removeClass('highlight');
             $('.related-item').removeClass('highlight');
@@ -141,7 +137,6 @@ $(document).ready(function(){
     $('body').on('click','.j-item-body',function(ev) {
         var id = $(this).data('itemid');
         var type = $(this).data('itemtype');
-        console.log(type);
         switch (type){
             case 'note':
                 site.getNote(id);
@@ -836,6 +831,10 @@ $(document).ready(function(){
             success:function(data){
                 $(that).parent().children('.j-remove-friend').toggleClass('hidden');
                 $(that).toggleClass('hidden');
+            },
+            error:function(data){
+
+                location.href = url;
             }
         });
     });
@@ -852,5 +851,61 @@ $(document).ready(function(){
                 $(that).toggleClass('hidden');
             }
         });
+    });
+
+
+    Dropzone.autoDiscover = false;
+    $("#avatar").dropzone(
+        {
+            url: "/user/upload-avatar",
+            maxFilesize: 2,
+            maxFiles:1,
+            parallelUploads:1,
+            previewsContainer: '#img-thumb-preview',
+            previewTemplate: $('#preview-template').html(),
+            headers: {
+                'X-CSRF-Token': $('input[name="_token"]').val()
+            },
+            uploadMultiple: false,
+            //thumbnailWidth:500,
+            //thumbnailHeight:500,
+            init: function() {
+                this.on("maxfilesexceeded", function(file) {
+                    this.removeAllFiles();
+                    this.addFile(file);
+                });
+                this.on('sending', function(file, xhr, formData){
+                    formData.append('user_id', $('input[name="user_id"]').val());
+                });
+                this.on("success", function(file, res) {
+                    site.file = {"serverFileName" : res.filename, "fileName" : file.name};
+                });
+                this.on("removedfile", function(file) {
+                    var rmvFile = site.file.serverFileName;
+                    $('input[name="images"]').val();
+
+                    if (rmvFile){
+                        $.ajax({
+                            type: 'POST',
+                            url: '/user/delete-avatar',
+                            data: {user_id: $('input[name="user_id"]').val(),filename: rmvFile,'_token':$('input[name="_token"]').val()},
+                            dataType: 'html',
+                            success: function(data){
+
+                            }
+                        });
+                    }
+                });
+            },
+        }
+    );
+
+    $('.j-select-image').on('click', function(e) {
+        //trigger file upload select
+        $("#avatar").trigger('click');
+    });
+
+    $('#avatar.user-image').on('click','.j-remove-image',function(){
+        site.deleteImage(this,'/user/delete-avatar');
     });
 });

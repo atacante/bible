@@ -123,7 +123,7 @@ label {
     line-height: 26px;
 }
 
-.location-item:last-child, .people-item:last-child{
+.location-item:last-child, .people-item:last-child, .friend-item:last-child{
     border: 0;
 }
 
@@ -724,5 +724,37 @@ a.view-details:hover{
 .wall-nav.nav-pills>li.active>a{
     /*background-color: #5bc0de;*/
 }
+
+#avatar.dropzone{
+    width: 124px;
+    max-height: 124px;
+    min-height: 124px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+}
+
+#avatar.dropzone .dz-preview{
+    margin: 0;
+}
+
+#avatar.dropzone .select-image{
+    position: absolute;
+    left:0;
+    padding: 32px 36px !important;
+}
+
+.no-avatar {
+    width: 100px;
+    height: 100px;
+}
+
+.no-avatar .no-avatar-text {
+    height: 90px;
+    width: 90px;
+    border: 1px solid #f4f4f4;
+    line-height: 125px;
+    color: #ddd;
+}
+
 
 

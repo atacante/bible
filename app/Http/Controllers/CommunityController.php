@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
 
 class CommunityController extends Controller
 {
@@ -107,7 +108,10 @@ class CommunityController extends Controller
 
     public function getFindFriends()
     {
+        Session::put('back', Request::fullUrl());
+
         $type = Request::input('type', 'all');
+
         $users = User::whereHas('roles', function ($q) {
                   $q->whereIn('slug',[Config::get('app.role.user')]);
               });
@@ -131,7 +135,11 @@ class CommunityController extends Controller
                 break;
         }
 
-        $content['people'] = $users->where('id', '!=', Auth::user()->id)->orderBy('created_at','desc')->get();
+        if(Auth::user()){
+            $users->where('id', '!=', Auth::user()->id);
+        }
+
+        $content['people'] = $users->orderBy('created_at','desc')->paginate(10);
 
         return view('community.find-friends', ['content' => $content,  'myFriends' => $myFriends]);
     }

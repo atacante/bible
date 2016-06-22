@@ -20,6 +20,8 @@
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css')!!}
         {!!Html::style('js/bootstrap-datepicker/css/bootstrap-datepicker3.css')!!}
 {{--        {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css')!!}--}}
+        {!!Html::style('js/dropzone/dist/min/basic.min.css')!!}
+        {!!Html::style('js/dropzone/dist/min/dropzone.min.css')!!}
         {!!Html::style('css/style.css')!!}
         {!!Html::style('css/ionicons-2.0.1/css/ionicons.min.css')!!}
 

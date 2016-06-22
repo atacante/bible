@@ -6,6 +6,7 @@
             @include('community.menu')
         </div>
         <div class="col-md-10 related-records public-wall">
+            @role('user')
             <ul class="nav nav-pills wall-nav">
                 <li role="presentation" class="{!! (!Request::get('type') || Request::get('type') == 'all')?'active':'' !!}">
                     <a href="{!! url('/community/wall?type=all') !!}">All public records</a>
@@ -14,6 +15,7 @@
                     <a href="{!! url('/community/wall?type=friends') !!}">My friends records</a>
                 </li>
             </ul>
+            @endrole
             @include('community.wall-items')
         </div>
         {{--<div class="col-md-3">

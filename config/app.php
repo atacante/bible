@@ -304,6 +304,7 @@ return [
      * Upload paths
      */
 
+    'userAvatars' => '/uploads/avatars/',
     'locationImages' => '/uploads/locations/',
     'peopleImages' => '/uploads/peoples/',
 ];

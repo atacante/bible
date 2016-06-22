@@ -194,3 +194,21 @@ label {
     padding: 3px 10px;
 }
 
+#avatar.dropzone{
+    width: 124px;
+    max-height: 124px;
+    min-height: 124px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+}
+
+#avatar.dropzone .dz-preview{
+    margin: 0;
+}
+
+#avatar.dropzone .select-image{
+    position: absolute;
+    left:0;
+    padding: 32px 36px !important;
+}
+

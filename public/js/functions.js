@@ -77,7 +77,6 @@ site.dropzoneInit = function(){
             });
             this.on("success", function(file, res) {
                 fileList[i] = {"serverFileName" : res.filename, "fileName" : file.name,"fileId" : i };
-                console.log(fileList);
                 i++;
             });
             this.on("removedfile", function(file) {
@@ -85,12 +84,10 @@ site.dropzoneInit = function(){
                 if(fileList.length > 0){
                     var f;
                     for(f in fileList){
-                        console.log(fileList[f].fileName);
                         if(fileList[f].fileName == file.name)
                         {
                             rmvFile = fileList[f].serverFileName;
                             fileList.splice(f,1);
-                            console.log(fileList);
                         }
                     }
                 }
@@ -135,11 +132,12 @@ site.deleteImage = function(element,url){
     $.ajax({
         type: 'POST',
         url: url,
-        data: {filename: $(element).data('filename'),'_token':$('input[name="_token"]').val()},
+        data: {user_id: $('input[name="user_id"]').val(),filename: $(element).data('filename'),'_token':$('input[name="_token"]').val()},
         dataType: 'html',
         success: function(data){
             var rep = JSON.parse(data);
             $(that).parent().remove();
+            $('.j-avatar-preview').remove();
         }
     });
 }
@@ -245,8 +243,6 @@ site.ajaxForm = function(form){
             $('.form-group').removeClass('has-error');
             $('.help-block').remove();
             $.each(data.responseJSON, function(index,value){
-                console.log(index);
-                console.log(value[0]);
                 var formGroup = $(':input[name='+index+']').parents('.form-group');
                 formGroup.addClass('has-error');
                 formGroup.append('<span class="help-block">'+value[0]+'</span>');
