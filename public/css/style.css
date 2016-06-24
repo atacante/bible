@@ -1,3 +1,6 @@
+body{
+
+}
 del {
     color: #b38500;
     background: rgba(255, 218, 0, 0.5);
@@ -756,5 +759,34 @@ a.view-details:hover{
     color: #ddd;
 }
 
+.group-block{
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    /*background-color: whitesmoke;*/
+}
+
+.group-block .g-header{
+    border-top: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    min-height: 24px;
+    line-height: 20px;
+    padding: 8px;
+    position: relative;
+}
+
+.group-block .g-body{
+    border-top: 1px solid #e5e5e5;
+ }
+
+.group-block .g-footer{
+    padding: 5px;
+    border-top: 1px solid #e5eaf1;
+}
+
+.group-block .g-footer:hover{
+    background-color: whitesmoke;
+}
 
 

@@ -227,4 +227,21 @@ class ViewHelper
 
         return $entryModel->count();
     }
+
+    public static function getGroupAction($dataKey)
+    {
+        $action = '';
+        switch($dataKey){
+            case 'groups':
+                $action = 'all-groups';
+                break;
+            case 'myGroups':
+                $action = 'my-groups';
+                break;
+            case 'joinedGroups':
+                $action = 'joined-groups';
+                break;
+        }
+        return $action;
+    }
 }

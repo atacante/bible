@@ -1,5 +1,6 @@
 var site = {};
 var reader = {};
+var user = {};
 
 site.fillSelect = function (selector,items){
     $(selector).empty();

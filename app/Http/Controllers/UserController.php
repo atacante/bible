@@ -318,4 +318,8 @@ class UserController extends Controller
         }
         return response()->json($user, 200);
     }
+
+    public function getIsPremium(){
+        return User::find(Auth::user()->id)->isPremium();
+    }
 }

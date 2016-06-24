@@ -807,16 +807,19 @@ $(document).ready(function(){
         });
     });
 
-    $('.public-wall').on('click','.load-more',function(e){
+    $('.public-wall,.group-block .g-body').on('click','.load-more',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
+        var that = this;
         $.ajax({
             method: "GET",
             url: url,
             dataType:'html',
             success:function(data){
+                var parent = $(that).parents('.g-body');
                 $('.load-more-block').remove();
                 $('.public-wall').append(data);
+                parent.append(data);
             }
         });
     });
@@ -907,5 +910,36 @@ $(document).ready(function(){
 
     $('#avatar.user-image').on('click','.j-remove-image',function(){
         site.deleteImage(this,'/user/delete-avatar');
+    });
+
+    $('.j-groups-list').on('click','.j-join-group',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $(that).parent().children('.j-leave-group').toggleClass('hidden');
+                $(that).toggleClass('hidden');
+            },
+            error:function(data){
+                location.href = url;
+            }
+        });
+    });
+
+    $('.j-groups-list').on('click','.j-leave-group',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $(that).parent().children('.j-join-group').toggleClass('hidden');
+                $(that).toggleClass('hidden');
+            }
+        });
     });
 });

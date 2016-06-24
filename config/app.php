@@ -305,6 +305,7 @@ return [
      */
 
     'userAvatars' => '/uploads/avatars/',
+    'groupImages' => '/uploads/groups/',
     'locationImages' => '/uploads/locations/',
     'peopleImages' => '/uploads/peoples/',
 ];

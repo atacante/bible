@@ -112,6 +112,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::controller('peoples', 'PeoplesController');
     Route::controller('site', 'SiteController');
     Route::controller('community', 'CommunityController');
+    Route::controller('groups', 'GroupsController');
 
     Route::get('/community', [
         'as' => 'community', 'uses' => 'CommunityController@getWall'

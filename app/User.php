@@ -65,6 +65,26 @@ class User extends Authenticatable
         return $rules;
     }
 
+    public function myGroups()
+    {
+        return $this->hasMany(Group::class, 'owner_id', 'id');
+    }
+
+    public function joinedGroups()
+    {
+        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->withTimestamps();
+    }
+
+    public function joinGroup(Group $group)
+    {
+        $this->joinedGroups()->attach($group->id);
+    }
+
+    public function leaveGroup(Group $group)
+    {
+        $this->joinedGroups()->detach($group->id);
+    }
+
     public function friends()
     {
         return $this->belongsToMany(User::class, 'users_friends', 'user_id', 'friend_id')->withTimestamps();
@@ -91,6 +111,11 @@ class User extends Authenticatable
         }
         $this->save();
         return $isOnline;
+    }
+
+    public function isPremium()
+    {
+        return $this->plan_type == self::PLAN_PREMIUM;
     }
 
     public function upgradeToPremium()
