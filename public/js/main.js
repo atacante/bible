@@ -465,6 +465,10 @@ $(document).ready(function(){
         site.deleteImage(this,'/admin/peoples/delete-image');
     });
 
+    $('.edit-images-thumbs.group-images').on('click','.j-remove-image',function(){
+        site.deleteImage(this,'/groups/delete-image');
+    });
+
     //site.dropzoneInit();
     $("body").mousedown(function(eventObject) {
         /*if(!$(eventObject.target).hasClass('j-create-note') && !$(eventObject.target).parent().hasClass('j-create-note')){

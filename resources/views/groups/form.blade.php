@@ -1,5 +1,26 @@
 {!! Form::model($model, ['method' => ($model->exists?'put':'post'), 'id' => 'group-form', 'class' => '   ','role' => 'form','files' => true]) !!}
 <div class="box-body">
+    <div class="form-group {{ $errors->has('group_image') ? ' has-error' : '' }}">
+        {!! Form::label('group_image', 'Image:') !!}
+        <div class="clearfix">
+            <div id="img-thumb-preview" class="edit-images-thumbs group-images pull-left">
+                @if($model->group_image)
+                    <div class="img-thumb pull-left">
+                        <img height="100" width="100" src="{!! Config::get('app.groupImages').$model->id.'/thumbs/'.$model->group_image !!}" />
+                        <i data-filename="{!! $model->group_image !!}" class="j-remove-image fa fa-times-circle fa-4x" style="position:absolute; top: 24px; left: 28px; color: #f4645f; cursor: pointer; opacity: 0;"></i>
+                    </div>
+                @endif
+            </div>
+            <div class="fallback pull-left"> <!-- this is the fallback if JS isn't working -->
+                <input name="file" type="file" />
+            </div>
+        </div>
+        @if ($errors->has('group_image'))
+            <span class="help-block">
+                {{ $errors->first('group_image') }}
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('group_name') ? ' has-error' : '' }}">
         {!! Form::label('group_name', 'Name:') !!}
         {!! Form::text('group_name',null,[]) !!}
@@ -45,14 +66,14 @@
                 <span style="color: #ccc;">Anyone can find the group and see who's in it. Only members can see posts.</span>
             </label>
         </div>
-        <div class="radio">
+        {{--<div class="radio">
             <label>
                 {!! Form::radio('access_level', App\Group::ACCESS_PUBLIC_MEMBERS, false) !!}
                 <i class="fa fa-users" aria-hidden="true"></i>
                 Closed<br />
                 <span style="color: #ccc;">Only members can find the group and see posts.</span>
             </label>
-        </div>
+        </div>--}}
         @if ($errors->has('access_level'))
             <span class="help-block">
                 {{ $errors->first('access_level') }}
