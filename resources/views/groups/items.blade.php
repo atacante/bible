@@ -13,7 +13,7 @@
             </div>
             <div class="pull-left" style="margin-right: 10px; width: 230px;">
                 <div><strong>{!! $group->group_name !!}</strong></div>
-                <div style="line-height: 12px; color: #90949c; font-size: 12px; margin-bottom: 5px; "><strong>{!! $group->members->count() !!} member{!! $group->members->count() == 1?'':'s' !!}</strong></div>
+                <div style="line-height: 12px; color: #90949c; font-size: 12px; margin-bottom: 5px; "><strong>{!! $group->members->count()+1 !!} member{!! $group->members->count()+1 == 1?'':'s' !!}</strong></div>
                 <div style="line-height: 16px; font-size: 12px;">
                     <span style="color:#90949c;">{!! str_limit(strip_tags($group->group_desc,'<p></p>'), $limit = 100, $end = '... ') !!}</span>
                 </div>
