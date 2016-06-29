@@ -946,4 +946,8 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('.community-menu').on('click','a.disabled',function(e){
+        e.preventDefault();
+    });
 });

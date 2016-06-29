@@ -789,4 +789,8 @@ a.view-details:hover{
     background-color: whitesmoke;
 }
 
+.community-menu a.disabled{
+    opacity: 0.5;
+}
+
 
