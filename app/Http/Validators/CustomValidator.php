@@ -11,8 +11,15 @@ class CustomValidator{
     {
         $coupon = Coupon::where('coupon_code', $value)->first();
         if($coupon && $coupon->member_type){
-            if(!Auth::user()->is($coupon->member_type)){
-                return false;
+            if(Auth::check()){
+                if(!Auth::user()->is($coupon->member_type)){
+                    return false;
+                }
+            }
+            else{
+                if($coupon->member_type != 'user'){
+                    return false;
+                }
             }
         }
         if($coupon && $coupon->user_id > 0){

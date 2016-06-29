@@ -99,8 +99,7 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group {!! Request::get('free',true)?'hidden':'' !!} {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
+                        <div class="form-group {!! Request::old('plan_type') == 'free' && !$errors->has('coupon_code')?'hidden':'' !!} {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
                             {!! Form::label('coupon_code', 'Coupon Code:',['class' => 'col-md-4']) !!}
                             <div class="col-md-6">
                                 {!! Form::text('coupon_code') !!}
