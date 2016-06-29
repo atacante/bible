@@ -16,7 +16,7 @@ class Note extends BaseModel
     public $prayer_text;
 
     protected $table = 'notes';
-    protected $dates = ['published_at'];
+    protected $dates = ['created_at','updated_at','published_at'];
     protected $fillable = ['id','user_id','journal_id','prayer_id','verse_id','lexicon_id','highlighted_text','note_text','bible_version','access_level','rel_code'];
 
     public function rules()

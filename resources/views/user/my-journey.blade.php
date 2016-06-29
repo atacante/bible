@@ -86,7 +86,7 @@
                     <tr>
                         {{--<th width="20"><input type="checkbox" id="checkAll"/></th>--}}
                         @foreach(array_keys($content['columns']) as $column)
-                            <th {!! ($content['columns'][$column] == 'verse_id' || $content['columns'][$column] == 'created_at')?'width="150"':'' !!}>
+                            <th {!! ($content['columns'][$column] == 'verse_id' || $content['columns'][$column] == 'created_at')?'width="100"':'' !!}>
                                 @if ($content['sortby'] == $content['columns'][$column] && $content['order'] == 'asc')
                                     {{link_to(
                                       $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'desc'])),
@@ -153,7 +153,7 @@
                                 @endif
 
                             </td>
-                            <td width="120" class="text-center">
+                            {{--<td width="120" class="text-center">
                                 <div class="stars-block">
                                     <div class="star-line">
                                         <a title="Notes" class="star-link" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
@@ -166,7 +166,7 @@
                                                 ]:[
                                                     'rel' => $entry->rel_code,
                                                 ])) !!}#notes">
-                                            {{--<div class="star star-n {!! $entry->notescount > 0?'active':'' !!}">N</div>--}}{{-- ViewHelper::getEntriesCount('note',$entry) > 0 --}}
+                                            --}}{{--<div class="star star-n {!! $entry->notescount > 0?'active':'' !!}">N</div>--}}{{----}}{{-- ViewHelper::getEntriesCount('note',$entry) > 0 --}}{{--
                                             <span class="fa fa-star {!! $entry->notescount > 0?'active':'' !!}" aria-hidden="true" style=""></span>
                                             <span class="star-label" style="">N</span>
                                         </a>
@@ -182,7 +182,7 @@
                                                 ]:[
                                                     'rel' => $entry->rel_code,
                                                 ])) !!}#journal">
-                                            {{--<div class="star star-j {!! $entry->journalcount > 0?'active':'' !!}">J</div>--}}
+                                            --}}{{--<div class="star star-j {!! $entry->journalcount > 0?'active':'' !!}">J</div>--}}{{--
                                             <span class="fa fa-star {!! $entry->journalcount > 0?'active':'' !!}" aria-hidden="true" style=""></span>
                                             <span class="star-label" style="">J</span>
                                         </a>
@@ -196,13 +196,13 @@
                                                 ]:[
                                                     'rel' => $entry->rel_code,
                                                 ])) !!}#prayers">
-{{--                                            <div class="star star-p {!! $entry->prayerscount > 0?'active':'' !!}">P</div>--}}
+--}}{{--                                            <div class="star star-p {!! $entry->prayerscount > 0?'active':'' !!}">P</div>--}}{{--
                                             <span class="fa fa-star {!! $entry->prayerscount > 0?'active':'' !!}" aria-hidden="true" style=""></span>
                                             <span class="star-label" style="">P</span>
                                         </a>
                                     </div>
                                 </div>
-                            </td>
+                            </td>--}}
                             <td width="85" class="">
                                 <a title="Notes" class="label label-warning" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
                                     http_build_query(
@@ -256,7 +256,13 @@
                                 @endif
                             </td>
                             <td class="text-center">{!! ViewHelper::getAccessLevelIcon($entry->access_level) !!}</td>
-                            <td>{!! $entry->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
+                            <td>
+                                {!! $entry->created_at->format('m/d/Y') !!}<br />
+                                <span style="color: #ccc;">
+                                    Last update<br />
+                                    {!! $entry->updated_at->format('m/d/Y') !!}
+                                </span>
+                            </td>{{--H:i--}}
                             <td class="text-center">
                                 {{--<a title="Print {!! $entry->type !!} entry" href="#" data-{!! $entry->type !!}id="{!! $entry->id !!}" class="j-print-{!! $entry->type !!}"><i
                                             class="fa fa-print fa-2x"
