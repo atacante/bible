@@ -64,4 +64,8 @@ php artisan symbolism:cache --ver=nasb
 
 FINISH
 ----------------
+~~~
+chmod 0777 -R bootstrap/cache/
+chmod 0777 -R storage/logs/
+~~~
 Point virtual host document root to `public`.
