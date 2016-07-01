@@ -45,4 +45,19 @@ class Group extends Model
     public function members() {
         return $this->belongsToMany(User::class, 'groups_users', 'group_id', 'user_id')->withTimestamps();
     }
+
+    public function notes()
+    {
+        return $this->morphedByMany('App\Note', 'groups_shares');
+    }
+
+    public function journals()
+    {
+        return $this->morphedByMany('App\Journal', 'groups_shares');
+    }
+
+    public function prayers()
+    {
+        return $this->morphedByMany('App\Prayer', 'groups_shares');
+    }
 }

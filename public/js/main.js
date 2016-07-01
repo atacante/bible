@@ -11,6 +11,7 @@ $(document).ready(function(){
         placeholder: "Compare with...",
     });
 
+    site.initSelect2();
     site.initTagging();
 
     $('.coupon-datepicker').datepicker(
@@ -556,12 +557,12 @@ $(document).ready(function(){
         e.preventDefault();
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
-        if($('.j-my-stady-verse').length > 0){
+        if($('.j-my-study-verse').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
             url += '&text='+$('.j-verse-text').text();
         }
-        if($('.j-my-stady-item').length > 0){
+        if($('.j-my-study-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
         }
         var fullScreenUrl = url;
@@ -586,6 +587,7 @@ $(document).ready(function(){
                 $('#popup').modal({show:true});
                 site.initCkeditors();
                 site.initTagging();
+                site.initSelect2();
             },
             error:function(e){
                 if(e.status = 401){
@@ -600,12 +602,12 @@ $(document).ready(function(){
         e.preventDefault();
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
-        if($('.j-my-stady-verse').length > 0){
+        if($('.j-my-study-verse').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
             url += '&text='+$('.j-verse-text').text();
         }
-        if($('.j-my-stady-item').length > 0){
+        if($('.j-my-study-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
         }
         var fullScreenUrl = url;
@@ -626,6 +628,7 @@ $(document).ready(function(){
                 $('#popup').modal({show:true});
                 site.initCkeditors();
                 site.initTagging();
+                site.initSelect2();
             },
             error:function(e){
                 if(e.status = 401){
@@ -640,12 +643,12 @@ $(document).ready(function(){
         e.preventDefault();
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
-        if($('.j-my-stady-verse').length > 0){
+        if($('.j-my-study-verse').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
             url += '&text='+$('.j-verse-text').text();
         }
-        if($('.j-my-stady-item').length > 0){
+        if($('.j-my-study-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
         }
         var fullScreenUrl = url;
@@ -666,6 +669,7 @@ $(document).ready(function(){
                 $('#popup').modal({show:true});
                 site.initCkeditors();
                 site.initTagging();
+                site.initSelect2();
             },
             error:function(e){
                 if(e.status = 401){
@@ -677,7 +681,7 @@ $(document).ready(function(){
     });
 
     $("body").on('click','.j-full-screen-btn',function (e) {
-        if($('.j-my-stady-verse').length > 0 || $('.j-my-stady-item').length > 0){
+        if($('.j-my-study-verse').length > 0 || $('.j-my-study-item').length > 0){
             e.preventDefault();
             var url = $(this).attr('href');
             var type = $(this).data('type');
@@ -949,5 +953,31 @@ $(document).ready(function(){
 
     $('.community-menu').on('click','a.disabled',function(e){
         e.preventDefault();
+    });
+
+    $('#popup, #note-form,#journal-form,#prayer-form').on('change','input[name="access_level"]',function(e){
+        var level = $(e.target).val();
+        if(level == 'public_for_groups' || level == 1 || level == 0){
+            $('.j-all-groups').removeClass('disabled');
+            $('.j-all-groups input[type="radio"]').attr('disabled',false);
+            $('.j-specific-groups').removeClass('disabled');
+            $('.j-specific-groups input[type="radio"]').attr('disabled',false);
+            $('input[name="share_for_groups"][value="public_for_groups"]').attr('checked',true);
+        }
+        else{
+            $('.j-all-groups').addClass('disabled');
+            $('.j-all-groups input[type="radio"]').attr('disabled',true);
+            $('.j-specific-groups').addClass('disabled');
+            $('.j-specific-groups input[type="radio"]').attr('disabled',true);
+        }
+    });
+    $('#popup, #note-form').on('change','input[name="share_for_groups"]',function(e){
+        var level = $(e.target).val();
+        if(level == 'public_for_groups'){
+            $('select.j-groups').attr('disabled',true);
+        }
+        else{
+            $('select.j-groups').attr('disabled',false);
+        }
     });
 });

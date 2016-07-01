@@ -144,6 +144,7 @@ class JournalController extends Controller
             }
             if ($model = $model->create($data)) {
                 $model->syncTags(Input::get('tags'));
+                $model->syncGroups();
                 if($model->note_text = Input::get('note_text',false)){
                     $model->note_id = $this->saveNote($model);
                     $model->save();
@@ -162,6 +163,10 @@ class JournalController extends Controller
             }
         }
 
+        $myGroups = Auth::user()->myGroups()->pluck('group_name','groups.id')->toArray();
+        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name','groups.id')->toArray();
+        $content['groups'] = $myGroups+$joinedGroups;
+
         $view = 'journal.create';
         if(Request::ajax()){
             $view = 'journal.form';
@@ -170,6 +175,7 @@ class JournalController extends Controller
         return view($view,
             [
                 'model' => $model,
+                'content' => $content
             ]);
     }
 
@@ -188,6 +194,7 @@ class JournalController extends Controller
             $this->validate($request, $model->rules());
             if ($model->update(Input::all())) {
                 $model->syncTags(Input::get('tags'));
+                $model->syncGroups();
                 if($model->note_text){
                     $model->note_id = $this->saveNote($model);
                     $model->save();
@@ -211,9 +218,14 @@ class JournalController extends Controller
             $view = 'journal.form';
         }
 
+        $myGroups = Auth::user()->myGroups()->pluck('group_name','groups.id')->toArray();
+        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name','groups.id')->toArray();
+        $content['groups'] = $myGroups+$joinedGroups;
+
         return view($view,
             [
-                'model' => $model
+                'model' => $model,
+                'content' => $content
             ]);
     }
 

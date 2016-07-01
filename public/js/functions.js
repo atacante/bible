@@ -230,6 +230,13 @@ site.initTagging = function(){
     });
 }
 
+site.initSelect2 = function(){
+    $(".j-select2").select2({
+        placeholder: $(".j-select2").attr('placeholder'),
+        width: '100%',
+    });
+}
+
 site.ajaxForm = function(form){
     var url = form.attr('action');
     $.ajax({

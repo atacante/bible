@@ -244,4 +244,9 @@ class ViewHelper
         }
         return $action;
     }
+
+    public static function checkEntryAccess($model)
+    {
+        return ($model->access_level == Note::ACCESS_PUBLIC_GROUPS || $model->access_level == Note::ACCESS_SPECIFIC_GROUPS);
+    }
 }

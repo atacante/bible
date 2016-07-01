@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use App\Http\Requests;
 use App\BaseModel;
 use App\Helpers\ViewHelper;
@@ -148,8 +149,10 @@ class NotesController extends Controller
                     $data['rel_code'] = BaseModel::generateRelationCode();
                 }
             }
+
             if ($model = $model->create($data)) {
                 $model->syncTags(Input::get('tags'));
+                $model->syncGroups();
                 if ($model->journal_text = Input::get('journal_text', false)) {
                     $model->journal_id = $this->saveJournal($model);
                     $model->save();
@@ -167,11 +170,16 @@ class NotesController extends Controller
                 return 1;
             }
         }
+
+        $myGroups = Auth::user()->myGroups()->pluck('group_name','groups.id')->toArray();
+        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name','groups.id')->toArray();
+        $content['groups'] = $myGroups+$joinedGroups;
+
         $view = 'notes.create';
         if (Request::ajax()) {
             $view = 'notes.form';
         }
-        return view($view, ['model' => $model,]);
+        return view($view, ['model' => $model,'content' => $content]);
     }
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
@@ -186,11 +194,12 @@ class NotesController extends Controller
         if (!$model) {
             abort(404);
         }
+
         if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             if ($model->update(Input::all())) {
                 $model->syncTags(Input::get('tags'));
-
+                $model->syncGroups();
                 if ($model->journal_text) {
                     $model->journal_id = $this->saveJournal($model);
                     $model->save();
@@ -209,11 +218,15 @@ class NotesController extends Controller
             }
         }
 
+        $myGroups = Auth::user()->myGroups()->pluck('group_name','groups.id')->toArray();
+        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name','groups.id')->toArray();
+        $content['groups'] = $myGroups+$joinedGroups;
+
         $view = 'notes.update';
         if (Request::ajax()) {
             $view = 'notes.form';
         }
-        return view($view, ['model' => $model]);
+        return view($view, ['model' => $model,'content' => $content]);
     }
 
     public function anyDelete($id)

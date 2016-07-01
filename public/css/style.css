@@ -793,4 +793,12 @@ a.view-details:hover{
     opacity: 0.5;
 }
 
+.j-access-level .disabled{
+    color: #ccc;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple{
+    border-color: #D2D6E1;
+}
+
 

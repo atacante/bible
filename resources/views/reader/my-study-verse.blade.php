@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div class="j-my-stady-verse">
+    <div class="j-my-study-verse">
         <a href="{!! url('reader/read?'.http_build_query(
         [
             'version' => $content['verse']['version_code'],

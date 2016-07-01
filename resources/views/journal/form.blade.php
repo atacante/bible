@@ -55,9 +55,22 @@
         </div>
         <div class="radio">
             <label>
-                {!! Form::radio('access_level', App\Note::ACCESS_PUBLIC_GROUPS, false) !!}
+                {!! Form::radio('access_level', ViewHelper::checkEntryAccess($model), ViewHelper::checkEntryAccess($model)) !!}
                 <i class="fa fa-users" aria-hidden="true"></i>
                 Public - share with Groups I am member of
+                <div class="radio j-all-groups {!! ViewHelper::checkEntryAccess($model)?'':'disabled' !!}">
+                    <label>
+                        {!! Form::radio('share_for_groups', App\Note::ACCESS_PUBLIC_GROUPS, $model->access_level == App\Note::ACCESS_PUBLIC_GROUPS,['class'=>'',ViewHelper::checkEntryAccess($model)?'':'disabled']) !!}
+                        All my groups
+                    </label>
+                </div>
+                <div class="radio j-specific-groups {!! ViewHelper::checkEntryAccess($model)?'':'disabled' !!}">
+                    <label>
+                        {!! Form::radio('share_for_groups', App\Note::ACCESS_SPECIFIC_GROUPS, $model->access_level == App\Note::ACCESS_SPECIFIC_GROUPS,['class'=>'',ViewHelper::checkEntryAccess($model)?'':'disabled']) !!}
+                        Selected groups
+                    </label>
+                </div>
+                {!! Form::select('groups[]', $content['groups'], $model->groupsShares->pluck('id')->toArray(),['placeholder' => 'Select groups...','multiple' => true,'class' => 'clear-fix j-groups j-select2', 'style' => '',$model->access_level == App\Note::ACCESS_SPECIFIC_GROUPS?'':'disabled']) !!}
             </label>
         </div>
         @if ($errors->has('access_level'))

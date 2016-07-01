@@ -144,6 +144,7 @@ class PrayersController extends Controller
             }
             if ($model = $model->create($data)) {
                 $model->syncTags(Input::get('tags'));
+                $model->syncGroups();
                 if($model->note_text = Input::get('note_text',false)){
                     $model->note_id = $this->saveNote($model);
                     $model->save();
@@ -169,9 +170,14 @@ class PrayersController extends Controller
             $view = 'prayers.form';
         }
 
+        $myGroups = Auth::user()->myGroups()->pluck('group_name','groups.id')->toArray();
+        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name','groups.id')->toArray();
+        $content['groups'] = $myGroups+$joinedGroups;
+
         return view($view,
             [
                 'model' => $model,
+                'content' => $content
             ]);
     }
 
@@ -190,6 +196,7 @@ class PrayersController extends Controller
             $this->validate($request, $model->rules());
             if ($model->update(Input::all())) {
                 $model->syncTags(Input::get('tags'));
+                $model->syncGroups();
                 if($model->note_text){
                     $model->note_id = $this->saveNote($model);
                     $model->save();
@@ -210,6 +217,10 @@ class PrayersController extends Controller
             }
         }
 
+        $myGroups = Auth::user()->myGroups()->pluck('group_name','groups.id')->toArray();
+        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name','groups.id')->toArray();
+        $content['groups'] = $myGroups+$joinedGroups;
+
         $view = 'prayers.update';
         if(Request::ajax()){
             $view = 'prayers.form';
@@ -217,7 +228,8 @@ class PrayersController extends Controller
 
         return view($view,
             [
-                'model' => $model
+                'model' => $model,
+                'content' => $content
             ]);
     }
 
