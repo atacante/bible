@@ -67,5 +67,6 @@ FINISH
 ~~~
 chmod 0777 -R bootstrap/cache/
 chmod 0777 -R storage/logs/
+chmod 0777 -R storage/framework/
 ~~~
 Point virtual host document root to `public`.
