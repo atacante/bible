@@ -198,11 +198,22 @@ class GroupsController extends Controller
 
     public function getView($id)
     {
+        Session::flash('backUrl', Request::fullUrl());
+
         $model = Group::query()->find($id);
+
+        if (!$model) {
+            return Redirect::to('/groups?type=my');
+        }
 
         $limit = 10;
         $page = Input::get('page',1);
         $offset = $limit*($page-1);
+
+        $content['joinedGroupsKeys'] = [];
+        if(Auth::user()){
+            $content['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
+        }
 
         $journalQuery = Journal::with(['verse','user'])
             ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at')

@@ -920,7 +920,7 @@ $(document).ready(function(){
         site.deleteImage(this,'/user/delete-avatar');
     });
 
-    $('.j-groups-list').on('click','.j-join-group',function(e){
+    $('.j-groups-list,.group-details').on('click','.j-join-group',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
         var that = this;
@@ -937,7 +937,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-groups-list').on('click','.j-leave-group',function(e){
+    $('.j-groups-list,.group-details').on('click','.j-leave-group',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
         var that = this;
