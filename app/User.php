@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Kodeine\Acl\Traits\HasRole;
 use Krucas\Notification\Facades\Notification;
+use App\Providers\CustomAuthorizeNet\Billable;
 
 class User extends Authenticatable
 {
     use HasRole;
+    use Billable;
 
     const PLAN_FREE = 'free';
     const PLAN_PREMIUM = 'premium';
@@ -136,6 +138,7 @@ class User extends Authenticatable
                     Notification::success('Coupon was applied');
                 }
             }
+            $this->newSubscription('main', self::PLAN_PREMIUM, $premiumCost)->create();
             $this->upgraded_at = Carbon::now();
             if($this->save()){
                 if(Request::is('user/profile')){

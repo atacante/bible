@@ -171,6 +171,7 @@ return [
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
+        Laravel\CashierAuthorizeNet\CashierServiceProvider::class,
 
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',

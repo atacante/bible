@@ -31,7 +31,9 @@
         "parsecsv/php-parsecsv": "0.4.5",
         "xethron/migrations-generator": "dev-l5",
         "way/generators": "dev-feature/laravel-five-stable",
-        "user11001/eloquent-model-generator": "~2.0"
+        "user11001/eloquent-model-generator": "~2.0",
+        "paisawala/cashier-authorizenetpaisa": "dev-master",
+        "goetas/xsd2php": "2.0.x-dev#fdc2ab0bb3f2b3ab796ca567cf8c0f3446a7ea3a"
     },
     "autoload": {
         "classmap": [
@@ -67,10 +69,16 @@
     "config": {
         "preferred-install": "dist"
     },
-    "repositories": {
-        "repo-name": {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/goetas/serializer.git"
+        },
+        {
             "type": "git",
             "url": "git@github.com:jamisonvalenta/Laravel-4-Generators.git"
         }
-    }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
