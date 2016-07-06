@@ -14,6 +14,7 @@ use App\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -215,39 +216,97 @@ class GroupsController extends Controller
             $content['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
         }
 
-        $journalQuery = Journal::with(['verse','user'])
-            ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at')
-            ->whereIn('access_level',[Journal::ACCESS_PUBLIC_GROUPS,Journal::ACCESS_SPECIFIC_GROUPS])
-            ->whereIn('id',$model->journals->modelKeys());
-        $journalCount = $journalQuery->count();
-        $prayersQuery = Prayer::with(['verse','user'])
-            ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,prayer_text as text,\'prayer\' as type,bible_version,published_at')
-            ->whereIn('access_level',[Journal::ACCESS_PUBLIC_GROUPS,Journal::ACCESS_SPECIFIC_GROUPS])
-            ->whereIn('id',$model->prayers->modelKeys());
-        $prayersCount = $prayersQuery->count();
-        $notesQuery = Note::with(['verse','user'])
-            ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,note_text as text,\'note\' as type,bible_version,published_at')
-            ->whereIn('access_level',[Journal::ACCESS_PUBLIC_GROUPS,Journal::ACCESS_SPECIFIC_GROUPS])
-            ->whereIn('id',$model->notes->modelKeys());
-        $notesCount = $notesQuery->count();
+        $content['myFriends'] = [];
+        if(Auth::user()){
+            $content['myFriends'] = Auth::user()->friends->modelKeys();
+        }
 
-        $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery);
-        $entriesQuery->orderBy('published_at','desc')->orderBy('created_at','desc')->limit($limit)->offset($offset);
+        $content['membersSample'] = $this->getMembers($id,'random')['members'];
 
-        $entries = $entriesQuery->get();
+        if(Input::get('p') == 'members'){
+            $content['members'] = $this->getMembers($id)['members'];
+            $content['nextPage'] = $this->getMembers($id)['nextPage'];
+        }
+        else{
+            $journalQuery = Journal::with(['verse','user'])
+                ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at')
+                ->whereIn('access_level',[Journal::ACCESS_PUBLIC_GROUPS,Journal::ACCESS_SPECIFIC_GROUPS])
+                ->whereIn('id',$model->journals->modelKeys());
+            $journalCount = $journalQuery->count();
+            $prayersQuery = Prayer::with(['verse','user'])
+                ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,prayer_text as text,\'prayer\' as type,bible_version,published_at')
+                ->whereIn('access_level',[Journal::ACCESS_PUBLIC_GROUPS,Journal::ACCESS_SPECIFIC_GROUPS])
+                ->whereIn('id',$model->prayers->modelKeys());
+            $prayersCount = $prayersQuery->count();
+            $notesQuery = Note::with(['verse','user'])
+                ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,note_text as text,\'note\' as type,bible_version,published_at')
+                ->whereIn('access_level',[Journal::ACCESS_PUBLIC_GROUPS,Journal::ACCESS_SPECIFIC_GROUPS])
+                ->whereIn('id',$model->notes->modelKeys());
+            $notesCount = $notesQuery->count();
 
-        $totalCount = $notesCount+$journalCount+$prayersCount;
-        $entries = new LengthAwarePaginator(
-            $entries,
+            $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery);
+            $entriesQuery->orderBy('published_at','desc')->orderBy('created_at','desc')->limit($limit)->offset($offset);
+
+            $entries = $entriesQuery->get();
+
+            $totalCount = $notesCount+$journalCount+$prayersCount;
+            $entries = new LengthAwarePaginator(
+                $entries,
+                $totalCount,
+                $limit,
+                \Illuminate\Pagination\Paginator::resolveCurrentPage(), //resolve the path
+                ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+            );
+            $content['entries'] = $entries;
+
+            $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
+        }
+
+        return view('groups.view', ['model' => $model,'content' => $content]);
+    }
+
+    public function getMembers($groupId,$order = false)
+    {
+        $limit = 10;
+        $page = Input::get('page',1);
+        $offset = $limit*($page-1);
+
+        $group = Group::find($groupId);
+        $members = User::join('groups_users','users.id', '=', 'groups_users.user_id')
+            ->addSelect(DB::raw('users.*'))
+            ->whereHas('joinedGroups', function ($q) use ($group)
+                {
+                    $q->where('group_id', $group->id);
+        //            $q->orderBy('groups_users.id','desc');
+        //            $q->orderBy('users.id','desc');
+                })->orWhere('users.id',$group->owner_id);
+
+        $totalCount = $members->count();
+
+        $members->groupBy('users.id')->groupBy('groups_users.user_id')->limit($limit)->offset($offset);
+
+        if($order == 'random'){
+            $members->orderByRaw("RANDOM()");
+        }
+        else{
+            $members->orderByRaw('MAX(groups_users.id) desc');
+        }
+
+        $content['members'] = $members->get();
+        $content['members'] = new LengthAwarePaginator(
+            $content['members'],
             $totalCount,
             $limit,
             \Illuminate\Pagination\Paginator::resolveCurrentPage(), //resolve the path
             ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
         );
-        $content['entries'] = $entries;
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
 
-        return view('groups.view', ['model' => $model,'content' => $content]);
+        if(Request::ajax()){
+            return view('groups.members', ['model' => $group,'content' => $content]);
+        }
+
+        return $content;
     }
 
     public function anyDelete($id)

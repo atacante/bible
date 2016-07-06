@@ -815,7 +815,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.public-wall,.group-block .g-body').on('click','.load-more',function(e){
+    $('.public-wall,.j-members-list,.group-block .g-body').on('click','.load-more',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
         var that = this;
@@ -826,7 +826,7 @@ $(document).ready(function(){
             success:function(data){
                 var parent = $(that).parents('.g-body');
                 $('.load-more-block').remove();
-                $('.public-wall').append(data);
+                $('.public-wall,.j-members-list .row').append(data);
                 parent.append(data);
             }
         });
