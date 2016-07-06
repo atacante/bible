@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            @role('user')
+            {{--@role('user')--}}
             <div>
                 <ul class="nav nav-pills wall-nav">
                     <li role="presentation" class="{!! !Request::get('p')?'active':'' !!}">
@@ -37,14 +37,22 @@
                     </li>
                 </ul>
             </div>
-            @endrole
+            {{--@endrole--}}
             <div class="row">
-                <div class="col-md-9 related-records public-wall">
-                    @include('groups.wall-items')
-                </div>
+                @if(Request::get('p') == 'members')
+                    <div class="col-md-9 related-records j-members-list">
+                        <div class="row">
+                            @include('groups.members')
+                        </div>
+                    </div>
+                @else
+                    <div class="col-md-9 related-records public-wall">
+                        @include('groups.wall-items')
+                    </div>
+                @endif
                 <div class="col-md-3 group-info" style="border-left: 1px solid #ccc">
                     <div class="clearfix info-block">
-                        <div>
+                        <div class="clearfix">
                             <div class="pull-left"><strong>Members</strong></div>
                             <div class="pull-right">
                                 <a href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">
@@ -52,7 +60,21 @@
                                 </a>
                             </div>
                         </div>
-                        <div></div>
+                        <div>
+                            @foreach($content['membersSample'] as $member)
+                                <a href="#" title="{!! $member->name !!}"  class="friend-item">
+                                    <div class="pull-left" style="margin: 0 2px 2px 0;">
+                                        @if($member->avatar)
+                                            <img class="img-thumbnail-mini" height="40" width="40" data-dz-thumbnail="" alt="" src="{!! Config::get('app.userAvatars').$member->id.'/thumbs/'.$member->avatar !!}"/>
+                                        @else
+                                            <div class="no-avatar-mini img-thumbnail-mini">
+                                                <div class="no-avatar-text text-center"><i class="fa fa-user" style="font-size:24px;"></i></div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
                     @if((Auth::user() && $model->owner_id == Auth::user()->id))
                     <div class="clearfix info-block">

@@ -751,11 +751,24 @@ a.view-details:hover{
     height: 100px;
 }
 
+.no-avatar-mini {
+    width: 40px;
+    height: 40px;
+}
+
 .no-avatar .no-avatar-text {
     height: 90px;
     width: 90px;
     border: 1px solid #f4f4f4;
     line-height: 125px;
+    color: #ddd;
+}
+
+.no-avatar-mini .no-avatar-text {
+    height: 34px;
+    width: 34px;
+    border: 1px solid #f4f4f4;
+    line-height: 42px;
     color: #ddd;
 }
 
@@ -842,6 +855,20 @@ a.view-details:hover{
 
 .group-info .info-block{
     margin-bottom: 15px;
+}
+
+.img-thumbnail-mini{
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 2px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
 
