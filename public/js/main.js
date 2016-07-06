@@ -751,11 +751,11 @@ $(document).ready(function(){
     $('input[name="plan_type"]').change(function(){
         switch ($(this).val()){
             case "free":
-                $('#coupon_code').parents('.form-group').addClass('hidden');
+                $('.premium-only').addClass('hidden');
                 $('#coupon_code').val('');
                 break;
             case "premium":
-                $('#coupon_code').parents('.form-group').removeClass('hidden');
+                $('.premium-only').removeClass('hidden');
                 break;
         }
     });

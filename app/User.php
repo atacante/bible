@@ -52,6 +52,7 @@ class User extends Authenticatable
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
+            'card_number' => 'numeric',
             'coupon_code' => 'coupon_exist|coupon_expire|coupon_uses|coupon_user_uses'
         ];
 

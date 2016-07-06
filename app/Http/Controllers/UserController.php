@@ -122,6 +122,15 @@ class UserController extends Controller
         if (Request::isMethod('put')) {
             $this->validate($request, $user->rules());
             if($user->update(Input::all())){
+                if(($card['number'] = Input::get('card_number')) && ($card['expiration'] = Input::get('card_expiration'))){
+                   $result =  $user->createOrUpdatePaymentAccount($card);
+                   if($result['success']){
+                        Notification::successInstant($result['message']);
+                   }else{
+                       Notification::errorInstant($result['message']);
+                   }
+                }
+
                 Notification::successInstant('Your profile info successfully saved');
             }
         }
