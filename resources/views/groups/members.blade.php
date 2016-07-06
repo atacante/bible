@@ -11,7 +11,7 @@
                 @endif
             </div>
             <div class="pull-left" style="margin-right: 10px; width: 215px;">
-                <div><strong>{!! $member->name !!}</strong></div>
+                <div><strong>{!! $member->name !!}{!! Auth::user() && Auth::user()->id == $member->id?' (you)':'' !!}</strong></div>
                 <div style="line-height: 16px; font-size: 12px;">
                     <span style="color:#90949c;">{!! str_limit(strip_tags($member->about_me,'<p></p>'), $limit = 70, $end = '... ') !!}</span>
                 </div>
@@ -21,8 +21,8 @@
             </div>
             <div class="pull-left">
                 @if(Auth::user() && Auth::user()->id != $member->id)
-                <a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,$content['myFriends'])?'':'hidden' !!}">Unfollow</a>
-                <a href="{!! url('/user/follow-friend/'.$member->id,[],false) !!}" class="btn btn-primary j-follow-friend {!! in_array($member->id,$content['myFriends'])?'hidden':'' !!}">Follow</a>
+                <a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'':'hidden' !!}">Unfollow</a>
+                <a href="{!! url('/user/follow-friend/'.$member->id,[],false) !!}" class="btn btn-primary j-follow-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'hidden':'' !!}">Follow</a>
                 @endif
             </div>
         </div>

@@ -216,11 +216,6 @@ class GroupsController extends Controller
             $content['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
         }
 
-        $content['myFriends'] = [];
-        if(Auth::user()){
-            $content['myFriends'] = Auth::user()->friends->modelKeys();
-        }
-
         $content['membersSample'] = $this->getMembers($id,'random')['members'];
 
         if(Input::get('p') == 'members'){
