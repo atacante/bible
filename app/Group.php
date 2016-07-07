@@ -46,6 +46,11 @@ class Group extends Model
         return $this->belongsToMany(User::class, 'groups_users', 'group_id', 'user_id')->withTimestamps();
     }
 
+    public function joinRequests()
+    {
+        return $this->morphToMany('App\User', 'connect_requests');
+    }
+
     public function notes()
     {
         return $this->morphedByMany('App\Note', 'groups_shares');

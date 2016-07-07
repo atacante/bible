@@ -80,7 +80,11 @@
                     <div class="clearfix info-block">
                         <div><strong>Request Members</strong></div>
                         <div>
-                            {!! Form::select('tags[]', ['user 1','user 2'], []/*$model->tags->pluck('id')->toArray()*/,['placeholder' => 'Enter user name...','multiple' => true,'class' => 'clear-fix j-select2', 'style' => '']) !!}
+                            {!! Form::open(['method' => 'post','url' => '/groups/request-users', 'id' => 'request-users-form', 'class' => '','role' => 'form','files' => true]) !!}
+                            {!! Form::hidden('group_id', $model->id) !!}
+                            {!! Form::select('users[]', $content['membersToRequest'], []/*$model->tags->pluck('id')->toArray()*/,['placeholder' => 'Enter user name...','multiple' => true,'class' => 'clear-fix j-select2', 'style' => '']) !!}
+                            {!! Form::button('Send', ['type'=>'submit','class'=>'btn btn-primary','style' => 'padding: 4px 8px; margin-top:5px;']) !!}
+                            {!! Form::close() !!}
                         </div>
                     </div>
                     @endif

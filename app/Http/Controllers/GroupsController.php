@@ -217,6 +217,7 @@ class GroupsController extends Controller
         }
 
         $content['membersSample'] = $this->getMembers($id,'random')['members'];
+        $content['membersToRequest'] = $this->getMembersToRequest($id);
 
         if(Input::get('p') == 'members'){
             $content['members'] = $this->getMembers($id)['members'];
@@ -304,6 +305,17 @@ class GroupsController extends Controller
         return $content;
     }
 
+    public function getMembersToRequest($groupId)
+    {
+        $group = Group::find($groupId);
+        $groupUsers = $group->members->modelKeys();
+        $groupRequests = $group->joinRequests()->pluck('user_id')->toArray();
+        $users = User::
+            whereNotIn('users.id',array_merge([$group->owner_id],$groupUsers,$groupRequests))
+            ->where('users.plan_type',User::PLAN_PREMIUM);
+        return $users->pluck('name','id')->toArray();
+    }
+
     public function anyDelete($id)
     {
         if (Session::has('backUrl')) {
@@ -320,6 +332,24 @@ class GroupsController extends Controller
             Notification::success('Group has been successfully deleted');
         }
         return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/groups?type=my');
+    }
+
+    public function postRequestUsers()
+    {
+        $groupId = Input::get('group_id');
+        $users = Input::get('users',false);
+        if($users){
+            $group = Group::find($groupId);
+            $group->joinRequests()->attach($users);
+            Notification::success('Request successfully sent');
+        }
+        else{
+            Notification::error('Request has not been sent. Members have not been selected.');
+        }
+
+        return ($url = Session::pull('back'))
+            ? Redirect::to($url)
+            : Redirect::back();
     }
 
     public function getJoinGroup($id)
