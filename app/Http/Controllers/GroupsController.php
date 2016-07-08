@@ -33,9 +33,11 @@ class GroupsController extends Controller
 
         $content['myGroups'] = [];
         $content['joinedGroups'] = [];
+        $content['groupsRequested'] = [];
         if(Auth::user()){
             $content['myGroups'] = $this->getMyGroups();
             $content['joinedGroups'] = $this->getJoinedGroups();
+            $content['groupsRequested'] = $this->getGroupsRequested();
         }
 
         $content['joinedGroupsKeys'] = [];
@@ -123,6 +125,7 @@ class GroupsController extends Controller
             ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
         );
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
+        $data['joinedGroups'] = $content;
         $data['joinedGroupsKeys'] = [];
         if(Auth::user()){
             $data['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
@@ -220,8 +223,14 @@ class GroupsController extends Controller
         $content['membersToRequest'] = $this->getMembersToRequest($id);
 
         if(Input::get('p') == 'members'){
-            $content['members'] = $this->getMembers($id)['members'];
-            $content['nextPage'] = $this->getMembers($id)['nextPage'];
+            $membersData = $this->getMembers($id);
+            $content['members'] = $membersData['members'];
+            $content['nextPage'] = $membersData['nextPage'];
+        }
+        elseif(Input::get('p') == 'requests'){
+            $requestsData = $this->getRequests($id);
+            $content['requests'] = $requestsData['requests'];
+            $content['nextPage'] = $requestsData['nextPage'];
         }
         else{
             $journalQuery = Journal::with(['verse','user'])
@@ -277,15 +286,15 @@ class GroupsController extends Controller
         //            $q->orderBy('users.id','desc');
                 })->orWhere('users.id',$group->owner_id);
 
-        $totalCount = $members->count();
-
         $members->groupBy('users.id')->groupBy('groups_users.user_id')->limit($limit)->offset($offset);
+
+        $totalCount = $members->count();
 
         if($order == 'random'){
             $members->orderByRaw("RANDOM()");
         }
         else{
-            $members->orderByRaw('MAX(groups_users.id) desc');
+            $members->orderByRaw('CASE WHEN users.id='.$group->owner_id.' THEN 0 ELSE MAX(groups_users.id) END desc');
         }
 
         $content['members'] = $members->get();
@@ -302,6 +311,76 @@ class GroupsController extends Controller
             return view('groups.members', ['model' => $group,'content' => $content]);
         }
 
+        return $content;
+    }
+
+    public function getRequests($groupId)
+    {
+        $limit = 10;
+        $page = Input::get('page',1);
+        $offset = $limit*($page-1);
+
+        $group = Group::find($groupId);
+        $requests = User::
+//            join('groups_users','users.id', '=', 'groups_users.user_id')
+//            ->addSelect(DB::raw('users.*'))
+            whereHas('groupsRequests', function ($q) use ($group)
+        {
+            $q->where('connect_requests_id', $group->id);
+        });
+
+        $totalCount = $requests->count();
+
+        $requests/*->groupBy('users.id')->groupBy('groups_users.user_id')*/->limit($limit)->offset($offset);
+
+//        if($order == 'random'){
+//            $members->orderByRaw("RANDOM()");
+//        }
+//        else{
+//            $members->orderByRaw('MAX(groups_users.id) desc');
+//        }
+
+        $content['requests'] = $requests->get();
+        $content['requests'] = new LengthAwarePaginator(
+            $content['requests'],
+            $totalCount,
+            $limit,
+            \Illuminate\Pagination\Paginator::resolveCurrentPage(), //resolve the path
+            ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+        $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
+
+        if(Request::ajax()){
+            return view('groups.requests', ['model' => $group,'content' => $content]);
+        }
+
+        return $content;
+    }
+
+    public function getGroupsRequested()
+    {
+        $limit = 5;
+        $page = Input::get('page',1);
+        $offset = $limit*($page-1);
+
+        $groups = Auth::user()->groupsRequests()->with('members');
+        $totalCount = $groups->count();
+
+        $content['items'] = $groups->orderBy('created_at','desc')->limit($limit)->offset($offset);
+
+        $content['items'] = new LengthAwarePaginator(
+            $content['items']->get(),
+            $totalCount,
+            $limit,
+            \Illuminate\Pagination\Paginator::resolveCurrentPage(), //resolve the path
+            ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+        $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
+        $data['groupsRequested'] = $content;
+
+        if(Request::ajax()){
+            return view('groups.items', ['dataKey' => 'groupsRequested','content' => $data]);
+        }
         return $content;
     }
 
@@ -347,9 +426,30 @@ class GroupsController extends Controller
             Notification::error('Request has not been sent. Members have not been selected.');
         }
 
-        return ($url = Session::pull('back'))
+        return ($url = Session::get('backUrl'))
             ? Redirect::to($url)
             : Redirect::back();
+    }
+
+    public function anyAcceptRequest($groupId,$userId)
+    {
+        $group = Group::find($groupId);
+        if($group){
+            $group->joinRequests()->detach($userId);
+            Auth::user()->joinGroup($group);
+            return Request::ajax()?1:Redirect::back();
+        }
+        return Request::ajax()?0:Redirect::back();
+    }
+
+    public function anyCancelRequest($groupId,$userId)
+    {
+        $group = Group::find($groupId);
+        if($group){
+            $group->joinRequests()->detach($userId);
+            return Request::ajax()?1:Redirect::back();
+        }
+        return Request::ajax()?0:Redirect::back();
     }
 
     public function getJoinGroup($id)

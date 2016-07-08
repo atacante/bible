@@ -35,6 +35,11 @@
                     <li role="presentation" class="{!! (Request::get('p') == 'members')?'active':'' !!}">
                         <a href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">Members</a>
                     </li>
+                    @if((Auth::user() && $model->owner_id == Auth::user()->id))
+                    <li role="presentation" class="{!! (Request::get('p') == 'requests')?'active':'' !!}">
+                        <a href="{!! url('/groups/view/'.$model->id.'?p=requests') !!}">Invitations</a>
+                    </li>
+                    @endif
                 </ul>
             </div>
             {{--@endrole--}}
@@ -43,6 +48,12 @@
                     <div class="col-md-9 related-records j-members-list">
                         <div class="row">
                             @include('groups.members')
+                        </div>
+                    </div>
+                @elseif(Request::get('p') == 'requests')
+                    <div class="col-md-9 related-records j-requests-list">
+                        <div class="row">
+                            @include('groups.requests')
                         </div>
                     </div>
                 @else
@@ -78,7 +89,7 @@
                     </div>
                     @if((Auth::user() && $model->owner_id == Auth::user()->id))
                     <div class="clearfix info-block">
-                        <div><strong>Request Members</strong></div>
+                        <div><strong>Invite Members</strong></div>
                         <div>
                             {!! Form::open(['method' => 'post','url' => '/groups/request-users', 'id' => 'request-users-form', 'class' => '','role' => 'form','files' => true]) !!}
                             {!! Form::hidden('group_id', $model->id) !!}
