@@ -18,9 +18,9 @@
                                data-confirm="Are you sure you want to delete this item?"><i class="fa fa-btn fa-trash" style="font-size: 18px;"></i></a>
                             <a href="{!! url('/groups/update/'.$model->id,[],false) !!}" class="pull-right"><i class="fa fa-btn fa-cog" style="font-size: 18px;"></i></a>
                         @else
-                            <div class="pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!}">
+                            <div class="pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
                                 <a href="{!! url('/groups/leave-group/'.$model->id,[],false) !!}" class="pull-right btn btn-danger j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}"><i class="fa fa-btn fa-minus" style="font-size: 14px;"></i>Leave Group</a>
-                                <a href="{!! url('/groups/join-group/'.$model->id,[],false) !!}" class="pull-right btn btn-primary j-join-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join Group</a>
+                                <a href="{!! url('/groups/join-group/'.$model->id,[],false) !!}" class="pull-right btn btn-primary j-join-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join Group</a>
                             </div>
                         @endif
                     </div>
@@ -32,13 +32,18 @@
                     <li role="presentation" class="{!! !Request::get('p')?'active':'' !!}">
                         <a href="{!! url('/groups/view/'.$model->id) !!}">Feed</a>
                     </li>
-                    <li role="presentation" class="{!! (Request::get('p') == 'members')?'active':'' !!}">
+                    <li role="presentation" class="{!! (Request::get('p') == 'members' && !Request::get('type'))?'active':'' !!}">
                         <a href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">Members</a>
                     </li>
                     @if((Auth::user() && $model->owner_id == Auth::user()->id))
                     <li role="presentation" class="{!! (Request::get('p') == 'requests')?'active':'' !!}">
                         <a href="{!! url('/groups/view/'.$model->id.'?p=requests') !!}">Invitations</a>
                     </li>
+                    @endif
+                    @if((Auth::user() && $model->owner_id == Auth::user()->id))
+                        <li role="presentation" class="{!! (Request::get('p') == 'members' && Request::get('type') == 'banned')?'active':'' !!}">
+                            <a href="{!! url('/groups/view/'.$model->id.'?p=members&type=banned') !!}">Bans</a>
+                        </li>
                     @endif
                 </ul>
             </div>

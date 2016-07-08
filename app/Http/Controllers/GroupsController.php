@@ -272,21 +272,23 @@ class GroupsController extends Controller
 
     public function getMembers($groupId,$order = false)
     {
+        $type = Input::get('type','active');
         $limit = 10;
         $page = Input::get('page',1);
         $offset = $limit*($page-1);
 
         $group = Group::find($groupId);
         $members = User::join('groups_users','users.id', '=', 'groups_users.user_id')
-            ->addSelect(DB::raw('users.*'))
-            ->whereHas('joinedGroups', function ($q) use ($group)
+            ->addSelect(DB::raw('users.*,(select banned from groups_users where groups_users.user_id = users.id and groups_users.group_id = '.$group->id.') as banned'))
+            ->whereHas($type == 'banned'?'groupsBanned':'joinedGroups', function ($q) use ($group,$type)
                 {
                     $q->where('group_id', $group->id);
-        //            $q->orderBy('groups_users.id','desc');
-        //            $q->orderBy('users.id','desc');
-                })->orWhere('users.id',$group->owner_id);
+                });
+        if($type != 'banned'){
+            $members->orWhere('users.id',$group->owner_id);
+        }
 
-        $members->groupBy('users.id')->groupBy('groups_users.user_id')->limit($limit)->offset($offset);
+        $members->groupBy('users.id')->groupBy('groups_users.user_id')/*->groupBy('groups_users.banned')*/->limit($limit)->offset($offset);
 
         $totalCount = $members->count();
 
@@ -454,15 +456,24 @@ class GroupsController extends Controller
 
     public function getJoinGroup($id)
     {
+        if (Session::has('backUrl')) {
+            Session::keep('backUrl');
+        }
         $group = Group::find($id);
         if(Auth::user()->isPremium()){
-            Auth::user()->joinGroup($group);
-            if(Request::ajax()){
-                return 1;
+            $alreadyJoined = $group->members()->where('user_id',Auth::user()->id);
+            if(!$alreadyJoined){
+                Auth::user()->joinGroup($group);
+                if(Request::ajax()){
+                    return 1;
+                }
+            }
+            else{
+                Notification::error('You already joined this group');
             }
         }
 
-        return ($url = Session::pull('back'))
+        return ($url = Session::get('backUrl'))
             ? Redirect::to($url)
             : Redirect::back();
     }
@@ -471,6 +482,30 @@ class GroupsController extends Controller
     {
         $group = Group::find($id);
         Auth::user()->leaveGroup($group);
+
+        if(Request::ajax()){
+            return 1;
+        }
+
+        return Redirect::back();
+    }
+
+    public function anyBanMember($groupId,$userId)
+    {
+        $group = Group::find($groupId);
+        $group->members()->updateExistingPivot($userId, ['banned' => true]);
+
+        if(Request::ajax()){
+            return 1;
+        }
+
+        return Redirect::back();
+    }
+
+    public function anyUnbanMember($groupId,$userId)
+    {
+        $group = Group::find($groupId);
+        $group->members()->updateExistingPivot($userId, ['banned' => false]);
 
         if(Request::ajax()){
             return 1;

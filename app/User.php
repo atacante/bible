@@ -41,6 +41,10 @@ class User extends Authenticatable
 
     protected $dates = ['created_at', 'updated_at', 'last_login_at','upgraded_at'];
 
+    protected $casts = [
+        'banned' => 'boolean',
+    ];
+
     public function rules()
     {
         $rules = [
@@ -72,7 +76,12 @@ class User extends Authenticatable
 
     public function joinedGroups()
     {
-        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->withTimestamps();
+        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('banned',false)->withTimestamps();
+    }
+
+    public function groupsBanned()
+    {
+        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('banned',true)->withTimestamps();
     }
 
     public function joinGroup(Group $group)
@@ -161,5 +170,14 @@ class User extends Authenticatable
     public function isPremiumPaid()
     {
         return (strtotime($this->upgraded_at)+self::PLAN_PREMIUM_PERIOD*86400) > time();
+    }
+
+    public function isBanned($type,$id)
+    {
+        switch($type){
+            case 'group':
+                return in_array($id,$this->groupsBanned->modelKeys());
+        }
+        return false;
     }
 }

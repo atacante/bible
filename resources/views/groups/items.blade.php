@@ -18,7 +18,7 @@
                     <span style="color:#90949c;">{!! str_limit(strip_tags($group->group_desc,'<p></p>'), $limit = 100, $end = '... ') !!}</span>
                 </div>
             </div>
-            <div title="{!! Auth::user() && Auth::user()->isPremium() || in_array($group->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!}" class="pull-right" style="padding: 0px 0;">
+            <div title="{!! Auth::user() && Auth::user()->isPremium() || in_array($group->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$group->id)?'You were banned from being part of this group':'' !!}" class="pull-right" style="padding: 0px 0;">
                 @if((isset($dataKey) && $dataKey == 'myGroups') || /*in_array($group->id,$content['joinedGroupsKeys']) ||*/ (Auth::user() && $group->owner_id == Auth::user()->id))
                     <a href="{!! url('/groups/update/'.$group->id,[],false) !!}" class=""><i class="fa fa-btn fa-cog" style="font-size: 18px;"></i></a>
                     <a title="Delete group" href="{!! url('/groups/delete/'.$group->id,[],false) !!}" class="j-remove-group" data-toggle="modal"
@@ -32,7 +32,7 @@
                            data-confirm="Are you sure you want to reject this request?">Reject</a>
                     @else
                         <a href="{!! url('/groups/leave-group/'.$group->id,[],false) !!}" class="btn btn-danger j-leave-group {!! in_array($group->id,$content['joinedGroupsKeys'])?'':'hidden' !!}"><i class="fa fa-btn fa-minus" style="font-size: 14px;"></i>Leave</a>
-                        <a href="{!! url('/groups/join-group/'.$group->id,[],false) !!}" class="btn btn-primary j-join-group {!! in_array($group->id,$content['joinedGroupsKeys'])?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join</a>
+                        <a href="{!! url('/groups/join-group/'.$group->id,[],false) !!}" class="btn btn-primary j-join-group {!! in_array($group->id,$content['joinedGroupsKeys'])?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$group->id)?'disabled':'' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join</a>
                     @endif
                 @endif
             </div>

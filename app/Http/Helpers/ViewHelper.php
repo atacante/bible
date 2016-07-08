@@ -249,4 +249,9 @@ class ViewHelper
     {
         return ($model->access_level == Note::ACCESS_PUBLIC_GROUPS || $model->access_level == Note::ACCESS_SPECIFIC_GROUPS);
     }
+
+    public static function showTooltip($model)
+    {
+
+    }
 }

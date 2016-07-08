@@ -873,6 +873,22 @@ $(document).ready(function(){
         });
     });
 
+    $('.j-members-list').on('click','.j-ban-member,.j-unban-member',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                location.reload();
+                /*var childClass = $(that).hasClass('j-ban-member')?'.j-unban-member':'.j-ban-member';
+                $(that).parent().children(childClass).toggleClass('hidden');
+                $(that).toggleClass('hidden');*/
+            }
+        });
+    });
+
 
     Dropzone.autoDiscover = false;
     $("#avatar").dropzone(
