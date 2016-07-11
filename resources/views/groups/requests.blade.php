@@ -1,5 +1,5 @@
-@if(count($content['members']))
-    @foreach($content['members'] as $member)
+@if(count($content['requests']))
+    @foreach($content['requests'] as $member)
         <div class="clearfix col-md-6 friend-item" style="margin-bottom: 15px;">
             <div class="pull-left" style="margin-right: 10px;">
                 @if($member->avatar)
@@ -21,12 +21,11 @@
             </div>
             <div class="pull-left">
                 @if(Auth::user() && Auth::user()->id != $member->id)
-                <a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'':'hidden' !!}" style="padding: 4px 8px;">Unfollow</a>
-                <a href="{!! url('/user/follow-friend/'.$member->id,[],false) !!}" class="btn btn-primary j-follow-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'hidden':'' !!}" style="padding: 4px 8px;">Follow</a>
-                    @if(Auth::user() && Auth::user()->id == $model->owner_id)
-                    <a href="{!! url('/groups/ban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-danger j-ban-member {!! $member->banned?'hidden':'' !!}" style="padding: 4px 8px;">Ban</a>
-                    <a href="{!! url('/groups/unban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-success j-unban-member {!! !$member->banned?'hidden':'' !!}" style="padding: 4px 8px;">Unban</a>
-                    @endif
+                <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-info j-cancel-request " style="padding: 4px 8px;" data-toggle="modal"
+                   data-target="#cancel-request-sm" data-header="Cancel Request"
+                   data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
+                {{--<a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'':'hidden' !!}" style="padding: 4px 8px;">Unfollow</a>--}}
+                {{--<a href="{!! url('/user/follow-friend/'.$member->id,[],false) !!}" class="btn btn-primary j-follow-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'hidden':'' !!}" style="padding: 4px 8px;">Follow</a>--}}
                 @endif
             </div>
         </div>
@@ -35,7 +34,7 @@
 <div class="clearfix"></div>
 @if($content['nextPage'])
     <div class="col-md-12 text-center load-more-block">
-        {!! Html::link('/groups/members/'.$model->id.'?'.http_build_query(
+        {!! Html::link('/groups/requests/'.$model->id.'?'.http_build_query(
                 array_merge(Request::all(),['page' => $content['nextPage']])
             ),'See More', ['class'=>'btn btn-default load-more','style' => 'width:100%;']) !!}
     </div>

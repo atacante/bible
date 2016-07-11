@@ -43,6 +43,10 @@ class User extends Authenticatable
 
     protected $dates = ['created_at', 'updated_at', 'last_login_at','upgraded_at'];
 
+    protected $casts = [
+        'banned' => 'boolean',
+    ];
+
     public function rules()
     {
         $rules = [
@@ -75,7 +79,12 @@ class User extends Authenticatable
 
     public function joinedGroups()
     {
-        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->withTimestamps();
+        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('banned',false)->withTimestamps();
+    }
+
+    public function groupsBanned()
+    {
+        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('banned',true)->withTimestamps();
     }
 
     public function joinGroup(Group $group)
@@ -91,6 +100,16 @@ class User extends Authenticatable
     public function friends()
     {
         return $this->belongsToMany(User::class, 'users_friends', 'user_id', 'friend_id')->withTimestamps();
+    }
+
+    public function friendRequests()
+    {
+        return $this->morphToMany('App\User', 'connect_requests');
+    }
+
+    public function groupsRequests()
+    {
+        return $this->morphedByMany('App\Group', 'connect_requests'/*,'connect_requests','user_id','connect_requests_id'*/);
     }
 
     public function followFriend(User $user)
@@ -173,5 +192,14 @@ class User extends Authenticatable
     public function isPremiumPaid()
     {
         return (strtotime($this->upgraded_at)+self::PLAN_PREMIUM_PERIOD*86400) > time();
+    }
+
+    public function isBanned($type,$id)
+    {
+        switch($type){
+            case 'group':
+                return in_array($id,$this->groupsBanned->modelKeys());
+        }
+        return false;
     }
 }

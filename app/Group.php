@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 
 class Group extends Model
@@ -43,7 +44,20 @@ class Group extends Model
     }
 
     public function members() {
-        return $this->belongsToMany(User::class, 'groups_users', 'group_id', 'user_id')->withTimestamps();
+        $members = $this->belongsToMany(User::class, 'groups_users', 'group_id', 'user_id')->withTimestamps();
+        $members->where('banned',false);
+//        if(Input::get('type') == 'banned'){
+//            $members->where('banned',true);
+//        }
+//        else{
+//            $members->where('banned',false);
+//        }
+        return $members;
+    }
+
+    public function joinRequests()
+    {
+        return $this->morphToMany('App\User', 'connect_requests');
     }
 
     public function notes()
@@ -59,5 +73,20 @@ class Group extends Model
     public function prayers()
     {
         return $this->morphedByMany('App\Prayer', 'groups_shares');
+    }
+
+    public function checkUserBanned($userId = false)
+    {
+        if($userId){
+            $user = User::find($userId);
+        }
+        else{
+            $user = Auth::user();
+        }
+
+        if($user){
+            return in_array($this->id,$user->groupsBanned->modelKeys());
+        }
+        return false;
     }
 }
