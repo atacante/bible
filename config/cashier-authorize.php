@@ -14,7 +14,7 @@ return [
 
     // main
    User::PLAN_PREMIUM => [
-        'name' => 'main',
+        'name' => 'default',
         'interval' => [
             'length' => User::PLAN_PREMIUM_PERIOD, // number of instances for billing
             'unit' => 'days' //months, days, years

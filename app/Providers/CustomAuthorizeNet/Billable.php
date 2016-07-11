@@ -7,22 +7,82 @@ use net\authorize\api\constants as AnetConstants;
 use net\authorize\api\controller as AnetController;
 use Laravel\CashierAuthorizeNet\Billable as ABillable;
 use Laravel\CashierAuthorizeNet\Requestor;
+use Illuminate\Support\Facades\Input;
+use Krucas\Notification\Facades\Notification;
+use Illuminate\Support\Facades\Request;
 
 trait Billable
 {
     use ABillable;
 
+    protected function processResult($result){
+        $instant = '';
+
+        if(Request::is('user/profile')){
+            $instant = 'Instant';
+        }
+
+        foreach($result as $type){
+            if($type['success']){
+                $method = 'success'.$instant;
+                Notification::$method($type['message']);
+            }else{
+                $method = 'error'.$instant;
+                if(!empty($type['message'])){
+                    Notification::$method($type['message']);
+                }
+
+            }
+        }
+
+        if(!$result){
+            $result = [
+                'subscription' =>  ['success' => false, 'message' => ''],
+                'account' =>  ['success' => false, 'message' => '']
+            ];
+        }
+
+        return $result;
+    }
+
+    public function createAccountAndOrSubscribe($plan = false, $amount = false){
+
+        $result = [
+            'subscription' =>  ['success' => false, 'message' => ''],
+            'account' =>  ['success' => false, 'message' => '']
+        ];
+
+        if($card = $this->askToCreateAccount()){
+            $result['account'] =  $this->createOrUpdatePaymentAccount($card);
+        }
+
+        if($this->askToCreateSubscription($plan)){
+            if(!$this->hasPaymentAccount()){
+                $result['subscription'] =  ['success' => false, 'message' => 'You must have Credit Card'];
+            }else{
+                // Pause is necessary between create account and subscribe
+                if($result['account']['success']){
+                    sleep(10);
+                }
+
+                $result['subscription'] =  $this->newSubscription($plan, $amount)->create();
+            }
+
+        }
+
+        return $this->processResult($result);
+    }
+
     /**
      * Begin creating a new subscription.
      *
-     * @param  string  $subscription
      * @param  string  $plan
      * @param  float  $amount
      * @return SubscriptionBuilder
      */
-    public function newSubscription($subscription, $plan, $amount = false)
+    public function newSubscription($plan, $amount = false)
     {
-        return new SubscriptionBuilder($this, $subscription, $plan, $amount);
+        return new SubscriptionBuilder($this, $plan, $amount);
     }
 
     /**
@@ -49,10 +109,20 @@ trait Billable
             $billto->setLastName($name[0]);
         }
 
-        $billto->setAddress($this->address);
+        if($this->address){
+            $billto->setAddress($this->address);
+        }else{
+            $billto->setAddress('Default');
+        }
         $billto->setCity($this->city);
         $billto->setState($this->state);
-        $billto->setZip($this->zip);
+
+        if($this->zip){
+            $billto->setZip($this->zip);
+        }else{
+            $billto->setZip(11111);
+        }
+
         $billto->setCountry($this->country);
 
         $paymentprofile = new AnetAPI\CustomerPaymentProfileType();
@@ -87,7 +157,7 @@ trait Billable
             ];
         } else {
             $errorMessages = $response->getMessages()->getMessage();
-            Log::error("Authorize.net Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText());
+            //Log::error("Authorize.net Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText());
 
             $result = [
                 'success' => false,
@@ -184,7 +254,7 @@ trait Billable
      * @return array
      */
     public function createOrUpdatePaymentAccount($card){
-        if(!$this->hasAuthorizeId() || !$this->hasAuthorizePaymentId()){
+        if(!$this->hasPaymentAccount()){
             $result = $this->createAsAuthorizeCustomer($card);
         }else{
             $result = $this->updateCard($card);
@@ -200,5 +270,36 @@ trait Billable
      */
     public function hasAuthorizePaymentId(){
         return ! is_null($this->authorize_payment_id);
+    }
+
+    /**
+     * Determine if the entity has an Authorize payment account
+     *
+     * @return bool
+     */
+    public function hasPaymentAccount(){
+        return $this->hasAuthorizeId() && $this->hasAuthorizePaymentId();
+    }
+
+    /**
+     * Determine if the entity asks to create an Authorize payment account
+     *
+     * @return bool
+     */
+    public function askToCreateAccount(){
+        if(($card['number'] = Input::get('card_number')) && ($card['expiration'] = Input::get('card_expiration'))){
+            return $card;
+        }
+
+        return false;
+    }
+
+    /**
+     * Determine if the entity asks to create an Authorize subscription
+     *
+     * @return bool
+     */
+    public function askToCreateSubscription($plan){
+        return !$this->onPlan($plan);
     }
 }

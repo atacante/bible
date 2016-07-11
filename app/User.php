@@ -123,30 +123,48 @@ class User extends Authenticatable
 
     public function upgradeToPremium()
     {
-        if(!$this->isPremiumPaid()){
-            $premiumCost = self::PLAN_PREMIUM_COST;
-            if($coupon_code = Input::get('coupon_code')){
-                $coupon = Coupon::where('coupon_code', $coupon_code)->first();
-                $premiumCost -= $coupon->amount;
-                $coupon->used++;
-                $coupon->save();
-                $coupon->users()->detach($this->id);
-                $coupon->users()->attach($this->id,['is_used' => true]);
-                if(Request::is('user/profile')){
-                    Notification::successInstant('Coupon was applied');
-                }
-                else{
-                    Notification::success('Coupon was applied');
-                }
+        $premiumCost = self::PLAN_PREMIUM_COST;
+        if($coupon_code = Input::get('coupon_code')){
+            $coupon = Coupon::where('coupon_code', $coupon_code)->first();
+            $premiumCost -= $coupon->amount;
+            $coupon->used++;
+            $coupon->save();
+            $coupon->users()->detach($this->id);
+            $coupon->users()->attach($this->id,['is_used' => true]);
+            if(Request::is('user/profile')){
+                Notification::successInstant('Coupon was applied');
             }
-            $this->newSubscription('main', self::PLAN_PREMIUM, $premiumCost)->create();
+            else{
+                Notification::success('Coupon was applied');
+            }
+        }
+
+        $result = $this->createAccountAndOrSubscribe(self::PLAN_PREMIUM, $premiumCost);
+
+        if($result['subscription']['success']){
             $this->upgraded_at = Carbon::now();
-            if($this->save()){
+            $this->save();
+        }elseif(!empty($result['subscription']['message'])){
+            $this->plan_type = self::PLAN_FREE;
+            $this->save();
+        }
+    }
+
+    public function downgradeToFree()
+    {
+        if($this->subscription()){
+            $this->subscription()->cancel();
+
+            if($this->subscription()->onGracePeriod()){
+                $this->plan_type = self::PLAN_PREMIUM;
+                $this->save();
+                $message = 'Your will be moved to free account at '.date_format($this->subscription()->ends_at, 'Y-m-d');
+
                 if(Request::is('user/profile')){
-                    Notification::successInstant('Your Payment ($'.$premiumCost.') Has Been Received, You Now Have A Premium Account.');
+                    Notification::successInstant($message);
                 }
                 else{
-                    Notification::success('Your Payment ($'.$premiumCost.') Has Been Received, You Now Have A Premium Account.');
+                    Notification::success($message);
                 }
             }
         }

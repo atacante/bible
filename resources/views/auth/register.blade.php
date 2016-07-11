@@ -99,15 +99,40 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group {!! Request::old('plan_type') == 'free' && !$errors->has('coupon_code')?'hidden':'' !!} {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
-                            {!! Form::label('coupon_code', 'Coupon Code:',['class' => 'col-md-4']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('coupon_code') !!}
-                                @if ($errors->has('coupon_code'))
-                                    <span class="help-block">
-                                        {{ $errors->first('coupon_code') }}
-                                    </span>
-                                @endif
+
+                        <div class="premium-only  {!! Request::old('plan_type') == 'premium' || $errors->has('coupon_code')?'':'hidden' !!}">
+                            <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
+                                {!! Form::label('coupon_code', 'Coupon Code:',['class' => 'col-md-4']) !!}
+                                <div class="col-md-6">
+                                    {!! Form::text('coupon_code') !!}
+                                    @if ($errors->has('coupon_code'))
+                                        <span class="help-block">
+                                            {{ $errors->first('coupon_code') }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group {{ $errors->has('card_number') ? ' has-error' : '' }}">
+                                {!! Form::label('card_number', 'New CC Number:',['class' => 'col-md-4']) !!}
+                                <div class="col-md-6">
+                                    {!! Form::text('card_number', null, ['placeholder' => 'XXXXXXXXXXXXXX']) !!}
+                                    @if ($errors->has('card_number'))
+                                        <span class="help-block">
+                                            {{ $errors->first('card_number') }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group {{ $errors->has('card_expiration') ? ' has-error' : '' }}">
+                                {!! Form::label('card_expiration', 'Credit Card Expiration:',['class' => 'col-md-4']) !!}
+                                <div class="col-md-6">
+                                    {!! Form::text('card_expiration', null, ['placeholder' => 'YYYY-MM']) !!}
+                                    @if ($errors->has('card_expiration'))
+                                        <span class="help-block">
+                                        {{ $errors->first('card_expiration') }}
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
 

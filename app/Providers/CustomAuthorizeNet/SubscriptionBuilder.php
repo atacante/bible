@@ -25,11 +25,11 @@ class SubscriptionBuilder extends ASubscriptionBuilder
      * @param  string  $plan
      * @return void
      */
-    public function __construct($user, $name, $plan, $amount = false)
+    public function __construct($user, $plan, $amount = false)
     {
         $this->user = $user;
-        $this->name = $name;
         $this->plan = $plan;
+        $this->name = Config::get('cashier-authorize')[$this->plan]['name'];
         if(!$amount){
             $amount = round(floatval(Config::get('cashier-authorize')[$this->plan]['amount']) * floatval('1.'.$this->getTaxPercentageForPayload()), 2);
         }
@@ -50,7 +50,7 @@ class SubscriptionBuilder extends ASubscriptionBuilder
 
         // Subscription Type Info
         $subscription = new AnetAPI\ARBSubscriptionType();
-        $subscription->setName($config[$this->plan]['name']);
+        $subscription->setName($this->name);
 
         $interval = new AnetAPI\PaymentScheduleType\IntervalAType();
         $interval->setLength($config[$this->plan]['interval']['length']);
@@ -93,7 +93,7 @@ class SubscriptionBuilder extends ASubscriptionBuilder
                 $trialEndsAt = $this->trialDays ? Carbon::now()->addDays($this->trialDays) : null;
             }
 
-            return $this->user->subscriptions()->create([
+            $this->user->subscriptions()->create([
                 'name' => $this->name,
                 'authorize_id' => $response->getSubscriptionId(),
                 'authorize_plan' => $this->plan,
@@ -105,10 +105,22 @@ class SubscriptionBuilder extends ASubscriptionBuilder
                 'trial_ends_at' => $trialEndsAt,
                 'ends_at' => null,
             ]);
+
+            $result = [
+                'success' => true,
+                'message' => 'You Now Have A Premium Account. Your Payment Will Be Proceed Soon'
+            ];
+
         } else {
             $errorMessages = $response->getMessages()->getMessage();
-            throw new Exception("Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText(), 1);
+
+            $result = [
+                'success' => false,
+                'message' => 'Can\'t subscribe! Please try again later '.$errorMessages[0]->getText()
+            ];
         }
+
+        return $result;
     }
 
 }

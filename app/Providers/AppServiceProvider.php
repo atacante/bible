@@ -131,12 +131,6 @@ class AppServiceProvider extends ServiceProvider
             if($role = Request::input('role',false)){
                 $model->syncRoles($role);
             }
-
-            if($model->isDirty('plan_type')){
-                if($model->plan_type == $model::PLAN_PREMIUM){
-                    $model->upgradeToPremium();
-                }
-            }
         });
 
         People::saved(function($model)

@@ -6,6 +6,7 @@ use App\Helpers\ViewHelper;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -61,6 +62,7 @@ class AuthController extends Controller
             'password_confirmation' => 'required',
             'coupon_code' => 'coupon_exist|coupon_expire|coupon_uses',
             'g-recaptcha-response' => 'required|captcha',
+            'card_number' => 'numeric',
         ],
         [
             'g-recaptcha-response.required' => 'The recaptcha field is required.',
@@ -76,6 +78,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -84,6 +87,11 @@ class AuthController extends Controller
         ]);
 
         if($user){
+            if(Input::get('plan_type') == User::PLAN_PREMIUM){
+                $user->upgradeToPremium();
+            }else{
+                $user->downgradeToFree();
+            }
             $user->assignRole(Config::get('app.role.user'));
         }
 
