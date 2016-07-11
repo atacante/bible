@@ -11,6 +11,7 @@ use App\Journal;
 use App\Note;
 use App\Prayer;
 use App\User;
+use App\WallPost;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -233,6 +234,11 @@ class GroupsController extends Controller
             $content['nextPage'] = $requestsData['nextPage'];
         }
         else{
+            $statusesQuery = WallPost::with(['verse','user'])
+                ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,text,type,null as bible_version,published_at')
+                ->whereIn('access_level',[WallPost::ACCESS_PUBLIC_ALL])
+                ->where('rel_id',$model->id);
+            $statusesCount = $statusesQuery->count();
             $journalQuery = Journal::with(['verse','user'])
                 ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at')
                 ->whereIn('access_level',[Journal::ACCESS_PUBLIC_GROUPS,Journal::ACCESS_SPECIFIC_GROUPS])
@@ -249,12 +255,12 @@ class GroupsController extends Controller
                 ->whereIn('id',$model->notes->modelKeys());
             $notesCount = $notesQuery->count();
 
-            $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery);
+            $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery)->union($statusesQuery);
             $entriesQuery->orderBy('published_at','desc')->orderBy('created_at','desc')->limit($limit)->offset($offset);
 
             $entries = $entriesQuery->get();
 
-            $totalCount = $notesCount+$journalCount+$prayersCount;
+            $totalCount = $notesCount+$journalCount+$prayersCount+$statusesCount;
             $entries = new LengthAwarePaginator(
                 $entries,
                 $totalCount,
@@ -266,8 +272,8 @@ class GroupsController extends Controller
 
             $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
         }
-
-        return view('groups.view', ['model' => $model,'content' => $content]);
+        $status = new WallPost();
+        return view('groups.view', ['model' => $model,'status' => $status,'content' => $content]);
     }
 
     public function getMembers($groupId,$order = false)

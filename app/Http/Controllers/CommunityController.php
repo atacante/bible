@@ -9,6 +9,7 @@ use App\Prayer;
 
 use App\Http\Requests;
 use App\User;
+use App\WallPost;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -36,6 +37,8 @@ class CommunityController extends Controller
 
     public function getWall()
     {
+        Session::flash('backUrl', Request::fullUrl());
+
         $type = Request::input('type', 'all');
 
         $limit = 10;
@@ -46,6 +49,16 @@ class CommunityController extends Controller
         if(Auth::user()){
             $myFriends = Auth::user()->friends->modelKeys();
         }
+
+        $statusesQuery = WallPost::with(['verse','user'])
+            ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,text,type,null as bible_version,published_at')
+            ->where('access_level',WallPost::ACCESS_PUBLIC_ALL)
+            ->where('wall_type',WallPost::WALL_TYPE_PUBLIC);
+        if(Auth::user() && $type == 'friends'){
+            $statusesQuery->whereIn('user_id',$myFriends);
+            $statusesQuery->where('user_id', '!=', Auth::user()->id);
+        }
+        $statusesCount = $statusesQuery->count();
 
         $journalQuery = Journal::with(['verse','user'])
             ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at')
@@ -75,11 +88,11 @@ class CommunityController extends Controller
         }
         $notesCount = $notesQuery->count();
 
-        $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery);
+        $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery)->union($statusesQuery);
         $entriesQuery->orderBy('published_at','desc')->orderBy('created_at','desc')->limit($limit)->offset($offset);
 
         $entries = $entriesQuery->get();
-        $totalCount = $notesCount+$journalCount+$prayersCount;
+        $totalCount = $notesCount+$journalCount+$prayersCount+$statusesCount;
         $entries = new LengthAwarePaginator(
             $entries,
             $totalCount,
@@ -93,7 +106,8 @@ class CommunityController extends Controller
         if(Request::ajax()){
             $view = "community.wall-items";
         }
-        return view($view, ['content' => $content]);
+        $status = new WallPost();
+        return view($view, ['content' => $content,'status'=>$status]);
     }
 
     public function getJoin()

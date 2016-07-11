@@ -132,6 +132,7 @@ Route::group([
     Route::controller('notes', 'NotesController');
     Route::controller('journal', 'JournalController');
     Route::controller('prayers', 'PrayersController');
+    Route::controller('wall-posts', 'WallPostsController');
 });
 
 
