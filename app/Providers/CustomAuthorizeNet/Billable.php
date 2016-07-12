@@ -2,6 +2,7 @@
 
 namespace App\Providers\CustomAuthorizeNet;
 
+use Illuminate\Support\Facades\Config;
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\constants as AnetConstants;
 use net\authorize\api\controller as AnetController;
@@ -60,12 +61,12 @@ trait Billable
             if(!$this->hasPaymentAccount()){
                 $result['subscription'] =  ['success' => false, 'message' => 'You must have Credit Card'];
             }else{
-                // Pause is necessary between create account and subscribe
+                // Pause is necessary on Authorize between create account and subscribe
                 if($result['account']['success']){
                     sleep(10);
                 }
-
-                $result['subscription'] =  $this->newSubscription($plan, $amount)->create();
+                $this->cancelOldPlan();
+                $result['subscription'] = $this->newSubscription($plan, $amount)->create();
             }
 
         }
@@ -301,5 +302,19 @@ trait Billable
      */
     public function askToCreateSubscription($plan){
         return !$this->onPlan($plan);
+    }
+
+    public static function getPremiumCost($plan = '1 month'){
+        return Config::get('cashier-authorize')[$plan]['amount'];
+    }
+
+    public static function getPossiblePlans(){
+        return Config::get('cashier-authorize');
+    }
+
+    public function cancelOldPlan(){
+        if($this->subscription()) {
+            $this->subscription()->cancelNow();
+        }
     }
 }

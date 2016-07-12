@@ -12,18 +12,56 @@ use \App\User;
 
 return [
 
-    // main
-   User::PLAN_PREMIUM => [
+   '1 month' => [
         'name' => 'default',
         'interval' => [
-            'length' => User::PLAN_PREMIUM_PERIOD, // number of instances for billing
-            'unit' => 'days' //months, days, years
+            'length' => 1, // number of instances for billing
+            'unit' => 'months' //months, days, years
         ],
         'total_occurances' => 9999, // 9999 means without end date
         'trial_occurances' => 0,
-        'amount' => User::PLAN_PREMIUM_COST,
+        'amount' => 100,
         'trial_amount' => 0,
         'trial_days' => 0,
-    ]
+    ],
+
+    '3 months' => [
+        'name' => 'default',
+        'interval' => [
+            'length' => 3, // number of instances for billing
+            'unit' => 'months' //months, days, years
+        ],
+        'total_occurances' => 9999, // 9999 means without end date
+        'trial_occurances' => 0,
+        'amount' => 200,
+        'trial_amount' => 0,
+        'trial_days' => 0,
+    ],
+
+    '6 months' => [
+        'name' => 'default',
+        'interval' => [
+            'length' => 6, // number of instances for billing
+            'unit' => 'months' //months, days, years
+        ],
+        'total_occurances' => 9999, // 9999 means without end date
+        'trial_occurances' => 0,
+        'amount' => 300,
+        'trial_amount' => 0,
+        'trial_days' => 0,
+    ],
+
+    '1 year' => [
+        'name' => 'default',
+        'interval' => [
+            'length' => 12, // number of instances for billing
+            'unit' => 'months' //months, days
+        ],
+        'total_occurances' => 9999, // 9999 means without end date
+        'trial_occurances' => 0,
+        'amount' => 500,
+        'trial_amount' => 0,
+        'trial_days' => 0,
+    ],
 
 ];

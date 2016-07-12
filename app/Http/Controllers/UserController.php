@@ -123,8 +123,8 @@ class UserController extends Controller
             $this->validate($request, $user->rules());
             if($user->update(Input::all())){
 
-                if(Input::get('plan_type') == User::PLAN_PREMIUM){
-                    $user->upgradeToPremium();
+                if((Input::get('plan_type') == User::PLAN_PREMIUM) && Input::get('plan_name')){
+                    $user->upgradeToPremium(Input::get('plan_name'));
                 }else{
                     $user->downgradeToFree();
                 }

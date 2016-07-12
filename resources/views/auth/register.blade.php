@@ -90,7 +90,7 @@
                                 </label>
                                 <label class="radio-inline">
                                     {!! Form::radio('plan_type', 'premium', false) !!}
-                                    Premium (${!! App\User::PLAN_PREMIUM_COST !!})
+                                    Premium
                                 </label>
                                 @if ($errors->has('plan_type'))
                                     <span class="help-block">
@@ -101,6 +101,24 @@
                         </div>
 
                         <div class="premium-only  {!! Request::old('plan_type') == 'premium' || $errors->has('coupon_code')?'':'hidden' !!}">
+                            <div class="form-group {{ $errors->has('plan_name') ? ' has-error' : '' }}">
+                                {!! Form::label('plan_name', "Subscription plan period:",['class' => 'col-md-4']) !!}
+
+                                <div class="col-md-6">
+                                    @foreach(App\User::getPossiblePlans() as $plan_name => $plan)
+                                        <label class="radio-inline">
+                                            {!! Form::radio('plan_name', $plan_name, false) !!}
+                                            {!! $plan_name.'($'.$plan['amount'].')' !!}
+                                        </label>
+                                    @endforeach
+                                    @if ($errors->has('plan_name'))
+                                        <span class="help-block">
+                                        {{ $errors->first('plan_name') }}
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
                                 {!! Form::label('coupon_code', 'Coupon Code:',['class' => 'col-md-4']) !!}
                                 <div class="col-md-6">

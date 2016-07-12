@@ -54,7 +54,7 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $rules = [
             'name' => 'required|max:255',
 //            'username' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -63,11 +63,18 @@ class AuthController extends Controller
             'coupon_code' => 'coupon_exist|coupon_expire|coupon_uses',
             'g-recaptcha-response' => 'required|captcha',
             'card_number' => 'numeric',
-        ],
+        ];
+
+        if(Input::get('plan_type') == User::PLAN_PREMIUM){
+            $rules['plan_name'] = 'required';
+        }
+
+        return Validator::make($data, $rules,
         [
             'g-recaptcha-response.required' => 'The recaptcha field is required.',
             'g-recaptcha-response.captcha'  => 'The recaptcha field is required.',
         ]);
+
     }
 
     /**

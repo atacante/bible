@@ -89,7 +89,7 @@
                             </label>
                             <label class="radio-inline">
                                 {!! Form::radio('plan_type', 'premium', false) !!}
-                                Premium ({!! $model->isPremiumPaid()?'paid':"$".App\User::PLAN_PREMIUM_COST !!})
+                                Premium ({!! $model->isPremiumPaid()?'paid':'non-paid' !!})
                             </label>
                             @if ($errors->has('plan_type'))
                                 <span class="help-block">
@@ -99,13 +99,31 @@
                         </div>
                     </div>
                     <div class="premium-only {!! $model->plan_type == 'free'?'hidden':'' !!}" >
+                        <div class="form-group {{ $errors->has('plan_name') ? ' has-error' : '' }}">
+                            {!! Form::label('plan_name', "Subscription plan period:") !!}
+
+                            <div>
+                                @foreach(App\User::getPossiblePlans() as $plan_name => $plan)
+                                <label class="radio-inline">
+                                    {!! Form::radio('plan_name', $plan_name, ($model->getActivePlan() == $plan_name)) !!}
+                                    {!! $plan_name.'($'.$plan['amount'].')' !!}
+                                </label>
+                                @endforeach
+                                @if ($errors->has('plan_name'))
+                                    <span class="help-block">
+                                        {{ $errors->first('plan_name') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
                             {!! Form::label('coupon_code', 'Coupon Code:') !!}
                             {!! Form::text('coupon_code') !!}
                             @if ($errors->has('coupon_code'))
                                 <span class="help-block">
-                            {{ $errors->first('coupon_code') }}
-                        </span>
+                                    {{ $errors->first('coupon_code') }}
+                                </span>
                             @endif
                         </div>
                         <div class="form-group {{ $errors->has('card_number') ? ' has-error' : '' }}">
@@ -114,8 +132,8 @@
                             {!! Form::text('card_number', null, ['placeholder' => 'XXXXXXXXXXXXXX']) !!}
                             @if ($errors->has('card_number'))
                                 <span class="help-block">
-                            {{ $errors->first('card_number') }}
-                        </span>
+                                    {{ $errors->first('card_number') }}
+                                </span>
                             @endif
                         </div>
                         <div class="form-group {{ $errors->has('card_expiration') ? ' has-error' : '' }}">

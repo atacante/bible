@@ -19,8 +19,6 @@ class User extends Authenticatable
 
     const PLAN_FREE = 'free';
     const PLAN_PREMIUM = 'premium';
-    const PLAN_PREMIUM_COST = 100;
-    const PLAN_PREMIUM_PERIOD = 30;
 
 //    public $coupon_code;
     /**
@@ -65,6 +63,9 @@ class User extends Authenticatable
             case 'PUT':
             {
                 $rules['email'] = 'required|email|max:255|unique:users,email,'.$this->id;
+                if(Input::get('plan_type') == self::PLAN_PREMIUM){
+                    $rules['plan_name'] = 'required';
+                }
             }
                 break;
         }
@@ -140,9 +141,9 @@ class User extends Authenticatable
         return $this->plan_type == self::PLAN_PREMIUM;
     }
 
-    public function upgradeToPremium()
+    public function upgradeToPremium($plan_name)
     {
-        $premiumCost = self::PLAN_PREMIUM_COST;
+        $premiumCost = self::getPremiumCost($plan_name);
         if($coupon_code = Input::get('coupon_code')){
             $coupon = Coupon::where('coupon_code', $coupon_code)->first();
             $premiumCost -= $coupon->amount;
@@ -158,7 +159,7 @@ class User extends Authenticatable
             }
         }
 
-        $result = $this->createAccountAndOrSubscribe(self::PLAN_PREMIUM, $premiumCost);
+        $result = $this->createAccountAndOrSubscribe($plan_name, $premiumCost);
 
         if($result['subscription']['success']){
             $this->upgraded_at = Carbon::now();
@@ -191,7 +192,13 @@ class User extends Authenticatable
 
     public function isPremiumPaid()
     {
-        return (strtotime($this->upgraded_at)+self::PLAN_PREMIUM_PERIOD*86400) > time();
+        foreach(self::getPossiblePlans() as $plan_name => $plan ){
+            if($this->onPlan($plan_name)){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function isBanned($type,$id)
@@ -201,5 +208,11 @@ class User extends Authenticatable
                 return in_array($id,$this->groupsBanned->modelKeys());
         }
         return false;
+    }
+
+    public function getActivePlan(){
+        if($this->subscription()){
+            return $this->subscription()->authorize_plan;
+        }
     }
 }
