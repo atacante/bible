@@ -17,6 +17,8 @@ class Kernel extends ConsoleKernel
         Commands\ParseCsvCommand::class,
         Commands\CacheLexicon::class,
         Commands\CacheSymbolism::class,
+        \Laravel\CashierAuthorizeNet\Console\SubscriptionUpdates::class,
+
     ];
 
     /**
@@ -29,5 +31,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
+
+        $schedule->command('subscription:update')->hourly();
     }
 }
