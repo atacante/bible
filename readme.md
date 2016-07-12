@@ -69,4 +69,6 @@ chmod 0777 -R bootstrap/cache/
 chmod 0777 -R storage/logs/
 chmod 0777 -R storage/framework/
 ~~~
-Point virtual host document root to `public`.
+
+change line #16 in vendor/paisawala/cashier-authorizenetpaisa/src/CashierServiceProvider.php with
+        require(__DIR__.'/../../../autoload.php');
