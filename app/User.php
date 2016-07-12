@@ -103,6 +103,11 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'users_friends', 'user_id', 'friend_id')->withTimestamps();
     }
 
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'users_friends', 'friend_id', 'user_id')->withTimestamps();
+    }
+
     public function friendRequests()
     {
         return $this->morphToMany('App\User', 'connect_requests');

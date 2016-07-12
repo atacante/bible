@@ -4,7 +4,14 @@
             <div class="item-header">
                 <i title="{!! ucfirst($item->type) !!} Entry"
                    class="pull-left fa fa-btn {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
-                <div class="pull-left"><strong>{!! (Auth::user()&& Auth::user()->id == $item->user->id)?"You":$item->user->name !!}</strong> shared a {!! ucfirst($item->type) !!} Entry&nbsp;</div>
+                <div class="pull-left">
+                    <strong>{!! (Auth::user()&& Auth::user()->id == $item->user->id)?"You":$item->user->name !!}</strong>
+                    @if($item->type == 'status')
+                        posted status update
+                    @else
+                        shared a {!! ucfirst($item->type) !!} Entry&nbsp;
+                    @endif
+                </div>
                 <div class="pull-left">
                     @if($item->verse)
                         <div class="pull-left">for&nbsp;</div>
