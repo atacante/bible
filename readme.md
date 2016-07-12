@@ -70,5 +70,12 @@ chmod 0777 -R storage/logs/
 chmod 0777 -R storage/framework/
 ~~~
 
+~~~
 change line #16 in vendor/paisawala/cashier-authorizenetpaisa/src/CashierServiceProvider.php with
         require(__DIR__.'/../../../autoload.php');
+~~~
+
+Install new cronjob
+~~~
+* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
+~~~
