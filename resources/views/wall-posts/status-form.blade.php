@@ -14,6 +14,14 @@
             @endif
         </div>
         <div class="box-footer">
+            {!! Form::select('access_level',
+                [
+                    App\WallPost::ACCESS_PUBLIC_ALL => 'Public',
+                    App\WallPost::ACCESS_PUBLIC_FRIENDS => 'Only friends',
+                    App\WallPost::ACCESS_PRIVATE => 'Only me',
+                ],
+                Request::input('access_level',App\WallPost::ACCESS_PUBLIC_ALL),['class' => 'form-control pull-right', 'style' => 'width: 125px;']) !!}
+            <div class="pull-right" style="padding: 6px 10px;">Privacy</div>
             {!! Form::button('Post', ['type'=>'submit','class'=>'btn btn-primary']) !!}
         </div>
         {!! Form::close() !!}

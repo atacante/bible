@@ -236,7 +236,19 @@ class GroupsController extends Controller
         else{
             $statusesQuery = WallPost::with(['verse','user'])
                 ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,text,type,null as bible_version,published_at')
-                ->whereIn('access_level',[WallPost::ACCESS_PUBLIC_ALL])
+                ->where(function($q) {
+                    $q->whereIn('access_level',[WallPost::ACCESS_PUBLIC_ALL]);
+                    if(Auth::user()){
+                        $q->orWhere(function($sq) {
+                            $sq->whereIn('access_level',[WallPost::ACCESS_PRIVATE]);
+                            $sq->where('user_id',Auth::user()->id);
+                        });
+                        $q->orWhere(function($sq) {
+                            $sq->whereIn('access_level',[WallPost::ACCESS_PUBLIC_FRIENDS]);
+                            $sq->whereIn('user_id',array_merge(Auth::user()->friends->modelKeys(),Auth::user()->followers->modelKeys(),[Auth::user()->id]));
+                        });
+                    }
+                })
                 ->where('rel_id',$model->id);
             $statusesCount = $statusesQuery->count();
             $journalQuery = Journal::with(['verse','user'])
