@@ -708,7 +708,7 @@ a.view-details:hover{
 
 .friends-list .friend-item{
     padding: 15px 0;
-    border-bottom: 1px solid #ddd;
+    /*border-bottom: 1px solid #ddd;*/
 }
 
 .friends-list .friend-item:last-child{
@@ -801,6 +801,41 @@ a.view-details:hover{
 
 .group-block .g-footer:hover{
     background-color: whitesmoke;
+}
+
+.user-block{
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    /*background-color: whitesmoke;*/
+}
+
+.user-block .u-header{
+    border-top: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    min-height: 24px;
+    line-height: 20px;
+    padding: 8px;
+    position: relative;
+}
+
+.user-block .u-body{
+    border-top: 1px solid #e5e5e5;
+}
+
+.user-block .u-footer{
+    padding: 5px;
+    border-top: 1px solid #e5eaf1;
+}
+
+.user-block .u-footer:hover{
+    background-color: whitesmoke;
+}
+
+.user-block .friend-item{
+    padding: 10px;
 }
 
 .community-menu a.disabled{

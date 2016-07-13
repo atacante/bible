@@ -138,6 +138,10 @@ class CommunityController extends Controller
 
         $type = Request::input('type', 'all');
 
+        $limit = 10;
+        $page = Input::get('page',1);
+        $offset = $limit*($page-1);
+
         $users = User::whereHas('roles', function ($q) {
                   $q->whereIn('slug',[Config::get('app.role.user')]);
               });
@@ -165,9 +169,24 @@ class CommunityController extends Controller
             $users->where('id', '!=', Auth::user()->id);
         }
 
-        $content['people'] = $users->orderBy('created_at','desc')->paginate(10);
+        $totalCount = $users->count();
 
-        return view('community.find-friends', ['content' => $content,  'myFriends' => $myFriends]);
+        $users->orderBy('created_at','desc')->limit($limit)->offset($offset);
+
+        $content['people'] = $users->get();
+        $content['people'] = new LengthAwarePaginator(
+            $content['people'],
+            $totalCount,
+            $limit,
+            \Illuminate\Pagination\Paginator::resolveCurrentPage(), //resolve the path
+            ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+        $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
+        $view = 'community.find-friends';
+        if(Request::ajax()){
+            $view = "community.friend-items";
+        }
+        return view($view, ['content' => $content,  'myFriends' => $myFriends]);
     }
 
     public function getBlog()

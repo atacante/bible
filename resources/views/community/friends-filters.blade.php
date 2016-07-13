@@ -1,7 +1,4 @@
-<?php
-?>
-<div class="j-admin-verses-filters">
-{!! Form::open(['method' => 'get','url' => '/community/find-friends']) !!}
+{!! Form::open(['method' => 'get','url' => '/community/find-friends?']) !!}
     {{--@role('user')
     <div class="form-group">
         <div class="radio">
@@ -24,14 +21,9 @@
         </div>
     </div>
     @endrole--}}
-    <div class="form-group">
-        {!! Form::label('search', 'Search') !!}
-        {!! Form::text('search',Request::input('search'),['placeholder' => 'Name or Email','class' => 'form-control','style' => '']) !!}
-    </div>
+    {!! Form::hidden('type',Request::input('type')) !!}
+    {!! Form::text('search',Request::input('search'),['placeholder' => 'Search by name or email...','class' => 'form-control','style' => 'width:200px; display:inline;']) !!}
     {!! Form::token() !!}
-    <div class="form-group">
-        {!! Form::button('Go',['type' => 'submit','class' => 'btn btn-primary pull-left']) !!}
-        {!! Html::link('/community/find-friends','Reset', ['class'=>'btn btn-danger pull-left reset-filter']) !!}
-    </div>
+    {!! Form::button('Go',['type' => 'submit','class' => 'btn btn-primary']) !!}
+{{--        {!! Html::link('/community/find-friends','Reset', ['class'=>'btn btn-danger pull-left reset-filter']) !!}--}}
 {!! Form::close() !!}
-</div>
