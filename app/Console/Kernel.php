@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\ParseCsvCommand::class,
         Commands\CacheLexicon::class,
         Commands\CacheSymbolism::class,
-        \Laravel\CashierAuthorizeNet\Console\SubscriptionUpdates::class,
+        \App\Providers\CustomAuthorizeNet\Console\SubscriptionUpdates::class,
 
     ];
 
