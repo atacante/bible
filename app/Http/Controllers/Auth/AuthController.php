@@ -95,7 +95,7 @@ class AuthController extends Controller
 
         if($user){
             if(Input::get('plan_type') == User::PLAN_PREMIUM){
-                $user->upgradeToPremium();
+                $user->upgradeToPremium(Input::get('plan_name'));
             }else{
                 $user->downgradeToFree();
             }
