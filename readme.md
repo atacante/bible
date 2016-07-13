@@ -17,8 +17,10 @@ curl -sS https://getcomposer.org/installer | php
 php composer.phar install --no-scripts
 
 ~~~
+~~~
 change line #16 in vendor/paisawala/cashier-authorizenetpaisa/src/CashierServiceProvider.php with
         require(__DIR__.'/../../../autoload.php');
+~~~
 ~~~
 
 php composer.phar update
