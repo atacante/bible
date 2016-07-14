@@ -22,18 +22,17 @@
             <div class="pull-right" style="width: 125px; text-align: right;">
                 @if(Request::get('type') == 'inbox-requests')
                     <a href="{!! url('/user/approve-friend-request/'.$people->id,[],false) !!}" class="btn btn-success j-approve-friend-request">Approve</a>
+                    <a href="{!! url('/community/find-friends?type=my',[],false) !!}" class="btn btn-success j-friends-btn hidden">Friends</a>
                     <a href="{!! url('/user/reject-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-reject-friend-request">Reject</a>
                     <a href="{!! url('/user/ignore-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-ignore-friend-request">Ignore</a>
                 @else
                     <a href="{!! url('/user/remove-friend/'.$people->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($people->id,$myFriends)?'':'hidden' !!}">Unfriend</a>
                     <a href="{!! url('/user/remove-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-remove-friend-request {!! in_array($people->id,$myRequests) && !in_array($people->id,$myFriends)?'':'hidden' !!}">Cancel Request</a>
-                    <a href="{!! url('/user/request-friend/'.$people->id,[],false) !!}" class="btn btn-{!! in_array($people->id,$requests)?'success':'primary' !!} j-follow-friend {!! in_array($people->id,$myFriends) || in_array($people->id,$myRequests)?'hidden':'' !!}">
                         @if(in_array($people->id,$requests))
-                            Confirm Request
+                            <a href="{!! url('/user/approve-friend-request/'.$people->id,[],false) !!}" class="btn btn-success j-approve-friend-request {!! !in_array($people->id,$myFriends) && in_array($people->id,$requests)?'':'hidden' !!}">Confirm Request</a>
                         @else
-                            Add Friend
+                            <a href="{!! url('/user/request-friend/'.$people->id,[],false) !!}" class="btn btn-{!! in_array($people->id,$requests)?'success':'primary' !!} j-follow-friend {!! in_array($people->id,$myFriends) || in_array($people->id,$myRequests)?'hidden':'' !!}">Add Friend</a>
                         @endif
-                    </a>
                 @endif
                 @if(in_array($people->id,$myFriends))
                 @else

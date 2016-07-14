@@ -841,7 +841,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-friends-list').on('click','.j-follow-friend',function(e){
+    $('.j-friends-list').on('click','.j-follow-friend,.j-approve-friend-request',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
         var that = this;
@@ -849,11 +849,27 @@ $(document).ready(function(){
             method: "GET",
             url: url,
             success:function(data){
-                $(that).parent().children('.j-remove-friend').toggleClass('hidden');
-                $(that).toggleClass('hidden');
+                if($(that).hasClass('j-approve-friend-request')){
+                    $(that).parent().children('.j-reject-friend-request').toggleClass('hidden');
+                    $(that).parent().children('.j-ignore-friend-request').toggleClass('hidden');
+                    $(that).parent().children('.j-friends-btn').toggleClass('hidden');
+
+                    $(that).parent().children('.j-remove-friend').toggleClass('hidden');
+
+                    $(that).toggleClass('hidden');
+                }
+                else{
+                    if($(that).hasClass('j-follow-friend')){
+                        $(that).parent().children('.j-remove-friend-request').toggleClass('hidden');
+                    }
+                    else{
+                        $(that).parent().children('.j-remove-friend').toggleClass('hidden');
+                    }
+
+                    $(that).toggleClass('hidden');
+                }
             },
             error:function(data){
-
                 location.href = url;
             }
         });

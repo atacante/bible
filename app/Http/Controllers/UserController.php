@@ -264,6 +264,11 @@ class UserController extends Controller
             : Redirect::back();
     }
 
+    public function anyApproveFriendRequest($id)
+    {
+        return $this->getRequestFriend($id);
+    }
+
     public function getRemoveFriendRequest($id)
     {
         $user = User::find($id);
