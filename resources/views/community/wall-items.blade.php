@@ -5,7 +5,7 @@
                 <i title="{!! ucfirst($item->type) !!} Entry"
                    class="pull-left fa fa-btn {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
                 <div class="pull-left">
-                    <strong>{!! (Auth::user()&& Auth::user()->id == $item->user->id)?"You":$item->user->name !!}</strong>
+                    <strong>{!! (Auth::user() && $item->user && Auth::user()->id == $item->user->id)?"You":$item->user?$item->user->name:'somebody' !!}</strong>
                     @if($item->type == 'status')
                         posted status update
                     @else
