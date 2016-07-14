@@ -19,6 +19,9 @@
                     <li role="presentation" class="{!! (Request::get('type') == 'new')?'active':'' !!}">
                         <a href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'new']))) !!}">New users</a>
                     </li>
+                    <li role="presentation" class="{!! (Request::get('type') == 'inbox-requests' || Request::get('type') == 'sent-requests')?'active':'' !!}">
+                        <a href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'inbox-requests']))) !!}">Friend Requests</a>
+                    </li>
                 </ul>
                 @endrole
                 <div class="pull-right">
@@ -38,6 +41,11 @@
                                             My Friends
                                         @elseif(Request::get('type') == 'new')
                                             New Users
+                                        @elseif(Request::get('type') == 'inbox-requests' || Request::get('type') == 'sent-requests')
+                                            <ul class="nav nav-pills">
+                                                <li role="presentation" class="{!! (Request::get('type') == 'inbox-requests')?'active':'' !!}"><a href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'inbox-requests']))) !!}">Inbox Requests</a></li>
+                                                <li role="presentation" class="{!! (Request::get('type') == 'sent-requests')?'active':'' !!}"><a href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'sent-requests']))) !!}">Sent Requests</a></li>
+                                            </ul>
                                         @endif
                                     </strong>
                                 </div>

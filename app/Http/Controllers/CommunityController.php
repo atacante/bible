@@ -61,7 +61,7 @@ class CommunityController extends Controller
                     });
                     $q->orWhere(function($sq) {
                         $sq->whereIn('access_level',[WallPost::ACCESS_PUBLIC_FRIENDS]);
-                        $sq->whereIn('user_id',array_merge(Auth::user()->friends->modelKeys(),Auth::user()->followers->modelKeys(),[Auth::user()->id]));
+                        $sq->whereIn('user_id',array_merge(Auth::user()->friends->modelKeys(),Auth::user()->requests->modelKeys(),[Auth::user()->id]));
                     });
                 }
             })
@@ -147,9 +147,13 @@ class CommunityController extends Controller
               });
         $users = $this->prepareFilters($users);
 
+        $requests = [];
+        $myRequests = [];
         $myFriends = [];
         if(Auth::user()){
-            $myFriends = Auth::user()->friends->modelKeys();
+            $requests = Auth::user()->requests->modelKeys();
+            $myRequests = Auth::user()->friends->modelKeys();
+            $myFriends = array_intersect($requests, $myRequests);
         }
 
         switch($type){
@@ -161,6 +165,18 @@ class CommunityController extends Controller
             case "new":
                 if(Auth::user()){
                     $users->whereNotIn('id',$myFriends);
+                }
+                break;
+            case "inbox-requests":
+                if(Auth::user()){
+                    $users->whereNotIn('id',$myFriends);
+                    $users->whereIn('id',$requests);
+                }
+                break;
+            case "sent-requests":
+                if(Auth::user()){
+                    $users->whereNotIn('id',$myFriends);
+                    $users->whereIn('id',$myRequests);
                 }
                 break;
         }
@@ -186,7 +202,7 @@ class CommunityController extends Controller
         if(Request::ajax()){
             $view = "community.friend-items";
         }
-        return view($view, ['content' => $content,  'myFriends' => $myFriends]);
+        return view($view, ['content' => $content,  'myFriends' => $myFriends,'requests' => $requests,'myRequests' => $myRequests]);
     }
 
     public function getBlog()

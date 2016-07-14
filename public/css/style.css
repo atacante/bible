@@ -719,7 +719,7 @@ a.view-details:hover{
     margin-bottom: 15px;
 }
 
-.wall-nav.nav-pills>li>a, .friends-nav.nav-pills>li>a{
+.wall-nav.nav-pills>li>a, .friends-nav.nav-pills>li>a,.user-block .nav-pills>li>a{
     padding: 3px 15px;
     line-height: 20px;
 }
@@ -836,6 +836,10 @@ a.view-details:hover{
 
 .user-block .friend-item{
     padding: 10px;
+}
+
+.friend-item .btn{
+    padding: 2px 12px;
 }
 
 .community-menu a.disabled{

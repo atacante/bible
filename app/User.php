@@ -103,7 +103,7 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'users_friends', 'user_id', 'friend_id')->withTimestamps();
     }
 
-    public function followers()
+    public function requests()
     {
         return $this->belongsToMany(User::class, 'users_friends', 'friend_id', 'user_id')->withTimestamps();
     }
@@ -123,9 +123,15 @@ class User extends Authenticatable
         $this->friends()->attach($user->id);
     }
 
+    public function removeRequest(User $user)
+    {
+        $this->friends()->detach($user->id);
+    }
+
     public function removeFriend(User $user)
     {
         $this->friends()->detach($user->id);
+        $user->friends()->detach($this->id);
     }
 
     public function isOnline()

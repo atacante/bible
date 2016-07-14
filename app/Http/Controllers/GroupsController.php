@@ -245,7 +245,7 @@ class GroupsController extends Controller
                         });
                         $q->orWhere(function($sq) {
                             $sq->whereIn('access_level',[WallPost::ACCESS_PUBLIC_FRIENDS]);
-                            $sq->whereIn('user_id',array_merge(Auth::user()->friends->modelKeys(),Auth::user()->followers->modelKeys(),[Auth::user()->id]));
+                            $sq->whereIn('user_id',array_merge(Auth::user()->friends->modelKeys(),Auth::user()->requests->modelKeys(),[Auth::user()->id]));
                         });
                     }
                 })
