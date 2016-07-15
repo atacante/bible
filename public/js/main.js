@@ -131,6 +131,7 @@ $(document).ready(function(){
 
     $('a[data-target="#cancel-request-sm"]').click(function(ev) {
         var href = $(this).attr('href');
+        $('#cancel-request-sm').attr('data-itemid',$(this).attr('data-itemid'));
         $('#cancel-request-sm').find('.modal-header .modal-title').text($(this).attr('data-header'));
         $('#cancel-request-sm').find('.modal-body').text($(this).attr('data-confirm'));
         $('#cancel-request-sm').find('.btn-ok').attr('href', href).addClass($(this).attr('data-callclass'));
@@ -885,9 +886,13 @@ $(document).ready(function(){
             success:function(data){
                 if($(that).hasClass('j-reject-friend-request')){
                     location.reload();
-                    //$(that).parents('.friend-item').remove();
+                    $(that).parents('.friend-item').remove();
                 }
                 else if($(that).hasClass('j-cancel-friend-request')){
+                    $('#cancel-request-sm').modal('hide');
+                    location.reload();
+                }
+                else if($(that).hasClass('j-remove-friend')){
                     $('#cancel-request-sm').modal('hide');
                     location.reload();
                 }

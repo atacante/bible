@@ -1,6 +1,6 @@
 @if(count($content['people']))
     @foreach($content['people'] as $people)
-        <div class="col-md-6 clearfix friend-item">
+        <div data-itemid="{!! $people->id !!}" class="col-md-6 clearfix friend-item">
             <div class="pull-left" style="margin-right: 10px;">
                 @if($people->avatar)
                     <img class="img-thumbnail" height="100" width="100" data-dz-thumbnail="" alt="" src="{!! Config::get('app.userAvatars').$people->id.'/thumbs/'.$people->avatar !!}" />
@@ -26,15 +26,23 @@
                     <a href="{!! url('/user/reject-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-reject-friend-request"
                        data-toggle="modal"
                        data-target="#cancel-request-sm"
+                       data-itemid="{!! $people->id !!}"
                        data-header="Reject Request"
                        data-callclass="j-reject-friend-request"
                        data-confirm="Are you sure you want to reject this request?">Reject</a>
                     <a href="{!! url('/user/ignore-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-ignore-friend-request">Ignore</a>
                 @else
-                    <a href="{!! url('/user/remove-friend/'.$people->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($people->id,$myFriends)?'':'hidden' !!}">Unfriend</a>
+                    <a href="{!! url('/user/remove-friend/'.$people->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($people->id,$myFriends)?'':'hidden' !!}"
+                       data-toggle="modal"
+                       data-target="#cancel-request-sm"
+                       data-itemid="{!! $people->id !!}"
+                       data-header="Remove user from friends"
+                       data-callclass="j-remove-friend"
+                       data-confirm="Are you sure you want to remove this user from friends?">Unfriend</a>
                     <a href="{!! url('/user/cancel-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-cancel-friend-request {!! in_array($people->id,$myRequests) && !in_array($people->id,$myFriends)?'':'hidden' !!}"
                        data-toggle="modal"
                        data-target="#cancel-request-sm"
+                       data-itemid="{!! $people->id !!}"
                        data-header="Cancel Request"
                        data-callclass="j-cancel-friend-request"
                        data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
