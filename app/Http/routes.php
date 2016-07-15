@@ -114,6 +114,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::controller('community', 'CommunityController');
     Route::controller('groups', 'GroupsController');
 
+    Route::get('/blog/category/{id}', ['uses' => 'BlogController@getCategory']);
+    Route::resource('blog', 'BlogController');
+
     Route::get('/community', [
         'as' => 'community', 'uses' => 'CommunityController@getWall'
     ]);
@@ -168,8 +171,6 @@ Route::group([
             'user' => 'UserController',
         ]);
     });*/
-
-
 
 View::composer('reader.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.partials.filters', 'App\Http\Composers\BibleFiltersComposer');
