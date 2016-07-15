@@ -133,7 +133,7 @@ $(document).ready(function(){
         var href = $(this).attr('href');
         $('#cancel-request-sm').find('.modal-header .modal-title').text($(this).attr('data-header'));
         $('#cancel-request-sm').find('.modal-body').text($(this).attr('data-confirm'));
-        $('#cancel-request-sm').find('.btn-ok').attr('href', href).addClass('j-cancel-request');
+        $('#cancel-request-sm').find('.btn-ok').attr('href', href).addClass($(this).attr('data-callclass'));
         $('#cancel-request-sm').modal({show:true});
         return false;
     });
@@ -860,7 +860,7 @@ $(document).ready(function(){
                 }
                 else{
                     if($(that).hasClass('j-follow-friend')){
-                        $(that).parent().children('.j-remove-friend-request').toggleClass('hidden');
+                        $(that).parent().children('.j-cancel-friend-request').toggleClass('hidden');
                     }
                     else{
                         $(that).parent().children('.j-remove-friend').toggleClass('hidden');
@@ -875,7 +875,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-friends-list').on('click','.j-remove-friend',function(e){
+    $('.j-friends-list,#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
         var that = this;
@@ -883,8 +883,18 @@ $(document).ready(function(){
             method: "GET",
             url: url,
             success:function(data){
-                $(that).parent().children('.j-follow-friend').toggleClass('hidden');
-                $(that).toggleClass('hidden');
+                if($(that).hasClass('j-reject-friend-request')){
+                    location.reload();
+                    //$(that).parents('.friend-item').remove();
+                }
+                else if($(that).hasClass('j-cancel-friend-request')){
+                    $('#cancel-request-sm').modal('hide');
+                    location.reload();
+                }
+                else{
+                    $(that).parent().children('.j-follow-friend').toggleClass('hidden');
+                    $(that).toggleClass('hidden');
+                }
             }
         });
     });

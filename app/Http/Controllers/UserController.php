@@ -250,7 +250,7 @@ class UserController extends Controller
         return view('user.my-journey', ['content' => $content]);
     }
 
-    public function getRequestFriend($id)
+    public function anyRequestFriend($id)
     {
         $user = User::find($id);
         Auth::user()->followFriend($user);
@@ -266,10 +266,24 @@ class UserController extends Controller
 
     public function anyApproveFriendRequest($id)
     {
-        return $this->getRequestFriend($id);
+        return $this->anyRequestFriend($id);
     }
 
-    public function getRemoveFriendRequest($id)
+    public function anyRejectFriendRequest($id)
+    {
+        $user = User::find($id);
+        $user->removeRequest(Auth::user());
+
+        if(Request::ajax()){
+            return 1;
+        }
+
+        return ($url = Session::pull('back'))
+            ? Redirect::to($url)
+            : Redirect::back();
+    }
+
+    public function anyCancelFriendRequest($id)
     {
         $user = User::find($id);
         Auth::user()->removeRequest($user);
@@ -283,7 +297,7 @@ class UserController extends Controller
             : Redirect::back();
     }
 
-    public function getRemoveFriend($id)
+    public function anyRemoveFriend($id)
     {
         $user = User::find($id);
         Auth::user()->removeFriend($user);

@@ -23,11 +23,21 @@
                 @if(Request::get('type') == 'inbox-requests')
                     <a href="{!! url('/user/approve-friend-request/'.$people->id,[],false) !!}" class="btn btn-success j-approve-friend-request">Approve</a>
                     <a href="{!! url('/community/find-friends?type=my',[],false) !!}" class="btn btn-success j-friends-btn hidden">Friends</a>
-                    <a href="{!! url('/user/reject-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-reject-friend-request">Reject</a>
+                    <a href="{!! url('/user/reject-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-reject-friend-request"
+                       data-toggle="modal"
+                       data-target="#cancel-request-sm"
+                       data-header="Reject Request"
+                       data-callclass="j-reject-friend-request"
+                       data-confirm="Are you sure you want to reject this request?">Reject</a>
                     <a href="{!! url('/user/ignore-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-ignore-friend-request">Ignore</a>
                 @else
                     <a href="{!! url('/user/remove-friend/'.$people->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($people->id,$myFriends)?'':'hidden' !!}">Unfriend</a>
-                    <a href="{!! url('/user/remove-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-remove-friend-request {!! in_array($people->id,$myRequests) && !in_array($people->id,$myFriends)?'':'hidden' !!}">Cancel Request</a>
+                    <a href="{!! url('/user/cancel-friend-request/'.$people->id,[],false) !!}" class="btn btn-danger j-cancel-friend-request {!! in_array($people->id,$myRequests) && !in_array($people->id,$myFriends)?'':'hidden' !!}"
+                       data-toggle="modal"
+                       data-target="#cancel-request-sm"
+                       data-header="Cancel Request"
+                       data-callclass="j-cancel-friend-request"
+                       data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
                         @if(in_array($people->id,$requests))
                             <a href="{!! url('/user/approve-friend-request/'.$people->id,[],false) !!}" class="btn btn-success j-approve-friend-request {!! !in_array($people->id,$myFriends) && in_array($people->id,$requests)?'':'hidden' !!}">Confirm Request</a>
                         @else

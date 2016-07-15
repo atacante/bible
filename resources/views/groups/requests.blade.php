@@ -22,7 +22,9 @@
             <div class="pull-left">
                 @if(Auth::user() && Auth::user()->id != $member->id)
                 <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-info j-cancel-request " style="padding: 4px 8px;" data-toggle="modal"
-                   data-target="#cancel-request-sm" data-header="Cancel Request"
+                   data-target="#cancel-request-sm"
+                   data-header="Cancel Request"
+                   data-callclass="j-cancel-request"
                    data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
                 {{--<a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'':'hidden' !!}" style="padding: 4px 8px;">Unfollow</a>--}}
                 {{--<a href="{!! url('/user/follow-friend/'.$member->id,[],false) !!}" class="btn btn-primary j-follow-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'hidden':'' !!}" style="padding: 4px 8px;">Follow</a>--}}
