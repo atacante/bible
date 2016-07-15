@@ -134,7 +134,7 @@ $(document).ready(function(){
         $('#cancel-request-sm').attr('data-itemid',$(this).attr('data-itemid'));
         $('#cancel-request-sm').find('.modal-header .modal-title').text($(this).attr('data-header'));
         $('#cancel-request-sm').find('.modal-body').text($(this).attr('data-confirm'));
-        $('#cancel-request-sm').find('.btn-ok').attr('href', href).addClass($(this).attr('data-callclass'));
+        $('#cancel-request-sm').find('.btn-ok').attr('href', href).addClass($(this).attr('data-callclass')?$(this).attr('data-callclass'):'j-cancel-request');
         $('#cancel-request-sm').modal({show:true});
         return false;
     });
@@ -876,7 +876,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-friends-list,#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request',function(e){
+    $('.j-friends-list,#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request,.j-ignore-friend-request',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
         var that = this;
@@ -889,6 +889,10 @@ $(document).ready(function(){
                     $(that).parents('.friend-item').remove();
                 }
                 else if($(that).hasClass('j-cancel-friend-request')){
+                    $('#cancel-request-sm').modal('hide');
+                    location.reload();
+                }
+                else if($(that).hasClass('j-ignore-friend-request')){
                     $('#cancel-request-sm').modal('hide');
                     location.reload();
                 }

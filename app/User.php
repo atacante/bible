@@ -128,6 +128,11 @@ class User extends Authenticatable
         $this->friends()->detach($user->id);
     }
 
+    public function ignoreRequest(User $user)
+    {
+        $this->friends()->updateExistingPivot($user->id,['ignore' => true]);
+    }
+
     public function removeFriend(User $user)
     {
         $this->friends()->detach($user->id);

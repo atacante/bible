@@ -148,10 +148,12 @@ class CommunityController extends Controller
         $users = $this->prepareFilters($users);
 
         $requests = [];
+        $ignoredRequests = [];
         $myRequests = [];
         $myFriends = [];
         if(Auth::user()){
             $requests = Auth::user()->requests->modelKeys();
+            $ignoredRequests = Auth::user()->requests()->where('ignore',true)->get()->modelKeys();
             $myRequests = Auth::user()->friends->modelKeys();
             $myFriends = array_intersect($requests, $myRequests);
         }
@@ -170,6 +172,7 @@ class CommunityController extends Controller
             case "inbox-requests":
                 if(Auth::user()){
                     $users->whereNotIn('id',$myFriends);
+                    $users->whereNotIn('id',$ignoredRequests);
                     $users->whereIn('id',$requests);
                 }
                 break;
@@ -202,7 +205,13 @@ class CommunityController extends Controller
         if(Request::ajax()){
             $view = "community.friend-items";
         }
-        return view($view, ['content' => $content,  'myFriends' => $myFriends,'requests' => $requests,'myRequests' => $myRequests]);
+        return view($view, [
+            'content' => $content,
+            'myFriends' => $myFriends,
+            'requests' => $requests,
+            'ignoredRequests' => $ignoredRequests,
+            'myRequests' => $myRequests
+        ]);
     }
 
     public function getBlog()

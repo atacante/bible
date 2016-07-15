@@ -283,6 +283,20 @@ class UserController extends Controller
             : Redirect::back();
     }
 
+    public function anyIgnoreFriendRequest($id)
+    {
+        $user = User::find($id);
+        $user->ignoreRequest(Auth::user());
+
+        if(Request::ajax()){
+            return 1;
+        }
+
+        return ($url = Session::pull('back'))
+            ? Redirect::to($url)
+            : Redirect::back();
+    }
+
     public function anyCancelFriendRequest($id)
     {
         $user = User::find($id);
