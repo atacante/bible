@@ -321,6 +321,26 @@ a.view-details:hover{
     border-bottom: 1px solid #e1e1e8;
 }
 
+.related-item .item-footer{
+    background-color: #f7f7f9;
+    border-top: 1px solid #e1e1e8;
+    min-height: 30px;
+}
+
+.related-item .item-actions{
+    padding: 5px 8px;
+}
+
+.related-item .item-actions a{
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.related-item .item-comments{
+    padding: 5px 8px;
+    border-top: 1px solid #e1e1e8;
+}
+
 .related-item-view .verse-block{
     padding-bottom: 10px;
     margin-bottom: 10px;

@@ -76,6 +76,11 @@ class Note extends BaseModel
         return $this->morphToMany('App\Group', 'groups_shares');
     }
 
+    public function comments()
+    {
+        return $this->morphMany('App\WallComment','item','type')->orderBy('created_at','desc');
+    }
+
     public function availableTags()
     {
         return Tag::where('type', Tag::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->lists('tag_name','id')->toArray();

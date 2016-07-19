@@ -173,6 +173,9 @@ class ViewHelper
             case 'prayer':
                 $action = 'prayers';
                 break;
+            case 'status':
+                $action = 'wall-posts';
+                break;
         }
 
         return $action;

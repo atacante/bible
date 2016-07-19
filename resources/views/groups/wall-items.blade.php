@@ -5,7 +5,7 @@
                 <i title="{!! ucfirst($item->type) !!} Entry"
                    class="pull-left fa fa-btn {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
                 <div class="pull-left">
-                    <strong>{!! (Auth::user()&& Auth::user()->id == $item->user->id)?"You":$item->user->name !!}</strong>
+                    <strong>{!! (Auth::user() && $item->user && Auth::user()->id == $item->user->id)?"You":($item->user?$item->user->name:'somebody') !!}</strong>
                     @if($item->type == 'status')
                         posted status update
                     @else
@@ -46,6 +46,21 @@
                     </div>
                 @endif
                 {!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}
+            </div>
+            <div class="item-footer">
+                <div class="item-actions">
+                    <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/save-like') !!}" data-type="{!! $item->type !!}">
+                        <i class="fa fa-btn fa-heart"></i>
+                        Like
+                    </a>
+                    <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/comments/'.$item->id) !!}" class="j-wall-item-comments" data-type="{!! $item->type !!}">
+                        <i class="fa fa-btn fa-comments"></i>
+                        Comments
+                    </a>
+                </div>
+                <div class="clearfix j-item-comments">
+
+                </div>
             </div>
         </div>
     @endforeach

@@ -237,7 +237,9 @@ site.initSelect2 = function(){
     });
 }
 
-site.ajaxForm = function(form){
+site.ajaxForm = function(form,callback){
+    $('.form-group').removeClass('has-error');
+    $('.help-block').remove();
     var url = form.attr('action');
     $.ajax({
         method: "POST",
@@ -245,16 +247,31 @@ site.ajaxForm = function(form){
         data: form.serialize(),
         success:function(data){
             $('#popup').modal('hide');
-            location.reload();
+            if(callback){
+                callback(data);
+            }
+            else{
+                location.reload();
+            }
         },
         error:function(data){
-            $('.form-group').removeClass('has-error');
-            $('.help-block').remove();
             $.each(data.responseJSON, function(index,value){
                 var formGroup = $(':input[name='+index+']').parents('.form-group');
                 formGroup.addClass('has-error');
                 formGroup.append('<span class="help-block">'+value[0]+'</span>');
             });
+        }
+    });
+}
+
+site.loadComments = function(elem){
+    var url = $(elem).attr('href');
+    var that = elem;
+    $.ajax({
+        method: "GET",
+        url: url,
+        success:function(data){
+            $(that).parents('.item-footer').find('.j-item-comments').html(data);
         }
     });
 }

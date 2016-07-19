@@ -5,7 +5,7 @@
         <div class="col-md-2">
             @include('community.menu')
         </div>
-        <div class="col-md-10 related-records public-wall">
+        <div class="col-md-10 related-records public-wall j-wall-items">
             @role('user')
             <ul class="nav nav-pills wall-nav">
                 <li role="presentation" class="{!! (!Request::get('type') || Request::get('type') == 'all')?'active':'' !!}">

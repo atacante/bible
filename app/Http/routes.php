@@ -128,17 +128,24 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 });
 
+Route::get('notes/comments', array('before' => 'web', 'uses' => 'NotesController@getComments'));
+
 Route::group([
         'middleware' => ['auth', 'acl'],
         'is' => 'user'
 ], function () {
 //    Route::resource('reader', 'ReaderController@getMyStudyVersev');
-    Route::controller('notes', 'NotesController');
+    Route::controller('notes', 'NotesController', ['Except' => 'comments']);
     Route::controller('journal', 'JournalController');
     Route::controller('prayers', 'PrayersController');
     Route::controller('wall-posts', 'WallPostsController');
 });
 
+Route::get('notes/comments', [
+    'uses'          => 'NotesController@getComments',
+    'middleware'    => ['web'],
+    'as'            => 'notes'
+]);
 
 /*
 | User routes

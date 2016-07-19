@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="col-md-9 related-records public-wall">
+                    <div class="col-md-9 related-records public-wall j-wall-items">
                         @role('user')
                             @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_GROUP,'groupId' => $model->id])
                         @endif
