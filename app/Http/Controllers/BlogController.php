@@ -14,23 +14,36 @@ class BlogController extends Controller {
 	public function index()
 	{
 		$categories =  BlogCategory::all();
-		$articles =  BlogArticle::paginate(2);
+		$articles =  BlogArticle::orderBy('published_at', SORT_DESC)->paginate(2);
 
 		return view('blog.blog',['categories'=>$categories, 'articles'=>$articles]);
 	}
 
 	/**
 	 * Display a listing of the resource by category.
-	 * GET /blog
+	 * GET /blog/category/{id}
 	 *
 	 * @return Response
 	 */
 	public function getCategory($id)
 	{
 		$categories =  BlogCategory::all();
-		$articles =  BlogArticle::where('category_id', $id)->paginate(1);
+		$articles =  BlogArticle::where('category_id', $id)->orderBy('published_at', SORT_DESC)->paginate(1);
 
 		return view('blog.blog',['categories'=>$categories, 'articles'=>$articles]);
+	}
+
+	/**
+	 * Display a view of the .
+	 * GET /blog/article/{id}
+	 *
+	 * @return Response
+	 */
+	public function getArticle($id)
+	{
+		$article =  BlogArticle::find($id);
+
+		return view('blog.article_view',['article'=>$article]);
 	}
 
 	/**

@@ -770,6 +770,10 @@ $(document).ready(function(){
         }
     });
 
+    $("body").on('click','.j-show-article',function (e){
+        location.href = $(this).data('link');
+    });
+
     $('.j-popup-form').click(function(e){
         e.preventDefault();
         $.ajax({
