@@ -309,4 +309,5 @@ return [
     'groupImages' => '/uploads/groups/',
     'locationImages' => '/uploads/locations/',
     'peopleImages' => '/uploads/peoples/',
+    'blogImages' => '/uploads/blog/',
 ];

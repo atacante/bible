@@ -14,7 +14,8 @@ class BlogController extends Controller {
 	public function index()
 	{
 		$categories =  BlogCategory::all();
-		$articles =  BlogArticle::all();
+		$articles =  BlogArticle::paginate(2);
+
 		return view('blog.blog',['categories'=>$categories, 'articles'=>$articles]);
 	}
 
@@ -27,7 +28,7 @@ class BlogController extends Controller {
 	public function getCategory($id)
 	{
 		$categories =  BlogCategory::all();
-		$articles =  BlogArticle::where('category_id', $id)->get();
+		$articles =  BlogArticle::where('category_id', $id)->paginate(1);
 
 		return view('blog.blog',['categories'=>$categories, 'articles'=>$articles]);
 	}
