@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model {
+class BlogComment extends Model {
 
 	protected $fillable = [];
 
@@ -11,7 +11,7 @@ class Comment extends Model {
 	}
 
 	public function article() {
-		return $this->belongsTo(Article::class, 'article_id', 'id');
+		return $this->belongsTo(BlogArticle::class, 'article_id', 'id');
 	}
 
 }

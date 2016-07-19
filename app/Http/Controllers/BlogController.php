@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-use App\Article;
-use App\Category;
+use App\BlogArticle;
+use App\BlogCategory;
 
 class BlogController extends Controller {
 
@@ -13,8 +13,8 @@ class BlogController extends Controller {
 	 */
 	public function index()
 	{
-		$categories =  Category::all();
-		$articles =  Article::all();
+		$categories =  BlogCategory::all();
+		$articles =  BlogArticle::all();
 		return view('blog.blog',['categories'=>$categories, 'articles'=>$articles]);
 	}
 
@@ -26,8 +26,8 @@ class BlogController extends Controller {
 	 */
 	public function getCategory($id)
 	{
-		$categories =  Category::all();
-		$articles =  Article::where('category_id', $id)->get();
+		$categories =  BlogCategory::all();
+		$articles =  BlogArticle::where('category_id', $id)->get();
 
 		return view('blog.blog',['categories'=>$categories, 'articles'=>$articles]);
 	}

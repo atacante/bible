@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model {
+class BlogArticle extends Model {
 
 	protected $fillable = [];
 
@@ -11,11 +11,11 @@ class Article extends Model {
 	}
 
 	public function category() {
-		return $this->belongsTo(Category::class, 'category_id', 'id');
+		return $this->belongsTo(BlogCategory::class, 'category_id', 'id');
 	}
 
 	public function comments(){
-		return $this->hasMany(Comment::class, 'article_id', 'id');
+		return $this->hasMany(BlogComment::class, 'article_id', 'id');
 	}
 
 }

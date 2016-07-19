@@ -2,11 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model {
+class BlogCategory extends Model {
 
 	protected $fillable = [];
 
 	public function articles(){
-		return $this->hasMany(Article::class, 'category_id', 'id');
+		return $this->hasMany(BlogArticle::class, 'category_id', 'id');
 	}
 }
