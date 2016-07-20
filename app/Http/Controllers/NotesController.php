@@ -38,6 +38,12 @@ class NotesController extends Controller
     private $verseFilter;
     private $tags;
 
+    public function __construct()
+    {
+//        $this->middleware(['auth','acl']);
+//        $this->middleware(['auth','acl'], ['except' => ['getComments']]);
+    }
+
     private function prepareFilters($noteModel)
     {
         $this->searchFilter = Request::input('search', false);
