@@ -2,6 +2,10 @@
 
 use App\BlogArticle;
 use App\BlogCategory;
+use App\BlogComment;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class BlogController extends Controller {
 
@@ -46,74 +50,22 @@ class BlogController extends Controller {
 		return view('blog.article_view',['article'=>$article]);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /blog/create
-	 *
-	 * @return Response
-	 */
-	public function create()
+	public function postSaveComment(Request $request)
 	{
-		//
-	}
+		$article = BlogArticle::find(Input::get('id'));
+		if (!$article) {
+			abort(404);
+		}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /blog
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+		$model = new BlogComment();
+		$text = Input::get('text');
+		$data = ['user_id' => Auth::user()->id, 'text' => $text];
+		$this->validate($request, $model->rules());
 
-	/**
-	 * Display the specified resource.
-	 * GET /blog/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /blog/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /blog/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /blog/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+		$commentCreated = $article->comments()->create($data);
+		if ($commentCreated) {
+			return view('blog.article_view',['article'=>$article]);
+		}
 	}
 
 }
