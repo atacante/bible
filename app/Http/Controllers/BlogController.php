@@ -11,7 +11,7 @@ class BlogController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getIndex()
 	{
 		$categories =  BlogCategory::all();
 		$articles =  BlogArticle::orderBy('published_at', SORT_DESC)->paginate(2);

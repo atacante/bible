@@ -114,9 +114,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::controller('community', 'CommunityController');
     Route::controller('groups', 'GroupsController');
 
-    Route::get('/blog/category/{id}', ['uses' => 'BlogController@getCategory']);
-    Route::get('/blog/article/{id}', ['uses' => 'BlogController@getArticle']);
-    Route::resource('blog', 'BlogController');
+/*    Route::get('/blog/category/{id}', ['uses' => 'BlogController@getCategory']);
+    Route::get('/blog/article/{id}', ['uses' => 'BlogController@getArticle']);*/
+    Route::controller('blog', 'BlogController');
 
     Route::get('/community', [
         'as' => 'community', 'uses' => 'CommunityController@getWall'

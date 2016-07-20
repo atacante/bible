@@ -1,10 +1,9 @@
 <?php namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class BlogArticle extends Model {
+class BlogArticle extends BaseModel {
 
 	protected $fillable = [];
+	protected $dates = ['created_at', 'updated_at', 'published_at'];
 
 	public function user() {
 		return $this->belongsTo(User::class, 'user_id', 'id');
