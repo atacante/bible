@@ -257,10 +257,10 @@
                             </td>
                             <td class="text-center">{!! ViewHelper::getAccessLevelIcon($entry->access_level) !!}</td>
                             <td>
-                                {!! $entry->created_at->format('m/d/Y') !!}<br />
+                                {!! $entry->created_at->format($entry::DFORMAT) !!}<br />
                                 <span style="color: #ccc;">
                                     Last update<br />
-                                    {!! $entry->updated_at->format('m/d/Y') !!}
+                                    {!! $entry->updated_at->format($entry::DFORMAT) !!}
                                 </span>
                             </td>{{--H:i--}}
                             <td class="text-center">

@@ -17,6 +17,8 @@ class User extends Authenticatable
     use HasRole;
     use Billable;
 
+    const DFORMAT = 'm/d/Y';
+
     const PLAN_FREE = 'free';
     const PLAN_PREMIUM = 'premium';
 

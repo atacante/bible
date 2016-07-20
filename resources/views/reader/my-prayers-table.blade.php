@@ -32,7 +32,7 @@
                         @endif
                     </td>
                     <td class="text-center">{!! ViewHelper::getAccessLevelIcon($prayer->access_level) !!}</td>
-                    <td>{!! $prayer->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
+                    <td>{!! $prayer->created_at->format($prayer::DFORMAT) !!}</td>{{--H:i--}}
                     <td class="text-center">
                         <a title="Print Prayer" href="#" data-prayerid="{!! $prayer->id !!}"
                            class="j-print-prayer"><i

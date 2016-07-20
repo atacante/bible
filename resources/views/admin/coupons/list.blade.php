@@ -44,10 +44,10 @@
                                     <td>{!! $coupon->amount !!}</td>
                                     <td>{!! $coupon->member_type?$coupon->member_type:'all' !!}</td>
                                     <td>{!! $coupon->user?$coupon->user->name:'all' !!}</td>
-                                    <td class="text-center">{!! $coupon->expire_at?$coupon->expire_at->format('m/d/Y'):'&#8734' !!}</td>
+                                    <td class="text-center">{!! $coupon->expire_at?$coupon->expire_at->format($coupon::DFORMAT):'&#8734' !!}</td>
                                     <td class="text-center">{!! $coupon->uses_limit?$coupon->uses_limit:"&#8734" !!}</td>
                                     <td class="text-center">{!! $coupon->used?$coupon->used:0 !!}</td>
-                                    <td class="text-center">{!! $coupon->created_at->format('m/d/Y') !!}</td>
+                                    <td class="text-center">{!! $coupon->created_at->format($coupon::DFORMAT) !!}</td>
                                     <td class="text-center" style="width: 50px;">
                                         <a title="Edit coupon" href="{!! url('/admin/coupons/update/'.$coupon->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
                                         <a title="Delete coupon" href="{!! url('/admin/coupons/delete',$coupon->id) !!}" data-toggle="modal"

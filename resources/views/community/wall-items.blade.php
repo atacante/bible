@@ -26,7 +26,7 @@
                                 ]
                                 ),ViewHelper::getVerseNum($item->verse).($item->bible_version?' ('.ViewHelper::getVersionName($item->bible_version).')':''), ['class'=>'label label-success','style' => 'display:block; line-height: 14px;']) !!}
                         </div>
-                        <div class="pull-left">&nbsp;at {!! $item->published_at->format('m/d/Y') !!}&nbsp;</div>
+                        <div class="pull-left">&nbsp;at {!! $item->published_at->format($item::DFORMAT) !!}&nbsp;</div>
                     @endif
                 </div>
                 {{--<a title="My Study Verse" href="{!! url('reader/my-study-verse?'.http_build_query([

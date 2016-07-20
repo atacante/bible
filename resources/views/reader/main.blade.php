@@ -131,7 +131,7 @@
                                 {{--<i class="fa fa-pencil pull-right" aria-hidden="true"></i>--}}
                                 <i class="fa fa-location-arrow fa-graduation-cap pull-right" aria-hidden="true"></i>
                             </a>
-                            <div class="pull-right">{!! $item->created_at->format('m/d/Y') !!}</div>
+                            <div class="pull-right">{!! $item->created_at->format($item::DFORMAT) !!}</div>
                         </div>
                         <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" , data-itemtype="{!! $item->type !!}">
                                 @if($item->highlighted_text)

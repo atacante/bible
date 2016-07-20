@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VersesNasbEn extends Model
+class VersesNasbEn extends BaseModel
 {
     public $timestamps  = false;
 

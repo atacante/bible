@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Request;
 
 class BaseModel extends Model {
 
-    const DFORMAT = 'm/d/Y';
+    const   DFORMAT = 'm/d/Y';
 
     public function rules(){
         return [];

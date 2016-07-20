@@ -5,7 +5,7 @@ namespace App;
 use App\Helpers\ModelHelper;
 use Illuminate\Database\Eloquent\Model;
 
-class LexiconBase extends Model
+class LexiconBase extends BaseModel
 {
     public $timestamps  = false;
 

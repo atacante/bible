@@ -135,7 +135,7 @@
                                 @endif
                             </td>
                             <td class="text-center">{!! ViewHelper::getAccessLevelIcon($entry->access_level) !!}</td>
-                            <td>{!! $entry->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
+                            <td>{!! $entry->created_at->format($entry::DFORMAT) !!}</td>{{--H:i--}}
                             <td class="text-center">
                                 <a title="Print prayer entry" href="#" data-prayerid="{!! $entry->id !!}" class="j-print-prayer"><i
                                             class="fa fa-print fa-2x"

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class BlogComment extends Model {
+class BlogComment extends BaseModel {
 
 	protected $fillable = [];
 

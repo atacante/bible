@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class Tag extends Model
+class Tag extends BaseModel
 {
     const TYPE_SYSTEM = 'system';
     const TYPE_USER = 'user';

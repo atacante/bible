@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class BlogCategory extends Model {
+class BlogCategory extends BaseModel {
 
 	protected $fillable = [];
 

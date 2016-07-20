@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WallComment extends Model
+class WallComment extends BaseModel
 {
     protected $fillable = array('user_id', 'text');
 

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PrayerTag extends Model
+class PrayerTag extends BaseModel
 {
     public $timestamps  = false;
     protected $table = 'prayers_tags';

@@ -32,7 +32,7 @@
                         @endif
                     </td>
                     <td class="text-center">{!! ViewHelper::getAccessLevelIcon($journal->access_level) !!}</td>
-                    <td>{!! $journal->created_at->format('m/d/Y') !!}</td>{{--H:i--}}
+                    <td>{!! $journal->created_at->format($journal::DFORMAT) !!}</td>{{--H:i--}}
                     <td class="text-center">
                         <a title="Print Journal Entry" href="#" data-journalid="{!! $journal->id !!}"
                            class="j-print-journal"><i

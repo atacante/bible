@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class JournalTag extends Model
+class JournalTag extends BaseModel
 {
     public $timestamps  = false;
     protected $table = 'journal_tags';

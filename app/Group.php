@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 
-class Group extends Model
+class Group extends BaseModel
 {
     const ACCESS_PUBLIC = 'public';
     const ACCESS_SECRET = 'secret';

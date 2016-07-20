@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StrongsNasec extends Model
+class StrongsNasec extends BaseModel
 {
     public $timestamps  = false;
 

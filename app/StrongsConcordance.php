@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StrongsConcordance extends Model
+class StrongsConcordance extends BaseModel
 {
     public $timestamps  = false;
 

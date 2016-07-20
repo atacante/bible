@@ -39,7 +39,7 @@
                                     <td>{!! link_to('#',$lexiconinfo->strong_num) !!}</td>
                                     <td>{!! $lexiconinfo->transliteration !!}</td>
                                     <td>{!! $lexiconinfo->definition !!}</td>
-                                    <td class="text-center">{!! $lexiconinfo->symbolism_updated_at?$lexiconinfo->symbolism_updated_at->format('m/d/Y'):'' !!}</td>
+                                    <td class="text-center">{!! $lexiconinfo->symbolism_updated_at?$lexiconinfo->symbolism_updated_at->format($lexiconinfo::DFORMAT):'' !!}</td>
                                     <td class="text-center" style="width: 50px;">
                                         <a href="{!! url('/admin/lexicon/update/'.$lexiconCode.'/'.$lexiconinfo->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em;"></i></a>
                                     </td>

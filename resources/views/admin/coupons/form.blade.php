@@ -39,7 +39,7 @@
     </div>
     <div class="form-group {{ $errors->has('expire_at') ? ' has-error' : '' }}">
         {!! Form::label('expire_at', 'Expiration (leave empty to ignore expiration):') !!}
-        {!! Form::text('expire_at',$model->expire_at?$model->expire_at->format('m/d/Y'):'',['placeholder' => 'mm/dd/yyyy','class' => 'form-control coupon-datepicker','style' => '']) !!}
+        {!! Form::text('expire_at',$model->expire_at?$model->expire_at->format($model::DFORMAT):'',['placeholder' => 'mm/dd/yyyy','class' => 'form-control coupon-datepicker','style' => '']) !!}
         @if ($errors->has('expire_at'))
             <span class="help-block">
                         {{ $errors->first('expire_at') }}
