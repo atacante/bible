@@ -113,6 +113,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::controller('site', 'SiteController');
     Route::controller('community', 'CommunityController');
     Route::controller('groups', 'GroupsController');
+//    Route::controller('notes', 'NotesController', ['getComments']);
 
     Route::get('/blog/category/{id}', ['uses' => 'BlogController@getCategory']);
     Route::get('/blog/article/{id}', ['uses' => 'BlogController@getArticle']);
@@ -122,30 +123,35 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'community', 'uses' => 'CommunityController@getWall'
     ]);
 
+    Route::get('/notes/comments', array('uses' => 'NotesController@getComments'));
+
     Route::controllers([
         'auth' => 'Auth\AuthController',
         'password' => 'Auth\PasswordController',
     ]);
 });
 
-Route::get('notes/comments', array('before' => 'web', 'uses' => 'NotesController@getComments'));
+Route::get('notes/comments/{id}', array('middleware' => 'web', 'uses' => 'NotesController@getComments'));
+Route::get('journal/comments/{id}', array('middleware' => 'web', 'uses' => 'JournalController@getComments'));
+Route::get('prayers/comments/{id}', array('middleware' => 'web', 'uses' => 'PrayersController@getComments'));
+Route::get('wall-posts/comments/{id}', array('middleware' => 'web', 'uses' => 'WallPostsController@getComments'));
 
 Route::group([
         'middleware' => ['auth', 'acl'],
         'is' => 'user'
 ], function () {
 //    Route::resource('reader', 'ReaderController@getMyStudyVersev');
-    Route::controller('notes', 'NotesController', ['Except' => 'comments']);
+    Route::controller('notes', 'NotesController');
     Route::controller('journal', 'JournalController');
     Route::controller('prayers', 'PrayersController');
     Route::controller('wall-posts', 'WallPostsController');
 });
 
-Route::get('notes/comments', [
-    'uses'          => 'NotesController@getComments',
-    'middleware'    => ['web'],
-    'as'            => 'notes'
-]);
+//Route::get('notes/comments', [
+//    'uses'          => 'NotesController@getComments',
+//    'middleware'    => ['web'],
+//    'as'            => 'notes'
+//]);
 
 /*
 | User routes
