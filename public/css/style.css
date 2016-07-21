@@ -931,4 +931,8 @@ a.view-details:hover{
     transition: all .2s ease-in-out;
 }
 
+.wall-like-btn.liked,.wall-like-btn.liked .fa{
+    color: #d9534f;
+}
+
 

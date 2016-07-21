@@ -13,6 +13,7 @@ use App\Prayer;
 use App\Tag;
 use App\VersionsListEn;
 use App\WallComment;
+use App\WallLike;
 use FineDiffTests\Usage\Base;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -365,5 +366,58 @@ class NotesController extends Controller
             return view('community.wall-comment-item', ['comment' => $commentCreated]);
         }
         return 0;
+    }
+
+    public function getLikes($id)
+    {
+        $limit = 5;
+        $page = Input::get('page',1);
+        $offset = $limit*($page-1);
+
+        $model = Note::/*with('comments')->*/find($id);
+        if (!$model) {
+            abort(404);
+        }
+        $model->type = 'note';
+
+        $comments = $model->likes();
+        $totalCount = $model->comments->count();
+        $noteComments = $comments->limit($limit)->offset($offset)->get();
+
+        $content['likes'] = $noteComments;
+        $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
+
+        $view = 'community.wall-likes';
+
+        return view($view, ['item' => $model,'content' => $content]);
+    }
+
+    public function anySaveLike($id)
+    {
+        $model = Note::find($id);
+        if (!$model) {
+            abort(404);
+        }
+        $liked = 0;
+        if(!$model->likes()->where('user_id',Auth::user()->id)->get()->count()){
+            $model->likes()->attach(Auth::user()->id);
+            $liked = 1;
+        }
+        return $liked;
+    }
+
+    public function anyRemoveLike($id)
+    {
+        $model = Note::find($id);
+        if (!$model) {
+            abort(404);
+        }
+
+        $unliked = 0;
+        if($model->likes()->where('user_id',Auth::user()->id)->get()->count()){
+            $model->likes()->detach(Auth::user()->id);
+            $unliked = 1;
+        }
+        return $unliked;
     }
 }

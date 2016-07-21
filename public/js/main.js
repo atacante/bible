@@ -1094,4 +1094,17 @@ $(document).ready(function(){
             form.parents('.j-item-comments').find('.j-comments-list').prepend(data);
         });
     });
+
+    $('.j-wall-items').on('click','.j-wall-like-btn',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $(that).parent().find('.j-wall-like-btn').toggleClass('hidden');
+            }
+        });
+    });
 });
