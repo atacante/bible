@@ -32,7 +32,9 @@ class BlogController extends Controller {
 	public function getCategory($id)
 	{
 		$categories =  BlogCategory::all();
-		$articles =  BlogArticle::where('category_id', $id)->orderBy('published_at', SORT_DESC)->paginate(1);
+		$articles =  BlogArticle::where('category_id', $id)
+						->orderBy('published_at', SORT_DESC)
+						->paginate(1);
 
 		return view('blog.blog',['categories'=>$categories, 'articles'=>$articles]);
 	}
