@@ -81,6 +81,11 @@ class Prayer extends BaseModel
         return $this->morphMany('App\WallComment','item','type')->orderBy('created_at','desc');
     }
 
+    public function likes()
+    {
+        return $this->morphToMany('App\User','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+    }
+
     public function availableTags()
     {
         return Tag::where('type', Tag::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->lists('tag_name','id')->toArray();

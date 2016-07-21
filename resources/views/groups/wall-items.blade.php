@@ -49,10 +49,16 @@
             </div>
             <div class="item-footer">
                 <div class="item-actions">
-                    <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/save-like') !!}" data-type="{!! $item->type !!}">
+                    @role('user')
+                    <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/save-like/'.$item->id) !!}" class="wall-like-btn j-wall-like-btn {!! in_array($item->id,ViewHelper::getMyLikes($item->type))?'hidden':'' !!}" data-type="{!! $item->type !!}">
                         <i class="fa fa-btn fa-heart"></i>
                         Like
                     </a>
+                    <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/remove-like/'.$item->id) !!}" class="wall-like-btn j-wall-like-btn liked {!! in_array($item->id,ViewHelper::getMyLikes($item->type))?'':'hidden' !!}" data-type="{!! $item->type !!}">
+                        <i class="fa fa-btn fa-heart"></i>
+                        Like
+                    </a>
+                    @endrole
                     <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/comments/'.$item->id) !!}" class="j-wall-item-comments" data-type="{!! $item->type !!}">
                         <i class="fa fa-btn fa-comments"></i>
                         Comments

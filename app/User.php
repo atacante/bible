@@ -110,6 +110,26 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'users_friends', 'friend_id', 'user_id')->withTimestamps();
     }
 
+    public function notesLikes()
+    {
+        return $this->morphedByMany('App\Note','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+    }
+
+    public function journalLikes()
+    {
+        return $this->morphedByMany('App\Journal','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+    }
+
+    public function prayersLikes()
+    {
+        return $this->morphedByMany('App\Prayer','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+    }
+
+    public function statusesLikes()
+    {
+        return $this->morphedByMany('App\WallPost','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+    }
+
     public function friendRequests()
     {
         return $this->morphToMany('App\User', 'connect_requests');

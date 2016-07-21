@@ -83,4 +83,33 @@ class WallPostsController extends Controller
         }
         return 0;
     }
+
+    public function anySaveLike($id)
+    {
+        $model = WallPost::find($id);
+        if (!$model) {
+            abort(404);
+        }
+        $liked = 0;
+        if(!$model->likes()->where('user_id',Auth::user()->id)->get()->count()){
+            $model->likes()->attach(Auth::user()->id);
+            $liked = 1;
+        }
+        return $liked;
+    }
+
+    public function anyRemoveLike($id)
+    {
+        $model = WallPost::find($id);
+        if (!$model) {
+            abort(404);
+        }
+
+        $unliked = 0;
+        if($model->likes()->where('user_id',Auth::user()->id)->get()->count()){
+            $model->likes()->detach(Auth::user()->id);
+            $unliked = 1;
+        }
+        return $unliked;
+    }
 }

@@ -7,6 +7,7 @@ use App\Note;
 use App\Prayer;
 use App\Tag;
 use App\VersionsListEn;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -179,6 +180,27 @@ class ViewHelper
         }
 
         return $action;
+    }
+
+    public static function getMyLikes($entryType)
+    {
+        $ids = [];
+
+        switch($entryType){
+            case 'note':
+                $ids = Auth::user()->notesLikes->modelKeys();
+                break;
+            case 'journal':
+                $ids = Auth::user()->journalLikes->modelKeys();
+                break;
+            case 'prayer':
+                $ids = Auth::user()->prayersLikes->modelKeys();
+                break;
+            case 'status':
+                $ids = Auth::user()->statusesLikes->modelKeys();
+                break;
+        }
+        return $ids;
     }
 
     public static function getEntryTags($entryType,$entryId)
