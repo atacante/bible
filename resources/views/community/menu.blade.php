@@ -15,7 +15,7 @@
     <li class="{{ (Request::is('community/find-friends') ? 'active' : '') }}" role="presentation">
         <a href="{{ url('community/find-friends') }}"><i class="fa-btn ion-person-stalker" style="font-size: 16px;"></i>Find Friends</a>
     </li>
-    <li class="{{ (Request::is('community/blog') ? 'active' : '') }}" role="presentation">
+    <li class="{{ (Request::is('blog') ? 'active' : '') }}" role="presentation">
         <a href="#"><i class="fa fa-btn fa-newspaper-o"></i>Blog</a>
     </li>
 </ul>

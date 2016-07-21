@@ -6,7 +6,14 @@
             @include('blog.categories')
         </div>
         <div class="col-md-10 related-records public-wall">
-            @include('blog.articles')
+            <div class="row">
+                <div class="pull-right friends-nav">
+                    @include('blog.search')
+                </div>
+            </div>
+            <div class="row">
+                @include('blog.articles')
+            </div>
         </div>
     </div>
 @endsection

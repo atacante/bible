@@ -58,7 +58,7 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ URL::to('/community/find-friends') }}">{{--<i class="fa fa-users"></i>--}} Find Friends</a></li>
                         <li><a href="{{ URL::to('/groups') }}">{{--<i class="fa fa-users"></i>--}} Groups</a></li>
-                        <li><a href="{{ URL::to('/community/blog') }}">{{--<i class="fa fa-map-marker"></i>--}} Blog</a></li>
+                        <li><a href="{{ URL::to('/blog') }}">{{--<i class="fa fa-map-marker"></i>--}} Blog</a></li>
                     </ul>
                 </li>
                 </li>

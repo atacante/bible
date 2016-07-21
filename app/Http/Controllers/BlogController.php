@@ -9,6 +9,25 @@ use Illuminate\Support\Facades\Input;
 
 class BlogController extends Controller {
 
+
+	private function prepareFilters($model)
+	{
+		$searchFilter = Input::get('search', false);
+		$categoryFilter = Input::get('category', false);
+
+		if (!empty($searchFilter)) {
+			$model
+				->where('text', 'ilike', '%' . $searchFilter . '%')
+				->orWhere('title', 'ilike', '%' . $searchFilter . '%');
+		}
+
+		if(!empty($categoryFilter)){
+			$model->where('category_id', $categoryFilter);
+		}
+
+		return $model;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 * GET /blog
@@ -18,23 +37,11 @@ class BlogController extends Controller {
 	public function getIndex()
 	{
 		$categories =  BlogCategory::all();
-		$articles =  BlogArticle::orderBy('published_at', SORT_DESC)->paginate(2);
+		$articles =  BlogArticle::query();
 
-		return view('blog.blog',['categories'=>$categories, 'articles'=>$articles]);
-	}
+		$articles = $this->prepareFilters($articles);
 
-	/**
-	 * Display a listing of the resource by category.
-	 * GET /blog/category/{id}
-	 *
-	 * @return Response
-	 */
-	public function getCategory($id)
-	{
-		$categories =  BlogCategory::all();
-		$articles =  BlogArticle::where('category_id', $id)
-						->orderBy('published_at', SORT_DESC)
-						->paginate(1);
+		$articles = $articles->orderBy('published_at', SORT_DESC)->paginate(1);
 
 		return view('blog.blog',['categories'=>$categories, 'articles'=>$articles]);
 	}
