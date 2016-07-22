@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\BlogArticle;
+use App\BlogCategory;
 use App\Coupon;
 use App\Helpers\ViewHelper;
 use App\LexiconsListEn;
@@ -29,6 +31,7 @@ class DashboardController extends Controller
         $content['locationsCount'] = Location::query()->count();
         $content['peoplesCount'] = People::query()->count();
         $content['couponsCount'] = Coupon::query()->count();
+        $content['articlesCount'] = BlogArticle::query()->count();
         return view('admin.dashboard.main',
             [
                 'page_title' => 'Dashboard',

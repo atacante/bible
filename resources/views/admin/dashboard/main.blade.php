@@ -114,5 +114,19 @@
                 </a>
             </div>
         </div>
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-yellow" style="background-color: #737357 !important;">
+                <div class="inner">
+                    <h3>{!! $content['articlesCount'] !!}</h3>
+                    <p>Blog Article{!! $content['articlesCount'] != 1?'s':'' !!}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-newspaper-o"></i>
+                </div>
+                <a href="{{ url('admin/blog/list') }}" class="small-box-footer">
+                    View All <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
     </div>
 @endsection

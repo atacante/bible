@@ -47,6 +47,9 @@ $router->group([
         'location' => 'LocationController',
         'peoples' => 'PeoplesController',
         'coupons' => 'CouponsController',
+        'blog' => 'BlogController',
+        'categories' => 'CategoriesController',
+        'articles' => 'ArticlesController',
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });

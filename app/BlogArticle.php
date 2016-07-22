@@ -2,7 +2,7 @@
 
 class BlogArticle extends BaseModel {
 
-	protected $fillable = [];
+	protected $fillable = ['category_id', 'text', 'title', 'user_id'];
 	protected $dates = ['created_at', 'updated_at', 'published_at'];
 
 	public function user() {
