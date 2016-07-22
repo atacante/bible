@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div id="cancel-request-sm" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="">
+<div id="cancel-request-sm" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="" style="z-index:999999;">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">

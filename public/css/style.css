@@ -331,6 +331,26 @@ a.view-details:hover{
     padding: 5px 8px;
 }
 
+.related-item .item-actions .popover-content{
+    padding: 3px;
+}
+
+.related-item .item-actions .like-img{
+    margin-right: 3px;
+}
+
+.related-item .item-actions .like-item:last-child .like-img{
+    margin-right: 0;
+}
+
+.item-actions .show-more-likes{
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+    line-height: 26px;
+    font-weight: bold;
+}
+
 .related-item .item-actions a{
     text-decoration: none;
     margin-right: 10px;

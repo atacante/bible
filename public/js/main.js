@@ -129,7 +129,7 @@ $(document).ready(function(){
         return false;
     });
 
-    $('a[data-target="#cancel-request-sm"]').click(function(ev) {
+    $('body').on('click','a[data-target="#cancel-request-sm"]', function(ev) {
         var href = $(this).attr('href');
         $('#cancel-request-sm').attr('data-itemid',$(this).attr('data-itemid'));
         $('#cancel-request-sm').find('.modal-header .modal-title').text($(this).attr('data-header'));
@@ -829,7 +829,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.public-wall,.j-members-list,.j-friends-items,.group-block .g-body').on('click','.load-more',function(e){
+    $('.public-wall,.j-members-list,.j-friends-items,.group-block .g-body,#popup').on('click','.load-more',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
         var that = this;
@@ -845,7 +845,7 @@ $(document).ready(function(){
                 }
                 else{
                     var parent = $(that).parents('.g-body');
-                    $('.public-wall,.j-friends-items,.j-members-list .row').append(data);
+                    $('.public-wall,.j-friends-items,.j-members-list .row,#popup .modal-body').append(data);
                     $('.load-more-block').remove();
                     parent.append(data);
                 }
@@ -853,7 +853,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-friends-list').on('click','.j-follow-friend,.j-approve-friend-request',function(e){
+    $('.j-friends-list,.j-members-list,#popup').on('click','.j-follow-friend,.j-approve-friend-request',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
         var that = this;
@@ -887,8 +887,9 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-friends-list,#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request,.j-ignore-friend-request',function(e){
+    $('.j-friends-list,.j-members-list,#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request,.j-ignore-friend-request',function(e){
         e.preventDefault();
+        console.log('j-cancel-friend-request');
         var url = $(this).attr('href');
         var that = this;
         $.ajax({
@@ -1097,6 +1098,7 @@ $(document).ready(function(){
 
     $('.j-wall-items').on('click','.j-wall-like-btn',function(e){
         e.preventDefault();
+        $(this).popover('destroy');
         var url = $(this).attr('href');
         var that = this;
         $.ajax({
@@ -1104,6 +1106,52 @@ $(document).ready(function(){
             url: url,
             success:function(data){
                 $(that).parent().find('.j-wall-like-btn').toggleClass('hidden');
+            }
+        });
+    });
+
+    $('.j-wall-items').on('mouseout','.j-wall-like-btn,.j-wall-item,.popover',function(e){
+        if(!($('.popover:hover').length || $('.j-wall-item:hover').length)){
+            $('.j-wall-like-btn').each(function () {
+                $(this).popover('destroy');
+            });
+        }
+    });
+
+    $('.j-wall-items').on('mouseover','.j-wall-like-btn',function(e){
+        var url = $(this).data('likeslink');
+        var that = this;
+        if($(that).parent().find('.popover').length == 0){
+            $.ajax({
+                method: "GET",
+                url: url,
+                success:function(data){
+                    $(that).popover(
+                        {
+                            html: true,
+                            placement:'auto',
+                            title: '',
+                            content: data,
+                        }
+                    );
+                    $(that).popover('show');
+                }
+            });
+        }
+    });
+
+    $('.j-wall-items').on('click','.j-show-all-likes',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $('#popup').find('.modal-header .modal-title').html('All item likes');
+                $('#popup').find('.modal-body').html(data);
+                $('#popup').find('.modal-footer').html('');
+                $('#popup').modal({show:true});
             }
         });
     });

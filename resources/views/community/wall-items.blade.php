@@ -1,6 +1,6 @@
 @if($content['entries']->count())
     @foreach($content['entries'] as $item)
-        <div class="related-item">
+        <div class="related-item j-wall-item">
             <div class="item-header">
                 <i title="{!! ucfirst($item->type) !!} Entry"
                    class="pull-left fa fa-btn {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
@@ -51,11 +51,11 @@
             <div class="item-footer">
                 <div class="item-actions">
                     @role('user')
-                    <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/save-like/'.$item->id) !!}" class="wall-like-btn j-wall-like-btn {!! in_array($item->id,ViewHelper::getMyLikes($item->type))?'hidden':'' !!}" data-type="{!! $item->type !!}">
+                    <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/save-like/'.$item->id) !!}" class="wall-like-btn j-wall-like-btn {!! in_array($item->id,ViewHelper::getMyLikes($item->type))?'hidden':'' !!}" data-type="{!! $item->type !!}" data-likeslink="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/likes/'.$item->id) !!}">
                         <i class="fa fa-btn fa-heart"></i>
                         Like
                     </a>
-                    <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/remove-like/'.$item->id) !!}" class="wall-like-btn j-wall-like-btn liked {!! in_array($item->id,ViewHelper::getMyLikes($item->type))?'':'hidden' !!}" data-type="{!! $item->type !!}">
+                    <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/remove-like/'.$item->id) !!}" class="wall-like-btn j-wall-like-btn liked {!! in_array($item->id,ViewHelper::getMyLikes($item->type))?'':'hidden' !!}" data-type="{!! $item->type !!}" data-likeslink="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/likes/'.$item->id) !!}">
                         <i class="fa fa-btn fa-heart"></i>
                         Like
                     </a>

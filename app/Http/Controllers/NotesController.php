@@ -368,28 +368,48 @@ class NotesController extends Controller
         return 0;
     }
 
-    public function getLikes($id)
+    public function getLikes($id,$type = 'simple')
     {
         $limit = 5;
+        if($type == 'full'){
+            $limit = 6;
+        }
         $page = Input::get('page',1);
         $offset = $limit*($page-1);
 
-        $model = Note::/*with('comments')->*/find($id);
+        $model = Note::find($id);
         if (!$model) {
             abort(404);
         }
         $model->type = 'note';
 
-        $comments = $model->likes();
-        $totalCount = $model->comments->count();
-        $noteComments = $comments->limit($limit)->offset($offset)->get();
+        $likes = $model->likes();
+        $totalCount = $model->likes->count();
+        $likes = $likes->limit($limit)->offset($offset)->get();
 
-        $content['likes'] = $noteComments;
+        $content['likes'] = $likes;
+
+        $requests = [];
+        $ignoredRequests = [];
+        $myRequests = [];
+        $myFriends = [];
+        if(Auth::user()){
+            $requests = Auth::user()->requests->modelKeys();
+            $ignoredRequests = Auth::user()->requests()->where('ignore',true)->get()->modelKeys();
+            $myRequests = Auth::user()->friends->modelKeys();
+            $myFriends = array_intersect($requests, $myRequests);
+        }
+
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
 
-        $view = 'community.wall-likes';
-
-        return view($view, ['item' => $model,'content' => $content]);
+        return view('community.wall-likes-'.$type, [
+            'item' => $model,
+            'content' => $content,
+            'myFriends' => $myFriends,
+            'requests' => $requests,
+            'ignoredRequests' => $ignoredRequests,
+            'myRequests' => $myRequests
+        ]);
     }
 
     public function anySaveLike($id)

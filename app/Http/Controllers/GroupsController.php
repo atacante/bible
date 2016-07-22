@@ -223,9 +223,22 @@ class GroupsController extends Controller
         $content['membersSample'] = $this->getMembers($id,'random')['members'];
         $content['membersToRequest'] = $this->getMembersToRequest($id);
 
+        $requests = [];
+        $ignoredRequests = [];
+        $myRequests = [];
+        $myFriends = [];
+
         if(Input::get('p') == 'members'){
             $membersData = $this->getMembers($id);
             $content['members'] = $membersData['members'];
+
+            if(Auth::user()){
+                $requests = $membersData['requests'];
+                $ignoredRequests = $membersData['ignoredRequests'];
+                $myRequests = $membersData['myRequests'];
+                $myFriends = $membersData['myFriends'];
+            }
+
             $content['nextPage'] = $membersData['nextPage'];
         }
         elseif(Input::get('p') == 'requests'){
@@ -285,7 +298,15 @@ class GroupsController extends Controller
             $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
         }
         $status = new WallPost();
-        return view('groups.view', ['model' => $model,'status' => $status,'content' => $content]);
+        return view('groups.view', [
+            'model' => $model,
+            'status' => $status,
+            'content' => $content,
+            'myFriends' => $myFriends,
+            'requests' => $requests,
+            'ignoredRequests' => $ignoredRequests,
+            'myRequests' => $myRequests
+        ]);
     }
 
     public function getMembers($groupId,$order = false)
@@ -306,9 +327,9 @@ class GroupsController extends Controller
             $members->orWhere('users.id',$group->owner_id);
         }
 
-        $members->groupBy('users.id')->groupBy('groups_users.user_id')/*->groupBy('groups_users.banned')*/->limit($limit)->offset($offset);
-
         $totalCount = $members->count();
+
+        $members->groupBy('users.id')->groupBy('groups_users.user_id')/*->groupBy('groups_users.banned')*/->limit($limit)->offset($offset);
 
         if($order == 'random'){
             $members->orderByRaw("RANDOM()");
@@ -325,10 +346,29 @@ class GroupsController extends Controller
             \Illuminate\Pagination\Paginator::resolveCurrentPage(), //resolve the path
             ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
         );
+
+        $content['requests'] = [];
+        $content['ignoredRequests'] = [];
+        $content['myRequests'] = [];
+        $content['myFriends'] = [];
+        if(Auth::user()){
+            $content['requests'] = Auth::user()->requests->modelKeys();
+            $content['ignoredRequests'] = Auth::user()->requests()->where('ignore',true)->get()->modelKeys();
+            $content['myRequests'] = Auth::user()->friends->modelKeys();
+            $content['myFriends'] = array_intersect($content['requests'], $content['myRequests']);
+        }
+
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
 
         if(Request::ajax()){
-            return view('groups.members', ['model' => $group,'content' => $content]);
+            return view('groups.members', [
+                'model' => $group,
+                'content' => $content,
+                'myFriends' => $content['myFriends'],
+                'requests' => $content['requests'],
+                'ignoredRequests' => $content['ignoredRequests'],
+                'myRequests' => $content['myRequests']
+            ]);
         }
 
         return $content;

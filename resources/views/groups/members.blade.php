@@ -21,8 +21,29 @@
             </div>
             <div class="pull-left">
                 @if(Auth::user() && Auth::user()->id != $member->id)
-                <a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'':'hidden' !!}" style="padding: 4px 8px;">Unfollow</a>
-                <a href="{!! url('/user/follow-friend/'.$member->id,[],false) !!}" class="btn btn-primary j-follow-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'hidden':'' !!}" style="padding: 4px 8px;">Follow</a>
+                    <a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,$myFriends)?'':'hidden' !!}"
+                       data-toggle="modal"
+                       data-target="#cancel-request-sm"
+                       data-itemid="{!! $member->id !!}"
+                       data-header="Remove user from friends"
+                       data-callclass="j-remove-friend"
+                       data-confirm="Are you sure you want to remove this user from friends?">Unfriend</a>
+                    <a href="{!! url('/user/cancel-friend-request/'.$member->id,[],false) !!}" class="btn btn-danger j-cancel-friend-request {!! in_array($member->id,$myRequests) && !in_array($member->id,$myFriends)?'':'hidden' !!}"
+                       data-toggle="modal"
+                       data-target="#cancel-request-sm"
+                       data-itemid="{!! $member->id !!}"
+                       data-header="Cancel Request"
+                       data-callclass="j-cancel-friend-request"
+                       data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
+                    @if(in_array($member->id,$requests))
+                        @if(in_array($member->id,$ignoredRequests))
+                            <a href="#" class="btn btn-danger disabled">Ignored</a>
+                        @else
+                            <a href="{!! url('/user/approve-friend-request/'.$member->id,[],false) !!}" class="btn btn-success j-approve-friend-request {!! !in_array($member->id,$myFriends) && in_array($member->id,$requests)?'':'hidden' !!}">Confirm Request</a>
+                        @endif
+                    @else
+                        <a href="{!! url('/user/request-friend/'.$member->id,[],false) !!}" class="btn btn-{!! in_array($member->id,$requests)?'success':'primary' !!} j-follow-friend {!! in_array($member->id,$myFriends) || in_array($member->id,$myRequests)?'hidden':'' !!}">Add Friend</a>
+                    @endif
                     @if(Auth::user() && Auth::user()->id == $model->owner_id)
                     <a href="{!! url('/groups/ban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-danger j-ban-member {!! $member->banned?'hidden':'' !!}" style="padding: 4px 8px;">Ban</a>
                     <a href="{!! url('/groups/unban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-success j-unban-member {!! !$member->banned?'hidden':'' !!}" style="padding: 4px 8px;">Unban</a>
