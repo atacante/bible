@@ -843,9 +843,13 @@ $(document).ready(function(){
                     commentsParent.find('.load-more-block').remove();
                     commentsParent.append(data);
                 }
+                else if($('#popup').is(':visible')){
+                    $('#popup .modal-body').append(data);
+                    $('#popup .modal-body .load-more-block').remove();
+                }
                 else{
                     var parent = $(that).parents('.g-body');
-                    $('.public-wall,.j-friends-items,.j-members-list .row,#popup .modal-body').append(data);
+                    $('.public-wall,.j-friends-items,.j-members-list .row').append(data);
                     $('.load-more-block').remove();
                     parent.append(data);
                 }
