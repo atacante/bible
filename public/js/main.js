@@ -1097,6 +1097,14 @@ $(document).ready(function(){
         site.ajaxForm(form,function(data){
             form[0].reset();
             form.parents('.j-item-comments').find('.j-comments-list').prepend(data);
+
+            var curCommentsCount = parseInt(form.parents('.j-item-footer').find('.j-comments-count').html());
+            if($(that).hasClass('liked')){
+                form.parents('.j-item-footer').find('.j-comments-count').html(curCommentsCount-1);
+            }
+            else{
+                form.parents('.j-item-footer').find('.j-comments-count').html(curCommentsCount+1);
+            }
         });
     });
 
@@ -1110,6 +1118,14 @@ $(document).ready(function(){
             url: url,
             success:function(data){
                 $(that).parent().find('.j-wall-like-btn').toggleClass('hidden');
+
+                var curLikesCount = parseInt($(that).parent().find('.j-likes-count').html());
+                if($(that).hasClass('liked')){
+                    $(that).parent().find('.j-likes-count').html(curLikesCount-1);
+                }
+                else{
+                    $(that).parent().find('.j-likes-count').html(curLikesCount+1);
+                }
             }
         });
     });

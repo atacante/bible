@@ -51,7 +51,10 @@ class CommunityController extends Controller
         }
 
         $statusesQuery = WallPost::with(['verse','user'])
-            ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,text,type,null as bible_version,published_at')
+            ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,text,type,null as bible_version,published_at,
+                (SELECT count(*) FROM wall_likes WHERE item_type = \'App\WallPost\' AND item_id = wall_posts.id) as likesCount,
+                (SELECT count(*) FROM wall_comments WHERE type = \'App\WallPost\' AND item_id = wall_posts.id) as commentsCount
+            ')
             ->where(function($q) {
                 $q->whereIn('access_level',[WallPost::ACCESS_PUBLIC_ALL]);
                 if(Auth::user()){
@@ -73,7 +76,10 @@ class CommunityController extends Controller
         $statusesCount = $statusesQuery->count();
 
         $journalQuery = Journal::with(['verse','user'])
-            ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at')
+            ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at,
+                (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Journal\' AND item_id = journal.id) as likesCount,
+                (SELECT count(*) FROM wall_comments WHERE type = \'App\Journal\' AND item_id = journal.id) as commentsCount
+            ')
 //            ->where('user_id',Auth::user()?Auth::user()->id:null)
             ->where('access_level',Journal::ACCESS_PUBLIC_ALL);
         if(Auth::user() && $type == 'friends'){
@@ -82,7 +88,10 @@ class CommunityController extends Controller
         }
         $journalCount = $journalQuery->count();
         $prayersQuery = Prayer::with(['verse','user'])
-            ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,prayer_text as text,\'prayer\' as type,bible_version,published_at')
+            ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,prayer_text as text,\'prayer\' as type,bible_version,published_at,
+                (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Prayer\' AND item_id = prayers.id) as likesCount,
+                (SELECT count(*) FROM wall_comments WHERE type = \'App\Prayer\' AND item_id = prayers.id) as commentsCount
+            ')
 //            ->where('user_id',Auth::user()?Auth::user()->id:null)
             ->where('access_level',Journal::ACCESS_PUBLIC_ALL);
         if(Auth::user() && $type == 'friends'){
@@ -91,7 +100,10 @@ class CommunityController extends Controller
         }
         $prayersCount = $prayersQuery->count();
         $notesQuery = Note::with(['verse','user'])
-            ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,note_text as text,\'note\' as type,bible_version,published_at')
+            ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,note_text as text,\'note\' as type,bible_version,published_at,
+                (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Note\' AND item_id = notes.id) as likesCount,
+                (SELECT count(*) FROM wall_comments WHERE type = \'App\Note\' AND item_id = notes.id) as commentsCount
+            ')
 //            ->where('user_id',Auth::user()?Auth::user()->id:null)
             ->where('access_level',Journal::ACCESS_PUBLIC_ALL);
         if(Auth::user() && $type == 'friends'){
