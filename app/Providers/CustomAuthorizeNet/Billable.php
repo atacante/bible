@@ -317,4 +317,20 @@ trait Billable
             $this->subscription()->cancelNow();
         }
     }
+
+    /**
+     * Get a subscription instance by name.
+     *
+     * @param  string  $subscription
+     * @return \Laravel\Cashier\Subscription|null
+     */
+    public function subscription($subscription = 'default')
+    {
+        return $this->subscriptions()->get()->sortByDesc(function ($value) {
+            return $value->created_at->getTimestamp();
+        })
+            ->first(function ($key, $value) use ($subscription) {
+                return $value->name === $subscription;
+            });
+    }
 }

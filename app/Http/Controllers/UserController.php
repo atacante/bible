@@ -113,7 +113,7 @@ class UserController extends Controller
 
     public function anyProfile(\Illuminate\Http\Request $request)
     {
-        $user = User::find(Auth::user()->id);
+        $user = Auth::user();
 
         if($inputs = Input::old()){
             $user->fill($inputs);
@@ -136,7 +136,7 @@ class UserController extends Controller
 
         return view('user.profile',
             [
-                'model' => $user,
+                'model' => Auth::user(),
                 'page_title' => 'My Profile',
             ]);
     }
