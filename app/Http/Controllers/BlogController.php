@@ -41,7 +41,7 @@ class BlogController extends Controller {
 
 		$articles = $this->prepareFilters($articles);
 
-		$articles = $articles->orderBy('published_at', SORT_DESC)->paginate(1);
+		$articles = $articles->orderBy('published_at', SORT_DESC)->paginate(10);
 
 		return view('blog.blog',['categories'=>$categories, 'articles'=>$articles]);
 	}
