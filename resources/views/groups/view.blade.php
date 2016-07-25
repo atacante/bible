@@ -63,7 +63,7 @@
                     </div>
                 @else
                     <div class="col-md-9 related-records public-wall j-wall-items">
-                        @role('user')
+                        @if(Auth::check() && Auth::user()->is('user') && (in_array(Auth::user()->id,$model->members->modelKeys()) || Auth::user()->id == $model->owner_id))
                             @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_GROUP,'groupId' => $model->id])
                         @endif
                         @include('groups.wall-items')

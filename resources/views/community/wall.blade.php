@@ -15,7 +15,9 @@
                     <a href="{!! url('/community/wall?type=friends') !!}">My friends records</a>
                 </li>
             </ul>
-            @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_PUBLIC])
+            @if((!Request::get('type') || Request::get('type') == 'all'))
+                @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_PUBLIC])
+            @endif
             @endrole
             @include('community.wall-items')
         </div>

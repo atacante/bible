@@ -520,7 +520,7 @@ class GroupsController extends Controller
         $group = Group::find($id);
         if(Auth::user()->isPremium()){
             $alreadyJoined = $group->members()->where('user_id',Auth::user()->id);
-            if(!$alreadyJoined){
+            if(!$alreadyJoined->get()->count()){
                 Auth::user()->joinGroup($group);
                 if(Request::ajax()){
                     return 1;
