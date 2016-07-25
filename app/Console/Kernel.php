@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\ParseCsvCommand::class,
         Commands\CacheLexicon::class,
         Commands\CacheSymbolism::class,
+        Commands\CheckCouponExpiration::class,
         \App\Providers\CustomAuthorizeNet\Console\SubscriptionUpdates::class,
 
     ];
@@ -29,9 +30,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-                 ->hourly();
-
+        $schedule->command('inspire')->hourly();
         $schedule->command('subscription:update')->hourly();
+        $schedule->command('coupon:checkExpiration')->daily();
     }
 }
