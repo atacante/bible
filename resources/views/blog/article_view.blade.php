@@ -24,9 +24,7 @@
             </div>
         </div>
     </div>
-    <div class="related-item">
-        @include('blog.comments')
-    </div>
+    @include('blog.comments')
     <div class="row">
         <div class="text-center">
             {!! Html::link((($url = Session::get('backUrl'))?$url:'/blog'),'Back to list', ['class'=>'btn btn-primary']) !!}
