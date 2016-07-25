@@ -67,6 +67,9 @@ class User extends Authenticatable
                 $rules['email'] = 'required|email|max:255|unique:users,email,'.$this->id;
                 if(Input::get('plan_type') == self::PLAN_PREMIUM){
                     $rules['plan_name'] = 'required';
+                    if(!$this->hasPaymentAccount()){
+                        $rules['card_number'] = 'required|numeric';
+                    }
                 }
             }
                 break;
