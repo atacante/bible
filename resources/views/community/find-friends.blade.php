@@ -28,7 +28,7 @@
                     @include('community.friends-filters')
                 </div>
             </div>
-            <div class="j-friends-items">
+            <div class="j-friends-items" style="margin-top: 15px;">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="user-block">

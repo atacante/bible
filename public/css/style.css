@@ -791,6 +791,11 @@ a.view-details:hover{
     height: 100px;
 }
 
+.no-avatar-midi {
+    width: 54px;
+    height: 54px;
+}
+
 .no-avatar-mini {
     width: 40px;
     height: 40px;
@@ -809,6 +814,14 @@ a.view-details:hover{
     width: 34px;
     border: 1px solid #f4f4f4;
     line-height: 42px;
+    color: #ddd;
+}
+
+.no-avatar-midi .no-avatar-text {
+    height: 44px;
+    width: 44px;
+    border: 1px solid #f4f4f4;
+    line-height: 52px;
     color: #ddd;
 }
 
