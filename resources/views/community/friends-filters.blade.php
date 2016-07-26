@@ -22,8 +22,8 @@
     </div>
     @endrole--}}
     {!! Form::hidden('type',Request::input('type')) !!}
-    {!! Form::text('search',Request::input('search'),['placeholder' => 'Search by name or email...','class' => 'form-control','style' => 'width:200px; display:inline;']) !!}
+    {!! Form::text('search',Request::input('search'),['placeholder' => 'Search by name or email...','class' => 'form-control','style' => 'width:215px; display:inline; padding-right: 30px;']) !!}
     {!! Form::token() !!}
     {!! Form::button('Go',['type' => 'submit','class' => 'btn btn-primary']) !!}
-{{--        {!! Html::link('/community/find-friends','Reset', ['class'=>'btn btn-danger pull-left reset-filter']) !!}--}}
+    <a href="{!! url('/community/find-friends') !!}" style="position: absolute; top: 2px; right: 66px; font-size: 18px;"><i class="fa fa-btn fa-times"></i></a>
 {!! Form::close() !!}
