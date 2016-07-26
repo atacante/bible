@@ -34,8 +34,6 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')->hourly();
         $schedule->command('subscription:update')->hourly();
-        $schedule->command('coupon:checkExpiration')->everyMinute();
-
-        BlogCategory::create(['title' => 'Cron Run']);
+        $schedule->command('coupon:checkExpiration')->daily();
     }
 }
