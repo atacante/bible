@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\BlogCategory;
+use App\WallPost;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -33,5 +35,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('inspire')->hourly();
         $schedule->command('subscription:update')->hourly();
         $schedule->command('coupon:checkExpiration')->everyMinute();
+
+        BlogCategory::create(['title' => 'Cron Run']);
     }
 }
