@@ -32,6 +32,6 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')->hourly();
         $schedule->command('subscription:update')->hourly();
-        $schedule->command('coupon:checkExpiration')->daily();
+        $schedule->command('coupon:checkExpiration')->everyMinute();
     }
 }
