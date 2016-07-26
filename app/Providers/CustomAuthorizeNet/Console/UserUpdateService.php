@@ -14,7 +14,12 @@ class UserUpdateService
             if($user->isPremiumPaid()){
                 $user->plan_type = User::PLAN_PREMIUM;
             }else{
-                $user->plan_type = User::PLAN_FREE;
+                if($user->upgrade_plan){
+                    $user->upgradeToPremium($user->upgrade_plan);
+                }else{
+                    $user->plan_type = User::PLAN_FREE;
+                }
+
             }
 
             $user->save();

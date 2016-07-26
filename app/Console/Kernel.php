@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('inspire')->hourly();
-        $schedule->command('subscription:update')->hourly();
+        $schedule->command('subscription:update')->everyMinute();
         $schedule->command('coupon:checkExpiration')->daily();
     }
 }

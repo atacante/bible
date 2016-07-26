@@ -36,6 +36,10 @@ trait Billable
             }
         }
 
+        if(isset($result['subscription']['remove'])){
+            $result['subscription'] = ['success' => false, 'message' => ''];
+        }
+
         if(!$result){
             $result = [
                 'subscription' =>  ['success' => false, 'message' => ''],
@@ -65,8 +69,12 @@ trait Billable
                 if($result['account']['success']){
                     sleep(10);
                 }
-                $this->cancelOldPlan();
-                $result['subscription'] = $this->newSubscription($plan, $amount)->create();
+                if($this->cancelOldPlan($plan)){
+                    $result['subscription'] = $this->newSubscription($plan, $amount)->create();
+                }else{
+                    // Plan to change subscription at the end
+                    $result['subscription'] = ['remove' => true ,'success' => true, 'message' => 'Your will be moved to new subscription plan at '.date_format($this->subscription()->ends_at, 'Y-m-d')];
+                }
             }
 
         }
@@ -312,10 +320,23 @@ trait Billable
         return Config::get('cashier-authorize');
     }
 
-    public function cancelOldPlan(){
+    public function cancelOldPlan($new_plan){
+
+        $canceledNow = true;
+
         if($this->subscription()) {
-            $this->subscription()->cancelNow();
+            if($this->upgrade_plan){
+                $this->subscription()->cancelNow();
+            }else{
+                $this->subscription()->cancel();
+                $this->upgrade_plan = $new_plan;
+                $this->save();
+                $canceledNow = false;
+            }
+
         }
+
+        return $canceledNow;
     }
 
     /**

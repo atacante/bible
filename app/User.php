@@ -204,6 +204,8 @@ class User extends Authenticatable
 
         if($result['subscription']['success']){
             $this->upgraded_at = Carbon::now();
+            $this->plan_type = self::PLAN_PREMIUM;
+            $this->upgrade_plan = null;
             $this->save();
         }elseif(!empty($result['subscription']['message'])){
             $this->plan_type = self::PLAN_FREE;
