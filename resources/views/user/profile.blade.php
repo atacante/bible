@@ -89,7 +89,7 @@
                             </label>
                             <label class="radio-inline">
                                 {!! Form::radio('plan_type', 'premium', false) !!}
-                                Premium ({!! $model->isPremiumPaid()?'paid':'non-paid' !!})
+                                Premium ({!! $model->isPremiumPaid()?'paid | Expires at: '.$model->getPlanExpiresAt() :'non-paid' !!})
                             </label>
                             @if ($errors->has('plan_type'))
                                 <span class="help-block">

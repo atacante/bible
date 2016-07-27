@@ -258,4 +258,25 @@ class User extends Authenticatable
             return $this->subscription()->authorize_plan;
         }
     }
+
+    public function getPlanExpiresAt(){
+        if(!$this->isPremiumPaid()){
+            return false;
+        }
+
+        if($this->subscription()->cancelled()){
+            $carbonEnd = Carbon::createFromFormat(
+                Carbon::DEFAULT_TO_STRING_FORMAT, $this->subscription()->ends_at
+            );
+        }else{
+            $lastUpdate = $this->subscription()->updated_at;
+            $days = $this->subscription()->getBillingDays();
+            $carbonStart = Carbon::createFromFormat(
+                Carbon::DEFAULT_TO_STRING_FORMAT, $lastUpdate
+            );
+            $carbonEnd = $carbonStart->addDays($days);
+        }
+
+        return $carbonEnd->format(self::DFORMAT);
+    }
 }
