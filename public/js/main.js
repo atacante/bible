@@ -1175,4 +1175,15 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('ul.community-menu').on('click','.j-show-more',function(e){
+        e.preventDefault();
+        $('ul.community-menu .j-hidden').toggleClass('hidden');
+
+        var text = $('ul.community-menu .j-show-more').text();
+
+        $('ul.community-menu .j-show-more').html(
+            (text == 'show more ') ? "show less <i class='fa fa-angle-up' aria-hidden='true'></i>" : "show more <i class='fa fa-angle-down' aria-hidden='true'></i>");
+
+    });
 });

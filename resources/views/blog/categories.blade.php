@@ -3,11 +3,14 @@
          <li class="{{ !Request::input('category') ? 'active' : '' }}" role="presentation">
              <a href="{{ url('blog') }}">All Categories</a>
          </li>
-        @foreach($categories as $category)
-            <li class="{{ (Request::input('category') == $category->id) ? 'active' : '' }}" role="presentation">
+        @foreach($categories as $key => $category)
+            <li class="{{($key > 9)?'hidden j-hidden ':'' }}{{(Request::input('category') == $category->id) ? 'active' : '' }}" role="presentation">
                 <a href="{{ url('blog?category='.$category->id) }}"><i class="fa fa-btn fa-newspaper-o"></i>{{ $category->title }}</a>
             </li>
-            <li role="separator" class="divider" style=""></li>
+            <li role="separator" class="divider {{($key > 9)?' hidden j-hidden':'' }}" style=""></li>
         @endforeach
+        @if($key > 9)
+            <a href="#" class="j-show-more">show more <i class='fa fa-angle-down' aria-hidden='true'></i></a>
+        @endif
     @endif
 </ul>
