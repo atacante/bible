@@ -40,7 +40,7 @@
                                 <tr>
                                     <td>{!! $coupon->coupon_code !!}</td>
 {{--                                    <td>{!! $coupon->coupon_type !!}</td>--}}
-                                    <td>{!! $coupon->status?'<span class="label label-success">active</span>':'<span class="label label-danger">exhausted</span>' !!}</td>
+                                    <td>{!! $coupon->status?'<span class="label label-success">active</span>':'<span class="label label-danger">'.(strtotime($coupon->expire_at) > time()?'exhausted':'expired').'</span>' !!}</td>
                                     <td>{!! $coupon->amount !!}</td>
                                     <td>{!! $coupon->member_type?$coupon->member_type:'all' !!}</td>
                                     <td>{!! $coupon->user?$coupon->user->name:'all' !!}</td>
