@@ -5,6 +5,18 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header" style="height: 44px;">
+                    <h3 class="box-title">Filters</h3>
+                    <div class="box-tools">
+                        @include('admin.articles.filters')
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
             {!! Html::link('/admin/articles/create','Create Article', ['class'=>'btn btn-success','style' => 'margin-bottom:10px;']) !!}
             <div class="box box-success">
                 <div class="box-body table-responsive no-padding">

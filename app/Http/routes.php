@@ -195,6 +195,7 @@ View::composer('admin.user.filters', 'App\Http\Composers\UserFiltersComposer');
 View::composer('locations.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.location.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.peoples.filters', 'App\Http\Composers\BibleFiltersComposer');
+View::composer('admin.articles.filters', 'App\Http\Composers\CategoryFiltersComposer');
 View::composer('peoples.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('notes.filters', 'App\Http\Composers\NotesFiltersComposer');
 View::composer('journal.filters', 'App\Http\Composers\NotesFiltersComposer');

@@ -16,13 +16,36 @@ use Krucas\Notification\Facades\Notification;
 
 class ArticlesController extends Controller
 {
+
+    private function prepareFilters($model)
+    {
+        $searchFilter = Input::get('search', false);
+        $categoryFilter = Input::get('category', false);
+
+        if (!empty($searchFilter)) {
+            $model->where(function($ow) use ($searchFilter) {
+                $ow->where('text', 'ilike', '%' . $searchFilter . '%');
+                $ow->orWhere('title', 'ilike', '%' . $searchFilter . '%');
+            });
+        }
+
+        if(!empty($categoryFilter)){
+            $model->where('category_id', $categoryFilter);
+        }
+
+        return $model;
+    }
+
     public function getList()
     {
+
         Session::flash('backUrl', Request::fullUrl());
 
-        $articleModel = new BlogArticle();
+        $articleModel = BlogArticle::query();
 
-        $content['articles'] = $articleModel->query()->with(['user','category'])->orderBy('published_at', SORT_DESC)->paginate(20);
+        $articleModel = $this->prepareFilters($articleModel);
+
+        $content['articles'] = $articleModel->with(['user','category'])->orderBy('published_at', SORT_DESC)->paginate(20);
         return view('admin.articles.list',
             [
                 'page_title' => 'Articles',
