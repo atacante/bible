@@ -6,6 +6,7 @@ use App\BlogComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class BlogController extends Controller {
 
@@ -73,7 +74,7 @@ class BlogController extends Controller {
 
 		$commentCreated = $article->comments()->create($data);
 		if ($commentCreated) {
-			return view('blog.article_view',['article'=>$article]);
+			return Redirect::to('/blog/article/'.$article->id);
 		}
 	}
 
