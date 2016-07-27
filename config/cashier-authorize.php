@@ -12,6 +12,19 @@ use \App\User;
 
 return [
 
+   '7 days' => [
+        'name' => 'default',
+        'interval' => [
+            'length' => 7, // number of instances for billing
+            'unit' => 'days' //months, days, years
+        ],
+        'total_occurances' => 9999, // 9999 means without end date
+        'trial_occurances' => 0,
+        'amount' => 30,
+        'trial_amount' => 0,
+        'trial_days' => 0,
+    ],
+
    '1 month' => [
         'name' => 'default',
         'interval' => [
