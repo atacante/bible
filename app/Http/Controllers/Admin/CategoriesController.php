@@ -14,13 +14,26 @@ use Krucas\Notification\Facades\Notification;
 
 class CategoriesController extends Controller
 {
+    private function prepareFilters($model)
+    {
+        $searchFilter = Input::get('search', false);
+
+        if (!empty($searchFilter)) {
+            $model->where('title', 'ilike', '%' . $searchFilter . '%');
+        }
+
+        return $model;
+    }
+
     public function getList()
     {
         Session::flash('backUrl', Request::fullUrl());
 
-        $categoryModel = new BlogCategory();
+        $categoryModel = BlogCategory::query();
 
-        $content['categories'] = $categoryModel->query()->orderBy('id')->paginate(20);
+        $categoryModel = $this->prepareFilters($categoryModel);
+
+        $content['categories'] = $categoryModel->orderBy('id')->paginate(20);
         return view('admin.categories.list',
             [
                 'page_title' => 'Categories',
