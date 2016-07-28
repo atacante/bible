@@ -1,7 +1,15 @@
 @extends('layouts.app')
 {{-- Web site Title --}}
 @section('title')
-    @parent
+    {!! $content['heading'] !!}
+@stop
+
+@section('meta_author')
+    <meta name="author" content="Massimo Pinchukkio"/>
+@stop
+
+@section('meta_description')
+    <meta name="description" content="{{$content['verses'][0]->verse_text}}"/>
 @stop
 
 @section('content')
@@ -42,6 +50,9 @@
                             {{--@endif--}}
                         </div>
                     </h3>
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <div class="addthis_sharing_toolbox"></div>
+
                     <a href="#" class="j-print-chapter"><i class="fa fa-print fa-2x"
                                                            style="position: absolute; right: 0px; top: 5px; padding: 15px;"></i></a>
                 </div>
