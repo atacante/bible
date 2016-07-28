@@ -10,6 +10,7 @@ use App\LexiconKjv;
 use App\Location;
 use App\Note;
 use App\Prayer;
+use App\User;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,20 @@ class AjaxController extends Controller
         }
 
         return response()->json(ViewHelper::prepareForSelectBox($booksQuery,'id','book_name'));
+    }
+    public function getUsersList()
+    {
+        $term = Request::input('term',false);
+        $users = User::where('name','ilike', '%' . $term . '%')
+            ->whereHas('roles', function ($q) {
+                $q->whereIn('slug',[Config::get('app.role.user')]);
+            })
+            ->pluck('name','id');
+        $usersSelect = [];
+        $users->each(function ($item, $key) use(&$usersSelect) {
+            $usersSelect[] = ['id' => $key, 'text' => $item];
+        });
+        return response()->json($usersSelect);
     }
     public function getChaptersList()
     {

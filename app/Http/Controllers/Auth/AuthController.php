@@ -91,6 +91,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'plan_type' => $data['plan_type'],
+            'invited_by_id' => $data['invited_by_id'],
         ]);
 
         if($user){
@@ -111,6 +112,16 @@ class AuthController extends Controller
             Session::keep('backUrl');
         }
         return $this->showLoginForm();
+    }
+
+    public function getRegister()
+    {
+        if($invited_by_id = Input::old('invited_by_id')){
+            $user = User::find($invited_by_id);
+            Session::flash('inviter_id', $user->id);
+            Session::flash('inviter_name', $user->name);
+        }
+        return $this->showRegistrationForm();
     }
 
     public function getLogout()

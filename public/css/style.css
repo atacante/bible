@@ -118,6 +118,15 @@ label {
     border-color: #d2d6de;
 }
 
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    /*line-height: 32px;*/
+}
+
+.select2-container--default .select2-selection--single{
+    border: 1px solid #ccc;
+    height: 34px;
+}
+
 .location-item, .people-item{
     border-bottom: 1px solid #ddd;
     border-radius: 0;
