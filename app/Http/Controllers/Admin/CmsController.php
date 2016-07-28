@@ -8,18 +8,18 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 
-class BlogController extends Controller
+class CmsController extends Controller
 {
     public function getList()
     {
         $content['categoriesCount'] = BlogCategory::query()->count();
         $content['articlesCount'] = BlogArticle::query()->count();
 
-        return view('admin.blog.list',
+        return view('admin.cms.list',
             [
-                'page_title' => 'CMS',
+                'page_title' => 'Static Pages',
                 'content' => $content,
-                'filterAction' => 'blog/list/',
+                'filterAction' => 'cms/list/',
             ]);
     }
 }

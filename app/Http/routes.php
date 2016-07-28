@@ -50,6 +50,7 @@ $router->group([
         'blog' => 'BlogController',
         'categories' => 'CategoriesController',
         'articles' => 'ArticlesController',
+        'cms' => 'CmsController',
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });
