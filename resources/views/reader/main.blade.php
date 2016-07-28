@@ -4,10 +4,6 @@
     {!! $content['heading'] !!}
 @stop
 
-@section('meta_author')
-    <meta name="author" content="Massimo Pinchukkio"/>
-@stop
-
 @section('meta_description')
     <meta name="description" content="{{$content['verses'][0]->verse_text}}"/>
 @stop
