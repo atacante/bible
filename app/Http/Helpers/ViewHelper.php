@@ -203,6 +203,27 @@ class ViewHelper
         return $ids;
     }
 
+    public static function getMyContentReports($entryType)
+    {
+        $ids = [];
+
+        switch($entryType){
+            case 'note':
+                $ids = Auth::user()->notesReports->modelKeys();
+                break;
+            case 'journal':
+                $ids = Auth::user()->journalReports->modelKeys();
+                break;
+            case 'prayer':
+                $ids = Auth::user()->prayersReports->modelKeys();
+                break;
+            case 'status':
+                $ids = Auth::user()->statusesReports->modelKeys();
+                break;
+        }
+        return $ids;
+    }
+
     public static function getEntryTags($entryType,$entryId)
     {
         $tags = '';

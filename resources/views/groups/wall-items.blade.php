@@ -63,6 +63,12 @@
                         <i class="fa fa-btn fa-comments"></i>
                         Comments (<span class="j-comments-count">{!! $item->commentscount !!}</span>)
                     </a>
+                    @role('user')
+                    <a title="{!! in_array($item->id,ViewHelper::getMyContentReports($item->type))?'You have reported inappropriate content':'Report inappropriate content' !!}" href="{!! url('/community/report/'.$item->type.'/'.$item->id) !!}" class="j-item-report {!! in_array($item->id,ViewHelper::getMyContentReports($item->type))?'reported disabled':'' !!}" >
+                        <i class="fa fa-btn fa-flag"></i>
+                        Report
+                    </a>
+                    @endrole
                 </div>
                 <div class="clearfix j-item-comments">
 

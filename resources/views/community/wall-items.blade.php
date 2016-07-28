@@ -40,7 +40,7 @@
                 </a>--}}
                 <div class="pull-right"></div>
             </div>
-            <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" , data-itemtype="{!! $item->type !!}">
+            <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" data-itemtype="{!! $item->type !!}">
                 @if($item->highlighted_text)
                     <div class="verse-block">
                         Verse: <i>{!! str_limit(strip_tags($item->highlighted_text,'<p></p>'), $limit = 100, $end = '...') !!}</i>
@@ -64,6 +64,12 @@
                         <i class="fa fa-btn fa-comments"></i>
                         Comments (<span class="j-comments-count">{!! $item->commentscount !!}</span>)
                     </a>
+                    @role('user')
+                    <a title="{!! in_array($item->id,ViewHelper::getMyContentReports($item->type))?'You have reported inappropriate content':'Report inappropriate content' !!}" href="{!! url('/community/report/'.$item->type.'/'.$item->id) !!}" class="j-item-report {!! in_array($item->id,ViewHelper::getMyContentReports($item->type))?'reported disabled':'' !!}" >
+                        <i class="fa fa-btn fa-flag"></i>
+                        Report
+                    </a>
+                    @endrole
                 </div>
                 <div class="clearfix j-item-comments">
 

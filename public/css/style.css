@@ -968,4 +968,13 @@ a.view-details:hover{
     color: #d9534f;
 }
 
+.j-item-report.reported,.j-item-report.reported .fa{
+    color: #d9534f;
+}
+
+.j-item-report.disabled{
+    cursor: default;
+    opacity: 0.5;
+}
+
 

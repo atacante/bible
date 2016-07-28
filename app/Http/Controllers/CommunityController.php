@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ContentReport;
 use App\Journal;
 use App\Note;
 use App\Prayer;
@@ -226,8 +227,43 @@ class CommunityController extends Controller
         ]);
     }
 
-    public function getBlog()
+    public function anyReport(\Illuminate\Http\Request $request,$type,$id)
     {
-        return view('community.blog', []);
+        switch($type){
+            case 'note':
+                $model = Note::find($id);
+                break;
+            case 'journal':
+                $model = Journal::find($id);
+                break;
+            case 'prayer':
+                $model = Prayer::find($id);
+                break;
+            case 'status':
+                $model = WallPost::find($id);
+                break;
+        }
+
+        if (!$model) {
+            abort(404);
+        }
+
+        if (Request::isMethod('post')){
+            $reportModel = new ContentReport();
+            $text = Input::get('reason_text');
+            $data = ['user_id' => Auth::user()->id,'reason_text' => $text];
+            $this->validate($request, $reportModel->rules());
+
+            $reportCreated = $model->contentReports()->create($data);
+            if ($reportCreated) {
+                return 1;
+            }
+            return 0;
+        }
+
+        $content['type'] = $type;
+        $content['id'] = $id;
+
+        return view('community.report-form', ['content' => $content]);
     }
 }
