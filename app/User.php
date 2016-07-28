@@ -133,6 +133,26 @@ class User extends Authenticatable
         return $this->morphedByMany('App\WallPost','item','wall_likes')->orderBy('wall_likes.created_at','desc');
     }
 
+    public function notesReports()
+    {
+        return $this->morphedByMany('App\Note','item','content_reports')->orderBy('content_reports.created_at','desc');
+    }
+
+    public function journalReports()
+    {
+        return $this->morphedByMany('App\Journal','item','content_reports')->orderBy('content_reports.created_at','desc');
+    }
+
+    public function prayersReports()
+    {
+        return $this->morphedByMany('App\Prayer','item','content_reports')->orderBy('content_reports.created_at','desc');
+    }
+
+    public function statusesReports()
+    {
+        return $this->morphedByMany('App\WallPost','item','content_reports')->orderBy('content_reports.created_at','desc');
+    }
+
     public function friendRequests()
     {
         return $this->morphToMany('App\User', 'connect_requests');
