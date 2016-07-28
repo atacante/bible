@@ -8,6 +8,12 @@
     <meta name="description" content="{{$content['verses'][0]->verse_text}}"/>
 @stop
 
+@section('meta_twitter')
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="{!! $content['heading'] !!}">
+    <meta property="twitter:description" content="{{$content['verses'][0]->verse_text}}">
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
