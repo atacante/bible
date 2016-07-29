@@ -153,12 +153,18 @@ Breadcrumbs::register('categoryUpdate', function($breadcrumbs)
     $breadcrumbs->push('Edit category');
 });
 
-
 // Admin > Articles
 Breadcrumbs::register('articles', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Articles', url('admin/articles/list'));
+});
+
+// Admin > CMS
+Breadcrumbs::register('cms', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('CMS', url('admin/cms/list'));
 });
 
 // Admin > Articles > [CreateArticle]
