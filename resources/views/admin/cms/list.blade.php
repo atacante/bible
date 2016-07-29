@@ -10,19 +10,19 @@
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tbody>
-                        <tr>
+{{--                        <tr>
                             <th>User</th>
                             <th>Category</th>
                             <th>Title</th>
                             <th>Text</th>
                             <th>Published</th>
                             <th class="text-center">Actions</th>
-                        </tr>
-                        @if(count($content['articles']))
-                            @foreach($content['articles'] as $article)
+                        </tr>--}}
+                        @if(count($content['cms']))
+                            @foreach($content['cms'] as $page)
                                 <tr>
                                     <td>{!! $article->user->name !!}</td>
-                                    <td>{!! $article->category->title !!}</td>
+                                    {{--<td>{!! $article->category->title !!}</td>
                                     <td>{!! $article->title !!}</td>
                                     <td>{!! str_limit($article->text, $limit = 800, $end = '... ')!!}</td>
                                     <td class="text-center">{!! $article->published_at->format($article::DFORMAT) !!}</td>
@@ -33,7 +33,7 @@
                                            data-confirm="Are you sure you want to delete this item?"><i
                                                     class="fa fa-trash"
                                                     style="color: #367fa9; font-size: 1.4em;"></i></a>
-                                    </td>
+                                    </td>--}}
                                 </tr>
                             @endforeach
                         @else
