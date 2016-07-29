@@ -986,4 +986,8 @@ a.view-details:hover{
     opacity: 0.5;
 }
 
+.form-control[readonly]{
+    background-color: #fff;
+}
+
 

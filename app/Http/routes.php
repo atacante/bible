@@ -135,6 +135,10 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 });
 
+Route::get('invite/{id}',function ($id) {
+    return redirect('auth/register?invite='.$id);
+});
+
 Route::get('notes/comments/{id}', array('middleware' => 'web', 'uses' => 'NotesController@getComments'));
 Route::get('journal/comments/{id}', array('middleware' => 'web', 'uses' => 'JournalController@getComments'));
 Route::get('prayers/comments/{id}', array('middleware' => 'web', 'uses' => 'PrayersController@getComments'));

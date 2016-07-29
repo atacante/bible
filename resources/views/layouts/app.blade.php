@@ -41,6 +41,7 @@
         {!!Html::script('js/fancybox/source/jquery.fancybox.js?v=2.1.5"')!!}
         {!!Html::style('js/fancybox/source/jquery.fancybox.css?v=2.1.5')!!}
 {{--        {!!Html::script('js/jsdiff/diff.min.js')!!}--}}
+        {!!Html::script('js/clipboard.min.js')!!}
         {!!Html::script('js/main.js')!!}
         {!!Html::script('js/functions.js')!!}
 
