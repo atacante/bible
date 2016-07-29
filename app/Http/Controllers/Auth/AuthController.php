@@ -116,7 +116,11 @@ class AuthController extends Controller
 
     public function getRegister()
     {
-        if($invited_by_id = Input::old('invited_by_id')){
+        $invited_by_id = Input::old('invited_by_id');
+        if($invite = Input::get('invite')){
+            $invited_by_id = $invite;
+        }
+        if($invited_by_id){
             $user = User::find($invited_by_id);
             Session::flash('inviter_id', $user->id);
             Session::flash('inviter_name', $user->name);

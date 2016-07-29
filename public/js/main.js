@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    var clipboard = new Clipboard('.copy');
+
+    clipboard.on('success', function(e) {
+        e.clearSelection();
+    });
+
     $("#j-select-locations,#j-select-peoples").select2();
     $(".j-entry-types").select2({
         placeholder: "All types",
