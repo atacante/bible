@@ -33,6 +33,17 @@
             </span>
         @endif
     </div>
+    @if($model->exists)
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                {!! Form::hidden('answered', 0) !!}
+                {!! Form::checkbox('answered', 1,true) !!}
+                <span>Answered</span>
+            </label>
+        </div>
+    </div>
+    @endif
     <div class="form-group">
         {!! Form::label('tags', 'Tags:') !!}
         {!! Form::select('tags[]', $model->availableTags(), $model->tags->pluck('id')->toArray(),['placeholder' => '','multiple' => true,'class' => 'clear-fix j-tags', 'style' => '']) !!}
