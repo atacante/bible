@@ -26,7 +26,7 @@ class BlogArticle extends BaseModel {
 	}
 
 	public function comments(){
-		return $this->hasMany(BlogComment::class, 'article_id', 'id');
+		return $this->hasMany(BlogComment::class, 'article_id', 'id')->orderBy('published_at', SORT_DESC);
 	}
 
 }
