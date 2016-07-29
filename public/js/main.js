@@ -10,6 +10,21 @@ $(document).ready(function(){
         maximumSelectionLength: 2,
         placeholder: "Compare with...",
     });
+    $(".j-select2-ajax").select2({
+        minimumInputLength: 2,
+        placeholder: $(".j-select2-ajax").attr('placeholder'),
+        ajax:{
+            url: $(".j-select2-ajax").data('url'),
+            dataType: 'json',
+            data: function(term,page){
+                return term;
+            },
+            processResults: function (data, params) {
+                //console.log(data);
+                return {results: data}
+            }
+        },
+    });
 
     site.initSelect2();
     site.initTagging();

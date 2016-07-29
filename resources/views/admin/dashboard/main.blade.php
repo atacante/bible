@@ -117,8 +117,8 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-yellow" style="background-color: #737357 !important;">
                 <div class="inner">
-                    <h3>{!! $content['articlesCount'] !!}</h3>
-                    <p>Blog Article{!! $content['articlesCount'] != 1?'s':'' !!}</p>
+                    <h3>CMS</h3>
+                    <p>&nbsp;</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-newspaper-o"></i>

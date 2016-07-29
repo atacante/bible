@@ -29,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','plan_type','about_me','avatar'
+        'name', 'email', 'password','plan_type','about_me','avatar','invited_by_id'
     ];
 
     /**
@@ -76,6 +76,10 @@ class User extends Authenticatable
         }
 
         return $rules;
+    }
+
+    public function inviter() {
+        return $this->belongsTo(User::class, 'invited_by_id', 'id');
     }
 
     public function myGroups()

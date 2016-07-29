@@ -80,6 +80,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('invited_by_id') ? ' has-error' : '' }}">
+                            {!! Form::label('invited_by_id', 'Invited By', array('class' => 'col-md-4 control-label')) !!}
+
+                            <div class="col-md-6">
+                                {!! Form::select('invited_by_id', [Session::pull('inviter_id') => Session::pull('inviter_name')], old('invited_by_id'),['class' => 'form-control j-select2-ajax','data-url'=> '/ajax/users-list','placeholder' => 'Select users...']) !!}
+                                @if ($errors->has('invited_by_id'))
+                                    <span class="help-block">
+                                        {{ $errors->first('invited_by_id') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('plan_type') ? ' has-error' : '' }}">
                             {!! Form::label('plan_type', "Subscription plan", array('class' => 'col-md-4 control-label')) !!}
 
