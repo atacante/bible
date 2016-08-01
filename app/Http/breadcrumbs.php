@@ -180,3 +180,10 @@ Breadcrumbs::register('articleUpdate', function($breadcrumbs)
     $breadcrumbs->parent('articles');
     $breadcrumbs->push('Edit article');
 });
+
+// Admin > CMS > [UpdateCMS]
+Breadcrumbs::register('cmsUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('cms');
+    $breadcrumbs->push('Edit pages');
+});

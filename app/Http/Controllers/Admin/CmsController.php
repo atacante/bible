@@ -34,4 +34,27 @@ class CmsController extends Controller
                 'filterAction' => 'cms/list/',
             ]);
     }
+
+    public function anyUpdate(\Illuminate\Http\Request $request, $id)
+    {
+        if (Session::has('backUrl')) {
+            Session::keep('backUrl');
+        }
+        $model = CmsPage::query()->find($id);
+        if (Request::isMethod('put')){
+            $this->validate($request, $model->rules());
+            $data = Input::all();
+            if ($model->update($data)) {
+                Notification::success('CMS has been successfully updated');
+            }
+            return ($url = Session::get('backUrl'))
+                ? Redirect::to($url)
+                : Redirect::to(ViewHelper::adminUrlSegment() . '/cms/list/');
+        }
+        return view('admin.cms.update',
+            [
+                'model' => $model,
+                'page_title' => 'Edit CMS'
+            ]);
+    }
 }

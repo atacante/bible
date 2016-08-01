@@ -28,7 +28,7 @@
                                     <td>{!! $page->meta_keywords !!}</td>
                                     <td>{!! $page->meta_description !!}</td>
                                     <td class="text-center" style="width: 50px;">
-                                        <a title="Edit article" href="{!! url('/admin/cms/update/'.$page->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
+                                        <a title="Edit CMS" href="{!! url('/admin/cms/update/'.$page->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
