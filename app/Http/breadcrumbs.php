@@ -180,3 +180,48 @@ Breadcrumbs::register('articleUpdate', function($breadcrumbs)
     $breadcrumbs->parent('articles');
     $breadcrumbs->push('Edit article');
 });
+
+
+
+
+// Admin > ShopCategories
+Breadcrumbs::register('shop-categories', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('ShopCategories', url('admin/shop-categories/list'));
+});
+
+// Admin > ShopCategories > [CreateShopCategory]
+Breadcrumbs::register('shop-categoryCreate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('shop-categories');
+    $breadcrumbs->push("Create new category");
+});
+
+// Admin > ShopCategories > [UpdateShopCategory]
+Breadcrumbs::register('shop-categoryUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('shop-categories');
+    $breadcrumbs->push('Edit category');
+});
+
+// Admin > Products
+Breadcrumbs::register('shop-products', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Products', url('admin/shop-products/list'));
+});
+
+// Admin > Products > [CreateProduct]
+Breadcrumbs::register('productCreate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('shop-products');
+    $breadcrumbs->push("Create new product");
+});
+
+// Admin > Products > [UpdateProduct]
+Breadcrumbs::register('productUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('shop-products');
+    $breadcrumbs->push('Edit product');
+});

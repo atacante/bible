@@ -102,7 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         });
     }
 </script>
-
+{!!Html::script('js/clipboard.min.js')!!}
 {!!Html::script('js/main.js')!!}
 {!!Html::script('js/functions.js')!!}
 

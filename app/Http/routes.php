@@ -51,6 +51,9 @@ $router->group([
         'categories' => 'CategoriesController',
         'articles' => 'ArticlesController',
         'cms' => 'CmsController',
+        'shop' => 'ShopController',
+        'shop-categories' => 'ShopCategoriesController',
+        'shop-products' => 'ShopProductsController',
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });
@@ -201,6 +204,7 @@ View::composer('locations.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.location.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.peoples.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('admin.articles.filters', 'App\Http\Composers\CategoryFiltersComposer');
+View::composer('admin.shop.products.filters', 'App\Http\Composers\ShopCategoryFiltersComposer');
 View::composer('peoples.filters', 'App\Http\Composers\BibleFiltersComposer');
 View::composer('notes.filters', 'App\Http\Composers\NotesFiltersComposer');
 View::composer('journal.filters', 'App\Http\Composers\NotesFiltersComposer');
