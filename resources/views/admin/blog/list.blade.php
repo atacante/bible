@@ -34,7 +34,7 @@
             <div class="small-box bg-yellow" style="background-color: #d1c724 !important;">
                 <div class="inner">
                     <h3>{!! $content['articlesCount'] !!}</h3>
-                    <p>{!! $content['articlesCount'] != 1?'Static pages':'Static page' !!}</p>
+                    <p>{!! $content['articlesCount'] != 1?'Static pages':'Static Page' !!}</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-newspaper-o"></i>
