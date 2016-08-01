@@ -15,6 +15,37 @@
             </span>
                 @endif
             </div>
+
+            <div class="form-group {{ $errors->has('meta_title') ? ' has-error' : '' }}">
+                {!! Form::label('meta_title', 'Meta Title:') !!}
+                {!! Form::text('meta_title') !!}
+                @if ($errors->has('meta_title'))
+                    <span class="help-block">
+                {{ $errors->first('meta_title') }}
+            </span>
+                @endif
+            </div>
+
+            <div class="form-group {{ $errors->has('meta_description') ? ' has-error' : '' }}">
+                {!! Form::label('meta_description', 'Meta Description:') !!}
+                {!! Form::text('meta_description') !!}
+                @if ($errors->has('meta_description'))
+                    <span class="help-block">
+                {{ $errors->first('meta_description') }}
+            </span>
+                @endif
+            </div>
+
+            <div class="form-group {{ $errors->has('meta_keywords') ? ' has-error' : '' }}">
+                {!! Form::label('meta_keywords', 'Meta Keywords:') !!}
+                {!! Form::text('meta_keywords') !!}
+                @if ($errors->has('meta_keywords'))
+                    <span class="help-block">
+                {{ $errors->first('meta_keywords') }}
+            </span>
+                @endif
+            </div>
+
             <div class="form-group {{ $errors->has('text') ? ' has-error' : '' }}">
                 {!! Form::label('text', 'Text:') !!}
                 {!! Form::textarea('text',null,['id' => 'location-desc']) !!}
