@@ -160,13 +160,6 @@ Breadcrumbs::register('articles', function($breadcrumbs)
     $breadcrumbs->push('Articles', url('admin/articles/list'));
 });
 
-// Admin > CMS
-Breadcrumbs::register('cms', function($breadcrumbs)
-{
-    $breadcrumbs->parent('home');
-    $breadcrumbs->push('CMS', url('admin/cms/list'));
-});
-
 // Admin > Articles > [CreateArticle]
 Breadcrumbs::register('articleCreate', function($breadcrumbs)
 {
@@ -180,9 +173,6 @@ Breadcrumbs::register('articleUpdate', function($breadcrumbs)
     $breadcrumbs->parent('articles');
     $breadcrumbs->push('Edit article');
 });
-
-
-
 
 // Admin > ShopCategories
 Breadcrumbs::register('shop-categories', function($breadcrumbs)
@@ -220,8 +210,21 @@ Breadcrumbs::register('productCreate', function($breadcrumbs)
 });
 
 // Admin > Products > [UpdateProduct]
-Breadcrumbs::register('productUpdate', function($breadcrumbs)
-{
+Breadcrumbs::register('productUpdate', function($breadcrumbs) {
     $breadcrumbs->parent('shop-products');
     $breadcrumbs->push('Edit product');
+});
+
+// Admin > CMS
+Breadcrumbs::register('cms', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('CMS', url('admin/cms/list'));
+});
+
+// Admin > CMS > [UpdateCMS]
+Breadcrumbs::register('cmsUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('cms');
+    $breadcrumbs->push('Edit pages');
 });
