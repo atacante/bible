@@ -18,6 +18,7 @@
                     <li class="{!! ViewHelper::classActivePath('admin.peoples') !!}"><a href="{{ url('admin/peoples/list') }}"><span><i class="ion ion-ios-people"></i> People</span></a></li>
                     <li class="{!! ViewHelper::classActivePath('admin.coupons') !!}"><a href="{{ url('admin/coupons/list') }}"><span><i class="fa fa-ticket"></i> Coupons</span></a></li>
                     <li class="{!! ViewHelper::classActivePath('admin.blog') !!}"><a href="{{ url('admin/blog/list') }}"><span><i class="fa fa-newspaper-o"></i> CMS</span></a></li>
+                    <li class="{!! ViewHelper::classActivePath('admin.shop') !!}"><a href="{{ url('admin/shop/list') }}"><span><i class="fa fa-shopping-cart"></i> Shop</span></a></li>
                     {{--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
