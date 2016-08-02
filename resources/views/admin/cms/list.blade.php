@@ -12,7 +12,7 @@
                         <tr>
                             <th>System Name</th>
                             <th>Title</th>
-                            <th>Content</th>
+                            {{--<th>Content</th>--}}
                             <th>Meta Title</th>
                             <th>Meta Keywords</th>
                             <th>Meta Description</th>
@@ -23,7 +23,7 @@
                                 <tr>
                                     <td>{!! $page->system_name !!}</td>
                                     <td>{!! $page->title !!}</td>
-                                    <td>{!! $page->text !!}</td>
+                                    {{--<td>{!! $page->text !!}</td>--}}
                                     <td>{!! $page->meta_title !!}</td>
                                     <td>{!! $page->meta_keywords !!}</td>
                                     <td>{!! $page->meta_description !!}</td>

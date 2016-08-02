@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\CmsPage;
 //use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
@@ -19,7 +20,8 @@ class SiteController extends Controller
 
     public function getAbout()
     {
-        return view('site.about', []);
+        $model = CmsPage::where('system_name', '=', 'about')->take(1)->get();
+        return view('site.about', ['page'=>$model[0]]);
     }
 
     public function anyContact(\Illuminate\Http\Request $request)
