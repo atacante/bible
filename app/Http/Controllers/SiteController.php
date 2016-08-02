@@ -15,7 +15,6 @@ class SiteController extends Controller
 {
     public function getHome()
     {
-        $model = User::where('votes', '>', 100)->take(10)->get();
         return view('site.home', []);
     }
 
