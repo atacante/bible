@@ -22,4 +22,7 @@ class ShopProduct extends BaseModel {
 		return $this->belongsTo(ShopCategory::class, 'category_id', 'id');
 	}
 
+    public function images() {
+        return $this->hasMany(ProductImages::class, 'product_id', 'id');
+    }
 }

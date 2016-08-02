@@ -23,6 +23,7 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
+                            <th>Image</th>
                             <th>Category</th>
                             <th>Name</th>
                             <th>Short Description</th>
@@ -33,6 +34,15 @@
                         @if(count($content['products']))
                             @foreach($content['products'] as $product)
                                 <tr>
+                                    <td class="img-column">
+                                        @if($product->images->count())
+                                            <img class="img-thumbnail"  src="{!! Config::get('app.productImages').'thumbs/'.$product->images[0]->image !!}" />
+                                        @else
+                                            <div class="no-image img-thumbnail">
+                                                <div class="no-image-text text-center">No image</div>
+                                            </div>
+                                        @endif
+                                    </td>
                                     <td>{!! $product->category->title !!}</td>
                                     <td>{!! $product->name !!}</td>
                                     <td>{!! $product->short_description !!}</td>

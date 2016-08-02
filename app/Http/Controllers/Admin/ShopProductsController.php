@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ProductImages;
 use App\ShopProduct;
 use App\ShopCategory;
 use App\Helpers\ViewHelper;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
 use Krucas\Notification\Facades\Notification;
 
 class ShopProductsController extends Controller
@@ -46,7 +49,7 @@ class ShopProductsController extends Controller
 
         $productModel = $this->prepareFilters($productModel);
 
-        $content['products'] = $productModel->with('category')->orderBy('created_at', SORT_DESC)->paginate(20);
+        $content['products'] = $productModel->with(['category','images'])->orderBy('created_at', SORT_DESC)->paginate(20);
         return view('admin.shop.products.list',
             [
                 'page_title' => 'Products',
@@ -63,6 +66,7 @@ class ShopProductsController extends Controller
             $this->validate($request, $model->rules());
             $data = Input::all();
             if ($model = $model->create($data)) {
+                $this->anyUploadImage($model->id);
                 Notification::success('Product has been successfully created');
             }
             return Redirect::to(ViewHelper::adminUrlSegment() . '/shop-products/list/');
@@ -88,6 +92,7 @@ class ShopProductsController extends Controller
             $this->validate($request, $model->rules());
             $data = Input::all();
             if ($model->update($data)) {
+                $this->anyUploadImage($model->id);
                 Notification::success('Product has been successfully updated');
             }
             return ($url = Session::get('backUrl'))
@@ -108,12 +113,83 @@ class ShopProductsController extends Controller
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
         }
-        $category = ShopProduct::query()->find($id);
-        if ($category->delete()) {
+        $product = ShopProduct::query()->with('images')->find($id);
+        if ($product->delete()) {
+            if($product->images){
+                foreach ($product->images as $image) {
+                    $this->anyDeleteImage($image->image);
+                }
+            }
             Notification::success('Product has been successfully deleted');
         }
         return ($url = Session::get('backUrl'))
             ? Redirect::to($url)
             : Redirect::to(ViewHelper::adminUrlSegment() . '/shop-products/list/');
+    }
+
+    public function anyUploadImage($productId)
+    {
+        if (Input::hasFile('file')) {
+            $files = Input::file('file');
+            foreach ($files as $file) {
+                $tmpFilePath = Config::get('app.productImages');
+                $tmpThumbPath = $tmpFilePath . 'thumbs/';
+                $tmpFileName = time() . '-' . $file->getClientOriginalName();
+                $file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
+                $path = $tmpFilePath . $tmpFileName;
+
+                $this->makeDir(public_path() . $tmpThumbPath);
+                $thumbPath = public_path($tmpThumbPath . $tmpFileName);
+                if($file){
+                    $image = new ProductImages();
+                    $image->product_id = $productId;
+                    $image->image = $tmpFileName;
+                    $image->save();
+                }
+                // Resizing 340x340
+                Image::make($file->getRealPath())->fit(200, 200)->save($thumbPath)->destroy();
+
+            }
+//            return response()->json(array('filename'=> $tmpFileName), 200);
+            return true;
+        }
+        return false;
+    }
+
+    private function makeDir($path)
+    {
+        if (!is_dir($path)) {
+            return mkdir($path);
+        }
+        return true;
+    }
+
+    public function anyDeleteImage($filename = false)
+    {
+        if(!$filename){
+            $filename = Input::get('filename');
+        }
+
+        $image = ProductImages::query()->where('image', $filename)->first();
+
+        if ($image) {
+            $image->delete();
+        }
+
+        $this->unlinkLocationImage($filename);
+        return response()->json(true, 200);
+    }
+
+    private function unlinkLocationImage($filename)
+    {
+        $tmpFilePath = public_path(Config::get('app.productImages').$filename);
+        $tmpThumbPath = public_path(Config::get('app.productImages').'thumbs/'.$filename);
+
+        if (is_file($tmpFilePath)) {
+            unlink($tmpFilePath);
+        }
+        if (is_file($tmpThumbPath)) {
+            unlink($tmpThumbPath);
+        }
     }
 }

@@ -18,6 +18,30 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }}">
+        {!! Form::label('image', 'Images:') !!}
+        <div class="clearfix">
+            <div id="img-thumb-preview" class="edit-images-thumbs product-images pull-left">
+                @if($model->images)
+                    @foreach($model->images as $image)
+                        <div class="img-thumb pull-left">
+                            <img height="100" width="100" src="{!! Config::get('app.productImages').'thumbs/'.$image->image !!}" />
+                            <i data-filename="{!! $image->image !!}" class="j-remove-image fa fa-times-circle fa-4x" style="position:absolute; top: 24px; left: 28px; color: #f4645f; cursor: pointer; opacity: 0;"></i>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+            <div class="fallback pull-left"> <!-- this is the fallback if JS isn't working -->
+                <input name="file[]" type="file" multiple />
+            </div>
+        </div>
+
+        @if ($errors->has('image'))
+            <span class="help-block">
+                {{ $errors->first('image') }}
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('short_description') ? ' has-error' : '' }}">
         {!! Form::label('short_description', 'Short Description:') !!}
         {!! Form::text('short_description') !!}
