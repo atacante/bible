@@ -172,6 +172,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
         Laravel\CashierAuthorizeNet\CashierServiceProvider::class,
+        Skovmand\Mailchimp\MailchimpServiceProvider::class,
 
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
