@@ -125,6 +125,7 @@ Route::group(['middleware' => ['web']], function () {
 /*    Route::get('/blog/category/{id}', ['uses' => 'BlogController@getCategory']);
     Route::get('/blog/article/{id}', ['uses' => 'BlogController@getArticle']);*/
     Route::controller('blog', 'BlogController');
+    Route::controller('shop', 'ShopController');
 
     Route::get('/community', [
         'as' => 'community', 'uses' => 'CommunityController@getWall'
