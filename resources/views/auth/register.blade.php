@@ -167,6 +167,18 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('described', '', true) !!}
+                                        I want to get the latest news by my Email
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group  {{ $errors->has('g-recaptcha-response') ? 'has-error' : '' }}">
                             {!! Form::label('', null, array('class' => 'col-md-4 control-label')) !!}
                             <div class="col-md-6">
