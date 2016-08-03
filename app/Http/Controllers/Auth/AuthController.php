@@ -91,7 +91,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'plan_type' => $data['plan_type'],
-            'invited_by_id' => $data['invited_by_id'],
+            'invited_by_id' => $data['invited_by_id']?$data['invited_by_id']:null,
         ]);
 
         if($user){
