@@ -799,6 +799,10 @@ $(document).ready(function(){
         location.href = $(this).data('link');
     });
 
+    $("body").on('click','.j-show-product',function (e){
+        location.href = $(this).data('link');
+    });
+
     $('.j-popup-form').click(function(e){
         e.preventDefault();
         $.ajax({
