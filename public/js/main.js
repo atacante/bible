@@ -1160,21 +1160,25 @@ $(document).ready(function(){
         $(this).popover('destroy');
         var url = $(this).attr('href');
         var that = this;
-        $.ajax({
-            method: "GET",
-            url: url,
-            success:function(data){
-                $(that).parent().find('.j-wall-like-btn').toggleClass('hidden');
+        if(site.ajaxProcess && site.ajaxUrl == url){
+            site.ajaxProcess.abort();
+        }
+        site.ajaxUrl = url;
+        site.ajaxProcess = $.ajax({
+                                method: "GET",
+                                url: url,
+                                success:function(data){
+                                    $(that).parent().find('.j-wall-like-btn').toggleClass('hidden');
 
-                var curLikesCount = parseInt($(that).parent().find('.j-likes-count').html());
-                if($(that).hasClass('liked')){
-                    $(that).parent().find('.j-likes-count').html(curLikesCount-1);
-                }
-                else{
-                    $(that).parent().find('.j-likes-count').html(curLikesCount+1);
-                }
-            }
-        });
+                                    var curLikesCount = parseInt($(that).parent().find('.j-likes-count').html());
+                                    if($(that).hasClass('liked')){
+                                        $(that).parent().find('.j-likes-count').html(curLikesCount-1);
+                                    }
+                                    else{
+                                        $(that).parent().find('.j-likes-count').html(curLikesCount+1);
+                                    }
+                                }
+                            });
     });
 
     $('.j-wall-items').on('mouseout','.j-wall-like-btn,.j-wall-item,.popover',function(e){
