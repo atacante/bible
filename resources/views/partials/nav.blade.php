@@ -47,24 +47,24 @@
                     <a href="{{ URL::to('/reader/overview') }}"><i class="ion ion-ios-book"></i> Reader</a>
                 </li>--}}
                 <li class="{{ ViewHelper::classActivePath('/') }}">
-                <li class="dropdown">
-                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-users"></i>
-                        Community
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="drop1">
-                        <li><a href="{{ URL::to('/community') }}"> Public Wall</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{ URL::to('/community/find-friends') }}">{{--<i class="fa fa-users"></i>--}} Find Friends</a></li>
-                        <li><a href="{{ URL::to('/groups') }}">{{--<i class="fa fa-users"></i>--}} Groups</a></li>
-                        <li><a href="{{ URL::to('/blog') }}">{{--<i class="fa fa-map-marker"></i>--}} Blog</a></li>
-                    </ul>
+                    <li class="dropdown">
+                        <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-users"></i>
+                            Community
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="drop1">
+                            <li><a href="{{ URL::to('/community') }}"> Public Wall</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ URL::to('/community/find-friends') }}">{{--<i class="fa fa-users"></i>--}} Find Friends</a></li>
+                            <li><a href="{{ URL::to('/groups') }}">{{--<i class="fa fa-users"></i>--}} Groups</a></li>
+                            <li><a href="{{ URL::to('/blog') }}">{{--<i class="fa fa-map-marker"></i>--}} Blog</a></li>
+                        </ul>
+                    </li>
                 </li>
+                <li class="{{ ViewHelper::classActivePath('shop') }}">
+                    <a href="{{ URL::to('/shop') }}"><i class="fa fa-shopping-cart"></i> Shop</a>
                 </li>
-                {{--<li class="{{ ViewHelper::classActivePath('locations') }}">--}}
-                    {{--<a href="{{ URL::to('/locations/list') }}"><i class="fa fa-map-marker"></i> Locations</a>--}}
-                {{--</li>--}}
                 {{--<li class="{{ ViewHelper::classActivePath('peoples') }}">--}}
                     {{--<a href="{{ URL::to('/peoples/list') }}"><i class="fa fa-users"></i> People</a>--}}
                 {{--</li>--}}
