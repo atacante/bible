@@ -53,7 +53,7 @@
     </div>
     <div class="form-group {{ $errors->has('long_description') ? ' has-error' : '' }}">
         {!! Form::label('long_description', 'Long Description:') !!}
-        {!! Form::textarea('long_description',null,['id' => 'location-desc']) !!}
+        {!! Form::textarea('long_description',null,['id' => 'product-desc']) !!}
         @if ($errors->has('long_description'))
             <span class="help-block">
                 {{ $errors->first('long_description') }}

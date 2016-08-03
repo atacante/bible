@@ -2,7 +2,7 @@
     @foreach($products as $product)
         <div data-itemid="{!! $product->id !!}" class="col-md-6 clearfix product-item j-show-product" data-link="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" style="cursor: pointer">
             <div class="pull-left" style="margin-right: 10px;">
-                @if(count($product->images))
+                @if($product->images->count())
                     <img class="img-thumbnail" height="100" width="100" data-dz-thumbnail="" alt="" src="{!! Config::get('app.productImages').'thumbs/'.$product->images[0]->image !!}" />
                 @else
                     <div class="no-avatar img-thumbnail">
@@ -19,14 +19,14 @@
             <div class="pull-right">
                 @if($product->external_link)
                 <div>
-                    <a href="{!! $product->external_link !!}" class="btn btn-primary">Show details</a>
+                    {!! Html::link($product->external_link,'Show details', ['class'=>'btn btn-primary']) !!}
                 </div>
                 <div style="margin-top: 10px;">
                     ${!! $product->price !!}
                 </div>
                 @else
                     <div>
-                        <a href="{!! url('/shop/add-to-cart/'.$product->id,[],false) !!}" class="btn btn-primary" >Add To Cart</a>
+                        {!! Html::link(url('/shop/add-to-cart/'.$product->id,[],false),'Add To Cart', ['class'=>'btn btn-success']) !!}
                     </div>
                     <div style="margin-top: 10px;">
                         ${!! $product->price !!}
