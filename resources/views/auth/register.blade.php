@@ -172,7 +172,8 @@
                             <div class="col-md-6">
                                 <div class="checkbox">
                                     <label>
-                                        {!! Form::checkbox('described', '', true) !!}
+                                        {!! Form::hidden('subscribed', 0) !!}
+                                        {!! Form::checkbox('subscribed', 1, true) !!}
                                         I want to get the latest news by my Email
                                     </label>
                                 </div>
