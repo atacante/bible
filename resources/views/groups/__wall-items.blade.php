@@ -39,7 +39,7 @@
                 </a>--}}
                 <div class="pull-right"></div>
             </div>
-            <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" , data-itemtype="{!! $item->type !!}">
+            <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" data-itemtype="{!! $item->type !!}">
                 @if($item->highlighted_text)
                     <div class="verse-block">
                         Verse: <i>{!! str_limit(strip_tags($item->highlighted_text,'<p></p>'), $limit = 100, $end = '...') !!}</i>
@@ -80,12 +80,11 @@
     <p class="text-center">No any results found</p>
 @endif
 @if( $content['nextPage'])
-    <div class="row load-more-block">
+    <div class="load-more-block">
         <div class="text-center">
             {!! Html::link('/community/wall?'.http_build_query(
                 array_merge(Request::input(),['page' => $content['nextPage']])
-            ),'Load More', ['class'=>'btn btn-default load-more','style' => '']) !!}
-            {{--                    {!! $content['entries']->appends(Request::input())->links() !!}--}}
+            ),'Load More', ['class'=>'btn btn-default load-more','style' => 'width:100%;']) !!}
         </div>
     </div>
 @endif

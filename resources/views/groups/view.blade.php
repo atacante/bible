@@ -66,7 +66,7 @@
                         @if(Auth::check() && Auth::user()->is('user') && (in_array(Auth::user()->id,$model->members->modelKeys()) || Auth::user()->id == $model->owner_id))
                             @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_GROUP,'groupId' => $model->id])
                         @endif
-                        @include('groups.wall-items')
+                        @include('community.wall-items')
                     </div>
                 @endif
                 <div class="col-md-3 group-info" style="border-left: 1px solid #ccc">

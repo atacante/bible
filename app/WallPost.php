@@ -45,6 +45,11 @@ class WallPost extends BaseModel
         return $this->morphMany('App\ContentReport','item','item_type')->orderBy('created_at','desc');
     }
 
+    public function images()
+    {
+        return $this->morphMany('App\WallImage','item','item_type');
+    }
+
     public function likes()
     {
         return $this->morphToMany('App\User','item','wall_likes')->orderBy('wall_likes.created_at','desc');
