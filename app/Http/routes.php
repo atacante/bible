@@ -54,6 +54,7 @@ $router->group([
         'shop' => 'ShopController',
         'shop-categories' => 'ShopCategoriesController',
         'shop-products' => 'ShopProductsController',
+        'subscription' => 'SubscriptionController',
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });
