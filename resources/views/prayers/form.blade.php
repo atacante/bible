@@ -58,7 +58,7 @@
                 @endif
             </div>
             <div class="fallback pull-left"> <!-- this is the fallback if JS isn't working -->
-                <input name="file[]" type="file" multiple />
+                <input title="{!! Auth::check() && Auth::user()->isPremium()?'':'Premium Feature' !!}" name="file[]" type="file" {!! Auth::check() && Auth::user()->isPremium()?'':'disabled' !!} multiple />
             </div>
         </div>
         @if ($errors->has('image'))
