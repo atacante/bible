@@ -934,7 +934,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-friends-list,.j-members-list,#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request,.j-ignore-friend-request',function(e){
+    $('/*.j-friends-list,.j-members-list,*/#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request,.j-ignore-friend-request',function(e){
         e.preventDefault();
         console.log('j-cancel-friend-request');
         var url = $(this).attr('href');
