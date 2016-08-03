@@ -111,7 +111,6 @@
                     </thead>
                     <tbody>
                     @foreach($content['entries'] as $entry)
-{{--                        {!! var_dump(get_class($entry)) !!}--}}
                         <tr>
                             {{--<td width="20"><input data-prayerid="{!! $entry->id !!}" type="checkbox" class="check"></td>--}}
                             <td>{!! ViewHelper::getEntryIcon($entry->type) !!}</td>
@@ -130,6 +129,11 @@
                                         {!! str_limit(strip_tags($entry->text,'<p></p>'), $limit = 300, $end = '...') !!}
                                     </a>
                                 </div>
+                                @if($entry->type == 'prayer' && $entry->answered)
+                                    <div style="color: #00a65a;">
+                                        <i class="fa fa-check-circle" aria-hidden="true" style="color: #00a65a;"></i> Answered
+                                    </div>
+                                @endif
                             </td>
                             <td>
                                 @if($entry->verse)
