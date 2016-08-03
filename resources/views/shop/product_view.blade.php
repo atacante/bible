@@ -63,7 +63,7 @@
                         </div>
                     @endif
                     <div>
-                       <b> $ {!! $product->price !!} </b>
+                       <h3><b> ${!! $product->price !!} </b></h3>
                     </div>
                 </div>
                 <div>
