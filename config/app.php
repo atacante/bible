@@ -124,7 +124,7 @@ return [
 
     'providers' => [
 
-        /*Article
+        /*
          * Laravel Framework Service Providers...
          */
         Illuminate\Auth\AuthServiceProvider::class,
@@ -311,5 +311,9 @@ return [
     'locationImages' => '/uploads/locations/',
     'peopleImages' => '/uploads/peoples/',
     'blogImages' => '/uploads/blog/',
+    'notesImages' => '/uploads/notes/',
+    'journalImages' => '/uploads/journal/',
+    'prayersImages' => '/uploads/prayers/',
+    'wallpostsImages' => '/uploads/wallposts/',
     'productImages' => '/uploads/products/',
 ];

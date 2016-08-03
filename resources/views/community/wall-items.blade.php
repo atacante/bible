@@ -11,10 +11,9 @@
                     @else
                         shared a {!! ucfirst($item->type) !!} Entry&nbsp;
                     @endif
-
                 </div>
                 <div class="pull-left">
-                    @if($item->verse)
+                    @if(isset($item->verse))
                         <div class="pull-left">for&nbsp;</div>
                         <div class="pull-left">
                             {!! Html::link('/reader/verse?'.http_build_query(
@@ -46,7 +45,17 @@
                         Verse: <i>{!! str_limit(strip_tags($item->highlighted_text,'<p></p>'), $limit = 100, $end = '...') !!}</i>
                     </div>
                 @endif
-                {!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}
+                <div>{!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}</div>
+                <div id="img-thumb-preview" class="edit-images-thumbs j-with-images clearfix">
+                    @if($content[ViewHelper::getEntryControllerName($item->type)]['images']->count())
+                        @foreach($content[ViewHelper::getEntryControllerName($item->type)]['images'][$item->id] as $image)
+                            <div class="img-thumb pull-left">
+                                <img height="100" width="100" src="{!! Config::get('app.'.ViewHelper::getEntryControllerName($item->type).'Images').$item->id.'/thumbs/'.$image->image !!}" class="j-image-thumb" />
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+
             </div>
             <div class="item-footer j-item-footer">
                 <div class="item-actions j-item-actions">

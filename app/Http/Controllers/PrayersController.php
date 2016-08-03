@@ -8,12 +8,15 @@ use App\Journal;
 use App\Note;
 use App\Prayer;
 use App\WallComment;
+use App\WallImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
 use Krucas\Notification\Facades\Notification;
 
 class PrayersController extends Controller
@@ -144,6 +147,7 @@ class PrayersController extends Controller
                 }
             }
             if ($model = $model->create($data)) {
+                $this->anyUploadImage($model->id);
                 $model->syncTags(Input::get('tags'));
                 $model->syncGroups();
                 if($model->note_text = Input::get('note_text',false)){
@@ -196,6 +200,7 @@ class PrayersController extends Controller
         if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             if ($model->update(Input::all())) {
+                $this->anyUploadImage($model->id);
                 $model->syncTags(Input::get('tags'));
                 $model->syncGroups();
                 if($model->note_text){
@@ -406,5 +411,58 @@ class PrayersController extends Controller
             $unliked = 1;
         }
         return $unliked;
+    }
+
+    public function anyUploadImage($id = false)
+    {
+        $itemId = Request::get('item_id',$id);
+        if (Input::hasFile('file')) {
+            $files = Input::file('file');
+            foreach ($files as $file) {
+                $filePath = Config::get('app.prayersImages') . $itemId . '/';
+                if (!File::isDirectory(public_path() . $filePath)) {
+                    File::makeDirectory(public_path() . $filePath, 0777, true);
+                }
+                $thumbPath = $filePath . 'thumbs/';
+                $fileName = $itemId.'-'.time(). '-' . $file->getClientOriginalName();
+
+                if (!File::isDirectory(public_path() . $thumbPath)) {
+                    File::makeDirectory(public_path() . $thumbPath, 0777, true);
+                }
+
+                $thumbPath = public_path($thumbPath . $fileName);
+                if ($file) {
+                    $item = Prayer::find($itemId);
+                    $item->images()->create(['user_id' => Auth::user()->id, 'image' => $fileName]);
+                }
+                // Resize to 800px width
+                Image::make($file->getRealPath())->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path($filePath . $fileName))->destroy();
+                // Make thumb
+                Image::make($file->getRealPath())->fit(200, 200)->save($thumbPath)->destroy();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public function anyDeleteImage($filename = false)
+    {
+        if(!$filename){
+            $filename = Input::get('filename');
+        }
+
+        $image = WallImage::query()->where('image', $filename)->first();
+
+        if ($image) {
+            $filePath = public_path(Config::get('app.prayersImages').$image->item_id.'/'.$filename);
+            $thumbPath = public_path(Config::get('app.prayersImages').$image->item_id.'/thumbs/'.$filename);
+            File::delete($filePath);
+            File::delete($thumbPath);
+            $image->delete();
+        }
+
+        return response()->json(true, 200);
     }
 }

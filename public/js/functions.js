@@ -241,10 +241,21 @@ site.ajaxForm = function(form,callback){
     $('.form-group').removeClass('has-error');
     $('.help-block').remove();
     var url = form.attr('action');
+    var formData = new FormData(form[0]);
+
+    $('textarea').each(function(){
+        var value;
+        if(value = $(this).val()){
+            formData.append($(this).attr('name'), value);
+        }
+    });
+
     $.ajax({
         method: "POST",
         url: url,
-        data: form.serialize(),
+        data: formData,
+        contentType : false,
+        processData : false,
         success:function(data){
             $('#popup').modal('hide');
             if(callback){

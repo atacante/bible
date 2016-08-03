@@ -86,6 +86,11 @@ class Prayer extends BaseModel
         return $this->morphMany('App\ContentReport','item','item_type')->orderBy('created_at','desc');
     }
 
+    public function images()
+    {
+        return $this->morphMany('App\WallImage','item','item_type');
+    }
+
     public function likes()
     {
         return $this->morphToMany('App\User','item','wall_likes')->orderBy('wall_likes.created_at','desc');
@@ -120,7 +125,7 @@ class Prayer extends BaseModel
     {
         $groups = [];
         if($this->access_level == self::ACCESS_PUBLIC_GROUPS){
-            $groups = Auth::user()->myGroups->modelKeys()+Auth::user()->joinedGroups->modelKeys();
+            $groups = array_merge(Auth::user()->myGroups->modelKeys(),Auth::user()->joinedGroups->modelKeys());
         }
         elseif($this->access_level == self::ACCESS_SPECIFIC_GROUPS){
             $groups = Input::get('groups',[]);

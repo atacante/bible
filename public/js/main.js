@@ -169,6 +169,9 @@ $(document).ready(function(){
     $('body').on('click','.j-item-body',function(ev) {
         var id = $(this).data('itemid');
         var type = $(this).data('itemtype');
+        if($(ev.target).hasClass('j-image-thumb')){
+            return false;
+        }
         switch (type){
             case 'note':
                 site.getNote(id);
@@ -479,6 +482,17 @@ $(document).ready(function(){
     //    $(this).find('img').fadeTo(500, 1);
     //});
 
+    $(document).on({
+        mouseenter: function () {
+            $(this).find('img').stop().animate({"opacity": "0.5"}, "slow");
+            $(this).find('.j-remove-image').stop().animate({"opacity": "1"}, "slow");
+        },
+        mouseleave: function () {
+            $(this).find('img').stop().animate({"opacity": "1"}, "slow");
+            $(this).find('.j-remove-image').stop().animate({"opacity": "0"}, "slow");
+        }
+    }, ".img-thumb");
+
     $(".img-thumb").hover(
     function() {
         $(this).find('img').stop().animate({"opacity": "0.5"}, "slow");
@@ -499,6 +513,10 @@ $(document).ready(function(){
 
     $('.edit-images-thumbs.group-images').on('click','.j-remove-image',function(){
         site.deleteImage(this,'/groups/delete-image');
+    });
+
+    $('#popup,.edit-images-thumbs.notes-images,.edit-images-thumbs.journal-images,.edit-images-thumbs.prayers-images').on('click','.j-remove-image',function(){
+        site.deleteImage(this,$(this).data('url'));
     });
 
     $('.edit-images-thumbs.product-images').on('click','.j-remove-image',function(){
