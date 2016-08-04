@@ -21,7 +21,8 @@
         "proengsoft/laravel-jsvalidation": "~1.1",
         "yangqi/htmldom": "dev-master",
         "maatwebsite/excel": "~2.1.0",
-        "skovmand/mailchimp-laravel": "1.*"
+        "skovmand/mailchimp-laravel": "1.*",
+        "gloudemans/shoppingcart":"dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
