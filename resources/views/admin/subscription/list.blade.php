@@ -3,6 +3,7 @@
 @section('breadcrumbs', Breadcrumbs::render('subscription'))
 
 @section('content')
+    <?php {{--echo config('app.mailchimpListId');--}} ?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary">

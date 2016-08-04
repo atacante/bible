@@ -31,13 +31,9 @@ class SubscriptionController extends Controller
     public function getList()
     {
         Session::flash('backUrl', Request::fullUrl());
-
         $userModel =  User::query();
-
         $userModel = $this->prepareFilters($userModel);
-
         $content['users'] = $userModel->orderBy('created_at', SORT_DESC)->paginate(20);
-
         return view('admin.subscription.list',
             [
                 'page_title' => 'Subscription List',

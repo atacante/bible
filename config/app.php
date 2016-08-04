@@ -94,6 +94,7 @@ return [
 
     'key' => env('APP_KEY'),
 
+
     'cipher' => 'AES-256-CBC',
 
     /*
@@ -278,7 +279,7 @@ return [
     'defaultChaptersVersion' => 'king_james',
     'defaultBookNumber' => 1,
     'defaultChapterNumber' => 1,
-
+    'mailchimpListId' => env('MAILCHIMP_LIST_ID'),
     'defaultLexicon' => 'kjv',
 
     /*

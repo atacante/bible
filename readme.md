@@ -50,6 +50,15 @@ DB_CONNECTION=pgsql
 
 ```
 
+### Mailchimp
+
+Setup in `.env` with real data:
+
+```
+MAILCHIMP_LIST_ID=***********
+
+```
+
 Execute migrations
 ~~~
 php artisan migrate
