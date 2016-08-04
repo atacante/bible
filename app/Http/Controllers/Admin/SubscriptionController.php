@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Components\MailchimpComponent;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Input;
 
 class SubscriptionController extends Controller
 {
+    public function getTest() {
+         $e = MailchimpComponent::addEmailToList("pinchuk.maksim@gmail.com");
+        return $e;
+    }
     private function prepareFilters($model)
     {
         $subscribedFilter = Input::get('subscription', false);
