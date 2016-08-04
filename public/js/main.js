@@ -790,6 +790,21 @@ $(document).ready(function(){
         });
     });
 
+    $('.j-subscribed-status').change(function(){
+        var data = {};
+        data.id = $(this).data('userid');
+        data[$(this).attr('name')] = $(this).is(':checked');
+
+        $.ajax({
+            method: "GET",
+            url: "/admin/subscription/update-subscribed",
+            data:data,
+            success:function(data){
+
+            }
+        });
+    });
+
     $('.j-generate-coupon-code').click(function(e){
         e.preventDefault();
         $.ajax({

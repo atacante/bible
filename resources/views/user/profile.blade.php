@@ -163,6 +163,18 @@
                         </span>
                             @endif
                         </div>
+
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('subscribed', "Newslatter:") !!}
+
+                        <div>
+                            <label>
+                                {!! Form::hidden('subscribed', 0) !!}
+                                {!! Form::checkbox('subscribed', 1, true) !!}
+                                I want to get the latest news by my Email
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <!-- /.box-body -->

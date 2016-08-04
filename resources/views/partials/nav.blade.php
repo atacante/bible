@@ -71,9 +71,9 @@
             </ul>
         </div>
         @if(Request::segment(1) == 'reader')
-        <div class="pull-left" style="width: 345px; margin: 8px 15px 0;">
+        <div class="pull-left" style="width: 270px; margin: 8px 15px 0;">
             {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
-            {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:290px; margin-right:5px;']) !!}
+            {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:220px; margin-right:5px;']) !!}
             {!! Form::submit('Go',['class' => 'btn btn-primary pull-left']) !!}
             {!! Form::close() !!}
         </div>

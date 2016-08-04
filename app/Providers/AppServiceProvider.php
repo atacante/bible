@@ -178,7 +178,7 @@ class AppServiceProvider extends ServiceProvider
             if($model->exists && $model->isDirty('used') && $model->uses_limit == $model->used){
                 $model->status = false;
             }
-            if($model->isDirty('uses_limit') && $model->uses_limit > $model->used){
+            if((!$model->uses_limit || $model->uses_limit > $model->used) && strtotime($model->expire_at) > time()) {
                 $model->status = true;
             }
             return true; //if false the model wont save!

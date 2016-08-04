@@ -142,5 +142,19 @@
                 </a>
             </div>
         </div>
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-yellow" style="background-color: #734c1a !important;">
+                <div class="inner">
+                    <h3 style="font-size: 24px; line-height: 42px;">Subscription</h3>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="icon">
+                    <i class="fa ion-at"></i>
+                </div>
+                <a href="{{ url('admin/subscription/list') }}" class="small-box-footer">
+                    View All <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
     </div>
 @endsection

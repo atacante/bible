@@ -20,8 +20,14 @@
                 <tr>
                     {{--<td width="20"><input data-prayerid="{!! $prayer->id !!}" type="checkbox" class="check"></td>--}}
                     <td>
-                        <div class="prayer-text j-prayer-text"
-                             data-prayerid="{!! $prayer->id !!}">{!! str_limit(strip_tags($prayer->prayer_text,'<p></p>'), $limit = 300, $end = '...') !!}</div>
+                        <div class="prayer-text j-prayer-text" data-prayerid="{!! $prayer->id !!}">
+                            {!! str_limit(strip_tags($prayer->prayer_text,'<p></p>'), $limit = 300, $end = '...') !!}
+                        </div>
+                        @if($prayer->answered)
+                            <div style="color: #00a65a;">
+                                <i class="fa fa-check-circle" aria-hidden="true" style="color: #00a65a;"></i> Answered
+                            </div>
+                        @endif
                     </td>
                     <td>
                         @if(count($prayer->tags))
