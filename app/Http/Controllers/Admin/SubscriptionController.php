@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Input;
 class SubscriptionController extends Controller
 {
     public function getTest() {
-         $e = MailchimpComponent::addEmailToList("pinchuk.maksim@gmail.com");
+         $e = MailchimpComponent::addEmailToList("powerrr@mail.ru");
         return $e;
     }
     private function prepareFilters($model)
