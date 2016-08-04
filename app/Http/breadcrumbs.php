@@ -228,3 +228,10 @@ Breadcrumbs::register('cmsUpdate', function($breadcrumbs)
     $breadcrumbs->parent('cms');
     $breadcrumbs->push('Edit pages');
 });
+
+// Admin > Subscription
+Breadcrumbs::register('subscription', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Subscription', url('admin/subscription/list'));
+});
