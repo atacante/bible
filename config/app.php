@@ -173,6 +173,7 @@ return [
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
         Laravel\CashierAuthorizeNet\CashierServiceProvider::class,
         Skovmand\Mailchimp\MailchimpServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
@@ -265,6 +266,7 @@ return [
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
         'Htmldom' => 'Yangqi\Htmldom\Htmldom',
         'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+        'Cart'  => Gloudemans\Shoppingcart\Facades\Cart::class,
     ],
     /*
     |--------------------------------------------------------------------------
