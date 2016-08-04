@@ -78,7 +78,7 @@
             </div>
             <!-- /.box -->
             <div class="text-center">
-               {{-- {!! $content['cms']->appends(Request::input())->links() !!}--}}
+                {!! $content['users']->appends(Request::input())->links() !!}
             </div>
         </div>
     </div>
