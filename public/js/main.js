@@ -806,17 +806,29 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-subscribed-status').change(function(){
+    $('.j-subscribed-status').change(function(event){
         var data = {};
+        var checkBox = $(this);
         data.id = $(this).data('userid');
-        data[$(this).attr('name')] = $(this).is(':checked');
+        if($(this).is(':checked')){
+            data[$(this).attr('name')] = 1;
+        } else {
+            data[$(this).attr('name')] = 0;
+        }
 
         $.ajax({
             method: "GET",
             url: "/admin/subscription/update-subscribed",
             data:data,
             success:function(data){
-
+                if(data.e!=null) {
+                    alert(data.e);
+                    if(checkBox.is(':checked')){
+                        checkBox.attr('checked', false);
+                    } else {
+                        checkBox.attr('checked', true);
+                    }
+                }
             }
         });
     });

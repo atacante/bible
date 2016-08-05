@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Input;
 
 class SubscriptionController extends Controller
 {
-    public function getTest() {
-         $e = MailchimpComponent::addEmailToList("powerrr@mail.ru");
+    public function getAdd() {
+         $e = MailchimpComponent::addEmailToList("pinchuk.maksim@gmail.com");
+        return $e;
+    }
+    public function getDel() {
+        $e = MailchimpComponent::removeEmailFromList("pinchuk.maksim@gmail.com");
         return $e;
     }
     private function prepareFilters($model)
@@ -50,8 +54,16 @@ class SubscriptionController extends Controller
     public function getUpdateSubscribed()
     {
         $user_id = Request::input('id');
+        $is_subscribed = Request::input('subscribed');
         $userModel = User::find($user_id);
-        $userModel->update(Request::input());
-        return $user_id;
+        if($is_subscribed) {
+            $e = MailchimpComponent::addEmailToList($userModel->email);
+        } else {
+            $e = MailchimpComponent::removeEmailFromList($userModel->email);
+        }
+        if($e==''){
+            $userModel->update(Request::input());
+        }
+        return  ['e'=>$e];
     }
 }
