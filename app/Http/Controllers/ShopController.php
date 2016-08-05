@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller {
 
@@ -68,10 +69,8 @@ class ShopController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getAddToCart($id)
+	public function getCart()
 	{
-		$product =  ShopProduct::find($id);
-        Cart::add($product, 1);
 		return view('shop.cart');
 	}
 
@@ -81,10 +80,38 @@ class ShopController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getCartUpdate($rowId)
+	public function getAddToCart($id)
 	{
-        Cart::update($rowId, 1);
-		return view('shop.cart');
+		$product = ShopProduct::find($id);
+        Cart::add($product, 1);//->setTaxRate('10');
+		return Redirect::to('/shop/cart');
+	}
+
+    /**
+	 * Display a view of the cart
+	 * GET /shop/add-to-cart/{id}
+	 *
+	 * @return Response
+	 */
+	public function postCartUpdate(Request $request)
+	{
+        $rowId = Input::get('rowId');
+        $qty = Input::get('qty');
+
+        Cart::update($rowId, $qty);
+		return Redirect::to('/shop/cart');
+	}
+
+    /**
+	 * Display a view of the cart
+	 * GET /shop/add-to-cart/{id}
+	 *
+	 * @return Response
+	 */
+	public function getCartDelete($rowId)
+	{
+        Cart::remove($rowId);
+		return Redirect::to('/shop/cart');
 	}
 
 }
