@@ -32,6 +32,22 @@ $(document).ready(function(){
         },
     });
 
+    $(".j-invite-emails").select2({
+        tags: true,
+        allowClear: true,
+        dropdownCssClass: 'hideSearch',
+        tokenSeparators: [',',' ']
+    });
+    $('.j-invite-emails').on('select2:selecting', function (evt) {
+        if(!site.validateEmail(evt.params.args.data.id)){
+            $('#popup-sm').find('.modal-header .modal-title').text('Warning');
+            $('#popup-sm').find('.modal-body').html("Please enter valid email address");
+            $('#popup-sm').find('.modal-footer').html('<a class="btn btn-danger btn-ok" data-dismiss="modal">Ok</a>');
+            $('#popup-sm').modal({show:true});
+            return false;
+        }
+    });
+
     site.initSelect2();
     site.initTagging();
 

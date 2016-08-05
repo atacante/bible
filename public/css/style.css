@@ -990,4 +990,21 @@ a.view-details:hover{
     background-color: #fff;
 }
 
+.hideSearch .select2-search,
+.hideSearch .select2-results,
+.hideSearch.select2-dropdown,
+.hideSearch .select2-dropdown {
+    display: none;
+}
+
+#invite-form .select2-selection--multiple{
+    height: 100px !important;
+}
+
+#invite-form .select2-container--open .select2-selection--multiple{
+    border-bottom-left-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+}
+
+
 
