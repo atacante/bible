@@ -32,6 +32,22 @@ $(document).ready(function(){
         },
     });
 
+    $(".j-invite-emails").select2({
+        tags: true,
+        allowClear: true,
+        dropdownCssClass: 'hideSearch',
+        tokenSeparators: [',',' ']
+    });
+    $('.j-invite-emails').on('select2:selecting', function (evt) {
+        if(!site.validateEmail(evt.params.args.data.id)){
+            $('#popup-sm').find('.modal-header .modal-title').text('Warning');
+            $('#popup-sm').find('.modal-body').html("Please enter valid email address");
+            $('#popup-sm').find('.modal-footer').html('<a class="btn btn-danger btn-ok" data-dismiss="modal">Ok</a>');
+            $('#popup-sm').modal({show:true});
+            return false;
+        }
+    });
+
     site.initSelect2();
     site.initTagging();
 
@@ -790,17 +806,29 @@ $(document).ready(function(){
         });
     });
 
-    $('.j-subscribed-status').change(function(){
+    $('.j-subscribed-status').change(function(event){
         var data = {};
+        var checkBox = $(this);
         data.id = $(this).data('userid');
-        data[$(this).attr('name')] = $(this).is(':checked');
+        if($(this).is(':checked')){
+            data[$(this).attr('name')] = 1;
+        } else {
+            data[$(this).attr('name')] = 0;
+        }
 
         $.ajax({
             method: "GET",
             url: "/admin/subscription/update-subscribed",
             data:data,
             success:function(data){
-
+                if(data.e!=null) {
+                    alert(data.e);
+                    if(checkBox.is(':checked')){
+                        checkBox.attr('checked', false);
+                    } else {
+                        checkBox.attr('checked', true);
+                    }
+                }
             }
         });
     });

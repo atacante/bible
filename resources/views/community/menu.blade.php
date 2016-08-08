@@ -15,6 +15,12 @@
     <li class="{{ (Request::is('community/find-friends') ? 'active' : '') }}" role="presentation">
         <a href="{{ url('community/find-friends') }}"><i class="fa-btn ion-person-stalker" style="font-size: 16px;"></i>Find Friends</a>
     </li>
+    @role('user')
+    <li role="presentation" class="{!! (Request::segment(2) == 'invite-people')?'active':'' !!}">
+        <a href="{!! url('/community/invite-people') !!}"><i class="fa fa-btn fa-user-plus" style="font-size: 16px;"></i>Invite People</a>
+    </li>
+    @endrole
+    <li role="separator" class="divider" style=""></li>
     <li class="{{ (Request::is('blog') ? 'active' : '') }}" role="presentation">
         <a href="{{ url('blog') }}"><i class="fa fa-btn fa-newspaper-o"></i>Blog</a>
     </li>

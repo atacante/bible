@@ -15,8 +15,10 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Krucas\Notification\Facades\Notification;
 
 class CommunityController extends Controller
 {
@@ -268,5 +270,30 @@ class CommunityController extends Controller
         $content['id'] = $id;
 
         return view('community.report-form', ['content' => $content]);
+    }
+
+    public function anyInvitePeople(\Illuminate\Http\Request $request)
+    {
+        if (Request::isMethod('post')){
+            $emails = Input::get('emails',false);
+            $rures = [
+                'emails' => 'required'
+            ];
+            $this->validate($request, $rures);
+            foreach ($emails as $email) {
+                $data = [
+                    'name' => 'friend',
+                    'inviterName' => Auth::user()->name,
+                    'inviterId' => Auth::user()->id,
+                ];
+                echo $email;
+                Mail::send('emails.invite', $data, function($message) use($email)
+                {
+                    $message->to($email)->subject('Invite to the Bible Project');
+                });
+            }
+            Notification::successInstant('Invites have been successfully sent');
+        }
+        return view('community.invite-people', ['content' => '']);
     }
 }

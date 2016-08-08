@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Request;
+use App\Http\Components\MailchimpComponent;
 
 class AuthController extends Controller
 {
@@ -85,7 +86,11 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-
+        if($data['subscribed']) {
+            MailchimpComponent::addEmailToList($data['email']);
+        } else {
+            MailchimpComponent::removeEmailFromList($data['email']);
+        }
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
