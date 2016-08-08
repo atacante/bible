@@ -65,7 +65,7 @@ class ShopController extends Controller {
 
     /**
 	 * Display a view of the cart
-	 * GET /shop/add-to-cart/{id}
+	 * GET /shop/cart
 	 *
 	 * @return Response
 	 */
@@ -75,7 +75,7 @@ class ShopController extends Controller {
 	}
 
     /**
-	 * Display a view of the cart
+	 * Add products to the cart
 	 * GET /shop/add-to-cart/{id}
 	 *
 	 * @return Response
@@ -89,7 +89,7 @@ class ShopController extends Controller {
 
     /**
 	 * Display a view of the cart
-	 * GET /shop/add-to-cart/{id}
+	 * POST /shop/cart-update/{id}
 	 *
 	 * @return Response
 	 */
