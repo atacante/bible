@@ -43,6 +43,10 @@ class Note extends BaseModel
         $this->attributes['access_level'] = Request::get('share_for_groups',$value);
     }
 
+    public function text() {
+        return $this->note_text;
+    }
+
     public function user() {
         return $this->belongsTo(\App\User::class, 'user_id', 'id');
     }

@@ -235,3 +235,17 @@ Breadcrumbs::register('subscription', function($breadcrumbs)
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Subscription', url('admin/subscription/list'));
 });
+
+// Admin > Coupons
+Breadcrumbs::register('complaints', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Complaints', url('admin/complaints/list'));
+});
+
+// Admin > Complaints > [UpdateComplaints]
+Breadcrumbs::register('complaintUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('complaints');
+    $breadcrumbs->push('Edit complaint');
+});

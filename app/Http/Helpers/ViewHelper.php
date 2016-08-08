@@ -7,6 +7,7 @@ use App\Note;
 use App\Prayer;
 use App\Tag;
 use App\VersionsListEn;
+use App\WallPost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -131,10 +132,14 @@ class ViewHelper
                 $html = '<i title="Private" class="fa fa-lock" aria-hidden="true"></i>';
                 break;
             case Note::ACCESS_PUBLIC_ALL:
+            case WallPost::ACCESS_PUBLIC_ALL:
                 $html = '<i title="Public - share with everyone" class="fa fa-globe" aria-hidden="true"></i>';
                 break;
             case Note::ACCESS_PUBLIC_GROUPS:
                 $html = '<i title="Public - share with Groups I am member of" class="fa fa-users" aria-hidden="true"></i>';
+                break;
+            case WallPost::ACCESS_PUBLIC_FRIENDS:
+                $html = '<i title="Public - share with friends" class="fa ion-person-stalker" aria-hidden="true"></i>';
                 break;
         }
 

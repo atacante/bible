@@ -11,15 +11,26 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="{!! ViewHelper::classActivePath('admin.lexicon') !!}"><a href="{{ url('admin/lexicon/list') }}"><span><i class="ion ion-university"></i> Lexicons</span></a></li>
-                    <li class="{!! ViewHelper::classActivePath('admin.bible') !!}"><a href="{{ url('admin/bible/versions') }}"><span><i class="ion ion-ios-book"></i> Bibles</span></a></li>
-                    <li class="{!! ViewHelper::classActivePath('admin.user') !!}"><a href="{{ url('admin/user/list') }}"><span><i class="ion ion-person-add"></i> Users</span></a></li>
-                    <li class="{!! ViewHelper::classActivePath('admin.location') !!}"><a href="{{ url('admin/location/list') }}"><span><i class="ion ion-ios-location"></i> Locations</span></a></li>
-                    <li class="{!! ViewHelper::classActivePath('admin.peoples') !!}"><a href="{{ url('admin/peoples/list') }}"><span><i class="ion ion-ios-people"></i> People</span></a></li>
-                    <li class="{!! ViewHelper::classActivePath('admin.coupons') !!}"><a href="{{ url('admin/coupons/list') }}"><span><i class="fa fa-ticket"></i> Coupons</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ion ion-ios-book"></i> Reader <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="{!! ViewHelper::classActivePath('admin.lexicon') !!}"><a href="{{ url('admin/lexicon/list') }}"><span><i class="ion ion-university"></i> Lexicons</span></a></li>
+                            <li class="{!! ViewHelper::classActivePath('admin.bible') !!}"><a href="{{ url('admin/bible/versions') }}"><span><i class="ion ion-ios-book"></i> Bibles</span></a></li>
+                            <li class="{!! ViewHelper::classActivePath('admin.location') !!}"><a href="{{ url('admin/location/list') }}"><span><i class="ion ion-ios-location"></i> Locations</span></a></li>
+                            <li class="{!! ViewHelper::classActivePath('admin.peoples') !!}"><a href="{{ url('admin/peoples/list') }}"><span><i class="ion ion-ios-people"></i> People</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa-btn ion-person-stalker"></i>Users <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="{!! ViewHelper::classActivePath('admin.user') !!}"><a href="{{ url('admin/user/list') }}"><span><i class="ion ion-person-add"></i> Users</span></a></li>
+                            <li class="{!! ViewHelper::classActivePath('admin.coupons') !!}"><a href="{{ url('admin/coupons/list') }}"><span><i class="fa fa-ticket"></i> Coupons</span></a></li>
+                            <li class="{!! ViewHelper::classActivePath('admin.subscription') !!}"><a href="{{ url('admin/subscription/list') }}"><span><i class="fa ion-at"></i> Subscriptions</span></a></li>
+                        </ul>
+                    </li>
                     <li class="{!! ViewHelper::classActivePath('admin.blog') !!}"><a href="{{ url('admin/blog/list') }}"><span><i class="fa fa-newspaper-o"></i> CMS</span></a></li>
                     <li class="{!! ViewHelper::classActivePath('admin.shop') !!}"><a href="{{ url('admin/shop/list') }}"><span><i class="fa fa-shopping-cart"></i> Shop</span></a></li>
-                    <li class="{!! ViewHelper::classActivePath('admin.subscription') !!}"><a href="{{ url('admin/subscription/list') }}"><span><i class="fa ion-at"></i> Subscription</span></a></li>
+                    <li class="{!! ViewHelper::classActivePath('admin.complaints') !!}"><a href="{{ url('admin/complaints/list') }}"><span><i class="fa fa-btn fa-flag"></i>Complaints</span></a></li>
                     {{--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
