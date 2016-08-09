@@ -6,6 +6,7 @@ use App\Http\Components\MailchimpComponent;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Config;
 use Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
@@ -42,7 +43,9 @@ class SubscriptionController extends Controller
         Session::flash('backUrl', Request::fullUrl());
         $userModel =  User::query();
         $userModel = $this->prepareFilters($userModel);
-        $content['users'] = $userModel->orderBy('created_at', SORT_DESC)->paginate(20);
+        $content['users'] = $userModel->whereHas('roles', function ($q) {
+                                $q->whereNotIn('slug',[Config::get('app.role.admin')]);
+                            })->orderBy('created_at', SORT_DESC)->paginate(20);
         return view('admin.subscription.list',
             [
                 'page_title' => 'Subscription List',
