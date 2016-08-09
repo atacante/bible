@@ -14,7 +14,7 @@
                             @endif
                                     <div class="form-group {{ $errors->has($property) ? ' has-error' : '' }}">
                                         {!!  Form::label($property, ucwords(str_replace('_',' ', $property))) !!}
-                                        {!!  Form::text($property, null, ['class' => 'form-control']) !!}
+                                        {!!  Form::text($property, $model->$property, ['class' => 'form-control']) !!}
                                         @if ($errors->has($property))
                                             <span class="help-block">
                                                 {{ $errors->first($property) }}
@@ -30,7 +30,7 @@
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                    {!! Form::button('Checkout', ['type'=>'submit','class'=>'btn btn-success pull-right']) !!}
+                    {!! Form::button('Confirm', ['type'=>'submit','class'=>'btn btn-success pull-right']) !!}
                 </div>
                 {!! Form::close() !!}
             </div>

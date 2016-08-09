@@ -11,7 +11,7 @@
                 <thead>
                     <tr>
                         <th>Product</th>
-                        <th>Qty</th>
+                        <th>Quantity</th>
                         <th>Price</th>
                         <th>Subtotal</th>
                         <th>Actions</th>
@@ -77,6 +77,9 @@
                     </tr>
                 </tfoot>
             </table>
+        </div>
+        <div>
+            {!! Html::link(url('/order/create'),'Checkout', ['class'=>'btn btn-success pull-right']) !!}
         </div>
         <!-- /.box-body -->
     </div>

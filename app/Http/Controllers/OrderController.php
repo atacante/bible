@@ -11,6 +11,8 @@ use App\Http\Requests;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Krucas\Notification\Facades\Notification;
 
 class OrderController extends Controller
 {
@@ -47,22 +49,34 @@ class OrderController extends Controller
 
                 Cart::destroy();
             }
-
-            return redirect('/order/'.$order->id);
+            Notification::success('Your order was placed!');
+            return redirect('/order/show/'.$order->id);
 
         }else{
+            Notification::error('Your order was not placed!');
             return redirect('/shop/cart');
         }
 
     }
 
-    public function getIndex($orderId){
-        $order = Order::find($orderId);
+    public function getShow($orderId){
+        $order = Order::where(['id' => $orderId, 'user_id' => Auth::user()->id])->first();
+
+        if(!$order){
+            Notification::error('Your are not allowed to see this order!');
+            return Redirect::to('/shop');
+        }
+
         return view('order.view',['order'=>$order]);
     }
 
     public function getCreate(){
-        $model = new UsersMeta();
+
+        $model = UsersMeta::where(['user_id' => Auth::user()->id])->orderBy('created_at', SORT_DESC)->first();
+
+        if(!$model){
+            $model = new UsersMeta();
+        }
 
         return view('order.create',
             [
