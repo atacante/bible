@@ -13,7 +13,7 @@
         @if($content['groupsRequested']['items']->count())
         <div class="group-block">
             <div class="g-header">
-                <div class=""><strong>Groups You Invited</strong></div>
+                <div class=""><strong>Group Invitations</strong></div>
             </div>
             <div class="g-body">
                 @include('groups.items',['dataKey' => 'groupsRequested'])
@@ -22,7 +22,7 @@
         @endif
         <div class="group-block">
             <div class="g-header">
-                <div class=""><strong>Groups You Joined</strong></div>
+                <div class=""><strong>Groups You Have Joined</strong></div>
             </div>
             <div class="g-body">
                 @include('groups.items',['dataKey' => 'joinedGroups'])
