@@ -9,7 +9,7 @@ class Order extends BaseModel {
 	{
 		$rules = [
 			'user_id' => 'required',
-			'user' => 'required'
+			'user_meta_id' => 'required'
 		];
 
 		return $rules;
@@ -20,7 +20,11 @@ class Order extends BaseModel {
 	}
 
 	public function userMeta() {
-		return $this->hasOne(UsersMeta::class, 'user_meta_id', 'id');
+		return $this->belongsTo(UsersMeta::class, 'user_meta_id', 'id');
+	}
+
+	public function orderItems() {
+		return $this->hasMany(OrderItem::class, 'order_id', 'id');
 	}
 
 }
