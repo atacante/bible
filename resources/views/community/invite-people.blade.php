@@ -17,6 +17,20 @@
                     </span>
                 @endif
             </div>
+            <div class="form-group {{ $errors->has('invite_text') ? ' has-error' : '' }}">
+                {!! Form::label('invite_text', 'Invite text:') !!}
+                {!! Form::textarea('invite_text',$content['invite_text'],['placeholder' => '','multiple' => true,'class' => 'clear-fix ckeditor', 'style' => '']) !!}
+                @if ($errors->has('invite_text'))
+                    <span class="help-block">
+                        {{ $errors->first('invite_text') }}
+                    </span>
+                @endif
+                <div style="margin-top: 10px;">
+                    <strong>Placeholders:</strong><br />
+                    {invite_url} - {!! $content['invite_url'] !!}<br />
+                    {invite_link} - {!! $content['invite_link'] !!}
+                </div>
+            </div>
             <!-- /.box-body -->
 
             <div class="box-footer">

@@ -274,26 +274,38 @@ class CommunityController extends Controller
 
     public function anyInvitePeople(\Illuminate\Http\Request $request)
     {
+        $data = [
+            'name' => 'friend',
+            'inviterName' => Auth::user()->name,
+            'inviterId' => Auth::user()->id,
+            'invite_url' => url('invite/'.Auth::user()->id),
+            'invite_link' => '<a href="'.url('invite/'.Auth::user()->id).'" class="">www.biblestudycompany.com</a>',
+        ];
+
         if (Request::isMethod('post')){
             $emails = Input::get('emails',false);
+            $invite_text = Input::get('invite_text',false);
             $rures = [
-                'emails' => 'required'
+                'emails' => 'required',
+                'invite_text' => 'required',
             ];
             $this->validate($request, $rures);
+            
+            $data['invite_text'] = str_replace('{invite_url}',$data['invite_url'],$invite_text);
+            $data['invite_text'] = str_replace('{invite_link}',$data['invite_link'],$data['invite_text']);
+
             foreach ($emails as $email) {
-                $data = [
-                    'name' => 'friend',
-                    'inviterName' => Auth::user()->name,
-                    'inviterId' => Auth::user()->id,
-                ];
-                echo $email;
-                Mail::send('emails.invite', $data, function($message) use($email)
+                Mail::send([],[], function($message) use($email,$data)
                 {
-                    $message->to($email)->subject('Invite to the Bible Project');
+                    $message
+                        ->to($email)
+                        ->subject($data['inviterName'].' has invited you to join Bible Study Company')
+                        ->setBody($data['invite_text'], 'text/html');
                 });
             }
             Notification::successInstant('Invites have been successfully sent');
         }
-        return view('community.invite-people', ['content' => '']);
+        $data['invite_text'] = view('emails.invite', [])->render();
+        return view('community.invite-people', ['content' => $data]);
     }
 }

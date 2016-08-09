@@ -211,8 +211,8 @@ reader.getActionsHtml = function(){
 }
 
 site.initCkeditors = function(){
-    if($("#note-text,#journal-text,#prayer-text").length > 0){
-        $('#note-text,#journal-text,#prayer-text').ckeditor({
+    if($("#note-text,#journal-text,#prayer-text,.ckeditor").length > 0){
+        $('#note-text,#journal-text,#prayer-text,.ckeditor').ckeditor({
             customConfig: '/js/ckeditor/config.js',
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
             filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
