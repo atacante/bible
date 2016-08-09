@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BaseModel;
 use App\Helpers\ViewHelper;
+use App\Http\Components\MailchimpComponent;
 use App\Journal;
 use App\MyEntries;
 use App\Note;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use \Illuminate\Support\Facades\Request;
 
@@ -122,6 +124,25 @@ class UserController extends Controller
 
         if (Request::isMethod('put')) {
             $this->validate($request, $user->rules());
+
+            $mess = '';
+            if(Input::get('subscribed')!=$user['subscribed']) {
+                if(Input::get('subscribed')) {
+                    $mess = MailchimpComponent::addEmailToList(Input::get('email'));
+                } else {
+                    $mess = MailchimpComponent::removeEmailFromList(Input::get('email'));
+                }
+                $data['mess'] = $mess;
+                $data['email'] = Input::get('email');
+                $data['name'] = Input::get('name');
+                if ($mess!=''){
+                    Mail::send('emails.mailchimp', $data, function($message) use($data)
+                    {
+                        $message->to($data['email'])->subject('Subscription Mailchimp Error');
+                    });
+                }
+            }
+
             if($user->update(Input::all())){
 
                 if((Input::get('plan_type') == User::PLAN_PREMIUM) && Input::get('plan_name')){
@@ -129,7 +150,6 @@ class UserController extends Controller
                 }else{
                     $user->downgradeToFree();
                 }
-
 
                 Notification::successInstant('Your profile info successfully saved');
             }

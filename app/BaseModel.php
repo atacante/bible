@@ -236,4 +236,24 @@ class BaseModel extends Model {
         }
         return $code;
     }
+
+    public static function getWallItemModel($type,$id)
+    {
+        switch($type){
+            case 'note':
+                $model = Note::query()->find($id);
+                break;
+            case 'journal':
+                $model = Journal::query()->find($id);
+                break;
+            case 'prayer':
+                $model = Prayer::query()->find($id);
+                break;
+            case 'status':
+                $model = WallPost::query()->find($id);
+                break;
+        }
+
+        return $model;
+    }
 }

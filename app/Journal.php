@@ -43,6 +43,10 @@ class Journal extends BaseModel
         $this->attributes['access_level'] = Request::get('share_for_groups',$value);
     }
 
+    public function text() {
+        return $this->journal_text;
+    }
+
     public function user() {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }

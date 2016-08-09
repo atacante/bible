@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Request;
 use App\Http\Components\MailchimpComponent;
+
 
 class AuthController extends Controller
 {
@@ -86,11 +88,20 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $mess = '';
         if($data['subscribed']) {
-            MailchimpComponent::addEmailToList($data['email']);
+            $mess = MailchimpComponent::addEmailToList($data['email']);
         } else {
-            MailchimpComponent::removeEmailFromList($data['email']);
+            $mess = MailchimpComponent::removeEmailFromList($data['email']);
         }
+        $data['mess'] = $mess;
+        if ($mess!=''){
+            Mail::send('emails.mailchimp', $data, function($message) use($data)
+            {
+                $message->to($data['email'])->subject('Subscription Mailchimp Error');
+            });
+        }
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
