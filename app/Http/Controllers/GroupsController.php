@@ -248,7 +248,7 @@ class GroupsController extends Controller
         }
         else{
             $statusesQuery = WallPost::with(['user','images'])
-                ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,text,type,null as bible_version,published_at,
+                ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,status_text as text,type,null as bible_version,published_at,
                     (SELECT count(*) FROM wall_likes WHERE item_type = \'App\WallPost\' AND item_id = wall_posts.id) as likesCount,
                     (SELECT count(*) FROM wall_comments WHERE type = \'App\WallPost\' AND item_id = wall_posts.id) as commentsCount
                 ')

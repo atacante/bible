@@ -14,6 +14,8 @@ use App\Prayer;
 use App\User;
 use App\Validators\CheckCouponValidator;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -192,6 +194,15 @@ class AppServiceProvider extends ServiceProvider
             return true; //if false the model wont save!
         });
 
+        Note::deleting(function($model)
+        {
+            if($model->images->count()){
+                $model->images()->delete();
+                File::deleteDirectory(public_path(Config::get('app.notesImages').$model->id));
+            }
+            return true;
+        });
+
         Journal::saving(function($model)
         {
             if($model->isDirty('access_level') && $model->access_level != Journal::ACCESS_PRIVATE){
@@ -200,12 +211,30 @@ class AppServiceProvider extends ServiceProvider
             return true; //if false the model wont save!
         });
 
+        Journal::deleted(function($model)
+        {
+            if($model->images->count()){
+                $model->images()->delete();
+                File::deleteDirectory(public_path(Config::get('app.journalImages').$model->id));
+            }
+            return true;
+        });
+
         Prayer::saving(function($model)
         {
             if($model->isDirty('access_level') && $model->access_level != Prayer::ACCESS_PRIVATE){
                 $model->published_at = Carbon::now();
             }
             return true; //if false the model wont save!
+        });
+
+        Prayer::deleted(function($model)
+        {
+            if($model->images->count()){
+                $model->images()->delete();
+                File::deleteDirectory(public_path(Config::get('app.prayersImages').$model->id));
+            }
+            return true;
         });
     }
 

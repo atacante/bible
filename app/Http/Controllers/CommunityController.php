@@ -54,7 +54,7 @@ class CommunityController extends Controller
         }
 
         $statusesQuery = WallPost::with(['user','images'])
-            ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,text,type,null as bible_version,published_at,
+            ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,status_text as text,type,null as bible_version,published_at,
                 (SELECT count(*) FROM wall_likes WHERE item_type = \'App\WallPost\' AND item_id = wall_posts.id) as likesCount,
                 (SELECT count(*) FROM wall_comments WHERE type = \'App\WallPost\' AND item_id = wall_posts.id) as commentsCount
             ')
@@ -261,6 +261,18 @@ class CommunityController extends Controller
 
             $reportCreated = $model->contentReports()->create($data);
             if ($reportCreated) {
+                Mail::queue([],[], function($message) use($data,$type)
+                {
+                    $admins = User::whereHas('roles', function ($q) {
+                            $q->whereIn('slug',[Config::get('app.role.admin')]);
+                        })->get();
+                    foreach ($admins as $admin) {
+                        $message
+                            ->to($admin->email)
+                            ->subject('Content has been reported')
+                            ->setBody(view('emails.content_report', ['type' => $type,'reason' => $data['reason_text']])->render(), 'text/html');
+                    }
+                });
                 return 1;
             }
             return 0;

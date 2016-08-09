@@ -112,9 +112,8 @@ class ComplaintsController extends Controller
 
         $contentReportModel = ContentReport::query()->find($id);
         $model = BaseModel::getWallItemModel($type,$contentReportModel->item_id);
-
+        $model->contentReports()->delete();
         if ($model->delete()) {
-            $contentReportModel->delete();
             Notification::success('Item has been successfully deleted');
         }
 

@@ -1,11 +1,11 @@
 {!! Form::model($itemModel, ['method' => 'put', 'id' => 'complaint-form', 'class' => 'panel','role' => 'form','files' => true]) !!}
 <div class="box-body">
-    <div class="form-group {{ $errors->has($contentReportModel->type() != 'status'?$contentReportModel->type().'_text':'text') ? ' has-error' : '' }}">
-        {!! Form::label($contentReportModel->type() != 'status'?$contentReportModel->type().'_text':'text', 'Description:') !!}
-        {!! Form::textarea($contentReportModel->type() != 'status'?$contentReportModel->type().'_text':'text',null,['id' => 'location-desc']) !!}
-        @if ($errors->has($contentReportModel->type() != 'status'?$contentReportModel->type().'_text':'text'))
+    <div class="form-group {{ $errors->has($contentReportModel->type().'_text') ? ' has-error' : '' }}">
+        {!! Form::label($contentReportModel->type().'_text', 'Description:') !!}
+        {!! Form::textarea($contentReportModel->type().'_text',null,['id' => 'location-desc']) !!}
+        @if ($errors->has($contentReportModel->type().'_text'))
             <span class="help-block">
-                {{ $errors->first($contentReportModel->type() != 'status'?$contentReportModel->type().'_text':'text') }}
+                {{ $errors->first($contentReportModel->type().'_text') }}
             </span>
         @endif
     </div>

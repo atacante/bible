@@ -5,11 +5,11 @@
         @if(isset($groupId))
         {!! Form::hidden('rel_id',$groupId) !!}
         @endif
-        <div class="form-group {{ $errors->has('text') ? ' has-error' : '' }}">
-            {!! Form::textarea('text',null,['id' => 'status-text','placeholder' => "What's on your mind?",'rows' => 3]) !!}
-            @if ($errors->has('text'))
+        <div class="form-group {{ $errors->has('status_text') ? ' has-error' : '' }}">
+            {!! Form::textarea('status_text',null,['id' => 'status-text','placeholder' => "What's on your mind?",'rows' => 3]) !!}
+            @if ($errors->has('status_text'))
                 <span class="help-block">
-                    {{ $errors->first('text') }}
+                    {{ $errors->first('status_text') }}
                 </span>
             @endif
         </div>

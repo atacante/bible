@@ -22,17 +22,17 @@ class WallPost extends BaseModel
 
     protected $table = 'wall_posts';
     protected $dates = ['created_at','updated_at','published_at'];
-    protected $fillable = ['id','type','wall_type','user_id','verse_id','rel_id','text','access_level'];
+    protected $fillable = ['id','type','wall_type','user_id','verse_id','rel_id','status_text','access_level'];
 
     public function rules()
     {
         return  [
-            'text' => 'required',
+            'status_text' => 'required',
         ];
     }
 
     public function text() {
-        return $this->text;
+        return $this->status_text;
     }
 
     public function user() {
