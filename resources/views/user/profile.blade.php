@@ -166,7 +166,7 @@
 
                     </div>
                     <div class="form-group">
-                        {!! Form::label('subscribed', "Newslatter:") !!}
+                        {!! Form::label('subscribed', "Newsletter:") !!}
 
                         <div>
                             <label>
