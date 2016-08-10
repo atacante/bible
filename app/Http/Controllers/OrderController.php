@@ -49,12 +49,12 @@ class OrderController extends Controller
 
                 Cart::destroy();
             }
-            Notification::success('Your order was placed!');
+            Notification::success('Your order was placed! $'.$total.' was charged from your credit card');
             return redirect('/order/show/'.$order->id);
 
         }else{
-            Notification::error('Your order was not placed!');
-            return redirect('/shop/cart');
+            Notification::error('Your order was not placed! Please add valid credit card');
+            return redirect('/user/profile');
         }
 
     }
