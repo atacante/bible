@@ -32,6 +32,7 @@
                             <th class="text-center">Last Login</th>
                             <th class="text-center">Premium Upgraded</th>
                             <th class="text-center">Register Date</th>
+                            <th class="text-center">Referred Users</th>
                             <th class="text-center">Actions</th>
                         </tr>
                         @if(count($content['users']))
@@ -57,6 +58,9 @@
                                     <td class="text-center">{!! $user->last_login_at?$user->last_login_at->format($user::DFORMAT):'-' !!}</td>
                                     <td class="text-center">{!! $user->upgraded_at?$user->upgraded_at->format($user::DFORMAT):'-' !!}</td>
                                     <td class="text-center">{!! $user->created_at->format($user::DFORMAT) !!}</td>
+                                    <td class="text-center">
+                                        <a href="{!! url('/admin/reports/referred-users/'.$user->id) !!}">{!! $user->invited->count() !!}</a>
+                                    </td>
                                     <td class="text-center" style="width: 100px;">
                                         @if(!$user->is(Config::get('app.role.admin')) && Auth::user()->id != $user->id)
                                             <a title="Login as user" href="{!! url('/admin/user/authorize',$user->id) !!}"><i

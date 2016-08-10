@@ -33,7 +33,7 @@ class UserController extends Controller
                 })
             ;
         }
-        $content['users'] = $users->orderBy('users.created_at','DESC')->paginate(20);
+        $content['users'] = $users->with('invited')->orderBy('users.created_at','DESC')->paginate(20);
         return view('admin.user.list',
             [
                 'page_title' => 'Users',

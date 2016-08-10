@@ -160,11 +160,12 @@
             <div class="small-box bg-yellow" style="background-color: #dd3950 !important;">
                 <div class="inner">
                     <h3 style="font-size: 24px; line-height: 42px;">Complaints</h3>
+                    <p>&nbsp;</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-btn fa-flag"></i>
                 </div>
-                <a href="{{ url('admin/subscription/list') }}" class="small-box-footer">
+                <a href="{{ url('admin/complaints/list') }}" class="small-box-footer">
                     View All <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>

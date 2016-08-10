@@ -249,3 +249,17 @@ Breadcrumbs::register('complaintUpdate', function($breadcrumbs)
     $breadcrumbs->parent('complaints');
     $breadcrumbs->push('Edit complaint');
 });
+
+// Admin > Reports
+Breadcrumbs::register('reports', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Reports', url('admin/reports/list'));
+});
+
+// Admin > Reports > [viewReport]
+Breadcrumbs::register('viewReport', function($breadcrumbs)
+{
+    $breadcrumbs->parent('reports');
+    $breadcrumbs->push('Report View');
+});
