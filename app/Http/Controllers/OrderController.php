@@ -20,13 +20,15 @@ class OrderController extends Controller
     public function postCheckout(Request $request)
     {
 
+        $userMeta = new UsersMeta();
+        $this->validate($request, $userMeta->rules());
+
         //Retrieve cart information
         $total = Cart::total();
 
         $charged = Auth::user()->charge($total, ['description' => 'online payment']);
 
         if(is_array($charged) && $charged['transId']){
-            $userMeta = new UsersMeta();
 
             $this->validate($request, $userMeta->rules());
             $data = Input::all();

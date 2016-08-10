@@ -11,6 +11,8 @@ class UsersMeta extends BaseModel {
 	{
 		$rules = [
 			'user_id' => 'required',
+			'shipping_address' => 'required',
+			'shipping_city' => 'required',
 		];
 
 		return $rules;
