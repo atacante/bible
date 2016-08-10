@@ -37,6 +37,9 @@ class SiteController extends Controller
             if($send){
                 Notification::successInstant('Message has been successfully sent');
             }
+            else{
+                var_dump(Mail::failures());exit;
+            }
         }
         return view('site.contact', $model);
     }
