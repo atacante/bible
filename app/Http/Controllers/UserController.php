@@ -149,6 +149,7 @@ class UserController extends Controller
                     $user->upgradeToPremium(Input::get('plan_name'));
                 }else{
                     $user->downgradeToFree();
+                    $user->createAccountAndOrSubscribe();
                 }
 
                 Notification::successInstant('Your profile info successfully saved');

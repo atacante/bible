@@ -144,26 +144,25 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group {{ $errors->has('card_number') ? ' has-error' : '' }}">
-                            <div>Current CC number: *{{$model->card_last_four}}</div>
-                            {!! Form::label('card_number', 'New CC Number:') !!}
-                            {!! Form::text('card_number', null, ['placeholder' => 'XXXXXXXXXXXXXX']) !!}
-                            @if ($errors->has('card_number'))
-                                <span class="help-block">
+                    </div>
+                    <div class="form-group {{ $errors->has('card_number') ? ' has-error' : '' }}">
+                        <div>Current CC number: *{{$model->card_last_four}}</div>
+                        {!! Form::label('card_number', 'New CC Number:') !!}
+                        {!! Form::text('card_number', null, ['placeholder' => 'XXXXXXXXXXXXXX']) !!}
+                        @if ($errors->has('card_number'))
+                            <span class="help-block">
                                     {{ $errors->first('card_number') }}
                                 </span>
-                            @endif
-                        </div>
-                        <div class="form-group {{ $errors->has('card_expiration') ? ' has-error' : '' }}">
-                            {!! Form::label('card_expiration', 'Credit Card Expiration:') !!}
-                            {!! Form::text('card_expiration', null, ['placeholder' => 'YYYY-MM']) !!}
-                            @if ($errors->has('card_expiration'))
-                                <span class="help-block">
-                            {{ $errors->first('card_expiration') }}
-                        </span>
-                            @endif
-                        </div>
-
+                        @endif
+                    </div>
+                    <div class="form-group {{ $errors->has('card_expiration') ? ' has-error' : '' }}">
+                        {!! Form::label('card_expiration', 'Credit Card Expiration:') !!}
+                        {!! Form::text('card_expiration', null, ['placeholder' => 'YYYY-MM']) !!}
+                        @if ($errors->has('card_expiration'))
+                            <span class="help-block">
+                                    {{ $errors->first('card_expiration') }}
+                                </span>
+                        @endif
                     </div>
                     <div class="form-group">
                         {!! Form::label('subscribed', "Newsletter:") !!}

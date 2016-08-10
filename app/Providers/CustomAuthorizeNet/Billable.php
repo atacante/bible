@@ -309,7 +309,7 @@ trait Billable
      * @return bool
      */
     public function askToCreateSubscription($plan){
-        return !$this->onPlan($plan);
+        return  ($plan && !$this->onPlan($plan));
     }
 
     public static function getPremiumCost($plan = '1 month'){
