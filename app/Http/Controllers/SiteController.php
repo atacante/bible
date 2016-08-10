@@ -30,19 +30,15 @@ class SiteController extends Controller
         if (Request::isMethod('post')) {
             $this->validate($request, $model->rules(),$model->messages());
             $contactEmail = Input::get('email');//Config::get('app.contactEmail')
-            try
+            $send = Mail::send('emails.contact', Input::all(), function($message) use($contactEmail)
             {
-                $send = Mail::send('emails.contact', Input::all(), function($message) use($contactEmail)
-                {
-                    $message->to($contactEmail)->subject('Contact From Request');
-                });
-                if($send){
-                    Notification::successInstant('Message has been successfully sent');
-                }
+                $message->to($contactEmail)->subject('Contact From Request');
+            });
+            if($send){
+                Notification::successInstant('Message has been successfully sent');
             }
-            catch (\Exception $e)
-            {
-                dd($e->getMessage());
+            else{
+                Notification::errorInstant('Message has not been sent');
             }
         }
         return view('site.contact', $model);
