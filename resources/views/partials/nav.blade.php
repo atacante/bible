@@ -109,25 +109,48 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <i class="fa fa-btn fa-user"></i>{{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            @role('user')
-                            {{--<li><a href="{{ url('user/wall') }}"><i class="fa fa-btn fa-tasks"></i>Public Wall</a></li>--}}
-                            <li><a href="{{ url('user/my-journey') }}"><i class="fa fa-btn fa-location-arrow"></i>My Journey</a></li>
-                            {{--<li><a href="{{ url('notes/list') }}"><i class="fa fa-btn fa-sticky-note"></i>My Notes</a></li>
-                            <li><a href="{{ url('journal/list') }}"><i class="fa fa-btn fa-book"></i>My Journal</a></li>
-                            <li><a href="{{ url('prayers/list') }}"><i class="fa fa-btn fa-hand-paper-o"></i>My Prayers</a></li>--}}
-                            <li><a href="{{ url('user/profile') }}"><i class="fa fa-btn fa-user"></i>My Profile</a></li>
-                            @endrole
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ url('auth/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            @if(Session::has('adminAsUser'))
-                            <li><a href="{{ url('auth/admin-logout') }}"><i class="fa fa-btn fa-sign-out"></i>Back To Admin</a></li>
-                            @endif
-                        </ul>
-                    </li>
-                @endif
-            </ul>
+        <div class="radio-inline">
+            <label>
+                {!! Form::radio('readerMode', 'beginner', (Request::cookie('readerMode',false) == 'beginner'),['class' => 'j-reader-mode']) !!}
+                {!! Config::get('app.readerModes.beginner') !!}
+            </label>
         </div>
+        <div class="radio-inline">
+            <label>
+                {!! Form::radio('readerMode', 'intermediate', (Request::cookie('readerMode',false) == 'intermediate'),['class' => 'j-reader-mode']) !!}
+                {!! Config::get('app.readerModes.intermediate') !!}
+            </label>
+        </div>
+    </div>
+    @endif
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            @if (Auth::guest())
+                <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::to('auth/login') }}">Login</a></li>
+                <li class="{{ (Request::is('auth/register') ? 'active' : '') }} bord-menu-item"><a class="" href="{{ URL::to('auth/register') }}">Register</a></li>
+            @else
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <i class="fa fa-btn fa-user"></i>{{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                        @role('user')
+                        {{--<li><a href="{{ url('user/wall') }}"><i class="fa fa-btn fa-tasks"></i>Public Wall</a></li>--}}
+                        {{--<li><a href="{{ url('notes/list') }}"><i class="fa fa-btn fa-sticky-note"></i>My Notes</a></li>
+                        <li><a href="{{ url('journal/list') }}"><i class="fa fa-btn fa-book"></i>My Journal</a></li>
+                        <li><a href="{{ url('prayers/list') }}"><i class="fa fa-btn fa-hand-paper-o"></i>My Prayers</a></li>--}}
+                        <li><a href="{{ url('user/my-journey') }}"><i class="fa fa-btn fa-location-arrow"></i>My Journey</a></li>
+                        <li><a href="{{ url('user/profile') }}"><i class="fa fa-btn fa-user"></i>My Profile</a></li>
+                        @endrole
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ url('auth/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                        @if(Session::has('adminAsUser'))
+                        <li><a href="{{ url('auth/admin-logout') }}"><i class="fa fa-btn fa-sign-out"></i>Back To Admin</a></li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+        </ul>
     </div>
 </nav>

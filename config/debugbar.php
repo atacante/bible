@@ -12,7 +12,7 @@ return array(
      |
      */
 
-    'enabled' => null,
+    'enabled' => env('DEBAG_BAR_ENABLED', null),
 
     /*
      |--------------------------------------------------------------------------
