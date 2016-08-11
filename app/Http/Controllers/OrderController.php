@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\OrderItem;
+use App\User;
 use App\UsersMeta;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -10,12 +11,40 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Krucas\Notification\Facades\Notification;
 
 class OrderController extends Controller
 {
+
+    private function sendMails($order){
+        $userEmail = $order->userMeta->shipping_email;
+
+        if(empty($userEmail)){
+            $userEmail = $order->user->email;
+        }
+
+        $adminEmails = User::whereHas('roles', function ($q) {
+            $q->whereIn('slug',[Config::get('app.role.admin')]);
+        })->pluck('email')->toArray();
+
+        $data['order'] = $order;
+
+        array_push($adminEmails, $userEmail);
+        $data['emails'] = $adminEmails;
+
+        foreach($data['emails'] as $email){
+            Mail::send('emails.order', $data, function($message) use($data, $email)
+            {
+                $message->to($email)->subject('Order Confirmation');
+            });
+        }
+
+        return true;
+    }
 
     public function postCheckout(Request $request)
     {
@@ -52,6 +81,9 @@ class OrderController extends Controller
                 Cart::destroy();
             }
             Notification::success('Your order was placed! $'.$total.' was charged from your credit card');
+
+            $this->sendMails($order);
+
             return redirect('/order/show/'.$order->id);
 
         }else{
