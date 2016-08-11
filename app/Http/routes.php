@@ -54,6 +54,7 @@ $router->group([
         'shop' => 'ShopController',
         'shop-categories' => 'ShopCategoriesController',
         'shop-products' => 'ShopProductsController',
+        'shop-orders' => 'ShopOrdersController',
         'subscription' => 'SubscriptionController',
         'complaints' => 'ComplaintsController',
         'reports' => 'ReportsController',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Order;
 use App\ShopProduct;
 use App\ShopCategory;
 use App\Http\Requests;
@@ -14,6 +15,7 @@ class ShopController extends Controller
     {
         $content['categoriesCount'] = ShopCategory::query()->count();
         $content['productsCount'] = ShopProduct::query()->count();
+        $content['ordersCount'] = Order::query()->count();
 
         return view('admin.shop.list',
             [

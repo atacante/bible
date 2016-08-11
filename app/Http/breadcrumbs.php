@@ -215,6 +215,20 @@ Breadcrumbs::register('productUpdate', function($breadcrumbs) {
     $breadcrumbs->push('Edit product');
 });
 
+// Admin > ShopOrders
+Breadcrumbs::register('shop-orders', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Orders', url('admin/shop-orders/list'));
+});
+
+// Admin > ShopCategories > [CreateShopCategory]
+Breadcrumbs::register('shop-orderView', function($breadcrumbs)
+{
+    $breadcrumbs->parent('shop-orders');
+    $breadcrumbs->push("Order");
+});
+
 // Admin > CMS
 Breadcrumbs::register('cms', function($breadcrumbs)
 {
