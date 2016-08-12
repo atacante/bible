@@ -58,9 +58,9 @@
                 </ul>
             </li>
 
-            <li class="{{ ViewHelper::classActivePath('shop') }}">
+           {{-- <li class="{{ ViewHelper::classActivePath('shop') }}">
                 <a href="{{ URL::to('/shop') }}"><i class="fa fa-shopping-cart"></i> Shop</a>
-            </li>
+            </li>--}}
         </ul>
     </div>
 
