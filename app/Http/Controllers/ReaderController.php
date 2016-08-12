@@ -12,6 +12,7 @@ use App\Note;
 use App\Prayer;
 use App\StrongsConcordance;
 use App\StrongsNasec;
+use App\UsersViews;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
 use FineDiffTests\Usage\Base;
@@ -61,6 +62,13 @@ class ReaderController extends Controller
         if(!$content['verses']->count()){
             return $this->flashNotification('Requested content does not provided in '.$content['version'].' version');
         }
+
+        /* Track user views */
+        if(Auth::check()){
+            UsersViews::thackView($content['verses'][0],UsersViews::CAT_READER);
+        }
+        /* End Track user views */
+
 //        if ($version == 'king_james') {
 //            foreach ($content['verses'] as $verse) {
 //                $lexicon = $verse->lexicon();
@@ -221,6 +229,12 @@ class ReaderController extends Controller
                 ->where('verse_num', $verse)
                 ->first();
 
+            /* Track user views */
+            if(Auth::check() && $content['main_verse']['verse']){
+                UsersViews::thackView($content['main_verse']['verse'],UsersViews::CAT_LEXICON);
+            }
+            /* End Track user views */
+
             if(!$content['main_verse']['verse']){
                 return $this->flashNotification('Requested content does not provided in '.VersionsListEn::getVersionByCode($version_code).' version');
             }
@@ -319,6 +333,16 @@ class ReaderController extends Controller
 
         $content['strongs_concordance'] = StrongsConcordance::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
         $content['strongs_nasec'] = StrongsNasec::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
+
+        /* Track user views */
+        if(Auth::check()){
+            $strongs = $content['strongs_concordance'];
+            if(!$strongs){
+                $strongs = $content['strongs_nasec'];
+            }
+            UsersViews::thackView($strongs,UsersViews::CAT_STRONGS);
+        }
+        /* End Track user views */
 
         $references =  $this->getReferences($num,$dictionaryType);
 

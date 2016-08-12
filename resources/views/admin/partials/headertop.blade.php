@@ -28,9 +28,10 @@
                             <li class="{!! ViewHelper::classActivePath('admin.subscription') !!}"><a href="{{ url('admin/subscription/list') }}"><span><i class="fa ion-at"></i> Subscriptions</span></a></li>
                         </ul>
                     </li>
-                    <li class="{!! ViewHelper::classActivePath('admin.blog') !!}"><a href="{{ url('admin/blog/list') }}"><span><i class="fa fa-newspaper-o"></i> CMS</span></a></li>
+                    <li class="{!! ViewHelper::classActivePath('admin.cms') !!}"><a href="{{ url('admin/cms') }}"><span><i class="fa fa-newspaper-o"></i> CMS</span></a></li>
                     <li class="{!! ViewHelper::classActivePath('admin.shop') !!}"><a href="{{ url('admin/shop/list') }}"><span><i class="fa fa-shopping-cart"></i> Shop</span></a></li>
                     <li class="{!! ViewHelper::classActivePath('admin.complaints') !!}"><a href="{{ url('admin/complaints/list') }}"><span><i class="fa fa-btn fa-flag"></i>Complaints</span></a></li>
+                    <li class="{!! ViewHelper::classActivePath('admin.reports') !!}"><a href="{{ url('admin/reports') }}"><span><i class="fa fa-btn fa-pie-chart"></i>Reports</span></a></li>
                     {{--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

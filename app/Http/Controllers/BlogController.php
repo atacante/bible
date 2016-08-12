@@ -3,6 +3,7 @@
 use App\BlogArticle;
 use App\BlogCategory;
 use App\BlogComment;
+use App\UsersViews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -56,7 +57,11 @@ class BlogController extends Controller {
 	public function getArticle($id)
 	{
 		$article =  BlogArticle::find($id);
-
+		/* Track user views */
+		if(Auth::check() && $article){
+			UsersViews::thackView($article,UsersViews::CAT_BLOG);
+		}
+		/* End Track user views */
 		return view('blog.article_view',['article'=>$article]);
 	}
 

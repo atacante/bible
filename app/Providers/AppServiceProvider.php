@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\BlogArticle;
 use App\Coupon;
 use App\Journal;
 use App\LexiconBerean;
@@ -13,6 +14,7 @@ use App\People;
 use App\Prayer;
 use App\User;
 use App\Validators\CheckCouponValidator;
+use App\VersesAmericanKingJamesEn;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
@@ -21,6 +23,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -245,6 +248,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+//        Relation::morphMap([
+//            'post' => BlogArticle::class,
+//            'chapter' => [VersesAmericanKingJamesEn::class],
+//        ]);
     }
 }

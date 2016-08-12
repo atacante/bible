@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\BlogArticle;
 use App\CmsPage;
 use App\BlogCategory;
 use App\Helpers\ViewHelper;
@@ -17,6 +18,19 @@ use Krucas\Notification\Facades\Notification;
 
 class CmsController extends Controller
 {
+
+    public function getIndex()
+    {
+        $content['categoriesCount'] = BlogCategory::query()->count();
+        $content['articlesCount'] = BlogArticle::query()->count();
+
+        return view('admin.blog.list',
+            [
+                'page_title' => 'CMS',
+                'content' => $content,
+                'filterAction' => 'blog/list/',
+            ]);
+    }
 
     public function getList()
     {

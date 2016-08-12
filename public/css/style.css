@@ -1349,12 +1349,16 @@ ul.nav.navbar-nav li a:hover, ul.nav.navbar-nav li a:active {
 ul.nav.navbar-nav li a:hover i, ul.nav.navbar-nav li a:active i {
    color: white;
 }
-/*ul.nav.navbar-nav li.bord-menu-item  a{
+ul.nav.navbar-nav li.bord-menu-item  a{
     border: 2px solid #00b9f7 !important;
     color: #00b9f7 !important;
     border-radius: 25px;
     -webkit-border-radius: 25px;
-}*/
+    padding: 9px 16px;
+}
+ul.nav.navbar-nav li {
+    margin: 0 3px;
+}
 .navbar-default {
     background: transparent;
     border: none;

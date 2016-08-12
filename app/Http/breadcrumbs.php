@@ -132,48 +132,6 @@ Breadcrumbs::register('couponUpdate', function($breadcrumbs)
     $breadcrumbs->push('Edit coupon');
 });
 
-// Admin > Categories
-Breadcrumbs::register('categories', function($breadcrumbs)
-{
-    $breadcrumbs->parent('home');
-    $breadcrumbs->push('Categories', url('admin/categories/list'));
-});
-
-// Admin > Categories > [CreateCategory]
-Breadcrumbs::register('categoryCreate', function($breadcrumbs)
-{
-    $breadcrumbs->parent('categories');
-    $breadcrumbs->push("Create new category");
-});
-
-// Admin > Categories > [UpdateCategory]
-Breadcrumbs::register('categoryUpdate', function($breadcrumbs)
-{
-    $breadcrumbs->parent('categories');
-    $breadcrumbs->push('Edit category');
-});
-
-// Admin > Articles
-Breadcrumbs::register('articles', function($breadcrumbs)
-{
-    $breadcrumbs->parent('home');
-    $breadcrumbs->push('Articles', url('admin/articles/list'));
-});
-
-// Admin > Articles > [CreateArticle]
-Breadcrumbs::register('articleCreate', function($breadcrumbs)
-{
-    $breadcrumbs->parent('articles');
-    $breadcrumbs->push("Create new article");
-});
-
-// Admin > Articles > [UpdateArticle]
-Breadcrumbs::register('articleUpdate', function($breadcrumbs)
-{
-    $breadcrumbs->parent('articles');
-    $breadcrumbs->push('Edit article');
-});
-
 // Admin > ShopCategories
 Breadcrumbs::register('shop-categories', function($breadcrumbs)
 {
@@ -233,7 +191,56 @@ Breadcrumbs::register('shop-orderView', function($breadcrumbs)
 Breadcrumbs::register('cms', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('CMS', url('admin/cms/list'));
+    $breadcrumbs->push('CMS', url('admin/cms'));
+});
+
+// Admin > Categories
+Breadcrumbs::register('categories', function($breadcrumbs)
+{
+    $breadcrumbs->parent('cms');
+    $breadcrumbs->push('Categories', url('admin/categories/list'));
+});
+
+// Admin > Categories > [CreateCategory]
+Breadcrumbs::register('categoryCreate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('categories');
+    $breadcrumbs->push("Create new category");
+});
+
+// Admin > Categories > [UpdateCategory]
+Breadcrumbs::register('categoryUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('categories');
+    $breadcrumbs->push('Edit category');
+});
+
+// Admin > Articles
+Breadcrumbs::register('articles', function($breadcrumbs)
+{
+    $breadcrumbs->parent('cms');
+    $breadcrumbs->push('Articles', url('admin/articles/list'));
+});
+
+// Admin > Articles > [CreateArticle]
+Breadcrumbs::register('articleCreate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('articles');
+    $breadcrumbs->push("Create new article");
+});
+
+// Admin > Articles > [UpdateArticle]
+Breadcrumbs::register('articleUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('articles');
+    $breadcrumbs->push('Edit article');
+});
+
+// Admin > Static Pages
+Breadcrumbs::register('static_pages', function($breadcrumbs)
+{
+    $breadcrumbs->parent('cms');
+    $breadcrumbs->push('Static Pages', url('admin/cms/list'));
 });
 
 // Admin > CMS > [UpdateCMS]
@@ -268,7 +275,7 @@ Breadcrumbs::register('complaintUpdate', function($breadcrumbs)
 Breadcrumbs::register('reports', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Reports', url('admin/reports/list'));
+    $breadcrumbs->push('Reports', url('admin/reports'));
 });
 
 // Admin > Reports > [viewReport]

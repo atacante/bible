@@ -92,6 +92,11 @@ class User extends Authenticatable
         return $this->hasMany(User::class, 'invited_by_id', 'id');
     }
 
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'user_id', 'id');
+    }
+
     public function myGroups()
     {
         return $this->hasMany(Group::class, 'owner_id', 'id');
@@ -175,6 +180,11 @@ class User extends Authenticatable
     public function groupsRequests()
     {
         return $this->morphedByMany('App\Group', 'connect_requests'/*,'connect_requests','user_id','connect_requests_id'*/);
+    }
+
+    public function views()
+    {
+        return $this->morphedByMany('App\VersesAmericanKingJamesEn','item','users_views')->orderBy('wall_likes.created_at','desc');
     }
 
     public function followFriend(User $user)

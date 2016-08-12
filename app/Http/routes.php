@@ -34,6 +34,18 @@ Route::get('admin', [
     'uses' => 'Admin\DashboardController@index'
 ]);
 
+Route::get('admin/reports', [
+    'middleware' => ['auth', 'acl'],
+    'is' => 'administrator',
+    'uses' => 'Admin\ReportsController@index'
+]);
+
+Route::get('admin/reports/{id}', [
+    'middleware' => ['auth', 'acl'],
+    'is' => 'administrator',
+    'uses' => 'Admin\ReportsController@index'
+])->where('id', '[0-9]+');
+
 $router->group([
     'prefix' => 'admin',
     'namespace' => 'Admin',

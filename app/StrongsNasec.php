@@ -13,4 +13,9 @@ class StrongsNasec extends BaseModel
 
     protected $table = 'strongs_nasec';
     protected $fillable = ['id','strong_num','strong_num_suffix','original_word','definition','nasb_translation'];
+
+    public function views()
+    {
+        return $this->morphToMany('App\User','item','users_views')->withTimestamps();
+    }
 }

@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('breadcrumbs', Breadcrumbs::render('cms'))
+@section('breadcrumbs', Breadcrumbs::render('static_pages'))
 
 @section('content')
     <div class="row">
