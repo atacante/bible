@@ -870,7 +870,6 @@ a.view-details:hover{
     border-color: #e5e6e9 #dfe0e4 #d0d1d5;
     border-radius: 3px;
     margin-bottom: 15px;
-    /*background-color: whitesmoke;*/
 }
 
 .user-block .u-header{
@@ -922,7 +921,6 @@ a.view-details:hover{
 }
 
 .group-details .header{
-    /*opacity: 0.5;*/
     height: 75px;
 
     background: rgba(74,74,74,1);
@@ -1006,5 +1004,611 @@ a.view-details:hover{
     border-bottom-right-radius: 4px !important;
 }
 
+/* --------------------- NEW DESIGN -------------------------*/
+/*---------------------- Fonts --------------------------*/
+@font-face {
+    font-family: 'bs';
+    src: url('../fonts/bs.eot');
+    src: url('../fonts/bs.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/bs.woff') format('woff'),
+    url('../fonts/bs.ttf') format('truetype'),
+    url('../fonts/bs.svg#bs') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_wide_bookbold';
+    src: url('../fonts/Novecentosanswide-Bold-webfont.eot');
+    src: url('../fonts/Novecentosanswide-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Novecentosanswide-Bold-webfont.woff2') format('woff2'),
+    url('../fonts/Novecentosanswide-Bold-webfont.woff') format('woff'),
+    url('../fonts/Novecentosanswide-Bold-webfont.ttf') format('truetype'),
+    url('../fonts/Novecentosanswide-Bold-webfont.svg#ns_wide_bookbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widebook';
+    src: url('../fonts/Novecentosanswide-Book-webfont.eot');
+    src: url('../fonts/Novecentosanswide-Book-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Novecentosanswide-Book-webfont.woff2') format('woff2'),
+    url('../fonts/Novecentosanswide-Book-webfont.woff') format('woff'),
+    url('../fonts/Novecentosanswide-Book-webfont.ttf') format('truetype'),
+    url('../fonts/Novecentosanswide-Book-webfont.svg#ns_widebook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widedemibold';
+    src: url('../fonts/Novecentosanswide-DemiBold-webfont.eot');
+    src: url('../fonts/Novecentosanswide-DemiBold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Novecentosanswide-DemiBold-webfont.woff2') format('woff2'),
+    url('../fonts/Novecentosanswide-DemiBold-webfont.woff') format('woff'),
+    url('../fonts/Novecentosanswide-DemiBold-webfont.ttf') format('truetype'),
+    url('../fonts/Novecentosanswide-DemiBold-webfont.svg#ns_widedemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widelight';
+    src: url('../fonts/Novecentosanswide-Light-webfont.eot');
+    src: url('../fonts/Novecentosanswide-Light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Novecentosanswide-Light-webfont.woff2') format('woff2'),
+    url('../fonts/Novecentosanswide-Light-webfont.woff') format('woff'),
+    url('../fonts/Novecentosanswide-Light-webfont.ttf') format('truetype'),
+    url('../fonts/Novecentosanswide-Light-webfont.svg#ns_widelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widemedium';
+    src: url('../fonts/Novecentosanswide-Medium-webfont.eot');
+    src: url('../fonts/Novecentosanswide-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Novecentosanswide-Medium-webfont.woff2') format('woff2'),
+    url('../fonts/Novecentosanswide-Medium-webfont.woff') format('woff'),
+    url('../fonts/Novecentosanswide-Medium-webfont.ttf') format('truetype'),
+    url('../fonts/Novecentosanswide-Medium-webfont.svg#ns_widemedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widenormal';
+    src: url('../fonts/Novecentosanswide-Normal-webfont.eot');
+    src: url('../fonts/Novecentosanswide-Normal-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Novecentosanswide-Normal-webfont.woff2') format('woff2'),
+    url('../fonts/Novecentosanswide-Normal-webfont.woff') format('woff'),
+    url('../fonts/Novecentosanswide-Normal-webfont.ttf') format('truetype'),
+    url('../fonts/Novecentosanswide-Normal-webfont.svg#ns_widenormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'work_sansblack';
+    src: url('../fonts/worksans-black-webfont.woff2') format('woff2'),
+    url('../fonts/worksans-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 
+}
+@font-face {
+    font-family: 'work_sansbold';
+    src: url('../fonts/worksans-bold-webfont.woff2') format('woff2'),
+    url('../fonts/worksans-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 
+}
+@font-face {
+    font-family: 'work_sansextrabold';
+    src: url('../fonts/worksans-extrabold-webfont.woff2') format('woff2'),
+    url('../fonts/worksans-extrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansextralight';
+    src: url('../fonts/worksans-extralight-webfont.woff2') format('woff2'),
+    url('../fonts/worksans-extralight-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sanslight';
+    src: url('../fonts/worksans-light-webfont.woff2') format('woff2'),
+    url('../fonts/worksans-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansmedium';
+    src: url('../fonts/worksans-medium-webfont.woff2') format('woff2'),
+    url('../fonts/worksans-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansregular';
+    src: url('../fonts/worksans-regular-webfont.woff2') format('woff2'),
+    url('../fonts/worksans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sanssemibold';
+    src: url('../fonts/worksans-semibold-webfont.woff2') format('woff2'),
+    url('../fonts/worksans-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansthin';
+    src: url('../fonts/worksans-thin-webfont.woff2') format('woff2'),
+    url('../fonts/worksans-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/*---------------------- Home Page --------------------------*/
+.mt1 {
+    margin-top: 100px !important;
+}
+.mt2 {
+    margin-top: 70px !important;
+}
+.mt3 {
+    margin-top: 40px !important;
+}
+.mt4 {
+    margin-top: 90px !important;
+}
+.mt5 {
+    margin-top: 20px !important;
+}
+.mt6 {
+    margin-top: 65px !important;
+}
+.mt7 {
+    margin-top: 100px !important;
+}
+.mt8 {
+    margin-top: 40px !important;
+}
+.mt9 {
+    margin-top: 25px !important;
+}
+.mt10 {
+    margin-top: 60px !important;
+}
+.mt11 {
+    margin-top: 100px !important;
+}
+.mt12 {
+    margin-top: 90px !important;
+}
+.mt13 {
+    margin-top: 30px !important;
+}
+.mr1 {
+    margin-right: 10%;
+}
+.mr2 {
+    margin-right: 35%;
+}
+.mr3 {
+    margin-right: 32%;
+}
+.mr4 {
+    margin-right: 6%;
+}
+.pad1 {
+    padding-bottom: 50px;
+}
+.color1 {
+    color: #ffffff !important;
+}
+/*----------------- Icons Set ---------------------*/
+[class^="bs-"], [class*=" bs-"] {
+    font-family: 'bs' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none !important;
+}
+.bs-biblestudylogo:before {
+    content: "\e914";
+}
+.bs-community:before {
+    content: "\e915";
+}
+.bs-exploer:before {
+    content: "\e916";
+}
+.bs-fb:before {
+    content: "\e918";
+}
+.bs-gift:before {
+    content: "\e919";
+}
+.bs-reader:before {
+    content: "\e91a";
+}
+.bs-twitter:before {
+    content: "\e91b";
+}
+.bs-verseoftheday:before {
+    content: "\e91c";
+}
+/*----------------- Buttons ------------------------*/
+.btn1, .btn1:visited {
+    display: inline-block;
+    border: 3px solid #00b9f7;
+    color: #00b9f7;
+    font-family: ns_widedemibold;
+    font-size: 18px;
+    padding: 15px 50px;
+    text-decoration: none !important;
+    outline: none !important;
+}
+.btn1:hover, .btn1:active {
+    display: inline-block;
+    border: 3px solid #00b9f7;
+    background: #00b9f7;
+    color: #ffffff;
+    font-family: ns_widedemibold;
+    font-size: 18px;
+    padding: 15px 50px;
+    text-decoration: none !important;
+}
+.btn2, .btn2:visited {
+    display: inline-block;
+    border: 3px solid #404040;
+    color: #404040;
+    font-family: ns_widedemibold;
+    font-size: 18px;
+    padding: 15px 50px;
+    text-decoration: none !important;
+    outline: none !important;
+}
+.btn2:hover, .btn2:active {
+    display: inline-block;
+    border: 3px solid #404040;
+    background: #404040;
+    color: #ffffff;
+    font-family: ns_widedemibold;
+    font-size: 18px;
+    padding: 15px 50px;
+    text-decoration: none !important;
+}
+.btn3, .btn3:visited {
+    display: inline-block;
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    font-family: ns_widedemibold;
+    font-size: 18px;
+    padding: 15px 50px;
+    text-decoration: none !important;
+    outline: none !important;
+}
+.btn3:hover, .btn3:active {
+    display: inline-block;
+    border: 3px solid #ffffff;
+    background: #ffffff;
+    color: #404040;
+    font-family: ns_widedemibold;
+    font-size: 18px;
+    padding: 15px 50px;
+    text-decoration: none !important;
+}
+.bg-home {
+/*    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 803px;*/
+    background: url('../images/bg-home-header.png') center top no-repeat;
+}
+.cu-biblestudylogo {
+    color: #00b9f7;
+    margin-right: 15px;
+    font-size: 55px;
+    line-height: 36px;
+    vertical-align: bottom;
+}
+ul.nav.navbar-nav {
+    margin-top: 2px;
+}
+.navbar-nav i {
+    font-size: 20px;
+    color: #555555;
+    margin-right: 5px;
+    vertical-align: text-top;
+}
+ul.nav.navbar-nav li  a {
+    text-transform: uppercase;
+    font-family: ns_widedemibold;
+    color: #6b6b6b;
+    font-size: 15px;
+    padding: 11px 18px;
+}
+ul.nav.navbar-nav li a:hover, ul.nav.navbar-nav li a:active {
+    color: white;
+    background-color: #00b9f7;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+}
+ul.nav.navbar-nav li a:hover i, ul.nav.navbar-nav li a:active i {
+   color: white;
+}
+/*ul.nav.navbar-nav li.bord-menu-item  a{
+    border: 2px solid #00b9f7 !important;
+    color: #00b9f7 !important;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+}*/
+.navbar-default {
+    background: transparent;
+    border: none;
+    padding: 40px 0 30px;
+}
+.inner-container {
+    max-width: 1554px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+.in-inner-container {
+    padding: 0 208px;
+}
+.bg-g1 {
+    min-height: 650px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100 */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+.container-fluid {
+
+}
+h1.h1-1 {
+    font-size: 48px;
+    line-height: 62px;
+    color: #404040;
+    display: block;
+    text-align: center;
+    margin: 0;
+    font-family: ns_widelight;
+}
+h1.h1-1 span {
+    font-family: ns_widenormal;
+}
+h3.h3-1 {
+    font-size: 20px;
+    color: #7b828a;
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    font-family: work_sansregular;
+}
+.c-center-content {
+    width: 100%;
+    max-width: 1260px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -webkit-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+}
+.home-ill-section {
+    display: block;
+    width: 100%;
+    min-height: 447px;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    overflow: hidden;
+    padding-bottom: 30px;
+}
+.h-ill1 {
+    background: url('../images/p1-home.png') right center no-repeat;
+}
+.h-ill2 {
+    background: url('../images/p2-home.png') right center no-repeat;
+}
+.h-ill3 {
+    background: url('../images/p3-home.png') center center no-repeat;
+}
+.h-ill4 {
+    background: url('../images/p4-home.png') right center no-repeat;
+}
+h2.h2-1 {
+    font-size: 38px;
+    color: #404040;
+    display: block;
+    font-family: ns_widelight;
+    text-transform: uppercase;
+}
+h2.h2-1 span {
+    font-family: ns_widenormal;
+}
+p.p-1 {
+    font-family: work_sansregular;
+    color: #404040;
+    font-size: 18px;
+    line-height: 20px;
+}
+h2.h2-2 {
+    font-size: 38px;
+    line-height: 44px;
+    color: #313131;
+    display: block;
+    text-align: center;
+    margin: 0;
+    font-family: ns_widenormal;
+    text-transform: uppercase;
+}
+.cu-verseoftheday {
+    color: #00b9f7;
+    padding-right: 20px;
+    vertical-align: bottom;
+    height: 20px;
+    line-height: 41px;
+}
+.c-center-content2 {
+    width: 100%;
+    max-width: 1260px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background: #f6f6f6;
+    min-height: 449px;
+}
+.h-ill5 {
+    background: url('../images/p5-home.png') left center no-repeat;
+    min-height: 449px;
+}
+.col-left1 {
+    width: 449px;
+    float: left;
+}
+.col-right1 {
+    float: left;
+    max-width: 680px;
+    padding: 65px 55px 40px;
+}
+p.p-2 {
+    font-family: work_sansregular;
+    font-size: 23px;
+    color: #7b828a;
+    line-height: 28px;
+}
+p.p-2 span.ital {
+    font-style: italic;
+}
+.c-share-panel {
+    padding: 20px 0;
+    border-top: 1px solid #9a9d9e;
+    margin-top: 25px;
+}
+h4.h4-1 {
+    font-size: 23px;
+    color: #000000;
+    font-family: ns_widenormal;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+}
+ul.c-social {
+    display: block;
+    padding-left: 0;
+}
+ul.c-social li {
+    display: inline-block;
+    margin-right: 20px;
+}
+ul.c-social li a {
+    display: inline-block;
+    color: #00b9f7;
+    font-size: 22px;
+    border: 3px solid #00b9f7;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 58px;
+    height: 58px;
+    text-align: center;
+    line-height: 54px;
+}
+ul.c-social li a:hover, ul.c-social li a:active {
+    background: #00b9f7;
+    color: #ffffff;
+}
+.luke {
+    margin-top: 400px;
+    color: #cdcdcd;
+    text-align: center;
+}
+.c-center-content3 {
+    padding: 100px 208px;
+    background: rgb(133,203,246); /* Old browsers */
+    background: -moz-linear-gradient(left,  rgba(133,203,246,1) 0%, rgba(133,203,246,1) 31%, rgba(148,228,238,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(133,203,246,1) 0%,rgba(133,203,246,1) 31%,rgba(148,228,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(133,203,246,1) 0%,rgba(133,203,246,1) 31%,rgba(148,228,238,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85cbf6', endColorstr='#94e4ee',GradientType=1 ); /* IE6-9 */
+    margin-left: -208px;
+    margin-right: -208px;
+}
+.cu-gift {
+    color: #ffffff;
+    font-size: 76px;
+}
+.gift-item {
+    background: #ffffff;
+    height: 292px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -webkit-box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+}
+.gift1 {
+     height: 220px;
+     background: url("../images/edit.png") center 65px no-repeat;
+}
+.gift2 {
+    height: 220px;
+    background: url("../images/t-shirt.png") center 42px no-repeat;
+}
+.gift3 {
+    height: 220px;
+    background: url("../images/cup.png") center 50px no-repeat;
+}
+h4.h4-gift {
+    text-transform: uppercase;
+    color: #464646;
+    font-size: 23px;
+    font-family: ns_widemedium;
+}
+.footer1 {
+    background-color: #404040;
+    padding: 50px 0;
+}
+ul.footer-menu {
+    display: block;
+    text-align: center;
+    padding-left: 0;
+}
+ul.footer-menu li {
+    display: inline-block;
+    padding: 10px 20px;
+}
+ul.footer-menu li a {
+    display: inline-block;
+    color: #f3f3f3;
+    font-family: work_sansmedium;
+    font-size: 18px;
+    line-height: 17px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid #ffffff;
+    outline: none;
+}
+ul.footer-menu li a:hover {
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+.copyright {
+    color: #bdbdbd;
+    font-family: work_sansregular;
+    font-size: 15px;
+    text-transform: uppercase;
+}
