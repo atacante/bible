@@ -43,4 +43,9 @@ class LexiconNasb extends BaseModel
     public function peoples() {
         return $this->belongsToMany(People::class, 'people_lexicon', 'lexicon_id', 'people_id');
     }
+
+    public function views()
+    {
+        return $this->morphToMany('App\User','item','users_views')->withTimestamps();
+    }
 }

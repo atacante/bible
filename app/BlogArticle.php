@@ -29,4 +29,8 @@ class BlogArticle extends BaseModel {
 		return $this->hasMany(BlogComment::class, 'article_id', 'id')->orderBy('published_at', SORT_DESC);
 	}
 
+	public function views(){
+		return $this->morphToMany('App\User','item','users_views')->withTimestamps();
+	}
+
 }
