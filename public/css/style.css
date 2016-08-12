@@ -1005,6 +1005,9 @@ a.view-details:hover{
 }
 
 /* --------------------- NEW DESIGN -------------------------*/
+body {
+    overflow-x: hidden;
+}
 /*---------------------- Fonts --------------------------*/
 @font-face {
     font-family: 'bs';
@@ -1192,6 +1195,9 @@ a.view-details:hover{
 }
 .mt13 {
     margin-top: 30px !important;
+}
+.mb1 {
+    margin-bottom: 50px;
 }
 .mr1 {
     margin-right: 10%;
@@ -1562,12 +1568,14 @@ ul.c-social li a:hover, ul.c-social li a:active {
 }
 .gift-item {
     background: #ffffff;
+    display: block;
     height: 292px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -webkit-box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
     box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
     margin-bottom: 25px;
+    outline: none !important;
 }
 .gift1 {
      height: 220px;
@@ -1629,5 +1637,14 @@ ul.footer-menu li a:hover {
 @media (max-width: 1500px) {
     .in-inner-container {
         padding: 0 50px;
+    }
+}
+@media (max-width: 1280px) {
+    .col-left1, .col-right1 {
+        display: inline-block;
+        float: none;
+    }
+    .c-center-content2 {
+        text-align: center;
     }
 }

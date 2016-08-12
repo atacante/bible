@@ -2,11 +2,11 @@
     <div class="container">
         <div class="row col-md-12">
             <ul class="footer-menu">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Gift Shop</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="{{ URL::to('/site/about') }}">About Us</a></li>
+                <li><a href="{{ URL::to('/blog') }}">Blog</a></li>
+                <li><a href="{{ URL::to('/shop') }}">Gift Shop</a></li>
+                <li><a href="{{ URL::to('/site/faq') }}">FAQ</a></li>
+                <li><a href="{{ URL::to('/site/contact') }}">Contact Us</a></li>
             </ul>
             <p class="copyright">
                 &copy; 2016 Bible Project

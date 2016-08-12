@@ -81,7 +81,7 @@
                     @include('partials.nav')
                     <h1 class="h1-1 mt1">ONLINE <span>STUDY BIBLE</span> COMMUNITY</h1>
                     <h3 class="h3-1">Studying Scripture to Live a Praiseworthy Life to God</h3>
-                    <a href="#" class="btn1 mt2">READ BIBLE NOW</a>
+                    <a href="{{ URL::to('/reader/overview') }}" class="btn1 mt2 mb1">READ BIBLE NOW</a>
                 </div>
                 <div class="in-inner-container">
                     @notification()

@@ -8,7 +8,7 @@
                     STUDY THE <span>BIBLE</span>
                 </h2>
                 <p class="p-1 mt5">Learn and compare between different<br> versions of bible.</p>
-                <a href="#" class="btn2 mt3">SEE BIBLE VERSIONS</a>
+                <a href="{{ URL::to('/reader/overview') }}" class="btn2 mt3">SEE BIBLE VERSIONS</a>
             </div>
         </section>
         <section class="home-ill-section h-ill2">
@@ -18,7 +18,7 @@
                 </h2>
                 <p class="p-1 mt5 color1">Make a notes and write a journal. Share your favourites with<br>
                     friends. Do something more. Do one more thing.</p>
-                <a href="#" class="btn3 mt3">SIGNUP TO START YOUR JOURNEY</a>
+                <a href="{{ URL::to('auth/register') }}" class="btn3 mt3">SIGNUP TO START YOUR JOURNEY</a>
             </div>
         </section>
         <section class="home-ill-section h-ill3">
@@ -31,7 +31,7 @@
                     Make a new friends.<br>
                     Probably more impressive description.
                 </p>
-                <a href="#" class="btn2 mt3">COMMUNITY OVERVIEW</a>
+                <a href="{{ URL::to('/community') }}" class="btn2 mt3">COMMUNITY OVERVIEW</a>
             </div>
         </section>
         <section class="home-ill-section h-ill4">
@@ -43,7 +43,7 @@
                     Learn more about historic locations & people.<br>
                     Probably more desription here.
                 </p>
-                <a href="#" class="btn2 mt3">EXPLORE LOCATIONS & PEOPLE</a>
+                <a href="{{ URL::to('/locations/list') }}" class="btn2 mt3">EXPLORE LOCATIONS & PEOPLE</a>
             </div>
         </section>
     </div>
@@ -65,8 +65,8 @@
                     SHARE WITH:
                 </h4>
                 <ul class="c-social">
-                    <li><a href="#" class="bs-twitter"></a></li>
-                    <li><a href="#" class="bs-fb"></a></li>
+                    <li><a href="htpp://twitter.com" target="_blank" class="bs-twitter"></a></li>
+                    <li><a href="htpp://facebook.com" target="_blank" class="bs-fb"></a></li>
                 </ul>
             </div>
         </div>
@@ -78,36 +78,36 @@
         </h2>
         <div class="row mt10">
             <div class="col-lg-4">
-                <div class="gift-item">
+                <a href="{{ URL::to('/shop/product/5') }}" class="gift-item">
                     <div class="gift1">
                     </div>
                     <h4 class="h4-gift">
                         our GREAT EBOOK
                     </h4>
-                </div>
+                </a>
             </div>
             <div class="col-lg-4">
-                <div class="gift-item">
+                <a href="{{ URL::to('/shop/product/6') }}" class="gift-item">
                     <div class="gift2">
                     </div>
                     <h4 class="h4-gift">
                         BLESSED T-SHIRT
                     </h4>
-                </div>
+                </a>
             </div>
             <div class="col-lg-4">
-                <div class="gift-item">
+                <a href="{{ URL::to('/shop/product/2') }}" class="gift-item">
                     <div class="gift3">
                     </div>
                     <h4 class="h4-gift">
                         JUST A CUP
                     </h4>
-                </div>
+                </a>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <a href="#" class="btn3 mt3">VIEW ALL SHOP ITEMS</a>
+                <a href="{{ URL::to('/shop') }}" class="btn3 mt3">VIEW ALL SHOP ITEMS</a>
             </div>
         </div>
     </div>
@@ -116,7 +116,7 @@
             <h2 class="h2-1 mt12">
                 <span>Read, EXPLORE, COMPARE, Share</span>
             </h2>
-            <a href="#" class="btn1 mt13">SIGN UP NOW</a>
+            <a href="{{ URL::to('auth/register') }}" class="btn1 mt13">SIGN UP NOW</a>
         </div>
     </div>
 @endsection
