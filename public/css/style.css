@@ -1211,6 +1211,9 @@ a.view-details:hover{
 .color1 {
     color: #ffffff !important;
 }
+.color2 {
+    color: #404040 !important;
+}
 /*----------------- Icons Set ---------------------*/
 [class^="bs-"], [class*=" bs-"] {
     font-family: 'bs' !important;
@@ -1405,7 +1408,7 @@ h3.h3-1 {
 }
 .c-center-content {
     width: 100%;
-    max-width: 1260px;
+    max-width: 1140px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 10px;
@@ -1422,6 +1425,8 @@ h3.h3-1 {
     -moz-background-size: cover !important;
     overflow: hidden;
     padding-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 .h-ill1 {
     background: url('../images/p1-home.png') right center no-repeat;
@@ -1447,7 +1452,7 @@ h2.h2-1 span {
 }
 p.p-1 {
     font-family: work_sansregular;
-    color: #404040;
+    color: #7b828a;
     font-size: 18px;
     line-height: 20px;
 }
@@ -1470,7 +1475,7 @@ h2.h2-2 {
 }
 .c-center-content2 {
     width: 100%;
-    max-width: 1260px;
+    max-width: 1140px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 10px;
@@ -1615,4 +1620,14 @@ ul.footer-menu li a:hover {
     font-family: work_sansregular;
     font-size: 15px;
     text-transform: uppercase;
+}
+@media (max-width: 1590px) {
+    .in-inner-container {
+        padding: 0 150px;
+    }
+}
+@media (max-width: 1500px) {
+    .in-inner-container {
+        padding: 0 50px;
+    }
 }

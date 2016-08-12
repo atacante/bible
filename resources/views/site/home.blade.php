@@ -39,7 +39,7 @@
                 <h2 class="h2-1">
                     <span>EXPLORE</span> the SYMBOLISM
                 </h2>
-                <p class="p-1 mt5">
+                <p class="p-1 mt5 color2">
                     Learn more about historic locations & people.<br>
                     Probably more desription here.
                 </p>
