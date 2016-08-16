@@ -12,12 +12,19 @@ class UsersViews extends BaseModel
     const CAT_STRONGS = 'strongs';
     const CAT_BLOG = 'blog';
 
-    public static function thackView($model,$category){
+//    protected $fillable = array('user_id', 'views');
+
+    public static function thackView($model,$category,$version = null){
         if($model->views()->where('user_id',Auth::user()->id)->get()->count()){
             $model->views()->updateExistingPivot(Auth::user()->id, ['views' => DB::raw('views+1')]);
         }
         else{
-            $model->views()->attach(Auth::user()->id,['item_category' => $category,'views' => 1]);
+            $model->views()->attach(Auth::user()->id,['item_category' => $category,'views' => 1,'bible_version'=>$version]);
         }
+    }
+
+    public function item()
+    {
+        return $this->morphTo();
     }
 }

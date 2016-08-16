@@ -202,6 +202,22 @@ site.getPrayer = function(id){
     });
 }
 
+site.getStatus = function(id){
+    $.ajax({
+        method: "GET",
+        url: "/ajax/view-status",
+        dataType: "html",
+        data:{id:id},
+        success:function(data){
+            $('#popup').find('.modal-header .modal-title').text('Status');
+            $('#popup').find('.modal-body').html(data);
+            $('#popup').find('.modal-footer').html('');
+            $('#popup').modal({show:true});
+        }
+    });
+}
+
+
 reader.getActionsHtml = function(){
     return '<div class="j-reader-actions" style="position: absolute;">' +
                 '<a title="Create note" href="#" class="j-create-note" style="display:inline-block; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>' +

@@ -97,6 +97,21 @@ class User extends Authenticatable
         return $this->hasMany(Note::class, 'user_id', 'id');
     }
 
+    public function journals()
+    {
+        return $this->hasMany(Journal::class, 'user_id', 'id');
+    }
+
+    public function prayers()
+    {
+        return $this->hasMany(Prayer::class, 'user_id', 'id');
+    }
+
+    public function statuses()
+    {
+        return $this->hasMany(WallPost::class, 'user_id', 'id');
+    }
+
     public function myGroups()
     {
         return $this->hasMany(Group::class, 'owner_id', 'id');
@@ -182,9 +197,24 @@ class User extends Authenticatable
         return $this->morphedByMany('App\Group', 'connect_requests'/*,'connect_requests','user_id','connect_requests_id'*/);
     }
 
-    public function views()
+    public function readerViews()
     {
-        return $this->morphedByMany('App\VersesAmericanKingJamesEn','item','users_views')->orderBy('wall_likes.created_at','desc');
+        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with('item')->where('item_category',UsersViews::CAT_READER);
+    }
+
+    public function lexiconViews()
+    {
+        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with('item')->where('item_category',UsersViews::CAT_LEXICON);
+    }
+
+    public function strongsViews()
+    {
+        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with('item')->where('item_category',UsersViews::CAT_STRONGS);
+    }
+
+    public function blogViews()
+    {
+        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with(['item','item.category'])->where('item_category',UsersViews::CAT_BLOG);
     }
 
     public function followFriend(User $user)

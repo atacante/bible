@@ -13,6 +13,7 @@ use App\Prayer;
 use App\User;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
+use App\WallPost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Request;
@@ -132,6 +133,12 @@ class AjaxController extends Controller
         $id = Request::input('id');
         $prayer = Prayer::query()->/*where('user_id',Auth::user()->id)->*/find($id);
         return view('prayers.view', ['model' => $prayer]);
+    }
+
+    public function getViewStatus(){
+        $id = Request::input('id');
+        $status = WallPost::query()->/*where('user_id',Auth::user()->id)->*/find($id);
+        return view('wall-posts.view', ['model' => $status]);
     }
 
     public function getLocationMapEmbedCode(){

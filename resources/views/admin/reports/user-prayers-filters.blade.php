@@ -1,12 +1,9 @@
 <?php
 ?>
 <div class="j-admin-user-filters">
-{!! Form::open(['method' => 'get','url' => '/admin/reports/','class' => 'form-inline']) !!}
+{!! Form::open(['method' => 'get','url' => '/admin/reports/'.Request::segment(3).'/'.$id,'class' => 'form-inline']) !!}
     <div class="form-group" style="margin-right: 5px;">
-        {!! Form::select('plan_type', ['' => 'All Users',App\User::PLAN_FREE => 'Free users',App\User::PLAN_PREMIUM => 'Premium users'], Request::input('plan_type'),['class' => 'form-control', 'style' => '']) !!}
-    </div>
-    <div class="form-group" style="margin-right: 5px;">
-        {!! Form::text('search',Request::input('search'),['placeholder' => 'Search by name...','class' => 'form-control','style' => '']) !!}
+        {!! Form::select('answered', ['' => 'All Prayers',1 => 'Answered Prayers',0 => 'Pending Prayers'], Request::input('answered'),['class' => 'form-control', 'style' => '']) !!}
     </div>
     <div class="form-group">
         <div class="input-group input-daterange">
@@ -18,7 +15,7 @@
 {!! Form::token() !!}
     <div class="form-group">
         {!! Form::button('Go',['type' => 'submit','class' => 'btn btn-primary pull-left','style' => 'margin-left:5px;']) !!}
-        {!! Html::link('/admin/reports/','Reset', ['class'=>'btn btn-danger pull-left reset-filter']) !!}
+        {!! Html::link('/admin/reports/'.Request::segment(3).'/'.$id,'Reset', ['class'=>'btn btn-danger pull-left reset-filter']) !!}
     </div>
 {!! Form::close() !!}
 </div>

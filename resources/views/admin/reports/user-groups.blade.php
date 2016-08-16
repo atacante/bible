@@ -22,17 +22,25 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
-                            <th>Note text</th>
+                            <th>Group name</th>
+                            <th>Group description</th>
+                            <th class="text-center">Members</th>
                             <th class="text-center">Created at</th>
                         </tr>
-                        @if(count($content['userNotes']))
-                            @foreach($content['userNotes'] as $note)
+                        @if(count($content['userGroups']))
+                            @foreach($content['userGroups'] as $group)
                                 <tr>
                                     <td>
-                                        <div class="note-text j-note-text"
-                                             data-noteid="{!! $note->id !!}">{!! str_limit(strip_tags($note->note_text,'<p></p>'), $limit = 300, $end = '...') !!}</div>
+                                        <div>{!! Html::link(url('/groups/view',$group->id)
+                                                ,$group->group_name, ['target' => '_blank','class'=>'label label-success','style' => 'margin-bottom:10px;']) !!}</div>
                                     </td>
-                                    <td class="text-center">{!! $note->created_at->format($note::DFORMAT) !!}</td>
+                                    <td>
+                                        <div>{!! $group->group_desc !!}</div>
+                                    </td>
+                                    <td class="text-center">
+                                        {!! $group->members()->count() !!}
+                                    </td>
+                                    <td class="text-center">{!! $group->created_at->format($group::DFORMAT) !!}</td>
                                 </tr>
                             @endforeach
                         @else
@@ -49,7 +57,7 @@
             </div>
             <!-- /.box -->
             <div class="text-center">
-                {!! $content['userNotes']->appends(Request::input())->links() !!}
+                {!! $content['userGroups']->appends(Request::input())->links() !!}
             </div>
         </div>
     </div>

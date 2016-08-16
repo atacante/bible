@@ -198,6 +198,9 @@ $(document).ready(function(){
             case 'prayer':
                 site.getPrayer(id);
                 break;
+            case 'status':
+                site.getStatus(id);
+                break;
         }
     });
 
@@ -211,6 +214,12 @@ $(document).ready(function(){
         ev.preventDefault();
         var id = $(this).data('prayerid');
         site.getPrayer(id);
+    });
+
+    $('body').on('click','.j-status-text',function(ev) {
+        ev.preventDefault();
+        var id = $(this).data('statusid');
+        site.getStatus(id);
     });
 
     $('.navbar').on('change','select[name=readerMode]',function(){

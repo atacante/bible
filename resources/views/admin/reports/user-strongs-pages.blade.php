@@ -9,7 +9,7 @@
                 <div class="box-header" style="height: 44px;">
                     <h3 class="box-title">Filters</h3>
                     <div class="box-tools">
-                        @include('admin.reports.view-report-filters')
+                        @include('admin.reports.user-views-filters')
                     </div>
                 </div>
             </div>
@@ -22,17 +22,29 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
-                            <th>Note text</th>
-                            <th class="text-center">Created at</th>
+                            <th>Page</th>
+                            <th>Dictionary Type</th>
+                            <th class="text-center">Reviews</th>
+                            <th class="text-center">First View</th>
+                            <th class="text-center">Last View</th>
                         </tr>
-                        @if(count($content['userNotes']))
-                            @foreach($content['userNotes'] as $note)
+                        @if(count($content['userViews']))
+                            @foreach($content['userViews'] as $view)
                                 <tr>
                                     <td>
-                                        <div class="note-text j-note-text"
-                                             data-noteid="{!! $note->id !!}">{!! str_limit(strip_tags($note->note_text,'<p></p>'), $limit = 300, $end = '...') !!}</div>
+                                        <div>
+                                            {!! Html::link(url('/reader/strongs',[$view->item->strong_num,$view->item->dictionary_type])
+                                                ,"Strong's ".$view->item->strong_num, ['target' => '_blank','class'=>'label label-success','style' => 'margin-bottom:10px;']) !!}
+                                        </div>
                                     </td>
-                                    <td class="text-center">{!! $note->created_at->format($note::DFORMAT) !!}</td>
+                                    <td>
+                                        {!! $view->item->dictionary_type !!}
+                                    </td>
+                                    <td class="text-center">
+                                        {!! $view->views !!}
+                                    </td>
+                                    <td class="text-center">{!! $view->created_at->format($view::DFORMAT) !!}</td>
+                                    <td class="text-center">{!! $view->updated_at->format($view::DFORMAT) !!}</td>
                                 </tr>
                             @endforeach
                         @else
@@ -49,7 +61,7 @@
             </div>
             <!-- /.box -->
             <div class="text-center">
-                {!! $content['userNotes']->appends(Request::input())->links() !!}
+                {!! $content['userViews']->appends(Request::input())->links() !!}
             </div>
         </div>
     </div>

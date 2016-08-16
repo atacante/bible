@@ -65,7 +65,7 @@ class ReaderController extends Controller
 
         /* Track user views */
         if(Auth::check()){
-            UsersViews::thackView($content['verses'][0],UsersViews::CAT_READER);
+            UsersViews::thackView($content['verses'][0],UsersViews::CAT_READER,$version);
         }
         /* End Track user views */
 
@@ -231,7 +231,7 @@ class ReaderController extends Controller
 
             /* Track user views */
             if(Auth::check() && $content['main_verse']['verse']){
-                UsersViews::thackView($content['main_verse']['verse'],UsersViews::CAT_LEXICON);
+                UsersViews::thackView($content['main_verse']['verse'],UsersViews::CAT_LEXICON,$version_code);
             }
             /* End Track user views */
 

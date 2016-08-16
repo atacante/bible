@@ -22,17 +22,17 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
-                            <th>Note text</th>
+                            <th>Status text</th>
                             <th class="text-center">Created at</th>
                         </tr>
-                        @if(count($content['userNotes']))
-                            @foreach($content['userNotes'] as $note)
+                        @if(count($content['userStatuses']))
+                            @foreach($content['userStatuses'] as $status)
                                 <tr>
                                     <td>
-                                        <div class="note-text j-note-text"
-                                             data-noteid="{!! $note->id !!}">{!! str_limit(strip_tags($note->note_text,'<p></p>'), $limit = 300, $end = '...') !!}</div>
+                                        <div class="status-text j-status-text"
+                                             data-statusid="{!! $status->id !!}">{!! str_limit(strip_tags($status->text(),'<p></p>'), $limit = 300, $end = '...') !!}</div>
                                     </td>
-                                    <td class="text-center">{!! $note->created_at->format($note::DFORMAT) !!}</td>
+                                    <td class="text-center">{!! $status->created_at->format($status::DFORMAT) !!}</td>
                                 </tr>
                             @endforeach
                         @else
@@ -49,7 +49,7 @@
             </div>
             <!-- /.box -->
             <div class="text-center">
-                {!! $content['userNotes']->appends(Request::input())->links() !!}
+                {!! $content['userStatuses']->appends(Request::input())->links() !!}
             </div>
         </div>
     </div>

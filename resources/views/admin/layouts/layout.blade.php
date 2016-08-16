@@ -67,6 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Your Page Content Here -->
                 @yield('content')
                 @include('admin.partials.deletepop')
+                @include('admin.partials.popup')
             </section><!-- /.content -->
         </div><!-- /.content-wrapper -->
     </div>

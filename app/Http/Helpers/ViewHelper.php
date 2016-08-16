@@ -103,6 +103,10 @@ class ViewHelper
         return $verseModel?$verseModel->booksListEn->book_name." ".$verseModel->chapter_num.":".$verseModel->verse_num:'-';
     }
 
+    public static function getChapterNum($verseModel){
+        return $verseModel?$verseModel->booksListEn->book_name." ".$verseModel->chapter_num:'-';
+    }
+
     public static function getVersionName($versionCode){
         return VersionsListEn::getVersionByCode($versionCode);
     }

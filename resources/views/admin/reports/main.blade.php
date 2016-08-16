@@ -45,10 +45,10 @@
                                     <td class="text-center"><a href="{!! url('/admin/reports/user-notes/'.$user->id) !!}">{!! $user->notes_count !!}</a></td>
                                     <td class="text-center"><a href="{!! url('/admin/reports/user-journals/'.$user->id) !!}">{!! $user->journal_count !!}</a></td>
                                     <td class="text-center"><a href="{!! url('/admin/reports/user-prayers/'.$user->id) !!}">{!! $user->prayers_count !!}</a></td>
-                                    <td class="text-center"><a href="{!! url('/admin/reports/user-prayers/'.$user->id,['answered' => 1]) !!}">{!! $user->answered_prayers_count !!}</a></td>
+                                    <td class="text-center"><a href="{!! url('/admin/reports/user-prayers/'.$user->id.'?answered=1') !!}">{!! $user->answered_prayers_count !!}</a></td>
                                     <td class="text-center"><a href="{!! url('/admin/reports/user-status-updates/'.$user->id) !!}">{!! $user->statuses_count !!}</a></td>
-                                    <td class="text-center"><a href="{!! url('/admin/reports/user-groups/'.$user->id,['created' => 1]) !!}">{!! $user->created_groups_count !!}</a></td>
-                                    <td class="text-center"><a href="{!! url('/admin/reports/user-groups/'.$user->id,['joined' => 1]) !!}">{!! $user->joined_groups_count !!}</a></td>
+                                    <td class="text-center"><a href="{!! url('/admin/reports/user-groups/'.$user->id.'?type=created') !!}">{!! $user->created_groups_count !!}</a></td>
+                                    <td class="text-center"><a href="{!! url('/admin/reports/user-groups/'.$user->id.'?type=joined') !!}">{!! $user->joined_groups_count !!}</a></td>
                                     <td class="text-center"><a href="{!! url('/admin/reports/user-reader-pages/'.$user->id) !!}">{!! $user->reader_views_count !!}</a></td>
                                     <td class="text-center"><a href="{!! url('/admin/reports/user-lexicon-pages/'.$user->id) !!}">{!! $user->lexicon_views_count !!}</a></td>
                                     <td class="text-center"><a href="{!! url('/admin/reports/user-strongs-pages/'.$user->id) !!}">{!! $user->strongs_views_count !!}</a></td>
