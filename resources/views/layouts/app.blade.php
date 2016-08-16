@@ -56,43 +56,51 @@
     <link rel="shortcut icon" href="{!! asset('assets/site/ico/favicon.ico')  !!} ">
 </head>
 <body>
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '848687605263767',
-            xfbml      : true,
-            version    : 'v2.7'
-        });
-    };
+    <div class="bg-inner-page">
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '848687605263767',
+                    xfbml      : true,
+                    version    : 'v2.7'
+                });
+            };
 
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-@include('partials.nav')
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
 
-<div class="container main-container">
-@notification()
-@yield('content')
-@include('admin.partials.deletepop')
-@include('partials.popup')
-</div>
-@include('partials.footer')
+        <div class="container-fluid main-container">
+            <div class="inner-container">
+                <div class="in-inner-container bg-g1 text-center">
+                    @include('partials.nav')
+                    @notification()
+                    @yield('content')
+                    @include('admin.partials.deletepop')
+                    @include('partials.popup')
+                </div>
+            </div>
+        </div>
 
-<!-- Scripts -->
-@yield('scripts')
-{!! Captcha::script() !!}
-{!!Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js')!!}
-{!!Html::script('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')!!}
-{!!Html::script('js/bootstrap-datepicker/js/bootstrap-datepicker.min.js')!!}
-<script>
-    site.initCkeditors();
-</script>
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ffb956064f1f1f"></script>
+        @include('partials.footer')
+
+
+        <!-- Scripts -->
+        @yield('scripts')
+        {!! Captcha::script() !!}
+        {!!Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js')!!}
+        {!!Html::script('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')!!}
+        {!!Html::script('js/bootstrap-datepicker/js/bootstrap-datepicker.min.js')!!}
+        <script>
+            site.initCkeditors();
+        </script>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ffb956064f1f1f"></script>
+    </div>
 </body>
 </html>

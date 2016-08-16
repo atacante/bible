@@ -1196,6 +1196,9 @@ body {
 .mt13 {
     margin-top: 30px !important;
 }
+.mt14 {
+    margin-top: 40px !important;
+}
 .mb1 {
     margin-bottom: 50px;
 }
@@ -1210,6 +1213,12 @@ body {
 }
 .mr4 {
     margin-right: 6%;
+}
+.mr5 {
+    margin-right: 10px;
+}
+.ml1 {
+    margin-left: 10px;
 }
 .pad1 {
     padding-bottom: 50px;
@@ -1319,12 +1328,15 @@ body {
     text-decoration: none !important;
 }
 .bg-home {
-/*    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 803px;*/
     background: url('../images/bg-home-header.png') center top no-repeat;
+}
+.bg-inner-page {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#89bbf2+0,f3f3f3+35,f3f3f3+100 */
+    background: rgb(137,187,242); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(137,187,242,1) 0%, rgba(243,243,243,1) 35%, rgba(243,243,243,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(137,187,242,1) 0%,rgba(243,243,243,1) 35%,rgba(243,243,243,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(137,187,242,1) 0%,rgba(243,243,243,1) 35%,rgba(243,243,243,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#89bbf2', endColorstr='#f3f3f3',GradientType=0 ); /* IE6-9 */
 }
 .cu-biblestudylogo {
     color: #00b9f7;
@@ -1349,14 +1361,19 @@ ul.nav.navbar-nav li  a {
     font-size: 15px;
     padding: 11px 18px;
 }
-ul.nav.navbar-nav li a:hover, ul.nav.navbar-nav li a:active {
+.navbar-default .navbar-nav > a:hover,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover {
     color: white;
     background-color: #00b9f7;
     border-radius: 25px;
     -webkit-border-radius: 25px;
 }
-ul.nav.navbar-nav li a:hover i, ul.nav.navbar-nav li a:active i {
-   color: white;
+.navbar-default .navbar-nav > .open > a i,
+.navbar-default .navbar-nav > .open > a:focus i,
+.navbar-default .navbar-nav > .open > a:hover i {
+    color: white;
 }
 ul.nav.navbar-nav li.bord-menu-item  a{
     border: 2px solid #00b9f7 !important;
@@ -1366,7 +1383,7 @@ ul.nav.navbar-nav li.bord-menu-item  a{
     padding: 9px 16px;
 }
 ul.nav.navbar-nav li {
-    margin: 0 3px;
+    margin: 0 8px;
 }
 .navbar-default {
     background: transparent;
@@ -1629,6 +1646,14 @@ ul.footer-menu li a:hover {
     font-size: 15px;
     text-transform: uppercase;
 }
+.c-reader-content {
+    background: #ffffff;
+    -webkit-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+    padding: 50px;
+    box-sizing: border-box;
+}
+
 @media (max-width: 1590px) {
     .in-inner-container {
         padding: 0 150px;
