@@ -15,8 +15,8 @@ class UsersViews extends BaseModel
 //    protected $fillable = array('user_id', 'views');
 
     public static function thackView($model,$category,$version = null){
-        if($model->views()->where('user_id',Auth::user()->id)->get()->count()){
-            $model->views()->updateExistingPivot(Auth::user()->id, ['views' => DB::raw('views+1')]);
+        if($model->views()->where('user_id',Auth::user()->id)->where('item_category', $category)->get()->count()){
+            $model->views()->wherePivot('item_category', $category)->updateExistingPivot(Auth::user()->id, ['views' => DB::raw('views+1')]);
         }
         else{
             $model->views()->attach(Auth::user()->id,['item_category' => $category,'views' => 1,'bible_version'=>$version]);
