@@ -27,14 +27,8 @@
                     <div class="col-lg-12">
                         <h3 class="text-center" style="margin: 30px auto 20px;">
                             <div class="btn-group" role="group" aria-label="...">
-                                {{--@if($prevBook = $content['pagination']['bookPrev'])--}}
-                                {{--{{ Html::link(url('reader/read?'.http_build_query($prevBook),[],false), 'Prev Book', ['class' => 'btn btn-default btn-danger','style' => 'padding: 2px 5px;'], true)}}--}}
-                                {{--@endif--}}
                                 @if($prevChapter = $content['pagination']['chapterPrev'])
-                                    <a title="Prev Chapter"
-                                       href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}"><i
-                                                class="glyphicon glyphicon-chevron-left"></i></a>
-                                    {{--                        {{ Html::link(url('reader/read?'.http_build_query($prevChapter),[],false), 'Prev Chapter', ['class' => 'btn btn-default btn-danger','style' => 'padding: 2px 5px;'], true)}}--}}
+                                    <a title="Prev Chapter" href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                 @endif
                             </div>
                             {!! $content['heading'] !!}
@@ -107,18 +101,30 @@
                 <div class="col-md-12">
                     <div class="pull-left">
                         @if($prevBook = $content['pagination']['bookPrev'])
-                            {{ Html::link(url('reader/read?'.http_build_query($prevBook),[],false), 'Prev Book', ['class' => 'btn2 mr5','style' => ''], true)}}
+                            <a href="{!! url('reader/read?'.http_build_query($prevBook),[],false) !!}" class="btn2 mr5 btn-min-w">
+                                <div class="btn-top-label1">Prev Book</div>
+                                <div class="btn-sub-label1">Leviticus</div>
+                            </a>
                         @endif
                         @if($prevChapter = $content['pagination']['chapterPrev'])
-                            {{ Html::link(url('reader/read?'.http_build_query($prevChapter),[],false), 'Prev Chapter', ['class' => 'btn2','style' => ''], true)}}
+                            <a href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}" class="btn2 mr5 btn-min-w">
+                                <div class="btn-top-label1">Prev Chapter</div>
+                                <div class="btn-sub-label1">Genesis 9</div>
+                            </a>
                         @endif
                     </div>
                     <div class="pull-right">
                         @if($nextChapter = $content['pagination']['chapterNext'])
-                            {{ Html::link(url('reader/read?'.http_build_query($nextChapter),[],false), 'Next Chapter', ['class' => 'btn1','style' => ''], true)}}
+                            <a href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}" class="btn1 ml1 btn-min-w">
+                                <div class="btn-top-label1">Next Chapter</div>
+                                <div class="btn-sub-label1">Genesis 11</div>
+                            </a>
                         @endif
                         @if($nextBook = $content['pagination']['bookNext'])
-                            {{ Html::link(url('reader/read?'.http_build_query($nextBook),[],false), 'Next Book', ['class' => 'btn1 ml1','style' => ''], true)}}
+                            <a href="{!! url('reader/read?'.http_build_query($nextBook),[],false) !!}" class="btn1 ml1 btn-min-w">
+                                <div class="btn-top-label1">Next Chapter</div>
+                                <div class="btn-sub-label1">Exodus</div>
+                            </a>
                         @endif
                     </div>
                 </div>

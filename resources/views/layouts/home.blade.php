@@ -77,11 +77,13 @@
 
         <div class="container-fluid main-container">
             <div class="inner-container">
-                <div class="in-inner-container bg-g1 text-center">
-                    @include('partials.nav')
-                    <h1 class="h1-1 mt1">ONLINE <span>STUDY BIBLE</span> COMMUNITY</h1>
-                    <h3 class="h3-1">Studying Scripture to Live a Praiseworthy Life to God</h3>
-                    <a href="{{ URL::to('/reader/overview') }}" class="btn1 mt2 mb1">READ BIBLE NOW</a>
+                <div class="bg-g1">
+                    <div class="in-inner-container text-center">
+                        @include('partials.nav-home')
+                        <h1 class="h1-1 mt1">ONLINE <span>STUDY BIBLE</span> COMMUNITY</h1>
+                        <h3 class="h3-1">Studying Scripture to Live a Praiseworthy Life to God</h3>
+                        <a href="{{ URL::to('/reader/overview') }}" class="btn1 mt2 mb1">READ BIBLE NOW</a>
+                    </div>
                 </div>
                 <div class="in-inner-container">
                     @notification()

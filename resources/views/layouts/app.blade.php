@@ -77,12 +77,14 @@
 
         <div class="container-fluid main-container">
             <div class="inner-container">
-                <div class="in-inner-container bg-g1 text-center">
-                    @include('partials.nav')
-                    @notification()
-                    @yield('content')
-                    @include('admin.partials.deletepop')
-                    @include('partials.popup')
+                <div class="bg-g2">
+                    <div class="in-inner-container text-center">
+                        @include('partials.nav')
+                        @notification()
+                        @yield('content')
+                        @include('admin.partials.deletepop')
+                        @include('partials.popup')
+                    </div>
                 </div>
             </div>
         </div>

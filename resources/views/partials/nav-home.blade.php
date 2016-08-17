@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-inner-pages">
+<nav class="navbar navbar-default">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle Navigation</span>
@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i></a>
+        <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i>BIBLE STUDY CO</a>
     </div>
     <div class="pull-left" style="">
         <ul class="nav navbar-nav">
@@ -57,6 +57,10 @@
                     <li><a href="{{ URL::to('/blog') }}">Blog</a></li>
                 </ul>
             </li>
+
+           {{-- <li class="{{ ViewHelper::classActivePath('shop') }}">
+                <a href="{{ URL::to('/shop') }}"><i class="fa fa-shopping-cart"></i> Shop</a>
+            </li>--}}
         </ul>
     </div>
 
@@ -67,6 +71,20 @@
             {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:220px; margin-right:5px;']) !!}
             {!! Form::submit('Go',['class' => 'btn btn-primary pull-left']) !!}
             {!! Form::close() !!}
+        </div>
+        <div class="pull-left" style="margin: 14px 10px 0;">
+            <div class="radio-inline">
+                <label>
+                    {!! Form::radio('readerMode', 'beginner', (Request::cookie('readerMode',false) == 'beginner'),['class' => 'j-reader-mode']) !!}
+                    {!! Config::get('app.readerModes.beginner') !!}
+                </label>
+            </div>
+            <div class="radio-inline">
+                <label>
+                    {!! Form::radio('readerMode', 'intermediate', (Request::cookie('readerMode',false) == 'intermediate'),['class' => 'j-reader-mode']) !!}
+                    {!! Config::get('app.readerModes.intermediate') !!}
+                </label>
+            </div>
         </div>
     @endif
 
@@ -103,21 +121,3 @@
         </ul>
     </div>
 </nav>
-
-{{-- ---------------- Radio Blocks ---------------- --}}
-@if(Request::segment(1) == 'reader')
-    <div class="pull-left" style="margin: 14px 10px 0;">
-        <div class="radio-inline">
-            <label>
-                {!! Form::radio('readerMode', 'beginner', (Request::cookie('readerMode',false) == 'beginner'),['class' => 'j-reader-mode']) !!}
-                {!! Config::get('app.readerModes.beginner') !!}
-            </label>
-        </div>
-        <div class="radio-inline">
-            <label>
-                {!! Form::radio('readerMode', 'intermediate', (Request::cookie('readerMode',false) == 'intermediate'),['class' => 'j-reader-mode']) !!}
-                {!! Config::get('app.readerModes.intermediate') !!}
-            </label>
-        </div>
-    </div>
-@endif

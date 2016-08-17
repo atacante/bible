@@ -739,6 +739,9 @@ a.view-details:hover{
 .navbar-header .navbar-brand{
     padding: 5px 15px;
     line-height: 33px;
+    color: #404040;
+    font-family: ns_widedemibold;
+    font-size: 20px;
 }
 .navbar-header .ion-ios-book, .navbar-header .ion-ios-book-outline{
     font-size: 42px;
@@ -1361,6 +1364,9 @@ ul.nav.navbar-nav li  a {
     font-size: 15px;
     padding: 11px 18px;
 }
+.navbar-inner-pages ul.nav.navbar-nav li  a {
+    font-size: 13px;
+}
 .navbar-default .navbar-nav > a:hover,
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:focus,
@@ -1369,6 +1375,12 @@ ul.nav.navbar-nav li  a {
     background-color: #00b9f7;
     border-radius: 25px;
     -webkit-border-radius: 25px;
+}
+.navbar-inner-pages.navbar-default .navbar-nav > a:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:focus,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:hover {
+    background-color: #313d47;
 }
 .navbar-default .navbar-nav > .open > a i,
 .navbar-default .navbar-nav > .open > a:focus i,
@@ -1382,6 +1394,13 @@ ul.nav.navbar-nav li.bord-menu-item  a{
     -webkit-border-radius: 25px;
     padding: 9px 16px;
 }
+.navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a{
+    border: 2px solid #313d47 !important;
+    color: #313d47 !important;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    padding: 9px 16px;
+}
 ul.nav.navbar-nav li {
     margin: 0 8px;
 }
@@ -1391,19 +1410,28 @@ ul.nav.navbar-nav li {
     padding: 40px 0 30px;
 }
 .inner-container {
-    max-width: 1554px;
+/*    max-width: 1554px;*/
     margin: 0 auto;
     padding: 30px 0;
 }
 .in-inner-container {
-    padding: 0 208px;
+    padding: 0 50px;
+    max-width: 1360px;
+    margin: 0 auto;
 }
 .bg-g1 {
     min-height: 650px;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100 */
     background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+.bg-g2 {
+    min-height: 650px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,1+18,0+32,0+100 */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 400px, rgba(255,255,255,0) 600px); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 400px, rgba(255,255,255,0) 600px); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 400px, rgba(255,255,255,0) 600px); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 }
 .container-fluid {
@@ -1653,8 +1681,23 @@ ul.footer-menu li a:hover {
     padding: 50px;
     box-sizing: border-box;
 }
-
-@media (max-width: 1590px) {
+.btn-top-label1 {
+    line-height: 18px;
+    text-transform: uppercase;
+}
+.btn-sub-label1 {
+    color: #a4a4a4;
+    font-family: ns_widebook;
+    line-height: 18px;
+}
+.btn-min-w {
+    min-width: 288px;
+}
+.btn1:hover .btn-sub-label1,
+.btn2:hover .btn-sub-label1 {
+    color: white;
+}
+/*@media (max-width: 1590px) {
     .in-inner-container {
         padding: 0 150px;
     }
@@ -1663,7 +1706,7 @@ ul.footer-menu li a:hover {
     .in-inner-container {
         padding: 0 50px;
     }
-}
+}*/
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
         display: inline-block;
