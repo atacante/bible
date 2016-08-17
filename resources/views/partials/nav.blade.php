@@ -30,7 +30,7 @@
             <li class="dropdown">
                 <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="bs-exploer"></i>
-                    Explore
+                    People/Places
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="drop1">
@@ -62,10 +62,11 @@
 
 
     @if(Request::segment(1) == 'reader')
-        <div class="pull-left" style="width: 270px; margin: 8px 15px 0;">
+        <div class="pull-left c-search1" style="">
             {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
-            {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:220px; margin-right:5px;']) !!}
-            {!! Form::submit('Go',['class' => 'btn btn-primary pull-left']) !!}
+            {!! Form::text('q',Request::input('q'),['class' => 'search-text1','placeholder' => 'Search verse everywhere...']) !!}
+            {{--{!! Form::submit('<i class="bs-search"></i>',['class' => 'search-btn1']) !!}--}}
+            <button class="search-btn1" type="submit"><i class="bs-search"></i></button>
             {!! Form::close() !!}
         </div>
     @endif
@@ -82,6 +83,10 @@
                 <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::to('auth/login') }}">Login</a></li>
                 <li class="{{ (Request::is('auth/register') ? 'active' : '') }} bord-menu-item"><a href="{{ URL::to('auth/register') }}">Sign Up</a></li>
             @else
+
+                @role('user')
+                <li><a href="{{ url('user/my-journey') }}"><i class="bs-myjourney"></i>My Journey</a></li>
+                @endrole
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         <i class="fa fa-btn fa-user"></i>{{ Auth::user()->name }} <span class="caret"></span>

@@ -743,6 +743,10 @@ a.view-details:hover{
     font-family: ns_widedemibold;
     font-size: 20px;
 }
+.navbar-inner-pages .navbar-header .navbar-brand{
+    padding: 5px 15px 5px 0;
+}
+
 .navbar-header .ion-ios-book, .navbar-header .ion-ios-book-outline{
     font-size: 42px;
     color: #337ab7;
@@ -1245,6 +1249,66 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-decoration: none !important;
 }
+.bs-lexicon:before {
+    content: "\e900";
+}
+.bs-pray:before {
+    content: "\e901";
+}
+.bs-journal:before {
+    content: "\e902";
+}
+.bs-note:before {
+    content: "\e903";
+}
+.bs-study:before {
+    content: "\e904";
+}
+.bs-staroutlined:before {
+    content: "\e905";
+}
+.bs-starsolid:before {
+    content: "\e906";
+}
+.bs-arrowdown:before {
+    content: "\e907";
+}
+.bs-close:before {
+    content: "\e908";
+}
+.bs-arrowright:before {
+    content: "\e909";
+}
+.bs-arrowleft:before {
+    content: "\e90a";
+}
+.bs-search:before {
+    content: "\e90b";
+}
+.bs-compare:before {
+    content: "\e90c";
+}
+.bs-print:before {
+    content: "\e90d";
+}
+.bs-settings:before {
+    content: "\e90e";
+}
+.bs-myjourney:before {
+    content: "\e90f";
+}
+.bs-googleplussmall:before {
+    content: "\e910";
+}
+.bs-twittersmall:before {
+    content: "\e911";
+}
+.bs-fbsmall:before {
+    content: "\e912";
+}
+.bs-googleplus:before {
+    content: "\e913";
+}
 .bs-biblestudylogo:before {
     content: "\e914";
 }
@@ -1346,10 +1410,16 @@ body {
     margin-right: 15px;
     font-size: 55px;
     line-height: 36px;
-    vertical-align: bottom;
+}
+.navbar-inner-pages .cu-biblestudylogo {
+    font-size: 46px;
+    line-height: 35px;
 }
 ul.nav.navbar-nav {
     margin-top: 2px;
+}
+.navbar-inner-pages .navbar-nav i {
+    font-size: 15px;
 }
 .navbar-nav i {
     font-size: 20px;
@@ -1674,6 +1744,11 @@ ul.footer-menu li a:hover {
     font-size: 15px;
     text-transform: uppercase;
 }
+.logo-text {
+    display: inline-block;
+    height: 55px;
+    vertical-align: top;
+}
 .c-reader-content {
     background: #ffffff;
     -webkit-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
@@ -1696,6 +1771,34 @@ ul.footer-menu li a:hover {
 .btn1:hover .btn-sub-label1,
 .btn2:hover .btn-sub-label1 {
     color: white;
+}
+.c-search1 {
+    width: 220px;
+    margin: 8px 15px 0;
+    position: relative;
+}
+.search-text1{
+    border: none;
+    border-bottom: 1px solid #878787;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding: 0 0 0 30px;
+    color: #bfbfbf;
+    font-size: 14px;
+    font-family: "work_sanslight";
+}
+.search-btn1 {
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 34px;
+}
+.search-btn1 i {
+    color: #acacac;
 }
 /*@media (max-width: 1590px) {
     .in-inner-container {

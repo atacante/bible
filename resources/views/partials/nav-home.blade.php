@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i>BIBLE STUDY CO</a>
+        <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i><div class="logo-text">BIBLE STUDY CO</div></a>
     </div>
     <div class="pull-left" style="">
         <ul class="nav navbar-nav">
