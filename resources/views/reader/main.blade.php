@@ -25,26 +25,30 @@
             <div class="j-chapter-content ">
                 <div class="row" style="position: relative;">
                     <div class="col-lg-12">
-                        <h3 class="text-center" style="margin: 30px auto 20px;">
-                            <div class="btn-group" role="group" aria-label="...">
-                                @if($prevChapter = $content['pagination']['chapterPrev'])
-                                    <a title="Prev Chapter" href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                                @endif
-                            </div>
-                            {!! $content['heading'] !!}
-                            @if(Request::input('compare',false))
-                                {!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}
-                            @endif
-                            <div class="btn-group" role="group" aria-label="...">
-                                @if($nextChapter = $content['pagination']['chapterNext'])
-                                    <a title="Next Chapter" href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                @endif
-                            </div>
-                        </h3>
-                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                        <div class="addthis_sharing_toolbox"></div>
+                        <div class="c-title-and-icons">
+                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                            <div class="addthis_sharing_toolbox c-sharing"></div>
 
-                        <a href="#" class="j-print-chapter"><i class="fa fa-print fa-2x"  style="position: absolute; right: 0px; top: 5px; padding: 15px;"></i></a>
+                            <h3 class="text-center">
+                                <div class="btn-group" role="group" aria-label="...">
+                                    @if($prevChapter = $content['pagination']['chapterPrev'])
+                                        <a title="Prev Chapter" href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                    @endif
+                                </div>
+                                {!! $content['heading'] !!}
+                                @if(Request::input('compare',false))
+                                    {!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}
+                                @endif
+                                <div class="btn-group" role="group" aria-label="...">
+                                    @if($nextChapter = $content['pagination']['chapterNext'])
+                                        <a title="Next Chapter" href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                    @endif
+                                </div>
+                            </h3>
+
+                            <a href="#" class="j-print-chapter c-print-chapter"><i class="bs-print cu-print"></i></a>
+                        </div>
+
                     </div>
                 </div>
 

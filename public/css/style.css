@@ -1800,6 +1800,26 @@ ul.footer-menu li a:hover {
 .search-btn1 i {
     color: #acacac;
 }
+.c-title-and-icons {
+    padding: 0 200px;
+    position: relative;
+    margin: 100px 0;
+}
+.c-sharing {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.c-print-chapter {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.cu-print {
+    font-size: 25px;
+    line-height: 25px;
+    color: #00b9f7;
+}
 /*@media (max-width: 1590px) {
     .in-inner-container {
         padding: 0 150px;
