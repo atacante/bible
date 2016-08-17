@@ -4,11 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\BlogArticle;
+use App\Group;
+use App\GroupUser;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Journal;
 use App\Note;
+use App\Prayer;
 use App\User;
 use App\UsersViews;
+use App\WallPost;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -94,7 +99,22 @@ class ReportsController extends Controller
             $q->whereNotIn('slug',[Config::get('app.role.admin')]);
         });
         $users = $this->prepareFilters($users);
+        $userIds = $users->lists('id')->toArray();
         $content['users'] = $users->paginate(20);
+
+        $content['notesCount'] = Note::whereIn('user_id',$userIds)->count();
+        $content['journalsCount'] = Journal::whereIn('user_id',$userIds)->count();
+        $content['prayersCount'] = Prayer::whereIn('user_id',$userIds)->count();
+        $content['answeredPrayersCount'] = Prayer::whereIn('user_id',$userIds)->where('answered',true)->count();
+        $content['statusesCount'] = WallPost::whereIn('user_id',$userIds)->count();
+        $content['groupsCount'] = Group::whereIn('owner_id',$userIds)->count();
+        $content['groupJoinsCount'] = GroupUser::whereIn('user_id',$userIds)->count();
+        $content['readerViewsCount'] = UsersViews::whereIn('user_id',$userIds)->where('item_category',UsersViews::CAT_READER)->count();
+        $content['lexiconViewsCount'] = UsersViews::whereIn('user_id',$userIds)->where('item_category',UsersViews::CAT_LEXICON)->count();
+        $content['strongsViewsCount'] = UsersViews::whereIn('user_id',$userIds)->where('item_category',UsersViews::CAT_STRONGS)->count();
+        $content['blogViewsCount'] = UsersViews::whereIn('user_id',$userIds)->where('item_category',UsersViews::CAT_BLOG)->count();
+        $content['referredUsersCount'] = User::whereIn('invited_by_id',$userIds)/*->where('invited_by_id','>',0)*/->count();
+
         return view('admin.reports.main',
             [
                 'page_title' => 'User Reports',
@@ -169,7 +189,7 @@ class ReportsController extends Controller
         $type = Input::get('type','created');
         $user = User::find($id);
         if($type == 'joined'){
-            $userGroups = $user->joinedGroups();
+            $userGroups = $user->joinedGroups(true);
         }
         else{
             $userGroups = $user->myGroups();

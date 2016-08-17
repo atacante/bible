@@ -28,6 +28,7 @@
                             <th>Role</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Plan</th>
                             <th class="text-center">Login Status</th>
                             <th class="text-center">Last Login</th>
                             <th class="text-center">Premium Upgraded</th>
@@ -48,6 +49,9 @@
                                     </td>
                                     <td>{!! $user->name !!}</td>
                                     <td><a href="mailto:{!! $user->email !!}">{!! $user->email !!}</a></td>
+                                    <td>
+                                        <span class="label label-{!! $user->plan_type == App\User::PLAN_FREE?'success':'primary' !!}">{!! $user->plan_type !!}</span>
+                                    </td>
                                     <td class="text-center">
                                         @if($user->isOnline())
                                             <span class="label label-success">online</span>

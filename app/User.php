@@ -47,6 +47,35 @@ class User extends Authenticatable
         'banned' => 'boolean',
     ];
 
+    protected static function boot() {
+        parent::boot();
+        static::deleting(function($user) {
+            $user->notes()->delete();
+            $user->journals()->delete();
+            $user->prayers()->delete();
+            $user->statuses()->delete();
+            $user->myGroups()->delete();
+            $user->joinedGroups()->detach();
+            $user->friends()->detach();
+            $user->requests()->detach();
+            $user->notesLikes()->detach();
+            $user->journalLikes()->detach();
+            $user->prayersLikes()->detach();
+            $user->statusesLikes()->detach();
+            $user->notesReports()->detach();
+            $user->journalReports()->detach();
+            $user->prayersReports()->detach();
+            $user->statusesReports()->detach();
+            $user->friendRequests()->detach();
+            $user->groupsRequests()->detach();
+            $user->readerViews()->delete();
+            $user->lexiconViews()->delete();
+            $user->strongsViews()->delete();
+            $user->blogViews()->delete();
+            return false;
+        });
+    }
+
     public function rules()
     {
         $rules = [
@@ -117,9 +146,13 @@ class User extends Authenticatable
         return $this->hasMany(Group::class, 'owner_id', 'id');
     }
 
-    public function joinedGroups()
+    public function joinedGroups($withBanned = false)
     {
-        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('banned',false)->withTimestamps();
+        $groups = $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id');
+        if(!$withBanned){
+            $groups->where('banned',$withBanned);
+        }
+        return $groups->withTimestamps();
     }
 
     public function groupsBanned()

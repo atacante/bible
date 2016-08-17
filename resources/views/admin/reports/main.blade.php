@@ -16,6 +16,103 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-bookmarks ion-ios-bookmarks-outline"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">
+                        <strong class="pull-right">{!! $content['notesCount'] !!}</strong>
+                        <span>Notes</span>
+                    </span>
+                    <span class="info-box-text">
+                        <strong class="pull-right">{!! $content['journalsCount'] !!}</strong>
+                        <span>Journals</span>
+                    </span>
+                    <span class="info-box-text">
+                        <strong class="pull-right" title="Total/Answered">{!! $content['prayersCount'] !!}/{!! $content['answeredPrayersCount'] !!}</strong>
+                        <span>Prayers</span>
+                    </span>
+                    <span class="info-box-text">
+                        <strong class="pull-right">{!! $content['statusesCount'] !!}</strong>
+                        <span>Statuses</span>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="ion ion-ios-people-outline"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">
+                        <strong class="pull-right">{!! $content['groupsCount'] !!}</strong>
+                        <span>Groups</span>
+                    </span>
+                    <span class="info-box-text">
+                        <strong class="pull-right">{!! $content['groupJoinsCount'] !!}</strong>
+                        <span >Group joins</span>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa ion-ios-book-outline"></i></span>
+
+                <div class="info-box-content">
+                    <span title="Reader pages views" class="info-box-text">
+                        <strong class="pull-right">{!! $content['readerViewsCount'] !!}</strong>
+                        <span>Reader</span>
+                    </span>
+                    <span title="Lexicon pages views" class="info-box-text">
+                        <strong class="pull-right">{!! $content['lexiconViewsCount'] !!}</strong>
+                        <span>Lexicon</span>
+                    </span>
+                    <span title="Strong's pages views" class="info-box-text">
+                        <strong class="pull-right">{!! $content['strongsViewsCount'] !!}</strong>
+                        <span>Strongs</span>
+                    </span>
+                    <span title="Blog pages views" class="info-box-text">
+                        <strong class="pull-right">{!! $content['blogViewsCount'] !!}</strong>
+                        <span>Blog</span>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-personadd-outline"></i></span>
+
+                <div class="info-box-content">
+                    {{--<span class="info-box-text">Referred users</span>
+                    <span class="info-box-number">12</span>--}}
+                    <span title="Referred users" class="info-box-text">
+                        <strong class="pull-right">{!! $content['referredUsersCount'] !!}</strong>
+                        <span>Ref users</span>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <div class="row">
         <div class="col-xs-12">
             <div class="box box-success ">
                 <div class="box-body table-responsive no-padding">

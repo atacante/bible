@@ -15,6 +15,9 @@ class UsersViews extends BaseModel
 //    protected $fillable = array('user_id', 'views');
 
     public static function thackView($model,$category,$version = null){
+        if(Auth::user()->is('administrator')){
+            return false;
+        }
         if($model->views()->where('user_id',Auth::user()->id)->where('item_category', $category)->get()->count()){
             $model->views()->wherePivot('item_category', $category)->updateExistingPivot(Auth::user()->id, ['views' => DB::raw('views+1')]);
         }
