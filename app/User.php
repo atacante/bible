@@ -29,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','plan_type','about_me','avatar','invited_by_id', 'subscribed'
+        'name', 'email', 'password','plan_type','about_me','avatar','invited_by_id', 'subscribed','church_name','country_id','state','city'
     ];
 
     /**
@@ -111,6 +111,10 @@ class User extends Authenticatable
         }
 
         return $rules;
+    }
+
+    public function country() {
+        return $this->hasOne(Country::class, 'id', 'country_id');
     }
 
     public function inviter() {

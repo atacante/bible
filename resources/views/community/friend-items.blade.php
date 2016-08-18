@@ -11,7 +11,7 @@
                 @endif
             </div>
             <div class="pull-left" style="margin-right: 10px; width: 200px;">
-                <div><strong>{!! $people->name !!}</strong></div>
+                <div><strong><a class="j-friend-item" data-userid="{!! $people->id !!}" href="{!! url('/user/view',[$people->id]) !!}">{!! $people->name !!}</a></strong></div>
                 <div style="line-height: 16px; font-size: 12px;">
                     <span style="color:#90949c;">{!! str_limit(strip_tags($people->about_me,'<p></p>'), $limit = 100, $end = '... ') !!}</span>
                 </div>

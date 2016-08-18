@@ -80,6 +80,61 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('country_id') ? ' has-error' : '' }}">
+                            {!! Form::label('country_id', 'Country', array('class' => 'col-md-4 control-label')) !!}
+
+                            <div class="col-md-6">
+                                {!! Form::select('country_id', App\Country::pluck('nicename','id')->toArray(), old('country_id'),['class' => 'form-control j-select2','data-url'=> '/ajax/users-list','placeholder' => 'Select users...']) !!}
+                                @if ($errors->has('country_id'))
+                                    <span class="help-block">
+                                        {{ $errors->first('country_id') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }}">
+                            {!! Form::label('state', 'State', array('class' => 'col-md-4 control-label')) !!}
+
+                            <div class="col-md-6">
+                                {!! Form::text('state', old('state'), array('class' => 'form-control')) !!}
+
+                                @if ($errors->has('state'))
+                                    <span class="help-block">
+                                        {{ $errors->first('state') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
+                            {!! Form::label('city', 'City', array('class' => 'col-md-4 control-label')) !!}
+
+                            <div class="col-md-6">
+                                {!! Form::text('city', old('city'), array('class' => 'form-control')) !!}
+
+                                @if ($errors->has('city'))
+                                    <span class="help-block">
+                                        {{ $errors->first('city') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('church_name') ? ' has-error' : '' }}">
+                            {!! Form::label('church_name', 'Church Name', array('class' => 'col-md-4 control-label')) !!}
+
+                            <div class="col-md-6">
+                                {!! Form::text('church_name', old('church_name'), array('class' => 'form-control')) !!}
+
+                                @if ($errors->has('church_name'))
+                                    <span class="help-block">
+                                        {{ $errors->first('church_name') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('invited_by_id') ? ' has-error' : '' }}">
                             {!! Form::label('invited_by_id', 'Invited By', array('class' => 'col-md-4 control-label')) !!}
 

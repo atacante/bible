@@ -163,6 +163,7 @@ Route::get('notes/comments/{id}', array('middleware' => 'web', 'uses' => 'NotesC
 Route::get('journal/comments/{id}', array('middleware' => 'web', 'uses' => 'JournalController@getComments'));
 Route::get('prayers/comments/{id}', array('middleware' => 'web', 'uses' => 'PrayersController@getComments'));
 Route::get('wall-posts/comments/{id}', array('middleware' => 'web', 'uses' => 'WallPostsController@getComments'));
+Route::get('user/view/{id}', array('middleware' => 'web', 'uses' => 'UserController@getView'));
 
 Route::group([
         'middleware' => ['auth', 'acl'],

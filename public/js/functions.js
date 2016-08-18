@@ -217,6 +217,21 @@ site.getStatus = function(id){
     });
 }
 
+site.getUser = function(id){
+    $.ajax({
+        method: "GET",
+        url: "/user/view/"+id,
+        dataType: "html",
+        data:{id:id},
+        success:function(data){
+            $('#popup').find('.modal-header .modal-title').text('User Info');
+            $('#popup').find('.modal-body').html(data);
+            $('#popup').find('.modal-footer').html('');
+            $('#popup').modal({show:true});
+        }
+    });
+}
+
 
 reader.getActionsHtml = function(){
     return '<div class="j-reader-actions" style="position: absolute;">' +

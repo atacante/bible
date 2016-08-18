@@ -396,6 +396,39 @@ class UserController extends Controller
         return response()->json($user, 200);
     }
 
+    public function getView($id)
+    {
+        $user = User::with('country')->find($id);
+        $requests = [];
+        $ignoredRequests = [];
+        $myRequests = [];
+        $myFriends = [];
+        $relatedGroups = [];
+        if($user->myGroups->count()){
+            $relatedGroups = array_merge($relatedGroups,$user->myGroups->all());
+        }
+        if($user->joinedGroups->count()){
+            $relatedGroups = array_merge($relatedGroups,$user->joinedGroups->all());
+        }
+        if(Auth::user()){
+            $requests = Auth::user()->requests->modelKeys();
+            $ignoredRequests = Auth::user()->requests()->where('ignore',true)->get()->modelKeys();
+            $myRequests = Auth::user()->friends->modelKeys();
+            $myFriends = array_intersect($requests, $myRequests);
+        }
+
+        if(Request::ajax()){
+            return view('user.view', [
+                'model' => $user,
+                'myFriends' => $myFriends,
+                'requests' => $requests,
+                'ignoredRequests' => $ignoredRequests,
+                'myRequests' => $myRequests,
+                'relatedGroups' => $relatedGroups
+            ]);
+        }
+    }
+
     public function getIsPremium(){
         return User::find(Auth::user()->id)->isPremium();
     }

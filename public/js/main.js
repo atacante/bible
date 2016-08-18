@@ -222,6 +222,12 @@ $(document).ready(function(){
         site.getStatus(id);
     });
 
+    $('body').on('click','.friend-item .j-friend-item',function(ev) {
+        ev.preventDefault();
+        var id = $(this).data('userid');
+        site.getUser(id);
+    });
+
     $('.navbar').on('change','select[name=readerMode]',function(){
         location.href = '/reader/mode/'+$(this).val();
     });
