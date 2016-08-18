@@ -78,7 +78,7 @@
         <div class="container-fluid main-container">
             <div class="inner-container">
                 <div class="bg-g2">
-                    <div class="in-inner-container text-center">
+                    <div class="in-inner-container">
                         @include('partials.nav')
                         @notification()
                         @yield('content')

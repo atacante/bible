@@ -110,19 +110,21 @@
 </nav>
 
 {{-- ---------------- Radio Blocks ---------------- --}}
-@if(Request::segment(1) == 'reader')
-    <div class="pull-left" style="margin: 14px 10px 0;">
-        <div class="radio-inline">
-            <label>
-                {!! Form::radio('readerMode', 'beginner', (Request::cookie('readerMode',false) == 'beginner'),['class' => 'j-reader-mode']) !!}
-                {!! Config::get('app.readerModes.beginner') !!}
-            </label>
+<div class="popup-new j-popup-settings">
+    @if(Request::segment(1) == 'reader')
+        <div>
+            <div class="radio-inline">
+                <label>
+                    {!! Form::radio('readerMode', 'beginner', (Request::cookie('readerMode',false) == 'beginner'),['class' => 'j-reader-mode']) !!}
+                    {!! Config::get('app.readerModes.beginner') !!}
+                </label>
+            </div>
+            <div class="radio-inline">
+                <label>
+                    {!! Form::radio('readerMode', 'intermediate', (Request::cookie('readerMode',false) == 'intermediate'),['class' => 'j-reader-mode']) !!}
+                    {!! Config::get('app.readerModes.intermediate') !!}
+                </label>
+            </div>
         </div>
-        <div class="radio-inline">
-            <label>
-                {!! Form::radio('readerMode', 'intermediate', (Request::cookie('readerMode',false) == 'intermediate'),['class' => 'j-reader-mode']) !!}
-                {!! Config::get('app.readerModes.intermediate') !!}
-            </label>
-        </div>
-    </div>
-@endif
+    @endif
+</div>
