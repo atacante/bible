@@ -125,7 +125,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        {!! Form::label('invite_link', 'Link for invite new users') !!}
+                        {!! Form::label('invite_link', 'Link to invite new users') !!}
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <button id="copy" title="Copy" class="btn copy btn-default" data-clipboard-target="#invite-link" type="button"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
