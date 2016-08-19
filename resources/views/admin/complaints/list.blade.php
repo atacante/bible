@@ -38,7 +38,7 @@
                                     <td>{!! $complaint->type() !!}</td>
                                     <td>{!! $complaint->item->text() !!}</td>
                                     <td  class="text-center" style="color: #367fa9; font-size: 1.4em;">{!! ViewHelper::getAccessLevelIcon($complaint->item->access_level) !!}</td>
-                                    <td>{!! $complaint->user->name !!}</td>
+                                    <td>{!! $complaint->user?$complaint->user->name:'<i>"Somebody"</i>' !!}</td>
                                     <td>{!! $complaint->reason_text !!}</td>
                                     <td>{!! $complaint->resolved?'<span class="label label-success">resolved</span>':'<span class="label label-danger">pending</span>' !!}</td>
                                     <td class="text-center">{!! $complaint->created_at->format($complaint::DFORMAT) !!}</td>
