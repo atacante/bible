@@ -54,12 +54,13 @@
                                         </div>
 
 
-                                        <div class="c-compare" style="display: none">
+                                        <div class="popup-new j-popup-compare" style="display: none">
+                                            <div class="popup-arrow"></div>
                                             @if(isset($compare['versions']))
                                                 <div class="pull-left" style="margin-left:35px;">
                                                     {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['placeholder' => 'Compare with ...','multiple' => true,'class' => 'pull-left j-compare-versions', 'style' => 'width: 245px; margin-left:35px;']) !!}
                                                 </div>
-                                                {!! Form::submit('Compare',['class' => 'btn btn-primary pull-left','style' => 'margin-left:10px;']) !!}
+                                                {!! Form::submit('Compare',['class' => 'btn1 cu-btn1 j-btn-ok']) !!}
                                                 {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), 'Reset', ['class' => 'btn btn-default btn-danger','style' => 'margin-left:10px;'], true) !!}
                                             @endif
                                         </div>

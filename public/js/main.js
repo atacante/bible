@@ -1344,12 +1344,29 @@ $(document).ready(function(){
     $(".j-popup-settings .j-btn-ok").on("click", function(e){
         $(".j-popup-settings").hide();
     });
+    $(".j-btn-compare").on("click", function(e){
+        var btnCoordTop = $(this).offset().top+25;
+        var btnCoordLeft = $(this).offset().left-290;
+        $(".j-popup-compare").show();
+        $(".j-popup-compare").offset({top:btnCoordTop, left:btnCoordLeft});
+        e.preventDefault();
+    });
+/*    $(".j-popup-settings .j-btn-ok").on("click", function(e){
+        $(".j-popup-settings").hide();
+    });*/
 
     // Hide Popups
     $(document).mouseup(function (e){
         var popSettings = $(".j-popup-settings");
         if (!popSettings.is(e.target) && popSettings.has(e.target).length === 0) {
             popSettings.hide();
+        }
+
+        var popCompare = $(".j-popup-compare");
+        var popCompare2 = $(".select2-container");
+
+        if (!popCompare.is(e.target) && popCompare.has(e.target).length === 0 && !popCompare2.is(e.target) && popCompare2.has(e.target).length === 0) {
+            popCompare.hide();
         }
     });
 });

@@ -1959,6 +1959,9 @@ ul.icon-panel li a {
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+.j-popup-compare .popup-arrow {
+    right: 97px;
+}
 .popup-title {
     text-transform: uppercase;
     color: #010101;
