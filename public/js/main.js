@@ -1333,4 +1333,23 @@ $(document).ready(function(){
             (text == 'show more ') ? "show less <i class='fa fa-angle-up' aria-hidden='true'></i>" : "show more <i class='fa fa-angle-down' aria-hidden='true'></i>");
 
     });
+
+    $(".j-btn-settings").on("click", function(e){
+        var btnCoordTop = $(this).offset().top+25;
+        var btnCoordLeft = $(this).offset().left-290;
+        $(".j-popup-settings").show();
+        $(".j-popup-settings").offset({top:btnCoordTop, left:btnCoordLeft});
+        e.preventDefault();
+    });
+    $(".j-popup-settings .j-btn-ok").on("click", function(e){
+        $(".j-popup-settings").hide();
+    });
+
+    // Hide Popups
+    $(document).mouseup(function (e){
+        var popSettings = $(".j-popup-settings");
+        if (!popSettings.is(e.target) && popSettings.has(e.target).length === 0) {
+            popSettings.hide();
+        }
+    });
 });

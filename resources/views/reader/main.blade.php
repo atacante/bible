@@ -77,7 +77,7 @@
                                     </div>
                                     <ul class="icon-panel top-vertical1">
                                         <li>
-                                            <a href="#" class="j-print-chapter">
+                                            <a href="#" class="j-btn-compare">
                                                 <i class="bs-compare cu-print"></i>
                                             </a>
                                         </li>
@@ -87,7 +87,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="j-print-chapter">
+                                            <a href="#" class="j-btn-settings">
                                                 <i class="bs-settings cu-print"></i>
                                             </a>
                                         </li>

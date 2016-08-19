@@ -141,7 +141,7 @@
                 </div>
             </div>
             <div class="mt16">
-                <a class="btn1 cu-btn1" href="#">OK</a>
+                <a class="btn1 cu-btn1 j-btn-ok" href="#">OK</a>
             </div>
         </div>
 </div>

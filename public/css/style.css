@@ -1929,7 +1929,7 @@ ul.icon-panel li a {
 .popup-new {
     position: absolute;
     top: 255px;
-    right: 160px;
+   /* right: 160px;*/
     border: 1px solid #cccccc;
     padding: 50px;
     background: white;
@@ -1939,6 +1939,10 @@ ul.icon-panel li a {
     color: #535353;
     font-family: work_sansregular;
     font-size: 15px;
+}
+.j-popup-settings {
+    margin-top: -25px;
+    margin-left: -290px;
 }
 .popup-arrow {
     position: absolute;
