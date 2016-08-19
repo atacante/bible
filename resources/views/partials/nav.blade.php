@@ -89,9 +89,13 @@
                 @endrole
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="fa fa-btn fa-user"></i>{{ Auth::user()->name }} <span class="caret"></span>
+                        @if(Auth::user()->avatar)
+                            <img class="" height="30" width="30" src="{!! Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar !!}" />
+                        @else
+                            <i class="fa fa-btn fa-user"></i>
+                        @endif
+                        {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
-
                     <ul class="dropdown-menu" role="menu">
                         @role('user')
                         <li><a href="{{ url('user/my-journey') }}"><i class="fa fa-btn fa-location-arrow"></i>My Journey</a></li>
