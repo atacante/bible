@@ -47,6 +47,19 @@ class ViewHelper
         return $versesArr;
     }
 
+    public static function isRoute($path)
+    {
+        $path = explode('.', $path);
+        $segment = 1;
+        foreach($path as $p) {
+            if((request()->segment($segment) == $p) == false) {
+                return false;
+            }
+            $segment++;
+        }
+        return true;
+    }
+
     public static function classActivePath($path)
     {
         $path = explode('.', $path);
