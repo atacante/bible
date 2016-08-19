@@ -114,21 +114,35 @@
 </nav>
 
 {{-- ---------------- Radio Blocks ---------------- --}}
-<div class="popup-new j-popup-settings">
-    @if(Request::segment(1) == 'reader')
+@if(Request::segment(1) == 'reader')
+<div class="popup-new j-popup-settings" style="display: none">
+    <div class="popup-arrow"></div>
+
         <div>
-            <div class="radio-inline">
-                <label>
-                    {!! Form::radio('readerMode', 'beginner', (Request::cookie('readerMode',false) == 'beginner'),['class' => 'j-reader-mode']) !!}
-                    {!! Config::get('app.readerModes.beginner') !!}
-                </label>
+            <h4 class="popup-title">
+                Settings
+            </h4>
+            <div class="mt15">
+                <input type="checkbox">
+                Show difference
             </div>
-            <div class="radio-inline">
-                <label>
-                    {!! Form::radio('readerMode', 'intermediate', (Request::cookie('readerMode',false) == 'intermediate'),['class' => 'j-reader-mode']) !!}
-                    {!! Config::get('app.readerModes.intermediate') !!}
-                </label>
+            <div class="mt16">
+                <div class="radio-inline">
+                    <label>
+                        {!! Form::radio('readerMode', 'beginner', (Request::cookie('readerMode',false) == 'beginner'),['class' => 'j-reader-mode']) !!}
+                        {!! Config::get('app.readerModes.beginner') !!}
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        {!! Form::radio('readerMode', 'intermediate', (Request::cookie('readerMode',false) == 'intermediate'),['class' => 'j-reader-mode']) !!}
+                        {!! Config::get('app.readerModes.intermediate') !!}
+                    </label>
+                </div>
+            </div>
+            <div class="mt16">
+                <a class="btn1 cu-btn1" href="#">OK</a>
             </div>
         </div>
-    @endif
 </div>
+@endif
