@@ -1453,9 +1453,9 @@ body {
 .bg-inner-page {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#89bbf2+0,f3f3f3+35,f3f3f3+100 */
     background: rgb(137,187,242); /* Old browsers */
-    background: -moz-linear-gradient(top,  rgba(137,187,242,1) 0%, rgba(243,243,243,1) 35%, rgba(243,243,243,1) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  rgba(137,187,242,1) 0%,rgba(243,243,243,1) 35%,rgba(243,243,243,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  rgba(137,187,242,1) 0%,rgba(243,243,243,1) 35%,rgba(243,243,243,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: -moz-linear-gradient(top,  rgba(137,187,242,1) 0%, rgba(243,243,243,1) 400px, rgba(243,243,243,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(137,187,242,1) 0%,rgba(243,243,243,1) 400px,rgba(243,243,243,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(137,187,242,1) 0%,rgba(243,243,243,1) 400px,rgba(243,243,243,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#89bbf2', endColorstr='#f3f3f3',GradientType=0 ); /* IE6-9 */
 }
 .cu-biblestudylogo {
@@ -1987,17 +1987,13 @@ ul.icon-panel li a {
 .popup-arrow {
     position: absolute;
     background: white;
-    width: 10px;
-    height: 10px;
-    top: -6px;
-    right: 7px;
     border-top: 1px solid #cccccc;
     border-left: 1px solid #cccccc;
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
+    right: 7px;
+    top: -7px;
+    transform: rotate(30deg) skew(-30deg);
+    width: 12px;
+    height: 12px;
 }
 .j-popup-compare .popup-arrow {
     right: 97px;
@@ -2085,6 +2081,59 @@ ul.icon-panel li a {
     color: #535353;
     font-family: work_sansregular !important;
     font-size: 15px !important;
+}
+/* -------------------- Login Dropdown Menu ------------------ */
+.dropdown-menu {
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -webkit-box-shadow: 0 0 15px 5px rgba(100,100,100,0.1);
+    box-shadow: 0 0 15px 5px rgba(100,100,100,0.1);
+    padding: 10px 5px;
+    min-width: 200px;
+}
+.log-pop.dropdown .dropdown-menu li a {
+    font-size: 13px;
+    font-family: ns_widemedium;
+    color: #000000;
+}
+.dropdown-menu .popup-arrow {
+    right: 14px;
+    top: -7px;
+    transform: rotate(30deg) skew(-30deg);
+    width: 12px;
+    height: 12px;
+}
+.user-default {
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    display: inline-block;
+    background: url('../images/default.jpg') center no-repeat;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.cu-drop-menu-item {
+    padding-top: 9px !important;
+}
+ul.nav.navbar-nav li a.cu-drop-menu-item:hover,
+ul.nav.navbar-nav li a.cu-drop-menu-item:focus,
+ul.nav.navbar-nav li a.cu-drop-menu-item:active,
+ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
+
+.navbar-inner-pages.navbar-default .navbar-nav > a.cu-drop-menu-item:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a.cu-drop-menu-item,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a.cu-drop-menu-item:focus,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a.cu-drop-menu-item:hover,
+
+.navbar-default .navbar-nav > a.cu-drop-menu-item:hover,
+.navbar-default .navbar-nav > .open > a.cu-drop-menu-item,
+.navbar-default .navbar-nav > .open > a.cu-drop-menu-item:focus,
+.navbar-default .navbar-nav > .open > a.cu-drop-menu-item:hover
+{
+    background-color: transparent !important;
+    color: #6b6b6b !important;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {

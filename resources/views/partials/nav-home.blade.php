@@ -100,25 +100,28 @@
                 <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::to('auth/login') }}">Login</a></li>
                 <li class="{{ (Request::is('auth/register') ? 'active' : '') }} bord-menu-item"><a href="{{ URL::to('auth/register') }}">Sign Up</a></li>
             @else
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <li class="dropdown log-pop">
+                    <a href="#" class="dropdown-toggle cu-drop-menu-item" data-toggle="dropdown" role="button" aria-expanded="false">
                         @if(Auth::user()->avatar)
                             <img class="" height="30" width="30" src="{!! Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar !!}" />
                         @else
-                            <i class="fa fa-btn fa-user"></i>
+                            <div class="user-default"></div>
                         @endif
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
                         @role('user')
-                        <li><a href="{{ url('user/my-journey') }}"><i class="fa fa-btn fa-location-arrow"></i>My Journey</a></li>
-                        <li><a href="{{ url('user/profile') }}"><i class="fa fa-btn fa-user"></i>My Profile</a></li>
+                        <li>
+                            <div class="popup-arrow"></div>
+                            <a href="{{ url('user/my-journey') }}">My Journey</a>
+                        </li>
+                        <li><a href="{{ url('user/profile') }}">My Profile</a></li>
                         @endrole
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{ url('auth/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                        {{--<li role="separator" class="divider"></li>--}}
+                        <li><a href="{{ url('auth/logout') }}">Logout</a></li>
                         @if(Session::has('adminAsUser'))
-                            <li><a href="{{ url('auth/admin-logout') }}"><i class="fa fa-btn fa-sign-out"></i>Back To Admin</a></li>
+                            <li><a href="{{ url('auth/admin-logout') }}">Back To Admin</a></li>
                         @endif
                     </ul>
                 </li>
