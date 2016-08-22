@@ -54,15 +54,21 @@
                                         </div>
 
 
-                                        <div class="popup-new j-popup-compare" style="display: none">
+                                        <div class="popup-new j-popup-compare c-popup-compare" style="display: none">
                                             <div class="popup-arrow"></div>
+                                            <h4 class="popup-title">
+                                                COMPARE WITH...
+                                            </h4>
                                             @if(isset($compare['versions']))
-                                                <div class="pull-left" style="margin-left:35px;">
-                                                    {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['placeholder' => 'Compare with ...','multiple' => true,'class' => 'pull-left j-compare-versions', 'style' => 'width: 245px; margin-left:35px;']) !!}
+                                                <div class="sel-compare-versions mt17">
+                                                    {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['placeholder' => 'Start Typing Version Name (or Language)','multiple' => true, 'class' => 'j-compare-versions', 'style'=>'width:100%;']) !!}
                                                 </div>
-                                                {!! Form::submit('Compare',['class' => 'btn1 cu-btn1 j-btn-ok']) !!}
-                                                {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), 'Reset', ['class' => 'btn btn-default btn-danger','style' => 'margin-left:10px;'], true) !!}
+                                                {!! Form::submit('Compare',['class' => 'btn2 cu-btn2 mt17']) !!}
+                                                {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), 'Reset', ['class' => 'btn2 cu-btn2 mt17','style' => 'margin-left:10px;'], true) !!}
                                             @endif
+                                            <div class="mt17">
+                                                <a class="btn1 cu-btn1 j-btn-ok" href="#">OK</a>
+                                            </div>
                                         </div>
 
                                         {{--{!! $content['heading'] !!}--}}

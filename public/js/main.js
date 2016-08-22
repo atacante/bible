@@ -14,7 +14,7 @@ $(document).ready(function(){
     });
     $(".j-compare-versions").select2({
         maximumSelectionLength: 2,
-        placeholder: "Compare with...",
+        placeholder: "Start Typing Version Name (or Language)",
     });
     $(".j-select2-ajax").select2({
         minimumInputLength: 2,
@@ -1346,10 +1346,14 @@ $(document).ready(function(){
     });
     $(".j-btn-compare").on("click", function(e){
         var btnCoordTop = $(this).offset().top+25;
-        var btnCoordLeft = $(this).offset().left-290;
+        var btnCoordLeft = $(this).offset().left-315;
         $(".j-popup-compare").show();
         $(".j-popup-compare").offset({top:btnCoordTop, left:btnCoordLeft});
         e.preventDefault();
+    });
+
+    $(".j-popup-compare .j-btn-ok").on("click", function(e){
+        $(".j-popup-compare").hide();
     });
 /*    $(".j-popup-settings .j-btn-ok").on("click", function(e){
         $(".j-popup-settings").hide();
@@ -1362,11 +1366,11 @@ $(document).ready(function(){
             popSettings.hide();
         }
 
-        var popCompare = $(".j-popup-compare");
+        /*var popCompare = $(".j-popup-compare");
         var popCompare2 = $(".select2-container");
 
         if (!popCompare.is(e.target) && popCompare.has(e.target).length === 0 && !popCompare2.is(e.target) && popCompare2.has(e.target).length === 0) {
             popCompare.hide();
-        }
+        }*/
     });
 });
