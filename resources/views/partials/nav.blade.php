@@ -128,12 +128,13 @@
             </h4>
             {{--{!! $content['heading'] !!}--}}
             @if(Request::input('compare',false))
-                {!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}
+                {{--{!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
+                <div class="mt15">
+                    {{--<input type="checkbox">--}}
+                    {!! Form::checkbox('diff', Request::input('diff',false)?1:0, Request::input('diff',false)?1:0, ['class' => 'j-check-diff', 'data-link' => '/reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1]))]) !!}
+                    Show difference
+                </div>
             @endif
-            <div class="mt15">
-                <input type="checkbox">
-                Show difference
-            </div>
             <div class="mt16">
                 <div class="radio-inline">
                     <label>

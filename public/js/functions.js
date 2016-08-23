@@ -235,9 +235,12 @@ site.getUser = function(id){
 
 reader.getActionsHtml = function(){
     return '<div class="j-reader-actions" style="position: absolute;">' +
-                '<a title="Create note" href="#" class="j-create-note" style="display:inline-block; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>' +
-                '<a title="Create Journal Entry" href="#" class="j-create-journal" style="display:inline-block; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-book"></i></a>' +
-                '<a title="Create prayer" href="#" class="j-create-prayer" style="display:inline-block; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 8px;"><i class="fa fa-btn fa-hand-paper-o"></i></a>' +
+                '<a title="Create note" href="#" class="j-create-note btn-create-note btn-reader"><i class="bs-note"></i></a>' +
+                '<div class="spliter1"></div>'+
+                '<a title="Create Journal Entry" href="#" class="j-create-journal btn-create-journal btn-reader"><i class="bs-journal"></i></a>' +
+                '<div class="spliter1"></div>'+
+                '<a title="Create prayer" href="#" class="j-create-prayer btn-create-prayer btn-reader"><i class="bs-pray"></i></a>' +
+                '<div class="popup-arrow2"></div>'+
             '</div>';
 }
 

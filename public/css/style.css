@@ -2193,6 +2193,62 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
 .at-share-btn {
     background: transparent !important;
 }
+.spinner {
+    background: rgba(255, 255, 255, 0.5) url('../images/ajax-loader.gif') center no-repeat;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+}
+.j-reader-actions {
+    background: #00b9f7;
+    padding: 20px 0 15px;
+    -webkit-box-shadow: 0 0 15px 5px rgba(100,100,100,0.2);
+    box-shadow: 0 0 15px 5px rgba(100,100,100,0.2);
+}
+.btn-create-note {
+
+}
+.btn-create-journal {
+
+}
+.btn-create-prayer {
+
+}
+.btn-reader {
+    display:inline-block;
+    color:white;
+    padding: 0 20px;
+    vertical-align: top;
+    text-align: center;
+}
+.btn-reader:hover {
+    text-decoration: none !important;
+    color: #101010;
+}
+.btn-reader i {
+    font-size: 24px;
+    display: block;
+}
+.popup-arrow2 {
+    position: absolute;
+    background: #00b9f7;
+    right: 50%;
+    margin-right: -4px;
+    bottom: -6px;
+    /*transform: rotate(30deg) skew(-30deg);*/
+    transform: rotate(45deg);
+    width: 12px;
+    height: 12px;
+}
+.spliter1 {
+    display: inline-block;
+    height: 24px;
+    width: 1px;
+    background: white;
+}
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
         display: inline-block;

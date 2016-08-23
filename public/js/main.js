@@ -613,9 +613,9 @@ $(document).ready(function(){
             $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
 
             $('.j-reader-actions').css({
-                top: ($(endElement).offset().top-26) + "px",
-                left: (eventObject.pageX-15) + "px"
-            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
+                top: ($(endElement).offset().top-66) + "px",
+                left: (eventObject.pageX-105) + "px"
+            }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
             /*$('.j-create-note').css({
                 top: ($(endElement).offset().top-26) + "px",
                 left: (eventObject.pageX-15) + "px"
@@ -1354,6 +1354,10 @@ $(document).ready(function(){
 
     $(".j-popup-compare .j-btn-ok").on("click", function(e){
         $(".j-popup-compare").hide();
+    });
+    $(".j-check-diff").on("change", function(e){
+        location.href=$(this).data('link');
+        $(".spinner").show();
     });
 /*    $(".j-popup-settings .j-btn-ok").on("click", function(e){
         $(".j-popup-settings").hide();
