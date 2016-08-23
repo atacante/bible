@@ -71,10 +71,7 @@
                                             </div>
                                         </div>
 
-                                        {{--{!! $content['heading'] !!}--}}
-                                        @if(Request::input('compare',false))
-                                            {!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}
-                                        @endif
+
 
 
                                             @if($nextChapter = $content['pagination']['chapterNext'])
@@ -106,55 +103,58 @@
 
 
 
+                        <div class="c-reader-content">
+                            <div class="row" style="position: relative">
+                                    {!! (Request::input('compare',false)?count(Request::input('compare',false)) == 1?'<div class="comp-bord1"></div>':'<div class="comp-bord2"></div><div class="comp-bord3"></div>':"") !!}
+                                    <div class="j-reader-block j-bible-text {!! (Request::input('compare',false)?count(Request::input('compare',false)) == 1?'col-xs-6':'col-xs-4':"col-xs-12") !!}">
+                                        <div class="inner-pad1">
+                                            @if(Request::input('compare',false))
+                                                <h4 class="version-title">{!! $content['version'] !!}</h4>
+                                            @endif
+                                            @foreach($content['verses'] as $verse)
+                                                <span class="verse-text j-verse-text" data-version="{!! $content['version_code'] !!}"
+                                                      data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
+                                                        <b>{!! link_to('reader/verse?'.http_build_query([
+                                                                                    'version' => $content['version_code'],
+                                                                                    'book' => $verse->book_id,
+                                                                                    'chapter' => $verse->chapter_num,
+                                                                                    'verse' => $verse->verse_num,
+                                                                                ]), $title = $verse->verse_num) !!}
+                                                        </b>&nbsp;{!! ViewHelper::prepareVerseText($verse,true) !!}
+                                                </span>
+                                            @endforeach
+                                        </div>
+                                    </div>
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="c-reader-content j-reader-block j-bible-text {!! (Request::input('compare',false)?count(Request::input('compare',false)) == 1?'col-md-6':'col-md-4':"col-md-12") !!}" style="line-height: 30px; text-align: justify;">
-                                    @if(Request::input('compare',false))
-                                        <h4 class="text-center">{!! $content['version'] !!}</h4>
-                                    @endif
-                                    @foreach($content['verses'] as $verse)
-                                        <span class="verse-text j-verse-text" data-version="{!! $content['version_code'] !!}"
-                                              data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
-                                                <b>{!! link_to('reader/verse?'.http_build_query([
-                                                                            'version' => $content['version_code'],
+                                    @if($compareParam = Request::input('compare',false))
+                                    @foreach($compare['data'] as $version)
+                                    <div class="col-xs-{!! count($compareParam) == 1?'6':'4' !!} j-diff-block j-bible-text" data-version="{!! $version['version_code'] !!}">
+                                        <div class="inner-pad1">
+                                            <h4 class="version-title">
+                                                {!! $version['version'] !!}
+                                            </h4>
+                                            @foreach($version['verses'] as $verse)
+                                                <span class="verse-text j-verse-text" data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
+                                                    <b>{!! link_to('reader/verse?'.http_build_query([
+                                                                            'version' => $version['version_code'],
                                                                             'book' => $verse->book_id,
                                                                             'chapter' => $verse->chapter_num,
                                                                             'verse' => $verse->verse_num,
                                                                         ]), $title = $verse->verse_num) !!}
-                                                </b>&nbsp;{!! ViewHelper::prepareVerseText($verse,true) !!}
-                                        </span>
-                                    @endforeach
-                                </div>
-                            </div>
-                            @if($compareParam = Request::input('compare',false))
-                                @foreach($compare['data'] as $version)
-                                    <div class="col-md-{!! count($compareParam) == 1?'6':'4' !!} j-diff-block j-bible-text"
-                                         data-version="{!! $version['version_code'] !!}"
-                                         style="line-height: 30px; text-align: justify;">
-                                        <h4 class="text-center">
-                                            {!! $version['version'] !!}
-                                        </h4>
-                                        @foreach($version['verses'] as $verse)
-                                            <span class="verse-text j-verse-text" data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
-                                                <b>{!! link_to('reader/verse?'.http_build_query([
-                                                                        'version' => $version['version_code'],
-                                                                        'book' => $verse->book_id,
-                                                                        'chapter' => $verse->chapter_num,
-                                                                        'verse' => $verse->verse_num,
-                                                                    ]), $title = $verse->verse_num) !!}
-                                                </b>&nbsp;{!! ViewHelper::prepareVerseText($verse) !!}
-                                            </span>
-                                        @endforeach
+                                                    </b>&nbsp;{!! ViewHelper::prepareVerseText($verse) !!}
+                                                </span>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                @endforeach
-                            @endif
+                                    @endforeach
+                                    @endif
+                            </div>
                         </div>
                     </div>
 
                     {{-- ---------------- Pagination  ---------------- --}}
                     <div class="row mt14 mb1">
-                        <div class="col-md-12">
+                        <div class="col-lg-12">
                             <div class="pull-left">
                                 @if($prevBook = $content['pagination']['bookPrev'])
                                     <a href="{!! url('reader/read?'.http_build_query($prevBook),[],false) !!}" class="btn2 mr5 btn-min-w">

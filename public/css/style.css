@@ -2,14 +2,19 @@ body{
 
 }
 del {
-    color: #b38500;
-    background: rgba(255, 218, 0, 0.5);
-    text-decoration: none;
+    color: #bda61a;
+    text-decoration: underline;
+    font-style: italic;
+}
+del:before {
+    content: "(";
+}
+del:after {
+    content: ") ";
 }
 ins {
-    color: green;
-    background: #dfd;
-    text-decoration: none;
+    color: #227a07;
+    text-decoration: underline;
 }
 label {
     font-weight: normal;
@@ -1806,7 +1811,6 @@ ul.footer-menu li a:hover {
     background: #ffffff;
     -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
     box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
-    padding: 50px;
     box-sizing: border-box;
 }
 .btn-top-label1 {
@@ -2010,9 +2014,36 @@ ul.icon-panel li a {
     font-family: work_sansregular;
     font-size: 18px;
 }
+.col-md-6 .verse-text, .col-md-4 .verse-text {
+    font-size: 16px;
+}
+.col-md-6  .verse-text b a, .col-md-4 .verse-text b a {
+    font-size: 16px;
+}
+.c-reader-content .row .col-md-6:first-child {
+    /*border-right: 1px solid #f3f3f3;*/
+}
+.c-reader-content .row .col-md-6:last-child .inner-pad1 {
+    padding-left: 40px;
+}
+.inner-pad1 {
+     padding: 45px;
+    line-height: 30px;
+}
+.version-title {
+    color: #313131;
+    font-family: ns_widenormal;
+    font-size: 20px;
+    padding-bottom: 30px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+
 .verse-text .word-definition:last-child {
     margin-right: 10px;
 }
+
 .verse-text b {
     font-weight: normal !important;
 }
@@ -2134,6 +2165,33 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
 {
     background-color: transparent !important;
     color: #6b6b6b !important;
+}
+.comp-bord1 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    border-left: 1px solid #f3f3f3;
+}
+.comp-bord2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 33.333333%;
+    width: 1px;
+    border-left: 1px solid #f3f3f3;
+}
+.comp-bord3 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 66.6666666%;
+    width: 1px;
+    border-left: 1px solid #f3f3f3;
+}
+.at-share-btn {
+    background: transparent !important;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
