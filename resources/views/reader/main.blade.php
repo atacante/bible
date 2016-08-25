@@ -152,7 +152,9 @@
                                     </div>
                                 </div>
                                 @endforeach
+                                    {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), '&#215;', ['class' => 'btn-reset'], true) !!}
                                 @endif
+
                         </div>
 
                     </div>
