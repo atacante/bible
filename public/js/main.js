@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var clipboard = new Clipboard('.copy');
-
+    var hidev = true;
     clipboard.on('success', function(e) {
         e.clearSelection();
     });
@@ -16,6 +16,14 @@ $(document).ready(function(){
         maximumSelectionLength: 2,
         placeholder: "Start Typing Version Name (or Language)",
     });
+    $('.j-compare-versions').on('select2:selecting', function (evt) {
+        hidev = false;
+        setTimeout(function(){
+            hidev = true;
+        },500);
+        evt.stopPropagation();
+    });
+
     $(".j-select2-ajax").select2({
         minimumInputLength: 2,
         placeholder: $(".j-select2-ajax").attr('placeholder'),
@@ -1337,7 +1345,7 @@ $(document).ready(function(){
     $(".j-btn-settings").on("click", function(e){
         var btnCoordTop = $(this).offset().top+25;
         var btnCoordLeft = $(this).offset().left-290;
-        $(".j-popup-settings").show();
+        $(".j-popup-settings").toggle();
         $(".j-popup-settings").offset({top:btnCoordTop, left:btnCoordLeft});
         e.preventDefault();
     });
@@ -1347,14 +1355,11 @@ $(document).ready(function(){
     $(".j-btn-compare").on("click", function(e){
         var btnCoordTop = $(this).offset().top+25;
         var btnCoordLeft = $(this).offset().left-315;
-        $(".j-popup-compare").show();
+        $(".j-popup-compare").toggle();
         $(".j-popup-compare").offset({top:btnCoordTop, left:btnCoordLeft});
         e.preventDefault();
     });
 
-    $(".j-popup-compare .j-btn-ok").on("click", function(e){
-        $(".j-popup-compare").hide();
-    });
     $(".j-check-diff").on("change", function(e){
         location.href=$(this).data('link');
         $(".spinner").show();
@@ -1366,15 +1371,20 @@ $(document).ready(function(){
     // Hide Popups
     $(document).mouseup(function (e){
         var popSettings = $(".j-popup-settings");
-        if (!popSettings.is(e.target) && popSettings.has(e.target).length === 0) {
+        var popSettings2 = $(".j-btn-settings");
+        if (!popSettings.is(e.target) && popSettings.has(e.target).length === 0 && !popSettings2.is(e.target) && popSettings2.has(e.target).length === 0) {
             popSettings.hide();
         }
 
-        /*var popCompare = $(".j-popup-compare");
-        var popCompare2 = $(".select2-container");
+        var popCompare = $(".j-popup-compare");
+        var popCompare2 = $(".j-btn-compare");
+        var popCompare3 = $(".j-compare-versions");
+        var popCompare4 = $(".select2-container");
 
-        if (!popCompare.is(e.target) && popCompare.has(e.target).length === 0 && !popCompare2.is(e.target) && popCompare2.has(e.target).length === 0) {
+
+        if (!popCompare.is(e.target) && popCompare.has(e.target).length === 0 && !popCompare2.is(e.target) && popCompare2.has(e.target).length === 0 && !popCompare3.is(e.target) && popCompare3.has(e.target).length === 0 && !popCompare4.is(e.target) && popCompare4.has(e.target).length === 0 && hidev==true) {
             popCompare.hide();
-        }*/
+            hidev=true;
+        }
     });
 });

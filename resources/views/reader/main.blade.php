@@ -61,12 +61,9 @@
                                         <div class="sel-compare-versions mt17">
                                             {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['placeholder' => 'Start Typing Version Name (or Language)','multiple' => true, 'class' => 'j-compare-versions', 'style'=>'width:100%;']) !!}
                                         </div>
-                                        {!! Form::submit('Compare',['class' => 'btn2 cu-btn2 mt17']) !!}
+                                        {!! Form::submit('Compare',['class' => 'btn1 cu-btn1 mt17']) !!}
                                         {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), 'Reset', ['class' => 'btn2 cu-btn2 mt17','style' => 'margin-left:10px;'], true) !!}
                                     @endif
-                                    <div class="mt17">
-                                        <a class="btn1 cu-btn1 j-btn-ok" href="#">OK</a>
-                                    </div>
                                 </div>
 
 
