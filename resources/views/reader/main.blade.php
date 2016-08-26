@@ -242,7 +242,7 @@
                     @endif
                     @if($nextBook = $content['pagination']['bookNext'])
                         <a href="{!! url('reader/read?'.http_build_query($nextBook),[],false) !!}" class="btn1 ml1 btn-min-w">
-                            <div class="btn-top-label1">Next Chapter</div>
+                            <div class="btn-top-label1">Next Book</div>
                             <div class="btn-sub-label1">Exodus</div>
                         </a>
                     @endif
