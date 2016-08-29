@@ -1365,6 +1365,14 @@ $(document).ready(function(){
         location.href=$(this).data('link');
         $(".spinner").show();
     });
+    $(".j-close-choose-version").on("click", function(e){
+       $(".j-choose-version-pop").hide();
+        e.preventDefault();
+    });
+    $(".j-version-list li a").on("click", function(e){
+        $(".j-version-list li a").removeClass("active");
+        $(this).addClass("active");
+    });
 /*    $(".j-popup-settings .j-btn-ok").on("click", function(e){
         $(".j-popup-settings").hide();
     });*/

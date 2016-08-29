@@ -18,9 +18,42 @@
     <div class="j-verses-filters">
         {!! Form::open(['method' => 'get','url' => '/reader/'.(isset($filterAction)?$filterAction:'read')]) !!}
 
+        {{-- COMPARE POPUP --}}
+        <div class="popup-new j-popup-compare c-popup-compare" style="display: none">
+            <div class="popup-arrow"></div>
+            <h4 class="popup-title">
+                COMPARE WITH...
+            </h4>
+            @if(isset($compare['versions']))
+                <div class="sel-compare-versions mt17">
+                    {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['placeholder' => 'Start Typing Version Name (or Language)','multiple' => true, 'class' => 'j-compare-versions', 'style'=>'width:100%;']) !!}
+                </div>
+                {!! Form::submit('Compare',['class' => 'btn1 cu-btn1 mt17']) !!}
+                {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), 'Reset', ['class' => 'btn2 cu-btn2 mt17','style' => 'margin-left:10px;'], true) !!}
+            @endif
+        </div>
+            <div class="permonent-pop j-choose-version-pop" style="display: none;">
+                <div class="pp-title">
+                    CHOOSE Version
+                    <a href="#" class="btn-reset cu-btr1 j-close-choose-version">&#215;</a>
+                </div>
+                <ul class="pp-c-items j-version-list">
+                    <li><a href="#">King James Bible</a></li>
+                    <li><a class="active" href="#">Darby Bible Translation</a></li>
+                    <li><a href="#">King James Bible</a></li>
+                    <li><a href="#">Darby Bible Translation</a></li>
+                </ul>
+            </div>
             <div class="j-chapter-content ">
                 <div class="row" style="position: relative;">
                     <div class="col-lg-12">
+                        <div class="text-center">
+                            <div class="genesis-panel">
+                                <div class="sel-version">
+                                    {!! Form::select('version', array_merge((Request::segment(2) == 'verse'?[]:['all' => 'All Versions']),$filters['versions']), Request::input('version','all'),['class' => 'genesis-select']) !!}
+                                </div>
+                            </div>
+                        </div>
                         <div class="c-title-and-icons">
                             <!-- Go to www.addthis.com/dashboard to customize your tools -->
                             <div class="addthis_sharing_toolbox c-sharing top-vertical1"></div>
@@ -28,52 +61,24 @@
                             <div class="text-center">
                                 @if($prevChapter = $content['pagination']['chapterPrev'])
                                     <a class="genesis-arrow" title="Prev Chapter" href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
+                                @else
+                                    <span class="genesis-arrow"><i class="bs-arrowleft cu-arrowleft2"></i></span>
                                 @endif
 
-
                                 <div class="genesis-panel">
-                                    <div class="sel-version">
-                                        {!! Form::select('version', array_merge((Request::segment(2) == 'verse'?[]:['all' => 'All Versions']),$filters['versions']), Request::input('version','all'),['class' => 'j-select2 genesis-select']) !!}
-                                    </div>
                                     <div class="sel-book">
-                                    {!! Form::select('book', $filters['books'], Request::input('book'),['class' => 'j-select2 genesis-select']) !!}
+                                        {!! Form::select('book', $filters['books'], Request::input('book'),['class' => 'j-select2 genesis-select']) !!}
                                     </div>
-                                    <div class="sel-chapter">
-                                    {!! Form::select('chapter',$filters['chapters'], Request::input('chapter'),['class' => 'j-select2 genesis-select']) !!}
-                                    </div>
-
-                                    @if(Request::segment(2) == 'verse')
-                                        <div class="sel-chapter">
-                                        {!! Form::select('verse',$filters['verses'], Request::input('verse'),['class' => 'j-select2 genesis-select']) !!}
-                                        </div>
-                                    @endif
-                                    {!! Form::token() !!}
-                                    {!! Form::submit('Go',['class' => 'genesis-btn']) !!}
                                 </div>
 
-
-                                <div class="popup-new j-popup-compare c-popup-compare" style="display: none">
-                                    <div class="popup-arrow"></div>
-                                    <h4 class="popup-title">
-                                        COMPARE WITH...
-                                    </h4>
-                                    @if(isset($compare['versions']))
-                                        <div class="sel-compare-versions mt17">
-                                            {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['placeholder' => 'Start Typing Version Name (or Language)','multiple' => true, 'class' => 'j-compare-versions', 'style'=>'width:100%;']) !!}
-                                        </div>
-                                        {!! Form::submit('Compare',['class' => 'btn1 cu-btn1 mt17']) !!}
-                                        {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), 'Reset', ['class' => 'btn2 cu-btn2 mt17','style' => 'margin-left:10px;'], true) !!}
-                                    @endif
-                                </div>
-
-
-
-
-                                    @if($nextChapter = $content['pagination']['chapterNext'])
-                                        <a class="genesis-arrow" title="Next Chapter" href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
-                                    @endif
-
+                                @if($nextChapter = $content['pagination']['chapterNext'])
+                                    <a class="genesis-arrow" title="Next Chapter" href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
+                                @else
+                                    <span class="genesis-arrow"><i class="bs-arrowright cu-arrowright2"></i></span>
+                                @endif
                             </div>
+
+                            {{-- Right icons panel --}}
                             <ul class="icon-panel top-vertical1">
                                 <li>
                                     <a href="#" class="j-btn-compare">
@@ -92,6 +97,24 @@
                                 </li>
                             </ul>
                         </div>
+
+                        {{-- CHAPTER SELECT --}}
+                        <div class="text-center" style="margin-bottom: 50px;">
+                            <div class="genesis-panel">
+                                <div class="sel-chapter">
+                                    {!! Form::select('chapter',$filters['chapters'], Request::input('chapter'),['class' => 'j-select2 genesis-select']) !!}
+                                </div>
+
+                                @if(Request::segment(2) == 'verse')
+                                    <div class="sel-chapter">
+                                        {!! Form::select('verse',$filters['verses'], Request::input('verse'),['class' => 'j-select2 genesis-select']) !!}
+                                    </div>
+                                @endif
+                                {!! Form::token() !!}
+                                {!! Form::submit('Go',['class' => 'genesis-btn']) !!}
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>
@@ -149,7 +172,7 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                    {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), '&#215;', ['class' => 'btn-reset'], true) !!}
+                                    {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), '&#215;', ['class' => 'btn-reset j-btn-reset-compare'], true) !!}
                                 @endif
 
                         </div>
@@ -249,10 +272,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
 
 
         {!! Form::close() !!}
