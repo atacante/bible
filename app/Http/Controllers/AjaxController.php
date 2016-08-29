@@ -52,7 +52,7 @@ class AjaxController extends Controller
     public function getChaptersList()
     {
         $book = Request::input('book_id',Config::get('app.defaultBookNumber'));
-        $chapters = $this->prepareChaptersForSelectBox(BaseModel::getChapters($book));
+        $chapters = ViewHelper::prepareChaptersForSelectBox(BaseModel::getChapters($book));
         return response()->json($chapters);
 
         /*
