@@ -37,20 +37,25 @@
                     CHOOSE Version
                     <a href="#" class="btn-reset cu-btr1 j-close-choose-version">&#215;</a>
                 </div>
+
+
+
                 <ul class="pp-c-items j-version-list">
-                    <li><a href="#">King James Bible</a></li>
-                    <li><a class="active" href="#">Darby Bible Translation</a></li>
-                    <li><a href="#">King James Bible</a></li>
-                    <li><a href="#">Darby Bible Translation</a></li>
+                    <li><a {{--class="{{ $val=="all"?"active":"" }}" --}} data-val="all" href="#">All Versions</a></li>
+                    @foreach ($filters['versions'] as $val=>$version)
+                        <li><a class="{{ $val==$content["version_code"]?"active":"" }}" data-val="{{$val}}" href="#">{{ $filters['versions'][$val] }}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <div class="j-chapter-content ">
-                <div class="row" style="position: relative;">
+                <div class="row j-nav-sel" style="position: relative;">
                     <div class="col-lg-12">
                         <div class="text-center">
                             <div class="genesis-panel">
-                                <div class="sel-version">
-                                    {!! Form::select('version', array_merge((Request::segment(2) == 'verse'?[]:['all' => 'All Versions']),$filters['versions']), Request::input('version','all'),['class' => 'genesis-select']) !!}
+                                <h4 class="h4-sel-version j-sel-version-label"><span class="j-sel-version-text">{!! $content['version'] !!}</span> <span class="c-arrow-sel"><b></b></span></h4>
+
+                                <div class="sel-version" style="display: none">
+                                    {!! Form::select('version', array_merge((Request::segment(2) == 'verse'?[]:['all' => 'All Versions']),$filters['versions']), Request::input('version','all'),['class' => 'genesis-select j-select-version']) !!}
                                 </div>
                             </div>
                         </div>

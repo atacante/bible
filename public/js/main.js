@@ -1365,13 +1365,29 @@ $(document).ready(function(){
         location.href=$(this).data('link');
         $(".spinner").show();
     });
+
+
     $(".j-close-choose-version").on("click", function(e){
        $(".j-choose-version-pop").hide();
+        $(".j-nav-sel").show();
         e.preventDefault();
     });
     $(".j-version-list li a").on("click", function(e){
         $(".j-version-list li a").removeClass("active");
         $(this).addClass("active");
+       /* alert($(this).data("val"));*/
+        var curSelVal = $(this).data("val");
+        var curSelText = $(this).html()
+        $(".j-select-version").val(curSelVal);
+        $(".j-sel-version-text").html(curSelText);
+        $(".j-choose-version-pop").hide();
+        $(".j-nav-sel").show();
+        e.preventDefault();
+    });
+    $(".j-sel-version-label").on("click", function(e){
+        $(".j-nav-sel").hide();
+        $(".j-choose-version-pop").show();
+        e.preventDefault();
     });
 /*    $(".j-popup-settings .j-btn-ok").on("click", function(e){
         $(".j-popup-settings").hide();
