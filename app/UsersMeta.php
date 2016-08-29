@@ -12,10 +12,12 @@ class UsersMeta extends BaseModel {
 		$rules = [
 			'user_id' => 'required',
 			'shipping_address' => 'required',
+            'shipping_email' => 'required|email',
 			'shipping_city' => 'required',
             'shipping_first_name' => 'required',
             'shipping_last_name' => 'required',
 			'shipping_postcode' => 'required',
+            'billing_email' => 'required|email',
 		];
 
 		return $rules;
