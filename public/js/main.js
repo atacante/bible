@@ -884,7 +884,8 @@ $(document).ready(function(){
     });
 
     $("body").on('click','.j-show-product',function (e){
-        location.href = $(this).data('link');
+        window.open($(this).data('link'));
+        return false;
     });
 
     $('.j-popup-form').click(function(e){

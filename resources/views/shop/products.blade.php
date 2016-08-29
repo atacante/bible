@@ -19,7 +19,7 @@
             <div class="pull-right">
                 @if($product->external_link)
                 <div>
-                    {!! Html::link($product->external_link,'Show details', ['class'=>'btn btn-primary']) !!}
+                    {!! Html::link($product->external_link,'Show details', ['class'=>'btn btn-primary j-show-product', 'data-link' => $product->external_link]) !!}
                 </div>
                 <div style="margin-top: 10px;">
                     ${!! $product->price !!}
