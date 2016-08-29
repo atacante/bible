@@ -236,10 +236,10 @@ $(document).ready(function(){
         site.getUser(id);
     });
 
-    $('.navbar').on('change','select[name=readerMode]',function(){
+    $('body').on('change','select[name=readerMode]',function(){
         location.href = '/reader/mode/'+$(this).val();
     });
-    $('.navbar').on('change','input[type=radio][name=readerMode]',function(){
+    $('body').on('change','input[type=radio][name=readerMode]',function(){
         location.href = '/reader/mode/'+$(this).val();
     });
 
