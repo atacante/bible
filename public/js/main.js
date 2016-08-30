@@ -196,9 +196,14 @@ $(document).ready(function(){
                 $('.j-reader-actions').remove();
                 $('.j-lex-content').remove();
                 $('.word-definition').removeClass('highlight');
+                $('.clicked').removeClass('clicked');
 
                 $(that).append(
-                    '<div class="j-lex-content text-center" style="">'+data+'</div>'
+
+                    '<div class="j-lex-content text-center">' +
+                        '<h3>Lexicon - "'+ definition_word.html() +'"</h3>'
+                        +data+
+                    '</div>'
                 );
                 $(definition_word).addClass('highlight');
             }
@@ -701,6 +706,14 @@ $(document).ready(function(){
     // New logic of editing
     $(".j-verse-text").click(function(eventObject) {
         var selectedObject = $(this);
+
+        $(".clicked").removeClass('clicked');
+        $(".highlight").removeClass('highlight');
+
+        $('.j-lex-content').remove();
+
+        selectedObject.addClass('clicked');
+
 
         var text = selectedObject.text();
         if(text){

@@ -67,14 +67,14 @@ a {
 }
 */
 
-.verse-text:hover{
-    color: #00b9f7;
+.verse-text:hover, .clicked{
+    color: #00b9f7 !important;
     cursor: pointer;
     border-bottom: 1px solid #00b9f7;
 }
 
-.verse-text:hover b a{
-    color: #00b9f7;
+.verse-text:hover b a, .clicked b a{
+    color: #00b9f7 !important;
 }
 
 .glyphicon-refresh-animate {
@@ -2529,6 +2529,7 @@ table.t-choose-book tr td a.active {
 }
 
 .highlight{
-    color: #ffffff;
-    background-color: #2ca02c;
+    color: #00b9f7;
+    font-family: work_sansbold;
+    border-bottom: 1px solid #00b9f7;
 }
