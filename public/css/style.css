@@ -1318,6 +1318,9 @@ body {
 .color2 {
     color: #404040 !important;
 }
+.color3 {
+    color: #000000 !important;
+}
 /*----------------- Icons Set ---------------------*/
 [class^="bs-"], [class*=" bs-"] {
     font-family: 'bs' !important;
@@ -1638,6 +1641,14 @@ h1.h1-1 {
 }
 h1.h1-1 span {
     font-family: ns_widenormal;
+}
+h2.h2-3 {
+    font-size: 20px;
+    color: #7b828a;
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    font-family: work_sansregular;
 }
 h3.h3-1 {
     font-size: 20px;

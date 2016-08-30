@@ -34,7 +34,7 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="drop1">
-                    <li><a href="{{ URL::to('/') }}">{{--<i class="fa fa-home"></i>--}} Home</a></li>
+                    <li><a href="{{ URL::to('/') }}">Home</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{{ URL::to('/site/about') }}">About As</a></li>
                     <li><a href="{{ URL::to('/site/faq') }}">FAQ</a></li>

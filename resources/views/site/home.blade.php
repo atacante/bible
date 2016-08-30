@@ -3,9 +3,9 @@
 @section('content')
     <div class="c-center-content site-index">
         <section class="home-ill-section h-ill1">
-            <div class="pull-right mt4 mr1">
+            <div class="pull-right mt2 mr1">
                 <h2 class="h2-1">
-                    STUDY THE <span>BIBLE</span>
+                    STUDY THE <span>BIBLE</span> <br>WITH PURPOSE
                 </h2>
                 <p class="p-1 mt5">Learn and compare between different<br> versions of bible.</p>
                 <a href="{{ URL::to('/reader/overview') }}" class="btn2 mt3">SEE BIBLE VERSIONS</a>
@@ -13,12 +13,12 @@
         </section>
         <section class="home-ill-section h-ill2">
             <div class="pull-right mt4 mr1">
-                <h2 class="h2-1 color1">
+                <h2 class="h2-1 color3">
                     <span>Create</span> your own journey
                 </h2>
-                <p class="p-1 mt5 color1">Make a notes and write a journal. Share your favourites with<br>
+                <p class="p-1 mt5 color2">Make a notes and write a journal. Share your favourites with<br>
                     friends. Do something more. Do one more thing.</p>
-                <a href="{{ URL::to('auth/register') }}" class="btn3 mt3">SIGNUP TO START YOUR JOURNEY</a>
+                <a href="{{ URL::to('auth/register') }}" class="btn2 mt3">SIGNUP TO START YOUR JOURNEY</a>
             </div>
         </section>
         <section class="home-ill-section h-ill3">
