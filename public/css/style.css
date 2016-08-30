@@ -2006,8 +2006,11 @@ ul.icon-panel li a {
 .select2-dropdown {
     min-width: 200px;
 }
-.sel-book {
-    margin: 3px 0;
+.sel-book, .sel-chapter {
+    margin: 0px 0;
+}
+.sel-chapter {
+    margin: -5px 0 0;
 }
 .sel-version .select2-container--default .select2-selection--single .select2-selection__rendered {
     font-family: ns_widenormal;
@@ -2420,6 +2423,7 @@ ul.pp-c-items li a {
     text-transform: uppercase;
     color: #000000;
     font-size: 14px;
+    text-align: center;
 }
 ul.pp-c-items li a:hover {
     background: #00b9f7;
@@ -2478,6 +2482,7 @@ ul.pp-c-items li a.active {
 .h4-sel-book .c-arrow-sel {
     top: 10px;
 }
+
 table.t-choose-book {
     width: 100%;
     border: 1px solid #cccccc;
@@ -2515,9 +2520,35 @@ table.t-choose-book tr td a.active {
     background: #313d47;
     color: white;
 }
-
-
-
+ul.c-chapter-list {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    padding: 0 18px;
+}
+ul.c-chapter-list li {
+    display: inline-block;
+    margin: 2px 0;
+}
+ul.c-chapter-list li a {
+    display: block;
+    border: 1px solid #cccccc;
+    padding: 10px 0;
+    min-width: 45px;
+    min-height: 44px;
+    text-decoration: none !important;
+    color: #000000;
+    font-family: ns_widenormal;
+    font-size: 14px;
+}
+ul.c-chapter-list li a:hover {
+    background: #00b9f7;
+    color: white;
+}
+ul.c-chapter-list li a.active {
+    background: #313d47;
+    color: white;
+}
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
         display: inline-block;
