@@ -19,7 +19,7 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="drop1">
-                    <li><a href="{{ URL::to('/reader/overview') }}">Read</a></li>
+                    <li><a href="{{ URL::to('/reader/read?version=nasb') }}">Read</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{{ URL::to('/locations/list') }}">Locations</a></li>
                     <li><a href="{{ URL::to('/peoples/list') }}">People</a></li>

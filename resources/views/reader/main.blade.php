@@ -38,7 +38,7 @@
                     <a href="#" class="btn-reset cu-btr1 j-close-choose-version">&#215;</a>
                 </div>
                 <ul class="pp-c-items j-version-list">
-                    <li><a {{--class="{{ $val=="all"?"active":"" }}" --}} data-val="all" href="#">All Versions</a></li>
+                    {{--<li><a  data-val="all" href="#">All Versions</a></li>--}}
                     @foreach ($filters['versions'] as $val=>$version)
                         <li><a class="{{ $val==$content["version_code"]?"active":"" }}" data-val="{{$val}}" href="#">{{ $filters['versions'][$val] }}</a></li>
                     @endforeach

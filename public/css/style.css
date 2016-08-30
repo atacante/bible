@@ -2006,8 +2006,11 @@ ul.icon-panel li a {
 .select2-dropdown {
     min-width: 200px;
 }
-.sel-book {
-    margin: 3px 0;
+.sel-book, .sel-chapter {
+    margin: 0px 0;
+}
+.sel-chapter {
+    margin: -5px 0 0;
 }
 .sel-version .select2-container--default .select2-selection--single .select2-selection__rendered {
     font-family: ns_widenormal;
