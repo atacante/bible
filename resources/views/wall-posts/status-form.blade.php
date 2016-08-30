@@ -1,4 +1,4 @@
-<div class="related-item" style="background: #f9f9f9; padding: 5px 0;">
+<div class="related-item c-wall-post">
     <div class="item-body">
         {!! Form::model($status, ['method' => 'post','url' => '/wall-posts/post-status', 'id' => 'status-form', 'class' => '','role' => 'form','files' => true]) !!}
         {!! Form::hidden('wall_type',$wallType) !!}

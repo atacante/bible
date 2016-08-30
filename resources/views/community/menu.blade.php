@@ -1,4 +1,4 @@
-<ul class="nav nav-pills nav-stacked nav-left community-menu" role="menu">
+<ul class="nav nav-pills nav-stacked nav-left community-menu c-white-content" role="menu">
     <li class="{{ (Request::is('community/wall') || Request::is('community') ? 'active' : '') }}" role="presentation">
         <a href="{{ url('community/wall') }}"><i class="fa fa-btn fa-tasks"></i>Public Wall</a>
     </li>

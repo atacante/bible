@@ -1880,7 +1880,7 @@ ul.footer-menu li a:hover {
     height: 55px;
     vertical-align: top;
 }
-.c-reader-content {
+.c-reader-content, .c-white-content {
     background: #ffffff;
     -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
     box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
@@ -2559,6 +2559,25 @@ ul.c-chapter-list li a:hover {
 ul.c-chapter-list li a.active {
     background: #313d47;
     color: white;
+}
+ul.community-menu li {
+    margin: 20px;
+}
+ul.community-menu li.active a {
+    background-color: #313d47;
+    color: white;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+ul.community-menu li a:hover {
+    background-color: #00b9f7;
+    color: white;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+.c-wall-post {
+    background: #e3e3e3;
+    padding: 20px;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
