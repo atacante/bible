@@ -58,11 +58,23 @@ a {
     border: none;
 }
 
+/*
 .word-definition:hover, .word-definition > span:hover{
     background: #2ca02c;
     color: white;
     border-radius: 3px;
     cursor: pointer;
+}
+*/
+
+.verse-text:hover{
+    color: #00b9f7;
+    cursor: pointer;
+    border-bottom: 1px solid #00b9f7;
+}
+
+.verse-text:hover b a{
+    color: #00b9f7;
 }
 
 .glyphicon-refresh-animate {
@@ -2374,4 +2386,9 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     .c-center-content2 {
         text-align: center;
     }
+}
+
+.highlight{
+    color: #ffffff;
+    background-color: #2ca02c;
 }

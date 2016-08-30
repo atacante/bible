@@ -240,6 +240,8 @@ reader.getActionsHtml = function(){
                 '<a title="Create Journal Entry" href="#" class="j-create-journal btn-create-journal btn-reader"><i class="bs-journal"></i></a>' +
                 '<div class="spliter1"></div>'+
                 '<a title="Create prayer" href="#" class="j-create-prayer btn-create-prayer btn-reader"><i class="bs-pray"></i></a>' +
+                '<div class="spliter1 hidden"></div>'+
+                '<a title="Show definition" href="#" class="hidden j-show-definition btn-show-definition btn-reader"><i class="bs-lexicon"></i></a>' +
                 '<div class="popup-arrow2"></div>'+
             '</div>';
 }

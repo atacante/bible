@@ -126,7 +126,8 @@ $(document).ready(function(){
         }
     });
 
-    $('body').on('click','.word-definition',function(e){
+    //Old reader logic
+/*    $('body').on('click','.word-definition',function(e){
         var definitionId = $(this).data('lexid');
         var lexversion = $(this).data('lexversion');
         e.stopPropagation();
@@ -155,6 +156,56 @@ $(document).ready(function(){
         });
 
         $(that).popover('show');
+    });*/
+
+    //New reader logic
+    $('body').on('click','.word-definition',function(e) {
+        var definitionId = $(this).data('lexid');
+        var lexversion = $(this).data('lexversion');
+        e.stopPropagation();
+
+        $('.j-reader-actions div,a').removeClass('hidden');
+
+        $('.j-show-definition').attr('data-lexid',definitionId);
+        $('.j-show-definition').attr('data-lexversion',lexversion);
+
+
+
+    });
+
+
+     $('body').on('click','.j-show-definition',function(e) {
+
+         var definitionId = $(this).data('lexid');
+         var lexversion = $(this).data('lexversion');
+
+        $('.word-definition').each(function(){
+            $(this).popover('destroy');
+        });
+
+        var definition_word =  $('.word-definition[data-lexid='+definitionId+']');
+
+        var that = $(definition_word).parent();
+
+        $.ajax({
+            method: "GET",
+            url: "/ajax/lexicon-info",
+            dataType: "html",
+            data:{lexversion:lexversion,definition_id:definitionId},
+            success:function(data){
+                $('.j-reader-actions').remove();
+                $('.j-lex-content').remove();
+                $('.word-definition').removeClass('highlight');
+
+                $(that).append(
+                    '<div class="j-lex-content text-center" style="">'+data+'</div>'
+                );
+                $(definition_word).addClass('highlight');
+            }
+        });
+
+         return false;
+
     });
 
     $('body').on('shown.bs.popover', function () {
@@ -577,12 +628,84 @@ $(document).ready(function(){
             $('.j-reader-actions').remove();
         }
     });
-    $(".j-bible-text").mouseup(function(eventObject) {
+
+// Old logic of editing
+/*    $(".j-bible-text").mouseup(function(eventObject) {
         var selectedObject = site.getSelected();
         var text = selectedObject.toString();
         if(text){
             var startElement = selectedObject.anchorNode.parentElement;
             var endElement = selectedObject.focusNode.parentElement;
+            var version = $(startElement).data('version');
+            if(!version){
+                version = $(startElement).parents('.j-verse-text').data('version');
+            }
+            if(!version){
+                version = $(endElement).data('version');
+                if(!version){
+                    version = $(endElement).parents('.j-verse-text').data('version');
+                }
+            }
+
+            var startVerseId = $(startElement).data('verseid');
+            if(!startVerseId){
+                startVerseId = $(startElement).parents('.j-verse-text').data('verseid');
+            }
+            var endVerseId = $(endElement).data('verseid');
+            if(!endVerseId){
+                endVerseId = $(endElement).parents('.j-verse-text').data('verseid');
+            }
+
+            var verseId = 0;
+            if(!startVerseId || !endVerseId){
+                verseId = Math.max((startVerseId || 0), (endVerseId || 0));
+            }
+            else{
+                verseId = Math.min((startVerseId || 0), (endVerseId || 0));
+            }
+
+            /!*var menu = '<a title="Create note" href="/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-note" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>';
+            menu += '<a title="Create Journal Entry" href="/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-journal" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-book"></i></a>';
+            menu += '<a title="Create prayer" href="/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-prayer" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 8px;"><i class="fa fa-btn fa-hand-paper-o"></i></a>';*!/
+
+            $('body').append(reader.getActionsHtml());
+            $('.j-create-note').attr('href','/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+            $('.j-create-journal').attr('href','/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+            $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+
+            $('.j-reader-actions').css({
+                top: ($(endElement).offset().top-66) + "px",
+                left: (eventObject.pageX-105) + "px"
+            }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
+            /!*$('.j-create-note').css({
+                top: ($(endElement).offset().top-26) + "px",
+                left: (eventObject.pageX-15) + "px"
+            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
+            $('.j-create-journal').css({
+                top: ($(endElement).offset().top-26) + "px",
+                left: (eventObject.pageX+20) + "px"
+            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
+            $('.j-create-prayer').css({
+                top: ($(endElement).offset().top-26) + "px",
+                left: (eventObject.pageX+55) + "px"
+            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );*!/
+        }
+        else {
+            /!*$('.j-create-note').remove();
+            $('.j-create-journal').remove();
+            $('.j-create-prayer').remove();*!/
+            $('.j-reader-actions').remove();
+        }
+    });*/
+
+    // New logic of editing
+    $(".j-verse-text").click(function(eventObject) {
+        var selectedObject = $(this);
+
+        var text = selectedObject.text();
+        if(text){
+            var startElement = selectedObject;
+            var endElement = selectedObject;
             var version = $(startElement).data('version');
             if(!version){
                 version = $(startElement).parents('.j-verse-text').data('version');
@@ -624,23 +747,8 @@ $(document).ready(function(){
                 top: ($(endElement).offset().top-66) + "px",
                 left: (eventObject.pageX-105) + "px"
             }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
-            /*$('.j-create-note').css({
-                top: ($(endElement).offset().top-26) + "px",
-                left: (eventObject.pageX-15) + "px"
-            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
-            $('.j-create-journal').css({
-                top: ($(endElement).offset().top-26) + "px",
-                left: (eventObject.pageX+20) + "px"
-            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
-            $('.j-create-prayer').css({
-                top: ($(endElement).offset().top-26) + "px",
-                left: (eventObject.pageX+55) + "px"
-            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );*/
         }
         else {
-            /*$('.j-create-note').remove();
-            $('.j-create-journal').remove();
-            $('.j-create-prayer').remove();*/
             $('.j-reader-actions').remove();
         }
     });
