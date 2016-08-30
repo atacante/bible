@@ -2461,6 +2461,63 @@ ul.pp-c-items li a.active {
     top: 50%;
     width: 0;
 }
+.h4-sel-book {
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #010101;
+    font-family: ns_widemedium;
+    font-size: 30px;
+    margin: 0;
+}
+.h4-sel-book .c-arrow-sel {
+    top: 10px;
+}
+table.t-choose-book {
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+table.t-choose-book tr {
+
+}
+table.t-choose-book tr td {
+    border: 1px solid #cccccc;
+}
+table.t-choose-book tr td:first-child {
+    border-left: 1px solid transparent;
+}
+table.t-choose-book tr td:last-child {
+    border-right: 1px solid transparent;
+}
+table.t-choose-book tr:last-child td {
+    border-bottom: 1px solid transparent;
+}
+table.t-choose-book tr td a {
+    display: block;
+    padding: 8px 20px;
+    text-decoration: none !important;
+    font-family: ns_widemedium;
+    text-transform: uppercase;
+    color: #000000;
+    font-size: 14px;
+}
+table.t-choose-book tr td a:hover {
+    background: #00b9f7;
+    color: white;
+}
+table.t-choose-book tr td a.active {
+    background: #313d47;
+    color: white;
+}
+
+
+
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
         display: inline-block;

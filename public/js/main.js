@@ -1497,6 +1497,29 @@ $(document).ready(function(){
         $(".j-choose-version-pop").show();
         e.preventDefault();
     });
+
+    /* ----------------- BOOK ----------------- */
+    $(".j-close-choose-book").on("click", function(e){
+        $(".j-choose-book-pop").hide();
+        $(".j-nav-sel2").show();
+        e.preventDefault();
+    });
+    $(".j-book-list a").on("click", function(e){
+        $(".j-book-list a").removeClass("active");
+        $(this).addClass("active");
+        var curSelVal = $(this).data("val");
+        var curSelText = $(this).html()
+        $(".j-select-book").val(curSelVal);
+        $(".j-sel-book-text").html(curSelText);
+        $(".j-choose-book-pop").hide();
+        $(".j-nav-sel2").show();
+        e.preventDefault();
+    });
+    $(".j-sel-book-label").on("click", function(e){
+        $(".j-nav-sel2").hide();
+        $(".j-choose-book-pop").show();
+        e.preventDefault();
+    });
 /*    $(".j-popup-settings .j-btn-ok").on("click", function(e){
         $(".j-popup-settings").hide();
     });*/

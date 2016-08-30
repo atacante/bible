@@ -56,12 +56,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="permonent-pop j-choose-book-pop">
+                        <div class="permonent-pop j-choose-book-pop" style="display: none;">
                             <div class="pp-title">
                                 CHOOSE BOOK
                                 <a href="#" class="btn-reset cu-btr1 j-close-choose-book">&#215;</a>
                             </div>
-                            <table style="width:100%;">
+                            <table class="t-choose-book j-book-list" style="width:100%;">
                             <?
                             $n = 0;
                             $book_mas[$n] = "";
@@ -70,7 +70,6 @@
                                 $book_mas[$n]['val'] = $val;
                                 $book_mas[$n]['text'] = $filters['books'][$val];
                             }
-                            // var_dump($book_mas);
 
                             $count_columns = 4;
                             $count_books = count($filters['books']);
@@ -92,7 +91,8 @@
                                 for ($i=1; $i<=$count_columns; $i++){
                                     if($mas[$i][$j]>0){
                                         $val1 = $mas[$i][$j];
-                                        echo '<td><a class="" data-val="'.$mas[$i][$j].'" href="#">'.$filters['books'][$val1].'</a></td>';
+                                        $active = Request::input('book',1)==$mas[$i][$j]?'active':'';
+                                        echo '<td><a class="'.$active.'" data-val="'.$mas[$i][$j].'" href="#">'.$filters['books'][$val1].'</a></td>';
                                     } else {
                                         echo '<td></td>';
                                     }
@@ -101,14 +101,8 @@
                             }
                             ?>
                             </table>
-                            <ul class="pp-c-items j-book-list">
-
-                                @foreach ($filters['books'] as $val=>$book)
-                                    <li><a class="{{--{{ $val==$content["books_code"]?"active":"" }}--}}" data-val="{{$val}}" href="#">{{ $filters['books'][$val] }}</a></li>
-                                @endforeach
-                            </ul>
                         </div>
-                        <div class="c-title-and-icons">
+                        <div class="c-title-and-icons j-nav-sel2">
                             <!-- Go to www.addthis.com/dashboard to customize your tools -->
                             <div class="addthis_sharing_toolbox c-sharing top-vertical1"></div>
 
@@ -121,7 +115,8 @@
 
                                 <div class="genesis-panel">
                                     <div class="sel-book">
-                                        {!! Form::select('book', $filters['books'], Request::input('book'),['class' => 'j-select2 genesis-select']) !!}
+                                        <h4 class="h4-sel-book j-sel-book-label"><span class="j-sel-book-text">{!! $filters['books'][Request::input('book',1)] !!}</span> <span class="c-arrow-sel"><b></b></span></h4>
+                                        {!! Form::select('book', $filters['books'], Request::input('book'),['class' => 'genesis-select j-select-book', 'style' => 'display: none']) !!}
                                     </div>
                                 </div>
 
@@ -153,7 +148,7 @@
                         </div>
 
                         {{-- CHAPTER SELECT --}}
-                        <div class="text-center" style="margin-bottom: 50px;">
+                        <div class="text-center j-nav-sel2" style="margin-bottom: 50px;">
                             <div class="genesis-panel">
                                 <div class="sel-chapter">
                                     {!! Form::select('chapter',$filters['chapters'], Request::input('chapter'),['class' => 'j-select2 genesis-select']) !!}
