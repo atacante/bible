@@ -16,7 +16,7 @@
 
 @section('content')
     <div class="j-verses-filters">
-        {!! Form::open(['method' => 'get','url' => '/reader/'.(isset($filterAction)?$filterAction:'read')]) !!}
+        {!! Form::open(['method' => 'get','url' => '/reader/'.(isset($filterAction)?$filterAction:'read'), 'id'=>'j-sel-book-form']) !!}
 
         {{-- COMPARE POPUP --}}
         <div class="popup-new j-popup-compare c-popup-compare" style="display: none">
@@ -148,10 +148,11 @@
                         </div>
 
                         {{-- CHAPTER SELECT --}}
-                        <div class="text-center j-nav-sel2" style="margin-bottom: 50px;">
+                        <div class="text-center j-nav-sel2 j-nav-sel3" style="margin-bottom: 50px;">
                             <div class="genesis-panel">
                                 <div class="sel-chapter">
-                                    {!! Form::select('chapter',$filters['chapters'], Request::input('chapter'),['class' => 'j-select2 genesis-select']) !!}
+                                    <h4 class="h4-sel-book j-sel-chapter-label"><span class="j-sel-chapter-text">{!! $filters['chapters'][Request::input('chapter',1)] !!}</span> <span class="c-arrow-sel"><b></b></span></h4>
+                                    {!! Form::select('chapter',$filters['chapters'], Request::input('chapter'),['class' => 'genesis-select j-select-chapter', 'style' => 'display:none;']) !!}
                                 </div>
 
                                 @if(Request::segment(2) == 'verse')
@@ -160,10 +161,21 @@
                                     </div>
                                 @endif
                                 {!! Form::token() !!}
-                                {!! Form::submit('Go',['class' => 'genesis-btn']) !!}
+                               {{-- {!! Form::submit('Go',['class' => 'genesis-btn j-genesis-btn']) !!}--}}
                             </div>
                         </div>
-
+                        {{-- CHAPTER POPUP --}}
+                        <div class="permonent-pop j-choose-chapter-pop" style="display: none;">
+                            <div class="pp-title">
+                                CHOOSE CHAPTER
+                                <a href="#" class="btn-reset cu-btr1 j-close-choose-chapter">&#215;</a>
+                            </div>
+                            <ul class="c-chapter-list j-chapter-list">
+                                @foreach ($filters['chapters'] as $val=>$chapter)
+                                    <li><a class="{{ $val==Request::input('chapter',1)?"active":"" }}" data-val="{{$val}}" href="#">{{ $filters['chapters'][$val] }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
 
                     </div>
                 </div>

@@ -1490,11 +1490,13 @@ $(document).ready(function(){
         $(".j-sel-version-text").html(curSelText);
         $(".j-choose-version-pop").hide();
         $(".j-nav-sel").show();
+        $("#j-sel-book-form").submit();
         e.preventDefault();
     });
     $(".j-sel-version-label").on("click", function(e){
         $(".j-nav-sel").hide();
         $(".j-choose-version-pop").show();
+        $("#j-sel-book-form").submit();
         e.preventDefault();
     });
 
@@ -1511,8 +1513,11 @@ $(document).ready(function(){
         var curSelText = $(this).html()
         $(".j-select-book").val(curSelVal);
         $(".j-sel-book-text").html(curSelText);
+        $(".j-select-chapter").val(1);
         $(".j-choose-book-pop").hide();
         $(".j-nav-sel2").show();
+        $("#j-sel-book-form").submit();
+
         e.preventDefault();
     });
     $(".j-sel-book-label").on("click", function(e){
@@ -1520,6 +1525,31 @@ $(document).ready(function(){
         $(".j-choose-book-pop").show();
         e.preventDefault();
     });
+
+    /* ----------------- CHAPTER ----------------- */
+    $(".j-close-choose-chapter").on("click", function(e){
+        $(".j-choose-chapter-pop").hide();
+        $(".j-nav-sel3").show();
+        e.preventDefault();
+    });
+    $(".j-chapter-list a").on("click", function(e){
+        $(".j-chapter-list a").removeClass("active");
+        $(this).addClass("active");
+        var curSelVal = $(this).data("val");
+        var curSelText = $(this).html();
+        $(".j-select-chapter").val(curSelVal);
+        $(".j-sel-chapter-text").html(curSelText);
+        $(".j-choose-chapter-pop").hide();
+        $(".j-nav-sel3").show();
+        $("#j-sel-book-form").submit();
+        e.preventDefault();
+    });
+    $(".j-sel-chapter-label").on("click", function(e){
+        $(".j-nav-sel3").hide();
+        $(".j-choose-chapter-pop").show();
+        e.preventDefault();
+    });
+
 /*    $(".j-popup-settings .j-btn-ok").on("click", function(e){
         $(".j-popup-settings").hide();
     });*/
