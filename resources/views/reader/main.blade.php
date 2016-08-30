@@ -37,9 +37,6 @@
                     CHOOSE Version
                     <a href="#" class="btn-reset cu-btr1 j-close-choose-version">&#215;</a>
                 </div>
-
-
-
                 <ul class="pp-c-items j-version-list">
                     <li><a {{--class="{{ $val=="all"?"active":"" }}" --}} data-val="all" href="#">All Versions</a></li>
                     @foreach ($filters['versions'] as $val=>$version)
@@ -58,6 +55,58 @@
                                     {!! Form::select('version', array_merge((Request::segment(2) == 'verse'?[]:['all' => 'All Versions']),$filters['versions']), Request::input('version','all'),['class' => 'genesis-select j-select-version']) !!}
                                 </div>
                             </div>
+                        </div>
+                        <div class="permonent-pop j-choose-book-pop">
+                            <div class="pp-title">
+                                CHOOSE BOOK
+                                <a href="#" class="btn-reset cu-btr1 j-close-choose-book">&#215;</a>
+                            </div>
+                            <table style="width:100%;">
+                            <?
+                            $n = 0;
+                            $book_mas[$n] = "";
+                            foreach ($filters['books'] as $val=>$book){
+                                $n++;
+                                $book_mas[$n]['val'] = $val;
+                                $book_mas[$n]['text'] = $filters['books'][$val];
+                            }
+                            // var_dump($book_mas);
+
+                            $count_columns = 4;
+                            $count_books = count($filters['books']);
+                            $count_books_on_column =  ceil ((((int)$count_books) / $count_columns));
+                            $b = 0;
+                            for ($i=1; $i<=$count_columns; $i++) {
+                                for ($j=1; $j<=$count_books_on_column; $j++) {
+                                    $b++;
+                                    if (isset($book_mas[$b]["text"])) {
+                                        $mas[$i][$j] = $book_mas[$b]["val"];
+                                    } else {
+                                        $mas[$i][$j] = "";
+                                    }
+                                }
+                            }
+
+                            for($j=1; $j<=$count_books_on_column; $j++) {
+                                echo '<tr>';
+                                for ($i=1; $i<=$count_columns; $i++){
+                                    if($mas[$i][$j]>0){
+                                        $val1 = $mas[$i][$j];
+                                        echo '<td><a class="" data-val="'.$mas[$i][$j].'" href="#">'.$filters['books'][$val1].'</a></td>';
+                                    } else {
+                                        echo '<td></td>';
+                                    }
+                                }
+                                echo '</tr>';
+                            }
+                            ?>
+                            </table>
+                            <ul class="pp-c-items j-book-list">
+
+                                @foreach ($filters['books'] as $val=>$book)
+                                    <li><a class="{{--{{ $val==$content["books_code"]?"active":"" }}--}}" data-val="{{$val}}" href="#">{{ $filters['books'][$val] }}</a></li>
+                                @endforeach
+                            </ul>
                         </div>
                         <div class="c-title-and-icons">
                             <!-- Go to www.addthis.com/dashboard to customize your tools -->

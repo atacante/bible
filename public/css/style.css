@@ -2438,9 +2438,9 @@ ul.pp-c-items li a.active {
     letter-spacing: 1px;
     text-transform: uppercase;
     position: relative;
-    margin: 0;
     padding: 0 20px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 .c-arrow-sel {
     height: 17px;
