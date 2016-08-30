@@ -100,6 +100,11 @@
                 <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::to('auth/login') }}">Login</a></li>
                 <li class="{{ (Request::is('auth/register') ? 'active' : '') }} bord-menu-item"><a href="{{ URL::to('auth/register') }}">Sign Up</a></li>
             @else
+                @role('user')
+                <li>
+                    <a href="{{ url('user/my-journey') }}">My Journey</a>
+                </li>
+                @endrole
                 <li class="dropdown log-pop">
                     <a href="#" class="dropdown-toggle cu-drop-menu-item" data-toggle="dropdown" role="button" aria-expanded="false">
                         @if(Auth::user()->avatar)
@@ -114,7 +119,6 @@
                         @role('user')
                         <li>
                             <div class="popup-arrow"></div>
-                            <a href="{{ url('user/my-journey') }}">My Journey</a>
                         </li>
                         <li><a href="{{ url('user/profile') }}">My Profile</a></li>
                         @endrole
