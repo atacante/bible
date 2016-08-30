@@ -200,9 +200,8 @@ $(document).ready(function(){
 
                 $(that).append(
 
-                    '<div class="j-lex-content text-center">' +
-                        '<h3>Lexicon - "'+ definition_word.html() +'"</h3>'
-                        +data+
+                    '<div class="j-lex-content lex-content">' +
+                        data +
                     '</div>'
                 );
                 $(definition_word).addClass('highlight');

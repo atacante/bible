@@ -94,7 +94,7 @@ class AjaxController extends Controller
         $lexiconinfo = $lexiconModel::query()->with('locations')->where('id',$definitionId)->first();
         $view = 'symbolism';
         if(Request::cookie('readerMode') == 'intermediate'){
-            $view = 'lexiconinfo';
+            $view = 'lexiconinfo_new';
         }
         return view('reader.'.$view, ['lexiconinfo' => $lexiconinfo]);
     }
