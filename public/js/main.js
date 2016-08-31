@@ -1533,7 +1533,6 @@ $(document).ready(function(){
     $(".j-sel-version-label").on("click", function(e){
         $(".j-nav-sel").hide();
         $(".j-choose-version-pop").show();
-        $("#j-sel-book-form").submit();
         e.preventDefault();
     });
 
