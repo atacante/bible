@@ -183,7 +183,7 @@ $(document).ready(function(){
             $(this).popover('destroy');
         });
 
-        var definition_word =  $('.word-definition[data-lexid='+definitionId+']');
+        var definition_word =  $('.word-definition[data-lexid='+definitionId+']').first();
 
         var that = $(definition_word).parent();
 
@@ -205,6 +205,31 @@ $(document).ready(function(){
                     '</div>'
                 );
                 $(definition_word).addClass('highlight');
+
+                var definitionWordHeight = $(definition_word).height();
+
+                var definitionWordWidth = $(definition_word).width();
+                var definitionStartPosition = $(definition_word).offset().left;
+                var definitionEndPosition = definitionStartPosition + definitionWordWidth;
+
+                var lexiconPopupWidth = $('.j-lex-content').width();
+                var lexiconPopupStartPosition = $('.j-lex-content').offset().left;
+                var lexiconPopupEndPosition = lexiconPopupStartPosition + lexiconPopupWidth;
+
+                var leftOffset = 0;
+
+                console.log(definitionWordHeight);
+
+                // Check if definition has 2 lines or more
+                if(definitionWordHeight < 40){
+                    leftOffset = (definitionStartPosition + definitionEndPosition)/2 - 15 - lexiconPopupStartPosition;
+                }else{
+                    leftOffset = definitionStartPosition - lexiconPopupStartPosition + 15 ;
+                }
+
+                $('.lex-content .popup-arrow3').css({
+                    left: leftOffset + "px"
+                })
             }
         });
 

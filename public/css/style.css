@@ -2338,6 +2338,18 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     width: 12px;
     height: 12px;
 }
+
+.popup-arrow3 {
+    position: absolute;
+    background: #F7F7F7;
+    border-top: 1px solid #EEEEEE;
+    border-left: 1px solid #EEEEEE;
+    top: -12px;
+    transform: rotate(45deg);
+    width: 24px;
+    height: 24px;
+}
+
 .spliter1 {
     display: inline-block;
     height: 24px;
@@ -2388,6 +2400,14 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     top: 40px;
     right: 50px;
 }
+
+.lex-content .btn-reset{
+    height: 28px;
+    width: 28px;
+    top: 20px;
+    right: 20px;
+}
+
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
     border-color: #313d47 transparent transparent;
 }

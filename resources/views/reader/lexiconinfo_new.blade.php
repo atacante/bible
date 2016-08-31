@@ -1,4 +1,5 @@
 {{--{!! var_dump($lexiconinfo) !!}--}}
+    <div class="popup-arrow3"></div>
     <div class="row">
         <div class="col-md-12"><h3><i class="bs-lexicon"></i><b> LEXICON - </b><i>"{!! strtoupper($lexiconinfo->verse_part) !!}"</i></h3></div>
     </div>
