@@ -15,6 +15,14 @@
                     </span>
                 @endif
             </div>
+            <div class="c-privacy">
+                <a class="btn-should-see" href="#">
+                    <i class="bs-settings cu-print"></i>
+                    <span class="c-arrow-sel">
+                        <b></b>
+                    </span>
+                </a>
+            </div>
             {!! Form::button('Post', ['type'=>'submit','class'=>'btn4 cu1-btn4']) !!}
         </div>
 

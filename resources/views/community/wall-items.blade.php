@@ -2,9 +2,9 @@
     @if(!ViewHelper::isRoute('groups.view') || (ViewHelper::isRoute('groups.view') && Auth::check() && (Auth::user()->id == $model->owner_id || in_array(Auth::user()->id,$model->members()->lists('users.id')->toArray()))))
         @foreach($content['entries'] as $item)
             <div class="related-item j-wall-item">
+                <div class="user-image cu-ui1"></div>
                 <div class="item-header">
-                    <i title="{!! ucfirst($item->type) !!} Entry"
-                       class="pull-left fa fa-btn {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
+                    <i title="{!! ucfirst($item->type) !!} Entry" class="pull-left fa fa-btn {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
                     <div class="pull-left">
                         <strong>{!! (Auth::user() && $item->user && Auth::user()->id == $item->user->id)?"You":($item->user?$item->user->name:'somebody') !!}</strong>
                         @if($item->type == 'status')
@@ -29,15 +29,6 @@
                             <div class="pull-left">&nbsp;at {!! $item->published_at->format($item::DFORMAT) !!}&nbsp;</div>
                         @endif
                     </div>
-                    {{--<a title="My Study Verse" href="{!! url('reader/my-study-verse?'.http_build_query([
-                        'version' => $content['version_code'],
-                        'book' => $item->verse->book_id,
-                        'chapter' => $item->verse->chapter_num,
-                        'verse' => $item->verse->verse_num,
-                    ]),[],false) !!}">
-                        --}}{{--<i class="fa fa-pencil pull-right" aria-hidden="true"></i>--}}{{--
-                        <i class="fa fa-location-arrow fa-graduation-cap pull-right" aria-hidden="true"></i>
-                    </a>--}}
                     <div class="pull-right"></div>
                 </div>
                 <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" data-itemtype="{!! $item->type !!}">

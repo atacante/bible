@@ -2598,7 +2598,7 @@ ul.community-menu li a:hover, ul.community-menu li.active a:hover {
 textarea.wall-text-area {
     max-width: 100%;
     min-width: 100%;
-    padding: 18px 20px 2px;
+    padding: 18px 120px 2px 20px;
     height: 54px;
     min-height: 54px;
     border: none;
@@ -2622,7 +2622,6 @@ textarea.wall-text-area:focus {
     position: absolute;
     top: -2px;
     left: 10px;
-    background: red;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     overflow: hidden;
@@ -2660,6 +2659,27 @@ textarea.wall-text-area:focus {
     border-bottom: 1px solid #e3e3e3;
     padding: 30px 30px 30px 120px;
     position: relative;
+}
+.c-privacy {
+    height: 54px;
+    width: 54px;
+    position: absolute;
+    top: 0;
+    right: 100px;
+}
+.btn-should-see {
+    display: block;
+    position: absolute;
+    top: 15px;
+    width: 46px;
+    text-decoration: none !important;
+}
+.btn-should-see .c-arrow-sel {
+    top: 4px;
+}
+.cu-ui1 {
+    top: 25px;
+    left: 30px;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
