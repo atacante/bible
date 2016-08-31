@@ -31,7 +31,7 @@
                     </div>
                     <div class="pull-right"></div>
                 </div>
-                <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" data-itemtype="{!! $item->type !!}">
+                <div class="item-body j-item-body"  data-itemid="{!! $item->id !!}" data-itemtype="{!! $item->type !!}">
                     @if($item->highlighted_text)
                         <div class="verse-block">
                             Verse: <i>{!! str_limit(strip_tags($item->highlighted_text,'<p></p>'), $limit = 100, $end = '...') !!}</i>
@@ -54,21 +54,21 @@
                         @role('user')
                         <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/save-like/'.$item->id) !!}" class="wall-like-btn j-wall-like-btn {!! in_array($item->id,ViewHelper::getMyLikes($item->type))?'hidden':'' !!}" data-type="{!! $item->type !!}" data-likeslink="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/likes/'.$item->id) !!}">
                             <i class="fa fa-btn fa-heart"></i>
-                            Like (<span class="j-likes-count">{!! $item->likescount !!}</span>)
+                            {{--Like--}} <span class="j-likes-count">{!! $item->likescount !!}</span>
                         </a>
                         <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/remove-like/'.$item->id) !!}" class="wall-like-btn j-wall-like-btn liked {!! in_array($item->id,ViewHelper::getMyLikes($item->type))?'':'hidden' !!}" data-type="{!! $item->type !!}" data-likeslink="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/likes/'.$item->id) !!}">
                             <i class="fa fa-btn fa-heart"></i>
-                            Like (<span class="j-likes-count">{!! $item->likescount !!}</span>)
+                            {{--Like--}} <span class="j-likes-count">{!! $item->likescount !!}</span>
                         </a>
                         @endrole
                         <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/comments/'.$item->id) !!}" class="j-wall-item-comments" data-type="{!! $item->type !!}">
                             <i class="fa fa-btn fa-comments"></i>
-                            Comments (<span class="j-comments-count">{!! $item->commentscount !!}</span>)
+                            {{--Comments--}} <span class="j-comments-count">{!! $item->commentscount !!}</span>
                         </a>
                         @role('user')
                         <a title="{!! in_array($item->id,ViewHelper::getMyContentReports($item->type))?'You have reported inappropriate content':'Report inappropriate content' !!}" href="{!! url('/community/report/'.$item->type.'/'.$item->id) !!}" class="j-item-report {!! in_array($item->id,ViewHelper::getMyContentReports($item->type))?'reported disabled':'' !!}" >
                             <i class="fa fa-btn fa-flag"></i>
-                            Report
+                            {{--Report--}}
                         </a>
                         @endrole
                     </div>
