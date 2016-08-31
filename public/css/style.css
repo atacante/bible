@@ -825,7 +825,7 @@ a.view-details:hover{
 }
 .nav-left .divider{
     height: 1px;
-    background-color: #ccc;
+    background-color: #e3e3e3;
     margin: 10px 0;
 }
 .friends-list .friend-item{
@@ -2680,6 +2680,23 @@ textarea.wall-text-area:focus {
 .cu-ui1 {
     top: 25px;
     left: 30px;
+}
+.community-menu > li > a {
+    color: #505050;
+    font-size: 13px;
+    font-family: ns_widemedium;
+    text-transform: uppercase;
+    padding: 12px 25px;
+}
+.community-menu > li > a > i {
+    color: #878787;
+    font-size: 20px;
+    vertical-align: top;
+    margin-right: 12px;
+}
+.community-menu > li > a:hover > i,
+.community-menu > li.active > a > i {
+    color: #ffffff;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {

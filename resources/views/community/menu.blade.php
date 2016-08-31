@@ -13,11 +13,11 @@
     @endrole
     <li role="separator" class="divider" style=""></li>
     <li class="{{ (Request::is('community/find-friends') ? 'active' : '') }}" role="presentation">
-        <a href="{{ url('community/find-friends') }}"><i class="fa-btn ion-person-stalker" style="font-size: 16px;"></i>Find Friends</a>
+        <a href="{{ url('community/find-friends') }}"><i class="fa fa-btn ion-person-stalker"></i>Find Friends</a>
     </li>
     @role('user')
     <li role="presentation" class="{!! (Request::segment(2) == 'invite-people')?'active':'' !!}">
-        <a href="{!! url('/community/invite-people') !!}"><i class="fa fa-btn fa-user-plus" style="font-size: 16px;"></i>Invite People</a>
+        <a href="{!! url('/community/invite-people') !!}"><i class="fa fa-btn fa-user-plus"></i>Invite People</a>
     </li>
     @endrole
     <li role="separator" class="divider" style=""></li>
