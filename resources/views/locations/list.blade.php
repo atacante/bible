@@ -6,25 +6,7 @@
 
 @section('content')
     {{--    @include('reader.filters')--}}
-    <div class="row">
-        <div class="col-md-12">
-            <h3 class="text-center">Locations</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box box-primary">
-                <div class="box-header" style="height: 44px;">
-                    <h3 class="box-title">Filters</h3>
-                    <div class="box-tools">
-                        <div class="pull-right">
-                            @include('locations.filters')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('locations.tabs')
     <div class="row">
         <div class="col-md-12 locations-list j-locations-list" style="line-height: 30px;">
             @if(count($content['locations']))

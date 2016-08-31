@@ -2639,3 +2639,25 @@ ul.community-menu li a:hover {
 .medium{
     font-family: work_sansmedium;
 }
+
+.location-people{
+    height: 35px;
+    border-bottom: 2px solid #cccccc;
+}
+
+.location-people a{
+    color: #6b6b6b;
+    text-decoration: none;
+    margin-right: 30px;
+    display: inline-block;
+    height: 33px;
+}
+
+.location-people a.active{
+    color: #00b9f7 !important;
+    border-bottom: 2px solid #00b9f7;
+}
+
+.location-people a:hover{
+    color: #333333;
+}
