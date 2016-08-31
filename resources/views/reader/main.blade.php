@@ -62,7 +62,7 @@
                                 <a href="#" class="btn-reset cu-btr1 j-close-choose-book">&#215;</a>
                             </div>
                             <table class="t-choose-book j-book-list" style="width:100%;">
-                            <?
+                            <?php
                             $n = 0;
                             $book_mas[$n] = "";
                             foreach ($filters['books'] as $val=>$book){
