@@ -102,7 +102,8 @@
             @else
                 @role('user')
                 <li>
-                    <a href="{{ url('user/my-journey') }}">My Journey</a>
+
+                    <a href="{{ url('user/my-journey') }}"><i class="bs-myjourney"></i>My Journey</a>
                 </li>
                 @endrole
                 <li class="dropdown log-pop">
