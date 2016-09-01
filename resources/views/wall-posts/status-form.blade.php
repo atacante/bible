@@ -52,5 +52,4 @@
             <li><a class="" data-val="{{App\WallPost::ACCESS_PUBLIC_FRIENDS}}" href="#">Only Friends</a></li>
             <li><a class="" data-val="{{App\WallPost::ACCESS_PRIVATE}}" href="#">Only Me</a></li>
         </ul>
-    </div>
 </div>
