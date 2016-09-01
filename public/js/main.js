@@ -734,7 +734,6 @@ $(document).ready(function(){
             reader.clearHighlights();
             selectedObject.addClass('clicked');
 
-
             var text = selectedObject.text();
             if(text){
                 var startElement = selectedObject;

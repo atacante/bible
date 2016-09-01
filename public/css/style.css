@@ -2743,6 +2743,7 @@ textarea.wall-text-area:focus {
     padding: 15px 20px;
     margin: 30px 0;
     position: relative;
+    color: initial;
 }
 
 .lex-content:hover{
