@@ -7,8 +7,8 @@
     <div class="row">
         <div class="col-md-2 medium">STRONG'S</div>
         <div class="col-md-2">{!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num, ['class' => 'clicked']) !!}</div>
-        <div class="col-md-2 medium">TRANSLITERATION</div>
-        <div class="col-md-2">{!! $lexiconinfo->transliteration !!}</div>
+        <div class="col-md-4 medium">TRANSLITERATION</div>
+        <div class="col-md-4">{!! $lexiconinfo->transliteration !!}</div>
     </div>
     <hr/>
     <div class="row">
