@@ -336,3 +336,10 @@ site.FacebookInviteFriends = function ()
     });
 }
 
+reader.clearHighlights = function(){
+    $('.j-reader-actions').remove();
+    $('.j-lex-content').remove();
+    $('.highlight').removeClass('highlight');
+    $('.clicked').removeClass('clicked');
+}
+

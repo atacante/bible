@@ -193,10 +193,8 @@ $(document).ready(function(){
             dataType: "html",
             data:{lexversion:lexversion,definition_id:definitionId},
             success:function(data){
-                $('.j-reader-actions').remove();
-                $('.j-lex-content').remove();
-                $('.word-definition').removeClass('highlight');
-                $('.clicked').removeClass('clicked');
+
+                reader.clearHighlights();
 
                 $(that).append(
 
@@ -212,13 +210,9 @@ $(document).ready(function(){
                 var definitionStartPosition = $(definition_word).offset().left;
                 var definitionEndPosition = definitionStartPosition + definitionWordWidth;
 
-                var lexiconPopupWidth = $('.j-lex-content').width();
                 var lexiconPopupStartPosition = $('.j-lex-content').offset().left;
-                var lexiconPopupEndPosition = lexiconPopupStartPosition + lexiconPopupWidth;
 
                 var leftOffset = 0;
-
-                console.log(definitionWordHeight);
 
                 // Check if definition has 2 lines or more
                 if(definitionWordHeight < 40){
@@ -229,7 +223,11 @@ $(document).ready(function(){
 
                 $('.lex-content .popup-arrow3').css({
                     left: leftOffset + "px"
-                })
+                });
+
+                $('.j-lex-content').on('click','.j-btn-reset', function(){
+                    reader.clearHighlights();
+                });
             }
         });
 
@@ -731,63 +729,63 @@ $(document).ready(function(){
     $(".j-verse-text").click(function(eventObject) {
         var selectedObject = $(this);
 
-        $(".clicked").removeClass('clicked');
-        $(".highlight").removeClass('highlight');
+        if($(eventObject.target)[0].localName == 'span'){
 
-        $('.j-lex-content').remove();
-
-        selectedObject.addClass('clicked');
+            reader.clearHighlights();
+            selectedObject.addClass('clicked');
 
 
-        var text = selectedObject.text();
-        if(text){
-            var startElement = selectedObject;
-            var endElement = selectedObject;
-            var version = $(startElement).data('version');
-            if(!version){
-                version = $(startElement).parents('.j-verse-text').data('version');
-            }
-            if(!version){
-                version = $(endElement).data('version');
+            var text = selectedObject.text();
+            if(text){
+                var startElement = selectedObject;
+                var endElement = selectedObject;
+                var version = $(startElement).data('version');
                 if(!version){
-                    version = $(endElement).parents('.j-verse-text').data('version');
+                    version = $(startElement).parents('.j-verse-text').data('version');
                 }
-            }
+                if(!version){
+                    version = $(endElement).data('version');
+                    if(!version){
+                        version = $(endElement).parents('.j-verse-text').data('version');
+                    }
+                }
 
-            var startVerseId = $(startElement).data('verseid');
-            if(!startVerseId){
-                startVerseId = $(startElement).parents('.j-verse-text').data('verseid');
-            }
-            var endVerseId = $(endElement).data('verseid');
-            if(!endVerseId){
-                endVerseId = $(endElement).parents('.j-verse-text').data('verseid');
-            }
+                var startVerseId = $(startElement).data('verseid');
+                if(!startVerseId){
+                    startVerseId = $(startElement).parents('.j-verse-text').data('verseid');
+                }
+                var endVerseId = $(endElement).data('verseid');
+                if(!endVerseId){
+                    endVerseId = $(endElement).parents('.j-verse-text').data('verseid');
+                }
 
-            var verseId = 0;
-            if(!startVerseId || !endVerseId){
-                verseId = Math.max((startVerseId || 0), (endVerseId || 0));
+                var verseId = 0;
+                if(!startVerseId || !endVerseId){
+                    verseId = Math.max((startVerseId || 0), (endVerseId || 0));
+                }
+                else{
+                    verseId = Math.min((startVerseId || 0), (endVerseId || 0));
+                }
+
+                /*var menu = '<a title="Create note" href="/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-note" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>';
+                 menu += '<a title="Create Journal Entry" href="/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-journal" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-book"></i></a>';
+                 menu += '<a title="Create prayer" href="/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-prayer" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 8px;"><i class="fa fa-btn fa-hand-paper-o"></i></a>';*/
+
+                $('body').append(reader.getActionsHtml());
+                $('.j-create-note').attr('href','/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+                $('.j-create-journal').attr('href','/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+                $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+
+                $('.j-reader-actions').css({
+                    top: ($(endElement).offset().top-66) + "px",
+                    left: (eventObject.pageX-105) + "px"
+                }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
             }
-            else{
-                verseId = Math.min((startVerseId || 0), (endVerseId || 0));
+            else {
+                $('.j-reader-actions').remove();
             }
-
-            /*var menu = '<a title="Create note" href="/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-note" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>';
-            menu += '<a title="Create Journal Entry" href="/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-journal" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-book"></i></a>';
-            menu += '<a title="Create prayer" href="/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-prayer" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 8px;"><i class="fa fa-btn fa-hand-paper-o"></i></a>';*/
-
-            $('body').append(reader.getActionsHtml());
-            $('.j-create-note').attr('href','/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
-            $('.j-create-journal').attr('href','/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
-            $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
-
-            $('.j-reader-actions').css({
-                top: ($(endElement).offset().top-66) + "px",
-                left: (eventObject.pageX-105) + "px"
-            }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
         }
-        else {
-            $('.j-reader-actions').remove();
-        }
+
     });
 
     $("body").on('click','.j-create-note',function (e) {

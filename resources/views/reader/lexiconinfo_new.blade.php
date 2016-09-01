@@ -20,4 +20,4 @@
         <div class="col-md-2 medium">DEFINITION</div>
         <div class="col-md-10">{!! $lexiconinfo->definition !!}</div>
     </div>
-    <a class="btn-reset">x</a>
+    <a class="btn-reset j-btn-reset">x</a>
