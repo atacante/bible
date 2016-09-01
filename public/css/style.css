@@ -337,7 +337,7 @@ a.view-details:hover{
 
 }
 
-.related-item .item-header{
+.related-item .item-header {
     overflow: hidden;
 }
 
@@ -358,7 +358,7 @@ a.view-details:hover{
 .related-item .item-body:hover{
 
 }
-.related-item .item-body .verse-block{
+.public-wall .related-item .item-body .verse-block {
     color: #535353;
     font-size: 16px;
     font-family: work_sansregular;
@@ -371,6 +371,17 @@ a.view-details:hover{
     -webkit-border-radius: 5px;
     margin: 10px 0;
 }
+.related-records .related-item .item-body .verse-block {
+    padding: 0px;
+    color: #858585;
+    font-size: 16px;
+    font-family: work_sansregular;
+    font-style: italic;
+    position: relative;
+    padding: 10px 0;
+    line-height: 24px;
+}
+
 .verse-block-bott {
     display: block;
     padding-left: 26px;
@@ -2662,9 +2673,13 @@ textarea.wall-text-area:focus {
 .c-area-group1 .form-group {
     margin-bottom: 0;
 }
-.related-item {
-    border-bottom: 1px solid #e3e3e3;
-    padding: 30px 30px 30px 120px;
+.public-wall .related-item {
+     border-bottom: 1px solid #e3e3e3;
+     padding: 30px 30px 30px 120px !important;
+     position: relative;
+}
+.related-records .related-item {
+    padding: 0px;
     position: relative;
 }
 .c-privacy {
