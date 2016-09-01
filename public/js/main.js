@@ -1492,6 +1492,29 @@ $(document).ready(function(){
         $(".j-popup-settings").offset({top:btnCoordTop, left:btnCoordLeft});
         e.preventDefault();
     });
+
+    $(".j-btn-should-see").on("click", function(e){
+        var btnCoordTop = $(this).offset().top+35;
+        var btnCoordLeft = $(this).offset().left-150;
+        $(".j-popup-should-see").toggle();
+        $(".j-popup-should-see").offset({top:btnCoordTop, left:btnCoordLeft});
+
+        $(".j-status-list li a").removeClass('active');
+        var currentLevel = $('.j-access-level').val();
+        console.log(currentLevel);
+        $('.j-status-list li a[data-val="'+currentLevel+'"]').addClass('active');
+        e.preventDefault();
+    });
+
+    $(".j-status-list li a").on('click', function(e){
+        var newLevel = $(this).data("val");
+        $('.j-access-level').val(newLevel);
+
+        $(".j-status-list li a").removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
+    });
+
     $(".j-popup-settings .j-btn-ok").on("click", function(e){
         $(".j-popup-settings").hide();
     });
@@ -1519,7 +1542,7 @@ $(document).ready(function(){
         $(this).addClass("active");
        /* alert($(this).data("val"));*/
         var curSelVal = $(this).data("val");
-        var curSelText = $(this).html()
+        var curSelText = $(this).html();
         $(".j-select-version").val(curSelVal);
         $(".j-sel-version-text").html(curSelText);
         $(".j-choose-version-pop").hide();

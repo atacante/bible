@@ -2122,6 +2122,10 @@ ul.icon-panel li a {
 .j-popup-compare .popup-arrow {
     right: 97px;
 }
+
+.pop-should-see .popup-arrow {
+    left: 50%;
+}
 .popup-title {
     text-transform: uppercase;
     color: #010101;
@@ -2459,6 +2463,18 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     -webkit-box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
     box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
 }
+
+.pop-should-see {
+    min-height: 100px;
+    width: 300px;
+    background: white;
+    border: 1px solid #cccccc;
+    position: absolute;
+    z-index: 1;
+    -webkit-box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
+    box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
+}
+
 .pp-title {
     color: #010101;
     font-family: ns_widenormal;
@@ -2467,6 +2483,10 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     padding: 20px 80px;
     text-transform: uppercase;
     position: relative;
+}
+
+.pop-should-see .pp-title {
+    padding: 20px 30px;
 }
 .cu-btr1 {
     top:20px;
