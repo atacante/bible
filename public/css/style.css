@@ -407,6 +407,29 @@ a.view-details:hover{
     text-decoration: none !important;
     text-transform: none;
 }
+.verse-icon2 {
+    position: absolute;
+    display: block;
+    background: #79858f;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    -webkit-border-radius: 50px;
+    top: 20px;
+    left: 74px;
+    color: #ffffff;
+    font-size: 12px;
+    font-family: "bs" !important;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: center;
+    text-decoration: none !important;
+    text-transform: none;
+    border: 3px solid #ffffff;
+    text-align: center;
+}
 .fa-book:before {
     content: "\e903";
 }
@@ -2719,6 +2742,31 @@ textarea.wall-text-area:focus {
 .community-menu > li > a:hover > i,
 .community-menu > li.active > a > i {
     color: #ffffff;
+}
+.wall-text1 {
+    font-size: 15px;
+    color: #333333;
+    font-family: work_sansregular;
+}
+.book-desc1 {
+    font-family: work_sanssemibold;
+    font-size: 16px;
+    color: #1e363e;
+    text-decoration: underline;
+}
+.book-desc1:hover {
+    color: #1e363e;
+    text-decoration: none;
+}
+.cu-date1 {
+    float: right;
+    color: #a9a9a9;
+    font-family: work_sansregular;
+    font-size: 16px;
+}
+.box-footer {
+    position: relative;
+    z-index: 99999999;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {

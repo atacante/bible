@@ -6,7 +6,6 @@
             @include('community.menu')
         </div>
         <div class="col-md-9 public-wall j-wall-items">
-
             @role('user')
             <ul class="nav nav-pills wall-nav">
                 <li role="presentation" class="{!! (!Request::get('type') || Request::get('type') == 'all')?'active':'' !!}">

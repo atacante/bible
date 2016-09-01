@@ -4,19 +4,21 @@
             <div class="related-item j-wall-item">
                 <div class="user-image cu-ui1"></div>
                 <div class="item-header">
-                    <i title="{!! ucfirst($item->type) !!} Entry" class="pull-left fa fa-btn {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
-                    <div class="pull-left">
+                    @if (ViewHelper::getRelatedItemIcon($item->type)!="")
+                    <i title="{!! ucfirst($item->type) !!} Entry" class="verse-icon2 {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
+                    @endif
+                    <span class="wall-text1">
                         <strong>{!! (Auth::user() && $item->user && Auth::user()->id == $item->user->id)?"You":($item->user?$item->user->name:'somebody') !!}</strong>
                         @if($item->type == 'status')
                             posted status update
                         @else
                             shared a {!! ucfirst($item->type) !!} Entry&nbsp;
                         @endif
-                    </div>
-                    <div class="pull-left">
+                    </span>
+                    <span class="">
                         @if(isset($item->verse))
-                            <div class="pull-left">for&nbsp;</div>
-                            <div class="pull-left">
+                            <span >for&nbsp;</span>
+                            <span class="">
                                 {!! Html::link('/reader/verse?'.http_build_query(
                                     [
                                         'version' => $item->bible_version,
@@ -24,12 +26,11 @@
                                         'chapter' => $item->verse->chapter_num,
                                         'verse' => $item->verse->verse_num
                                     ]
-                                    ),ViewHelper::getVerseNum($item->verse).($item->bible_version?' ('.ViewHelper::getVersionName($item->bible_version).')':''), ['class'=>'label label-success','style' => 'display:block; line-height: 14px;']) !!}
-                            </div>
-                            <div class="pull-left">&nbsp;at {!! $item->published_at->format($item::DFORMAT) !!}&nbsp;</div>
+                                    ),ViewHelper::getVerseNum($item->verse).($item->bible_version?' ('.ViewHelper::getVersionName($item->bible_version).')':''), ['class'=>'book-desc1']) !!}
+                            </span>
+                            <div class="cu-date1">&nbsp;at {!! $item->published_at->format($item::DFORMAT) !!}&nbsp;</div>
                         @endif
-                    </div>
-                    <div class="pull-right"></div>
+                    </span>
                 </div>
                 <div class="item-body j-item-body"  data-itemid="{!! $item->id !!}" data-itemtype="{!! $item->type !!}">
                     @if($item->highlighted_text)
@@ -37,7 +38,7 @@
                             Verse: <i>{!! str_limit(strip_tags($item->highlighted_text,'<p></p>'), $limit = 100, $end = '...') !!}</i>
                         </div>
                     @endif
-                    <div>{!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}</div>
+                    <div class="wall-text1">{!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}</div>
                     <div id="img-thumb-preview" class="edit-images-thumbs j-with-images clearfix">
                         @if($content[ViewHelper::getEntryControllerName($item->type)]['images']->count())
                             @foreach($content[ViewHelper::getEntryControllerName($item->type)]['images'][$item->id] as $image)
