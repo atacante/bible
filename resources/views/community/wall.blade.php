@@ -5,7 +5,7 @@
         <div class="col-md-3">
             @include('community.menu')
         </div>
-        <div class="col-md-9 related-records public-wall j-wall-items">
+        <div class="col-md-9 public-wall j-wall-items">
 
             @role('user')
             <ul class="nav nav-pills wall-nav">
