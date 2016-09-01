@@ -51,20 +51,26 @@
 
                 </div>
                 <div class="item-footer j-item-footer">
-                    <div class="item-actions j-item-actions">
+                    <div class="item-actions j-item-actions cu1-actions">
                         @role('user')
                         <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/save-like/'.$item->id) !!}" class="wall-like-btn j-wall-like-btn {!! in_array($item->id,ViewHelper::getMyLikes($item->type))?'hidden':'' !!}" data-type="{!! $item->type !!}" data-likeslink="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/likes/'.$item->id) !!}">
                             <i class="fa fa-btn fa-heart"></i>
+                            @if($item->likescount)
                             {{--Like--}} <span class="j-likes-count">{!! $item->likescount !!}</span>
+                            @endif
                         </a>
                         <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/remove-like/'.$item->id) !!}" class="wall-like-btn j-wall-like-btn liked {!! in_array($item->id,ViewHelper::getMyLikes($item->type))?'':'hidden' !!}" data-type="{!! $item->type !!}" data-likeslink="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/likes/'.$item->id) !!}">
                             <i class="fa fa-btn fa-heart"></i>
+                            @if($item->likescount)
                             {{--Like--}} <span class="j-likes-count">{!! $item->likescount !!}</span>
+                            @endif
                         </a>
                         @endrole
                         <a href="{!! url('/'.ViewHelper::getEntryControllerName($item->type).'/comments/'.$item->id) !!}" class="j-wall-item-comments" data-type="{!! $item->type !!}">
                             <i class="fa fa-btn fa-comments"></i>
+                            @if($item->commentscount)
                             {{--Comments--}} <span class="j-comments-count">{!! $item->commentscount !!}</span>
+                            @endif
                         </a>
                         @role('user')
                         <a title="{!! in_array($item->id,ViewHelper::getMyContentReports($item->type))?'You have reported inappropriate content':'Report inappropriate content' !!}" href="{!! url('/community/report/'.$item->type.'/'.$item->id) !!}" class="j-item-report {!! in_array($item->id,ViewHelper::getMyContentReports($item->type))?'reported disabled':'' !!}" >

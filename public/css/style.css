@@ -301,6 +301,8 @@ a.view-details:hover{
 
 .main-container{
     min-height: 400px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .my-journal-list .box-header,.my-notes-list .box-header, .my-prayers-list .box-header, .my-entries-list .box-header{
@@ -448,7 +450,7 @@ a.view-details:hover{
 }
 
 .related-item .item-actions .popover-content{
-    padding: 3px;
+    padding: 15px;
 }
 
 .related-item .item-actions .like-img{
@@ -933,14 +935,12 @@ ul.wall-nav li:last-child {
 .no-avatar .no-avatar-text {
     height: 90px;
     width: 90px;
-    border: 1px solid #f4f4f4;
     line-height: 125px;
     color: #ddd;
 }
 .no-avatar-mini .no-avatar-text {
     height: 34px;
     width: 34px;
-    border: 1px solid #f4f4f4;
     line-height: 42px;
     color: #ddd;
 }
@@ -1069,7 +1069,7 @@ ul.wall-nav li:last-child {
     margin-bottom: 15px;
 }
 
-.img-thumbnail-mini{
+.img-thumbnail-mini {
     display: inline-block;
     max-width: 100%;
     height: auto;
@@ -1082,13 +1082,26 @@ ul.wall-nav li:last-child {
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
 }
+.img-thumbnail-mini2 {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 2px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
 
 .wall-like-btn.liked,.wall-like-btn.liked .fa{
     color: #e7567c;
 }
 
 .j-item-report.reported,.j-item-report.reported .fa{
-    color: #e7567c;
+    color: #b9b9b9;
 }
 a {
     color: #00b9f7;
@@ -1640,9 +1653,8 @@ ul.nav.navbar-nav li {
     padding: 40px 0 30px;
 }
 .inner-container {
-/*    max-width: 1554px;*/
     margin: 0 auto;
-    padding: 30px 0;
+    padding: 25px 0;
 }
 .in-inner-container {
     padding: 0 50px;
@@ -2281,6 +2293,20 @@ ul.icon-panel li a {
     vertical-align: middle;
     margin-right: 5px;
 }
+.user-default2 {
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    display: inline-block;
+    background: url('../images/default.jpg') center no-repeat;
+    background-size: cover !important;
+    vertical-align: middle;
+    margin: 0 2px !important;
+}
+.like-item {
+    display: inline-block;
+}
 .cu-drop-menu-item {
     padding-top: 9px !important;
 }
@@ -2787,6 +2813,28 @@ textarea.wall-text-area:focus {
 .box-footer {
     position: relative;
     z-index: 99999999;
+}
+.related-item .cu1-actions > a {
+    margin-right: 50px;
+    font-family: work_sanssemibold;
+    font-size: 14px;
+}
+.avatar-item1 {
+    margin: 0 2px !important;
+}
+.related-item .cu1-actions a i {
+    margin-right: 2px;
+    font-size: 16px;
+}
+.related-item .cu1-actions {
+    padding: 15px 0 5px;
+}
+.popover {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    box-shadow: 0 0 10px 3px rgba(100, 100, 100, 0.1);
+    -webkit-box-shadow: 0 0 10px 3px rgba(100, 100, 100, 0.1);
+    display: block !important;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {

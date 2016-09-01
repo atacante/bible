@@ -1,17 +1,18 @@
 @if($content['likes']->count())
     <div style="max-width: 300px;" class="clearfix">
         @foreach($content['likes'] as $like)
-            <div class="pull-left like-item">
-                <a href="#" title="{!! $like->name !!}"  class="friend-item" style="margin: 0;">
-                    <div class="like-img pull-left" style="">
-                        @if($like->avatar)
-                            <img class="img-thumbnail-mini" height="40" width="40" data-dz-thumbnail="" alt="" src="{!! Config::get('app.userAvatars').$like->id.'/thumbs/'.$like->avatar !!}"/>
-                        @else
-                            <div class="no-avatar-mini img-thumbnail-mini">
-                                <div class="no-avatar-text text-center"><i class="fa fa-user" style="font-size:24px;"></i></div>
-                            </div>
-                        @endif
-                    </div>
+            <div class="like-item">
+                <a href="#" title="{!! $like->name !!}" style="margin: 0 !important;">
+                    @if($like->avatar)
+                        <div class="user-default2" style="background: url('{!! $like->avatar!=''?Config::get('app.userAvatars').$like->id.'/thumbs/'.$like->avatar:'' !!}') center no-repeat;">
+
+                        </div>
+                    @else
+                        <div class="user-default2">
+
+                        </div>
+                    @endif
+
                 </a>
             </div>
         @endforeach
