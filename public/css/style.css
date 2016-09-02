@@ -1106,6 +1106,9 @@ ul.wall-nav li:last-child {
 a {
     color: #00b9f7;
 }
+a:focus, a:hover {
+    color: #272727;
+}
 .j-item-report.disabled{
     cursor: default;
     opacity: 0.5;
@@ -2811,6 +2814,11 @@ textarea.wall-text-area:focus {
     font-family: work_sansregular;
     font-size: 16px;
 }
+.cu-date2 {
+    color: #a9a9a9;
+    font-family: work_sansregular;
+    font-size: 16px;
+}
 .box-footer {
     position: relative;
     z-index: 99999999;
@@ -2837,7 +2845,7 @@ textarea.wall-text-area:focus {
     -webkit-box-shadow: 0 0 10px 3px rgba(100, 100, 100, 0.1);
     display: block !important;
 }
-.public-wall .item-comments{
+.public-wall .item-comments {
     border: none;
     padding: 10px 0;
 }
@@ -2849,13 +2857,13 @@ textarea.wall-text-area:focus {
     -webkit-border-radius: 5px;
 }
 .c-area-group2 {
-    padding: 0 100px 0 0;
+    padding: 0 85px 0 0;
     position: relative;
 }
 .c-area-group2 textarea {
     border: 1px solid #e3e3e3;
-    border-radius: 3px !important;
-    -webkit-border-radius: 3px !important;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
     color: #8d8d8d;
     font-family: work_sansregular;
     font-size: 15px;
@@ -2868,6 +2876,24 @@ textarea.wall-text-area:focus {
 .btn4-cu1 {
     height: 40px !important;
     line-height: 35px !important;
+    width: 85px;
+}
+.c-people-comment {
+    border-bottom: 1px solid #e3e3e3;
+    padding: 15px 0;
+}
+.public-wall .item-comments .c-people-comment:last-child {
+    border-bottom: none;
+}
+.cu-ui2 {
+    height: 42px !important;
+    width: 42px !important;
+    left: 0px !important;
+    top: 0 !important;
+}
+.people-comment-text {
+    margin-left: 50px;
+    min-height: 40px;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
