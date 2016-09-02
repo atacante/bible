@@ -2958,3 +2958,10 @@ textarea.wall-text-area:focus {
 .location-people a:hover{
     color: #333333;
 }
+
+.show-more{
+    cursor: pointer;
+}
+.show-more:hover{
+    color: #00b9f7 !important;
+}

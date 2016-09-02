@@ -268,6 +268,7 @@ $(document).ready(function(){
         site.getNote(id);
     });
 
+/*
     $('body').on('click','.j-item-body',function(ev) {
         var id = $(this).data('itemid');
         var type = $(this).data('itemtype');
@@ -289,6 +290,7 @@ $(document).ready(function(){
                 break;
         }
     });
+*/
 
     $('body').on('click','.j-journal-text',function(ev) {
         ev.preventDefault();
@@ -1474,14 +1476,20 @@ $(document).ready(function(){
         });
     });
 
-    $('ul.community-menu').on('click','.j-show-more',function(e){
+    $('body').on('click','.j-show-more',function(e){
         e.preventDefault();
-        $('ul.community-menu .j-hidden').toggleClass('hidden');
 
-        var text = $('ul.community-menu .j-show-more').text();
+        var parent = $(e.target).parent();
+        var button = $(e.target);
 
-        $('ul.community-menu .j-show-more').html(
-            (text == 'show more ') ? "show less <i class='fa fa-angle-up' aria-hidden='true'></i>" : "show more <i class='fa fa-angle-down' aria-hidden='true'></i>");
+        var field = $(parent).find('.j-hidden');
+
+        field.toggleClass('hidden');
+
+        var text = button.text();
+
+        button.html(
+            (text == 'See More') ? "See Less" : "See More");
 
     });
 

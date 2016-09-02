@@ -10,7 +10,7 @@
             <li role="separator" class="divider {{($key > 9)?' hidden j-hidden':'' }}" style=""></li>
         @endforeach
         @if($key > 9)
-            <a href="#" class="j-show-more">show more <i class='fa fa-angle-down' aria-hidden='true'></i></a>
+            <a href="#" class="j-show-more">See More<i class='fa fa-angle-down' aria-hidden='true'></i></a>
         @endif
     @endif
 </ul>

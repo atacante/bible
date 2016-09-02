@@ -43,7 +43,12 @@
                             Verse: <i>{!! str_limit(strip_tags($item->highlighted_text,'<p></p>'), $limit = 100, $end = '...') !!}</i>
                         </div>
                     @endif
-                    <div class="wall-text1">{!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}</div>
+                    <div class="wall-text1 j-hidden">{!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}</div>
+                    <div class="wall-text1 hidden j-hidden">{!! strip_tags($item->text,'<p></p>') !!}</div>
+                    @if(strlen(strip_tags($item->text,'<p></p>')) > 100)
+                        <a class="j-show-more show-more">See More</a>
+                    @endif
+
                     <div id="img-thumb-preview" class="edit-images-thumbs j-with-images clearfix">
                         @if($content[ViewHelper::getEntryControllerName($item->type)]['images']->count())
                             @foreach($content[ViewHelper::getEntryControllerName($item->type)]['images'][$item->id] as $image)
