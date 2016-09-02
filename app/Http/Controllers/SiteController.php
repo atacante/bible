@@ -15,7 +15,13 @@ class SiteController extends Controller
 {
     public function getHome()
     {
-        return view('site.home', []);
+         $verse_day = 'Do not judge, and you will not be judged.<br>
+               Do not condemn, and you will not be condemned.<br>
+                              Forgive, and you will be forgiven.<br>
+                                              <br>
+                 <span class="ital">LUKE 6:37</span>';
+
+        return view('site.home', ['verse_day' => $verse_day]);
     }
 
     public function getAbout()

@@ -1,5 +1,13 @@
 @extends('layouts.home')
+@section('meta_description')
+    <meta name="description" content="{{ strip_tags($verse_day) }}"/>
+@stop
 
+@section('meta_twitter')
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="Verse of a Day">
+    <meta property="twitter:description" content="{{ strip_tags($verse_day) }}">
+@stop
 @section('content')
     <div class="c-center-content site-index">
         <section class="home-ill-section h-ill1">
@@ -47,27 +55,21 @@
             </div>
         </section>
     </div>
-    <h2 class="h2-2 mt7"><i class="bs-verseoftheday cu-verseoftheday"></i>VERSE OF THE DAY</h2>
+    <h2 class="h2-2 mt7" id="day-verse"><i class="bs-verseoftheday cu-verseoftheday"></i>VERSE OF THE DAY</h2>
     <div class="c-center-content2 mt8">
         <div class="col-left1 h-ill5">
             <div class="luke">LUKE 6:37</div>
         </div>
         <div class="col-right1">
             <p class="p-2">
-               Do not judge, and you will not be judged.<br>
-               Do not condemn, and you will not be condemned.<br>
-               Forgive, and you will be forgiven.<br>
-                <br>
-               <span class="ital">LUKE 6:37</span>
+                {!!  $verse_day !!}
             </p>
             <div class="c-share-panel">
                 <h4 class="h4-1">
                     SHARE WITH:
                 </h4>
-                <ul class="c-social">
-                    <li><a href="htpp://twitter.com" target="_blank" class="bs-twitter"></a></li>
-                    <li><a href="htpp://facebook.com" target="_blank" class="bs-fb"></a></li>
-                </ul>
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_sharing_toolbox c-social"></div>
             </div>
         </div>
     </div>
