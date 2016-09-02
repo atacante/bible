@@ -11,7 +11,7 @@
                 <div class="box-body">
                     <div class="form-group {{ $errors->has('avatar') ? ' has-error' : '' }}">
                         {!! Form::label('avatar', 'Avatar:') !!}
-                        <div id="avatar" class="dropzone user-image">
+                        <div id="avatar" class="dropzone">
                             <div id="img-thumb-preview" class="pull-left">
                                 @if($model->avatar)
                                 <div class="dz-preview dz-processing dz-image-preview dz-success dz-complete j-image-preview j-avatar-preview">

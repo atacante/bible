@@ -1107,7 +1107,7 @@ $(document).ready(function(){
                 }
                 else{
                     var parent = $(that).parents('.g-body');
-                    $('.public-wall,.j-friends-items,.j-members-list .row').append(data);
+                    $('.j-wall-items,.j-friends-items,.j-members-list .row').append(data);
                     $('.load-more-block').remove();
                     parent.append(data);
                 }

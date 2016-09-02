@@ -8,7 +8,7 @@
         <div class="text-center">
             {!! Html::link('/'.ViewHelper::getEntryControllerName($item->type).'/comments/'.$item->id.'?'.http_build_query(
                 array_merge(Request::input(),['page' => $content['nextPage']])
-            ),'Load More', ['class'=>'btn btn-default load-more j-load-more-comments','style' => 'width:100%;']) !!}
+            ),'Load More', ['class'=>'btn1 j-load-more-comments','style' => 'width:100%;']) !!}
         </div>
     </div>
 @endif

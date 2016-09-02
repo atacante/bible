@@ -131,11 +131,12 @@ a {
 }
 .edit-images-thumbs .img-thumb{
     position: relative;
-    margin-right:10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .edit-images-thumbs .img-thumb img{
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 .edit-images-thumbs .img-thumb:hover{
@@ -1481,6 +1482,7 @@ body {
     padding: 15px 50px;
     text-decoration: none !important;
     outline: none !important;
+    text-transform: uppercase;
 }
 .btn1:hover, .btn1:active {
     display: inline-block;
@@ -1495,6 +1497,16 @@ body {
     border-radius: 0;
     -webkit-border-radius: 0;
     vertical-align: top;
+}
+.cu2-btn1 {
+    font-size: 13px;
+    padding: 7px 25px;
+    border-width: 2px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    vertical-align: top;
+    width: 100%;
+    border-width: 2px !important;
 }
 .cu-btn1:hover, .cu-btn1:active, .cu-btn1:focus {
     border: 2px solid #00b9f7 !important;
@@ -2894,6 +2906,38 @@ textarea.wall-text-area:focus {
 .people-comment-text {
     margin-left: 50px;
     min-height: 40px;
+}
+/* -------------- Location Page -------------- */
+.my-location-item {
+    overflow: hidden;
+    min-height: 1px;
+    padding-left: 7px;
+    padding-right: 7px;
+    position: relative;
+    float: left;
+    width: 20%;
+    text-align: center;
+    padding-bottom: 15px;
+}
+.my-inner-location-item {
+    overflow: hidden;
+    position: relative;
+    height: 542px;
+    text-align: center;
+    margin-bottom: 15px;
+    background: white;
+}
+.cu1-row {
+    margin-left: -7px;
+    margin-right: -7px;
+}
+.my-inner-location-item .carousel-inner > .item > a > img,
+.my-inner-location-item .carousel-inner > .item > img,
+.my-inner-location-item .img-responsive, .thumbnail a > img, .thumbnail > img {
+    width: 100%;
+}
+.c-inner-location-text {
+    padding: 10px 30px;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
