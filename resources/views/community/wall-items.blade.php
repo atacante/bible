@@ -3,7 +3,7 @@
         @foreach($content['entries'] as $item)
             <div class="related-item j-wall-item">
                 {{--<div class="user-image cu-ui1"></div>--}}
-                @if($item->user->avatar)
+                @if($item->user && $item->user->avatar)
                     <div class="user-image cu-ui1" style="background: url('{!! $item->user->avatar!=''?Config::get('app.userAvatars').$item->user->id.'/thumbs/'.$item->user->avatar:'' !!}') center no-repeat;"></div>
                 @else
                     <div class="user-image cu-ui1"></div>
