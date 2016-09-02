@@ -1482,6 +1482,7 @@ body {
     padding: 15px 50px;
     text-decoration: none !important;
     outline: none !important;
+    text-transform: uppercase;
 }
 .btn1:hover, .btn1:active {
     display: inline-block;

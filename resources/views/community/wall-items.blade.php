@@ -96,12 +96,3 @@
 @else
     <p class="text-center">There are no comments available.</p>
 @endif
-@if( $content['nextPage'])
-    <div class="load-more-block">
-        <div class="text-center">
-            {!! Html::link('/community/wall?'.http_build_query(
-                array_merge(Request::input(),['page' => $content['nextPage']])
-            ),'Load More', ['class'=>'btn btn-default load-more','style' => 'width:100%;']) !!}
-        </div>
-    </div>
-@endif
