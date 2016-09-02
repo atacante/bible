@@ -8,7 +8,7 @@
     </div>
     <div class="people-comment-text wall-text1">
         <div><strong>{!! $comment->user?$comment->user->name:'somebody' !!}</strong>
-            <span class="cu-date2">- Aug 5 (fake)</span>
+            <span class="cu-date2">{!! $comment->humanFormat('created_at') !!}</span>
         </div>
         <div>{!! $comment->text !!}</div>
     </div>
