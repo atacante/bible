@@ -2713,7 +2713,8 @@ textarea.wall-text-area:focus {
     -webkit-border-radius: 50%;
     overflow: hidden;
     background: url('../images/default.jpg') center no-repeat;
-    background-size: cover;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
 }
 .btn4, .btn4:visited {
     display: inline-block;

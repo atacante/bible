@@ -2,7 +2,12 @@
     @if(!ViewHelper::isRoute('groups.view') || (ViewHelper::isRoute('groups.view') && Auth::check() && (Auth::user()->id == $model->owner_id || in_array(Auth::user()->id,$model->members()->lists('users.id')->toArray()))))
         @foreach($content['entries'] as $item)
             <div class="related-item j-wall-item">
-                <div class="user-image cu-ui1"></div>
+                {{--<div class="user-image cu-ui1"></div>--}}
+                @if($item->user->avatar)
+                    <div class="user-image cu-ui1" style="background: url('{!! $item->user->avatar!=''?Config::get('app.userAvatars').$item->user->id.'/thumbs/'.$item->user->avatar:'' !!}') center no-repeat;"></div>
+                @else
+                    <div class="user-image cu-ui1"></div>
+                @endif
                 <div class="item-header">
                     @if (ViewHelper::getRelatedItemIcon($item->type)!="")
                     <i title="{!! ucfirst($item->type) !!} Entry" class="verse-icon2 {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
