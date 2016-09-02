@@ -131,11 +131,12 @@ a {
 }
 .edit-images-thumbs .img-thumb{
     position: relative;
-    margin-right:10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .edit-images-thumbs .img-thumb img{
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 .edit-images-thumbs .img-thumb:hover{
