@@ -33,8 +33,8 @@
                                     ]
                                     ),ViewHelper::getVerseNum($item->verse).($item->bible_version?' ('.ViewHelper::getVersionName($item->bible_version).')':''), ['class'=>'book-desc1']) !!}
                             </span>
-                            <div class="cu-date1">&nbsp;at {!! $item->published_at->format($item::DFORMAT) !!}&nbsp;</div>
                         @endif
+                            <div class="cu-date1">&nbsp; {!! $item->humanFormat('published_at') !!}&nbsp;</div>
                     </span>
                 </div>
                 <div class="item-body j-item-body"  data-itemid="{!! $item->id !!}" data-itemtype="{!! $item->type !!}">

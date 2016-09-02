@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -8,7 +9,7 @@ use Illuminate\Support\Facades\Request;
 class BaseModel extends Model {
 
     const   DFORMAT = 'm/d/Y';
-    const   DFORMAT2 = 'd M';
+    const   DFORMAT2 = 'M d';
 
     public function rules(){
         return [];
@@ -256,5 +257,20 @@ class BaseModel extends Model {
         }
 
         return $model;
+    }
+
+    public function humanFormat($attribute)
+    {
+        if(!($this->$attribute instanceof Carbon)){
+            return '-';
+        }
+
+        if($this->$attribute->isToday()){
+            return $this->$attribute->diffForHumans();
+        }elseif($this->$attribute->isYesterday()){
+            return 'Yesterday';
+        }else{
+            return $this->$attribute->format(self::DFORMAT2);
+        }
     }
 }
