@@ -2837,6 +2837,38 @@ textarea.wall-text-area:focus {
     -webkit-box-shadow: 0 0 10px 3px rgba(100, 100, 100, 0.1);
     display: block !important;
 }
+.public-wall .item-comments{
+    border: none;
+    padding: 10px 0;
+}
+.c-wall-comment {
+    background: #f6f6f6;
+    border: 1px solid #e3e3e3;
+    padding: 18px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.c-area-group2 {
+    padding: 0 100px 0 0;
+    position: relative;
+}
+.c-area-group2 textarea {
+    border: 1px solid #e3e3e3;
+    border-radius: 3px !important;
+    -webkit-border-radius: 3px !important;
+    color: #8d8d8d;
+    font-family: work_sansregular;
+    font-size: 15px;
+    height: 40px;
+    max-width: 100%;
+    min-height: 40px;
+    min-width: 100%;
+    padding: 10px 15px 2px;
+}
+.btn4-cu1 {
+    height: 40px !important;
+    line-height: 35px !important;
+}
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
         display: inline-block;

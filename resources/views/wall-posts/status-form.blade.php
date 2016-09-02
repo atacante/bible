@@ -6,7 +6,12 @@
         {!! Form::hidden('rel_id',$groupId) !!}
         @endif
         <div class="c-area-group1">
-            <div class="user-image"></div>
+            {{--<div class="user-image"></div>--}}
+            @if(Auth::user()->avatar)
+                <div class="user-image" style="background: url('{!! Auth::user()->avatar!=''?Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar:'' !!}') center no-repeat;"></div>
+            @else
+                <div class="user-image"></div>
+            @endif
             <div class="form-group {{ $errors->has('status_text') ? ' has-error' : '' }}">
                 {!! Form::textarea('status_text',null,['id' => 'status-text', 'class' => 'wall-text-area','placeholder' => "What's on your mind?",'rows' => 1]) !!}
                 @if ($errors->has('status_text'))
