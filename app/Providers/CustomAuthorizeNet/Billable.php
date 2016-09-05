@@ -108,7 +108,11 @@ trait Billable
         $paymentCreditCard = new AnetAPI\PaymentType();
         $paymentCreditCard->setCreditCard($creditCard);
 
-        $name = explode(' ', $this->name);
+        if(isset($creditCardDetails['billing_name'])){
+            $name = explode(' ', $creditCardDetails['billing_name']);
+        }else{
+            $name = explode(' ', $this->name);
+        }
 
         $billto = new AnetAPI\CustomerAddressType();
         $billto->setFirstName($name[0]);
@@ -118,21 +122,26 @@ trait Billable
             $billto->setLastName($name[0]);
         }
 
-        if($this->address){
+        if(isset($creditCardDetails['billing_address'])){
+            $billto->setAddress($creditCardDetails['billing_address']);
+        }elseif($this->address){
             $billto->setAddress($this->address);
         }else{
             $billto->setAddress('Default');
         }
+
         $billto->setCity($this->city);
         $billto->setState($this->state);
 
-        if($this->zip){
+        if(isset($creditCardDetails['billing_zip'])){
+            $billto->setZip($creditCardDetails['billing_zip']);
+        }elseif($this->zip){
             $billto->setZip($this->zip);
         }else{
             $billto->setZip(11111);
         }
 
-        $billto->setCountry($this->country);
+        $billto->setCountry($this->country->nicename);
 
         $paymentprofile = new AnetAPI\CustomerPaymentProfileType();
         $paymentprofile->setCustomerType('individual');
@@ -199,8 +208,12 @@ trait Billable
         $paymentCreditCard = new AnetAPI\PaymentType();
         $paymentCreditCard->setCreditCard($creditCard);
 
-        // Create the Bill To info for new payment type
-        $name = explode(' ', $this->name);
+        if(isset($card['billing_name'])){
+            $name = explode(' ', $card['billing_name']);
+        }else{
+            $name = explode(' ', $this->name);
+        }
+
         $billto = new AnetAPI\CustomerAddressType();
         $billto->setFirstName($name[0]);
         if(isset($name[1])){
@@ -208,7 +221,10 @@ trait Billable
         }else{
             $billto->setLastName($name[0]);
         }
-        if($this->address){
+
+        if(isset($card['billing_address'])){
+            $billto->setAddress($card['billing_address']);
+        }elseif($this->address){
             $billto->setAddress($this->address);
         }else{
             $billto->setAddress('Default');
@@ -217,13 +233,15 @@ trait Billable
         $billto->setCity($this->city);
         $billto->setState($this->state);
 
-        if($this->zip){
+        if(isset($card['billing_zip'])){
+            $billto->setZip($card['billing_zip']);
+        }elseif($this->zip){
             $billto->setZip($this->zip);
         }else{
             $billto->setZip(11111);
         }
 
-        $billto->setCountry($this->country);
+        $billto->setCountry($this->country->nicename);
 
         // Create the Customer Payment Profile object
         $paymentprofile = new AnetAPI\CustomerPaymentProfileExType();
@@ -237,10 +255,18 @@ trait Billable
 
         $controller = new AnetController\UpdateCustomerPaymentProfileController($request);
         $response = $controller->executeWithApiResponse($requestor->env);
+
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             $this->card_brand = $this->cardBrandDetector($card['number']);
             $this->card_last_four = substr($card['number'], -4);
             $this->save();
+
+            $this->userMeta->billing_first_name = $billto->getFirstName();
+            $this->userMeta->billing_last_name = $billto->getLastName();
+            $this->userMeta->billing_address = $billto->getAddress();
+            $this->userMeta->billing_postcode = $billto->getZip();
+
+            $this->userMeta->save();
 
             $result = [
                 'success' => true,
@@ -296,7 +322,12 @@ trait Billable
      * @return bool
      */
     public function askToCreateAccount(){
-        if(($card['number'] = Input::get('card_number')) && ($card['expiration'] = Input::get('card_expiration'))){
+        if( ($card['number'] = Input::get('card_number')) &&
+            ($card['expiration'] = Input::get('card_expiration')) &&
+            ($card['billing_name'] = Input::get('billing_name')) &&
+            ($card['billing_address'] = Input::get('billing_address')) &&
+            ($card['billing_zip'] = Input::get('billing_zip'))
+        ){
             return $card;
         }
 

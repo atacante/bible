@@ -99,11 +99,17 @@ class User extends Authenticatable
                     if(!$this->hasPaymentAccount()){
                         $rules['card_number'] = 'required|numeric';
                         $rules['card_expiration'] = 'required';
+                        $rules['billing_name'] = 'required';
+                        $rules['billing_address'] = 'required';
+                        $rules['billing_zip'] = 'required|numeric';
                     }
                 }else{
                     if(Input::get('card_number') || Input::get('card_expiration')){
                         $rules['card_expiration'] = 'required';
                         $rules['card_number'] = 'required|numeric';
+                        $rules['billing_name'] = 'required';
+                        $rules['billing_address'] = 'required';
+                        $rules['billing_zip'] = 'required|numeric';
                     }
                 }
             }
@@ -252,6 +258,11 @@ class User extends Authenticatable
     public function blogViews()
     {
         return $this->hasMany(UsersViews::class, 'user_id', 'id')->with(['item','item.category'])->where('item_category',UsersViews::CAT_BLOG);
+    }
+
+    public function userMeta()
+    {
+        return $this->hasOne(UsersMeta::class, 'user_id', 'id')->orderBy('id', SORT_DESC);
     }
 
     public function followFriend(User $user)
