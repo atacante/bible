@@ -32,7 +32,7 @@
                                             <div class="carousel-inner" role="listbox">
                                                 @foreach($location->images as $key => $image)
                                                     <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
-                                                        <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}" class="" alt="" style="cursor: pointer;">
+                                                        <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}" class="slider-item-location">
                                                     </div>
                                                 @endforeach
                                             </div>
@@ -59,7 +59,7 @@
                                     </div>
                                 @endif
 
-                                    <h4>{!! $location->location_name !!}</h4>
+                                    <h4 class="h4-locations">{!! $location->location_name !!}</h4>
 
                                 @if($location->g_map)
                                     <div class="text-center location-map-btn">

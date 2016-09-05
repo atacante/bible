@@ -2939,6 +2939,19 @@ textarea.wall-text-area:focus {
 .c-inner-location-text {
     padding: 10px 30px;
 }
+.slider-item-location {
+    cursor: pointer;
+    height: 260px !important;
+}
+.my-inner-location-item .item {
+    height: 260px;
+}
+h4.h4-locations {
+    text-transform: uppercase;
+    color: #010101;
+    font-family: ns_widemedium;
+    font-size: 16px;
+}
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
         display: inline-block;
