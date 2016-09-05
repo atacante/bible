@@ -59,7 +59,7 @@
                                     </div>
                                 @endif
 
-                                    <h4 class="h4-locations">{!! $location->location_name !!}</h4>
+
 
                                 @if($location->g_map)
                                     <div class="text-center location-map-btn">
@@ -68,7 +68,8 @@
                                 @endif
                             </div>
                             <div class="c-inner-location-text">
-                                {!! str_limit(strip_tags($location->location_description,'<p></p>'), $limit = 100, $end = '... <br>'.Html::link(url('/locations/view/'.$location->id,[],false), 'View Details', ['class' => 'btn1 cu2-btn1','style' => 'padding: 0 5px;'], true)) !!}
+                                <h4 class="h4-locations">{!! $location->location_name !!}</h4>
+                                {!! str_limit(strip_tags($location->location_description,'<p></p>'), $limit = 140, $end = '... <br>'.Html::link(url('/locations/view/'.$location->id,[],false), 'View Details', ['class' => 'btn1 cu2-btn1','style' => 'padding: 0 5px;'], true)) !!}
                             </div>
                         </div>
                     </div>

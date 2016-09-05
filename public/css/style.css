@@ -1500,13 +1500,17 @@ body {
 }
 .cu2-btn1 {
     font-size: 13px;
-    padding: 7px 25px;
+    padding: 10px 25px !important;
     border-width: 2px;
     border-radius: 0;
     -webkit-border-radius: 0;
     vertical-align: top;
-    width: 100%;
     border-width: 2px !important;
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    box-sizing: border-box;
 }
 .cu-btn1:hover, .cu-btn1:active, .cu-btn1:focus {
     border: 2px solid #00b9f7 !important;
@@ -2924,7 +2928,7 @@ textarea.wall-text-area:focus {
     position: relative;
     height: 542px;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     background: white;
 }
 .cu1-row {
@@ -2937,7 +2941,9 @@ textarea.wall-text-area:focus {
     width: 100%;
 }
 .c-inner-location-text {
-    padding: 10px 30px;
+    padding: 10px 30px 85px;
+    height: 282px !important;
+    position: relative;
 }
 .slider-item-location {
     cursor: pointer;
@@ -2946,11 +2952,42 @@ textarea.wall-text-area:focus {
 .my-inner-location-item .item {
     height: 260px;
 }
+.my-inner-location-item p {
+    margin: 0;
+    color: #535353;
+    font-size: 14px;
+    line-height: 16px;
+}
+.my-inner-location-item {
+    font-size: 14px;
+    font-family: work_sansregular;
+    line-height: 20px;
+}
 h4.h4-locations {
     text-transform: uppercase;
     color: #010101;
     font-family: ns_widemedium;
     font-size: 16px;
+    margin: 20px 0;
+}
+.pagination {
+    border-radius: 0;
+    margin: 20px 2px;
+}
+.pagination li {
+    border-radius: 0;
+}
+.pagination > li > a, .pagination > li > span {
+    border-radius: 0 !important;
+    margin: 0 2px;
+    height: 44px;
+    min-width: 44px;
+    border: none !important;
+    text-align: center;
+    line-height: 34px !important;
+    font-family: ns_widenormal;
+    font-size: 14px;
+    color: #000;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
