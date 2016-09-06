@@ -206,7 +206,7 @@
                                                                                 'chapter' => $verse->chapter_num,
                                                                                 'verse' => $verse->verse_num,
                                                                             ]), $title = $verse->verse_num) !!}
-                                                    </b>&nbsp;{!! ViewHelper::prepareVerseText($verse,true) !!}
+                                                    </b>&nbsp;{!! ViewHelper::prepareVerseText($verse,true,$content['readerMode']) !!}
                                             </span>
                                         @endforeach
                                     </div>

@@ -316,12 +316,12 @@ $(document).ready(function(){
         site.getUser(id);
     });
 
-    $('body').on('change','select[name=readerMode]',function(){
+/*    $('body').on('change','select[name=readerMode]',function(){
         location.href = '/reader/mode/'+$(this).val();
     });
     $('body').on('change','input[type=radio][name=readerMode]',function(){
         location.href = '/reader/mode/'+$(this).val();
-    });
+    });*/
 
     $('.j-verses-filters').on('focus','select[name=version]',function(){
         $(this).data('prevval', $(this).val());

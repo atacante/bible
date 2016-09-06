@@ -126,32 +126,40 @@
             <h4 class="popup-title">
                 Settings
             </h4>
+            {!!  Form::open(['method' => 'get','url' => '/reader/read']) !!}
+            <div class="mt15">
+                {{--<input type="checkbox">--}}
+                {!! Form::hidden('related', 0) !!}
+                {!! Form::checkbox('related', null, ($content['showRelated'])?1:0) !!}
+                Show Related Records
+            </div>
             {{--{!! $content['heading'] !!}--}}
             @if(Request::input('compare',false))
                 {{--{!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
                 <div class="mt15">
                     {{--<input type="checkbox">--}}
-                    {!! Form::checkbox('diff', Request::input('diff',false)?1:0, Request::input('diff',false)?1:0, ['class' => 'j-check-diff', 'data-link' => '/reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1]))]) !!}
+                    {!! Form::checkbox('diff', Request::input('diff',false)?1:0, Request::input('diff',false)?1:0) !!}
                     Show difference
                 </div>
             @endif
             <div class="mt16">
                 <div class="radio-inline">
                     <label>
-                        {!! Form::radio('readerMode', 'beginner', (Request::cookie('readerMode',false) == 'beginner'),['class' => 'j-reader-mode']) !!}
+                        {!! Form::radio('readerMode', 'beginner', ($content['readerMode'] == 'beginner'),['class' => 'j-reader-mode']) !!}
                         {!! Config::get('app.readerModes.beginner') !!}
                     </label>
                 </div>
                 <div class="radio-inline">
                     <label>
-                        {!! Form::radio('readerMode', 'intermediate', (Request::cookie('readerMode',false) == 'intermediate'),['class' => 'j-reader-mode']) !!}
+                        {!! Form::radio('readerMode', 'intermediate', ($content['readerMode'] == 'intermediate'),['class' => 'j-reader-mode']) !!}
                         {!! Config::get('app.readerModes.intermediate') !!}
                     </label>
                 </div>
             </div>
             <div class="mt16">
-                <a class="btn1 cu-btn1 j-btn-ok" href="#">OK</a>
+                {!! Form::button('OK', ['type'=>'submit','class'=>'btn1 cu-btn1']) !!}
             </div>
+            <?php echo Form::close() ?>
         </div>
 </div>
 @endif

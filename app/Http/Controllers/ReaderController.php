@@ -127,7 +127,24 @@ class ReaderController extends Controller
             }
         }
 
+        $mode = Request::input('readerMode', false);
+        if($mode){
+            Cookie::queue(Cookie::forever('readerMode', $mode));
+        }else{
+            $mode = Cookie::get('readerMode');
+        }
+
+        $related = Request::input('related', false);
+        if($related !== false){
+            Cookie::queue(Cookie::forever('related', $related));
+        }else{
+            $related = Cookie::get('related');
+        }
+
+
         $content['relatedItems'] = $this->getRelatedItems($version,$book,$chapter);
+        $content['showRelated'] = $related;
+        $content['readerMode'] = $mode;
 
         return view('reader.main', ['compare' => $compare, 'content' => $content]);
     }

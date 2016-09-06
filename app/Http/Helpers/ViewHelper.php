@@ -81,9 +81,8 @@ class ViewHelper
         return '';
     }
 
-    public static function prepareVerseText($verse, $allowDiff = false)
+    public static function prepareVerseText($verse, $allowDiff = false, $readerMode = 'beginner')
     {
-        $readerMode = Request::cookie('readerMode',false);
         if((!$readerMode || $readerMode == 'beginner') && !empty($verse->verse_text_with_symbolism) && (!Request::input('diff',false) || $allowDiff)){
             return $verse->verse_text_with_symbolism;
         }
