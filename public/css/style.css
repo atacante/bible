@@ -877,18 +877,18 @@ a.view-details:hover{
 .friends-list .friend-item:last-child{
     border: 0;
 }
-.wall-nav,.friends-nav{
+.tabs-nav {
     margin-bottom: 30px;
     border-bottom: 2px solid #e3e3e3;
 }
-ul.wall-nav li {
+ul.tabs-nav li {
     margin-bottom: -2px;
     margin-right: 20px;
 }
-ul.wall-nav li:last-child {
+ul.tabs-nav li:last-child {
     margin-right: 0;
 }
-.wall-nav.nav-pills>li>a, .friends-nav.nav-pills>li>a,.user-block .nav-pills>li>a{
+.tabs-nav.nav-pills>li>a,.user-block .nav-pills>li>a{
     padding: 10px 0;
     line-height: 20px;
     border-radius: 0;
@@ -898,7 +898,7 @@ ul.wall-nav li:last-child {
     font-family: ns_widenormal;
     color: #505050;
 }
-.wall-nav.nav-pills>li.active>a, .wall-nav.nav-pills>li:hover>a {
+.tabs-nav.nav-pills>li.active>a, .tabs-nav.nav-pills>li:hover>a {
     background: transparent !important;
     color: #00b9f7;
     font-family: ns_widedemibold;
