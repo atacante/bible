@@ -12,7 +12,7 @@
             <div class="row cu1-row">
             @if(count($content['locations']))
                 @foreach($content['locations'] as $location)
-                    <div class="my-location-item">
+                    <div class="my-item">
                         <div class="my-inner-location-item">
                             <div class="">
                                 @if($location->images->count())
