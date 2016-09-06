@@ -202,7 +202,7 @@
                     </div>
                     <div class="form-group {{ $errors->has('billing_name') ? ' has-error' : '' }}">
                         {!! Form::label('billing_name', 'Billing Name:') !!}
-                        {!! Form::text('billing_name', $model->userMeta->billing_first_name .' '.$model->userMeta->billing_last_name) !!}
+                        {!! Form::text('billing_name', ($model->userMeta)?$model->userMeta->billing_first_name .' '.$model->userMeta->billing_last_name: '') !!}
                         @if ($errors->has('billing_name'))
                             <span class="help-block">
                                     {{ $errors->first('billing_name') }}
@@ -211,7 +211,7 @@
                     </div>
                     <div class="form-group {{ $errors->has('billing_address') ? ' has-error' : '' }}">
                         {!! Form::label('billing_address', 'Billing Address:') !!}
-                        {!! Form::text('billing_address', $model->userMeta->billing_address) !!}
+                        {!! Form::text('billing_address', ($model->userMeta)?$model->userMeta->billing_address:'') !!}
                         @if ($errors->has('billing_address'))
                             <span class="help-block">
                                     {{ $errors->first('billing_address') }}
@@ -220,7 +220,7 @@
                     </div>
                     <div class="form-group {{ $errors->has('billing_zip') ? ' has-error' : '' }}">
                         {!! Form::label('billing_zip', 'Billing Zip:') !!}
-                        {!! Form::text('billing_zip', $model->userMeta->billing_postcode) !!}
+                        {!! Form::text('billing_zip', ($model->userMeta)?$model->userMeta->billing_postcode:'') !!}
                         @if ($errors->has('billing_zip'))
                             <span class="help-block">
                                     {{ $errors->first('billing_zip') }}
