@@ -1535,6 +1535,7 @@ body {
     border-radius: 0;
     -webkit-border-radius: 0;
     background: transparent;
+    float: right;
 }
 .btn2, .btn2:visited {
     display: inline-block;
@@ -3029,7 +3030,7 @@ h4.h4-locations {
     border-color: #00b9f7 !important;
     color: #ffffff !important;
 }
-.j-admin-verses-filters .form-control {
+.search-text-input {
     border-radius: 0;
     -webkit-border-radius: 0;
     color: #8d8d8d;
@@ -3037,6 +3038,8 @@ h4.h4-locations {
     font-family: work_sansregular;
     font-size: 14px;
     border: 1px solid #e3e3e3;
+    float: left;
+    margin-right: 5px;
 }
 .cu-search1 {
     font-size: 18px;

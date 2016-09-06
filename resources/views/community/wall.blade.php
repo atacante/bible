@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-9 public-wall">
             @role('user')
-            <ul class="nav nav-pills wall-nav">
+            <ul class="nav nav-pills tabs-nav">
                 <li role="presentation" class="{!! (!Request::get('type') || Request::get('type') == 'all')?'active':'' !!}">
                     <a href="{!! url('/community/wall?type=all') !!}">All public records</a>
                 </li>

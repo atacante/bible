@@ -1,7 +1,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <ul class="nav nav-pills wall-nav">
+            <ul class="nav nav-pills tabs-nav">
                 <li class="{{Request::is('locations/list')?'active':''}}">
                     {!! Html::link('/locations/list','LOCATIONS') !!}
                 </li>
