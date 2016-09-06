@@ -28,19 +28,19 @@
                 </ul>
                 @endrole
             </div>
-            <div class="j-friends-items" style="margin-top: 15px;">
+            <div class="j-friends-items">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="user-block">
+                        <div class="">
                             <div class="u-header">
                                 <div class="">
                                     <strong>
                                         @if(!Request::get('type') || Request::get('type') == 'all')
-                                            All Users
+                                            {{--All Users--}}
                                         @elseif(Request::get('type') == 'my')
-                                            My Friends
+                                            {{--My Friends--}}
                                         @elseif(Request::get('type') == 'new')
-                                            New Users
+                                            {{--New Users--}}
                                         @elseif(Request::get('type') == 'inbox-requests' || Request::get('type') == 'sent-requests')
                                             <ul class="nav nav-pills">
                                                 <li role="presentation" class="{!! (Request::get('type') == 'inbox-requests')?'active':'' !!}"><a href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'inbox-requests']))) !!}">Inbox Requests</a></li>
@@ -50,31 +50,13 @@
                                     </strong>
                                 </div>
                             </div>
-                            <div class="u-body clearfix">
+                            <div class="row cu1-row">
                                 @include('community.friend-items')
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="text-center">
-
-{{--                {!! $content['people']->appends(Request::input())->links() !!}--}}
-            </div>
         </div>
-        {{--<div class="col-md-3">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Filters</h3>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>--}}
     </div>
 @endsection
