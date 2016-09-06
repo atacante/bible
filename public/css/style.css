@@ -2181,6 +2181,11 @@ ul.icon-panel li a {
     font-family: work_sansregular;
     font-size: 18px;
 }
+.verse-search-text {
+    color: #535353;
+    font-family: work_sansregular;
+    font-size: 18px;
+}
 .col-xs-6 .verse-text, .col-xs-4 .verse-text {
     font-size: 16px;
 }

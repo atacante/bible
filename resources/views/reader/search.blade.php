@@ -31,7 +31,7 @@
                             $verse->booksListEn->book_name." ".$verse->chapter_num  .":".$verse->verse_num) !!}
                         </b>
                     </div>
-                    <div class="verse-text j-verse-text" data-version="" data-verseid="{!! $verse->id !!}"> {!! $verse->highlighted_verse_text !!}</div>
+                    <div class="verse-search-text j-verse-text" data-version="" data-verseid="{!! $verse->id !!}"> {!! $verse->highlighted_verse_text !!}</div>
                 @endforeach
             @else
                 <p class="text-center">No any results found</p>
@@ -56,7 +56,7 @@
                             $verse->booksListEn->book_name." ".$verse->chapter_num  .":".$verse->verse_num) !!}
                         </b>
                     </div>
-                    <div class="verse-text j-verse-text" data-version="" data-verseid="{!! $verse->id !!}"> {!! $verse->highlighted_verse_text !!}</div>
+                    <div class="verse-search-text j-verse-text" data-version="" data-verseid="{!! $verse->id !!}"> {!! $verse->highlighted_verse_text !!}</div>
                 @endforeach
             @else
                 <p class="text-center">No any results found</p>
