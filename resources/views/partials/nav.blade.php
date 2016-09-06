@@ -127,12 +127,14 @@
                 Settings
             </h4>
             {!!  Form::open(['method' => 'get','url' => '/reader/read']) !!}
-            <div class="mt15">
-                {{--<input type="checkbox">--}}
-                {!! Form::hidden('related', 0) !!}
-                {!! Form::checkbox('related', null, ($content['showRelated'])?1:0) !!}
-                Show Related Records
-            </div>
+            @if(isset($content['showRelated']))
+                <div class="mt15">
+                    {{--<input type="checkbox">--}}
+                    {!! Form::hidden('related', 0) !!}
+                    {!! Form::checkbox('related', null, ($content['showRelated'])?1:0) !!}
+                    Show Related Records
+                </div>
+            @endif
             {{--{!! $content['heading'] !!}--}}
             @if(Request::input('compare',false))
                 {{--{!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
@@ -142,6 +144,7 @@
                     Show difference
                 </div>
             @endif
+            @if(isset($content['readerMode']))
             <div class="mt16">
                 <div class="radio-inline">
                     <label>
@@ -156,6 +159,7 @@
                     </label>
                 </div>
             </div>
+            @endif
             <div class="mt16">
                 {!! Form::button('OK', ['type'=>'submit','class'=>'btn1 cu-btn1']) !!}
             </div>
