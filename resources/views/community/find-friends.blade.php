@@ -43,8 +43,12 @@
                                             {{--New Users--}}
                                         @elseif(Request::get('type') == 'inbox-requests' || Request::get('type') == 'sent-requests')
                                             <ul class="nav nav-pills">
-                                                <li role="presentation" class="{!! (Request::get('type') == 'inbox-requests')?'active':'' !!}"><a href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'inbox-requests']))) !!}">Inbox Requests</a></li>
-                                                <li role="presentation" class="{!! (Request::get('type') == 'sent-requests')?'active':'' !!}"><a href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'sent-requests']))) !!}">Sent Requests</a></li>
+                                                <li role="presentation" class="{!! (Request::get('type') == 'inbox-requests')?'active':'' !!}">
+                                                    <a class="btn1 cu6-btn1" href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'inbox-requests']))) !!}">Inbox Requests</a>
+                                                </li>
+                                                <li role="presentation" class="{!! (Request::get('type') == 'sent-requests')?'active':'' !!}">
+                                                    <a class="btn1 cu6-btn1" href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'sent-requests']))) !!}">Sent Requests</a>
+                                                </li>
                                             </ul>
                                         @endif
                                     </strong>

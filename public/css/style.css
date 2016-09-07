@@ -1616,6 +1616,25 @@ body {
     text-transform: uppercase;
     line-height: 15px;
 }
+.cu6-btn1, .cu6-btn1:visited {
+    font-size: 13px !important;
+    padding: 8px !important;
+    border-width: 2px;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    vertical-align: top;
+    border-width: 2px !important;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    line-height: 15px;
+    margin-right: 4px;
+    font-weight: normal !important;
+    background-color: transparent !important;
+}
+li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
+    border: 2px solid #00b9f7 !important;
+    background-color: #00b9f7 !important;
+}
 .cu-btn1:hover, .cu-btn1:active, .cu-btn1:focus {
     border: 2px solid #00b9f7 !important;
     background-color: #00b9f7 !important;
@@ -3230,10 +3249,21 @@ h4.h4-locations {
     .c-center-content2 {
         text-align: center;
     }
-    .my-location-item {
+    .my-item {
         width: 33.333333%;
     }
 }
+@media (max-width: 970px) {
+    .my-item {
+        width: 50%;
+    }
+}
+@media (max-width: 750px) {
+    .my-item {
+        width: 100%;
+    }
+}
+
 
 .highlight{
     color: #00b9f7;
