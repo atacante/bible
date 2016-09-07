@@ -169,6 +169,13 @@ trait Billable
             $this->card_last_four = substr($creditCardDetails['number'], -4);
             $this->save();
 
+            $this->userMeta->billing_first_name = $billto->getFirstName();
+            $this->userMeta->billing_last_name = $billto->getLastName();
+            $this->userMeta->billing_address = $billto->getAddress();
+            $this->userMeta->billing_postcode = $billto->getZip();
+
+            $this->userMeta->save();
+
             $result = [
                 'success' => true,
                 'message' => 'Credit Card was added'
