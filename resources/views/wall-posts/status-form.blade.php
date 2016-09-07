@@ -51,10 +51,10 @@
         <div class="pp-title">
             WHO SHOULD SEE THIS?
         </div>
-        <ul class="pp-c-items j-status-list">
+        <ul class="pp-c-items items-status j-status-list">
             {{--<li><a  data-val="all" href="#">All Versions</a></li>--}}
-            <li><a class="" data-val="{{App\WallPost::ACCESS_PUBLIC_ALL}}" href="#">Public</a></li>
-            <li><a class="" data-val="{{App\WallPost::ACCESS_PUBLIC_FRIENDS}}" href="#">Only Friends</a></li>
-            <li><a class="" data-val="{{App\WallPost::ACCESS_PRIVATE}}" href="#">Only Me</a></li>
+            <li><a class="" data-val="{{App\WallPost::ACCESS_PUBLIC_ALL}}" href="#"><i class="bs-s-public"></i>Public<i class="bs-checkmark right-position"></i></a></li>
+            <li><a class="" data-val="{{App\WallPost::ACCESS_PUBLIC_FRIENDS}}" href="#"><i class="bs-friends"></i>Only Friends<i class="bs-checkmark right-position hidden"></i></a></li>
+            <li><a class="" data-val="{{App\WallPost::ACCESS_PRIVATE}}" href="#"><i class="bs-s-onlyme"></i>Only Me<i class="bs-checkmark right-position hidden"></i></a></li>
         </ul>
 </div>

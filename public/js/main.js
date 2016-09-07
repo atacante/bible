@@ -1519,6 +1519,9 @@ $(document).ready(function(){
 
         $(".j-status-list li a").removeClass('active');
         $(this).addClass('active');
+        $(".j-status-list li a i.bs-checkmark").addClass('hidden');
+        $(".j-status-list li a.active i.bs-checkmark").removeClass('hidden');
+
         $(".j-popup-should-see").toggle();
 
         site.changeStatusIcon(newLevel);

@@ -252,6 +252,14 @@ a.view-details:hover{
     color: red;
 }
 
+.text-capitalize{
+    text-transform: capitalize !important;
+}
+
+.text-left{
+    text-align: left !important;
+}
+
 .note-text,.journal-text,.prayer-text,.entry-text,.status-text{
     cursor: pointer;
 }
@@ -2699,6 +2707,7 @@ ul.pp-c-items li a {
     font-size: 14px;
     text-align: center;
 }
+
 ul.pp-c-items li a:hover {
     background: #00b9f7;
     color: white;
@@ -2707,6 +2716,23 @@ ul.pp-c-items li a.active {
     background: #313d47;
     color: white;
 }
+
+ul.items-status li a {
+    font-family: inherit;
+    text-transform: capitalize;
+    color: #000000;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 57px;
+    position: relative;
+}
+
+ul.items-status li a i{
+    position: absolute;
+    top: 11px;
+    left: 30px;
+}
+
 .h4-sel-version {
     display: inline-block;
     text-align: center;
@@ -3294,4 +3320,9 @@ h4.h4-locations {
 }
 .show-more:hover{
     color: #00b9f7 !important;
+}
+
+.right-position{
+    left: auto !important;
+    right: 20px !important;
 }
