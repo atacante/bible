@@ -1642,4 +1642,43 @@ $(document).ready(function(){
             hidev=true;
         }
     });
+
+    $('.j-live-search-list li').each(function(){
+        $(this).attr('data-search-term', $(this).text().toLowerCase());
+    });
+
+    $('.j-live-search-box').on('keyup', function(){
+        var searchTerm = $(this).val().toLowerCase();
+        $('.j-live-search-list li').each(function(){
+            if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+
+    $('.j-live-search-list').on('click','.j-versions-to-compare-list',function(){
+        if($("#compare-versions-select").val() && $("#compare-versions-select").val().length >= 2){
+            $(this).after('<div class="j-compare-error" style="color: red; font-size: 12px; margin-left: 5px;">You can only select 2 items</div>');
+            setTimeout(function(){
+                $('.j-compare-error').remove();
+            },3000);
+            //$('#popup-sm').find('.modal-header .modal-title').text('Warning');
+            //$('#popup-sm').find('.modal-body').html("You can only select 2 items");
+            //$('#popup-sm').find('.modal-footer').html('<a class="btn btn-danger btn-ok" data-dismiss="modal">Ok</a>');
+            //$('#popup-sm').modal({show:true});
+            return false;
+        }
+        $("#compare-versions-select option[value='" + $(this).data('versioncode') + "']").attr('selected', 'selected');
+        $('.j-compare-list').append($(this));
+        $(this).find('.btn-reset').removeClass('hidden');
+    });
+
+    $('.j-remove-compare').click(function(e){
+        e.preventDefault();
+        $("#compare-versions-select option[value='" + $(this).parents('li').data('versioncode') + "']").removeAttr('selected');
+        $(this).addClass('hidden');
+        $('.live-search-list').append($(this).parents('li'));
+    });
 });
