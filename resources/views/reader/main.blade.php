@@ -307,13 +307,13 @@
                     @if($prevBook = $content['pagination']['bookPrev'])
                         <a href="{!! url('reader/read?'.http_build_query($prevBook),[],false) !!}" class="btn2 mr5 btn-min-w">
                             <div class="btn-top-label1">Prev Book</div>
-                            <div class="btn-sub-label1">Leviticus</div>
+                            <div class="btn-sub-label1">{{ $filters['books'][$prevBook['book']] }}</div>
                         </a>
                     @endif
                     @if($prevChapter = $content['pagination']['chapterPrev'])
                         <a href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}" class="btn2 mr5 btn-min-w">
                             <div class="btn-top-label1">Prev Chapter</div>
-                            <div class="btn-sub-label1">Genesis 9</div>
+                            <div class="btn-sub-label1">{{ $filters['books'][$prevChapter['book']].' '.$filters['chapters'][$prevChapter['chapter']] }}</div>
                         </a>
                     @endif
                 </div>
@@ -321,13 +321,13 @@
                     @if($nextChapter = $content['pagination']['chapterNext'])
                         <a href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}" class="btn1 ml1 btn-min-w">
                             <div class="btn-top-label1">Next Chapter</div>
-                            <div class="btn-sub-label1">Genesis 11</div>
+                            <div class="btn-sub-label1">{{ $filters['books'][$nextChapter['book']].' '.$filters['chapters'][$nextChapter['chapter']] }}</div>
                         </a>
                     @endif
                     @if($nextBook = $content['pagination']['bookNext'])
                         <a href="{!! url('reader/read?'.http_build_query($nextBook),[],false) !!}" class="btn1 ml1 btn-min-w">
                             <div class="btn-top-label1">Next Book</div>
-                            <div class="btn-sub-label1">Exodus</div>
+                            <div class="btn-sub-label1">{{ $filters['books'][$nextBook['book']] }}</div>
                         </a>
                     @endif
                 </div>
