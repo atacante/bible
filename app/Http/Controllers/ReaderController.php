@@ -131,14 +131,14 @@ class ReaderController extends Controller
         if($mode){
             Cookie::queue(Cookie::forever('readerMode', $mode));
         }else{
-            $mode = Cookie::get('readerMode');
+            $mode = Cookie::get('readerMode', 'beginner');
         }
 
         $related = Request::input('related', false);
         if($related !== false){
             Cookie::queue(Cookie::forever('related', $related));
         }else{
-            $related = Cookie::get('related');
+            $related = Cookie::get('related', false);
         }
 
 
