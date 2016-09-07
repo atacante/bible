@@ -1391,6 +1391,87 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-decoration: none !important;
 }
+.bs-upload:before {
+    content: "\e935";
+}
+.bs-calendar:before {
+    content: "\e936";
+}
+.bs-add:before {
+    content: "\e917";
+}
+.bs-remove:before {
+    content: "\e91d";
+}
+.bs-checkmark:before {
+    content: "\e91e";
+}
+.bs-s-groupscustom:before {
+    content: "\e91f";
+}
+.bs-s-groups:before {
+    content: "\e920";
+}
+.bs-friends:before {
+    content: "\e921";
+}
+.bs-user:before {
+    content: "\e922";
+}
+.bs-invite:before {
+    content: "\e923";
+}
+.bs-arrowrt:before {
+    content: "\e924";
+}
+.bs-arrowback:before {
+    content: "\e925";
+}
+.bs-contactus:before {
+    content: "\e926";
+}
+.bs-faq:before {
+    content: "\e927";
+}
+.bs-seminars:before {
+    content: "\e928";
+}
+.bs-producticon:before {
+    content: "\e929";
+}
+.bs-cart:before {
+    content: "\e92a";
+}
+.bs-parallel:before {
+    content: "\e92b";
+}
+.bs-people:before {
+    content: "\e92c";
+}
+.bs-places:before {
+    content: "\e92d";
+}
+.bs-s-onlyme:before {
+    content: "\e92e";
+}
+.bs-s-public:before {
+    content: "\e92f";
+}
+.bs-report:before {
+    content: "\e930";
+}
+.bs-comments:before {
+    content: "\e931";
+}
+.bs-like:before {
+    content: "\e932";
+}
+.bs-publicwall:before {
+    content: "\e933";
+}
+.bs-blog:before {
+    content: "\e934";
+}
 .bs-lexicon:before {
     content: "\e900";
 }
