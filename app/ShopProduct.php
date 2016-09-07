@@ -14,6 +14,7 @@ class ShopProduct extends BaseModel implements Buyable{
 		$rules = [
 			'category_id' => 'required',
 			'name' => 'required|max:255',
+			'short_description' => 'max:255',
 			'price' => 'required|numeric',
 		];
 
