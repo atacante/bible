@@ -20,13 +20,13 @@ class LexiconBerean extends BaseModel {
         return $this->belongsTo(BooksListEn::class, 'book_id', 'id');
     }
 
-    public function cacheVerse(){
+    public function cacheVerse($ids = []){
         $verses[] = VersesBereanEn::query()
             ->where('book_id',$this->book_id)
             ->where('chapter_num',$this->chapter_num)
             ->where('verse_num',$this->verse_num)
             ->first();
-        ModelHelper::cacheLexicon($verses,'berean');
+        ModelHelper::cacheLexicon($verses,'berean',$ids);
     }
 
     public function cacheSymbolismForBeginnerMode(){

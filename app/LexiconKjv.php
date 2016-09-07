@@ -20,14 +20,14 @@ class LexiconKjv extends BaseModel {
         return $this->belongsTo(BooksListEn::class, 'book_id', 'id');
     }
 
-    public function cacheVerse(){
+    public function cacheVerse($ids = []){
         $verses[] = VersesKingJamesEn::query()
             ->where('book_id',$this->book_id)
             ->where('chapter_num',$this->chapter_num)
             ->where('verse_num',$this->verse_num)
             ->first();
 //        VersesKingJamesEn::cacheLexicon($verses);
-        ModelHelper::cacheLexicon($verses,'kjv');
+        ModelHelper::cacheLexicon($verses,'kjv',$ids);
     }
 
     public function cacheSymbolismForBeginnerMode(){
