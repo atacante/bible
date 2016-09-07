@@ -32,7 +32,8 @@
                                             <div class="carousel-inner" role="listbox">
                                                 @foreach($location->images as $key => $image)
                                                     <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
-                                                        <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}" class="slider-item-location">
+                                                        {{--<img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}" class="slider-item-location">--}}
+                                                        <div class="people-image" style="background: url('{!! $image->image!=''?Config::get('app.locationImages').'thumbs/'.$image->image:'' !!}') center no-repeat;"></div>
                                                     </div>
                                                 @endforeach
                                             </div>

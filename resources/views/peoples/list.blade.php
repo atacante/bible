@@ -33,10 +33,7 @@
                                             <div class="carousel-inner" role="listbox">
                                                 @foreach($people->images as $key => $image)
                                                     <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
-                                                        <img src="{!! Config::get('app.peopleImages').'thumbs/'.$image->image !!}"
-                                                             class="img-thumbnail" alt="" style="cursor: pointer;">
-                                                        {{--<div class="carousel-caption">--}}
-                                                        {{--</div>--}}
+                                                        <div class="people-image" style="background: url('{!! $image->image!=''?Config::get('app.peopleImages').'thumbs/'.$image->image:'' !!}') center no-repeat;"></div>
                                                     </div>
                                                 @endforeach
                                             </div>
