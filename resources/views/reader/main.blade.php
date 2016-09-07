@@ -313,7 +313,7 @@
                     @if($prevChapter = $content['pagination']['chapterPrev'])
                         <a href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}" class="btn2 mr5 btn-min-w">
                             <div class="btn-top-label1">Prev Chapter</div>
-                            <div class="btn-sub-label1">{{ $filters['books'][$prevChapter['book']].' '.$filters['chapters'][$prevChapter['chapter']] }}</div>
+                            <div class="btn-sub-label1">{{ $filters['books'][Request::input('book',1)].' '.$filters['chapters'][$prevChapter['chapter']] }}</div>
                         </a>
                     @endif
                 </div>
@@ -321,7 +321,7 @@
                     @if($nextChapter = $content['pagination']['chapterNext'])
                         <a href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}" class="btn1 ml1 btn-min-w">
                             <div class="btn-top-label1">Next Chapter</div>
-                            <div class="btn-sub-label1">{{ $filters['books'][$nextChapter['book']].' '.$filters['chapters'][$nextChapter['chapter']] }}</div>
+                            <div class="btn-sub-label1">{{ $filters['books'][Request::input('book',1)].' '.$filters['chapters'][$nextChapter['chapter']] }}</div>
                         </a>
                     @endif
                     @if($nextBook = $content['pagination']['bookNext'])
