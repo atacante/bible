@@ -9,10 +9,13 @@ use Illuminate\Support\Facades\Route;
 
 class ModelHelper
 {
-    public static function cacheLexicon($verses = [],$version = false){
+    public static function cacheLexicon($verses = [],$version = false, $versesIds = []){
         ini_set('memory_limit', '512M');
         if(!count($verses)){
             $verses = self::query()->get();
+        }
+        if(count($versesIds)){
+            $verses = self::whereIn('id',$versesIds)->get();
         }
         $progressBar = new ProgressBarHelper(count($verses),10);
         $progressBar->start('Started caching lexicon for '.$version.' version');

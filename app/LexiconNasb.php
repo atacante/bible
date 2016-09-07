@@ -18,13 +18,13 @@ class LexiconNasb extends BaseModel
         return $this->belongsTo(BooksListEn::class, 'book_id', 'id');
     }
 
-    public function cacheVerse(){
+    public function cacheVerse($ids = []){
         $verses[] = VersesNasbEn::query()
             ->where('book_id',$this->book_id)
             ->where('chapter_num',$this->chapter_num)
             ->where('verse_num',$this->verse_num)
             ->first();
-        ModelHelper::cacheLexicon($verses,'nasb');
+        ModelHelper::cacheLexicon($verses,'nasb',$ids = []);
     }
 
     public function cacheSymbolismForBeginnerMode(){
