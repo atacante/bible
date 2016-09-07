@@ -135,12 +135,19 @@
                     Show Related Records
                 </div>
             @endif
+            {!! Form::hidden('version', Request::input('version', Config::get('app.defaultBibleVersion'))) !!}
+            {!! Form::hidden('book', Request::input('book', Config::get('app.defaultBookNumber'))) !!}
+            {!! Form::hidden('chapter', Request::input('chapter', Config::get('app.defaultChapterNumber'))) !!}
+
             {{--{!! $content['heading'] !!}--}}
-            @if(Request::input('compare',false))
+            @if($compareVersions = Request::input('compare', false))
+                @foreach($compareVersions as $version)
+                    {!! Form::hidden('compare[]', $version) !!}
+                @endforeach
                 {{--{!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
                 <div class="mt15">
                     {{--<input type="checkbox">--}}
-                    {!! Form::checkbox('diff', Request::input('diff',false)?1:0, Request::input('diff',false)?1:0) !!}
+                    {!! Form::checkbox('diff', null, Request::input('diff',false)?1:0) !!}
                     Show difference
                 </div>
             @endif
