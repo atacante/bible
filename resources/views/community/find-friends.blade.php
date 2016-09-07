@@ -42,7 +42,7 @@
                                         @elseif(Request::get('type') == 'new')
                                             {{--New Users--}}
                                         @elseif(Request::get('type') == 'inbox-requests' || Request::get('type') == 'sent-requests')
-                                            <ul class="nav nav-pills">
+                                            <ul class="nav nav-pills" style="padding-bottom: 20px;">
                                                 <li role="presentation" class="{!! (Request::get('type') == 'inbox-requests')?'active':'' !!}">
                                                     <a class="btn1 cu6-btn1" href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'inbox-requests']))) !!}">Inbox Requests</a>
                                                 </li>

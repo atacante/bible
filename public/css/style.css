@@ -1624,6 +1624,39 @@ body {
     text-transform: uppercase;
     line-height: 15px;
 }
+.cu7-btn1 {
+    font-size: 13px !important;
+    padding: 5px !important;
+    border-width: 2px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    vertical-align: top;
+    border-width: 2px !important;
+    position: absolute;
+    bottom: 38px;
+    left: 25px;
+    right: 25px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    line-height: 15px;
+}
+.cu8-btn1 {
+    font-size: 13px !important;
+    padding: 5px !important;
+    border-width: 2px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    vertical-align: top;
+    border-width: 2px !important;
+    position: absolute;
+    bottom: 5px;
+    left: 25px;
+    right: 25px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    line-height: 15px;
+    width: 37%;
+}
 .cu6-btn1, .cu6-btn1:visited {
     font-size: 13px !important;
     padding: 8px !important;
