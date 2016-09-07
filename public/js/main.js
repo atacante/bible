@@ -1509,7 +1509,6 @@ $(document).ready(function(){
 
         $(".j-status-list li a").removeClass('active');
         var currentLevel = $('.j-access-level').val();
-        console.log(currentLevel);
         $('.j-status-list li a[data-val="'+currentLevel+'"]').addClass('active');
         e.preventDefault();
     });
@@ -1520,6 +1519,9 @@ $(document).ready(function(){
 
         $(".j-status-list li a").removeClass('active');
         $(this).addClass('active');
+        $(".j-popup-should-see").toggle();
+
+        site.changeStatusIcon(newLevel);
         e.preventDefault();
     });
 

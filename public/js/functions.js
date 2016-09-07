@@ -232,6 +232,29 @@ site.getUser = function(id){
     });
 }
 
+/**
+* @status = 'public_all'|'public_friends'|'private'
+* */
+site.changeStatusIcon = function(status){
+
+    var icon_class = 'bs-settings';
+
+    switch(status){
+        case 'public_all':
+            icon_class = 'bs-s-public';
+            break;
+        case 'public_friends':
+            icon_class = 'bs-friends';
+            break;
+        case 'private':
+            icon_class = 'bs-s-onlyme';
+            break;
+    }
+
+    var icon = $(".j-status-icon");
+    icon.removeClass();
+    icon.addClass(icon_class + ' cu-print j-status-icon');
+}
 
 reader.getActionsHtml = function(){
     return '<div class="j-reader-actions" style="position: absolute;">' +
