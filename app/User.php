@@ -72,7 +72,7 @@ class User extends Authenticatable
             $user->lexiconViews()->delete();
             $user->strongsViews()->delete();
             $user->blogViews()->delete();
-            return false;
+            return true;
         });
     }
 
