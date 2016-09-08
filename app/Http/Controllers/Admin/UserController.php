@@ -30,8 +30,7 @@ class UserController extends Controller
             $users->whereHas('roles', function ($q) use ($role)
                 {
                     $q->where('slug', $role);
-                })
-            ;
+                });
         }
         $content['users'] = $users->with('invited')->orderBy('users.created_at','DESC')->paginate(20);
         return view('admin.user.list',
@@ -89,6 +88,7 @@ class UserController extends Controller
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
         }
+        var_dump(User::destroy($id));exit;
         if(User::destroy($id)){
             Notification::success('User has been successfully deleted');
         }
