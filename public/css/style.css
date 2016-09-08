@@ -1624,6 +1624,39 @@ body {
     text-transform: uppercase;
     line-height: 15px;
 }
+.cu7-btn1 {
+    font-size: 13px !important;
+    padding: 5px !important;
+    border-width: 2px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    vertical-align: top;
+    border-width: 2px !important;
+    position: absolute;
+    bottom: 38px;
+    left: 25px;
+    right: 25px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    line-height: 15px;
+}
+.cu8-btn1 {
+    font-size: 13px !important;
+    padding: 5px !important;
+    border-width: 2px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    vertical-align: top;
+    border-width: 2px !important;
+    position: absolute;
+    bottom: 5px;
+    left: 25px;
+    right: 25px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    line-height: 15px;
+    width: 35%;
+}
 .cu6-btn1, .cu6-btn1:visited {
     font-size: 13px !important;
     padding: 8px !important;
@@ -3355,4 +3388,36 @@ h4.h4-locations {
 .right-position{
     left: auto !important;
     right: 20px !important;
+}
+
+.compare-list{
+    padding:0;
+    list-style: none;
+    margin: 10px 0 10px 0px;
+}
+
+.compare-list li{
+    padding:5px;
+}
+
+.live-search-list{
+    padding:0;
+    margin: 10px 0 0 -5px;
+}
+
+.live-search-list li{
+    cursor: pointer;
+    list-style: none;
+    padding:5px;
+}
+
+.live-search-list li:hover{
+    color: #fff;
+    background-color: #00b9f7;
+}
+
+.live-search-box{
+    width: 100%;
+    height: 40px;
+    padding: 5px 12px;
 }

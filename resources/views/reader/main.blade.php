@@ -25,9 +25,33 @@
                 COMPARE WITH...
             </h4>
             @if(isset($compare['versions']))
-                <div class="sel-compare-versions mt17">
+                {{--<div class="sel-compare-versions mt17">
                     {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['placeholder' => 'Start Typing Version Name (or Language)','multiple' => true, 'class' => 'j-compare-versions', 'style'=>'width:100%;']) !!}
-                </div>
+                </div>--}}
+                {{--<input type="hidden" id="compare-1" name="compare[]" value="" />--}}
+                {{--<input type="hidden" id="compare-2" name="compare[]" value="" />--}}
+                {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['multiple' => true, 'class' => 'hidden','id' => 'compare-versions-select']) !!}
+                <ul class="compare-list j-compare-list">
+                    @foreach($compare['versions'] as $key => $version)
+                        @if(in_array($key,Request::input('compare',[])))
+                            <li class="j-versions-to-compare-list" data-versioncode="{{ $key }}">
+                                {{ $version }}
+                                <a href="#" class="btn-reset j-remove-compare" style="position: relative; top: auto; right: auto; display: inline-block; font-size: 17px; height: 20px; width: 20px; line-height: 17px;">×</a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+                <input type="text" class="live-search-box j-live-search-box" placeholder="Start Typing Version Name (or Language)" />
+                <ul class="live-search-list j-live-search-list">
+                    @foreach($compare['versions'] as $key => $version)
+                        @if(!in_array($key,Request::input('compare',[])))
+                            <li class="j-versions-to-compare-list" data-versioncode="{{ $key }}">
+                                {{ $version }}
+                                <a href="#" class="btn-reset j-remove-compare hidden" style="position: relative; top: auto; right: auto; display: inline-block; font-size: 17px; height: 20px; width: 20px; line-height: 17px;">×</a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
                 {!! Form::submit('Compare',['class' => 'btn1 cu-btn1 mt17']) !!}
                 {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), 'Reset', ['class' => 'btn2 cu-btn2 mt17','style' => 'margin-left:10px;'], true) !!}
             @endif
