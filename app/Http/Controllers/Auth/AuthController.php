@@ -109,6 +109,7 @@ class AuthController extends Controller
             'plan_type' => $data['plan_type'],
             'subscribed' => $data['subscribed'],
             'invited_by_id' => $data['invited_by_id']?$data['invited_by_id']:null,
+            'country_id' => $data['country_id']?$data['country_id']:null,
         ]);
 
         if($user){
