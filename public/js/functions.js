@@ -237,7 +237,7 @@ site.getUser = function(id){
 * */
 site.changeStatusIcon = function(status){
 
-    var icon_class = 'bs-settings';
+    var icon_class = 'bs-s-public';
 
     switch(status){
         case 'public_all':

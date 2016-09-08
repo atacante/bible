@@ -22,7 +22,7 @@
             </div>
             <div class="c-privacy">
                 <a class="btn-should-see j-btn-should-see" href="#">
-                    <i class="bs-settings cu-print j-status-icon"></i>
+                    <i class="bs-s-public cu-print j-status-icon"></i>
                     <span class="c-arrow-sel">
                         <b></b>
                     </span>
