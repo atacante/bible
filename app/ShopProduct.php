@@ -34,7 +34,7 @@ class ShopProduct extends BaseModel implements Buyable{
      *
      * @return int|string
      */
-    public function getBuyableIdentifier(){
+    public function getBuyableIdentifier($options = null){
         return $this->id;
     }
 
@@ -43,7 +43,7 @@ class ShopProduct extends BaseModel implements Buyable{
      *
      * @return string
      */
-    public function getBuyableDescription(){
+    public function getBuyableDescription($options = null){
         return $this->name;
     }
 
@@ -52,7 +52,7 @@ class ShopProduct extends BaseModel implements Buyable{
      *
      * @return float
      */
-    public function getBuyablePrice(){
+    public function getBuyablePrice($options = null){
         return $this->price;
     }
 }

@@ -33,7 +33,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     {!!Html::style('js/dropzone/dist/min/dropzone.min.css')!!}
     {!!Html::style('js/bootstrap-datepicker/css/bootstrap-datepicker3.css')!!}
     {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css')!!}
-    {!!Html::style('css/admin-style.css')!!}
+
+    {!!Html::style(Asset::v('/css/admin-style.css'))!!}
 </head>
 <body class="skin-blue layout-top-nav">
 <div class="wrapper">
@@ -104,8 +105,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     }
 </script>
 {!!Html::script('js/clipboard.min.js')!!}
-{!!Html::script('js/main.js')!!}
-{!!Html::script('js/functions.js')!!}
+
+{!!Html::script(Asset::v('/js/main.js'))!!}
+{!!Html::script(Asset::v('/js/functions.js'))!!}
 
 {!!Html::script('js/dropzone/dist/min/dropzone.min.js')!!}
 {!!Html::script('js/bootstrap-datepicker/js/bootstrap-datepicker.min.js')!!}

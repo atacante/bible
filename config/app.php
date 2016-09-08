@@ -182,6 +182,7 @@ return [
 
         'Yangqi\Htmldom\HtmldomServiceProvider',
         'Maatwebsite\Excel\ExcelServiceProvider',
+        'EscapeWork\Assets\AssetsServiceProvider',
     ],
 
     /*

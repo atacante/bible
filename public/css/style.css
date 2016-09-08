@@ -1153,148 +1153,148 @@ body {
 /*---------------------- Fonts --------------------------*/
 @font-face {
     font-family: 'bs';
-    src: url('../fonts/bs.eot');
-    src: url('../fonts/bs.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/bs.woff') format('woff'),
-    url('../fonts/bs.ttf') format('truetype'),
-    url('../fonts/bs.svg#bs') format('svg');
+    src: url('/fonts/bs.eot');
+    src: url('/fonts/bs.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/bs.woff') format('woff'),
+    url('/fonts/bs.ttf') format('truetype'),
+    url('/fonts/bs.svg#bs') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'ns_wide_bookbold';
-    src: url('../fonts/Novecentosanswide-Bold-webfont.eot');
-    src: url('../fonts/Novecentosanswide-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Novecentosanswide-Bold-webfont.woff2') format('woff2'),
-    url('../fonts/Novecentosanswide-Bold-webfont.woff') format('woff'),
-    url('../fonts/Novecentosanswide-Bold-webfont.ttf') format('truetype'),
-    url('../fonts/Novecentosanswide-Bold-webfont.svg#ns_wide_bookbold') format('svg');
+    src: url('/fonts/Novecentosanswide-Bold-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Bold-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Bold-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Bold-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Bold-webfont.svg#ns_wide_bookbold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'ns_widebook';
-    src: url('../fonts/Novecentosanswide-Book-webfont.eot');
-    src: url('../fonts/Novecentosanswide-Book-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Novecentosanswide-Book-webfont.woff2') format('woff2'),
-    url('../fonts/Novecentosanswide-Book-webfont.woff') format('woff'),
-    url('../fonts/Novecentosanswide-Book-webfont.ttf') format('truetype'),
-    url('../fonts/Novecentosanswide-Book-webfont.svg#ns_widebook') format('svg');
+    src: url('/fonts/Novecentosanswide-Book-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Book-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Book-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Book-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Book-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Book-webfont.svg#ns_widebook') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'ns_widedemibold';
-    src: url('../fonts/Novecentosanswide-DemiBold-webfont.eot');
-    src: url('../fonts/Novecentosanswide-DemiBold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Novecentosanswide-DemiBold-webfont.woff2') format('woff2'),
-    url('../fonts/Novecentosanswide-DemiBold-webfont.woff') format('woff'),
-    url('../fonts/Novecentosanswide-DemiBold-webfont.ttf') format('truetype'),
-    url('../fonts/Novecentosanswide-DemiBold-webfont.svg#ns_widedemibold') format('svg');
+    src: url('/fonts/Novecentosanswide-DemiBold-webfont.eot');
+    src: url('/fonts/Novecentosanswide-DemiBold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.svg#ns_widedemibold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'ns_widelight';
-    src: url('../fonts/Novecentosanswide-Light-webfont.eot');
-    src: url('../fonts/Novecentosanswide-Light-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Novecentosanswide-Light-webfont.woff2') format('woff2'),
-    url('../fonts/Novecentosanswide-Light-webfont.woff') format('woff'),
-    url('../fonts/Novecentosanswide-Light-webfont.ttf') format('truetype'),
-    url('../fonts/Novecentosanswide-Light-webfont.svg#ns_widelight') format('svg');
+    src: url('/fonts/Novecentosanswide-Light-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Light-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Light-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Light-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Light-webfont.svg#ns_widelight') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'ns_widemedium';
-    src: url('../fonts/Novecentosanswide-Medium-webfont.eot');
-    src: url('../fonts/Novecentosanswide-Medium-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Novecentosanswide-Medium-webfont.woff2') format('woff2'),
-    url('../fonts/Novecentosanswide-Medium-webfont.woff') format('woff'),
-    url('../fonts/Novecentosanswide-Medium-webfont.ttf') format('truetype'),
-    url('../fonts/Novecentosanswide-Medium-webfont.svg#ns_widemedium') format('svg');
+    src: url('/fonts/Novecentosanswide-Medium-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Medium-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Medium-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Medium-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Medium-webfont.svg#ns_widemedium') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'ns_widenormal';
-    src: url('../fonts/Novecentosanswide-Normal-webfont.eot');
-    src: url('../fonts/Novecentosanswide-Normal-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Novecentosanswide-Normal-webfont.woff2') format('woff2'),
-    url('../fonts/Novecentosanswide-Normal-webfont.woff') format('woff'),
-    url('../fonts/Novecentosanswide-Normal-webfont.ttf') format('truetype'),
-    url('../fonts/Novecentosanswide-Normal-webfont.svg#ns_widenormal') format('svg');
+    src: url('/fonts/Novecentosanswide-Normal-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Normal-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Normal-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Normal-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Normal-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Normal-webfont.svg#ns_widenormal') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'work_sansblack';
-    src: url('../fonts/worksans-black-webfont.woff2') format('woff2'),
-    url('../fonts/worksans-black-webfont.woff') format('woff');
+    src: url('/fonts/worksans-black-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-black-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'work_sansbold';
-    src: url('../fonts/worksans-bold-webfont.woff2') format('woff2'),
-    url('../fonts/worksans-bold-webfont.woff') format('woff');
+    src: url('/fonts/worksans-bold-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'work_sansextrabold';
-    src: url('../fonts/worksans-extrabold-webfont.woff2') format('woff2'),
-    url('../fonts/worksans-extrabold-webfont.woff') format('woff');
+    src: url('/fonts/worksans-extrabold-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-extrabold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'work_sansextralight';
-    src: url('../fonts/worksans-extralight-webfont.woff2') format('woff2'),
-    url('../fonts/worksans-extralight-webfont.woff') format('woff');
+    src: url('/fonts/worksans-extralight-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-extralight-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'work_sanslight';
-    src: url('../fonts/worksans-light-webfont.woff2') format('woff2'),
-    url('../fonts/worksans-light-webfont.woff') format('woff');
+    src: url('/fonts/worksans-light-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-light-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'work_sansmedium';
-    src: url('../fonts/worksans-medium-webfont.woff2') format('woff2'),
-    url('../fonts/worksans-medium-webfont.woff') format('woff');
+    src: url('/fonts/worksans-medium-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-medium-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'work_sansregular';
-    src: url('../fonts/worksans-regular-webfont.woff2') format('woff2'),
-    url('../fonts/worksans-regular-webfont.woff') format('woff');
+    src: url('/fonts/worksans-regular-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'work_sanssemibold';
-    src: url('../fonts/worksans-semibold-webfont.woff2') format('woff2'),
-    url('../fonts/worksans-semibold-webfont.woff') format('woff');
+    src: url('/fonts/worksans-semibold-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-semibold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'work_sansthin';
-    src: url('../fonts/worksans-thin-webfont.woff2') format('woff2'),
-    url('../fonts/worksans-thin-webfont.woff') format('woff');
+    src: url('/fonts/worksans-thin-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-thin-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -1778,7 +1778,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     text-decoration: none !important;
 }
 .bg-home {
-    background: url('../images/bg-home-header.png') center top no-repeat;
+    background: url('/images/bg-home-header.png') center top no-repeat;
 }
 .bg-inner-page {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#89bbf2+0,f3f3f3+35,f3f3f3+100 */
@@ -1940,16 +1940,16 @@ h3.h3-1 {
     padding-right: 50px;
 }
 .h-ill1 {
-    background: url('../images/p1-home.png') right center no-repeat;
+    background: url('/images/p1-home.png') right center no-repeat;
 }
 .h-ill2 {
-    background: url('../images/p2-home.png') right center no-repeat;
+    background: url('/images/p2-home.png') right center no-repeat;
 }
 .h-ill3 {
-    background: url('../images/p3-home.png') center center no-repeat;
+    background: url('/images/p3-home.png') center center no-repeat;
 }
 .h-ill4 {
-    background: url('../images/p4-home.png') right center no-repeat;
+    background: url('/images/p4-home.png') right center no-repeat;
 }
 h2.h2-1 {
     font-size: 38px;
@@ -1995,7 +1995,7 @@ h2.h2-2 {
     min-height: 449px;
 }
 .h-ill5 {
-    background: url('../images/p5-home.png') left center no-repeat;
+    background: url('/images/p5-home.png') left center no-repeat;
     min-height: 449px;
 }
 .col-left1 {
@@ -2084,15 +2084,15 @@ ul.c-social li a:hover, ul.c-social li a:active {
 }
 .gift1 {
      height: 220px;
-     background: url("../images/edit.png") center 65px no-repeat;
+     background: url("/images/edit.png") center 65px no-repeat;
 }
 .gift2 {
     height: 220px;
-    background: url("../images/t-shirt.png") center 42px no-repeat;
+    background: url("/images/t-shirt.png") center 42px no-repeat;
 }
 .gift3 {
     height: 220px;
-    background: url("../images/cup.png") center 50px no-repeat;
+    background: url("/images/cup.png") center 50px no-repeat;
 }
 h4.h4-gift {
     text-transform: uppercase;
@@ -2504,7 +2504,7 @@ ul.icon-panel li a {
     border-radius: 50%;
     -webkit-border-radius: 50%;
     display: inline-block;
-    background: url('../images/default.jpg') center no-repeat;
+    background: url('/images/default.jpg') center no-repeat;
     background-size: cover;
     vertical-align: middle;
     margin-right: 5px;
@@ -2515,7 +2515,7 @@ ul.icon-panel li a {
     border-radius: 50%;
     -webkit-border-radius: 50%;
     display: inline-block;
-    background: url('../images/default.jpg') center no-repeat;
+    background: url('/images/default.jpg') center no-repeat;
     background-size: cover !important;
     vertical-align: middle;
     margin: 0 2px !important;
@@ -2572,7 +2572,7 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     background: transparent !important;
 }
 .spinner {
-    background: rgba(255, 255, 255, 0.5) url('../images/ajax-loader.gif') center no-repeat;
+    background: rgba(255, 255, 255, 0.5) url('/images/ajax-loader.gif') center no-repeat;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -2953,7 +2953,7 @@ textarea.wall-text-area:focus {
     border-radius: 50%;
     -webkit-border-radius: 50%;
     overflow: hidden;
-    background: url('../images/default.jpg') center center no-repeat;
+    background: url('/images/default.jpg') center center no-repeat;
     background-size: cover !important;
     -webkit-background-size: cover !important;
 }
@@ -2962,7 +2962,7 @@ textarea.wall-text-area:focus {
     height: 177px;
     position: relative;
     overflow: hidden;
-    background: url('../images/default.jpg') center no-repeat;
+    background: url('/images/default.jpg') center no-repeat;
     background-size: cover !important;
     -webkit-background-size: cover !important;
 }
@@ -2971,7 +2971,7 @@ textarea.wall-text-area:focus {
     height: 260px;
     position: relative;
     overflow: hidden;
-    background: url('../images/default.jpg') center no-repeat;
+    background: url('/images/default.jpg') center no-repeat;
     background-size: cover !important;
     -webkit-background-size: cover !important;
     cursor: pointer;

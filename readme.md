@@ -91,3 +91,9 @@ Install new cronjob
 ~~~
 * * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
 ~~~
+
+Versioning (css/js)
+~~~
+php artisan asset:dist
+chmod 0777 -R public/assets/
+~~~

@@ -26,7 +26,9 @@
 {{--        {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css')!!}--}}
         {!!Html::style('js/dropzone/dist/min/basic.min.css')!!}
         {!!Html::style('js/dropzone/dist/min/dropzone.min.css')!!}
-        {!!Html::style('css/style.css')!!}
+
+        {!!Html::style(Asset::v('/css/style.css'))!!}
+
         {!!Html::style('css/ionicons-2.0.1/css/ionicons.min.css')!!}
 
         {!!Html::script('//code.jquery.com/jquery-2.2.0.min.js')!!}
@@ -42,10 +44,11 @@
         {!!Html::style('js/fancybox/source/jquery.fancybox.css?v=2.1.5')!!}
 {{--        {!!Html::script('js/jsdiff/diff.min.js')!!}--}}
         {!!Html::script('js/clipboard.min.js')!!}
-        {!!Html::script('js/main.js')!!}
-        {!!Html::script('js/functions.js')!!}
 
-    @yield('styles')
+        {!!Html::script(Asset::v('/js/main.js'))!!}
+        {!!Html::script(Asset::v('/js/functions.js'))!!}
+
+        @yield('styles')
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
