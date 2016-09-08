@@ -3154,7 +3154,7 @@ textarea.wall-text-area:focus {
 }
 /* -------------- Location Page -------------- */
 .my-item {
-    overflow: hidden;
+/*    overflow: hidden;*/
     min-height: 1px;
     padding-left: 7px;
     padding-right: 7px;
@@ -3203,6 +3203,8 @@ textarea.wall-text-area:focus {
     font-size: 14px;
     font-family: work_sansregular;
     line-height: 20px;
+    -webkit-box-shadow: 0 0 25px 4px rgba(150,150,150,0.1);
+    box-shadow: 0 0 25px 4px rgba(150,150,150,0.1);
 }
 h4.h4-locations {
     text-transform: uppercase;
