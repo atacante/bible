@@ -88,7 +88,6 @@ class UserController extends Controller
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
         }
-        var_dump(User::destroy($id));exit;
         if(User::destroy($id)){
             Notification::success('User has been successfully deleted');
         }
