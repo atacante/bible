@@ -23,7 +23,7 @@ site.fancyBoxMe = function (e) {
         preV = e - 1
     }
     //var tarGet = $('.j-with-images img').eq(e).data('href');
-    var tarGet = $('.j-with-images img').eq(e).attr('src');
+    var tarGet = $('.j-with-images .people-image').eq(e).data('image');
     tarGet = tarGet.replace('thumbs/', "");
     tarGet = tarGet.replace('\\', "");
     $.fancybox({

@@ -94,7 +94,7 @@ $(document).ready(function(){
         }
     });
 
-    $(".j-with-images img").each(function (i) {
+    $(".j-with-images .people-image").each(function (i) {
         $(this).bind('click', function () {
             site.fancyBoxMe(i);
         }); //bind
@@ -236,7 +236,7 @@ $(document).ready(function(){
     });
 
     $('body').on('shown.bs.popover', function () {
-        $(".j-with-images img").each(function (i) {
+        $(".j-with-images .people-image").each(function (i) {
             $(this).bind('click', function () {
                 site.fancyBoxMe(i);
             }); //bind
@@ -310,7 +310,7 @@ $(document).ready(function(){
         site.getStatus(id);
     });
 
-    $('body').on('click','.friend-item .j-friend-item',function(ev) {
+    $('body').on('click','.j-friend-item',function(ev) {
         ev.preventDefault();
         var id = $(this).data('userid');
         site.getUser(id);

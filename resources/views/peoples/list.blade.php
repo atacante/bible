@@ -33,7 +33,7 @@
                                             <div class="carousel-inner" role="listbox">
                                                 @foreach($people->images as $key => $image)
                                                     <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
-                                                        <div class="people-image" style="background: url('{!! $image->image!=''?Config::get('app.peopleImages').'thumbs/'.$image->image:'' !!}') center no-repeat;"></div>
+                                                        <div class="people-image" data-image="{!! $image->image!=''?Config::get('app.peopleImages').'thumbs/'.$image->image:'' !!}" style="background: url('{!! $image->image!=''?Config::get('app.peopleImages').'thumbs/'.$image->image:'' !!}') center no-repeat;"></div>
                                                     </div>
                                                 @endforeach
                                             </div>

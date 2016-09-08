@@ -214,7 +214,7 @@
                     {{-- ---------------- READER CONTENT ---------------- --}}
                     <div class="{!! !$content['showRelated'] || !$content['relatedItems']->count() || Request::input('compare',false)?'col-md-12':'my1-col-md-8' !!}">
                         <div class="c-reader-content2"></div>
-                        <div class="row" style="position: relative">
+                        <div class="row reader-text" style="position: relative">
                                 {!! (Request::input('compare',false)?count(Request::input('compare',false)) == 1?'<div class="comp-bord1"></div>':'<div class="comp-bord2"></div><div class="comp-bord3"></div>':"") !!}
                                 <div class="j-reader-block j-bible-text {!! (Request::input('compare',false)?count(Request::input('compare',false)) == 1?'col-xs-6':'col-xs-4':"col-xs-12") !!}">
                                     <div class="inner-pad1">
@@ -238,26 +238,26 @@
 
                                 @if($compareParam = Request::input('compare',false))
                                 @foreach($compare['data'] as $version)
-                                <div class="col-xs-{!! count($compareParam) == 1?'6':'4' !!} j-diff-block j-bible-text" data-version="{!! $version['version_code'] !!}">
-                                    <div class="inner-pad1">
-                                        <h4 class="version-title">
-                                            {!! $version['version'] !!}
-                                        </h4>
-                                        @foreach($version['verses'] as $verse)
-                                            <span class="verse-text j-verse-text" data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
-                                                <b>{!! link_to('reader/verse?'.http_build_query([
-                                                                        'version' => $version['version_code'],
-                                                                        'book' => $verse->book_id,
-                                                                        'chapter' => $verse->chapter_num,
-                                                                        'verse' => $verse->verse_num,
-                                                                    ]), $title = $verse->verse_num) !!}
-                                                </b>&nbsp;{!! ViewHelper::prepareVerseText($verse) !!}
-                                            </span>
-                                        @endforeach
+                                    <div class="col-xs-{!! count($compareParam) == 1?'6':'4' !!} j-diff-block j-bible-text" data-version="{!! $version['version_code'] !!}">
+                                        <div class="inner-pad1">
+                                            <h4 class="version-title">
+                                                {!! $version['version'] !!}
+                                            </h4>
+                                            @foreach($version['verses'] as $verse)
+                                                <span class="verse-text j-verse-text" data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
+                                                    <b>{!! link_to('reader/verse?'.http_build_query([
+                                                                            'version' => $version['version_code'],
+                                                                            'book' => $verse->book_id,
+                                                                            'chapter' => $verse->chapter_num,
+                                                                            'verse' => $verse->verse_num,
+                                                                        ]), $title = $verse->verse_num) !!}
+                                                    </b>&nbsp;{!! ViewHelper::prepareVerseText($verse) !!}
+                                                </span>
+                                            @endforeach
+                                        </div>
+                                        {!! Html::link(url('reader/read?'.http_build_query(array_merge(['compare' => array_diff($compareParam,[$version['version_code']])],$compare['resetParams'])),[],false), '&#215;', ['class' => 'btn-reset btn-reset-compare j-btn-reset-compare','style' => ''], true) !!}
                                     </div>
-                                </div>
                                 @endforeach
-                                    {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), '&#215;', ['class' => 'btn-reset j-btn-reset-compare'], true) !!}
                                 @endif
 
                         </div>
