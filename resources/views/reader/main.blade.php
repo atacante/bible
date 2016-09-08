@@ -237,27 +237,27 @@
                                 </div>
 
                                 @if($compareParam = Request::input('compare',false))
-                                @foreach($compare['data'] as $version)
-                                    <div class="col-xs-{!! count($compareParam) == 1?'6':'4' !!} j-diff-block j-bible-text" data-version="{!! $version['version_code'] !!}">
-                                        <div class="inner-pad1">
-                                            <h4 class="version-title">
-                                                {!! $version['version'] !!}
-                                            </h4>
-                                            @foreach($version['verses'] as $verse)
-                                                <span class="verse-text j-verse-text" data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
-                                                    <b>{!! link_to('reader/verse?'.http_build_query([
-                                                                            'version' => $version['version_code'],
-                                                                            'book' => $verse->book_id,
-                                                                            'chapter' => $verse->chapter_num,
-                                                                            'verse' => $verse->verse_num,
-                                                                        ]), $title = $verse->verse_num) !!}
-                                                    </b>&nbsp;{!! ViewHelper::prepareVerseText($verse) !!}
-                                                </span>
-                                            @endforeach
+                                    @foreach($compare['data'] as $version)
+                                        <div class="col-xs-{!! count($compareParam) == 1?'6':'4' !!} j-diff-block j-bible-text" data-version="{!! $version['version_code'] !!}">
+                                            <div class="inner-pad1">
+                                                <h4 class="version-title">
+                                                    {!! $version['version'] !!}
+                                                </h4>
+                                                @foreach($version['verses'] as $verse)
+                                                    <span class="verse-text j-verse-text" data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
+                                                        <b>{!! link_to('reader/verse?'.http_build_query([
+                                                                                'version' => $version['version_code'],
+                                                                                'book' => $verse->book_id,
+                                                                                'chapter' => $verse->chapter_num,
+                                                                                'verse' => $verse->verse_num,
+                                                                            ]), $title = $verse->verse_num) !!}
+                                                        </b>&nbsp;{!! ViewHelper::prepareVerseText($verse) !!}
+                                                    </span>
+                                                @endforeach
+                                            </div>
+                                            {!! Html::link(url('reader/read?'.http_build_query(array_merge(['compare' => array_diff($compareParam,[$version['version_code']])],$compare['resetParams'])),[],false), '&#215;', ['class' => 'btn-reset btn-reset-compare j-btn-reset-compare','style' => ''], true) !!}
                                         </div>
-                                        {!! Html::link(url('reader/read?'.http_build_query(array_merge(['compare' => array_diff($compareParam,[$version['version_code']])],$compare['resetParams'])),[],false), '&#215;', ['class' => 'btn-reset btn-reset-compare j-btn-reset-compare','style' => ''], true) !!}
-                                    </div>
-                                @endforeach
+                                    @endforeach
                                 @endif
 
                         </div>
