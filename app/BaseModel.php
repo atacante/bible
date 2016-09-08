@@ -273,4 +273,30 @@ class BaseModel extends Model {
             return $this->$attribute->format(self::DFORMAT2);
         }
     }
+
+    public function getAccessIconStyle(){
+
+        $icon_class = 'bs-s-public';
+
+        switch($this->access_level){
+            case WallPost::ACCESS_PUBLIC_ALL:
+                $icon_class = 'bs-s-public';
+                break;
+            case WallPost::ACCESS_PUBLIC_FRIENDS:
+                $icon_class = 'bs-friends';
+                break;
+            case WallPost::ACCESS_PRIVATE:
+                $icon_class = 'bs-s-onlyme';
+                break;
+            case Note::ACCESS_PUBLIC_GROUPS:
+                $icon_class = 'bs-s-groups';
+                break;
+            case Note::ACCESS_SPECIFIC_GROUPS:
+                $icon_class = 'bs-s-groupscustom';
+                break;
+
+        }
+
+        return $icon_class;
+    }
 }
