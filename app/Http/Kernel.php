@@ -22,6 +22,7 @@ class Kernel extends HttpKernel
         \Krucas\Notification\Middleware\NotificationMiddleware::class,
         \App\Http\Middleware\VerifyCsrfToken::class,
         \App\Http\Middleware\LogLastUserActivity::class,
+        \App\Http\Middleware\Headers::class,
     ];
 
     /**
