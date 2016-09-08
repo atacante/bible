@@ -1592,6 +1592,7 @@ body {
     border-radius: 0;
     -webkit-border-radius: 0;
     vertical-align: top;
+    background-color: transparent;
 }
 .cu2-btn1 {
     font-size: 13px !important;
