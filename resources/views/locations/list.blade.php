@@ -33,7 +33,7 @@
                                                 @foreach($location->images as $key => $image)
                                                     <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
                                                         {{--<img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}" class="slider-item-location">--}}
-                                                        <div class="people-image" style="background: url('{!! $image->image!=''?Config::get('app.locationImages').'thumbs/'.$image->image:'' !!}') center no-repeat;"></div>
+                                                        <div class="people-image" data-image="{!! $image->image!=''?Config::get('app.locationImages').'thumbs/'.$image->image:'' !!}" style="background: url('{!! $image->image!=''?Config::get('app.locationImages').'thumbs/'.$image->image:'' !!}') center no-repeat;"></div>
                                                     </div>
                                                 @endforeach
                                             </div>

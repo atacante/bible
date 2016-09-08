@@ -2166,6 +2166,7 @@ ul.footer-menu li a:hover {
     font-family: ns_widebook;
     line-height: 18px;
     text-align: center;
+    text-transform: capitalize;
 }
 .btn-min-w {
     min-width: 288px;
@@ -2972,6 +2973,7 @@ textarea.wall-text-area:focus {
     background: url('../images/default.jpg') center no-repeat;
     background-size: cover !important;
     -webkit-background-size: cover !important;
+    cursor: pointer;
 }
 .btn4, .btn4:visited {
     display: inline-block;

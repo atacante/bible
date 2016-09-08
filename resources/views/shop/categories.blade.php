@@ -1,4 +1,4 @@
-<ul class="nav nav-pills nav-stacked nav-left community-menu" role="menu">
+<ul class="nav nav-pills tabs-nav" role="menu">
     @if($categories->count())
          <li class="{{ !Request::input('category') ? 'active' : '' }}" role="presentation">
              <a href="{{ url('shop') }}">All Categories</a>
