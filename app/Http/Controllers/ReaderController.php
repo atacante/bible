@@ -138,7 +138,7 @@ class ReaderController extends Controller
         if($related !== false){
             Cookie::queue(Cookie::forever('related', $related));
         }else{
-            $related = Cookie::get('related', false);
+            $related = Cookie::get('related', 'on');
         }
 
 
