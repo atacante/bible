@@ -2,6 +2,7 @@
 
 namespace App\Providers\CustomAuthorizeNet;
 
+use App\UsersMeta;
 use Illuminate\Support\Facades\Config;
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\constants as AnetConstants;
@@ -169,12 +170,14 @@ trait Billable
             $this->card_last_four = substr($creditCardDetails['number'], -4);
             $this->save();
 
-            $this->userMeta->billing_first_name = $billto->getFirstName();
-            $this->userMeta->billing_last_name = $billto->getLastName();
-            $this->userMeta->billing_address = $billto->getAddress();
-            $this->userMeta->billing_postcode = $billto->getZip();
+            $userMeta = new UsersMeta();
 
-            $this->userMeta->save();
+            $userMeta->billing_first_name = $billto->getFirstName();
+            $userMeta->billing_last_name = $billto->getLastName();
+            $userMeta->billing_address = $billto->getAddress();
+            $userMeta->billing_postcode = $billto->getZip();
+
+            $this->userMeta()->save($userMeta);
 
             $result = [
                 'success' => true,
