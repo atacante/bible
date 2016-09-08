@@ -253,7 +253,7 @@ site.changeStatusIcon = function(status){
 
     var icon = $(".j-status-icon");
     icon.removeClass();
-    icon.addClass(icon_class + ' cu-print j-status-icon');
+    icon.addClass(icon_class + ' cu-print font-size-20 j-status-icon');
 }
 
 reader.getActionsHtml = function(){
