@@ -5,53 +5,42 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
 
-        </div>
-    </div>
+    <h1 style="text-transform: uppercase; text-align: center"><i class="bs-myjourney" style="color: #00b9f7;"></i>&nbsp;My Journey</h1>
     <div class="row">
-        <h3 class="section-title text-center">My Journey</h3>
-        <div class="col-lg-4 col-xs-6">
-            <!-- small box -->
-            <div class="small-box" style="background-color: #f0ad4e">
-                <div class="inner">
-                    <h3>{!! $content['notesCount'] !!}</h3>
-                    <p>Note{!! $content['notesCount'] != 1?'s':'' !!}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-btn fa-sticky-note"></i>
-                </div>
-                <a href="{{ url('/notes/create') }}" class="small-box-footer j-create-note"> Create new note <i class="fa fa-arrow-circle-right"></i> </a>
+        <div class="col-lg-4">
+            @if(Auth::user() && Auth::user()->avatar)
+                <div class="user-image" style="margin-right: 30px; position:relative; float:left; background: url('{!! Auth::user()->avatar!=''?Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar:'' !!}') center no-repeat;"></div>
+            @else
+                <div class="user-image" style="margin-right: 30px; position:relative; float:left; "></div>
+            @endif
+            <div style="float: left">
+                <div>&nbsp; {!! Auth::user()->name !!} &nbsp;</div>
+                <div>&nbsp; Member Since: {!! Auth::user()->created_at->format('d M, Y') !!} &nbsp;</div>
+                <div>&nbsp; <i class="bs-friends"></i>&nbsp;{!! Auth::user()->friends->count() !!} &nbsp;&nbsp;&nbsp; <i class="bs-s-groups"></i>&nbsp;{!! Auth::user()->joinedGroups->count() !!} &nbsp;</div>
             </div>
         </div>
-        <div class="col-lg-4 col-xs-6">
-            <!-- small box -->
-            <div class="small-box" style="background-color: #449d44">
-                <div class="inner">
-                    <h3>{!! $content['journalCount'] !!}</h3>
-                    <p>Journal Entr{!! $content['journalCount'] != 1?'ies':'y' !!}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-btn fa-book"></i>
-                </div>
-                <a href="{{ url('/journal/create') }}" class="small-box-footer j-create-journal"> Create new Journal Entry <i class="fa fa-arrow-circle-right"></i> </a>
-            </div>
+        <div class="col-lg-2">
+            <a href="{{ url('/notes/create') }}" class="j-create-note" style="color: #f0ad4e">
+                <h3><i class="bs-note"></i>&nbsp;{!! $content['notesCount'] !!}</h3>
+                <p>Note{!! $content['notesCount'] != 1?'s':'' !!}</p>
+            </a>
         </div>
-        <div class="col-lg-4 col-xs-6">
-            <!-- small box -->
-            <div class="small-box" style="background-color: #337ab7">
-                <div class="inner">
-                    <h3>{!! $content['prayersCount'] !!}</h3>
-                    <p>Prayer{!! $content['prayersCount'] != 1?'s':'' !!}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-btn fa-hand-paper-o"></i>
-                </div>
-                <a href="{{ url('/prayers/create') }}" class="small-box-footer j-create-prayer"> Create new Prayer <i class="fa fa-arrow-circle-right"></i> </a>
-            </div>
+        <div class="col-lg-2">
+            <a href="{{ url('/journal/create') }}" class="j-create-journal" style="color: #449d44">
+                <h3><i class="bs-journal"></i>&nbsp;{!! $content['journalCount'] !!}</h3>
+                <p>Journal Entr{!! $content['journalCount'] != 1?'ies':'y' !!}</p>
+            </a>
         </div>
+        <div class="col-lg-2">
+            <a href="{{ url('/prayers/create') }}" class="j-create-prayer" style="color: #337ab7">
+                <h3><i class="bs-pray"></i>&nbsp;{!! $content['prayersCount'] !!}</h3>
+                <p>Prayer{!! $content['prayersCount'] != 1?'s':'' !!}</p>
+            </a>
+        </div>
+        {{--<div class="user-image cu-ui1"></div>--}}
     </div>
+
     <div class="row my-entries-list j-my-entries-list">
         <div class="col-md-3">
             <div class="box">
