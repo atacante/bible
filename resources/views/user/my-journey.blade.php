@@ -41,27 +41,10 @@
         {{--<div class="user-image cu-ui1"></div>--}}
     </div>
 
-    <div class="row my-entries-list j-my-entries-list">
-        <div class="col-md-3">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Filters</h3>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            @include('user.my-journey-filters')
-                        </div>
-                    </div>
-                </div>
-                <div class="box-footer">
-                    <div class="row">
+    @include('user.my-journey-filters')
 
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-9" style="line-height: 30px;">
+    <div class="row my-entries-list j-my-entries-list">
+        <div class="col-md-12" style="line-height: 30px;">
             <div class="create-btns">
                 {{--<a href="{{ url('/notes/create') }}" class="btn btn-success j-create-note" style="margin-bottom:10px;"><i class="fa fa-btn fa-sticky-note"></i> Create Note</a>
                 <a href="{{ url('/journal/create') }}" class="btn btn-success j-create-journal" style="margin-bottom:10px;"><i class="fa fa-btn fa-book"></i> Create Journal</a>

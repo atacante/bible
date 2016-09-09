@@ -3579,3 +3579,23 @@ h4.h4-locations {
     line-height: 13px;
     text-align: center;
 }
+.adv-search{
+    top:7px;
+    right: 40px;
+    color: #00b9f7;
+    text-transform: capitalize;
+}
+.relative{
+    position: relative;
+}
+
+.absolute{
+    position: absolute;
+}
+.search-back{
+    right: 0px !important;
+    padding: 3px 7px 2px;
+    background-color: #00b9f7;
+    font-size: 20px;
+    color: #ffffff;
+}
