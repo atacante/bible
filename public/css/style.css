@@ -146,6 +146,75 @@
     font-weight: normal;
     font-style: normal;
 }
+
+/* ----------------- WEB KIT ------------------ */
+h1.h1-kit {
+    font-family: ns_widenormal;
+    font-size: 48px;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+h2.h2-kit {
+    font-family: ns_widenormal;
+    font-size: 38px;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+h3.h3-kit {
+    font-family: ns_widemedium;
+    font-size: 30px;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+h4.h4-kit {
+    font-family: ns_widenormal;
+    font-size: 20px;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+h5.h5-kit {
+    font-family: ns_widenormal;
+    font-size: 16px;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+h6.h6-kit {
+    font-family: ns_widenormal;
+    font-size: 14px;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+h1.h1-sub-kit {
+    font-family: work_sansregular;
+    font-size: 38px;
+    color: #404040;
+    font-weight: normal;
+}
+h2.h2-sub-kit {
+    font-family: work_sansregular;
+    font-size: 30px;
+    color: #404040;
+    font-weight: normal;
+}
+h3.h3-sub-kit {
+    font-family: work_sanssemibold;
+    font-size: 18px;
+    color: #404040;
+    font-weight: normal;
+}
+h4.h4-sub-kit {
+    font-family: work_sanssemibold;
+    font-size: 15px;
+    color: #404040;
+    font-weight: normal;
+}
 /*---------------------- Home Page --------------------------*/
 .mt1 {
     margin-top: 100px !important;
@@ -236,6 +305,9 @@
 }
 .color3 {
     color: #000000 !important;
+}
+.fz1 {
+    font-size: 24px !important;
 }
 /*----------------- Icons Set ---------------------*/
 [class^="bs-"], [class*=" bs-"] {
@@ -425,6 +497,7 @@
     display: block;
     text-transform: uppercase;
 }
+
 .cu1-h2 {
     padding: 0 200px;
     margin: 0 0 60px;
@@ -3068,6 +3141,15 @@ textarea.wall-text-area:focus {
     font-size: 20px;
     font-family: work_sansbold;
     color: #535353;
+}
+.price-label2 {
+    padding: 0px;
+    font-size: 20px;
+    font-family: work_sansbold;
+    color: #535353;
+}
+.product-label {
+
 }
 .btn4, .btn4:visited {
     display: inline-block;
