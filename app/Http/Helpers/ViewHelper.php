@@ -317,8 +317,18 @@ class ViewHelper
         return ($model->access_level == Note::ACCESS_PUBLIC_GROUPS || $model->access_level == Note::ACCESS_SPECIFIC_GROUPS);
     }
 
-    public static function showTooltip($model)
+    public static function checkNotifTooltip($type)
     {
-
+        switch($type){
+            case 'got_related_records_tooltip':
+                return Request::segment(2) == 'read' && !Request::input('compare',false) && Auth::check() && Auth::user()->checkNotifTooltip($type);
+                break;
+            case 'got_chapter_diff_tooltip':
+                return Request::segment(2) == 'read' && Request::input('compare',false) && Auth::check() && Auth::user()->checkNotifTooltip($type);
+                break;
+            case 'got_verse_diff_tooltip':
+                return Request::segment(2) == 'verse' && Request::input('compare',false) && Auth::check() && Auth::user()->checkNotifTooltip($type);
+                break;
+        }
     }
 }
