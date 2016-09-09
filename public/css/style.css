@@ -190,7 +190,7 @@
     margin-top: 40px !important;
 }
 .mt15 {
-    margin-top: 20px !important;
+    margin-top: 10px !important;
 }
 .mt16 {
     margin-top: 15px !important;
@@ -3569,7 +3569,7 @@ h4.h4-locations {
     color: #fff;
     position: absolute;
     left: -30px;
-    top: 5px;
+    top: 4px;
     background: #36a741;
     padding: 0;
     font-size: 12px;
@@ -3579,6 +3579,81 @@ h4.h4-locations {
     line-height: 13px;
     text-align: center;
 }
+label.label-checkbox {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-weight: normal;
+    color: #616161;
+}
+label.label-checkbox:before {
+    content: "";
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border: 2px solid #8d8d8d;
+    margin-right: 10px;
+    position: absolute;
+    left: 0px;
+    bottom: 2px;
+    background-color: #ffffff;
+    font-family: pn__rgregular;
+    font-size: 16px;
+    font-weight: normal;
+    color: #616161;
+}
+label.label-radio {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-weight: normal;
+    color: #616161;
+}
+label.label-radio:before {
+    content: "";
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border: 2px solid #8d8d8d;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: absolute;
+    left: 0px;
+    bottom: 2px;
+    background-color: #ffffff;
+    font-family: pn__rgregular;
+    font-size: 16px;
+    font-weight: normal;
+    color: #616161;
+}
+input[type=checkbox]:checked + label:before, input[type=radio]:checked + label:before {
+    /* content: "";*/
+    text-align: center;
+    line-height: 19px;
+    font-family: pn__rgregular;
+    font-size: 16px;
+    font-weight: normal;
+    color: #616161;
+    background: url("/images/cu-checkbox.png") 3px 3px no-repeat;
+}
+
+input[type=radio]:checked + label:before{
+    background: url("/images/cu-radio.png") 3px 3px no-repeat;
+}
+
+input[type=checkbox].cust-radio, input[type=radio].cust-radio {
+    display: none;
+}
+
+.checkbox-inline, .radio-inline{
+    padding-left: 0px !important;
+}
+
+
 .adv-search{
     top:7px;
     right: 40px;
