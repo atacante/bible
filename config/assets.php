@@ -7,7 +7,7 @@ return [
     | Environments that versioning the content
     |--------------------------------------------------------------------------
     */
-   'environments' => ['local','test','production'],
+   'environments' => ['test','production'],
 
     /*
     |--------------------------------------------------------------------------
