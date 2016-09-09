@@ -1027,11 +1027,6 @@ $(document).ready(function(){
         location.href = $(this).data('link');
     });
 
-    $("body").on('click','.j-show-product',function (e){
-        window.open($(this).data('link'));
-        return false;
-    });
-
     $('.j-popup-form').click(function(e){
         e.preventDefault();
         $.ajax({

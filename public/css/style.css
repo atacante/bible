@@ -1,3 +1,434 @@
+/*---------------------- Fonts --------------------------*/
+@font-face {
+    font-family: 'bs';
+    src: url('/fonts/bs.eot');
+    src: url('/fonts/bs.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/bs.woff') format('woff'),
+    url('/fonts/bs.ttf') format('truetype'),
+    url('/fonts/bs.svg#bs') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_wide_bookbold';
+    src: url('/fonts/Novecentosanswide-Bold-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Bold-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Bold-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Bold-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Bold-webfont.svg#ns_wide_bookbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widebook';
+    src: url('/fonts/Novecentosanswide-Book-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Book-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Book-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Book-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Book-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Book-webfont.svg#ns_widebook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widedemibold';
+    src: url('/fonts/Novecentosanswide-DemiBold-webfont.eot');
+    src: url('/fonts/Novecentosanswide-DemiBold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.svg#ns_widedemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widelight';
+    src: url('/fonts/Novecentosanswide-Light-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Light-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Light-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Light-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Light-webfont.svg#ns_widelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widemedium';
+    src: url('/fonts/Novecentosanswide-Medium-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Medium-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Medium-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Medium-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Medium-webfont.svg#ns_widemedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widenormal';
+    src: url('/fonts/Novecentosanswide-Normal-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Normal-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Normal-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Normal-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Normal-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Normal-webfont.svg#ns_widenormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'work_sansblack';
+    src: url('/fonts/worksans-black-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansbold';
+    src: url('/fonts/worksans-bold-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansextrabold';
+    src: url('/fonts/worksans-extrabold-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-extrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansextralight';
+    src: url('/fonts/worksans-extralight-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-extralight-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sanslight';
+    src: url('/fonts/worksans-light-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansmedium';
+    src: url('/fonts/worksans-medium-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansregular';
+    src: url('/fonts/worksans-regular-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sanssemibold';
+    src: url('/fonts/worksans-semibold-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansthin';
+    src: url('/fonts/worksans-thin-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/*---------------------- Home Page --------------------------*/
+.mt1 {
+    margin-top: 100px !important;
+}
+.mt2 {
+    margin-top: 70px !important;
+}
+.mt3 {
+    margin-top: 40px !important;
+}
+.mt4 {
+    margin-top: 90px !important;
+}
+.mt5 {
+    margin-top: 20px !important;
+}
+.mt6 {
+    margin-top: 65px !important;
+}
+.mt7 {
+    margin-top: 100px !important;
+}
+.mt8 {
+    margin-top: 40px !important;
+}
+.mt9 {
+    margin-top: 25px !important;
+}
+.mt10 {
+    margin-top: 60px !important;
+}
+.mt11 {
+    margin-top: 100px !important;
+}
+.mt12 {
+    margin-top: 90px !important;
+}
+.mt13 {
+    margin-top: 30px !important;
+}
+.mt14 {
+    margin-top: 40px !important;
+}
+.mt15 {
+    margin-top: 20px !important;
+}
+.mt16 {
+    margin-top: 15px !important;
+}
+.mt17 {
+    margin-top: 25px !important;
+}
+.mb1 {
+    margin-bottom: 50px;
+}
+.mb2 {
+    margin-bottom: 100px;
+}
+.mr1 {
+    margin-right: 10%;
+}
+.mr2 {
+    margin-right: 35%;
+}
+.mr3 {
+    margin-right: 32%;
+}
+.mr4 {
+    margin-right: 6%;
+}
+.mr5 {
+    margin-right: 10px;
+}
+.mr6 {
+    margin-right: 5px;
+}
+.ml1 {
+    margin-left: 10px;
+}
+.pad1 {
+    padding-bottom: 50px;
+}
+.color1 {
+    color: #ffffff !important;
+}
+.color2 {
+    color: #404040 !important;
+}
+.color3 {
+    color: #000000 !important;
+}
+/*----------------- Icons Set ---------------------*/
+[class^="bs-"], [class*=" bs-"] {
+    font-family: 'bs' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none !important;
+}
+.bs-upload:before {
+    content: "\e935";
+}
+.bs-calendar:before {
+    content: "\e936";
+}
+.bs-add:before {
+    content: "\e917";
+}
+.bs-remove:before {
+    content: "\e91d";
+}
+.bs-checkmark:before {
+    content: "\e91e";
+}
+.bs-s-groupscustom:before {
+    content: "\e91f";
+}
+.bs-s-groups:before {
+    content: "\e920";
+}
+.bs-friends:before {
+    content: "\e921";
+}
+.bs-user:before {
+    content: "\e922";
+}
+.bs-invite:before {
+    content: "\e923";
+}
+.bs-arrowrt:before {
+    content: "\e924";
+}
+.bs-arrowback:before {
+    content: "\e925";
+}
+.bs-contactus:before {
+    content: "\e926";
+}
+.bs-faq:before {
+    content: "\e927";
+}
+.bs-seminars:before {
+    content: "\e928";
+}
+.bs-producticon:before {
+    content: "\e929";
+}
+.bs-cart:before {
+    content: "\e92a";
+}
+.bs-parallel:before {
+    content: "\e92b";
+}
+.bs-people:before {
+    content: "\e92c";
+}
+.bs-places:before {
+    content: "\e92d";
+}
+.bs-s-onlyme:before {
+    content: "\e92e";
+}
+.bs-s-public:before {
+    content: "\e92f";
+}
+.bs-report:before {
+    content: "\e930";
+}
+.bs-comments:before {
+    content: "\e931";
+}
+.bs-like:before {
+    content: "\e932";
+}
+.bs-publicwall:before {
+    content: "\e933";
+}
+.bs-blog:before {
+    content: "\e934";
+}
+.bs-lexicon:before {
+    content: "\e900";
+}
+.bs-pray:before {
+    content: "\e901";
+}
+.bs-journal:before {
+    content: "\e902";
+}
+.bs-note:before {
+    content: "\e903";
+}
+.bs-study:before {
+    content: "\e904";
+}
+.bs-staroutlined:before {
+    content: "\e905";
+}
+.bs-starsolid:before {
+    content: "\e906";
+}
+.bs-arrowdown:before {
+    content: "\e907";
+}
+.bs-close:before {
+    content: "\e908";
+}
+.bs-arrowright:before {
+    content: "\e909";
+}
+.bs-arrowleft:before {
+    content: "\e90a";
+}
+.bs-search:before {
+    content: "\e90b";
+}
+.bs-compare:before {
+    content: "\e90c";
+}
+.bs-print:before {
+    content: "\e90d";
+}
+.bs-settings:before {
+    content: "\e90e";
+}
+.bs-myjourney:before {
+    content: "\e90f";
+}
+.bs-googleplussmall:before {
+    content: "\e910";
+}
+.bs-twittersmall:before {
+    content: "\e911";
+}
+.bs-fbsmall:before {
+    content: "\e912";
+}
+.bs-googleplus:before {
+    content: "\e913";
+}
+.bs-biblestudylogo:before {
+    content: "\e914";
+}
+.bs-community:before {
+    content: "\e915";
+}
+.bs-exploer:before {
+    content: "\e916";
+}
+.bs-fb:before {
+    content: "\e918";
+}
+.bs-gift:before {
+    content: "\e919";
+}
+.bs-reader:before {
+    content: "\e91a";
+}
+.bs-twitter:before {
+    content: "\e91b";
+}
+.bs-verseoftheday:before {
+    content: "\e91c";
+}
+.h2-new {
+    position: relative;
+    color: #010101;
+    font-size: 30px;
+    font-family: ns_widemedium;
+    font-weight: normal;
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+}
+.cu1-h2 {
+    padding: 0 200px;
+    margin: 0 0 60px;
+}
 .my1-row {
     display: table;
     vertical-align: top;
@@ -1150,423 +1581,7 @@ a:focus, a:hover {
 body {
     overflow-x: hidden;
 }
-/*---------------------- Fonts --------------------------*/
-@font-face {
-    font-family: 'bs';
-    src: url('/fonts/bs.eot');
-    src: url('/fonts/bs.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/bs.woff') format('woff'),
-    url('/fonts/bs.ttf') format('truetype'),
-    url('/fonts/bs.svg#bs') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ns_wide_bookbold';
-    src: url('/fonts/Novecentosanswide-Bold-webfont.eot');
-    src: url('/fonts/Novecentosanswide-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/Novecentosanswide-Bold-webfont.woff2') format('woff2'),
-    url('/fonts/Novecentosanswide-Bold-webfont.woff') format('woff'),
-    url('/fonts/Novecentosanswide-Bold-webfont.ttf') format('truetype'),
-    url('/fonts/Novecentosanswide-Bold-webfont.svg#ns_wide_bookbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ns_widebook';
-    src: url('/fonts/Novecentosanswide-Book-webfont.eot');
-    src: url('/fonts/Novecentosanswide-Book-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/Novecentosanswide-Book-webfont.woff2') format('woff2'),
-    url('/fonts/Novecentosanswide-Book-webfont.woff') format('woff'),
-    url('/fonts/Novecentosanswide-Book-webfont.ttf') format('truetype'),
-    url('/fonts/Novecentosanswide-Book-webfont.svg#ns_widebook') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ns_widedemibold';
-    src: url('/fonts/Novecentosanswide-DemiBold-webfont.eot');
-    src: url('/fonts/Novecentosanswide-DemiBold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/Novecentosanswide-DemiBold-webfont.woff2') format('woff2'),
-    url('/fonts/Novecentosanswide-DemiBold-webfont.woff') format('woff'),
-    url('/fonts/Novecentosanswide-DemiBold-webfont.ttf') format('truetype'),
-    url('/fonts/Novecentosanswide-DemiBold-webfont.svg#ns_widedemibold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ns_widelight';
-    src: url('/fonts/Novecentosanswide-Light-webfont.eot');
-    src: url('/fonts/Novecentosanswide-Light-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/Novecentosanswide-Light-webfont.woff2') format('woff2'),
-    url('/fonts/Novecentosanswide-Light-webfont.woff') format('woff'),
-    url('/fonts/Novecentosanswide-Light-webfont.ttf') format('truetype'),
-    url('/fonts/Novecentosanswide-Light-webfont.svg#ns_widelight') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ns_widemedium';
-    src: url('/fonts/Novecentosanswide-Medium-webfont.eot');
-    src: url('/fonts/Novecentosanswide-Medium-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/Novecentosanswide-Medium-webfont.woff2') format('woff2'),
-    url('/fonts/Novecentosanswide-Medium-webfont.woff') format('woff'),
-    url('/fonts/Novecentosanswide-Medium-webfont.ttf') format('truetype'),
-    url('/fonts/Novecentosanswide-Medium-webfont.svg#ns_widemedium') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ns_widenormal';
-    src: url('/fonts/Novecentosanswide-Normal-webfont.eot');
-    src: url('/fonts/Novecentosanswide-Normal-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/Novecentosanswide-Normal-webfont.woff2') format('woff2'),
-    url('/fonts/Novecentosanswide-Normal-webfont.woff') format('woff'),
-    url('/fonts/Novecentosanswide-Normal-webfont.ttf') format('truetype'),
-    url('/fonts/Novecentosanswide-Normal-webfont.svg#ns_widenormal') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'work_sansblack';
-    src: url('/fonts/worksans-black-webfont.woff2') format('woff2'),
-    url('/fonts/worksans-black-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
 
-}
-@font-face {
-    font-family: 'work_sansbold';
-    src: url('/fonts/worksans-bold-webfont.woff2') format('woff2'),
-    url('/fonts/worksans-bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'work_sansextrabold';
-    src: url('/fonts/worksans-extrabold-webfont.woff2') format('woff2'),
-    url('/fonts/worksans-extrabold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'work_sansextralight';
-    src: url('/fonts/worksans-extralight-webfont.woff2') format('woff2'),
-    url('/fonts/worksans-extralight-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'work_sanslight';
-    src: url('/fonts/worksans-light-webfont.woff2') format('woff2'),
-    url('/fonts/worksans-light-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'work_sansmedium';
-    src: url('/fonts/worksans-medium-webfont.woff2') format('woff2'),
-    url('/fonts/worksans-medium-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'work_sansregular';
-    src: url('/fonts/worksans-regular-webfont.woff2') format('woff2'),
-    url('/fonts/worksans-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'work_sanssemibold';
-    src: url('/fonts/worksans-semibold-webfont.woff2') format('woff2'),
-    url('/fonts/worksans-semibold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'work_sansthin';
-    src: url('/fonts/worksans-thin-webfont.woff2') format('woff2'),
-    url('/fonts/worksans-thin-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-/*---------------------- Home Page --------------------------*/
-.mt1 {
-    margin-top: 100px !important;
-}
-.mt2 {
-    margin-top: 70px !important;
-}
-.mt3 {
-    margin-top: 40px !important;
-}
-.mt4 {
-    margin-top: 90px !important;
-}
-.mt5 {
-    margin-top: 20px !important;
-}
-.mt6 {
-    margin-top: 65px !important;
-}
-.mt7 {
-    margin-top: 100px !important;
-}
-.mt8 {
-    margin-top: 40px !important;
-}
-.mt9 {
-    margin-top: 25px !important;
-}
-.mt10 {
-    margin-top: 60px !important;
-}
-.mt11 {
-    margin-top: 100px !important;
-}
-.mt12 {
-    margin-top: 90px !important;
-}
-.mt13 {
-    margin-top: 30px !important;
-}
-.mt14 {
-    margin-top: 40px !important;
-}
-.mt15 {
-    margin-top: 20px !important;
-}
-.mt16 {
-    margin-top: 15px !important;
-}
-.mt17 {
-    margin-top: 25px !important;
-}
-.mb1 {
-    margin-bottom: 50px;
-}
-.mb2 {
-    margin-bottom: 100px;
-}
-.mr1 {
-    margin-right: 10%;
-}
-.mr2 {
-    margin-right: 35%;
-}
-.mr3 {
-    margin-right: 32%;
-}
-.mr4 {
-    margin-right: 6%;
-}
-.mr5 {
-    margin-right: 10px;
-}
-.mr6 {
-    margin-right: 5px;
-}
-.ml1 {
-    margin-left: 10px;
-}
-.pad1 {
-    padding-bottom: 50px;
-}
-.color1 {
-    color: #ffffff !important;
-}
-.color2 {
-    color: #404040 !important;
-}
-.color3 {
-    color: #000000 !important;
-}
-/*----------------- Icons Set ---------------------*/
-[class^="bs-"], [class*=" bs-"] {
-    font-family: 'bs' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-decoration: none !important;
-}
-.bs-upload:before {
-    content: "\e935";
-}
-.bs-calendar:before {
-    content: "\e936";
-}
-.bs-add:before {
-    content: "\e917";
-}
-.bs-remove:before {
-    content: "\e91d";
-}
-.bs-checkmark:before {
-    content: "\e91e";
-}
-.bs-s-groupscustom:before {
-    content: "\e91f";
-}
-.bs-s-groups:before {
-    content: "\e920";
-}
-.bs-friends:before {
-    content: "\e921";
-}
-.bs-user:before {
-    content: "\e922";
-}
-.bs-invite:before {
-    content: "\e923";
-}
-.bs-arrowrt:before {
-    content: "\e924";
-}
-.bs-arrowback:before {
-    content: "\e925";
-}
-.bs-contactus:before {
-    content: "\e926";
-}
-.bs-faq:before {
-    content: "\e927";
-}
-.bs-seminars:before {
-    content: "\e928";
-}
-.bs-producticon:before {
-    content: "\e929";
-}
-.bs-cart:before {
-    content: "\e92a";
-}
-.bs-parallel:before {
-    content: "\e92b";
-}
-.bs-people:before {
-    content: "\e92c";
-}
-.bs-places:before {
-    content: "\e92d";
-}
-.bs-s-onlyme:before {
-    content: "\e92e";
-}
-.bs-s-public:before {
-    content: "\e92f";
-}
-.bs-report:before {
-    content: "\e930";
-}
-.bs-comments:before {
-    content: "\e931";
-}
-.bs-like:before {
-    content: "\e932";
-}
-.bs-publicwall:before {
-    content: "\e933";
-}
-.bs-blog:before {
-    content: "\e934";
-}
-.bs-lexicon:before {
-    content: "\e900";
-}
-.bs-pray:before {
-    content: "\e901";
-}
-.bs-journal:before {
-    content: "\e902";
-}
-.bs-note:before {
-    content: "\e903";
-}
-.bs-study:before {
-    content: "\e904";
-}
-.bs-staroutlined:before {
-    content: "\e905";
-}
-.bs-starsolid:before {
-    content: "\e906";
-}
-.bs-arrowdown:before {
-    content: "\e907";
-}
-.bs-close:before {
-    content: "\e908";
-}
-.bs-arrowright:before {
-    content: "\e909";
-}
-.bs-arrowleft:before {
-    content: "\e90a";
-}
-.bs-search:before {
-    content: "\e90b";
-}
-.bs-compare:before {
-    content: "\e90c";
-}
-.bs-print:before {
-    content: "\e90d";
-}
-.bs-settings:before {
-    content: "\e90e";
-}
-.bs-myjourney:before {
-    content: "\e90f";
-}
-.bs-googleplussmall:before {
-    content: "\e910";
-}
-.bs-twittersmall:before {
-    content: "\e911";
-}
-.bs-fbsmall:before {
-    content: "\e912";
-}
-.bs-googleplus:before {
-    content: "\e913";
-}
-.bs-biblestudylogo:before {
-    content: "\e914";
-}
-.bs-community:before {
-    content: "\e915";
-}
-.bs-exploer:before {
-    content: "\e916";
-}
-.bs-fb:before {
-    content: "\e918";
-}
-.bs-gift:before {
-    content: "\e919";
-}
-.bs-reader:before {
-    content: "\e91a";
-}
-.bs-twitter:before {
-    content: "\e91b";
-}
-.bs-verseoftheday:before {
-    content: "\e91c";
-}
 /*----------------- Buttons ------------------------*/
 .btn1, .btn1:visited {
     display: inline-block;
@@ -1620,6 +1635,21 @@ body {
     position: absolute;
     bottom: 25px;
     left: 80px;
+    right: 25px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+}
+.cu2-2-btn1 {
+    font-size: 13px !important;
+    padding: 7px 0 !important;
+    border-width: 2px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    vertical-align: top;
+    border-width: 2px !important;
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
     right: 25px;
     box-sizing: border-box;
     text-transform: uppercase;
@@ -1687,6 +1717,10 @@ body {
     margin-right: 4px;
     font-weight: normal !important;
     background-color: transparent !important;
+}
+.cu-arrowrt {
+    padding: 0 0 0 10px;
+    font-size: 10px;
 }
 li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     border: 2px solid #00b9f7 !important;
@@ -1791,6 +1825,19 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     background: #64cd93;
     color: #ffffff;
     text-decoration: none !important;
+}
+.cu-shop-btn1 {
+    border: 2px solid;
+    font-size: 11px;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    text-transform: uppercase;
+    top: 2px;
+}
+.count-prod {
+    font-size: 16px;
+    line-height: 11px;
 }
 .bg-home {
     background: url('/images/bg-home-header.png') center top no-repeat;
@@ -2085,6 +2132,13 @@ ul.c-social li a:hover, ul.c-social li a:active {
 .cu-gift {
     color: #ffffff;
     font-size: 76px;
+}
+.cu-gift2 {
+    color: #00b9f7;
+    font-size: 40px;
+    display: inline-block;
+    padding-right: 15px;
+    vertical-align: sub;
 }
 .gift-item {
     background: #ffffff;
@@ -2989,7 +3043,6 @@ textarea.wall-text-area:focus {
     background: url('/images/default.jpg') center no-repeat;
     background-size: cover !important;
     -webkit-background-size: cover !important;
-    cursor: pointer;
 }
 .product-image {
     width: 100%;
@@ -3001,6 +3054,7 @@ textarea.wall-text-area:focus {
     -webkit-background-size: cover !important;
     cursor: pointer;
     border-bottom: 1px solid #e3e3e3;
+    display: block;
 }
 .cu-producticon {
     color: #d2d7dc;
@@ -3186,6 +3240,10 @@ textarea.wall-text-area:focus {
 .cu-cart {
     font-size: 19px;
     line-height: 31px;
+}
+.cu-cart2 {
+    font-size: 12px;
+    padding-right: 2px;
 }
 .c-people-comment {
     border-bottom: 1px solid #e3e3e3;

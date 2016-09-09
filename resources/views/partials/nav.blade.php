@@ -74,11 +74,11 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-            @if(Request::is('shop*') || Request::is('order*'))
+           {{-- @if(Request::is('shop*') || Request::is('order*'))
                 <li class="{{ ViewHelper::classActivePath('shop/cart') }}">
                     <a href="{{ URL::to('/shop/cart') }}"><i class="fa fa-shopping-cart"></i> {!! Cart::count() !!} item(s)</a>
                 </li>
-            @endif
+            @endif--}}
             @if (Auth::guest())
                 <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::to('auth/login') }}">Login</a></li>
                 <li class="{{ (Request::is('auth/register') ? 'active' : '') }} bord-menu-item"><a href="{{ URL::to('auth/register') }}">Sign Up</a></li>
