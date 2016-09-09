@@ -166,6 +166,9 @@
                                 <li>
                                     <a href="#" class="j-btn-settings">
                                         <i class="bs-settings cu-print"></i>
+                                        @if(ViewHelper::checkNotifTooltip('got_related_records_tooltip') || ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip') || ViewHelper::checkNotifTooltip('got_verse_diff_tooltip'))
+                                        <i class="bs-starsolid cu-starsolid-settings"></i>
+                                        @endif
                                     </a>
                                 </li>
                             </ul>

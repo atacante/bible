@@ -1609,6 +1609,21 @@ body {
     box-sizing: border-box;
     text-transform: uppercase;
 }
+.cu2-1-btn1 {
+    font-size: 13px !important;
+    padding: 7px 0 !important;
+    border-width: 2px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    vertical-align: top;
+    border-width: 2px !important;
+    position: absolute;
+    bottom: 25px;
+    left: 80px;
+    right: 25px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+}
 .cu4-btn1 {
     font-size: 13px !important;
     padding: 5px !important;
@@ -2995,7 +3010,7 @@ textarea.wall-text-area:focus {
     padding-top: 90px;
 }
 .price-label {
-    padding: 10px 0;
+    padding: 20px 0 5px;
     font-size: 20px;
     font-family: work_sansbold;
     color: #535353;
@@ -3019,8 +3034,9 @@ textarea.wall-text-area:focus {
     line-height: 48px;
 }
 .btn4:hover, .btn4:active {
+    border: 3px solid #79858f;
     display: inline-block;
-    background: #00b9f7;
+    background: #79858f;
     color: #ffffff;
     text-decoration: none !important;
 }
@@ -3158,6 +3174,18 @@ textarea.wall-text-area:focus {
     height: 40px !important;
     line-height: 35px !important;
     width: 85px;
+}
+.btn4-cu2 {
+    bottom: 25px;
+    height: 38px !important;
+    left: 30px;
+    line-height: 30px !important;
+    top: auto;
+    width: 41px;
+}
+.cu-cart {
+    font-size: 19px;
+    line-height: 31px;
 }
 .c-people-comment {
     border-bottom: 1px solid #e3e3e3;
@@ -3467,4 +3495,29 @@ h4.h4-locations {
 }
 .font-size-20{
     font-size: 20px;
+}
+.cu-starsolid-settings{
+    color: #36a741;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    padding: 0 0 2px 0;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.cu-starsolid-settings-popup{
+    color: #fff;
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    background: #36a741;
+    padding: 0;
+    font-size: 12px;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    line-height: 13px;
+    text-align: center;
 }

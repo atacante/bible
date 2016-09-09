@@ -5,7 +5,6 @@
 
 
                 @if($product->images->count())
-                    {{--<img class="img-thumbnail" height="100" width="100" data-dz-thumbnail="" alt="" src="{!! Config::get('app.productImages').'thumbs/'.$product->images[0]->image !!}" />--}}
                     <div class="product-image" data-dz-thumbnail="" data-image="{!!Config::get('app.productImages').'thumbs/'.$product->images[0]->image !!}" style="background: url('{!! $product->images[0]->image!=''?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'' !!}') center no-repeat;"></div>
                 @else
                     <div class="product-image" data-dz-thumbnail="" data-image="" style="">
@@ -15,9 +14,9 @@
 
                 <div class="c-inner-location-text">
                     <h4 class="h4-locations">{!! $product->name !!}</h4>
-                    <div style="line-height: 16px; font-size: 12px;">
-                        <span style="color:#90949c;">{!! $product->short_description !!}</span>
-                    </div>
+                    <p>
+                        {!! str_limit(strip_tags($product->short_description,'<p></p>'), $limit = 140, $end = '... ') !!}
+                    </p>
                     <div class="price-label">
                         ${!! $product->price !!}
                     </div>
@@ -27,9 +26,8 @@
                             {!! Html::link($product->external_link,'Show details', ['class'=>'btn1 cu2-btn1 j-show-product', 'data-link' => $product->external_link]) !!}
                         </div>
                     @else
-                        <div>
-                            {!! Html::link(url('/shop/add-to-cart/'.$product->id,[],false),'Details', ['class'=>'btn2 cu2-btn1']) !!}
-                        </div>
+                        <a class="btn4 btn4-cu2" href="{{url('/shop/add-to-cart/'.$product->id,[],false)}}"><i class="bs-cart cu-cart"></i></a>
+                        {!! Html::link(url('/shop/add-to-cart/'.$product->id,[],false),'Details', ['class'=>'btn2 cu2-1-btn1']) !!}
                     @endif
                 </div>
 

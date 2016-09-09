@@ -117,6 +117,9 @@ class ReaderController extends Controller
                     return $this->flashNotification('Requested content does not provided in '.$compareVersion.' version');
                 }
                 if (Request::input('diff', false)) {
+                    if(Auth::check()){
+                        Auth::user()->setNotifTooltip('got_chapter_diff_tooltip');
+                    }
                     $diff = new \cogpowered\FineDiff\Diff(new \cogpowered\FineDiff\Granularity\Word);
                     if (count($compare['data'][$compareVersion]['verses']) && count($content['verses'])) {
                         foreach ($content['verses'] as $key => $verse) {
@@ -141,6 +144,9 @@ class ReaderController extends Controller
             $related = Cookie::get('related', 'on');
         }
 
+        if(Auth::check() && Request::input('related') == '0'){
+            Auth::user()->setNotifTooltip('got_related_records_tooltip');
+        }
 
         $content['relatedItems'] = $this->getRelatedItems($version,$book,$chapter);
         $content['showRelated'] = $related;
@@ -282,6 +288,9 @@ class ReaderController extends Controller
             }
 
             if (Request::input('diff', false)) {
+                if(Auth::check()){
+                    Auth::user()->setNotifTooltip('got_verse_diff_tooltip');
+                }
                 $diff = new \cogpowered\FineDiff\Diff(new \cogpowered\FineDiff\Granularity\Word);
                 foreach ($content['verse'] as $key => $version) {
                     $content['verse'][$key]['verse']->verse_text = $diff->render(strip_tags($content['main_verse']['verse']->verse_text), strip_tags($version['verse']->verse_text));

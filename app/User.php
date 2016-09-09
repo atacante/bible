@@ -49,6 +49,11 @@ class User extends Authenticatable
 
     protected static function boot() {
         parent::boot();
+        static::saved(function($user) {
+            if(!$user->getOriginal('id') && !$user->notificationsSettings){
+                $user->notificationsSettings()->create([]);
+            }
+        });
         static::deleting(function($user) {
             $user->notes()->delete();
             $user->journals()->delete();
@@ -72,6 +77,7 @@ class User extends Authenticatable
             $user->lexiconViews()->delete();
             $user->strongsViews()->delete();
             $user->blogViews()->delete();
+            $user->notificationsSettings()->delete();
             return true;
         });
     }
@@ -117,6 +123,10 @@ class User extends Authenticatable
         }
 
         return $rules;
+    }
+
+    public function notificationsSettings() {
+        return $this->hasOne(NotificationsSettings::class, 'user_id', 'id');
     }
 
     public function country() {
@@ -400,5 +410,24 @@ class User extends Authenticatable
         }
 
         return $carbonEnd->format(self::DFORMAT);
+    }
+
+    public function checkNotifTooltip($type)
+    {
+        $notifSettings = $this->notificationsSettings;
+        if(!$notifSettings){
+            $notifSettings = $this->notificationsSettings()->create([]);
+        }
+        return !$notifSettings->$type;
+    }
+
+    public function setNotifTooltip($type)
+    {
+        $notifSettings = $this->notificationsSettings;
+        if(!$notifSettings){
+            $notifSettings = $this->notificationsSettings()->create([]);
+        }
+        $notifSettings->$type = true;
+        $notifSettings->save();
     }
 }

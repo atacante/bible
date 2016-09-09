@@ -128,8 +128,11 @@
             </h4>
             {!!  Form::open(['method' => 'get','url' => '/reader/read']) !!}
             @if(isset($content['showRelated']))
-                <div class="mt15">
+                <div class="mt15" style="position: relative;">
                     {{--<input type="checkbox">--}}
+                    @if(ViewHelper::checkNotifTooltip('got_related_records_tooltip'))
+                        <div class="cu-starsolid-settings-popup">i</div>
+                    @endif
                     {!! Form::hidden('related', 0) !!}
                     {!! Form::checkbox('related', null, ($content['showRelated'])?1:0) !!}
                     Show Related Records
@@ -145,8 +148,11 @@
                     {!! Form::hidden('compare[]', $version) !!}
                 @endforeach
                 {{--{!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
-                <div class="mt15">
+                <div class="mt15" style="position: relative;">
                     {{--<input type="checkbox">--}}
+                    @if(ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip') || ViewHelper::checkNotifTooltip('got_verse_diff_tooltip'))
+                        <div class="cu-starsolid-settings-popup">i</div>
+                    @endif
                     {!! Form::checkbox('diff', null, Request::input('diff',false)?1:0) !!}
                     Show difference
                 </div>
