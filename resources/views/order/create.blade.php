@@ -1,10 +1,11 @@
     @extends('layouts.app')
 
     @section('content')
-        <div class="panel panel-default">
+        <div class="c-white-content">
+            {!! Form::model($model, ['method' => 'post', 'url' => '/order/checkout']) !!}
             <div class="panel-heading">{{ $page_title or "Page Title" }}</div>
             <div class="panel-body">
-                {!! Form::model($model, ['method' => 'post', 'url' => '/order/checkout']) !!}
+
                 {!! Form::hidden('user_id', $user_id) !!}
                 <div class="box-body">
                     @foreach($model->getFillable() as $key => $property)
@@ -14,7 +15,7 @@
                             @endif
                                     <div class="form-group {{ $errors->has($property) ? ' has-error' : '' }}">
                                         {!!  Form::label($property, ucwords(str_replace('_',' ', $property))) !!}
-                                        {!!  Form::text($property, $model->$property, ['class' => 'form-control']) !!}
+                                        {!!  Form::text($property, $model->$property, ['class' => 'form-control input1']) !!}
                                         @if ($errors->has($property))
                                             <span class="help-block">
                                                 {{ $errors->first($property) }}
@@ -28,11 +29,12 @@
                     @endforeach
                 </div>
                 <!-- /.box-body -->
-
-                <div class="box-footer">
-                    {!! Form::button('Confirm', ['type'=>'submit','class'=>'btn btn-success pull-right']) !!}
-                </div>
-                {!! Form::close() !!}
             </div>
         </div>
+
+        <div class="mb1 mt13">
+            {!! Form::button('Confirm', ['type'=>'submit','class'=>'btn2-kit pull-right']) !!}
+            <div class="clearfix"></div>
+        </div>
+        {!! Form::close() !!}
     @endsection
