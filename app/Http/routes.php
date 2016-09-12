@@ -230,3 +230,4 @@ View::composer('notes.filters', 'App\Http\Composers\NotesFiltersComposer');
 View::composer('journal.filters', 'App\Http\Composers\NotesFiltersComposer');
 View::composer('prayers.filters', 'App\Http\Composers\NotesFiltersComposer');
 View::composer('user.my-journey', 'App\Http\Composers\NotesFiltersComposer');
+View::composer('partials.verse-of-day', 'App\Http\Composers\VerseOfDayComposer');

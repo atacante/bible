@@ -5,6 +5,7 @@ namespace App\Http\Composers;
 
 use App\BlogCategory;
 use App\Helpers\ViewHelper;
+use App\VerseOfDay;
 use Illuminate\Contracts\View\View;
 
 class VerseOfDayComposer {
@@ -17,7 +18,7 @@ class VerseOfDayComposer {
      */
     public function compose(View $view)
     {
-        $data['verse'] = BlogCategory::get()->pluck('title','id')->toArray();
+        $data['verseOfDay'] = VerseOfDay::getTodayVerse();
         $view->with('data', $data);
     }
 
