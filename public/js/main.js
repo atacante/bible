@@ -198,7 +198,7 @@ $(document).ready(function(){
 
                 $(that).append(
 
-                    '<div class="j-lex-content lex-content">' +
+                    '<div class="j-lex-content lex-content font-size-16">' +
                         data +
                     '</div>'
                 );

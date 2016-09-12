@@ -260,6 +260,9 @@ h4.h4-sub-kit {
     line-height: 32px;
 }
 /*---------------------- Home Page --------------------------*/
+.mt0 {
+    margin-top: 8px !important;
+}
 .mt1 {
     margin-top: 100px !important;
 }
@@ -331,6 +334,12 @@ h4.h4-sub-kit {
 }
 .mr5 {
     margin-right: 10px;
+}
+.mr2p {
+    margin-right: 2%;
+}
+.mr4p {
+    margin-right: 4%;
 }
 .mr6 {
     margin-right: 5px;
@@ -3688,6 +3697,9 @@ h4.h4-locations {
 }
 .font-size-13{
     font-size: 13px;
+}
+.font-size-16{
+    font-size: 16px;
 }
 .font-size-20{
     font-size: 20px;
