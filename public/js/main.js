@@ -1490,7 +1490,7 @@ $(document).ready(function(){
 
     $(".j-btn-settings").on("click", function(e){
         var btnCoordTop = $(this).offset().top+25;
-        var btnCoordLeft = $(this).offset().left-290;
+        var btnCoordLeft = $(this).offset().left-330;
         $(".j-popup-settings").toggle();
         $(".j-popup-settings").offset({top:btnCoordTop, left:btnCoordLeft});
         e.preventDefault();

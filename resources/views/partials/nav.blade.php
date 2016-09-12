@@ -128,14 +128,15 @@
             </h4>
             {!!  Form::open(['method' => 'get','url' => '/reader/read']) !!}
             @if(isset($content['showRelated']))
-                <div class="mt15" style="position: relative;">
+                <div class="mt15" style="position: relative; margin-top: 20px !important;">
                     {{--<input type="checkbox">--}}
                     @if(ViewHelper::checkNotifTooltip('got_related_records_tooltip'))
                         <div class="cu-starsolid-settings-popup">i</div>
                     @endif
                     {!! Form::hidden('related', 0) !!}
-                    {!! Form::checkbox('related', null, ($content['showRelated'])?1:0) !!}
-                    Show Related Records
+                    {{--<input id="check-full" class="cust-radio" type="checkbox" name="check-full" value="fulltime">--}}
+                    {!! Form::checkbox('related', null, ($content['showRelated'])?1:0, ['id'=>'check-related','class'=>'cust-radio']) !!}
+                    <label class="label-checkbox" for="check-related">Show Related Records</label>
                 </div>
             @endif
             {!! Form::hidden('version', Request::input('version', Config::get('app.defaultBibleVersion'))) !!}
@@ -153,22 +154,22 @@
                     @if(ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip') || ViewHelper::checkNotifTooltip('got_verse_diff_tooltip'))
                         <div class="cu-starsolid-settings-popup">i</div>
                     @endif
-                    {!! Form::checkbox('diff', null, Request::input('diff',false)?1:0) !!}
-                    Show difference
+                    {!! Form::checkbox('diff', null, Request::input('diff',false)?1:0, ['id'=>'check-diff','class'=>'cust-radio']) !!}
+                    <label class="label-checkbox" for="check-diff">Show difference</label>
                 </div>
             @endif
             @if(isset($content['readerMode']))
             <div class="mt16">
                 <div class="radio-inline">
                     <label>
-                        {!! Form::radio('readerMode', 'beginner', ($content['readerMode'] == 'beginner'),['class' => 'j-reader-mode']) !!}
-                        {!! Config::get('app.readerModes.beginner') !!}
+                        {!! Form::radio('readerMode', 'beginner', ($content['readerMode'] == 'beginner'),['id'=>'check-beginner','class'=>'cust-radio']) !!}
+                        <label class="label-radio" for="check-beginner">{!! Config::get('app.readerModes.beginner') !!}</label>
                     </label>
                 </div>
                 <div class="radio-inline">
                     <label>
-                        {!! Form::radio('readerMode', 'intermediate', ($content['readerMode'] == 'intermediate'),['class' => 'j-reader-mode']) !!}
-                        {!! Config::get('app.readerModes.intermediate') !!}
+                        {!! Form::radio('readerMode', 'intermediate', ($content['readerMode'] == 'intermediate'),['id'=>'check-intermediate','class'=>'cust-radio']) !!}
+                        <label class="label-radio" for="check-intermediate">{!! Config::get('app.readerModes.intermediate') !!}</label>
                     </label>
                 </div>
             </div>

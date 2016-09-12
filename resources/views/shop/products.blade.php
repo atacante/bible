@@ -27,7 +27,9 @@
                             <a class="btn1 cu2-2-btn1 j-show-product" href="{{$product->external_link}}" data-link = "{{$product->external_link}}">Details <i class="bs-arrowrt cu-arrowrt"></i></a>
                         </div>
                     @else
-                        <a class="btn4 btn4-cu2" href="{{url('/shop/add-to-cart/'.$product->id,[],false)}}"><i class="bs-cart cu-cart"></i></a>
+                        <a class="btn4 btn4-cu2" href="{{url('/shop/add-to-cart/'.$product->id,[],false)}}">
+                            <i class="bs-cart cu-cart"></i>
+                        </a>
                         {!! Html::link(url('/shop/product/'.$product->id,[],false),'Details', ['class'=>'btn2 cu2-1-btn1']) !!}
                     @endif
                 </div>
