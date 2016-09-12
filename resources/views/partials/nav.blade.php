@@ -148,16 +148,16 @@
                 @foreach($compareVersions as $version)
                     {!! Form::hidden('compare[]', $version) !!}
                 @endforeach
-                {{--{!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
-                <div class="mt15" style="position: relative;">
-                    {{--<input type="checkbox">--}}
-                    @if(ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip') || ViewHelper::checkNotifTooltip('got_verse_diff_tooltip'))
-                        <div class="cu-starsolid-settings-popup">i</div>
-                    @endif
-                    {!! Form::checkbox('diff', null, Request::input('diff',false)?1:0, ['id'=>'check-diff','class'=>'cust-radio']) !!}
-                    <label class="label-checkbox" for="check-diff">Show difference</label>
-                </div>
             @endif
+                {{--{!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
+            <div class="mt15 {!! Request::input('compare', false)?'':'checkbox-disabled' !!}" style="position: relative;">
+                {{--<input type="checkbox">--}}
+                @if(ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip') || ViewHelper::checkNotifTooltip('got_verse_diff_tooltip'))
+                    <div class="cu-starsolid-settings-popup">i</div>
+                @endif
+                {!! Form::checkbox('diff', null, Request::input('diff',false)?1:0, ['id'=>'check-diff','class'=>'cust-radio',Request::input('compare', false)?'':'disabled']) !!}
+                <label class="label-checkbox" for="check-diff">Show difference</label>
+            </div>
             @if(isset($content['readerMode']))
             <div class="mt16">
                 <div class="radio-inline">
