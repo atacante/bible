@@ -55,24 +55,7 @@
             </div>
         </section>
     </div>
-    <h2 class="h2-2 mt7" id="day-verse"><i class="bs-verseoftheday cu-verseoftheday"></i>VERSE OF THE DAY</h2>
-    <div class="c-center-content2 mt8">
-        <div class="col-left1 h-ill5">
-            <div class="luke">LUKE 6:37</div>
-        </div>
-        <div class="col-right1">
-            <p class="p-2">
-                {!!  $verse_day !!}
-            </p>
-            <div class="c-share-panel">
-                <h4 class="h4-1">
-                    SHARE WITH:
-                </h4>
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_sharing_toolbox c-social"></div>
-            </div>
-        </div>
-    </div>
+    @include('partials.verse-of-day')
     <div class="c-center-content3 mt11 text-center">
         <i class="bs-gift cu-gift"></i>
         <h2 class="h2-1 color1 text-center mt9">

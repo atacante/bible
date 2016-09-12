@@ -584,7 +584,7 @@ body{
 }
 del {
     color: #bda61a;
-    text-decoration: underline;
+    text-decoration: none;
     font-style: italic;
 }
 del:before {
@@ -595,7 +595,7 @@ del:after {
 }
 ins {
     color: #227a07;
-    text-decoration: underline;
+    text-decoration: none;
 }
 label {
     font-weight: normal;
