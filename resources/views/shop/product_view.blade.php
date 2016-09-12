@@ -10,8 +10,6 @@
         <div class="col-md-12">
             <div class="c-white-content">
                 <div class="inner-pad1">
-
-                    <div class="location-item-details">
                         <div class="row">
                             <div class="col-xs-4">
 
@@ -34,8 +32,7 @@
                                         <div class="carousel-inner" role="listbox">
                                             @foreach($product->images as $key => $image)
                                                 <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
-                                                    <img src="{!! Config::get('app.productImages').'thumbs/'.$image->image !!}"
-                                                         class="img-thumbnail" alt="" style="cursor: pointer;">
+                                                    <div class="product-image-big" data-dz-thumbnail="" data-image="{!!Config::get('app.productImages').'thumbs/'.$image->image !!}" style="background: url('{!! $image->image!=''?Config::get('app.productImages').'thumbs/'.$image->image:'' !!}') center no-repeat;"></div>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -57,8 +54,8 @@
                                         @endif
                                 </div>
                             @else
-                                <div class="no-image img-thumbnail">
-                                    <div class="no-image-text text-center">No image</div>
+                                <div class="product-image-big" data-dz-thumbnail="" data-image="" style="">
+                                    <i class="bs-producticon cu-producticon"></i>
                                 </div>
                             @endif
 
@@ -68,28 +65,32 @@
 
                             <div class="col-xs-8">
                                 <h3 class="h3-kit">{!! $product->name !!}</h3>
-                                <div class="product-label">
+
+                                <h4 class="h4-sub-kit mt8">
                                     Price:
-                                </div>
+                                </h4>
                                 <div class="price-label2">
                                      ${!! $product->price !!}
                                 </div>
 
-                                <div>
+                                <h4 class="h4-sub-kit mt8">
+                                    Price:
+                                </h4>
+                                <div class="p-medium">
                                     {!! $product->long_description !!}
                                 </div>
                             </div>
                         </div>
-                    </div>
+
 
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="text-center">
-            {!! Html::link(url('/shop/add-to-cart/'.$product->id,[],false),'Add To Cart', ['class'=>'btn btn-success']) !!}
-            {!! Html::link((($url = Session::get('backUrl'))?$url:'/shop'),'Back to list', ['class'=>'btn btn-primary']) !!}
+    <div class="row mt14 mb1">
+        <div class="col-xs-12 text-right">
+            {!! Html::link((($url = Session::get('backUrl'))?$url:'/shop'),'Back to list', ['class'=>'btn2 ml1']) !!}
+            {!! Html::link(url('/shop/add-to-cart/'.$product->id,[],false),'Add To Cart', ['class'=>'btn1 ml1']) !!}
         </div>
     </div>
 @stop
