@@ -3,6 +3,8 @@
 namespace App;
 
 use Gloudemans\Shoppingcart\Contracts\Buyable;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 
 class ShopProduct extends BaseModel implements Buyable{
 
@@ -54,5 +56,17 @@ class ShopProduct extends BaseModel implements Buyable{
      */
     public function getBuyablePrice($options = null){
         return $this->price;
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static ::deleted(function($model) {
+            if ($model->images->count()) {
+                $model->images()->delete();
+                File::deleteDirectory(public_path(Config::get('app.productImages') . $model->id));
+            }
+            return true;
+        });
     }
 }
