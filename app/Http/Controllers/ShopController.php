@@ -3,10 +3,10 @@
 use App\ShopProduct;
 use App\ShopCategory;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller {
@@ -40,6 +40,8 @@ class ShopController extends Controller {
 	 */
 	public function getIndex()
 	{
+		Session::flash('backUrl', Request::fullUrl());
+
 		$categories =  ShopCategory::all();
 		$products =  ShopProduct::query();
 
@@ -58,8 +60,11 @@ class ShopController extends Controller {
 	 */
 	public function getProduct($id)
 	{
-		$product =  ShopProduct::find($id);
+		if (Session::has('backUrl')) {
+			Session::keep('backUrl');
+		}
 
+		$product =  ShopProduct::find($id);
 		return view('shop.product_view',['product'=>$product]);
 	}
 

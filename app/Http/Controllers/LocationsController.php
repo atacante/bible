@@ -49,6 +49,8 @@ class LocationsController extends Controller
 
     public function getList(){
 
+        Session::flash('backUrl', Request::fullUrl());
+
         $locationsModel = new Location();
 
         $locationsModel = $this->prepareFilters($locationsModel->query());
