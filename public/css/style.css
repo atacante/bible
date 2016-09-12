@@ -3827,3 +3827,6 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     font-size: 20px;
     color: #ffffff;
 }
+.checkbox-disabled{
+    opacity: 0.5;
+}
