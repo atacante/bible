@@ -1676,4 +1676,10 @@ $(document).ready(function(){
         $(this).addClass('hidden');
         $('.live-search-list').append($(this).parents('li'));
     });
+
+    /* ----------------- My Journey ----------------- */
+    $('.j-show-adv-search').click(function(e){
+        $('.j-admin-verses-filters').toggleClass('hidden');
+        $('.j-short-verses-filters').toggleClass('hidden');
+    });
 });
