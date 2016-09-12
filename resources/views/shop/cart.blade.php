@@ -8,7 +8,7 @@
         <table class="kit-table1">
             <thead>
                 <tr>
-                    <th>Product</th>
+                    <th style="width: 140px">Product</th>
                     <th></th>
                     <th>Quantity</th>
                     <th>Price</th>
@@ -33,19 +33,19 @@
                         <td>
                          <p><strong>{!! $row->name !!}</strong></p>
                         </td>
-                        <td>{!! Form::text('qty',$row->qty, ['style'=>'width:100px']) !!}</td>
-                        <td>{!! $row->price !!}</td>
-                        <td> {!! $row->total !!} </td>
-                        <td class="text-center" style="width: 50px;">
+                        <td>{!! Form::text('qty',$row->qty, ['class'=>'input1','style'=>'width:125px']) !!}</td>
+                        <td>${!! $row->price !!}</td>
+                        <td>${!! $row->total !!} </td>
+                        <td style="width: 200px;">
                             {!! Form::token() !!}
                             {!! Form::hidden('rowId', $row->rowId) !!}
-                            <a title="Delete item" href="{!! url('/shop/cart-delete',$row->rowId) !!}" data-toggle="modal"
+                            <a class="btn3-kit" title="Delete item" href="{!! url('/shop/cart-delete',$row->rowId) !!}" data-toggle="modal"
                                data-target="#confirm-delete" data-header="Delete Confirmation"
-                               data-confirm="Are you sure you want to delete this item?"><i
-                                        class="fa fa-trash"
-                                        style="color: #367fa9; font-size: 1.4em;"></i></a>
+                               data-confirm="Are you sure you want to delete this item?">
+                                <i class="fa fa-trash"></i>
+                            </a>
 
-                            {!! Form::button('Update',['type' => 'submit','class' => 'btn btn-primary','style' => 'padding: 2px 12px; margin-top:5px;']) !!}
+                            {!! Form::button('Update',['type' => 'submit','class' => 'btn1-kit']) !!}
                         </td>
                     </tr>
                     {!! Form::close() !!}
@@ -61,27 +61,28 @@
             <tfoot>
                 <tr>
                     <td colspan="3">&nbsp;</td>
-                    <td>Subtotal</td>
-                    <td><?php echo Cart::subtotal(); ?></td>
+                    <td class="label1">Subtotal</td>
+                    <td>$<?php echo Cart::subtotal(); ?></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td colspan="3">&nbsp;</td>
-                    <td>Tax</td>
-                    <td><?php echo Cart::tax(); ?></td>
+                    <td class="label1">Tax</td>
+                    <td>$<?php echo Cart::tax(); ?></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td colspan="3">&nbsp;</td>
-                    <td>Total</td>
-                    <td><?php echo Cart::total(); ?></td>
+                    <td class="label1">Total</td>
+                    <td>$<?php echo Cart::total(); ?></td>
                     <td>&nbsp;</td>
                 </tr>
             </tfoot>
         </table>
 
-        <div>
-            {!! Html::link(url('/order/create'),'Checkout', ['class'=>'btn btn-success pull-right']) !!}
+        <div class="mb1">
+            {!! Html::link(url('/order/create'),'Checkout', ['class'=>'btn2-kit pull-right']) !!}
+            <div class="clearfix"></div>
         </div>
         <!-- /.box-body -->
 
