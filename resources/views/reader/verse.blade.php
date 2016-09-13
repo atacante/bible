@@ -8,7 +8,9 @@
     {{--<div class="row col-md-12">
         @include('reader.filters')
     </div>--}}
-
+    {!! Form::hidden('verse_details',true) !!}
+    {!! Form::hidden('bible_version',$content['main_verse']['version_code']) !!}
+    {!! Form::hidden('verse_id',$content['main_verse']['verse']->id) !!}
     <div class="row">
         <div class="col-xs-12">
             <div class="c-title-and-icons2">
@@ -36,6 +38,13 @@
                 @endif
 
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-right">
+            <a href="{{ url('/notes/create') }}" class="btn btn-primary j-create-note"><i class="fa fa-plus-circle"></i> Note</a>
+            <a href="{{ url('/journal/create') }}" class="btn btn-primary j-create-journal"><i class="fa fa-plus-circle"></i> Journal</a>
+            <a href="{{ url('/prayers/create') }}" class="btn btn-primary j-create-prayer"><i class="fa fa-plus-circle"></i> Prayer</a>
         </div>
     </div>
     <div class="row">
