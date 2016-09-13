@@ -5,31 +5,50 @@
 @stop
 
 @section('content')
-    <div class="row col-md-12">
+    {{--<div class="row col-md-12">
         @include('reader.filters')
-    </div>
-    <a href="{!! url('reader/read?'.http_build_query(
-        [
-            'version' => $content['main_verse']['version_code'],
-            'book' => $content['main_verse']['verse']->book_id,
-            'chapter' => $content['main_verse']['verse']->chapter_num
-        ])."#verse".$content['main_verse']['verse']->id,[],false) !!}" class="btn btn-default btn-success btn-to-reader" style="">Go to Reader</a>
-    <div class="row col-md-12 text-center" style="line-height: 30px;">
-        <span style="">
-            <h3 class="text-center" style="margin-bottom: 20px;">
+    </div>--}}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="c-title-and-icons2">
+                <a href="{!! url('reader/read?'.http_build_query(
+                    [
+                        'version' => $content['main_verse']['version_code'],
+                        'book' => $content['main_verse']['verse']->book_id,
+                        'chapter' => $content['main_verse']['verse']->chapter_num
+                    ])."#verse".$content['main_verse']['verse']->id,[],false) !!}"
+                   class="btn1-kit cu1-btn">
+                    <i class="bs-arrowback cu-arrowback"></i>
+                    Back to Reader
+                </a>
+
                 @if($versePrev = $content['pagination']['versePrev'])
-                    <a title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[],false) !!}"><i class="glyphicon glyphicon-chevron-left"></i></a>
-{{--                    {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn btn-default btn-danger','style' => 'padding: 2px 5px;'], true)}}--}}
+                    <a class="genesis-arrow" title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[],false) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
                 @endif
-                {!! $content['main_verse']['verse']->booksListEn->book_name.' '.$content['main_verse']['verse']->chapter_num.':'.$content['main_verse']['verse']->verse_num !!}
+
+                <h3 class="h3-kit cu2-title">
+                    {!! $content['main_verse']['verse']->booksListEn->book_name.' <span class="fsz1">'.$content['main_verse']['verse']->chapter_num.':'.$content['main_verse']['verse']->verse_num.'</span>' !!}
+                </h3>
+
                 @if($verseNext = $content['pagination']['verseNext'])
-                        <a title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[],false) !!}"><i class="glyphicon glyphicon-chevron-right"></i></a>
-{{--                    {{ Html::link(url('reader/verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn btn-default btn-primary','style' => 'padding: 2px 5px;'], true)}}--}}
+                    <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[],false) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
                 @endif
-            </h3>
-            <h4 class="j-bible-text"><span class="verse-text j-verse-text" data-version="{!! $content['main_verse']['version_code'] !!}" data-verseid="{!! $content['main_verse']['verse']->id !!}">{!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}</span></h4>
-        </span>
+
+            </div>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="c-verse-text-top">
+                <div class="c-queries">“</div>
+                <h4 class="j-bible-text">
+                    <span class="verse-text j-verse-text color4" data-version="{!! $content['main_verse']['version_code'] !!}" data-verseid="{!! $content['main_verse']['verse']->id !!}">{!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}</span>
+                </h4>
+            </div>
+        </div>
+    </div>
+
     @if(count($content['lexicon']))
         <div class="row col-md-12">
             <h3 class="text-center">Lexicon</h3>
