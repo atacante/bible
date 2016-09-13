@@ -16,7 +16,7 @@
                 <div class="c-inner-location-text">
                     <h4 class="h4-locations">{!! $product->name !!}</h4>
                     <p>
-                        {!! str_limit(strip_tags($product->short_description,'<p></p>'), $limit = 140, $end = '... ') !!}
+                        {!! str_limit(strip_tags($product->short_description,'<p></p>'), $limit = 130, $end = '... ') !!}
                     </p>
                     <div class="price-label">
                         ${!! $product->price !!}
