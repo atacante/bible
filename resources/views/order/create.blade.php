@@ -3,7 +3,7 @@
     @section('content')
         <div class="c-white-content">
             {!! Form::model($model, ['method' => 'post', 'url' => '/order/checkout']) !!}
-            <div class="panel-heading">{{ $page_title or "Page Title" }}</div>
+            <h3 class="h3-kit cu1-title">{{ $page_title or "Page Title" }}</h3>
             <div class="panel-body">
 
                 {!! Form::hidden('user_id', $user_id) !!}
@@ -11,7 +11,7 @@
                     @foreach($model->getFillable() as $key => $property)
                         @if($property != 'user_id')
                             @if($key == 1 || $key == 10)
-                                <div class="col-md-6">
+                                <div class="col-xs-12 col-md-6">
                             @endif
                                     <div class="form-group {{ $errors->has($property) ? ' has-error' : '' }}">
                                         {!!  Form::label($property, ucwords(str_replace('_',' ', $property))) !!}

@@ -259,6 +259,10 @@ h4.h4-sub-kit {
     font-size: 18px;
     line-height: 32px;
 }
+.cu1-title {
+    text-align: center;
+    padding: 30px 30px 50px !important;
+}
 .input1 {
     border-radius: 0;
     -webkit-border-radius: 0;
@@ -278,6 +282,27 @@ h4.h4-sub-kit {
     border-color: #64cd93;
     box-shadow: none;
     -webkit-box-shadow: none;
+}
+.has-error .input1:focus {
+    box-shadow: none !important;
+}
+.has-error .input1 {
+    border-color: #fe9921 !important;
+}
+.has-error .help-block {
+    display: block;
+    background-color: #fe9921;
+    color: white;
+    font-family: work_sansregular;
+    font-size: 14px;
+    padding: 6px 15px;
+    margin-top: 0;
+}
+.control-label, .has-error .control-label {
+    color: #1b1b1b;
+    font-family: work_sansmedium;
+    font-size: 16px;
+    font-weight: normal;
 }
 /*------------- btn1-kit */
 .btn1-kit, .btn1-kit:visited {
