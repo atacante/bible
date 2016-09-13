@@ -1,3 +1,4 @@
+@if(Auth::check() && Auth::user()->isPremium())
 <div>
     {!! Form::open(['method' => 'post','url' => '/blog/save-comment']) !!}
     {!! Form::hidden('id',$article->id) !!}
@@ -13,3 +14,6 @@
     {!! Form::button('Post',['type' => 'submit','class' => 'btn btn-primary','style' => 'padding: 2px 12px; margin-top:5px;']) !!}
     {!! Form::close() !!}
 </div>
+@else
+    <div style="margin: 10px 0;">Only premium users can leave comments</div>
+@endif
