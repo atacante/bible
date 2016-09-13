@@ -69,41 +69,27 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-
                 <table class="table-lexicon">
-{{--                    <thead>
-                    <tr>
-                        <td>Verse</td>
-                        <td>Definition</td>
-                        <td>Strong's</td>
-                        <td>Transliteration</td>
-                    </tr>
-                    </thead>--}}
-
                     @foreach($content['lexicon'] as $lexiconinfo)
                         @if(!empty($lexiconinfo->verse_part))
-                        <tr>
-                            <td class="orange-bord" @if($lexiconinfo->symbolism) rowspan="2" @endif >{!! $lexiconinfo->verse_part !!}</td>
-                            <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif>Definition: {!! $lexiconinfo->definition !!}</td>
-                            <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif>Strong's: {!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num) !!}</td>
-                            <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif>Transliteration {!! $lexiconinfo->transliteration !!}</td>
-                        </tr>
-                        @if($lexiconinfo->symbolism)
                             <tr>
-
-
+                                <td class="orange-bord t-label1" @if($lexiconinfo->symbolism) rowspan="2" @endif >{!! $lexiconinfo->verse_part !!}</td>
+                                <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif><span class="t-label2">Definition:</span> {!! $lexiconinfo->definition !!}</td>
+                                <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif><span class="t-label2">Strong's:</span> {!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num) !!}</td>
+                                <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif><span class="t-label2">Transliteration:</span> {!! $lexiconinfo->transliteration !!}</td>
+                            </tr>
+                            @if($lexiconinfo->symbolism)
+                            <tr>
                                 <td class="orange-bord" colspan="3">
-                                    Symbolism: <br>
+                                    <span class="t-label2">Symbolism:</span>
+                                     <br>
                                     {!! $lexiconinfo->symbolism !!}
                                 </td>
-
                             </tr>
-                        @endif
+                            @endif
                         @endif
                     @endforeach
-
                 </table>
-
             </div>
         </div>
     @endif
