@@ -447,8 +447,8 @@ table.table-lexicon {
     max-width: 100%;
     background: white;
     margin-bottom: 30px;
-    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
-    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    -webkit-box-shadow: 0 0 10px 2px rgba(150,150,150,0.1);
+    box-shadow: 0 0 10px 2px rgba(150,150,150,0.1);
 }
 table.table-lexicon tr td {
     border-bottom: 1px solid #e8e8e8;
@@ -2524,6 +2524,20 @@ ul.c-social li a:hover, ul.c-social li a:active {
     padding-right: 10px;
     vertical-align: text-bottom;
 }
+.cu-places {
+    color: #00b9f7;
+    font-size: 34px;
+    display: inline-block;
+    padding-right: 5px;
+    vertical-align: text-bottom;
+}
+.cu-people {
+    color: #00b9f7;
+    font-size: 34px;
+    display: inline-block;
+    padding-right: 5px;
+    vertical-align: text-bottom;
+}
 .gift-item {
     background: #ffffff;
     display: block;
@@ -2665,9 +2679,21 @@ ul.footer-menu li a:hover {
     position: relative;
     text-align: center;
 }
+.c-title-and-icons3 {
+    padding: 0 50px;
+    position: relative;
+    text-align: center;
+}
+.btn-settings {
+    position: absolute;
+    display: block;
+    top: 3px;
+    right: 0;
+    text-decoration: none !important;
+}
 .c-sharing {
     position: absolute;
-    top: 0;
+    top: 0px;
     left: 0;
 }
 .icon-panel {
@@ -3848,6 +3874,14 @@ h4.h4-locations {
     top: 3px;
     right: 0;
     position: absolute;
+}
+.c-white-item {
+    background: white;
+    -webkit-box-shadow: 0 0 10px 2px rgba(150,150,150,0.1);
+    box-shadow: 0 0 10px 2px rgba(150,150,150,0.1);
+}
+.inner-pad3 {
+    padding: 30px;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {

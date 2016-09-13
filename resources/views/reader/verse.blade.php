@@ -95,72 +95,87 @@
     @endif
 
 
-
+    {{-- ------- Locations -------- --}}
     @if($content['main_verse']['verse']->locations->count())
-        <div class="row col-md-12">
-            <h3 class="text-center">
-                Location{!! ($content['main_verse']['verse']->locations->count() > 0?'s':'') !!}</h3>
-            @foreach($content['main_verse']['verse']->locations as $location)
-                <div class="clearfix location-item">
-                    <h4>{!! $location->location_name !!}</h4>
-                    <div class="pull-left" style="margin-right: 10px;">
-                        @if($location->images->count())
-                            <div id="location-{!! $location->id !!}" class="carousel slide" data-ride="carousel"
-                                 data-interval="{!! rand(5000,7000) !!}">
-                                <!-- Indicators -->
-                                @if($location->images->count() > 1)
-                                    <ol class="carousel-indicators">
-                                        @foreach($location->images as $key => $image)
-                                            <li data-target="#location-{!! $location->id !!}"
-                                                data-slide-to="{!! $key !!}"
-                                                class="{!! ($key == 0?'active':'') !!}"></li>
-                                        @endforeach
-                                    </ol>
-                                    @endif
 
-                                            <!-- Wrapper for slides -->
-                                    <div class="carousel-inner" role="listbox">
-                                        @foreach($location->images as $key => $image)
-                                            <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
-                                                <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}"
-                                                     class="img-thumbnail" alt="" style="cursor: pointer;">
-                                                {{--<div class="carousel-caption">--}}
-                                                {{--</div>--}}
-                                            </div>
-                                        @endforeach
-                                    </div>
-
-                                    <!-- Controls -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="h2-new mt18 mb3">
+                    <i class="bs-places cu-places"></i>
+                    Location{!! ($content['main_verse']['verse']->locations->count() > 0?'s':'') !!}
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                @foreach($content['main_verse']['verse']->locations as $location)
+                    <div class="clearfix location-item c-white-item">
+                        <div class="pull-left">
+                            @if($location->images->count())
+                                <div id="location-{!! $location->id !!}" class="carousel slide" data-ride="carousel" data-interval="{!! rand(5000,7000) !!}">
+                                    <!-- Indicators -->
                                     @if($location->images->count() > 1)
-                                        <a class="left carousel-control" href="#location-{!! $location->id !!}"
-                                           role="button" data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="right carousel-control" href="#location-{!! $location->id !!}"
-                                           role="button" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    @endif
-                            </div>
-                        @endif
+                                        <ol class="carousel-indicators">
+                                            @foreach($location->images as $key => $image)
+                                                <li data-target="#location-{!! $location->id !!}"
+                                                    data-slide-to="{!! $key !!}"
+                                                    class="{!! ($key == 0?'active':'') !!}">
+                                                </li>
+                                            @endforeach
+                                        </ol>
+                                        @endif
+
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner" role="listbox">
+                                            @foreach($location->images as $key => $image)
+                                                <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
+                                                    <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}"  class="img-thumbnail" alt="" style="cursor: pointer;">
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+                                        <!-- Controls -->
+                                        @if($location->images->count() > 1)
+                                            <a class="left carousel-control" href="#location-{!! $location->id !!}"
+                                               role="button" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="right carousel-control" href="#location-{!! $location->id !!}"
+                                               role="button" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        @endif
+                                </div>
+                            @endif
+                        </div>
+                        <div class="inner-pad3">
+                            <h4>{!! $location->location_name !!}</h4>
+                            {!! $location->location_description !!}
+                        </div>
                     </div>
-                    <div>
-                        {!! $location->location_description !!}
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     @endif
+
+
+    {{-- -------People -------- --}}
     @if($content['main_verse']['verse']->peoples->count())
-        <div class="row col-md-12">
-            <h3 class="text-center">
-                People{{--{!! ($content['main_verse']['verse']->peoples->count() > 0?'s':'') !!}--}}</h3>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="h2-new mt18 mb3">
+                    <i class="bs-people cu-people"></i>
+                    People
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
             @foreach($content['main_verse']['verse']->peoples as $people)
-                <div class="clearfix people-item">
-                    <h4>{!! $people->people_name !!}</h4>
-                    <div class="pull-left" style="margin-right: 10px;">
+                <div class="clearfix people-item c-white-item">
+                    <div class="pull-left">
                         @if($people->images->count())
                             <div id="people-{!! $people->id !!}" class="carousel slide" data-ride="carousel"
                                  data-interval="{!! rand(5000,7000) !!}">
@@ -203,44 +218,68 @@
                             </div>
                         @endif
                     </div>
-                    <div>
+                    <div class="inner-pad3">
+                        <h4>{!! $people->people_name !!}</h4>
                         {!! $people->people_description !!}
                     </div>
                 </div>
             @endforeach
+            </div>
         </div>
     @endif
-    <div class="row col-md-12">
-        <h3 class="text-center">Parallel
-            Verses {!! link_to('reader/verse?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}</h3>
+
+    {{-- ------------- Parallel Verses ------------- --}}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="c-title-and-icons3 mt18 mb3">
+                <h2 class="h2-new">
+                    <i class="bs-parallel cu-lexicon"></i>
+                    Parallel Verses {!! link_to('reader/verse?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}
+                </h2>
+                <a class="btn-settings j-btn-settings" href="#">
+                    <i class="bs-settings cu-print"></i>
+                    <i class="bs-starsolid cu-starsolid-settings"></i>
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="row col-md-12 j-bible-text" style="line-height: 30px;">
-        <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => Request::input('version')])),[],false), $content['main_verse']['version_name'], ['class' => '','style' => ''], true)}}</h4>
-            <span class="verse-text j-verse-text" data-version="{!! $content['main_verse']['version_code'] !!}"  data-verseid="{!! $content['main_verse']['verse']->id !!}" style="">
-                {!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}
-            </span>
+
+    <div class="row j-bible-text">
+        <div class="col-xs-12">
+            <div class="c-white-item inner-pad3">
+                <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => Request::input('version')])),[],false), $content['main_verse']['version_name'], ['class' => '','style' => ''], true)}}</h4>
+                <span class="verse-text j-verse-text" data-version="{!! $content['main_verse']['version_code'] !!}"  data-verseid="{!! $content['main_verse']['verse']->id !!}" style="">
+                    {!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}
+                </span>
+            </div>
+        </div>
     </div>
-    <div class="row col-md-12">
-        <hr>
+
+    <div class="row j-bible-text">
+        <div class="col-xs-12">
+            @foreach($content['verse'] as $code => $version)
+                @if($version['verse'])
+                    <div class="c-white-item inner-pad3" style="margin-top: 20px">
+                        <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[],false), $version['version_name'], ['class' => '','style' => ''], true)}}</h4>
+                        <span class="verse-text j-verse-text" data-version="{!! $code !!}"  data-verseid="{!! $version['verse']->id !!}" style="">
+                        {!! ViewHelper::prepareVerseText($version['verse']) !!}
+                        </span>
+                    </div>
+                @endif
+            @endforeach
+        </div>
     </div>
-    <div class="row col-md-12 j-bible-text" style="line-height: 30px;">
-        @foreach($content['verse'] as $code => $version)
-            @if($version['verse'])
-                <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[],false), $version['version_name'], ['class' => '','style' => ''], true)}}</h4>
-                <span class="verse-text j-verse-text" data-version="{!! $code !!}"  data-verseid="{!! $version['verse']->id !!}" style="">
-                {!! ViewHelper::prepareVerseText($version['verse']) !!}
-            </span>
-            @endif
-        @endforeach
-    </div>
-    <div class="row col-md-12 pagination" style="text-align: center;">
-        <div class="btn-group" role="group" aria-label="...">
-            @if($versePrev = $content['pagination']['versePrev'])
-                {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn btn-default btn-danger','style' => 'width:120px;'], true)}}
-            @endif
-            @if($verseNext = $content['pagination']['verseNext'])
-                {{ Html::link(url('reader/verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn btn-default btn-primary','style' => 'width:120px;'], true)}}
-            @endif
+
+    <div class="row">
+        <div class="col-xs-12 text-center pagination">
+            <div class="btn-group mt9" role="group" aria-label="...">
+                @if($versePrev = $content['pagination']['versePrev'])
+                    {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn2','style' => 'min-width:250px; margin-right: 30px'], true)}}
+                @endif
+                @if($verseNext = $content['pagination']['verseNext'])
+                    {{ Html::link(url('reader/verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn1','style' => 'min-width:250px;'], true)}}
+                @endif
+            </div>
         </div>
     </div>
 @stop
