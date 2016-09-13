@@ -8,7 +8,9 @@
     {{--<div class="row col-md-12">
         @include('reader.filters')
     </div>--}}
-
+    {!! Form::hidden('verse_details',true) !!}
+    {!! Form::hidden('bible_version',$content['main_verse']['version_code']) !!}
+    {!! Form::hidden('verse_id',$content['main_verse']['verse']->id) !!}
     <div class="row">
         <div class="col-xs-12">
             <div class="c-title-and-icons2">
@@ -39,6 +41,13 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-xs-12 text-right">
+            <a href="{{ url('/notes/create') }}" class="btn btn-primary j-create-note"><i class="fa fa-plus-circle"></i> Note</a>
+            <a href="{{ url('/journal/create') }}" class="btn btn-primary j-create-journal"><i class="fa fa-plus-circle"></i> Journal</a>
+            <a href="{{ url('/prayers/create') }}" class="btn btn-primary j-create-prayer"><i class="fa fa-plus-circle"></i> Prayer</a>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-12">
             <div class="c-verse-text-top">
                 <div class="c-queries">“</div>
@@ -50,36 +59,57 @@
     </div>
 
     @if(count($content['lexicon']))
-        <div class="row col-md-12">
-            <h3 class="text-center">Lexicon</h3>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="h2-new mt18 mb3">
+                    <i class="bs-lexicon cu-lexicon"></i>
+                    Lexicon
+                </h2>
+            </div>
         </div>
-        <div class="row col-md-12">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Verse</th>
-                    <th>Symbolism</th>
-                    <th>Definition</th>
-                    <th>Strong's</th>
-                    <th>Transliteration</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($content['lexicon'] as $lexiconinfo)
-                    @if(!empty($lexiconinfo->verse_part))
+        <div class="row">
+            <div class="col-md-12">
+
+                <table class="table-lexicon">
+{{--                    <thead>
                     <tr>
-                        <td>{!! $lexiconinfo->verse_part !!}</td>
-                        <td class="j-with-images">{!! $lexiconinfo->symbolism !!}</td>
-                        <td>{!! $lexiconinfo->definition !!}</td>
-                        <td>{!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num) !!}</td>
-                        <td>{!! $lexiconinfo->transliteration !!}</td>
+                        <td>Verse</td>
+                        <td>Definition</td>
+                        <td>Strong's</td>
+                        <td>Transliteration</td>
                     </tr>
-                    @endif
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>--}}
+
+                    @foreach($content['lexicon'] as $lexiconinfo)
+                        @if(!empty($lexiconinfo->verse_part))
+                        <tr>
+                            <td class="orange-bord" @if($lexiconinfo->symbolism) rowspan="2" @endif >{!! $lexiconinfo->verse_part !!}</td>
+                            <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif>Definition: {!! $lexiconinfo->definition !!}</td>
+                            <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif>Strong's: {!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num) !!}</td>
+                            <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif>Transliteration {!! $lexiconinfo->transliteration !!}</td>
+                        </tr>
+                        @if($lexiconinfo->symbolism)
+                            <tr>
+
+
+                                <td class="orange-bord" colspan="3">
+                                    Symbolism: <br>
+                                    {!! $lexiconinfo->symbolism !!}
+                                </td>
+
+                            </tr>
+                        @endif
+                        @endif
+                    @endforeach
+
+                </table>
+
+            </div>
         </div>
     @endif
+
+
+
     @if($content['main_verse']['verse']->locations->count())
         <div class="row col-md-12">
             <h3 class="text-center">

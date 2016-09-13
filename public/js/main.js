@@ -803,10 +803,10 @@ $(document).ready(function(){
         e.preventDefault();
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
-        if($('.j-my-study-verse').length > 0){
+        if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
-            url += '&text='+$('.j-verse-text').text();
+            url += '&text='+$('.j-verse-text:first').text();
         }
         if($('.j-my-study-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
@@ -848,10 +848,10 @@ $(document).ready(function(){
         e.preventDefault();
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
-        if($('.j-my-study-verse').length > 0){
+        if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
-            url += '&text='+$('.j-verse-text').text();
+            url += '&text='+$('.j-verse-text:first').text();
         }
         if($('.j-my-study-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
@@ -889,10 +889,10 @@ $(document).ready(function(){
         e.preventDefault();
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
-        if($('.j-my-study-verse').length > 0){
+        if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
-            url += '&text='+$('.j-verse-text').text();
+            url += '&text='+$('.j-verse-text:first').text();
         }
         if($('.j-my-study-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
