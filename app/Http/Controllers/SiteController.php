@@ -6,6 +6,7 @@ use App\Contact;
 use App\CmsPage;
 //use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\ShopProduct;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
@@ -21,7 +22,9 @@ class SiteController extends Controller
                                               <br>
                  <span class="ital">LUKE 6:37</span>';
 
-        return view('site.home', ['verse_day' => $verse_day]);
+        $products = ShopProduct::whereIn('homepage_position',[1,2,3])->orderBy('homepage_position', 'ASC')->get();
+
+        return view('site.home', ['verse_day' => $verse_day, 'products' => $products]);
     }
 
     public function getAbout()

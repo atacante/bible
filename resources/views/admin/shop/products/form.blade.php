@@ -78,6 +78,15 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('homepage_position') ? ' has-error' : '' }}">
+        {!! Form::label('homepage_position', 'Homepage Position:') !!}
+        {!! Form::select('homepage_position', $model->getFreePositions(), $model->homepage_position ,['placeholder' => 'None']) !!}
+        @if ($errors->has('homepage_position'))
+            <span class="help-block">
+                {{ $errors->first('homepage_position') }}
+            </span>
+        @endif
+    </div>
 </div>
 <!-- /.box-body -->
 

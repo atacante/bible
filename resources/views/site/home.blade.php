@@ -62,33 +62,17 @@
             SEND A <span>GIFT OF LOVE</span> TO A FRIEND
         </h2>
         <div class="row mt10">
+            @foreach($products as $product)
             <div class="col-lg-4">
-                <a href="{{ URL::to('/shop/product/5') }}" class="gift-item">
-                    <div class="gift1">
+                <a href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" class="gift-item">
+                    <div class="gift1" style="background:url('{{($product->images->count())?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'/images/cup.png' }}')  50% 50px no-repeat;">
                     </div>
                     <h4 class="h4-gift">
-                        our GREAT EBOOK
+                        {{$product->name}}
                     </h4>
                 </a>
             </div>
-            <div class="col-lg-4">
-                <a href="{{ URL::to('/shop/product/6') }}" class="gift-item">
-                    <div class="gift2">
-                    </div>
-                    <h4 class="h4-gift">
-                        BLESSED T-SHIRT
-                    </h4>
-                </a>
-            </div>
-            <div class="col-lg-4">
-                <a href="{{ URL::to('/shop/product/2') }}" class="gift-item">
-                    <div class="gift3">
-                    </div>
-                    <h4 class="h4-gift">
-                        JUST A CUP
-                    </h4>
-                </a>
-            </div>
+            @endforeach
         </div>
         <div class="row">
             <div class="col-lg-12">

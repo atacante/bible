@@ -29,6 +29,7 @@
                             <th>Short Description</th>
                             <th>Price</th>
                             <th>External Link</th>
+                            <th>Homepage Position</th>
                             <th class="text-center">Actions</th>
                         </tr>
                         @if(count($content['products']))
@@ -48,6 +49,7 @@
                                     <td>{!! $product->short_description !!}</td>
                                     <td>{!! $product->price !!}</td>
                                     <td>{!! $product->external_link !!}</td>
+                                    <td>{!! $product->homepage_position !!}</td>
                                     <td class="text-center" style="width: 50px;">
                                         <a title="Edit product" href="{!! url('/admin/shop-products/update/'.$product->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
                                         <a title="Delete product" href="{!! url('/admin/shop-products/delete',$product->id) !!}" data-toggle="modal"

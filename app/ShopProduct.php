@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\File;
 
 class ShopProduct extends BaseModel implements Buyable{
 
-	protected $fillable = ['category_id', 'name', 'photo', 'short_description', 'long_description', 'price', 'external_link'];
+	protected $fillable = ['category_id', 'name', 'photo', 'short_description', 'long_description', 'price', 'external_link', 'homepage_position'];
 	protected $dates = ['created_at', 'updated_at'];
 
 	public function rules()
@@ -18,6 +18,7 @@ class ShopProduct extends BaseModel implements Buyable{
 			'name' => 'required|max:255',
 			'short_description' => 'max:255',
 			'price' => 'required|numeric',
+            'homepage_position' => 'numeric'
 		];
 
 		return $rules;
@@ -68,5 +69,19 @@ class ShopProduct extends BaseModel implements Buyable{
             }
             return true;
         });
+    }
+
+    /**
+     * Get Free Positions on HomePage
+     */
+    public function getFreePositions()
+    {
+        $allPositions = [1=>1,2=>2,3=>3];
+
+        $usedPositions = self::get()->pluck('homepage_position', 'homepage_position')->except($this->homepage_position)->toArray();
+
+        $free_positions = array_diff($allPositions,$usedPositions);
+
+        return $free_positions;
     }
 }
