@@ -189,7 +189,7 @@ $(document).ready(function(){
 
         var compare = 0;
 
-         if($('.j-diff-block').length > 0){
+         if(($('.j-diff-block').length > 0)||($('.related-records').length > 0)){
              compare = 1;
          }
 
