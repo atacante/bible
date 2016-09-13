@@ -187,10 +187,10 @@ $(document).ready(function(){
 
         var that = $(definition_word).parent();
 
-        var compare = false;
+        var compare = 0;
 
          if($('.j-diff-block').length > 0){
-             compare = true;
+             compare = 1;
          }
 
         $.ajax({
