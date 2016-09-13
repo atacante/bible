@@ -2661,7 +2661,7 @@ ul.footer-menu li a:hover {
     position: relative;
 }
 .c-title-and-icons2 {
-    padding: 0 200px;
+    padding: 0 270px;
     position: relative;
     text-align: center;
 }
@@ -3843,6 +3843,11 @@ h4.h4-locations {
     padding: 60px 0 20px;
     text-align: center;
     margin-top: 50px;
+}
+.btns-panel {
+    top: 3px;
+    right: 0;
+    position: absolute;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {

@@ -37,16 +37,16 @@
                     <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[],false) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
                 @endif
 
+                <div class="btns-panel">
+                    <a href="{{ url('/notes/create') }}" class="btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
+                    <a href="{{ url('/journal/create') }}" class="btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
+                    <a href="{{ url('/prayers/create') }}" class="btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
+                </div>
+
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 text-right">
-            <a href="{{ url('/notes/create') }}" class="btn btn-primary j-create-note"><i class="fa fa-plus-circle"></i> Note</a>
-            <a href="{{ url('/journal/create') }}" class="btn btn-primary j-create-journal"><i class="fa fa-plus-circle"></i> Journal</a>
-            <a href="{{ url('/prayers/create') }}" class="btn btn-primary j-create-prayer"><i class="fa fa-plus-circle"></i> Prayer</a>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-xs-12">
             <div class="c-verse-text-top">
