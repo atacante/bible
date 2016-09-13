@@ -74,7 +74,7 @@
                                 </div>
 
                                 <h4 class="h4-sub-kit mt8">
-                                    Price:
+                                    Description:
                                 </h4>
                                 <div class="p-medium">
                                     {!! $product->long_description !!}
