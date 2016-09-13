@@ -54,7 +54,11 @@
                         @if($content['strongs_nasec']->nasb_translation)
                         <div>NASB Translation: <strong>{!! $content['strongs_nasec']->nasb_translation !!}</strong></div>
                         @endif
-                        <div></div>
+                        <div style="font-size: 12px; margin-top: 10px; text-align: center;">
+                            NAS Exhaustive Concordance of the Bible with Hebrew-Aramaic and Greek Dictionaries.<br />
+                            Copyright &copy; 1981, 1998 by The Lockman Foundation.<br />
+                            All rights reserved <a target="_blank" href="http://lockman.org">Lockman.org</a>
+                        </div>
                     </div>
                 </div>
             @endif
