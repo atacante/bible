@@ -21,25 +21,39 @@
     </div>
     <div class="row strongs-page" style="line-height: 30px;">
         <div class="col-md-6">
-            @if(count($content['strongs_concordance']))
+            @if(count($content['strongs_concordance']) && ($content['strongs_concordance']->original_word || $content['strongs_concordance']->transliteration || $content['strongs_concordance']->definition_short || $content['strongs_concordance']->definition_full))
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="text-center">Strong's Concordance</h4>
+                    @if($content['strongs_concordance']->original_word)
                     <div>Original word: <strong>{!! $content['strongs_concordance']->original_word !!}</strong></div>
-                    <div>Transliteration: <strong>{!! $content['strongs_concordance']->transliteration !!}</strong></div>
+                    @endif
+                    @if($content['strongs_concordance']->transliteration)
+                    <div>Transliteration: <strong>{!! $content['strongs_concordance']->transliteration !!}</strong>
+                    @endif
+                    @if($content['strongs_concordance']->definition_short)
                     <div>Definition (short): <strong>{!! $content['strongs_concordance']->definition_short !!}</strong></div>
+                    @endif
+                    @if($content['strongs_concordance']->definition_full)
                     <div>Definition (full): <strong>{!! $content['strongs_concordance']->definition_full !!}</strong></div>
+                    @endif
                     <div></div>
                 </div>
             </div>
             @endif
-            @if(count($content['strongs_nasec']))
+            @if(count($content['strongs_nasec']) && ($content['strongs_nasec']->original_word || $content['strongs_nasec']->definition || $content['strongs_nasec']->nasb_translation))
                 <div class="row">
                     <div class="col-md-12">
                         <h4 class="text-center">NAS Exhaustive Concordance</h4>
+                        @if($content['strongs_nasec']->original_word)
                         <div>Word Origin: <strong>{!! $content['strongs_nasec']->original_word !!}</strong></div>
+                        @endif
+                        @if($content['strongs_nasec']->definition)
                         <div>Definition: <strong>{!! $content['strongs_nasec']->definition !!}</strong></div>
+                        @endif
+                        @if($content['strongs_nasec']->nasb_translation)
                         <div>NASB Translation: <strong>{!! $content['strongs_nasec']->nasb_translation !!}</strong></div>
+                        @endif
                         <div></div>
                     </div>
                 </div>
