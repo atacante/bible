@@ -319,6 +319,9 @@
                                             <i title="{!! ucfirst($item->type) !!} Entry" class="verse-icon {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
                                             {!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}
                                         </div>
+                                        @if(Auth::user() && Auth::user()->isPremium() && $item->type == 'prayer')
+                                            <div class="addthis_sharing_toolbox" data-url="{{url('/community')}}" data-description="{!! $item->text !!}"></div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
