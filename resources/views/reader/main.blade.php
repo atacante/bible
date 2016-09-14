@@ -320,7 +320,7 @@
                                             {!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}
                                         </div>
                                         @if(Auth::user() && Auth::user()->isPremium() && $item->type == 'prayer')
-                                            <div class="addthis_sharing_toolbox" data-url="{{url('/community')}}" data-description="{!! $item->text !!}"></div>
+                                            <div class="addthis_sharing_toolbox" data-url="{{url('/community')}}" data-description="{!! strip_tags($item->text) !!}"></div>
                                         @endif
                                     </div>
                                 </div>
