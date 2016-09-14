@@ -359,6 +359,18 @@ site.FacebookInviteFriends = function ()
     });
 }
 
+site.setTwitterText = function (text){
+    addthis_share = addthis_share || {};
+
+    addthis_share = {
+        passthrough : {
+            twitter: {
+                text: text
+            }
+        }
+    }
+}
+
 reader.clearHighlights = function(){
     $('.j-reader-actions').remove();
     $('.j-lex-content').remove();
