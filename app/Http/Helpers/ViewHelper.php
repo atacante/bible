@@ -327,7 +327,7 @@ class ViewHelper
                 return Request::segment(2) == 'read' && Request::input('compare',false) && Auth::check() && Auth::user()->checkNotifTooltip($type);
                 break;
             case 'got_verse_diff_tooltip':
-                return Request::segment(2) == 'verse' && Request::input('compare',false) && Auth::check() && Auth::user()->checkNotifTooltip($type);
+                return Request::segment(2) == 'verse' && Auth::check() && Auth::user()->checkNotifTooltip($type);
                 break;
         }
     }

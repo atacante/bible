@@ -231,16 +231,18 @@
     @endif
 
     {{-- ------------- Parallel Verses ------------- --}}
-    <div class="row">
+    <div id="parallel-verses" class="row parallel-verses j-parallel-verses {!! Request::input('diff', false)?'j-compare-verses':'' !!}">
         <div class="col-xs-12">
             <div class="c-title-and-icons3 mt18 mb3">
                 <h2 class="h2-new">
                     <i class="bs-parallel cu-lexicon"></i>
-                    Parallel Verses {!! link_to('reader/verse?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}
+                    Parallel Verses {{--{!! link_to('reader/verse?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
                 </h2>
                 <a class="btn-settings j-btn-settings" href="#">
                     <i class="bs-settings cu-print"></i>
+                    @if(ViewHelper::checkNotifTooltip('got_verse_diff_tooltip'))
                     <i class="bs-starsolid cu-starsolid-settings"></i>
+                    @endif
                 </a>
             </div>
         </div>
