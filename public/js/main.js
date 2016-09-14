@@ -783,9 +783,12 @@ $(document).ready(function(){
                  menu += '<a title="Create prayer" href="/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-prayer" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 8px;"><i class="fa fa-btn fa-hand-paper-o"></i></a>';*/
 
                 $('body').append(reader.getActionsHtml());
-                $('.j-create-note').attr('href','/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
-                $('.j-create-journal').attr('href','/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
-                $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+
+                var filteredText = text.replace(/^\s+\d+\s+/,'');
+
+                $('.j-create-note').attr('href','/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+filteredText);
+                $('.j-create-journal').attr('href','/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+filteredText);
+                $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+filteredText);
 
                 $('.j-reader-actions').css({
                     top: ($(endElement).offset().top-66) + "px",
@@ -803,10 +806,13 @@ $(document).ready(function(){
         e.preventDefault();
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
+        var text = $('.j-verse-text:first').text();
+        var filteredText = text.replace(/^\s+\d+\s+/,'');
+
         if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
-            url += '&text='+$('.j-verse-text:first').text();
+            url += '&text='+filteredText;
         }
         if($('.j-my-study-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
@@ -848,10 +854,14 @@ $(document).ready(function(){
         e.preventDefault();
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
+
+        var text = $('.j-verse-text:first').text();
+        var filteredText = text.replace(/^\s+\d+\s+/,'');
+
         if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
-            url += '&text='+$('.j-verse-text:first').text();
+            url += '&text='+filteredText;
         }
         if($('.j-my-study-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
@@ -889,10 +899,14 @@ $(document).ready(function(){
         e.preventDefault();
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
+
+        var text = $('.j-verse-text:first').text();
+        var filteredText = text.replace(/^\s+\d+\s+/,'');
+
         if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
-            url += '&text='+$('.j-verse-text:first').text();
+            url += '&text='+filteredText;
         }
         if($('.j-my-study-item').length > 0){
             url += '?rel='+$('input[name="rel"]').val()
