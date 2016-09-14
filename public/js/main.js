@@ -1513,8 +1513,14 @@ $(document).ready(function(){
     });
 
     $(".j-btn-settings").on("click", function(e){
-        var btnCoordTop = $(this).offset().top+25;
-        var btnCoordLeft = $(this).offset().left-330;
+        var left = 330;
+        var top = 25;
+        if($(this).parents('.j-parallel-verses').length > 0){
+            left = 235;
+            top = 35;
+        }
+        var btnCoordTop = $(this).offset().top+top;
+        var btnCoordLeft = $(this).offset().left-left;
         $(".j-popup-settings").toggle();
         $(".j-popup-settings").offset({top:btnCoordTop, left:btnCoordLeft});
         e.preventDefault();
@@ -1728,5 +1734,9 @@ $(document).ready(function(){
             }
 
         });
+    }
+
+    if($('.j-compare-verses').length > 0){
+        $('body').scrollTo($('.j-compare-verses'),0,{offset:0});
     }
 });
