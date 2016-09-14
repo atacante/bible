@@ -1711,7 +1711,7 @@ $(document).ready(function(){
         var eTop = $('.j-nav-sel2').offset().top;
         var arrowsTop = eTop - $(window).scrollTop();
         var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
-        $('.j-dynamic-arrows').width($('.j-reader-block').width());
+        $('.j-dynamic-arrows').width($('.j-chapter-content').width());
         $('.j-dynamic-arrows').css('top',($(window).height()/2)-20);
         if((arrowsTop < -45 && paginationPos < 70) || (paginationPos > 70 && arrowsTop > -45)){
             $('.j-dynamic-arrows').fadeIn();
