@@ -29,7 +29,19 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-xs-3">{!! Form::label('types', 'Entry Type') !!}</div>
-                    <div class="col-xs-9">{!! Form::select('types[]', ['note' => 'Notes','journal' => 'Journal','prayer' => 'Prayers'], Request::input('types'),['multiple' => true,'class' => 'clear-fix j-entry-types', 'style' => 'padding: 6px 12px;']) !!}</div>
+                    {{--<input id="check-full" class="cust-radio" type="checkbox" name="check-full" value="fulltime">--}}
+                    <div class="col-xs-3">
+                        {!! Form::checkbox('types[]', 'note', in_array('note',Request::input('types', [])) , ['id'=>'type-note' ,'class'=>'cust-radio']) !!}
+                        <label class="label-checkbox" for="type-note">Note</label>
+                    </div>
+                    <div class="col-xs-3">
+                        {!! Form::checkbox('types[]', 'journal', in_array('journal',Request::input('types', [])) , ['id'=>'type-journal' ,'class'=>'cust-radio']) !!}
+                        <label class="label-checkbox" for="type-journal">Journal</label>
+                    </div>
+                    <div class="col-xs-3">
+                        {!! Form::checkbox('types[]', 'prayer', in_array('prayer',Request::input('types', [])) , ['id'=>'type-prayer' ,'class'=>'cust-radio']) !!}
+                        <label class="label-checkbox" for="type-prayer">Prayer</label>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
