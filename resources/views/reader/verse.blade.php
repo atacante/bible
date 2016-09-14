@@ -109,8 +109,8 @@
         <div class="row">
             <div class="col-xs-12">
                 @foreach($content['main_verse']['verse']->locations as $location)
-                    <div class="clearfix location-item c-white-item">
-                        <div class="pull-left">
+                    <div class="c-white-item mb4 cu-ci1">
+                        <div class="cu-ci1-inner">
                             @if($location->images->count())
                                 <div id="location-{!! $location->id !!}" class="carousel slide" data-ride="carousel" data-interval="{!! rand(5000,7000) !!}">
                                     <!-- Indicators -->
@@ -129,7 +129,8 @@
                                         <div class="carousel-inner" role="listbox">
                                             @foreach($location->images as $key => $image)
                                                 <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
-                                                    <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}"  class="img-thumbnail" alt="" style="cursor: pointer;">
+                                                    {{--<img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}"  class="img-thumbnail verse-image" alt="" style="cursor: pointer;">--}}
+                                                    <div class="people-image verse-image" data-image="{!! $image->image!=''?Config::get('app.locationImages').'thumbs/'.$image->image:'' !!}" style="background: url('{!! $image->image!=''?Config::get('app.locationImages').'thumbs/'.$image->image:'' !!}') center no-repeat;"></div>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -138,12 +139,12 @@
                                         @if($location->images->count() > 1)
                                             <a class="left carousel-control" href="#location-{!! $location->id !!}"
                                                role="button" data-slide="prev">
-                                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                <span class="bs-arrowleft" aria-hidden="true"></span>
                                                 <span class="sr-only">Previous</span>
                                             </a>
                                             <a class="right carousel-control" href="#location-{!! $location->id !!}"
                                                role="button" data-slide="next">
-                                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                <span class="bs-arrowright" aria-hidden="true"></span>
                                                 <span class="sr-only">Next</span>
                                             </a>
                                         @endif
@@ -151,8 +152,10 @@
                             @endif
                         </div>
                         <div class="inner-pad3">
-                            <h4>{!! $location->location_name !!}</h4>
-                            {!! $location->location_description !!}
+                            <h4 class="title-people">{!! $location->location_name !!}</h4>
+                            <p class="p-medium2">
+                                {!! str_limit(strip_tags($location->location_description,''), $limit = 360, $end = '... '.Html::link(url('/locations/view/'.$location->id,[],false), 'View Details', ['class' => 'a-kit'], true)) !!}
+                            </p>
                         </div>
                     </div>
                 @endforeach
@@ -174,18 +177,18 @@
         <div class="row">
             <div class="col-xs-12">
             @foreach($content['main_verse']['verse']->peoples as $people)
-                <div class="clearfix people-item c-white-item">
-                    <div class="pull-left">
+                <div class="c-white-item mb4 cu-ci1">
+                    <div class="cu-ci1-inner">
                         @if($people->images->count())
-                            <div id="people-{!! $people->id !!}" class="carousel slide" data-ride="carousel"
-                                 data-interval="{!! rand(5000,7000) !!}">
+                            <div id="people-{!! $people->id !!}" class="carousel slide" data-ride="carousel" data-interval="{!! rand(5000,7000) !!}">
                                 <!-- Indicators -->
                                 @if($people->images->count() > 1)
                                     <ol class="carousel-indicators">
                                         @foreach($people->images as $key => $image)
                                             <li data-target="#people-{!! $people->id !!}"
                                                 data-slide-to="{!! $key !!}"
-                                                class="{!! ($key == 0?'active':'') !!}"></li>
+                                                class="{!! ($key == 0?'active':'') !!}">
+                                            </li>
                                         @endforeach
                                     </ol>
                                     @endif
@@ -194,10 +197,7 @@
                                     <div class="carousel-inner" role="listbox">
                                         @foreach($people->images as $key => $image)
                                             <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
-                                                <img src="{!! Config::get('app.peopleImages').'thumbs/'.$image->image !!}"
-                                                     class="img-thumbnail" alt="" style="cursor: pointer;">
-                                                {{--<div class="carousel-caption">--}}
-                                                {{--</div>--}}
+                                                <div class="img-thumbnail people-image verse-image" data-image="{!! $image->image!=''?Config::get('app.peopleImages').'thumbs/'.$image->image:'' !!}" style="background: url('{!! $image->image!=''?Config::get('app.peopleImages').'thumbs/'.$image->image:'' !!}') center no-repeat;"></div>
                                             </div>
                                         @endforeach
                                     </div>
@@ -206,12 +206,12 @@
                                     @if($people->images->count() > 1)
                                         <a class="left carousel-control" href="#people-{!! $people->id !!}"
                                            role="button" data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                            <span class="bs-arrowleft" aria-hidden="true"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="right carousel-control" href="#people-{!! $people->id !!}"
                                            role="button" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                            <span class="bs-arrowright" aria-hidden="true"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
                                     @endif
@@ -219,8 +219,10 @@
                         @endif
                     </div>
                     <div class="inner-pad3">
-                        <h4>{!! $people->people_name !!}</h4>
-                        {!! $people->people_description !!}
+                        <h4 class="title-people">{!! $people->people_name !!}</h4>
+                        <p class="p-medium2">
+                            {!! str_limit(strip_tags($people->people_description,''), $limit = 460, $end = '... '.Html::link(url('/peoples/view/'.$people->id,[],false), 'View Details', ['class' => 'a-kit'], true)) !!}
+                        </p>
                     </div>
                 </div>
             @endforeach
@@ -246,9 +248,9 @@
 
     <div class="row j-bible-text">
         <div class="col-xs-12">
-            <div class="c-white-item inner-pad3">
-                <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => Request::input('version')])),[],false), $content['main_verse']['version_name'], ['class' => '','style' => ''], true)}}</h4>
-                <span class="verse-text j-verse-text" data-version="{!! $content['main_verse']['version_code'] !!}"  data-verseid="{!! $content['main_verse']['verse']->id !!}" style="">
+            <div class="c-white-item inner-pad3 mb4">
+                {{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => Request::input('version')])),[],false), $content['main_verse']['version_name'], ['class' => 'paralel-link'], true)}}
+                <span class="verse-text j-verse-text p-medium2" data-version="{!! $content['main_verse']['version_code'] !!}"  data-verseid="{!! $content['main_verse']['verse']->id !!}">
                     {!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}
                 </span>
             </div>
@@ -259,9 +261,9 @@
         <div class="col-xs-12">
             @foreach($content['verse'] as $code => $version)
                 @if($version['verse'])
-                    <div class="c-white-item inner-pad3" style="margin-top: 20px">
-                        <h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[],false), $version['version_name'], ['class' => '','style' => ''], true)}}</h4>
-                        <span class="verse-text j-verse-text" data-version="{!! $code !!}"  data-verseid="{!! $version['verse']->id !!}" style="">
+                    <div class="c-white-item inner-pad3 mb4">
+                        {{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[],false), $version['version_name'], ['class' => 'paralel-link'], true)}}
+                        <span class="verse-text j-verse-text p-medium2" data-version="{!! $code !!}"  data-verseid="{!! $version['verse']->id !!}" style="">
                         {!! ViewHelper::prepareVerseText($version['verse']) !!}
                         </span>
                     </div>
@@ -272,7 +274,7 @@
 
     <div class="row">
         <div class="col-xs-12 text-center pagination">
-            <div class="btn-group mt9" role="group" aria-label="...">
+            <div class="btn-group" role="group" aria-label="...">
                 @if($versePrev = $content['pagination']['versePrev'])
                     {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn2','style' => 'min-width:250px; margin-right: 30px'], true)}}
                 @endif

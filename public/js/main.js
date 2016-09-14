@@ -1709,11 +1709,24 @@ $(document).ready(function(){
 
     if($('.j-chapter-content').length > 0){
         var eTop = $('.j-nav-sel2').offset().top;
+        var arrowsTop = eTop - $(window).scrollTop();
+        var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
+        $('.j-dynamic-arrows').width($('.j-reader-block').width());
+        $('.j-dynamic-arrows').css('top',($(window).height()/2)-20);
+        if((arrowsTop < -45 && paginationPos < 70) || (paginationPos > 70 && arrowsTop > -45)){
+            $('.j-dynamic-arrows').fadeIn();
+        }
         $(window).scroll(function() {
             var arrowsTop = eTop - $(window).scrollTop();
-            if(arrowsTop < -80){
-                console.log('showArrovs');
+            console.log(arrowsTop);
+            var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
+            if((arrowsTop < -45 && paginationPos < 70) || (paginationPos > 70 && arrowsTop > -45)){
+                $('.j-dynamic-arrows').fadeIn();
             }
+            if((arrowsTop > -45 || paginationPos > 70) || (paginationPos > 70 && arrowsTop < -45)){
+                $('.j-dynamic-arrows').fadeOut();
+            }
+
         });
     }
 });
