@@ -80,7 +80,7 @@
     </div>
     <div class="form-group {{ $errors->has('homepage_position') ? ' has-error' : '' }}">
         {!! Form::label('homepage_position', 'Homepage Position:') !!}
-        {!! Form::select('homepage_position', $model->getFreePositions(), $model->homepage_position ,['placeholder' => 'None']) !!}
+        {!! Form::select('homepage_position', ['' => 'None'] + $model->getFreePositions(), $model->homepage_position) !!}
         @if ($errors->has('homepage_position'))
             <span class="help-block">
                 {{ $errors->first('homepage_position') }}
