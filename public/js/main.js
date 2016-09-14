@@ -964,7 +964,7 @@ $(document).ready(function(){
         if(param == '#verse'){
             var target = $(".j-verse-text[data-verseid="+value+"]");
             $('body').scrollTo(target,500,{offset:-100});
-            target.effect( "highlight", {color:"#669966"}, 5000);
+            target.effect( "highlight", {color:"#00B9F7"}, 5000);
         }
     }
 
@@ -1692,4 +1692,14 @@ $(document).ready(function(){
         $('.j-admin-verses-filters').toggleClass('hidden');
         $('.j-short-verses-filters').toggleClass('hidden');
     });
+
+    if($('.j-chapter-content').length > 0){
+        var eTop = $('.j-nav-sel2').offset().top;
+        $(window).scroll(function() {
+            var arrowsTop = eTop - $(window).scrollTop();
+            if(arrowsTop < -80){
+                console.log('showArrovs');
+            }
+        });
+    }
 });
