@@ -964,7 +964,7 @@ $(document).ready(function(){
         if(param == '#verse'){
             var target = $(".j-verse-text[data-verseid="+value+"]");
             $('body').scrollTo(target,500,{offset:-100});
-            target.effect( "highlight", {color:"#00B9F7"}, 5000);
+            target.effect("highlight", {color:"#00B9F7"}, 5000);
         }
     }
 
