@@ -64,7 +64,7 @@
         <div class="row mt10">
             @foreach($products as $product)
             <div class="col-lg-4">
-                <a href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" class="gift-item">
+                <a href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" target="{!! ($product->external_link)?'_blank':'_self' !!}" class="gift-item">
                     <div class="gift1" style="background:url('{{($product->images->count())?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'/images/cup.png' }}')  50% 50px no-repeat;">
                     </div>
                     <h4 class="h4-gift">

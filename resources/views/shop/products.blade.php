@@ -6,9 +6,9 @@
 
 
                 @if($product->images->count())
-                    <a href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" class="product-image" data-dz-thumbnail="" data-image="{!!Config::get('app.productImages').'thumbs/'.$product->images[0]->image !!}" style="background: url('{!! $product->images[0]->image!=''?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'' !!}') center no-repeat;"></a>
+                    <a target="{!! ($product->external_link)?'_blank':'_self'!!}" href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" class="product-image" data-dz-thumbnail="" data-image="{!!Config::get('app.productImages').'thumbs/'.$product->images[0]->image !!}" style="background: url('{!! $product->images[0]->image!=''?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'' !!}') center no-repeat;"></a>
                 @else
-                    <a href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" class="product-image" data-dz-thumbnail="" data-image="" style="">
+                    <a target="{!! ($product->external_link)?'_blank':'_self'!!}" href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" class="product-image" data-dz-thumbnail="" data-image="" style="">
                         <i class="bs-producticon cu-producticon"></i>
                     </a>
                 @endif
@@ -24,7 +24,7 @@
 
                     @if($product->external_link)
                         <div>
-                            <a class="btn1 cu2-2-btn1 j-show-product" href="{{$product->external_link}}" data-link = "{{$product->external_link}}">Details <i class="bs-arrowrt cu-arrowrt"></i></a>
+                            <a class="btn1 cu2-2-btn1 j-show-product" href="{{$product->external_link}}" target="_blank" data-link = "{{$product->external_link}}">Details <i class="bs-arrowrt cu-arrowrt"></i></a>
                         </div>
                     @else
                         <a class="btn4 btn4-cu2" href="{{url('/shop/add-to-cart/'.$product->id,[],false)}}">
