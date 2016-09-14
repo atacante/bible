@@ -127,13 +127,13 @@ class ViewHelper
         $icon = '';
         switch($type){
             case 'note':
-                $icon = 'fa-sticky-note';
+                $icon = 'bs-note';
                 break;
             case 'journal':
-                $icon = 'fa-book';
+                $icon = 'bs-journal';
                 break;
             case 'prayer':
-                $icon = 'fa-hand-paper-o';
+                $icon = 'bs-pray';
                 break;
         }
         return $icon;
