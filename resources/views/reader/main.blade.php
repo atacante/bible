@@ -220,6 +220,14 @@
                         <div class="row reader-text" style="position: relative">
                                 {!! (Request::input('compare',false)?count(Request::input('compare',false)) == 1?'<div class="comp-bord1"></div>':'<div class="comp-bord2"></div><div class="comp-bord3"></div>':"") !!}
                                 <div class="j-reader-block j-bible-text {!! (Request::input('compare',false)?count(Request::input('compare',false)) == 1?'col-xs-6':'col-xs-4':"col-xs-12") !!}">
+                                    <div class="j-dynamic-arrows" style="position: fixed; max-width: 1360px; height: 45px;  width: 1260px; display: none;">
+                                        @if($prevChapter = $content['pagination']['chapterPrev'])
+                                            <a class="genesis-arrow" title="Prev Chapter" href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}" style="position: absolute; left:-40px;"><i class="bs-arrowleft cu-arrowleft"></i></a>
+                                        @endif
+                                        @if($nextChapter = $content['pagination']['chapterNext'])
+                                            <a class="genesis-arrow" title="Next Chapter" href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}" style="position: absolute; right:-40px;"><i class="bs-arrowright cu-arrowright"></i></a>
+                                        @endif
+                                    </div>
                                     <div class="inner-pad1">
                                         @if(Request::input('compare',false))
                                             <h4 class="version-title">{!! $content['version'] !!}</h4>
@@ -329,7 +337,7 @@
 
         {{-- ---------------- Pagination  ---------------- --}}
         <div class="row mt14 mb1">
-            <div class="col-lg-12">
+            <div class="col-lg-12 j-reader-pagination">
                 <div class="pull-left">
                     @if($prevBook = $content['pagination']['bookPrev'])
                         <a href="{!! url('reader/read?'.http_build_query($prevBook),[],false) !!}" class="btn2 mr5 btn-min-w">
