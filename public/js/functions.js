@@ -359,11 +359,6 @@ site.FacebookInviteFriends = function ()
     });
 }
 
-/*site.setTwitterText = function (description){
-    $('meta[property="twitter:description"]').attr('content', description);
-    $('meta[name="description"]').attr('content', description);
-}*/
-
 reader.clearHighlights = function(){
     $('.j-reader-actions').remove();
     $('.j-lex-content').remove();

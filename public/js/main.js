@@ -1739,9 +1739,4 @@ $(document).ready(function(){
         $('body').scrollTo($('.j-compare-verses'),0,{offset:0});
     }
 
-/*    $('.j-custom-sharing').on('mouseover','.at-svc-twitter',function(e){
-        var descr = $(this).parents('.j-custom-sharing').data('description');
-        site.setTwitterText(descr);
-    });*/
-
 });
