@@ -4272,4 +4272,5 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
 .legend-text{
     display: inline-block;
     vertical-align: top;
+    margin-left: 5px;
 }
