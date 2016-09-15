@@ -320,8 +320,7 @@
                                             {!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}
                                         </div>
                                         @if(Auth::user() && Auth::user()->isPremium() && $item->type == 'prayer')
-                                                <a href="http://api.addthis.com/oexchange/0.8/forward/twitter/offer?url={{url('/community')}}&title=Prayer&description={!! strip_tags($item->text) !!}" rel="nofollow" target="_blank">TW</a>
-                                                <div class="addthis_sharing_toolbox j-custom-sharing" data-url="{{url('/community')}}" data-description="{!! strip_tags($item->text) !!}" data-title="Prayer"></div>
+                                                <div class="addthis_sharing_toolbox j-custom-sharing" data-url="{{url('/community')}}" data-title="{!! strip_tags($item->text) !!}"></div>
                                         @endif
                                     </div>
                                 </div>
