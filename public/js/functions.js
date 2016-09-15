@@ -360,15 +360,8 @@ site.FacebookInviteFriends = function ()
 }
 
 site.setTwitterText = function (description){
-    addthis_share = addthis_share || {};
-
-    addthis_share = {
-        passthrough : {
-            twitter: {
-                description: description
-            }
-        }
-    }
+    $('meta[property="twitter:description"]').attr('content', description);
+    $('meta[name="description"]').attr('content', description);
 }
 
 reader.clearHighlights = function(){
