@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\CmsPage;
 use App\Journal;
 use App\Note;
 use App\Prayer;
@@ -330,5 +331,14 @@ class ViewHelper
                 return Request::segment(2) == 'verse' && Auth::check() && Auth::user()->checkNotifTooltip($type);
                 break;
         }
+    }
+
+    public static function getContent($contentType,$systemName)
+    {
+        $content = CmsPage::where('content_type',$contentType)->where('system_name',$systemName)->first();
+        if(!$content){
+            $content = new CmsPage();
+        }
+        return $content;
     }
 }

@@ -92,7 +92,7 @@
                 <li class="dropdown log-pop">
                     <a href="#" class="dropdown-toggle cu-drop-menu-item" data-toggle="dropdown" role="button" aria-expanded="false">
                         @if(Auth::user()->avatar)
-                            <img class="" height="29" width="29" src="{!! Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar !!}" />
+                            <img class="user-avatar" height="29" width="29" src="{!! Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar !!}" />
                         @else
                             <div class="user-default"></div>
                         @endif
@@ -152,7 +152,7 @@
                 @endforeach
             @endif
                 {{--{!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
-            <div class="mt15 {!! Request::input('compare', false) || Request::segment(2) == 'verse'?'':'checkbox-disabled' !!}" style="position: relative; {{ !isset($content['showRelated'])?'margin-top: 20px !important;':'' }}">
+            <div title="{{ ViewHelper::getContent(App\CmsPage::CONTENT_TOOLTIP,'diff_explain')->text  }}" class="mt15 {!! Request::input('compare', false) || Request::segment(2) == 'verse'?'':'checkbox-disabled' !!}" style="position: relative; {{ !isset($content['showRelated'])?'margin-top: 20px !important;':'' }}">
                 {{--<input type="checkbox">--}}
                 @if(ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip') || ViewHelper::checkNotifTooltip('got_verse_diff_tooltip'))
                     <div class="cu-starsolid-settings-popup">i</div>
@@ -162,13 +162,13 @@
             </div>
             @if(isset($content['readerMode']))
             <div class="mt16">
-                <div class="radio-inline">
+                <div title="{{ ViewHelper::getContent(App\CmsPage::CONTENT_TOOLTIP,'beginner_mode')->text  }}" class="radio-inline">
                     <label>
                         {!! Form::radio('readerMode', 'beginner', ($content['readerMode'] == 'beginner'),['id'=>'check-beginner','class'=>'cust-radio']) !!}
                         <label class="label-radio" for="check-beginner">{!! Config::get('app.readerModes.beginner') !!}</label>
                     </label>
                 </div>
-                <div class="radio-inline">
+                <div title="{{ ViewHelper::getContent(App\CmsPage::CONTENT_TOOLTIP,'intermediate_mode')->text  }}" class="radio-inline">
                     <label>
                         {!! Form::radio('readerMode', 'intermediate', ($content['readerMode'] == 'intermediate'),['id'=>'check-intermediate','class'=>'cust-radio']) !!}
                         <label class="label-radio" for="check-intermediate">{!! Config::get('app.readerModes.intermediate') !!}</label>

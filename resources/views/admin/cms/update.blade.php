@@ -15,7 +15,7 @@
             </span>
                 @endif
             </div>
-
+            @if($model->exists && $model->content_type == App\CmsPage::CONTENT_PAGE)
             <div class="form-group {{ $errors->has('meta_title') ? ' has-error' : '' }}">
                 {!! Form::label('meta_title', 'Meta Title:') !!}
                 {!! Form::text('meta_title') !!}
@@ -45,10 +45,10 @@
             </span>
                 @endif
             </div>
-
+            @endif
             <div class="form-group {{ $errors->has('text') ? ' has-error' : '' }}">
                 {!! Form::label('text', 'Text:') !!}
-                {!! Form::textarea('text',null,['id' => 'location-desc']) !!}
+                {!! Form::textarea('text',null,['class' => ($model->exists && $model->content_type == App\CmsPage::CONTENT_PAGE)?'ck-editor':'']) !!}
                 @if ($errors->has('text'))
                     <span class="help-block">
                 {{ $errors->first('text') }}

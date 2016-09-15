@@ -206,11 +206,20 @@
 
                     </div>
                 </div>
-
-
-
-
-
+                @if(Request::input('diff',false))
+                <div class="row">
+                    <div class="col-xs-12 text-right legend-block">
+                        <div class="legend-item">
+                            <div class="legend-icon legend-del-color"></div>
+                            <div class="legend-text">Removed text</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-icon legend-ins-color"></div>
+                            <div class="legend-text">Added text</div>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 {{-- ------------------- CENTER CONTENT ---------------------- --}}
                 <div class="{!! !$content['showRelated'] || !$content['relatedItems']->count() || Request::input('compare',false)?'row':'my1-row' !!}">
 
