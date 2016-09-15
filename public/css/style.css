@@ -611,6 +611,15 @@ table.table-lexicon p {
 .color4 {
     color: #010101 !important;
 }
+.color5 {
+    color: #49ba93 !important;
+}
+.color6 {
+    color: #6196c3 !important;
+}
+.color7 {
+    color: #fea841 !important;
+}
 .fz1 {
     font-size: 24px !important;
 }
@@ -841,7 +850,7 @@ table.table-lexicon p {
     vertical-align: top;
 }
 body{
-
+    font-family: work_sansregular;
 }
 del {
     color: #bda61a;
@@ -3977,6 +3986,90 @@ h4.title-people {
 }
 .paralel-link:hover {
     text-decoration: none;
+}
+ul.journey-top-panel {
+    display: block;
+    background: white;
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+ul.journey-top-panel li {
+    display: inline-block;
+    border-left: 1px solid #e3e3e3;
+    min-height: 123px;
+    box-sizing: border-box;
+    text-align: center;
+}
+ul.journey-top-panel li:first-child {
+    border-left: none;
+}
+.w1 {
+    width: 165px;
+    float: right;
+}
+a.create-record {
+    display: block;
+    width: 250px;
+    height: 122px;
+    background: #00b9f7;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: ns_widenormal;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    line-height: 120px;
+}
+a.create-record:hover {
+    background: #79858f;
+}
+a.create-record i {
+    font-size: 32px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.a-create-journey {
+    text-decoration: none !important;
+    min-height: 122px;
+    display: block;
+}
+.a-create-journey:hover {
+    background: #79858f;
+    color: white !important;
+}
+.acj-counter {
+    font-size: 50px;
+    font-family: ns_widenormal;
+    padding-top: 5px;
+}
+.acj-counter i {
+    font-size: 30px;
+    font-family: ns_widenormal;
+}
+.acj-title {
+
+}
+.c-user-journey {
+    padding-left: 96px;
+    margin: 35px 0 0 20px;
+}
+.jorney-ui {
+    margin-left: -96px;
+    position:relative;
+    float:left;
+}
+.user-descr {
+    color: #a9a9a9;
+    font-family: work_sansmedium;
+    font-size: 13px;
+    line-height: 20px;
+}
+.user-name {
+    color: #505050;
+    font-family: work_sansmedium;
+    font-size: 18px;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
