@@ -1274,6 +1274,28 @@ a.view-details:hover{
     border: 3px solid #ffffff;
     text-align: center;
 }
+.c-verse-icon3 {
+    position: absolute;
+    display: block;
+    top: 30px;
+    left: 30px;
+    color: #535353;
+    font-family: "bs" !important;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-decoration: none !important;
+    text-transform: none;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 1px solid;
+    font-size: 25px;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+
+}
 .fa-book:before {
     content: "\e903";
 }
@@ -4070,6 +4092,40 @@ a.create-record i {
     color: #505050;
     font-family: work_sansmedium;
     font-size: 18px;
+}
+.journey-list {
+    display: block;
+    background: white;
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+.journey-list li {
+    display: block;
+    border-bottom: 1px solid #e3e3e3;
+    position: relative;
+    padding: 30px 30px 30px 120px;
+}
+.c-journey-top {
+    overflow: hidden;
+}
+.journey-title {
+    float: left;
+}
+.c-journey-date {
+    float: right;
+}
+
+.c-journey-bottom {
+    overflow: hidden;
+}
+.c-journey-tags {
+    float: left;
+}
+.c-journey-relations {
+    float: right;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {

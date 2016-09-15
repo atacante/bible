@@ -67,41 +67,50 @@
 
     <div class="row my-entries-list j-my-entries-list">
         <div class="col-md-12" style="line-height: 30px;">
-            <div class="create-btns">
-            </div>
             @if($content['entries']->count())
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        @foreach(array_keys($content['columns']) as $column)
-                            <th {!! ($content['columns'][$column] == 'verse_id' || $content['columns'][$column] == 'created_at')?'width="100"':'' !!}>
-                                @if ($content['sortby'] == $content['columns'][$column] && $content['order'] == 'asc')
-                                    {{link_to(
-                                      $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'desc'])),
-                                      $column
-                                    )}}
-                                @elseif(!$content['columns'][$column])
-                                    {!! $column !!}
-                                @else
-                                    {{link_to(
-                                      $content['action']."?".http_build_query(array_merge(Request::input(),['sortby' => $content['columns'][$column],'order' => 'asc'])),
-                                      $column
-                                    )}}
-                                @endif
-                                @if($content['columns'][$column])
-                                <i class="fa fa-fw fa-sort-{!! ($content['sortby'] == $content['columns'][$column])?$content['order']:'' !!}"
-                                   style="color: #367fa9;"></i>
-                                @endif
-                            </th>
-                        @endforeach
-                        <th width="40">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+
+
+                <ul class="journey-list">
                     @foreach($content['entries'] as $entry)
-                        <tr>
-                            <td>{!! ViewHelper::getEntryIcon($entry->type) !!}</td>
-                            <td>
+                        <li>
+                            {{-- Journey Top Panel --}}
+                            <div class="c-journey-top">
+                                <div class="journey-title">
+                                    {!! ViewHelper::getEntryIcon($entry->type) !!}
+
+                                    {!! $entry->type !!}
+                                    @if($entry->verse)
+                                        <span> for </span>
+                                        {!! Html::link('/reader/verse?'.http_build_query(
+                                            [
+                                                'version' => $entry->bible_version,
+                                                'book' => $entry->verse->book_id,
+                                                'chapter' => $entry->verse->chapter_num,
+                                                'verse' => $entry->verse->verse_num
+                                            ]
+                                            ),ViewHelper::getVerseNum($entry->verse), ['class'=>'label label-success','style' => 'margin-bottom:10px;']) !!}
+
+
+                                        {{ Html::link(url('reader/read?'.http_build_query(
+                                            [
+                                                'version' => $entry->bible_version,
+                                                'book' => $entry->verse->book_id,
+                                                'chapter' => $entry->verse->chapter_num,
+                                            ])."#verse".$entry->verse->id,[],false), 'Go to Reader', ['class' => 'label label-primary','style' => ''], true)}}
+                                    @endif
+                                </div>
+                                <div class="c-journey-date">
+                                    {!! $entry->created_at->format($entry::DFORMAT) !!}
+                                    - {!! ViewHelper::getAccessLevelIcon($entry->access_level) !!}
+                                    {{--<span> Last update {!! $entry->updated_at->format($entry::DFORMAT) !!}  </span>--}}
+
+                                </div>
+                            </div> {{-- end Journey Top Panel --}}
+
+
+
+
+                            <div class="c-journey-middle">
                                 <div class="entry-text j-entry-text" data-prayersid="{!! $entry->id !!}">
                                     <a title="My Study {!! ($entry->verse?'Verse':'Item') !!}" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
                                     http_build_query(
@@ -113,7 +122,7 @@
                                         ]:[
                                             'rel' => $entry->rel_code,
                                         ])) !!}">
-                                        {!! str_limit(strip_tags($entry->text,'<p></p>'), $limit = 300, $end = '...') !!}
+                                        {!! str_limit(strip_tags($entry->text,'<p></p>'), $limit = 1300, $end = '...') !!}
                                     </a>
                                 </div>
                                 @if($entry->type == 'prayer' && $entry->answered)
@@ -121,84 +130,61 @@
                                         <i class="fa fa-check-circle" aria-hidden="true" style="color: #00a65a;"></i> Answered
                                     </div>
                                 @endif
-                            </td>
-                            <td>
-                                @if($entry->verse)
-                                    {!! Html::link('/reader/verse?'.http_build_query(
-                                        [
-                                            'version' => $entry->bible_version,
-                                            'book' => $entry->verse->book_id,
-                                            'chapter' => $entry->verse->chapter_num,
-                                            'verse' => $entry->verse->verse_num
-                                        ]
-                                        ),ViewHelper::getVerseNum($entry->verse), ['class'=>'label label-success','style' => 'margin-bottom:10px;']) !!}
-                                    <br />
-                                    {{ Html::link(url('reader/read?'.http_build_query(
-                                        [
-                                            'version' => $entry->bible_version,
-                                            'book' => $entry->verse->book_id,
-                                            'chapter' => $entry->verse->chapter_num,
-                                        ])."#verse".$entry->verse->id,[],false), 'Go to Reader', ['class' => 'label label-primary','style' => ''], true)}}
-                                @else
-                                    -
-                                @endif
+                            </div>
 
-                            </td>
-                            <td width="85" class="">
-                                <a title="Notes" class="label label-warning" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
-                                    http_build_query(
-                                        $entry->verse?[
-                                            'version' => $entry->bible_version,
-                                            'book' => $entry->verse->book_id,
-                                            'chapter' => $entry->verse->chapter_num,
-                                            'verse' => $entry->verse->verse_num
-                                        ]:[
-                                            'rel' => $entry->rel_code,
-                                        ])) !!}#notes">
-                                    {!! $entry->notescount !!} note{!! $entry->notescount != 1?'s':'' !!}
-                                </a>
-                                <a title="Journal Entries" class="label label-success" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
-                                    http_build_query(
-                                        $entry->verse?[
-                                            'version' => $entry->bible_version,
-                                            'book' => $entry->verse->book_id,
-                                            'chapter' => $entry->verse->chapter_num,
-                                            'verse' => $entry->verse->verse_num
-                                        ]:[
-                                            'rel' => $entry->rel_code,
-                                        ])) !!}#journal">
-                                    {!! $entry->journalcount !!} journal entr{!! $entry->journalcount != 1?'ies':'y' !!}
-                                </a>
-                                <a title="Prayers" class="label label-primary" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
-                                    http_build_query(
-                                        $entry->verse?[
-                                            'version' => $entry->bible_version,
-                                            'book' => $entry->verse->book_id,
-                                            'chapter' => $entry->verse->chapter_num,
-                                            'verse' => $entry->verse->verse_num
-                                        ]:[
-                                            'rel' => $entry->rel_code,
-                                        ])) !!}#prayers">
-                                    {!! $entry->prayerscount !!} prayer{!! $entry->prayerscount != 1?'s':'' !!}
-                                </a>
-                            </td>
-                            <td>
-                                @if(isset($content['tags'][$entry->type][$entry->id]))
-                                    @foreach($content['tags'][$entry->type][$entry->id] as $tag)
-                                        {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
-                                        <br />
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td class="text-center">{!! ViewHelper::getAccessLevelIcon($entry->access_level) !!}</td>
-                            <td>
-                                {!! $entry->created_at->format($entry::DFORMAT) !!}<br />
-                                <span style="color: #ccc;">
-                                    Last update<br />
-                                    {!! $entry->updated_at->format($entry::DFORMAT) !!}
-                                </span>
-                            </td>{{--H:i--}}
-                            <td class="text-center">
+
+                            {{-- Journey bottom panel --}}
+                            <div class="c-journey-bottom">
+                                <div class="c-journey-tags">
+                                    @if(isset($content['tags'][$entry->type][$entry->id]))
+                                        @foreach($content['tags'][$entry->type][$entry->id] as $tag)
+                                            {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <div class="c-journey-relations">
+                                    Relations
+                                    <a title="Notes" class="label label-warning" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                        http_build_query(
+                                            $entry->verse?[
+                                                'version' => $entry->bible_version,
+                                                'book' => $entry->verse->book_id,
+                                                'chapter' => $entry->verse->chapter_num,
+                                                'verse' => $entry->verse->verse_num
+                                            ]:[
+                                                'rel' => $entry->rel_code,
+                                            ])) !!}#notes">
+                                        {!! $entry->notescount !!} note{!! $entry->notescount != 1?'s':'' !!}
+                                    </a>
+                                    <a title="Journal Entries" class="label label-success" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                        http_build_query(
+                                            $entry->verse?[
+                                                'version' => $entry->bible_version,
+                                                'book' => $entry->verse->book_id,
+                                                'chapter' => $entry->verse->chapter_num,
+                                                'verse' => $entry->verse->verse_num
+                                            ]:[
+                                                'rel' => $entry->rel_code,
+                                            ])) !!}#journal">
+                                        {!! $entry->journalcount !!} journal entr{!! $entry->journalcount != 1?'ies':'y' !!}
+                                    </a>
+                                    <a title="Prayers" class="label label-primary" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                        http_build_query(
+                                            $entry->verse?[
+                                                'version' => $entry->bible_version,
+                                                'book' => $entry->verse->book_id,
+                                                'chapter' => $entry->verse->chapter_num,
+                                                'verse' => $entry->verse->verse_num
+                                            ]:[
+                                                'rel' => $entry->rel_code,
+                                            ])) !!}#prayers">
+                                        {!! $entry->prayerscount !!} prayer{!! $entry->prayerscount != 1?'s':'' !!}
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            {{--<div class="text-center">
                                 <a title="My Study {!! ($entry->verse?'Verse':'Item') !!}" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
                                     http_build_query(
                                         $entry->verse?[
@@ -211,12 +197,14 @@
                                         ])) !!}">
                                     <i class="fa fa-graduation-cap" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i>
                                 </a>
-                            </td>
-                        </tr>
+                            </div>--}}
+                        </li>
                     @endforeach
-                    </tbody>
-                </table>
+
+                </ul>
             @endif
+
+
             <div class="row">
                 <div class="text-center">
                     {!! $content['entries']->appends(Request::input())->links() !!}
