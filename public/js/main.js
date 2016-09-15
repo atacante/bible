@@ -1724,7 +1724,6 @@ $(document).ready(function(){
         }
         $(window).scroll(function() {
             var arrowsTop = eTop - $(window).scrollTop();
-            console.log(arrowsTop);
             var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
             if((arrowsTop < -45 && paginationPos < 70) || (paginationPos > 70 && arrowsTop > -45)){
                 $('.j-dynamic-arrows').fadeIn();
