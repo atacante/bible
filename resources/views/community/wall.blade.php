@@ -15,6 +15,7 @@
     <meta property="twitter:image" content="{!! url('/images/logo.png') !!}" />
     <meta name="twitter:description" content="Bible - Public Wall"/>
     <meta name="twitter:image:src" content="{!! url('/images/logo.png') !!}"/>
+    <meta name="twitter:image" content="{!! url('/images/logo.png') !!}"/>
 @stop
 
 @section('meta_fb')
