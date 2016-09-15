@@ -52,7 +52,7 @@
             <div class="c-verse-text-top">
                 <div class="c-queries">“</div>
                 <h4 class="j-bible-text">
-                    <span class="verse-text j-verse-text color4" data-version="{!! $content['main_verse']['version_code'] !!}" data-verseid="{!! $content['main_verse']['verse']->id !!}">{!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}</span>
+                    <span class="verse-text color4" data-version="{!! $content['main_verse']['version_code'] !!}" data-verseid="{!! $content['main_verse']['verse']->id !!}">{!! $content['main_verse']['verse']->verse_text /*ViewHelper::prepareVerseText($content['main_verse']['verse'],true)*/ !!}</span>
                 </h4>
             </div>
         </div>
@@ -247,7 +247,20 @@
             </div>
         </div>
     </div>
-
+    @if(Request::input('diff',false))
+        <div class="row">
+            <div class="col-xs-12 text-right legend-block">
+                <div class="legend-item">
+                    <div class="legend-icon legend-del-color"></div>
+                    <div class="legend-text">Removed text</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon legend-ins-color"></div>
+                    <div class="legend-text">Added text</div>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="row j-bible-text">
         <div class="col-xs-12">
             <div class="c-white-item inner-pad3 mb4">

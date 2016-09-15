@@ -895,6 +895,12 @@ a {
     color: #00b9f7 !important;
 }
 
+.c-verse-text-top .verse-text:hover{
+    color: #010101 !important;
+    cursor: default;
+    border-bottom: none;
+}
+
 .glyphicon-refresh-animate {
     -animation: spin .7s infinite linear;
     -webkit-animation: spin2 .7s infinite linear;
@@ -4242,4 +4248,28 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
 }
 .checkbox-disabled{
     opacity: 0.5;
+}
+
+.legend-block{
+    margin-bottom: 10px;
+}
+.legend-item{
+    display: inline-block;
+    margin-left: 20px;
+}
+.legend-icon{
+    display: inline-block;
+    border-radius: 50%;
+    width: 11px;
+    height: 11px;
+}
+.legend-del-color{
+    background: #bda61a;
+}
+.legend-ins-color{
+    background: #227a07;
+}
+.legend-text{
+    display: inline-block;
+    vertical-align: top;
 }
