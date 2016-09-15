@@ -22,6 +22,7 @@ class StaticPages extends Seeder
     {
         CmsPage::where('system_name','about')->delete();
         $pageAbout = [
+            'content_type' => CmsPage::CONTENT_PAGE,
             'title' => 'About Us',
             'system_name' => 'about',
             'text' =>
@@ -41,5 +42,32 @@ class StaticPages extends Seeder
             'meta_description' => 'About Us',
         ];
         CmsPage::insert($pageAbout);
+
+        CmsPage::where('system_name','diff_explain')->delete();
+        $diffTooltip = [
+            'content_type' => CmsPage::CONTENT_TOOLTIP,
+            'title' => 'Diff tooltip',
+            'system_name' => 'diff_explain',
+            'text' => 'Diff tooltip',
+        ];
+        CmsPage::insert($diffTooltip);
+
+        CmsPage::where('system_name','beginner_mode')->delete();
+        $beginnerTooltip = [
+            'content_type' => CmsPage::CONTENT_TOOLTIP,
+            'title' => 'Beginner mode',
+            'system_name' => 'beginner_mode',
+            'text' => 'Beginner tooltip',
+        ];
+        CmsPage::insert($beginnerTooltip);
+
+        CmsPage::where('system_name','intermediate_mode')->delete();
+        $intermediateTooltip = [
+            'content_type' => CmsPage::CONTENT_TOOLTIP,
+            'title' => 'Intermediate mode',
+            'system_name' => 'intermediate_mode',
+            'text' => 'Intermediate tooltip',
+        ];
+        CmsPage::insert($intermediateTooltip);
     }
 }

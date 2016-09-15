@@ -95,8 +95,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 {{--{!!Html::script(asset('vendor/jsvalidation/js/jsvalidation.js'))!!}--}}
 {{--{!! isset($jsValidator)?$jsValidator:'' !!}--}}
 <script>
-    if($("#symbolism,#location-desc").length > 0){
-        $('#symbolism,#location-desc').ckeditor({
+    if($("#symbolism,#location-desc,.ck-editor").length > 0){
+        $('#symbolism,#location-desc,.ck-editor').ckeditor({
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
             filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
             filebrowserBrowseUrl: '/laravel-filemanager?type=Files',

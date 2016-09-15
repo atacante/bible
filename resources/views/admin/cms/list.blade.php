@@ -10,23 +10,25 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
+                            <th>Content Type</th>
                             <th>System Name</th>
                             <th>Title</th>
                             {{--<th>Content</th>--}}
-                            <th>Meta Title</th>
-                            <th>Meta Keywords</th>
-                            <th>Meta Description</th>
+                            {{--<th>Meta Title</th>--}}
+                            {{--<th>Meta Keywords</th>--}}
+                            {{--<th>Meta Description</th>--}}
                             <th>Actions</th>
                         </tr>
                         @if(count($content['cms']))
                             @foreach($content['cms'] as $page)
                                 <tr>
+                                    <td>{!! $page->content_type !!}</td>
                                     <td>{!! $page->system_name !!}</td>
                                     <td>{!! $page->title !!}</td>
                                     {{--<td>{!! $page->text !!}</td>--}}
-                                    <td>{!! $page->meta_title !!}</td>
-                                    <td>{!! $page->meta_keywords !!}</td>
-                                    <td>{!! $page->meta_description !!}</td>
+                                    {{--<td>{!! $page->meta_title !!}</td>--}}
+                                    {{--<td>{!! $page->meta_keywords !!}</td>--}}
+                                    {{--<td>{!! $page->meta_description !!}</td>--}}
                                     <td class="text-center" style="width: 50px;">
                                         <a title="Edit CMS" href="{!! url('/admin/cms/update/'.$page->id) !!}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
                                     </td>
