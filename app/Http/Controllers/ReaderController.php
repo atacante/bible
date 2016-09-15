@@ -181,12 +181,63 @@ class ReaderController extends Controller
         Session::flash('backUrl', Request::fullUrl());
 
         $q = pg_escape_string(Request::input('q', false));
+
         $version = Request::input('version', Config::get('app.defaultBibleVersion'));
+
+        // Maybe user wants to find a psalm?
+        if(preg_match_all('/\d+(:\d+)?/',$q, $verseMatches)){
+
+            $verse = false;
+            // User wants to find Chapter:Verse
+            if($chapterVerseMatch = preg_grep('/:/',$verseMatches[0])){
+                $chapterVerse = explode(':',head($chapterVerseMatch));
+                $chapter = $chapterVerse[0];
+                $verse = $chapterVerse[1];
+
+                $query = str_replace($chapter.':'.$verse, ' ', $q);
+            }else{
+            // User wants to find only Chapter
+                $chapter = last($verseMatches[0]);
+                $query = $q;
+            }
+
+            // Split query string by words
+            if(preg_match_all('/(\d )?[a-zA-Z]+/',$query, $words)){
+                $booklist = BooksListEn::get()->pluck('book_name', 'id' )->toArray();
+
+                // Let's find if user enter a book
+                if($bookMatches =  array_uintersect($booklist, $words[0], 'strcasecmp')){
+                    $book = key($bookMatches);
+
+                    $parameters = [
+                        'version' => $version,
+                        'book' => $book,
+                        'chapter' => $chapter,
+                    ];
+                    $url = '/reader/read?';
+
+                    $versesModel = BaseModel::getVersesModelByVersionCode($version);
+                    $verseQuery = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter);
+
+                    if($verse){
+                        $verseQuery->where('verse_num', $verse);
+                        $url = '/reader/verse?';
+                        $parameters += ['verse' => $verse];
+                    }
+
+                    if($verseQuery->count() > 0){
+                       return redirect(url($url.http_build_query($parameters)));
+                    }
+                }
+            }
+
+
+        }
+
+
 
         $versions = VersionsListEn::versionsList();
         $content = [];
-
-        $versesModel = BaseModel::getVersesModelByVersionCode($version);
 //        $content['verses'] = $versesModel::query()
 //                                ->with('booksListEn')
 //                                ->where('verse_text', 'ilike', '%'.$q.'%')
