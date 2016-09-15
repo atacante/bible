@@ -1,5 +1,28 @@
 @extends('layouts.app')
 
+@section('title')
+    Bible - Public Wall
+@stop
+
+@section('meta_description')
+    <meta name="description" content="Bible - Public Wall"/>
+@stop
+
+@section('meta_twitter')
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="Bible - Public Wall">
+    <meta property="twitter:description" content="Bible - Public Wall">
+    <meta name="twitter:image" content="{!! url('/images/logo.png') !!}" />
+@stop
+
+@section('meta_fb')
+    <meta property="og:image" content="{!! url('/images/logo.png') !!}" />
+@stop
+
+@section('meta_google')
+    <meta itemprop="image" content="{!! url('/images/logo.png') !!}"/>
+@stop
+
 @section('content')
     <div class="row wall">
         <div class="col-md-3">

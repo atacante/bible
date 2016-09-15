@@ -13,11 +13,16 @@
         <meta name="author" content="Jon Doe"/>
     @show @section('meta_description')
         <meta name="description"
-              content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei."/>
+              content=""/>
     @show @section('meta_twitter')
         <meta property="twitter:card" content="summary">
-        <meta property="twitter:title" content="Bible">
-        <meta property="twitter:description" content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei.">
+        <meta property="twitter:title" content="">
+        <meta property="twitter:description" content="">
+        <meta property="twitter:image" content="" />
+    @show @section('meta_fb')
+        <meta property="og:image" content="" />
+    @show @section('meta_google')
+        <meta itemprop="image" content=""/>
     @show
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css')!!}
         {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')!!}
