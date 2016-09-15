@@ -92,7 +92,7 @@
                 <li class="dropdown log-pop">
                     <a href="#" class="dropdown-toggle cu-drop-menu-item" data-toggle="dropdown" role="button" aria-expanded="false">
                         @if(Auth::user()->avatar)
-                            <img class="" height="29" width="29" src="{!! Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar !!}" />
+                            <img class="user-avatar" height="29" width="29" src="{!! Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar !!}" />
                         @else
                             <div class="user-default"></div>
                         @endif

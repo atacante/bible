@@ -4367,3 +4367,7 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     vertical-align: top;
     margin-left: 5px;
 }
+
+.user-avatar{
+    border-radius: 50%;
+}
