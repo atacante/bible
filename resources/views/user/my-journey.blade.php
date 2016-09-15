@@ -77,8 +77,9 @@
                             <div class="c-journey-top">
                                 <div class="journey-title">
                                     {!! ViewHelper::getEntryIcon($entry->type) !!}
-
-                                    {!! $entry->type !!}
+                                    <span class="tu-text">
+                                        {!! $entry->type !!}
+                                    </span>
                                     @if($entry->verse)
                                         <span> for </span>
                                         {!! Html::link('/reader/verse?'.http_build_query(
@@ -88,15 +89,17 @@
                                                 'chapter' => $entry->verse->chapter_num,
                                                 'verse' => $entry->verse->verse_num
                                             ]
-                                            ),ViewHelper::getVerseNum($entry->verse), ['class'=>'label label-success','style' => 'margin-bottom:10px;']) !!}
+                                            ),ViewHelper::getVerseNum($entry->verse), ['class'=>'']) !!}
 
 
-                                        {{ Html::link(url('reader/read?'.http_build_query(
+                                        <a href="{{url('reader/read?'.http_build_query(
                                             [
                                                 'version' => $entry->bible_version,
                                                 'book' => $entry->verse->book_id,
                                                 'chapter' => $entry->verse->chapter_num,
-                                            ])."#verse".$entry->verse->id,[],false), 'Go to Reader', ['class' => 'label label-primary','style' => ''], true)}}
+                                            ])."#verse".$entry->verse->id,[],false)}}">
+                                            <i class="bs-arrowrt"></i>
+                                        </a>
                                     @endif
                                 </div>
                                 <div class="c-journey-date">
@@ -138,7 +141,7 @@
                                 <div class="c-journey-tags">
                                     @if(isset($content['tags'][$entry->type][$entry->id]))
                                         @foreach($content['tags'][$entry->type][$entry->id] as $tag)
-                                            {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
+                                            {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[],false), '#'.$tag->tag_name, ['class' => 'link-tag'], true)}}
                                         @endforeach
                                     @endif
                                 </div>
