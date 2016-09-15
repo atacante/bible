@@ -12,7 +12,7 @@
     <meta property="twitter:card" content="summary">
     <meta property="twitter:title" content="Bible - Public Wall">
     <meta property="twitter:description" content="Bible - Public Wall">
-    <meta name="twitter:image" content="{!! url('/images/logo.png') !!}" />
+    <meta property="twitter:image" content="{!! url('/images/logo.png') !!}" />
 @stop
 
 @section('meta_fb')
