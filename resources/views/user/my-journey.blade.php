@@ -97,9 +97,14 @@
                                                 'version' => $entry->bible_version,
                                                 'book' => $entry->verse->book_id,
                                                 'chapter' => $entry->verse->chapter_num,
-                                            ])."#verse".$entry->verse->id,[],false)}}">
+                                            ])."#verse".$entry->verse->id,[],false)}}" style="text-decoration: none !important;">
                                             <i class="bs-arrowrt"></i>
                                         </a>
+                                    @endif
+                                    @if($entry->type == 'prayer' && $entry->answered)
+                                        <div class="i-ansvered">
+                                            <i class="fa fa-check-circle" aria-hidden="true" style="color: #00a65a;"></i> Answered
+                                        </div>
                                     @endif
                                 </div>
                                 <div class="c-journey-date cu-date1">
@@ -126,11 +131,6 @@
                                         {!! str_limit(strip_tags($entry->text,'<p></p>'), $limit = 1300, $end = '...') !!}
                                     </a>
                                 </div>
-                                @if($entry->type == 'prayer' && $entry->answered)
-                                    <div style="color: #00a65a;">
-                                        <i class="fa fa-check-circle" aria-hidden="true" style="color: #00a65a;"></i> Answered
-                                    </div>
-                                @endif
                             </div>
 
 
