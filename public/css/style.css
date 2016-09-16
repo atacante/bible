@@ -4468,3 +4468,17 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
 .user-avatar{
     border-radius: 50%;
 }
+
+.alert{
+    border-radius: 0;
+    border: none;
+    color: #ffffff;
+}
+
+.alert-success{
+    background-color: #64cd93;
+}
+
+.alert-danger {
+    background-color: #fe9921;
+}
