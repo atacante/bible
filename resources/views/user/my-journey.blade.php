@@ -102,11 +102,9 @@
                                         </a>
                                     @endif
                                 </div>
-                                <div class="c-journey-date">
-                                    {!! $entry->created_at->format($entry::DFORMAT) !!}
+                                <div class="c-journey-date cu-date1">
+                                    {!! $entry->humanLastUpdate($entry::DFORMAT) !!}
                                     - {!! ViewHelper::getAccessLevelIcon($entry->access_level) !!}
-                                    {{--<span> Last update {!! $entry->updated_at->format($entry::DFORMAT) !!}  </span>--}}
-
                                 </div>
                             </div> {{-- end Journey Top Panel --}}
 
@@ -115,7 +113,7 @@
 
                             <div class="c-journey-middle">
                                 <div class="entry-text j-entry-text" data-prayersid="{!! $entry->id !!}">
-                                    <a title="My Study {!! ($entry->verse?'Verse':'Item') !!}" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                    <a class="journey-text-link" title="My Study {!! ($entry->verse?'Verse':'Item') !!}" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
                                     http_build_query(
                                         $entry->verse?[
                                             'version' => $entry->bible_version,
@@ -145,9 +143,11 @@
                                         @endforeach
                                     @endif
                                 </div>
+
                                 <div class="c-journey-relations">
-                                    Relations
-                                    <a title="Notes" class="label label-warning" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+                                    <div class="rel-label">Relations:</div>
+
+                                    <a title="Notes" class="rel-link" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
                                         http_build_query(
                                             $entry->verse?[
                                                 'version' => $entry->bible_version,
@@ -157,9 +157,11 @@
                                             ]:[
                                                 'rel' => $entry->rel_code,
                                             ])) !!}#notes">
-                                        {!! $entry->notescount !!} note{!! $entry->notescount != 1?'s':'' !!}
+                                        <i class="bs-note"></i>
+                                        {!! $entry->notescount !!}
                                     </a>
-                                    <a title="Journal Entries" class="label label-success" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+
+                                    <a title="Journal Entries" class="rel-link" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
                                         http_build_query(
                                             $entry->verse?[
                                                 'version' => $entry->bible_version,
@@ -169,9 +171,11 @@
                                             ]:[
                                                 'rel' => $entry->rel_code,
                                             ])) !!}#journal">
-                                        {!! $entry->journalcount !!} journal entr{!! $entry->journalcount != 1?'ies':'y' !!}
+                                        <i class="bs-journal"></i>
+                                        {!! $entry->journalcount !!}
                                     </a>
-                                    <a title="Prayers" class="label label-primary" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
+
+                                    <a title="Prayers" class="rel-link" href="{!! url('/reader/my-study-'.($entry->verse?'verse':'item').'?'.
                                         http_build_query(
                                             $entry->verse?[
                                                 'version' => $entry->bible_version,
@@ -181,7 +185,8 @@
                                             ]:[
                                                 'rel' => $entry->rel_code,
                                             ])) !!}#prayers">
-                                        {!! $entry->prayerscount !!} prayer{!! $entry->prayerscount != 1?'s':'' !!}
+                                        <i class="bs-pray"></i>
+                                        {!! $entry->prayerscount !!}
                                     </a>
                                 </div>
 
