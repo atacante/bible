@@ -1274,6 +1274,28 @@ a.view-details:hover{
     border: 3px solid #ffffff;
     text-align: center;
 }
+.c-verse-icon3 {
+    position: absolute;
+    display: block;
+    top: 30px;
+    left: 30px;
+    color: #535353;
+    font-family: "bs" !important;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-decoration: none !important;
+    text-transform: none;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 1px solid;
+    font-size: 25px;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+
+}
 .fa-book:before {
     content: "\e903";
 }
@@ -4070,6 +4092,81 @@ a.create-record i {
     color: #505050;
     font-family: work_sansmedium;
     font-size: 18px;
+}
+.journey-list {
+    display: block;
+    background: white;
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+.journey-list li {
+    display: block;
+    border-bottom: 1px solid #e3e3e3;
+    position: relative;
+    padding: 30px 30px 30px 120px;
+}
+.c-journey-top {
+    overflow: hidden;
+}
+.journey-title {
+    float: left;
+    font-family: work_sanssemibold;
+    color: #313d47;
+    font-size: 16px;
+}
+.journey-title a {
+    font-family: work_sanssemibold;
+    color: #313d47;
+    font-size: 16px;
+    text-decoration: underline;
+}
+.journey-title a:hover {
+    text-decoration: none;
+}
+.journey-title a i {
+    background: black;
+    color: white;
+    display: inline-block;
+    height: 17px;
+    width: 17px;
+    line-height: 17px;
+    text-align: center;
+    font-size: 7px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    vertical-align: text-top;
+}
+.journey-title a:hover i {
+    background: #79858f;
+}
+.c-journey-date {
+    float: right;
+}
+
+.c-journey-bottom {
+    overflow: hidden;
+}
+.c-journey-tags {
+    float: left;
+}
+.c-journey-relations {
+    float: right;
+}
+.tu-text {
+    text-transform: capitalize;
+}
+.link-tag {
+    color: #00b9f7;
+    font-family: work_sansregular;
+    font-size: 15px;
+    text-decoration: underline;
+    margin-right: 8px;
+}
+.link-tag:hover {
+    text-decoration: none;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
