@@ -4021,6 +4021,7 @@ ul.journey-top-panel {
     position: relative;
     overflow: hidden;
     padding: 0;
+    margin-bottom: 40px;
 }
 ul.journey-top-panel li {
     display: inline-block;
@@ -4451,11 +4452,22 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
 }
 
 
-.adv-search{
-    top:7px;
-    right: 40px;
+.adv-search {
+    top: 12px;
+    right: 64px;
     color: #00b9f7;
     text-transform: capitalize;
+    cursor: pointer;
+    font-family: work_sansregular;
+    font-size: 16px;
+}
+.adv-search:hover {
+    color: #79858f;
+}
+.adv-search i {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 3px;
 }
 .relative{
     position: relative;
@@ -4464,12 +4476,32 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
 .absolute{
     position: absolute;
 }
-.search-back{
+.search-back {
     right: 0px !important;
-    padding: 3px 7px 2px;
+    padding: 11px 14px 5px;
     background-color: #00b9f7;
     font-size: 20px;
     color: #ffffff;
+    cursor: pointer;
+}
+.search-back:hover {
+    display: inline-block;
+    background: #79858f;
+    color: #ffffff;
+    text-decoration: none !important;
+}
+.white-search {
+    background: white;
+    border: 1px solid #e3e3e3;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding-right: 240px;
+}
+.c-white-block {
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
 }
 .checkbox-disabled{
     opacity: 0.5;

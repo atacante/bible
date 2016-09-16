@@ -1,16 +1,22 @@
-<div class="j-short-verses-filters {!! Request::input('adv')?'hidden':'' !!}">
+<div class="j-short-verses-filters
+    {!! Request::input('adv')?'hidden':'' !!}">
     {!! Form::open(['method' => 'get','url' => '/user/my-journey']) !!}
-    <div class="form-group relative">
-        <span class="absolute adv-search j-show-adv-search">
-            <i class="bs-settings"></i>&nbsp;&nbsp;Advanced search&nbsp;&nbsp;
-        </span>
-        <span class="absolute search-back"><i class="bs-search"></i></span>
-        <div class="hidden">{!! Form::label('search', 'Search') !!}</div>
-        {!! Form::text('search',Request::input('search'),['placeholder' => 'Type a keyword to search records...','class' => 'form-control','style' => '']) !!}
-    </div>
+        <div class="form-group relative c-white-block">
+            <span class="absolute adv-search j-show-adv-search">
+                <i class="bs-settings"></i>
+                Advanced search
+            </span>
+            <span class="absolute search-back">
+                <i class="bs-search"></i>
+            </span>
+            <div class="hidden">{!! Form::label('search', 'Search') !!}</div>
+            {!! Form::text('search',Request::input('search'),['placeholder' => 'Type a keyword to search records...','class' => 'input1 white-search']) !!}
+        </div>
     {!! Form::hidden('adv',0) !!}
     {!! Form::close() !!}
 </div>
+
+
 <div class="j-admin-verses-filters {!! Request::input('adv')?'':'hidden' !!} ">
     <h3>
         <span class="adv-search">
