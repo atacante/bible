@@ -98,7 +98,7 @@
                                                 'book' => $entry->verse->book_id,
                                                 'chapter' => $entry->verse->chapter_num,
                                             ])."#verse".$entry->verse->id,[],false)}}" style="text-decoration: none !important;">
-                                            <i class="bs-arrowrt"></i>
+                                            <i class="bs-arrowrt" title="Go to Reader"></i>
                                         </a>
                                     @endif
                                     @if($entry->type == 'prayer' && $entry->answered)
