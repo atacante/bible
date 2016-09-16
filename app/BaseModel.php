@@ -299,4 +299,21 @@ class BaseModel extends Model {
 
         return $icon_class;
     }
+
+    /**
+     * Define update or create and return human format
+    */
+    public function humanLastUpdate(){
+        if(!($this->updated_at instanceof Carbon)||!($this->created_at instanceof Carbon)){
+            return '-';
+        }
+
+        $suffix = '';
+
+        if($this->updated_at > $this->created_at ){
+            $suffix = ' (edited)';
+        }
+
+        return $this->humanFormat('updated_at').$suffix;
+    }
 }
