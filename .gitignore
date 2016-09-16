@@ -12,4 +12,3 @@ Homestead.json
 
 # composer itself is not needed
 composer.phar
-composer.lock
