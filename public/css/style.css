@@ -620,6 +620,10 @@ table.table-lexicon p {
 .color7 {
     color: #fea841 !important;
 }
+.color8 {
+    color: #a9a9a9 !important;
+}
+
 .fz1 {
     font-size: 24px !important;
 }
@@ -4108,6 +4112,19 @@ a.create-record i {
     position: relative;
     padding: 30px 30px 30px 120px;
 }
+.journey-list li:hover {
+    background: #f3f6f9;
+}
+.journey-list li:hover .journey-text-link {
+    text-decoration: underline;
+    color: #00b9f7 !important;
+}
+.journey-text-link {
+    font-family: work_sansregular;
+    font-size: 15px;
+    color: #1b1b1b !important;
+    line-height: 21px;
+}
 .c-journey-top {
     overflow: hidden;
 }
@@ -4144,6 +4161,7 @@ a.create-record i {
 }
 .c-journey-date {
     float: right;
+    font-size: 13px;
 }
 
 .c-journey-bottom {
@@ -4167,6 +4185,23 @@ a.create-record i {
 }
 .link-tag:hover {
     text-decoration: none;
+}
+.rel-label {
+    color: #313d47;
+    font-family: work_sanssemibold;
+    font-size: 15px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.rel-link {
+    margin-right: 10px;
+    font-family: work_sanssemibold;
+    font-size: 14px;
+    text-decoration: none !important;
+}
+.rel-link i {
+    vertical-align: middle;
+    font-size: 18px;
 }
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {

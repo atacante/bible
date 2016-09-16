@@ -146,17 +146,17 @@ class ViewHelper
 
         switch($level){
             case Note::ACCESS_PRIVATE:
-                $html = '<i title="Private" class="fa fa-lock" aria-hidden="true"></i>';
+                $html = '<i title="Private" class="fa fa-lock color8 font-size-13" aria-hidden="true"></i>';
                 break;
             case Note::ACCESS_PUBLIC_ALL:
             case WallPost::ACCESS_PUBLIC_ALL:
-                $html = '<i title="Public - share with everyone" class="fa fa-globe" aria-hidden="true"></i>';
+                $html = '<i title="Public - share with everyone" class="bs-s-public font-size-13" aria-hidden="true"></i>';
                 break;
             case Note::ACCESS_PUBLIC_GROUPS:
-                $html = '<i title="Public - share with Groups I am member of" class="fa fa-users" aria-hidden="true"></i>';
+                $html = '<i title="Public - share with Groups I am member of" class="bs-s-groupscustom font-size-13" aria-hidden="true"></i>';
                 break;
             case WallPost::ACCESS_PUBLIC_FRIENDS:
-                $html = '<i title="Public - share with friends" class="fa ion-person-stalker" aria-hidden="true"></i>';
+                $html = '<i title="Public - share with friends" class="bs-friends font-size-13" aria-hidden="true"></i>';
                 break;
         }
 
