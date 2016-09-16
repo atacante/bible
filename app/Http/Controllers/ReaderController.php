@@ -273,8 +273,11 @@ class ReaderController extends Controller
 //                $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->limit(3)->get();
 //            }
 //        }
-        $content['oldTestamentVerses'] = BaseModel::searchEverywhere($q,'old')->paginate(10);
-        $content['newTestamentVerses'] = BaseModel::searchEverywhere($q,'new')->paginate(10);
+
+        $filteredQuery = preg_replace('/[^\s\w]/','',$q);
+
+        $content['oldTestamentVerses'] = BaseModel::searchEverywhere($filteredQuery,'old')->paginate(10);
+        $content['newTestamentVerses'] = BaseModel::searchEverywhere($filteredQuery,'new')->paginate(10);
         return view('reader.search', ['content' => $content]);
     }
 
