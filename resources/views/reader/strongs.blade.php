@@ -8,13 +8,13 @@
     {{--    @include('reader.filters')--}}
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-center h3-kit mb4">
+            <h3 class="h3-kit mb4 strongs-header">
                 @if($prevNum = $content['pages']['prevNum'])
-                    <a title="Prev Strong's Number" href="{!! url('reader/strongs/'.$prevNum.'/'.$content['dictionaryType'],[],false) !!}"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                    <a class="genesis-arrow" title="Prev Strong's Number" href="{!! url('reader/strongs/'.$prevNum.'/'.$content['dictionaryType'],[],false) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
                 @endif
                 {!! $content['title'] !!}
                 @if($nextNum = $content['pages']['nextNum'])
-                    <a title="Next Strong's Number" href="{!! url('reader/strongs/'.$nextNum.'/'.$content['dictionaryType'],[],false) !!}"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                    <a class="genesis-arrow" title="Next Strong's Number" href="{!! url('reader/strongs/'.$nextNum.'/'.$content['dictionaryType'],[],false) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
                 @endif
             </h3>
         </div>
@@ -26,7 +26,7 @@
                     @if(count($content['strongs_concordance']) && ($content['strongs_concordance']->original_word || $content['strongs_concordance']->transliteration || $content['strongs_concordance']->definition_short || $content['strongs_concordance']->definition_full))
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="text-center h4-sub-kit">Strong's Concordance</h4>
+                            <h3 class="text-center h3-sub-kit strongs-subheader mt0">Strong's Concordance</h3>
                             @if($content['strongs_concordance']->original_word)
                             <div>Original word: <strong>{!! $content['strongs_concordance']->original_word !!}</strong></div>
                             @endif
@@ -46,7 +46,7 @@
                     @if(count($content['strongs_nasec']) && ($content['strongs_nasec']->original_word || $content['strongs_nasec']->definition || $content['strongs_nasec']->nasb_translation))
                         <div class="row">
                             <div class="col-md-12">
-                                <h4 class="text-center h4-sub-kit">NAS Exhaustive Concordance</h4>
+                                <h3 class="text-center h3-sub-kit strongs-subheader">NAS Exhaustive Concordance</h3>
                                 @if($content['strongs_nasec']->original_word)
                                 <div>Word Origin: <strong>{!! $content['strongs_nasec']->original_word !!}</strong></div>
                                 @endif
@@ -67,7 +67,7 @@
                     @if(!empty($content['strongs_concordance']->exhaustive_concordance))
                         <div class="row">
                             <div class="col-md-12">
-                                <h4 class="text-center h4-sub-kit">Strong's Exhaustive Concordance</h4>
+                                <h3 class="text-center h3-sub-kit strongs-subheader">Strong's Exhaustive Concordance</h3>
                                 <div>{!! $content['strongs_concordance']->exhaustive_concordance !!}</div>
                                 <div></div>
                             </div>
@@ -81,7 +81,7 @@
                 <div class="inner-pad1">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="text-center h4-sub-kit">References</h4>
+                            <h3 class="text-center h3-sub-kit strongs-subheader mt0">References</h3>
                         </div>
                         <div class="col-md-12 text-center">
                             <strong>{!! link_to('/reader/strongs-references/'.$content['strongNum']."/".$content['dictionaryType'],"Strong's ".$content['strongNum'].": ".$content['totalReferences']." Occurrences") !!}</strong>

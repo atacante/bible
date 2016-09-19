@@ -1085,12 +1085,20 @@ a.view-details:hover{
     background: #f5f5f5;
 }
 
+.strongs-page .verse-text{
+    font-size: 14px;
+}
+
 .text-red{
     color: red;
 }
 
 .text-capitalize{
     text-transform: capitalize !important;
+}
+
+.text-lowercase{
+    text-transform: lowercase !important;
 }
 
 .text-left{
@@ -4353,6 +4361,9 @@ a.create-record i {
 .font-size-16{
     font-size: 16px;
 }
+.font-size-18{
+    font-size: 18px;
+}
 .font-size-20{
     font-size: 20px;
 }
@@ -4559,4 +4570,14 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
 
 .alert-danger {
     background-color: #fe9921;
+}
+
+h3.strongs-header{
+    text-transform: lowercase;
+    line-height: 36px;
+    text-align: center;
+}
+
+h3.strongs-subheader{
+    margin: 30px 0 5px;
 }
