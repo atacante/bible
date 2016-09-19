@@ -567,7 +567,7 @@ table.table-lexicon p {
     margin-bottom: 40px;
 }
 .mb4 {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
 }
 .mr1 {
     margin-right: 10%;
@@ -2901,6 +2901,7 @@ ul.icon-panel li a {
     color: #535353;
     font-family: work_sansregular;
     font-size: 18px;
+    text-align: justify;
 }
 .col-xs-6 .verse-text, .col-xs-4 .verse-text {
     font-size: 16px;
