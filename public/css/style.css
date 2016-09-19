@@ -376,6 +376,34 @@ h4.h4-sub-kit {
 .btn3-kit i {
     font-size: 16px;
 }
+/*------------- btn4-kit */
+.btn4-kit, .btn4-kit:visited {
+    display: inline-block;
+    border: 2px solid #090909;
+    background: #ffffff;
+    color: #090909;
+    font-size: 16px;
+    padding: 10px 12px;
+    text-decoration: none !important;
+    outline: none !important;
+    text-transform: uppercase;
+    font-family: ns_widemedium;
+    min-width: 145px;
+    text-align: center;
+}
+.btn4-kit:hover, .btn4-kit:active {
+    display: inline-block;
+    border: 2px solid #090909;
+    background: #090909;
+    color: #ffffff;
+    text-decoration: none !important;
+}
+.pad-l1 {
+    padding-left: 40px;
+}
+.pad-r1 {
+    padding-right: 40px;
+}
 .fsz1 {
     font-size: 36px !important;
     line-height: 35px;
@@ -4215,6 +4243,25 @@ a.create-record i {
     vertical-align: middle;
     font-size: 18px;
 }
+.popup-title1 {
+    margin: 0;
+    font-family: ns_widenormal;
+    font-size: 18px;
+    color: #505050;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+.cu1-settings {
+    color: #00b9f7;
+    margin-right: 10px;
+}
+.inner-pad4 {
+    padding: 35px 30px 65px;
+}
+/*.cu1-1-btn {
+    font-size: 16px !important;
+}*/
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
         display: inline-block;
