@@ -4258,7 +4258,7 @@ a.create-record i {
     color: #505050;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
 }
 .cu1-settings {
     color: #00b9f7;
@@ -4267,9 +4267,30 @@ a.create-record i {
 .inner-pad4 {
     padding: 35px 30px 65px;
 }
+.v-label {
+    min-height: 45px;
+    vertical-align: middle;
+}
+.advansed-pop label {
+    color: #535353;
+    padding-top: 10px;
+}
+.advansed-pop label.label-checkbox {
+    margin-right: 20px;
+}
+
 /*.cu1-1-btn {
     font-size: 16px !important;
 }*/
+
+@media (max-width: 992px) {
+    .pad-r1 {
+        padding-right: 15px !important;
+    }
+    .pad-l1 {
+        padding-left: 15px !important;
+    }
+}
 @media (max-width: 1280px) {
     .col-left1, .col-right1 {
         display: inline-block;
