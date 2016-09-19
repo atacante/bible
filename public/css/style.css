@@ -2325,15 +2325,42 @@ ul.nav.navbar-nav li  a {
 .navbar-inner-pages ul.nav.navbar-nav li  a {
     font-size: 13px;
 }
-.navbar-default .navbar-nav > a:hover,
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:focus,
-.navbar-default .navbar-nav > .open > a:hover {
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a.active,
+.navbar-default .navbar-nav > li.open > a,
+.navbar-default .navbar-nav > li.open > a:focus,
+.navbar-default .navbar-nav > li.open > a:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > a:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:focus,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:hover{
     color: white;
-    background-color: #00b9f7;
+    background-color: #00b9f7 !important;
     border-radius: 25px;
     -webkit-border-radius: 25px;
 }
+ul.dropdown-menu{
+    padding: 10px 0 !important;
+}
+
+ul.dropdown-menu li{
+    margin: 0px !important;
+}
+ul.dropdown-menu li a{
+    padding: 11px 30px !important;
+}
+
+ul.dropdown-menu li i{
+    color: #00b9f7 !important;
+    width: 18px;
+    display: inline-block;
+}
+
+.navbar-default .navbar-nav > li > a:hover > i,
+.navbar-default .navbar-nav > li > a.active > i{
+    color: white;
+}
+
 .navbar-inner-pages.navbar-default .navbar-nav > a:hover,
 .navbar-inner-pages.navbar-default .navbar-nav > .open > a,
 .navbar-inner-pages.navbar-default .navbar-nav > .open > a:focus,
@@ -2975,23 +3002,45 @@ ul.icon-panel li a {
     text-align: left;
 }
 /* -------------------- Login Dropdown Menu ------------------ */
-.dropdown-menu {
+.dropdown-menu{
     border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
     -webkit-box-shadow: 0 0 15px 5px rgba(100,100,100,0.1);
     box-shadow: 0 0 15px 5px rgba(100,100,100,0.1);
     padding: 10px 5px;
     min-width: 200px;
+    left: -31px;
+    top: 56px;
 }
+.navbar-default.navbar-inner-pages .log-pop .dropdown-menu{
+    left: -89px;
+}
+.navbar-default .dropdown-menu{
+    left: -13px;
+}
+.navbar-default.navbar-inner-pages .dropdown-menu{
+    left: -31px;
+}
+.navbar-default .log-pop .dropdown-menu{
+    left: -82px;
+}
+
 .log-pop.dropdown .dropdown-menu li a {
     font-size: 13px;
     font-family: ns_widemedium;
     color: #000000;
 }
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a:hover i{
+    background: #00b9f7 !important;
+    color: white !important;
+}
+
 .dropdown-menu .popup-arrow {
     right: 14px;
     top: -7px;
-    transform: rotate(30deg) skew(-30deg);
+    transform: rotate(36deg) skew(-20deg);
     width: 12px;
     height: 12px;
 }
@@ -4619,4 +4668,29 @@ h3.strongs-header{
 
 h3.strongs-subheader{
     margin: 30px 0 5px;
+}
+
+.cu-bs-contactus{
+    font-size: 12px !important;
+    vertical-align: initial !important;
+}
+
+.cu-bs-people{
+    font-size: 15px !important;
+}
+
+.cu-bs-places{
+    font-size: 18px !important;
+}
+
+.cu-bs-biblestudylogo{
+    font-size: 18px !important;
+}
+
+.cu-bs-gift{
+    font-size: 16px !important;
+}
+
+.cu-bs-faq{
+    font-size: 17px !important;
 }

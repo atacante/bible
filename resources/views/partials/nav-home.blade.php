@@ -12,50 +12,67 @@
         <ul class="nav navbar-nav">
 
             {{-- --------------- READ --------------- --}}
-            <li class="dropdown">
-                <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <li>
+                <a class="{!! ViewHelper::classActivePath('reader') !!}" href="{{ URL::to('/reader/read?version=nasb') }}">
                     <i class="bs-reader"></i>
-                    Read
-                    <span class="caret"></span>
+                    Reader
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="drop1">
-                    <li><a href="{{ URL::to('/reader/read?version=nasb') }}">Read</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="{{ URL::to('/locations/list') }}">Locations</a></li>
-                    <li><a href="{{ URL::to('/peoples/list') }}">People</a></li>
-                </ul>
             </li>
 
             {{-- --------------- EXPLORE --------------- --}}
             <li class="dropdown">
-                <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <a class="{!! ViewHelper::classActivePath(['locations','peoples','site','shop']) !!}" id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="bs-exploer"></i>
-                    Explore
+                    Discover BSC
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="drop1">
-                    <li><a href="{{ URL::to('/') }}">{{--<i class="fa fa-home"></i>--}} Home</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="{{ URL::to('/site/about') }}">About As</a></li>
-                    <li><a href="{{ URL::to('/site/faq') }}">FAQ</a></li>
-                    <li><a href="{{ URL::to('/site/contact') }}">Contact Us</a></li>
+                    <div class="popup-arrow"></div>
+                    <li>
+                        <a href="{{ URL::to('/peoples/list') }}">
+                            <i class="bs-people cu-bs-people"></i>
+                            People
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/locations/list') }}">
+                            <i class="bs-places cu-bs-places"></i>
+                            Places
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/site/about') }}">
+                            <i class="bs-biblestudylogo cu-bs-biblestudylogo"></i>
+                            About As
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/shop') }}">
+                            <i class="bs-gift cu-bs-gift"></i>
+                            Gift Shop
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/site/faq') }}">
+                            <i class="bs-faq cu-bs-faq"></i>
+                            FAQ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/site/contact') }}">
+                            <i class="bs-contactus cu-bs-contactus"></i>
+                            Contact Us
+                        </a>
+                    </li>
                 </ul>
             </li>
 
             {{-- --------------- COMMUNITY --------------- --}}
-            <li class="dropdown">
-                <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <li>
+                <a class="{!! ViewHelper::classActivePath('community') !!}" href="{{ URL::to('/community') }}">
                     <i class="bs-community"></i>
                     Community
-                    <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="drop1">
-                    <li><a href="{{ URL::to('/community') }}"> Public Wall</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="{{ URL::to('/community/find-friends') }}">Find Friends</a></li>
-                    <li><a href="{{ URL::to('/groups') }}">Groups</a></li>
-                    <li><a href="{{ URL::to('/blog') }}">Blog</a></li>
-                </ul>
             </li>
 
            {{-- <li class="{{ ViewHelper::classActivePath('shop') }}">
