@@ -4287,7 +4287,7 @@ a.create-record i {
     font-size: 20px;
     margin-left: 4px;
 }
-.datepicker {
+input.datepicker {
     border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
     border: 1px solid #a9a9a9;
@@ -4297,7 +4297,9 @@ a.create-record i {
     font-size: 16px;
     color: #535353;
     min-height: 45px;
-    padding: 0;
+    padding: 0 50px 0 20px;
+    text-align: left !important;
+    background: url("/images/calendar.png") top right no-repeat;
 }
 /*.cu1-1-btn {
     font-size: 16px !important;
