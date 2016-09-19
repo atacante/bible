@@ -1281,8 +1281,14 @@ $(document).ready(function(){
             method: "GET",
             url: url,
             success:function(data){
-                $(that).parent().children('.j-leave-group').toggleClass('hidden');
-                $(that).toggleClass('hidden');
+                if(data == 'requested'){
+                    $(that).parent().children('.j-cancel-request').toggleClass('hidden');
+                    $(that).toggleClass('hidden');
+                }
+                else if(data == 'joined'){
+                    $(that).parent().children('.j-leave-group').toggleClass('hidden');
+                    $(that).toggleClass('hidden');
+                }
             },
             error:function(data){
                 location.href = url;

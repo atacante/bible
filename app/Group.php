@@ -45,7 +45,7 @@ class Group extends BaseModel
 
     public function members() {
         $members = $this->belongsToMany(User::class, 'groups_users', 'group_id', 'user_id')->withTimestamps();
-        $members->where('banned',false);
+        $members->where('banned',false)->where('approved',true);
 //        if(Input::get('type') == 'banned'){
 //            $members->where('banned',true);
 //        }
@@ -53,6 +53,13 @@ class Group extends BaseModel
 //            $members->where('banned',false);
 //        }
         return $members;
+    }
+
+    public function userRequests() {
+        return $this->belongsToMany(User::class, 'groups_users', 'group_id', 'user_id')
+            ->where('banned',false)
+            ->where('approved',false)
+            ->withTimestamps();
     }
 
     public function joinRequests()

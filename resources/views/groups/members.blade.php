@@ -21,7 +21,7 @@
             </div>
             <div class="pull-left">
                 @if(Auth::user() && Auth::user()->id != $member->id)
-                    <a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,$myFriends)?'':'hidden' !!}"
+                    {{--<a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,$myFriends)?'':'hidden' !!}"
                        data-toggle="modal"
                        data-target="#cancel-request-sm"
                        data-itemid="{!! $member->id !!}"
@@ -43,7 +43,7 @@
                         @endif
                     @else
                         <a href="{!! url('/user/request-friend/'.$member->id,[],false) !!}" class="btn btn-{!! in_array($member->id,$requests)?'success':'primary' !!} j-follow-friend {!! in_array($member->id,$myFriends) || in_array($member->id,$myRequests)?'hidden':'' !!}">Add Friend</a>
-                    @endif
+                    @endif--}}
                     @if(Auth::user() && Auth::user()->id == $model->owner_id)
                     <a href="{!! url('/groups/ban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-danger j-ban-member {!! $member->banned?'hidden':'' !!}" style="padding: 4px 8px;">Ban</a>
                     <a href="{!! url('/groups/unban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-success j-unban-member {!! !$member->banned?'hidden':'' !!}" style="padding: 4px 8px;">Unban</a>

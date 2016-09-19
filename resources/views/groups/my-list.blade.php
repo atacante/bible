@@ -20,6 +20,16 @@
             </div>
         </div>
         @endif
+        @if($content['myGroupsRequests']['items']->count())
+        <div class="group-block">
+            <div class="g-header">
+                <div class=""><strong>Groups You Have Requested to Join</strong></div>
+            </div>
+            <div class="g-body">
+                @include('groups.items',['dataKey' => 'myGroupsRequests'])
+            </div>
+        </div>
+        @endif
         <div class="group-block">
             <div class="g-header">
                 <div class=""><strong>Groups You Have Joined</strong></div>

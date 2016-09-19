@@ -19,8 +19,11 @@
                             <a href="{!! url('/groups/update/'.$model->id,[],false) !!}" class="pull-right"><i class="fa fa-btn fa-cog" style="font-size: 18px;"></i></a>
                         @else
                             <div class="pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
+                                <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[],false) !!}" class="btn btn-danger j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" style="display: block; margin-top: 5px;" data-toggle="modal"
+                                   data-target="#cancel-request-sm" data-header="Cancel Request"
+                                   data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
                                 <a href="{!! url('/groups/leave-group/'.$model->id,[],false) !!}" class="pull-right btn btn-danger j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}"><i class="fa fa-btn fa-minus" style="font-size: 14px;"></i>Leave Group</a>
-                                <a href="{!! url('/groups/join-group/'.$model->id,[],false) !!}" class="pull-right btn btn-primary j-join-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join Group</a>
+                                <a href="{!! url('/groups/join-group/'.$model->id,[],false) !!}" class="pull-right btn btn-primary j-join-group {!! in_array($model->id,$content['joinedGroupsKeys']) || in_array($model->id,Auth::user()->myGroupsRequests->modelKeys())?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join Group</a>
                             </div>
                         @endif
                     </div>
@@ -36,8 +39,13 @@
                         <a href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">Members</a>
                     </li>
                     @if((Auth::user() && $model->owner_id == Auth::user()->id))
-                    <li role="presentation" class="{!! (Request::get('p') == 'requests')?'active':'' !!}">
-                        <a href="{!! url('/groups/view/'.$model->id.'?p=requests') !!}">Invitations</a>
+                        <li role="presentation" class="{!! (Request::get('p') == 'requests')?'active':'' !!}">
+                            <a href="{!! url('/groups/view/'.$model->id.'?p=requests') !!}">Requests</a>
+                        </li>
+                    @endif
+                    @if((Auth::user() && $model->owner_id == Auth::user()->id))
+                    <li role="presentation" class="{!! (Request::get('p') == 'invitations')?'active':'' !!}">
+                        <a href="{!! url('/groups/view/'.$model->id.'?p=invitations') !!}">Invitations</a>
                     </li>
                     @endif
                     @if((Auth::user() && $model->owner_id == Auth::user()->id))
@@ -53,6 +61,12 @@
                     <div class="col-md-9 related-records j-members-list">
                         <div class="row">
                             @include('groups.members')
+                        </div>
+                    </div>
+                @elseif(Request::get('p') == 'invitations')
+                    <div class="col-md-9 related-records j-invitations-list">
+                        <div class="row">
+                            @include('groups.invitations')
                         </div>
                     </div>
                 @elseif(Request::get('p') == 'requests')

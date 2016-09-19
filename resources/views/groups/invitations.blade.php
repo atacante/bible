@@ -1,5 +1,5 @@
-@if(count($content['requests']))
-    @foreach($content['requests'] as $member)
+@if(count($content['invitations']))
+    @foreach($content['invitations'] as $member)
         <div class="clearfix col-md-6 friend-item" style="margin-bottom: 15px;">
             <div class="pull-left" style="margin-right: 10px;">
                 @if($member->avatar)
@@ -21,14 +21,13 @@
             </div>
             <div class="pull-left">
                 @if(Auth::user() && Auth::user()->id != $member->id)
-                    <a href="{!! url('/groups/approve-group-join-request',[$model->id,$member->id],false) !!}" class="btn btn-success j-approve-group-join-request">Approve</a>
-                    <a href="{!! url('/groups/reject-group-join-request',[$model->id,$member->id],false) !!}" style="left: auto; right: 25px;" class="btn btn-danger j-reject-group-join-request"
-                       data-toggle="modal"
-                       data-target="#cancel-request-sm"
-                       data-itemid="{!! $member->id !!}"
-                       data-header="Reject Request"
-                       data-callclass="j-reject-group-join-request"
-                       data-confirm="Are you sure you want to reject this request?">Reject</a>
+                <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-info j-cancel-request " style="padding: 4px 8px;" data-toggle="modal"
+                   data-target="#cancel-request-sm"
+                   data-header="Cancel Request"
+                   data-callclass="j-cancel-request"
+                   data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
+                {{--<a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'':'hidden' !!}" style="padding: 4px 8px;">Unfollow</a>--}}
+                {{--<a href="{!! url('/user/follow-friend/'.$member->id,[],false) !!}" class="btn btn-primary j-follow-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'hidden':'' !!}" style="padding: 4px 8px;">Follow</a>--}}
                 @endif
             </div>
         </div>

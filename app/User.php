@@ -166,9 +166,18 @@ class User extends Authenticatable
         return $this->hasMany(Group::class, 'owner_id', 'id');
     }
 
+    public function myGroupsRequests($withBanned = false)
+    {
+        $groups = $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('approved',false);
+        if(!$withBanned){
+            $groups->where('banned',$withBanned);
+        }
+        return $groups->withTimestamps();
+    }
+
     public function joinedGroups($withBanned = false)
     {
-        $groups = $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id');
+        $groups = $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('approved',true);
         if(!$withBanned){
             $groups->where('banned',$withBanned);
         }
@@ -182,7 +191,11 @@ class User extends Authenticatable
 
     public function joinGroup(Group $group)
     {
-        $this->joinedGroups()->attach($group->id);
+        $data = [];
+        if($group->access_level != Group::ACCESS_SECRET){
+            $data['approved'] = true;
+        }
+        $this->joinedGroups()->attach($group->id,$data);
     }
 
     public function leaveGroup(Group $group)
