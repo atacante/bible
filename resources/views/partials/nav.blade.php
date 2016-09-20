@@ -85,7 +85,7 @@
 
             {{-- --------------- COMMUNITY --------------- --}}
             <li>
-                <a class="{!! ViewHelper::classActivePath('community') !!}" href="{{ URL::to('/community') }}">
+                <a class="{!! ViewHelper::classActivePath(['community','groups','blog']) !!}" href="{{ URL::to('/community') }}">
                     <i class="bs-community"></i>
                     Community
                 </a>
@@ -127,8 +127,8 @@
                 </li>
             @endif--}}
             @if (Auth::guest())
-                <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::to('auth/login') }}">Login</a></li>
-                <li class="{{ (Request::is('auth/register') ? 'active' : '') }} bord-menu-item"><a href="{{ URL::to('auth/register') }}">Sign Up</a></li>
+                <li><a class="{{ (Request::is('auth/login') ? 'active' : '') }}" href="{{ URL::to('auth/login') }}">Login</a></li>
+                <li class=" bord-menu-item"><a class="{{ (Request::is('auth/register') ? 'active' : '') }}" href="{{ URL::to('auth/register') }}">Sign Up</a></li>
             @else
 
                 @role('user')
