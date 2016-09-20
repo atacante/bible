@@ -851,6 +851,7 @@ table.table-lexicon p {
     text-align: center;
     display: block;
     text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .cu1-h2 {
@@ -2286,12 +2287,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     background: url('/images/bg-home-header.png') center top no-repeat;
 }
 .bg-inner-page {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#89bbf2+0,f3f3f3+35,f3f3f3+100 */
-    background: rgb(137,187,242); /* Old browsers */
-    background: -moz-linear-gradient(top,  rgba(137,187,242,1) 0%, rgba(243,243,243,1) 400px, rgba(243,243,243,1) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  rgba(137,187,242,1) 0%,rgba(243,243,243,1) 400px,rgba(243,243,243,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  rgba(137,187,242,1) 0%,rgba(243,243,243,1) 400px,rgba(243,243,243,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#89bbf2', endColorstr='#f3f3f3',GradientType=0 ); /* IE6-9 */
+    background: #89bbf2;
 }
 .cu-biblestudylogo {
     color: #00b9f7;
@@ -2426,7 +2422,7 @@ ul.nav.navbar-nav li {
 }
 .inner-container {
     margin: 0 auto;
-    padding: 25px 0;
+    padding: 20px 0;
 }
 .in-inner-container {
     padding: 0 50px;
@@ -2442,11 +2438,12 @@ ul.nav.navbar-nav li {
 }
 .bg-g2 {
     min-height: 650px;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,1+18,0+32,0+100 */
-    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 400px, rgba(255,255,255,0) 600px); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 400px, rgba(255,255,255,0) 600px); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 400px, rgba(255,255,255,0) 600px); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e6e6+30,e5e6e6+98 */
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(229,230,230,1) 680px, rgba(229,230,230,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,230,230,1) 680px,rgba(229,230,230,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(229,230,230,1) 680px,rgba(229,230,230,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e6e6',GradientType=0 ); /* IE6-9 */
 }
 .container-fluid {
 
@@ -3252,6 +3249,13 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     font-size: 24px;
     vertical-align: middle;
     margin-right: 8px;
+}
+.cu-study2 {
+    color: #00b9f7;
+    display: inline-block;
+    font-size: 35px;
+    padding-right: 7px;
+    vertical-align: middle;
 }
 .a-study {
     text-decoration: none !important;
@@ -4365,6 +4369,61 @@ input.datepicker:before {
     -moz-osx-font-smoothing: grayscale;
     text-decoration: none !important;
 }
+.study-top-panel {
+    background: #e3e3e3;
+    padding: 40px 20px;
+    color: #010101;
+    font-family: work_sansregular;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+}
+.study-top-panel .clicked {
+    border-bottom: 1px solid #010101 !important;
+    color: #010101 !important;
+}
+ul.study-second-panel {
+    display: block;
+    background: white;
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin-bottom: 40px;
+    text-align: center;
+}
+ul.study-second-panel li {
+    display: inline-block;
+    border-left: 1px solid #e3e3e3;
+    box-sizing: border-box;
+    text-align: center;
+    min-width: 165px;
+}
+ul.study-second-panel li:last-child {
+    border-right: none;
+}
+ul.study-second-panel li:first-child {
+    border-left: none;
+}
+ul.study-second-panel li a.a-create-journey {
+    min-height: 90px;
+}
+ul.study-second-panel li a.a-create-journey  .acj-counter {
+    line-height: 52px;
+    padding-top: 0;
+}
+ul.study-second-panel li a.a-create-journey .acj-title {
+    margin-top: 8px;
+}
+
+
+
+
+
+
+
+
 
 @media (max-width: 992px) {
     .pad-r1 {
