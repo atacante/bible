@@ -1,8 +1,6 @@
 <div id="notes" class="verse-notes my-notes-list j-my-notes-list">
-    <h4>My Notes for this Study Verse</h4>
-    {!! Html::link('/notes/create','Create Note', ['class'=>'btn btn-success j-create-note','style' => 'margin-bottom:10px;']) !!}
-    {{--<a title="Print selected notes" href="#" class="pull-right j-print-all-notes"><i--}}
-    {{--class="fa fa-print fa-2x" style=""></i></a>--}}
+    <h4 class="h4-study"><i class="bs-note cu-note"></i>My <span>Notes</span> for this Study Verse</h4>
+    {!! Html::link('/notes/create','Create Note', ['class'=>'btn1-kit j-create-note','style' => 'margin-bottom:10px;']) !!}
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -18,7 +16,6 @@
         @if($content['notes']->count())
             @foreach($content['notes'] as $note)
                 <tr>
-                    {{--<td width="20"><input data-noteid="{!! $note->id !!}" type="checkbox" class="check"></td>--}}
                     <td>
                         <div class="note-text j-note-text"
                              data-noteid="{!! $note->id !!}">{!! str_limit(strip_tags($note->note_text,'<p></p>'), $limit = 300, $end = '...') !!}</div>

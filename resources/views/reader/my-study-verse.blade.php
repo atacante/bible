@@ -25,15 +25,19 @@
 
                 <h4 class="text-center">
                     @if($versePrev = $content['pagination']['versePrev'])
-                        <a title="Prev Verse" href="{!! url('reader/my-study-verse?'.http_build_query($versePrev),[],false) !!}">
-                            <i class="glyphicon glyphicon-chevron-left"></i>
+                        <a class="cu-arrowleft3" title="Prev Verse" href="{!! url('reader/my-study-verse?'.http_build_query($versePrev),[],false) !!}">
+                            <i class="bs-arrowleft"></i>
                         </a>
                     @endif
-                    {!! $content['verse']['verse']->booksListEn->book_name.' '.$content['verse']['verse']->chapter_num.':'.$content['verse']['verse']->verse_num !!}
-                    ({!! $content['verse']['version_name'] !!})
+                    <span class="genesis-title1">
+                        {!! $content['verse']['verse']->booksListEn->book_name.' <span style="font-size:25px;">'.$content['verse']['verse']->chapter_num.':'.$content['verse']['verse']->verse_num.'</span>' !!}
+                    </span>
+                    <span class="genesis-title11">
+                        ({!! $content['verse']['version_name'] !!})
+                    </span>
                     @if($verseNext = $content['pagination']['verseNext'])
-                        <a title="Next Verse" href="{!! url('reader/my-study-verse?'.http_build_query($verseNext),[],false) !!}">
-                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        <a class="cu-arrowright3" title="Next Verse" href="{!! url('reader/my-study-verse?'.http_build_query($verseNext),[],false) !!}">
+                            <i class="bs-arrowright"></i>
                         </a>
                     @endif
                 </h4>

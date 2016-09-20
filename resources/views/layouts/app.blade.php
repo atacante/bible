@@ -100,12 +100,16 @@
                         @yield('content')
                         @include('admin.partials.deletepop')
                         @include('partials.popup')
+                        <div class="clearfix"></div>
                     </div>
                 </div>
+                @include('partials.footer')
+
+
             </div>
         </div>
 
-        @include('partials.footer')
+
 
 
         <!-- Scripts -->
