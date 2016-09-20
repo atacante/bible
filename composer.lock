@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6d79ef85d40bafd76d68525a7d97e37c",
-    "content-hash": "77a57c3acedd88b5caae57e188a93171",
+    "hash": "5a3554c7b851f4e32361d45eb45f05ab",
+    "content-hash": "e52c75fc309f4db6c94d541aac0d452f",
     "packages": [
         {
             "name": "arcanedev/no-captcha",
@@ -70,16 +70,16 @@
         },
         {
             "name": "arcanedev/support",
-            "version": "3.14.0",
+            "version": "3.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ARCANEDEV/Support.git",
-                "reference": "daa8c5a46acb9afeb7db7a84862e799890fcc4d6"
+                "reference": "9dfe987cada7341966be38110e8b349f5c30e9fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/daa8c5a46acb9afeb7db7a84862e799890fcc4d6",
-                "reference": "daa8c5a46acb9afeb7db7a84862e799890fcc4d6",
+                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/9dfe987cada7341966be38110e8b349f5c30e9fa",
+                "reference": "9dfe987cada7341966be38110e8b349f5c30e9fa",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +125,7 @@
                 "laravel",
                 "support"
             ],
-            "time": "2016-09-04 23:35:41"
+            "time": "2016-09-18 16:31:53"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -853,12 +853,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kodeine/laravel-acl.git",
-                "reference": "f1dcebe1970d6e268846b3812a12bba424f05f5a"
+                "reference": "b0851b4d2ab113e210ee81432e659b8996f4fa86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kodeine/laravel-acl/zipball/f1dcebe1970d6e268846b3812a12bba424f05f5a",
-                "reference": "f1dcebe1970d6e268846b3812a12bba424f05f5a",
+                "url": "https://api.github.com/repos/kodeine/laravel-acl/zipball/b0851b4d2ab113e210ee81432e659b8996f4fa86",
+                "reference": "b0851b4d2ab113e210ee81432e659b8996f4fa86",
                 "shasum": ""
             },
             "require": {
@@ -892,7 +892,7 @@
                 "roles",
                 "security"
             ],
-            "time": "2016-06-21 16:02:11"
+            "time": "2016-09-20 15:17:28"
         },
         {
             "name": "laravel/framework",
@@ -1163,16 +1163,16 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "2.1.4",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "b5c91156f6bd29f68f4f2c51186faae4310a5a68"
+                "reference": "700eba02f76f2971c81726a4f6a04121c1977e64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/b5c91156f6bd29f68f4f2c51186faae4310a5a68",
-                "reference": "b5c91156f6bd29f68f4f2c51186faae4310a5a68",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/700eba02f76f2971c81726a4f6a04121c1977e64",
+                "reference": "700eba02f76f2971c81726a4f6a04121c1977e64",
                 "shasum": ""
             },
             "require": {
@@ -1226,7 +1226,7 @@
                 "import",
                 "laravel"
             ],
-            "time": "2016-08-28 20:25:51"
+            "time": "2016-09-15 21:03:21"
         },
         {
             "name": "mailchimp/mailchimp",
@@ -1506,16 +1506,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "47b254ea51f1d6d5dc04b9b299e88346bf2369e3"
+                "reference": "4dd659edadffdc2143e4753df655d866dbfeedf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/47b254ea51f1d6d5dc04b9b299e88346bf2369e3",
-                "reference": "47b254ea51f1d6d5dc04b9b299e88346bf2369e3",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4dd659edadffdc2143e4753df655d866dbfeedf0",
+                "reference": "4dd659edadffdc2143e4753df655d866dbfeedf0",
                 "shasum": ""
             },
             "require": {
@@ -1553,7 +1553,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2016-04-19 13:41:41"
+            "time": "2016-09-16 12:04:44"
         },
         {
             "name": "paragonie/random_compat",
@@ -1831,22 +1831,30 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
+                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
                 "shasum": ""
             },
+            "require": {
+                "php": ">=5.3.0"
+            },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
-                    "Psr\\Log\\": ""
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1860,12 +1868,13 @@
                 }
             ],
             "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
             "keywords": [
                 "log",
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2016-09-19 16:02:08"
         },
         {
             "name": "psy/psysh",
@@ -3009,16 +3018,16 @@
         },
         {
             "name": "unisharp/laravel-filemanager",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UniSharp/laravel-filemanager.git",
-                "reference": "8ffe49ae2b0b371c40563c37c0356ec484ff2ee9"
+                "reference": "ce305e54ca144a0d6fcfa5715dce56771b20ff58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/8ffe49ae2b0b371c40563c37c0356ec484ff2ee9",
-                "reference": "8ffe49ae2b0b371c40563c37c0356ec484ff2ee9",
+                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/ce305e54ca144a0d6fcfa5715dce56771b20ff58",
+                "reference": "ce305e54ca144a0d6fcfa5715dce56771b20ff58",
                 "shasum": ""
             },
             "require": {
@@ -3061,7 +3070,7 @@
                 "tinymce",
                 "upload"
             ],
-            "time": "2016-08-03 12:18:58"
+            "time": "2016-09-12 02:53:19"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3157,16 +3166,16 @@
     "packages-dev": [
         {
             "name": "authorizenet/authorizenet",
-            "version": "1.8.8",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AuthorizeNet/sdk-php.git",
-                "reference": "11a97b83e6720a344ce1061d293324f27e3e9c9b"
+                "reference": "9d24edc675362b6349983205b8288d178fa0c469"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AuthorizeNet/sdk-php/zipball/11a97b83e6720a344ce1061d293324f27e3e9c9b",
-                "reference": "11a97b83e6720a344ce1061d293324f27e3e9c9b",
+                "url": "https://api.github.com/repos/AuthorizeNet/sdk-php/zipball/9d24edc675362b6349983205b8288d178fa0c469",
+                "reference": "9d24edc675362b6349983205b8288d178fa0c469",
                 "shasum": ""
             },
             "require": {
@@ -3174,17 +3183,16 @@
                 "ext-json": "*",
                 "ext-simplexml": "*",
                 "ext-xmlwriter": "*",
-                "goetas/xsd-reader": "2.*@dev",
-                "goetas/xsd2php": "2.*@dev",
-                "jms/serializer": "xsd2php-dev as 0.18.0",
-                "php": "~5.3 || ~7.0"
+                "goetas-webservices/xsd-reader": "^0.1",
+                "goetas-webservices/xsd2php-runtime": "^0.2",
+                "goetas/xsd2php": "^2.0",
+                "jms/serializer": "serializer-master-dev as 1.0",
+                "php": ">=5.5",
+                "symfony/yaml": "^3.1"
             },
             "require-dev": {
                 "phpmd/phpmd": "~2.0",
                 "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "phpdocumentor/phpdocumentor": "For generating API documentation"
             },
             "type": "library",
             "autoload": {
@@ -3204,7 +3212,7 @@
                 "ecommerce",
                 "payment"
             ],
-            "time": "2016-03-18 11:09:07"
+            "time": "2016-08-12 17:43:41"
         },
         {
             "name": "doctrine/annotations",
@@ -3485,16 +3493,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.4",
+            "version": "v2.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "abbdfd1cff43a7b99d027af3be709bc8fc7d4769"
+                "reference": "9f8c05cd5225a320d56d4bfdb4772f10d045a0c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/abbdfd1cff43a7b99d027af3be709bc8fc7d4769",
-                "reference": "abbdfd1cff43a7b99d027af3be709bc8fc7d4769",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/9f8c05cd5225a320d56d4bfdb4772f10d045a0c9",
+                "reference": "9f8c05cd5225a320d56d4bfdb4772f10d045a0c9",
                 "shasum": ""
             },
             "require": {
@@ -3503,7 +3511,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "4.*",
-                "symfony/console": "2.*"
+                "symfony/console": "2.*||^3.0"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -3552,7 +3560,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2016-01-05 22:11:12"
+            "time": "2016-09-09 19:13:33"
         },
         {
             "name": "doctrine/instantiator",
@@ -3804,6 +3812,58 @@
             "time": "2016-07-27 08:52:32"
         },
         {
+            "name": "goetas-webservices/xsd2php-runtime",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/goetas-webservices/xsd2php-runtime.git",
+                "reference": "33984b53310398dd817be36cbbd36f82aaf37455"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/goetas-webservices/xsd2php-runtime/zipball/33984b53310398dd817be36cbbd36f82aaf37455",
+                "reference": "33984b53310398dd817be36cbbd36f82aaf37455",
+                "shasum": ""
+            },
+            "require": {
+                "jms/serializer": "serializer-master-dev as 1.0",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GoetasWebservices\\Xsd\\XsdToPhpRuntime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Asmir Mustafic"
+                }
+            ],
+            "description": "Convert XSD  (XML Schema) definitions into PHP classes",
+            "keywords": [
+                "converter",
+                "jms",
+                "php",
+                "serializer",
+                "xml",
+                "xsd"
+            ],
+            "time": "2016-07-26 08:45:13"
+        },
+        {
             "name": "goetas/xsd-reader",
             "version": "dev-master",
             "source": {
@@ -3859,16 +3919,16 @@
         },
         {
             "name": "goetas/xsd2php",
-            "version": "dev-master",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/goetas/xsd2php.git",
-                "reference": "3c8f4c8be0b83cad86bec00d81c49b1016342a57"
+                "reference": "af667d7b185f074e5e54d0b7c10a9226d301ed68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/goetas/xsd2php/zipball/3c8f4c8be0b83cad86bec00d81c49b1016342a57",
-                "reference": "3c8f4c8be0b83cad86bec00d81c49b1016342a57",
+                "url": "https://api.github.com/repos/goetas/xsd2php/zipball/af667d7b185f074e5e54d0b7c10a9226d301ed68",
+                "reference": "af667d7b185f074e5e54d0b7c10a9226d301ed68",
                 "shasum": ""
             },
             "require": {
@@ -3890,7 +3950,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.0-dev"
                 }
             },
             "autoload": {
@@ -3916,7 +3976,7 @@
                 "xml",
                 "xsd"
             ],
-            "time": "2016-08-03 15:00:29"
+            "time": "2016-08-03 14:50:12"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -4052,36 +4112,42 @@
         },
         {
             "name": "jms/serializer",
-            "version": "dev-xsd2php",
+            "version": "dev-serializer-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/goetas/serializer.git",
-                "reference": "f339d96f7e359e2837ed8b752348cc84823a9966"
+                "reference": "f1b28c0ebfbabe418603b352caab2329c5171651"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/goetas/serializer/zipball/f339d96f7e359e2837ed8b752348cc84823a9966",
-                "reference": "f339d96f7e359e2837ed8b752348cc84823a9966",
+                "url": "https://api.github.com/repos/goetas/serializer/zipball/f1b28c0ebfbabe418603b352caab2329c5171651",
+                "reference": "f1b28c0ebfbabe418603b352caab2329c5171651",
                 "shasum": ""
             },
             "require": {
-                "doctrine/annotations": "1.*",
+                "doctrine/annotations": "^1.0",
+                "doctrine/instantiator": "^1.0.3",
                 "jms/metadata": "~1.1",
                 "jms/parser-lib": "1.*",
-                "php": ">=5.3.2",
-                "phpcollection/phpcollection": "~0.1"
+                "php": ">=5.5.0",
+                "phpcollection/phpcollection": "~0.1",
+                "phpoption/phpoption": "^1.1"
+            },
+            "conflict": {
+                "twig/twig": "<1.12"
             },
             "require-dev": {
                 "doctrine/orm": "~2.1",
-                "doctrine/phpcr-odm": "~1.0.1",
-                "jackalope/jackalope-doctrine-dbal": "1.0.*",
+                "doctrine/phpcr-odm": "^1.3",
+                "jackalope/jackalope-doctrine-dbal": "^1.1.5",
+                "phpunit/phpunit": "^4.8|^5.0",
                 "propel/propel1": "~1.7",
-                "symfony/filesystem": "2.*",
+                "symfony/filesystem": "^2.1",
                 "symfony/form": "~2.1",
-                "symfony/translation": "~2.0",
-                "symfony/validator": "~2.0",
-                "symfony/yaml": "2.*",
-                "twig/twig": ">=1.8,<2.0-dev"
+                "symfony/translation": "^2.1",
+                "symfony/validator": "^2.2",
+                "symfony/yaml": "^2.1",
+                "twig/twig": "~1.12|~2.0"
             },
             "suggest": {
                 "symfony/yaml": "Required if you'd like to serialize data to YAML format."
@@ -4089,7 +4155,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.17-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -4116,9 +4182,9 @@
                 "xml"
             ],
             "support": {
-                "source": "https://github.com/goetas/serializer/tree/xsd2php"
+                "source": "https://github.com/goetas/serializer/tree/serializer-master"
             },
-            "time": "2016-04-14 12:18:13"
+            "time": "2016-05-23 21:06:00"
         },
         {
             "name": "mockery/mockery",
@@ -4184,72 +4250,6 @@
                 "testing"
             ],
             "time": "2016-05-22 21:52:33"
-        },
-        {
-            "name": "paisawala/cashier-authorizenetpaisa",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shahidkarimi/lara-authorizenet-paisa.git",
-                "reference": "87d004b6f923a40cdf2b77ec37f76454f941f7bd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shahidkarimi/lara-authorizenet-paisa/zipball/87d004b6f923a40cdf2b77ec37f76454f941f7bd",
-                "reference": "87d004b6f923a40cdf2b77ec37f76454f941f7bd",
-                "shasum": ""
-            },
-            "require": {
-                "authorizenet/authorizenet": "1.8.8",
-                "dompdf/dompdf": "^0.6.1",
-                "illuminate/container": "^5.2|^5.1",
-                "illuminate/database": "~5.1",
-                "illuminate/support": "~5.1",
-                "jms/serializer": "xsd2php-dev as 0.18.0",
-                "nesbot/carbon": "~1.0",
-                "php": ">=5.5.9",
-                "symfony/http-kernel": "~2.7|~3.0"
-            },
-            "require-dev": {
-                "goetas/xsd-reader": "2.*@dev",
-                "goetas/xsd2php": "2.0.x-dev#fdc2ab0bb3f2b3ab796ca567cf8c0f3446a7ea3a",
-                "illuminate/http": "~5.1",
-                "illuminate/routing": "~5.1",
-                "illuminate/view": "~5.1",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~4.0",
-                "vlucas/phpdotenv": "~2.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "6.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\CashierAuthorizeNet\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Shahid Karimi",
-                    "email": "karimi.shahid@gmail.com"
-                }
-            ],
-            "description": "Laravel Cashier-Authorize provides an expressive, fluent interface to Authorize.net's subscription billing services.",
-            "keywords": [
-                "authorize.net",
-                "billing",
-                "laravel",
-                "payment module",
-                "stripe"
-            ],
-            "time": "2016-06-28 09:57:19"
         },
         {
             "name": "parsecsv/php-parsecsv",
@@ -5771,6 +5771,71 @@
                 "zf2"
             ],
             "time": "2016-02-18 20:53:00"
+        },
+        {
+            "name": "paisawala/cashier-authorizenetpaisa",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shahidkarimi/lara-authorizenet-paisa.git",
+                "reference": "87d004b6f923a40cdf2b77ec37f76454f941f7bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shahidkarimi/lara-authorizenet-paisa/zipball/87d004b6f923a40cdf2b77ec37f76454f941f7bd",
+                "reference": "87d004b6f923a40cdf2b77ec37f76454f941f7bd",
+                "shasum": ""
+            },
+            "require": {
+                "authorizenet/authorizenet": "1.9.0",
+                "dompdf/dompdf": "^0.6.1",
+                "illuminate/container": "^5.2|^5.1",
+                "illuminate/database": "~5.1",
+                "illuminate/support": "~5.1",
+                "nesbot/carbon": "~1.0",
+                "php": ">=5.5.9",
+                "symfony/http-kernel": "~2.7|~3.0"
+            },
+            "require-dev": {
+                "goetas/xsd-reader": "2.*@dev",
+                "goetas/xsd2php": "2.0.x-dev#fdc2ab0bb3f2b3ab796ca567cf8c0f3446a7ea3a",
+                "illuminate/http": "~5.1",
+                "illuminate/routing": "~5.1",
+                "illuminate/view": "~5.1",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0",
+                "vlucas/phpdotenv": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\CashierAuthorizeNet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shahid Karimi",
+                    "email": "karimi.shahid@gmail.com"
+                }
+            ],
+            "description": "Laravel Cashier-Authorize provides an expressive, fluent interface to Authorize.net's subscription billing services.",
+            "keywords": [
+                "authorize.net",
+                "billing",
+                "laravel",
+                "payment module",
+                "stripe"
+            ],
+            "time": "2016-06-28 09:57:19"
         }
     ],
     "aliases": [],
@@ -5781,8 +5846,7 @@
         "gloudemans/shoppingcart": 20,
         "xethron/migrations-generator": 20,
         "way/generators": 20,
-        "paisawala/cashier-authorizenetpaisa": 20,
-        "goetas/xsd2php": 20
+        "goetas/xsd-reader": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

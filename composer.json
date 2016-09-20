@@ -35,8 +35,12 @@
         "xethron/migrations-generator": "dev-l5",
         "way/generators": "dev-feature/laravel-five-stable",
         "user11001/eloquent-model-generator": "~2.0",
-        "paisawala/cashier-authorizenetpaisa": "dev-master",
-        "goetas/xsd2php": "2.0.x-dev#fdc2ab0bb3f2b3ab796ca567cf8c0f3446a7ea3a"
+        "authorizenet/authorizenet":"1.9.0",
+        "dompdf/dompdf": "^0.6.1",
+        "nesbot/carbon": "~1.0",
+        "symfony/http-kernel": "~2.7|~3.0",
+        "goetas/xsd-reader": "2.*@dev",
+        "vlucas/phpdotenv": "~2.0"
     },
     "autoload": {
         "classmap": [
