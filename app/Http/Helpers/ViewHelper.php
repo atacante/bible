@@ -161,7 +161,10 @@ class ViewHelper
                 $html = '<i title="Public - share with everyone" class="bs-s-public font-size-13" aria-hidden="true"></i>';
                 break;
             case Note::ACCESS_PUBLIC_GROUPS:
-                $html = '<i title="Public - share with Groups I am member of" class="bs-s-groupscustom font-size-13" aria-hidden="true"></i>';
+                $html = '<i title="Public - share with Groups I am member of" class="bs-s-groups font-size-13" aria-hidden="true"></i>';
+                break;
+            case Note::ACCESS_SPECIFIC_GROUPS:
+                $html = '<i title="Public - share with specific Groups" class="bs-s-groupscustom font-size-13" aria-hidden="true"></i>';
                 break;
             case WallPost::ACCESS_PUBLIC_FRIENDS:
                 $html = '<i title="Public - share with friends" class="bs-friends font-size-13" aria-hidden="true"></i>';
