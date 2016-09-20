@@ -69,6 +69,9 @@ $(document).ready(function(){
     $('.datepicker').datepicker(
         {
             autoclose:true,
+/*            showOn: "button",
+            buttonImage: "/crudv2/public/overcast/images/calendar19.gif",
+            buttonImageOnly: true*/
             //format: 'mm/dd/yyyy'
         }
     ).on('changeDate', function(e) {

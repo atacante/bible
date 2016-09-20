@@ -2330,18 +2330,26 @@ ul.nav.navbar-nav li  a {
 .navbar-default .navbar-nav > li.open > a,
 .navbar-default .navbar-nav > li.open > a:focus,
 .navbar-default .navbar-nav > li.open > a:hover,
+.navbar-default .navbar-right > li > a:hover,
 .navbar-inner-pages.navbar-default .navbar-nav > a:hover,
 .navbar-inner-pages.navbar-default .navbar-nav > .open > a,
 .navbar-inner-pages.navbar-default .navbar-nav > .open > a:focus,
-.navbar-inner-pages.navbar-default .navbar-nav > .open > a:hover{
-    color: white;
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:hover,
+.navbar-inner-pages.navbar-default .navbar-right > li > a:hover{
+    color: white !important;
     background-color: #00b9f7 !important;
     border-radius: 25px;
     -webkit-border-radius: 25px;
 }
-.navbar-default .navbar-nav > li > a.active{
+
+
+.navbar-default .navbar-nav > li > a.active,
+.navbar-default .navbar-right > li > a.active,
+.navbar-inner-pages.navbar-default .navbar-right > li > a.active
+{
     background-color: #313d47 !important;
 }
+
 ul.dropdown-menu{
     padding: 10px 0 !important;
 }
@@ -2382,12 +2390,31 @@ ul.nav.navbar-nav li.bord-menu-item  a{
     -webkit-border-radius: 25px;
     padding: 9px 16px;
 }
+
+ul.nav.navbar-nav li.bord-menu-item  a:hover{
+    color: white !important;
+}
+
+ul.nav.navbar-nav li.bord-menu-item  a.active{
+    color: white !important;
+    border: 2px solid #313d47  !important;
+    background-color: #313d47 !important;
+}
+
 .navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a{
-    border: 2px solid #313d47 !important;
-    color: #313d47 !important;
+    border: 2px solid #00b9f7 !important;
+    color: #00b9f7 !important;
     border-radius: 25px;
     -webkit-border-radius: 25px;
     padding: 9px 16px;
+}
+.navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a:hover{
+    color: white !important;
+}
+.navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a.active{
+    color: white !important;
+    border: 2px solid #313d47  !important;
+    background-color: #313d47 !important;
 }
 ul.nav.navbar-nav li {
     margin: 0 8px;
@@ -4262,6 +4289,15 @@ a.create-record i {
     color: #535353;
     padding-top: 10px;
 }
+.input-daterange .input-group-addon {
+    background: white;
+    color: #535353;
+    font-family: work_sansmedium;
+    font-size: 16px;
+    font-weight: normal;
+    border: none !important;
+    padding: 0 30px 0 15px;
+}
 .advansed-pop label.label-checkbox {
     margin-right: 20px;
 }
@@ -4302,6 +4338,7 @@ a.create-record i {
     margin-left: 4px;
 }
 input.datepicker {
+    position: relative;
     border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
     border: 1px solid #a9a9a9;
@@ -4313,11 +4350,21 @@ input.datepicker {
     min-height: 45px;
     padding: 0 50px 0 20px;
     text-align: left !important;
-    background: url("/images/calendar.png") top right no-repeat;
+ /*   background: url("/images/calendar.png") top right no-repeat;*/
 }
-/*.cu1-1-btn {
-    font-size: 16px !important;
-}*/
+input.datepicker:before {
+    content: "\e901";
+    font-family: 'bs' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none !important;
+}
 
 @media (max-width: 992px) {
     .pad-r1 {
@@ -4624,6 +4671,9 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     box-shadow: none;
     -webkit-box-shadow: none;
     padding-right: 240px;
+}
+.white-search:hover {
+    border: 1px solid #00b9f7;
 }
 .c-white-block {
     -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
