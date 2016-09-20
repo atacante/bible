@@ -1518,6 +1518,17 @@ $(document).ready(function(){
 
     });
 
+    $(".j-create-record").on("click", function(e){
+        var top = 140;
+
+        var btnCoordTop = $(this).offset().top+top;
+        var btnCoordLeft = $(this).offset().left;
+        console.log($(this).offset());
+        $(".j-popup-create-record").toggle();
+        $(".j-popup-create-record").offset({top:btnCoordTop, left:btnCoordLeft});
+        e.preventDefault();
+    });
+
     $(".j-btn-settings").on("click", function(e){
         var left = 330;
         var top = 25;

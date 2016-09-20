@@ -29,7 +29,7 @@
                 </li>
 
                 <li class="pull-right">
-                    <a href="#" class="create-record">
+                    <a href="#" class="create-record j-create-record">
                         <i class="bs-add"></i>
                         Create Record
                     </a>
@@ -218,6 +218,22 @@
                     {!! $content['entries']->appends(Request::input())->links() !!}
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="popup-new popup-create-record j-popup-create-record" style="display: none">
+        <div class="popup-arrow"></div>
+
+        <div>
+            <div class="pp-title">
+                Create...
+            </div>
+            <ul class="pp-c-items items-status">
+                <li><a class="" data-val="public_all" href="#"><i class="bs-note"></i>Note</a></li>
+                <li><a class="" data-val="public_friends" href="#"><i class="bs-journal"></i>Journal Entry</a></li>
+                <li><a class="" data-val="private" href="#"><i class="bs-pray"></i>Prayer</a></li>
+            </ul>
+
         </div>
     </div>
 @stop

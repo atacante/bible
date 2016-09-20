@@ -2903,6 +2903,10 @@ ul.icon-panel li a {
     margin-top: -25px;
     margin-left: -290px;
 }
+.popup-create-record {
+    width: 250px;
+    padding: 33px;
+}
 .popup-arrow {
     position: absolute;
     background: white;
@@ -2920,6 +2924,9 @@ ul.icon-panel li a {
 
 .pop-should-see .popup-arrow {
     left: 153px;
+}
+.popup-create-record .popup-arrow{
+    left:40px;
 }
 .popup-title {
     text-transform: uppercase;
