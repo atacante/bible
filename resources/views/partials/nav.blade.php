@@ -133,7 +133,7 @@
 
                 @role('user')
                 <li>
-                    <a href="{{ url('user/my-journey') }}"><i class="bs-myjourney"></i>My Journey</a>
+                    <a class="my-journey {{ ViewHelper::classActivePath('user.my-journey') }}" href="{{ url('user/my-journey') }}"><i class="bs-myjourney"></i>My Journey</a>
                 </li>
                 @endrole
                 <li class="dropdown log-pop">
