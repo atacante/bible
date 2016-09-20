@@ -4278,6 +4278,15 @@ a.create-record i {
     color: #535353;
     padding-top: 10px;
 }
+.input-daterange .input-group-addon {
+    background: white;
+    color: #535353;
+    font-family: work_sansmedium;
+    font-size: 16px;
+    font-weight: normal;
+    border: none !important;
+    padding: 0 30px 0 15px;
+}
 .advansed-pop label.label-checkbox {
     margin-right: 20px;
 }
@@ -4318,6 +4327,7 @@ a.create-record i {
     margin-left: 4px;
 }
 input.datepicker {
+    position: relative;
     border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
     border: 1px solid #a9a9a9;
@@ -4329,11 +4339,21 @@ input.datepicker {
     min-height: 45px;
     padding: 0 50px 0 20px;
     text-align: left !important;
-    background: url("/images/calendar.png") top right no-repeat;
+ /*   background: url("/images/calendar.png") top right no-repeat;*/
 }
-/*.cu1-1-btn {
-    font-size: 16px !important;
-}*/
+input.datepicker:before {
+    content: "\e901";
+    font-family: 'bs' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none !important;
+}
 
 @media (max-width: 992px) {
     .pad-r1 {

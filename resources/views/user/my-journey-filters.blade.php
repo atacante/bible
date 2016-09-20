@@ -82,7 +82,7 @@
                             <div class="col-xs-9">
                                 <div class="input-group input-daterange">
                                    {!! Form::text('date_from',Request::input('date_from'),['placeholder' => 'mm/dd/yyyy','class' => 'form-control datepicker','style' => '']) !!}
-                                    <span class="input-group-addon">to</span>
+                                    <span class="input-group-addon">To</span>
                                     {!! Form::text('date_to',Request::input('date_to'),['placeholder' => 'mm/dd/yyyy','class' => 'form-control datepicker','style' => '']) !!}
                                 </div>
                             </div>
