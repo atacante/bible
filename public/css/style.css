@@ -4477,20 +4477,20 @@ h4.h4-study span {
     overflow: hidden;
     padding: 0;
 }
-.study-list li {
+.study-list > li {
     display: block;
     border-bottom: 1px solid #e3e3e3;
     position: relative;
     padding: 25px 30px;
 }
-.study-list li:hover {
+.study-list > li:hover {
     background: #f3f6f9;
 }
-.study-list li:hover .journey-text-link {
+.study-list > li:hover .journey-text-link {
     text-decoration: underline;
     color: #00b9f7 !important;
 }
-.study-list li p {
+.study-list > li p {
     color: #535353;
     font-family: work_sansregular;
     font-size: 15px;
@@ -4499,7 +4499,24 @@ h4.h4-study span {
     overflow: hidden;
     margin-top: 20px;
 }
-
+ul.icons-list {
+    display: block;
+    padding-left: 10px;
+}
+ul.icons-list li {
+    display: inline-block;
+    color: #00b9f7;
+}
+ul.icons-list li a {
+    display: inline-block;
+    margin-left: 20px;
+}
+ul.icons-list li i {
+    display: inline-block;
+    color: #00b9f7 !important;
+    font-size: 18px;
+    vertical-align: sub;
+}
 @media (max-width: 992px) {
     .pad-r1 {
         padding-right: 15px !important;

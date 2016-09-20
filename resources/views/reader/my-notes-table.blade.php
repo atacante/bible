@@ -23,17 +23,24 @@
                                 @endforeach
                             @endif
                         </div>
-                        <div class="pull-right">
-                            <a title="Print note" href="#" data-noteid="{!! $note->id !!}" class="j-print-note">
-                                <i class="fa fa-print fa-2x" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i>
-                            </a>
-                            <a title="Edit note" class="j-create-note" href="{!! url('/notes/update/'.$note->id) !!}">
-                                <i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i>
-                            </a>
-                            <a title="Delete note" href="{!! url('/notes/delete',$note->id) !!}" data-toggle="modal" data-target="#confirm-delete" data-header="Delete Confirmation" data-confirm="Are you sure you want to delete this item?">
-                                <i class="fa fa-trash"  style="color: #367fa9; font-size: 1.4em;"></i>
-                            </a>
-                        </div>
+                        <ul class="icons-list pull-right">
+                            <li>
+                                <a title="Print note" href="#" data-noteid="{!! $note->id !!}" class="j-print-note">
+                                    <i class="bs-print"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Edit note" class="j-create-note" href="{!! url('/notes/update/'.$note->id) !!}">
+                                    <i class="bs-journal"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Delete note" href="{!! url('/notes/delete',$note->id) !!}" data-toggle="modal" data-target="#confirm-delete" data-header="Delete Confirmation" data-confirm="Are you sure you want to delete this item?">
+                                    <i class="bs-remove"></i>
+                                </a>
+                            </li>
+
+                        </ul>
                         <div class="c-journey-date cu-date1">
                             {!! $note->humanLastUpdate($note::DFORMAT) !!}
                             {{--{!! $note->created_at->format($note::DFORMAT) !!}--}}
