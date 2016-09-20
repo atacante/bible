@@ -36,7 +36,7 @@
                                 <div class="verse-search-text j-verse-text" data-version="" data-verseid="{!! $verse->id !!}"> {!! $verse->highlighted_verse_text !!}</div>
                             @endforeach
                         @else
-                            <p class="text-center">No any results found</p>
+                            <p class="text-center">No results found</p>
                         @endif
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                                 <div class="verse-search-text j-verse-text" data-version="" data-verseid="{!! $verse->id !!}"> {!! $verse->highlighted_verse_text !!}</div>
                             @endforeach
                         @else
-                            <p class="text-center">No any results found</p>
+                            <p class="text-center">No results found</p>
                         @endif
                     </div>
                 </div>

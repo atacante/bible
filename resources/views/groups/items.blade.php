@@ -63,7 +63,7 @@
         Click at the button below to create new.</br>
         <a href="{!! url('/groups/create',[],false) !!}" class="btn btn-success" style="margin: 10px;"><i class="fa fa-btn fa-plus"></i>Create Group</a>
         @else
-        No any results found
+        No results found
         @endif
     </div>
 @endif
