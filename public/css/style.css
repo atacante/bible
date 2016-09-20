@@ -2913,7 +2913,11 @@ ul.icon-panel li a {
 }
 .popup-create-record {
     width: 250px;
-    padding: 33px;
+    padding: 0;
+}
+.popup-create-record .pp-title{
+    text-align: left;
+    padding: 20px 30px;
 }
 .popup-arrow {
     position: absolute;
@@ -4705,4 +4709,40 @@ h3.strongs-subheader{
 
 .cu-bs-faq{
     font-size: 17px !important;
+}
+.popup-create-record ul{
+    padding-left: 0;
+}
+.popup-create-record li{
+    list-style: none;
+}
+.popup-create-record li a{
+    text-transform: uppercase;
+    font-family: ns_widedemibold;
+    color: #6b6b6b;
+    font-size: 14px;
+    padding: 11px 30px;
+    text-align: left;
+    position: relative;
+    border: none;
+    text-decoration: none;
+    display: block;
+    line-height: 14px;
+}
+
+.popup-create-record li a:hover{
+    background: #00b9f7 !important;
+    color: white !important;
+}
+
+.popup-create-record li i{
+    color: #00b9f7;
+    width: 20px;
+    display: inline-block;
+    font-size: 15px;
+    vertical-align: text-bottom;
+}
+
+.popup-create-record li a:hover i{
+    color: white;
 }

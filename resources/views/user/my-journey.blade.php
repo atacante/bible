@@ -228,7 +228,7 @@
             <div class="pp-title">
                 Create...
             </div>
-            <ul class="pp-c-items items-status">
+            <ul class="">
                 <li><a class="" data-val="public_all" href="#"><i class="bs-note"></i>Note</a></li>
                 <li><a class="" data-val="public_friends" href="#"><i class="bs-journal"></i>Journal Entry</a></li>
                 <li><a class="" data-val="private" href="#"><i class="bs-pray"></i>Prayer</a></li>
