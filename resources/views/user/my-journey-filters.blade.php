@@ -30,7 +30,7 @@
                     </h3>
                 </div>
             </div>
-            <div class="row">
+            <div class="row advansed-pop">
                 {{-- col left --}}
                 <div class="col-sm-12 col-md-6 pad-r1">
                     <div class="form-group">
@@ -42,15 +42,13 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-xs-3">{!! Form::label('types', 'Entry Type') !!}</div>
-                            <div class="col-xs-3">
+                            <div class="col-xs-9">
                                 {!! Form::checkbox('types[]', 'note', in_array('note',Request::input('types', [])) , ['id'=>'type-note' ,'class'=>'cust-radio']) !!}
                                 <label class="label-checkbox" for="type-note">Note</label>
-                            </div>
-                            <div class="col-xs-3">
+
                                 {!! Form::checkbox('types[]', 'journal', in_array('journal',Request::input('types', [])) , ['id'=>'type-journal' ,'class'=>'cust-radio']) !!}
                                 <label class="label-checkbox" for="type-journal">Journal</label>
-                            </div>
-                            <div class="col-xs-3">
+
                                 {!! Form::checkbox('types[]', 'prayer', in_array('prayer',Request::input('types', [])) , ['id'=>'type-prayer' ,'class'=>'cust-radio']) !!}
                                 <label class="label-checkbox" for="type-prayer">Prayer</label>
                             </div>
@@ -104,8 +102,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-6">
+            <div class="row mt9">
+                <div class="col-sm-12 col-md-6 pad-r1">
                     <div class="row">
                         <div class="col-xs-3">
 

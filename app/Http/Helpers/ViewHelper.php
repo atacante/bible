@@ -61,17 +61,25 @@ class ViewHelper
         return true;
     }
 
-    public static function classActivePath($path)
+    public static function classActivePath($paths)
     {
-        $path = explode('.', $path);
-        $segment = 1;
-        foreach($path as $p) {
-            if((request()->segment($segment) == $p) == false) {
-                return '';
-            }
-            $segment++;
+        if(!is_array($paths)){
+            $paths = [$paths];
         }
-        return ' active';
+        foreach ($paths as $path) {
+            $path = explode('.', $path);
+            $segment = 1;
+            foreach($path as $p) {
+                if((request()->segment($segment) == $p) == false) {
+                    $segment = false;
+                    break;
+                }
+                $segment++;
+            }
+            if($segment){
+                return 'active';
+            }
+        }
     }
 
     public static function adminUrlSegment()
