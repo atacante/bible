@@ -2331,13 +2331,11 @@ ul.nav.navbar-nav li  a {
 .navbar-default .navbar-nav > li.open > a:focus,
 .navbar-default .navbar-nav > li.open > a:hover,
 .navbar-default .navbar-right > li > a:hover,
-.navbar-default .navbar-right > li > a.active,
 .navbar-inner-pages.navbar-default .navbar-nav > a:hover,
 .navbar-inner-pages.navbar-default .navbar-nav > .open > a,
 .navbar-inner-pages.navbar-default .navbar-nav > .open > a:focus,
 .navbar-inner-pages.navbar-default .navbar-nav > .open > a:hover,
-.navbar-inner-pages.navbar-default .navbar-right > li > a:hover,
-.navbar-inner-pages.navbar-default .navbar-right > li > a.active{
+.navbar-inner-pages.navbar-default .navbar-right > li > a:hover{
     color: white !important;
     background-color: #00b9f7 !important;
     border-radius: 25px;
@@ -2345,7 +2343,10 @@ ul.nav.navbar-nav li  a {
 }
 
 
-.navbar-default .navbar-nav > li > a.active{
+.navbar-default .navbar-nav > li > a.active,
+.navbar-default .navbar-right > li > a.active,
+.navbar-inner-pages.navbar-default .navbar-right > li > a.active
+{
     background-color: #313d47 !important;
 }
 
@@ -2394,6 +2395,12 @@ ul.nav.navbar-nav li.bord-menu-item  a:hover{
     color: white !important;
 }
 
+ul.nav.navbar-nav li.bord-menu-item  a.active{
+    color: white !important;
+    border: 2px solid #313d47  !important;
+    background-color: #313d47 !important;
+}
+
 .navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a{
     border: 2px solid #00b9f7 !important;
     color: #00b9f7 !important;
@@ -2403,6 +2410,11 @@ ul.nav.navbar-nav li.bord-menu-item  a:hover{
 }
 .navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a:hover{
     color: white !important;
+}
+.navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a.active{
+    color: white !important;
+    border: 2px solid #313d47  !important;
+    background-color: #313d47 !important;
 }
 ul.nav.navbar-nav li {
     margin: 0 8px;
