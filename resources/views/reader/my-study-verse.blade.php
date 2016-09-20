@@ -17,7 +17,6 @@
         {!! Form::hidden('verse_id',$content['verse']['verse']->id) !!}
         <div class="row text-center my-study-verse" style="line-height: 30px; margin-bottom: 15px;">
             <div class="col-md-12">
-                @include('reader.entry-stars')
                 <span style="">
                     <h3 class="text-center">My Study Verse</h3>
                     <h4 class="text-center">
