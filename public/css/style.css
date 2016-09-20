@@ -2945,6 +2945,7 @@ ul.icon-panel li a {
 .popup-create-record .pp-title{
     text-align: left;
     padding: 20px 30px;
+    color: #6b6b6b;
 }
 .popup-arrow {
     position: absolute;
@@ -4124,8 +4125,7 @@ a.create-record i {
     display: block;
 }
 .a-create-journey:hover {
-    background: #79858f;
-    color: white !important;
+    cursor: default;
 }
 .acj-counter {
     font-size: 50px;

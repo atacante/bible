@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="w1">
-                    <a href="{{ url('/prayers/create') }}" class="j-create-prayer a-create-journey color5">
+                    <a href="#" class="a-create-journey color5">
                         <div class="acj-counter">
                             <i class="bs-pray"></i>&nbsp;{!! $content['prayersCount'] !!}
                         </div>
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="w1">
-                    <a href="{{ url('/journal/create') }}" class="j-create-journal a-create-journey color6">
+                    <a href="#" class="a-create-journey color6">
                         <div class="acj-counter">
                             <i class="bs-journal"></i> {!! $content['journalCount'] !!}
                         </div>
@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li class="w1">
-                    <a href="{{ url('/notes/create') }}" class="j-create-note a-create-journey color7">
+                    <a href="#" class="a-create-journey color7">
                         <div class="acj-counter">
                             <i class="bs-note"></i> {!! $content['notesCount'] !!}
                         </div>
@@ -229,9 +229,9 @@
                 Create...
             </div>
             <ul class="">
-                <li><a class="" data-val="public_all" href="#"><i class="bs-note"></i>Note</a></li>
-                <li><a class="" data-val="public_friends" href="#"><i class="bs-journal"></i>Journal Entry</a></li>
-                <li><a class="" data-val="private" href="#"><i class="bs-pray"></i>Prayer</a></li>
+                <li><a class="j-create-note" href="{{ url('/notes/create') }}"><i class="bs-note"></i>Note</a></li>
+                <li><a class="j-create-journal" href="{{ url('/journal/create') }}"><i class="bs-journal"></i>Journal Entry</a></li>
+                <li><a class="j-create-prayer" href="{{ url('/prayers/create') }}"><i class="bs-pray"></i>Prayer</a></li>
             </ul>
 
         </div>

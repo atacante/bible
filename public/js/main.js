@@ -826,7 +826,7 @@ $(document).ready(function(){
             fullScreenLabel = 'My Study Verse';
             fullScreenUrl = $.trim(url.replace('/notes/create','/reader/my-study-verse'));
         }
-
+        $('.j-popup-create-record').hide();
         $.ajax({
             method: "GET",
             url: url,
@@ -875,6 +875,7 @@ $(document).ready(function(){
             fullScreenLabel = 'My Study Verse';
             fullScreenUrl = $.trim(url.replace('/journal/create','/reader/my-study-verse'));
         }
+        $('.j-popup-create-record').hide();
         $.ajax({
             method: "GET",
             url: url,
@@ -920,6 +921,7 @@ $(document).ready(function(){
             fullScreenLabel = 'My Study Verse';
             fullScreenUrl = $.trim(url.replace('/prayers/create','/reader/my-study-verse'));
         }
+        $('.j-popup-create-record').hide();
         $.ajax({
             method: "GET",
             url: url,
@@ -1526,7 +1528,7 @@ $(document).ready(function(){
 
         var btnCoordTop = $(this).offset().top+top;
         var btnCoordLeft = $(this).offset().left;
-        console.log($(this).offset());
+
         $(".j-popup-create-record").toggle();
         $(".j-popup-create-record").offset({top:btnCoordTop, left:btnCoordLeft});
         e.preventDefault();
@@ -1674,6 +1676,12 @@ $(document).ready(function(){
         var popSettings2 = $(".j-btn-settings");
         if (!popSettings.is(e.target) && popSettings.has(e.target).length === 0 && !popSettings2.is(e.target) && popSettings2.has(e.target).length === 0) {
             popSettings.hide();
+        }
+
+        var popCreate = $(".j-popup-create-record");
+        var popCreate2 = $(".j-create-record");
+        if (!popCreate.is(e.target) && popCreate.has(e.target).length === 0 && !popCreate2.is(e.target) && popCreate2.has(e.target).length === 0) {
+            popCreate.hide();
         }
 
         var popCompare = $(".j-popup-compare");
