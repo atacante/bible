@@ -46,7 +46,7 @@
                         @else
                             <tr>
                                 <td colspan="6">
-                                    <p class="text-center">No any results found</p>
+                                    <p class="text-center">No results found</p>
                                 </td>
                             </tr>
                         @endif

@@ -51,7 +51,7 @@
                         @else
                             <tr>
                                 <td colspan="9">
-                                    <p class="text-center">No any results found</p>
+                                    <p class="text-center">No results found</p>
                                 </td>
                             </tr>
                         @endif

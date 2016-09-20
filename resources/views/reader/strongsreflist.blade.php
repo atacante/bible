@@ -28,5 +28,5 @@
     @endforeach
         </div>
 @else
-    <p class="text-center">No any results found</p>
+    <p class="text-center">No results found</p>
 @endif
