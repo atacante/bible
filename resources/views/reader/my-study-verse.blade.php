@@ -25,15 +25,19 @@
 
                 <h4 class="text-center">
                     @if($versePrev = $content['pagination']['versePrev'])
-                        <a title="Prev Verse" href="{!! url('reader/my-study-verse?'.http_build_query($versePrev),[],false) !!}">
-                            <i class="glyphicon glyphicon-chevron-left"></i>
+                        <a class="cu-arrowleft3" title="Prev Verse" href="{!! url('reader/my-study-verse?'.http_build_query($versePrev),[],false) !!}">
+                            <i class="bs-arrowleft"></i>
                         </a>
                     @endif
-                    {!! $content['verse']['verse']->booksListEn->book_name.' '.$content['verse']['verse']->chapter_num.':'.$content['verse']['verse']->verse_num !!}
-                    ({!! $content['verse']['version_name'] !!})
+                    <span class="genesis-title1">
+                        {!! $content['verse']['verse']->booksListEn->book_name.' <span style="font-size:25px;">'.$content['verse']['verse']->chapter_num.':'.$content['verse']['verse']->verse_num.'</span>' !!}
+                    </span>
+                    <span class="genesis-title11">
+                        ({!! $content['verse']['version_name'] !!})
+                    </span>
                     @if($verseNext = $content['pagination']['verseNext'])
-                        <a title="Next Verse" href="{!! url('reader/my-study-verse?'.http_build_query($verseNext),[],false) !!}">
-                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        <a class="cu-arrowright3" title="Next Verse" href="{!! url('reader/my-study-verse?'.http_build_query($verseNext),[],false) !!}">
+                            <i class="bs-arrowright"></i>
                         </a>
                     @endif
                 </h4>
@@ -50,15 +54,17 @@
         @include('reader.my-journal-table')
         @include('reader.my-prayers-table')
 
-        <div class="row col-md-12 pagination" style="text-align: center;">
-            <div class="btn-group" role="group" aria-label="...">
-                @if($versePrev = $content['pagination']['versePrev'])
-                    {{ Html::link(url('reader/my-study-verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn btn-default btn-danger','style' => 'width:120px;'], true)}}
-                @endif
-                @if($verseNext = $content['pagination']['verseNext'])
-                    {{ Html::link(url('reader/my-study-verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn btn-default btn-primary','style' => 'width:120px;'], true)}}
-                @endif
+
+            <div class="col-xs-12 mb1 mt3">
+                <div class="text-center" role="group" aria-label="...">
+                    @if($versePrev = $content['pagination']['versePrev'])
+                        {{ Html::link(url('reader/my-study-verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn2'], true)}}
+                    @endif
+                    @if($verseNext = $content['pagination']['verseNext'])
+                        {{ Html::link(url('reader/my-study-verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn1'], true)}}
+                    @endif
+                </div>
             </div>
-        </div>
+
     </div>
 @stop
