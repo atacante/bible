@@ -33,10 +33,10 @@ class KjvLexiconMatchesOnSeeder extends Seeder
             $progressBar = new ProgressBarHelper(count($csv->data),10);
             $progressBar->start('Started seeding data for KVJ lexicon');
 
-//            DB::statement("TRUNCATE TABLE lexicon_kjv");
-//            DB::statement("ALTER SEQUENCE lexicon_kjv_id_seq RESTART WITH 1");
-//
-//            ModelHelper::createLexiconStructure('kjv');
+            DB::statement("TRUNCATE TABLE lexicon_kjv");
+            DB::statement("ALTER SEQUENCE lexicon_kjv_id_seq RESTART WITH 1");
+
+            ModelHelper::createLexiconStructure('kjv');
 
             $part = 0;
             foreach($csv->data as $key => $row){
