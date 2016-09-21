@@ -22,6 +22,8 @@ class KjvLexiconMatchesOnSeeder extends Seeder
     {
         ini_set('memory_limit', '1024M');
 
+        $timeStart = time();
+
         $csv = new \parseCSV(base_path('resources/data/lexicon_short.csv'));
         $he = new \parseCSV(base_path('resources/data/kjv_lexicon_only_he.csv'));
 //        $excelData = Excel::load(base_path('resources/data/kjv_lexicon_only_he.xlsx'), function ($reader) {})->get();
@@ -38,7 +40,7 @@ class KjvLexiconMatchesOnSeeder extends Seeder
 
             $part = 0;
             foreach($csv->data as $key => $row){
-                $timeStart = round(microtime(true) * 1000);
+//                $timeStart = round(microtime(true) * 1000);
                 $part++;
                 $book = explode(':',trim($row['KJV Verse']));
                 $bookAndChapter = explode(' ',$book[0]);
@@ -109,11 +111,14 @@ class KjvLexiconMatchesOnSeeder extends Seeder
 //                }
                 $progressBar->update();
 
-                $timeFinish = round(microtime(true) * 1000);
-                echo "Process Time: ".(($timeFinish-$timeStart)).' ms'."\n";
+//                $timeFinish = round(microtime(true) * 1000);
+//                echo "Process Time: ".(($timeFinish-$timeStart)).' ms'."\n";
             }
 //            LexiconKjv::insert($data);
             $progressBar->finish();
+
+            $timeFinish = time();
+            echo "Process Time: ".(($timeFinish-$timeStart)/60).' min';
         }
     }
 }
