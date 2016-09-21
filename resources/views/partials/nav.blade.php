@@ -59,7 +59,7 @@
                     <li>
                         <a href="{{ URL::to('/site/about') }}">
                             <i class="bs-biblestudylogo cu-bs-biblestudylogo"></i>
-                            About As
+                            About Us
                         </a>
                     </li>
                     <li>
