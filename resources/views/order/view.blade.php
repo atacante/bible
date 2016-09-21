@@ -47,6 +47,16 @@
         <tfoot>
         <tr>
             <td colspan="3">&nbsp;</td>
+            <td class="label1">Subtotal</td>
+            <td>${!! $order->subtotal !!}</td>
+        </tr>
+        <tr>
+            <td colspan="3">&nbsp;</td>
+            <td class="label1">Tax</td>
+            <td>${!! $order->tax !!}</td>
+        </tr>
+        <tr>
+            <td colspan="3">&nbsp;</td>
             <td class="label1">Total</td>
             <td>${!! $order->total_paid !!}</td>
         </tr>

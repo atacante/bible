@@ -2,7 +2,7 @@
 
 class Order extends BaseModel {
 
-	protected $fillable = ['user_id', 'user_meta_id', 'transaction_id', 'total_paid'];
+	protected $fillable = ['user_id', 'user_meta_id', 'transaction_id', 'total_paid', 'tax', 'subtotal'];
 	protected $dates = ['created_at', 'updated_at'];
 
 	public function rules()

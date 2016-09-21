@@ -12,7 +12,6 @@ use App\Http\Requests;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Krucas\Notification\Facades\Notification;
@@ -52,18 +51,28 @@ class OrderController extends Controller
         $userMeta = new UsersMeta();
         $this->validate($request, $userMeta->rules());
 
+        $data = $request->all();
+
         //Retrieve cart information
-        $total = Cart::total();
+        $subtotal = Cart::total();
+        $tax = 0.00;
+
+        if(strtolower(trim($data['shipping_state'])) == 'florida'){
+            $tax = round(0.3 * $subtotal, 2);
+        }
+
+        $total = $subtotal + $tax;
 
         $charged = Auth::user()->charge($total, ['description' => 'online payment']);
 
         if(is_array($charged) && $charged['transId']){
 
             $this->validate($request, $userMeta->rules());
-            $data = Input::all();
 
             if ($userMeta = $userMeta->create($data)) {
                 $order = new Order();
+                $order->tax = $tax;
+                $order->subtotal = $subtotal;
                 $order->total_paid = $total;
                 $order->user_id= Auth::user()->id;
                 $order->user_meta_id= $userMeta->id;
