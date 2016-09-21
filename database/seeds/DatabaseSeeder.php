@@ -15,16 +15,16 @@ class DatabaseSeeder extends Seeder
         $this->call(BasicRolesSeeder::class);
         $this->call(BibleVersionsListSeeder::class);
         $this->call(BibleAllVersionsSeeder::class);
-        $this->call(BaseLexiconSeeder::class);
-        $this->call(LexiconSeeder::class);
-        $this->call(BibleBereanSeeder::class);
-        $this->call(BereanLexiconSeeder::class);
-        $this->call(LocationsSeeder::class);
         $this->call(BibleNasbSeeder::class);
-        $this->call(NasbLexiconSeeder::class);
+        $this->call(BaseLexiconSeederNasb::class);
+        $this->call(NasbLexiconMatchesOffSeeder::class);
+        $this->call(KjvLexiconMatchesOnSeeder::class);
+        $this->call(BibleBereanSeeder::class);
+        $this->call(BereanLexiconMatchesOnSeeder::class);
+        $this->call(LocationsSeeder::class);
         $this->call(StrongsConcordanceSeeder::class);
         $this->call(StrongsNasecSeeder::class);
         $this->call(TagsBasicSeeder::class);
-        $this->call(ClearRelationsSeeder::class);
+//        $this->call(ClearRelationsSeeder::class);
     }
 }

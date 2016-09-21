@@ -9,6 +9,8 @@ class LexiconBerean extends BaseModel {
      * Generated
      */
 
+    public static $FIRE_EVENTS = true;
+
     public $timestamps  = false;
 
     protected $table = 'lexicon_berean';
