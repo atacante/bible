@@ -1,6 +1,6 @@
-<div id="journal" class="verse-journal my-journal-list j-my-journal-list">
+<div id="journal" class="verse-journal my-journal-list j-my-journal-list mt3">
     <h4 class="h4-study mb3">
-        <i class="bs-note cu-note"></i>
+        <i class="bs-journal cu-jornal"></i>
         My <span>Journal Entries</span> for this Study Verse
         {!! Html::link('/journal/create','Create Journal Entry', ['class'=>'btn1-kit cu-study-btn j-create-journal']) !!}
     </h4>
@@ -10,7 +10,7 @@
             @foreach($content['journal'] as $journal)
                 <li>
 
-                    <div class="note-text j-note-text" data-noteid="{!! $journal->id !!}">
+                    <div class="note-text j-note-text" data-journalid="{!! $journal->id !!}">
                         {!! str_limit(strip_tags($journal->journal_text,'<p></p>'), $limit = 300, $end = '...') !!}
                     </div>
 

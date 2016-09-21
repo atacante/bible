@@ -54,15 +54,17 @@
         @include('reader.my-journal-table')
         @include('reader.my-prayers-table')
 
-        <div class="row col-md-12 pagination" style="text-align: center;">
-            <div class="btn-group" role="group" aria-label="...">
-                @if($versePrev = $content['pagination']['versePrev'])
-                    {{ Html::link(url('reader/my-study-verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn btn-default btn-danger','style' => 'width:120px;'], true)}}
-                @endif
-                @if($verseNext = $content['pagination']['verseNext'])
-                    {{ Html::link(url('reader/my-study-verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn btn-default btn-primary','style' => 'width:120px;'], true)}}
-                @endif
+
+            <div class="col-xs-12 mb1 mt3">
+                <div class="text-center" role="group" aria-label="...">
+                    @if($versePrev = $content['pagination']['versePrev'])
+                        {{ Html::link(url('reader/my-study-verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn2'], true)}}
+                    @endif
+                    @if($verseNext = $content['pagination']['verseNext'])
+                        {{ Html::link(url('reader/my-study-verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn1'], true)}}
+                    @endif
+                </div>
             </div>
-        </div>
+
     </div>
 @stop
