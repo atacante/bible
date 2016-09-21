@@ -1791,12 +1791,18 @@ ul.tabs-nav li:last-child {
     border-bottom: 2px solid #00b9f7;
 }
 
-#avatar.dropzone{
-    width: 124px;
-    max-height: 124px;
-    min-height: 124px;
-    border: 2px dashed #ccc;
-    border-radius: 5px;
+#avatar.dropzone {
+    width: 140px;
+    max-height: 140px;
+    min-height: 140px;
+    border: 1px dotted #a9a9a9;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    overflow: hidden;
+}
+#avatar.dropzone .dz-preview .dz-image {
+    width: 140px;
+    height: 140px;
 }
 #avatar.dropzone .dz-preview{
     margin: 0;
@@ -1836,6 +1842,22 @@ ul.tabs-nav li:last-child {
     border: 1px solid #f4f4f4;
     line-height: 52px;
     color: #ddd;
+}
+.c-cont-w-avatar {
+    padding-left: 165px;
+    position: relative;
+}
+.left-avatar {
+    position: absolute;
+    left: 0;
+    top: 16px;
+}
+.remove-image {
+    position:absolute;
+    top: 43px;
+    left: 48px;
+    color: #f4645f;
+    cursor: pointer;
 }
 .group-block{
     border: 1px solid;
@@ -4314,7 +4336,8 @@ a.create-record i {
 .advansed-pop label.label-checkbox {
     margin-right: 20px;
 }
-.select2-container--default .select2-selection--multiple {
+.select2-container--default .select2-selection--multiple,
+.select2-container--default .select2-selection--single {
     border-radius: 0;
     -webkit-border-radius: 0;
     border: 1px solid #a9a9a9;
@@ -4326,14 +4349,33 @@ a.create-record i {
     min-height: 45px;
     padding: 0;
 }
-.select2-container--default .select2-selection--multiple:hover {
+.select2-container--default .select2-selection--multiple:hover
+.select2-container--default .select2-selection--single:hover {
     border-color: #000000;
 }
-.select2-container--default .select2-selection--multiple:focus {
+.select2-container--default .select2-selection--multiple:focus,
+.select2-container--default .select2-selection--single:focus {
     border-color: #64cd93;
     box-shadow: none;
     -webkit-box-shadow: none;
 }
+.select2-container .select2-selection--single .select2-selection__rendered {
+    display: block;
+    overflow: hidden;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 8px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    right: 1px;
+    top: 9px;
+    width: 20px;
+}
+
 .advansed-pop ul.select2-selection__rendered li.select2-selection__choice {
     background: #313d47;
     color: white;
