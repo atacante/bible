@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
         });*/
         LexiconKjv::saved(function($model)
         {
-            if($model->isDirty('verse_part')){
+            if($model::$FIRE_EVENTS && $model->isDirty('verse_part')){
                 $model->cacheVerse();
             }
             return true; //if false the model wont save!
@@ -76,7 +76,7 @@ class AppServiceProvider extends ServiceProvider
 
         LexiconBerean::saved(function($model)
         {
-            if($model->isDirty('verse_part')){
+            if($model::$FIRE_EVENTS && $model->isDirty('verse_part')){
                 $model->cacheVerse();
             }
             return true; //if false the model wont save!

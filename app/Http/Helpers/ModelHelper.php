@@ -104,7 +104,14 @@ class ModelHelper
     {
         ini_set('memory_limit', '1024M');
         $lexiconModel = BaseModel::getLexiconModelByVersionCode($lexiconCode);
-        $lexiconBaseCount = LexiconBase::count();
+
+        if($lexiconCode = 'berean'){
+            $lexiconBaseCount = LexiconBase::where('book_id','>',39)->count();
+        }
+        else{
+            $lexiconBaseCount = LexiconBase::count();
+        }
+
         $partCount = 500;
         $offset = 0;
         $parts = ceil($lexiconBaseCount/$partCount);
@@ -112,9 +119,16 @@ class ModelHelper
         $progressBar = new ProgressBarHelper($lexiconBaseCount,10);
         $progressBar->start('Creating BASE lexicon structure');
         for($i = 1;$i<=$parts;$i++){
-            $lexiconBase = LexiconBase::skip($offset)->take($partCount)->orderBy('id')->get();
+            if($lexiconCode = 'berean'){
+                $lexiconBase = LexiconBase::where('book_id','>',39)->skip($offset)->take($partCount)->orderBy('id')->get();
+            }
+            else{
+                $lexiconBase = LexiconBase::skip($offset)->take($partCount)->orderBy('id')->get();
+            }
+
             $data = [];
             foreach ($lexiconBase as $key => $lexiconItem) {
+                $data[$key]['id'] = $lexiconItem->id;
                 $data[$key]['book_id'] = $lexiconItem->book_id;
                 $data[$key]['chapter_num'] = $lexiconItem->chapter_num;
                 $data[$key]['verse_num'] = $lexiconItem->verse_num;
