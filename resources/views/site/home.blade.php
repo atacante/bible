@@ -32,7 +32,7 @@
         <section class="home-ill-section h-ill3">
             <div class="pull-right mt6 mr3">
                 <h2 class="h2-1">
-                    get involved to<br>
+                    get involved in<br>
                     <span>OUR community</span>
                 </h2>
                 <p class="p-1 mt5">Share your thoughts, prayers with others.<br>
