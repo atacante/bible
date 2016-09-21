@@ -172,7 +172,8 @@ $(document).ready(function(){
         $('.j-show-definition').attr('data-lexid',definitionId);
         $('.j-show-definition').attr('data-lexversion',lexversion);
 
-
+        $('.def-highlight').removeClass('def-highlight');
+        $(this).addClass('def-highlight');
 
     });
 

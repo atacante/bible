@@ -4959,3 +4959,7 @@ h3.strongs-subheader{
 .popup-create-record li a:hover i{
     color: white;
 }
+
+.def-highlight, span.word-definition:hover{
+    font-weight: bold;
+}

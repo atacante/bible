@@ -364,5 +364,6 @@ reader.clearHighlights = function(){
     $('.j-lex-content').remove();
     $('.highlight').removeClass('highlight');
     $('.clicked').removeClass('clicked');
+    $('.def-highlight').removeClass('def-highlight');
 }
 
