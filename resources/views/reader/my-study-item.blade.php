@@ -9,10 +9,10 @@
         {!! Form::hidden('rel',Request::get('rel',null)) !!}
         <div class="row text-center" style="line-height: 30px; margin-bottom: 15px;">
             <div class="col-md-12">
-                <span>
-                    <h3 class="text-center">My Study Item</h3>
-                </span>
-                @include('reader.entry-stars')
+                <h2 class="h2-new mb3">
+                    <i class="bs-study cu-study2"></i>
+                    My Study Item
+                </h2>
             </div>
         </div>
         @include('reader.entry-counters')
