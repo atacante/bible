@@ -180,13 +180,13 @@ class ViewHelper
 
         switch($type){
             case 'note':
-                $html = '<i title="Note" class="c-verse-icon3 fa-sticky-note color5"></i>';
+                $html = '<i title="Note" class="c-verse-icon3 fa-book color7"></i>';
                 break;
             case 'journal':
-                $html = '<i title="Journal" class="c-verse-icon3 fa-book color7"></i>';
+                $html = '<i title="Journal" class="c-verse-icon3 fa-hand-paper-o color6"></i>';
                 break;
             case 'prayer':
-                $html = '<i title="Prayer" class="c-verse-icon3 fa-hand-paper-o color6"></i>';
+                $html = '<i title="Prayer" class="c-verse-icon3 fa-sticky-note color5"></i>';
                 break;
         }
 
