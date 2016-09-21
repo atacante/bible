@@ -6,13 +6,7 @@
 
 @section('content')
     <div class="j-my-study-verse">
-        {{--<a href="{!! url('reader/read?'.http_build_query(
-        [
-            'version' => $content['verse']['version_code'],
-            'book' => $content['verse']['verse']->book_id,
-            'chapter' => $content['verse']['verse']->chapter_num
-        ])."#verse".$content['verse']['verse']->id,[],false) !!}" class="btn btn-default btn-success btn-to-reader"
-           style="">Go to Reader</a>--}}
+
         {!! Form::hidden('bible_version',$content['verse']['version_code']) !!}
         {!! Form::hidden('verse_id',$content['verse']['verse']->id) !!}
 
@@ -23,7 +17,7 @@
                     My Study Verse
                 </h2>
 
-                <h4 class="text-center">
+                <h4 class="text-center c-title-and-icons4">
                     @if($versePrev = $content['pagination']['versePrev'])
                         <a class="cu-arrowleft3" title="Prev Verse" href="{!! url('reader/my-study-verse?'.http_build_query($versePrev),[],false) !!}">
                             <i class="bs-arrowleft"></i>
@@ -40,6 +34,17 @@
                             <i class="bs-arrowright"></i>
                         </a>
                     @endif
+                    <div class="btns-panel">
+                        <a href="{!! url('reader/read?'.http_build_query(
+                            [
+                                'version' => $content['verse']['version_code'],
+                                'book' => $content['verse']['verse']->book_id,
+                                'chapter' => $content['verse']['verse']->chapter_num
+                            ])."#verse".$content['verse']['verse']->id,[],false) !!}" class="btn1-kit ">
+                            <i class="bs-arrowrt cu-arrowrt2"></i>
+                            Go to Reader
+                        </a>
+                    </div>
                 </h4>
 
                 <div class="study-top-panel">

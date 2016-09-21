@@ -2804,6 +2804,15 @@ ul.footer-menu li a:hover {
     position: relative;
     text-align: center;
 }
+.c-title-and-icons4 {
+    padding: 0 150px;
+    position: relative;
+    text-align: center;
+}
+.cu-arrowrt2 {
+    margin-right: 5px;
+    font-size: 10px;
+}
 .btn-settings {
     position: absolute;
     display: block;
