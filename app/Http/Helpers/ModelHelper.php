@@ -105,7 +105,7 @@ class ModelHelper
         ini_set('memory_limit', '1024M');
         $lexiconModel = BaseModel::getLexiconModelByVersionCode($lexiconCode);
 
-        if($lexiconCode = 'berean'){
+        if($lexiconCode == 'berean'){
             $lexiconBaseCount = LexiconBase::where('book_id','>',39)->count();
         }
         else{
@@ -119,7 +119,7 @@ class ModelHelper
         $progressBar = new ProgressBarHelper($lexiconBaseCount,10);
         $progressBar->start('Creating BASE lexicon structure');
         for($i = 1;$i<=$parts;$i++){
-            if($lexiconCode = 'berean'){
+            if($lexiconCode == 'berean'){
                 $lexiconBase = LexiconBase::where('book_id','>',39)->skip($offset)->take($partCount)->orderBy('id')->get();
             }
             else{
