@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StrongsConcordanceSeeder::class);
         $this->call(StrongsNasecSeeder::class);
         $this->call(TagsBasicSeeder::class);
+        $this->call(StaticPagesSeeder::class);
 //        $this->call(ClearRelationsSeeder::class);
     }
 }

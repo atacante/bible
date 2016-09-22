@@ -20,4 +20,9 @@ class CmsPage extends BaseModel
 
         return $rules;
     }
+
+    public static function getPage($system_name)
+    {
+        return self::where('system_name', $system_name)->first();
+    }
 }

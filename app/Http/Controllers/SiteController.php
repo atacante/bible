@@ -29,13 +29,36 @@ class SiteController extends Controller
 
     public function getAbout()
     {
-        $model = CmsPage::where('system_name', '=', 'about')->take(1)->get();
-        return view('site.about', ['page'=>$model[0]]);
+        $page = CmsPage::getPage('about');
+        return view('site.about', ['page'=>$page]);
+    }
+
+    public function getEvents()
+    {
+        $page = CmsPage::getPage('bsc_events');
+        return view('site.events', ['page'=>$page]);
+    }
+
+    public function getHowItWorks()
+    {
+        $page = CmsPage::getPage('how_it_works');
+        return view('site.how_it_works', ['page'=>$page]);
+    }
+
+
+    public function getSeminars()
+    {
+        $page = CmsPage::getPage('seminars');
+        return view('site.seminars', ['page'=>$page]);
     }
 
     public function anyContact(\Illuminate\Http\Request $request)
     {
         $model = new Contact();
+
+        $page = CmsPage::getPage('contact_main');
+        $page_aside = CmsPage::getPage('contact_aside');
+
         if (Request::isMethod('post')) {
             $this->validate($request, $model->rules(),$model->messages());
             $contactEmail = Input::get('email');//Config::get('app.contactEmail')
@@ -50,7 +73,7 @@ class SiteController extends Controller
                 Notification::errorInstant('Message has not been sent');
             }
         }
-        return view('site.contact', $model);
+        return view('site.contact', ['model' => $model, 'page' => $page, 'page_aside' => $page_aside]);
     }
 
     public function getFaq()
