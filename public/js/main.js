@@ -1287,7 +1287,7 @@ $(document).ready(function(){
         $("#avatar").trigger('click');
     });
 
-    $('#avatar.user-image').on('click','.j-remove-image',function(){
+    $('#avatar').on('click','.j-remove-image',function(){
         site.deleteImage(this,'/user/delete-avatar');
     });
 
