@@ -19,11 +19,13 @@
                             <a href="{!! url('/groups/update/'.$model->id,[],false) !!}" class="pull-right"><i class="fa fa-btn fa-cog" style="font-size: 18px;"></i></a>
                         @else
                             <div class="pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
+                                @if(Auth::check())
                                 <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[],false) !!}" class="btn btn-danger j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" style="display: block; margin-top: 5px;" data-toggle="modal"
                                    data-target="#cancel-request-sm" data-header="Cancel Request"
                                    data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
+                                @endif
                                 <a href="{!! url('/groups/leave-group/'.$model->id,[],false) !!}" class="pull-right btn btn-danger j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}"><i class="fa fa-btn fa-minus" style="font-size: 14px;"></i>Leave Group</a>
-                                <a href="{!! url('/groups/join-group/'.$model->id,[],false) !!}" class="pull-right btn btn-primary j-join-group {!! in_array($model->id,$content['joinedGroupsKeys']) || in_array($model->id,Auth::user()->myGroupsRequests->modelKeys())?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join Group</a>
+                                <a href="{!! url('/groups/join-group/'.$model->id,[],false) !!}" class="pull-right btn btn-primary j-join-group {!! in_array($model->id,$content['joinedGroupsKeys']) || (Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join Group</a>
                             </div>
                         @endif
                     </div>
@@ -76,7 +78,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="col-md-9 related-records public-wall j-wall-items">
+                    <div class="col-md-9 related-records public-wall j-wall-items" data-walltype="{{App\WallPost::WALL_TYPE_GROUP}}">
                         @if(Auth::check() && Auth::user()->is('user') && (in_array(Auth::user()->id,$model->members->modelKeys()) || Auth::user()->id == $model->owner_id))
                             @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_GROUP,'groupId' => $model->id])
                         @endif

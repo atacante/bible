@@ -42,7 +42,7 @@
                 </li>
             </ul>
             @endrole
-            <div class="c-white-content j-wall-items">
+            <div class="c-white-content j-wall-items" data-walltype="{{App\WallPost::WALL_TYPE_PUBLIC}}">
                 @role('user')
                     @if((!Request::get('type') || Request::get('type') == 'all'))
                         @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_PUBLIC])

@@ -1,9 +1,20 @@
+var site = {
+    wallCheckInterval: 15000//ms
+};
+
 $(document).ready(function(){
     var clipboard = new Clipboard('.copy');
     var hidev = true;
     clipboard.on('success', function(e) {
         e.clearSelection();
     });
+
+    /* "New Posts" functionality for the wall */
+    if($('.j-wall-items').length > 0){
+        setInterval(function(){
+            site.checkNewWallPosts($('.j-wall-items').data('walltype'));
+        },site.wallCheckInterval);
+    }
 
     $("#j-select-locations,#j-select-peoples").select2();
     $(".j-entry-types").select2({
