@@ -210,7 +210,7 @@
                                 <div class="{{$model->card_last_four!=''?'' : 'hide' }}">
                                     <input class="form-control input1" type="text" value="**** **** **** {{$model->card_last_four}}" disabled="disabled">
                                 </div>
-                                <div class="{{$model->card_last_four!='hide'?'' : '' }}">
+                                <div class="{{$model->card_last_four!='hide'?'hide' : '' }}">
                                     <input class="form-control input1" type="text" value="No Credit Card" disabled="disabled">
                                 </div>
                             </div>
