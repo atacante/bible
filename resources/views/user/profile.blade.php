@@ -149,10 +149,10 @@
                     <div class="form-group">
                         {!! Form::label('invite_link', 'Link to invite new users') !!}
                         <div class="input-group">
-                            <span class="input-group-btn">
-                                <button id="copy" title="Copy" class="btn copy btn-default" data-clipboard-target="#invite-link" type="button"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
-                            </span>
                             <input id="invite-link" type="text" class="form-control input1" value="{!! url('/invite/'.$model->id) !!}" readonly="readonly">
+                            <span class="input-group-btn">
+                                <button id="copy" title="Copy" class="btn copy btn-default cu-btn-copy" data-clipboard-target="#invite-link" type="button"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+                            </span>
                         </div>
                     </div>
                     <div class="form-group {{ $errors->has('plan_type') ? ' has-error' : '' }}">
@@ -205,10 +205,14 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
-                            <div class="form-group {{--{{$model->card_last_four!=''?'' : 'hide' }}--}}">
+                            <div class="form-group">
                                 {!! Form::label('current_cc_number', 'Current CC number:') !!}
-                                <input class="form-control input1" type="text" value="**** **** **** {{$model->card_last_four}}" disabled="disabled">
-
+                                <div class="{{$model->card_last_four!=''?'' : 'hide' }}">
+                                    <input class="form-control input1" type="text" value="**** **** **** {{$model->card_last_four}}" disabled="disabled">
+                                </div>
+                                <div class="{{$model->card_last_four!='hide'?'' : '' }}">
+                                    <input class="form-control input1" type="text" value="No Credit Card" disabled="disabled">
+                                </div>
                             </div>
                         </div>
                         <div class="col-xs-6">

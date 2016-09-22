@@ -380,7 +380,7 @@ h4.h4-sub-kit {
 .btn4-kit, .btn4-kit:visited {
     display: inline-block;
     border: 2px solid #090909;
-    background: #ffffff;
+    background: transparent;
     color: #090909;
     font-size: 16px;
     padding: 10px 12px;
@@ -390,6 +390,7 @@ h4.h4-sub-kit {
     font-family: ns_widemedium;
     min-width: 145px;
     text-align: center;
+    line-height: 17px;
 }
 .btn4-kit:hover, .btn4-kit:active {
     display: inline-block;
@@ -1859,6 +1860,14 @@ ul.tabs-nav li:last-child {
     left: 48px;
     color: #f4645f;
     cursor: pointer;
+}
+.cu-btn-copy {
+    border-radius: 0 !important;
+    height: 45px;
+    width: 45px;
+    border-color: #00b9f7;
+    background: #00b9f7;
+    color: white;
 }
 .group-block{
     border: 1px solid;
