@@ -210,16 +210,12 @@
             @if(isset($content['readerMode']))
             <div class="mt16">
                 <div title="{{ ViewHelper::getContent(App\CmsPage::CONTENT_TOOLTIP,'beginner_mode')->text  }}" class="radio-inline">
-                    <label>
                         {!! Form::radio('readerMode', 'beginner', ($content['readerMode'] == 'beginner'),['id'=>'check-beginner','class'=>'cust-radio']) !!}
                         <label class="label-radio" for="check-beginner">{!! Config::get('app.readerModes.beginner') !!}</label>
-                    </label>
                 </div>
                 <div title="{{ ViewHelper::getContent(App\CmsPage::CONTENT_TOOLTIP,'intermediate_mode')->text  }}" class="radio-inline">
-                    <label>
                         {!! Form::radio('readerMode', 'intermediate', ($content['readerMode'] == 'intermediate'),['id'=>'check-intermediate','class'=>'cust-radio']) !!}
                         <label class="label-radio" for="check-intermediate">{!! Config::get('app.readerModes.intermediate') !!}</label>
-                    </label>
                 </div>
             </div>
             @endif

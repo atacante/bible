@@ -18,9 +18,6 @@
             <div class="row">
                 <div class="col-xs-6">
 
-
-
-
                     <div class="c-cont-w-avatar">
 
                         <div class="left-avatar {{ $errors->has('avatar') ? ' has-error' : '' }}">
