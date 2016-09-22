@@ -31,7 +31,7 @@
                             </li>
                             <li>
                                 <a title="Edit note" class="j-create-note" href="{!! url('/notes/update/'.$note->id) !!}">
-                                    <i class="bs-journal"></i>
+                                    <i class="bs-edit"></i>
                                 </a>
                             </li>
                             <li>
