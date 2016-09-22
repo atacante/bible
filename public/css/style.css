@@ -4402,6 +4402,7 @@ a.create-record i {
     min-height: 45px;
     padding: 0;
     max-width: 100%;
+    line-height: 20px;
 }
 .select2-container--default .select2-selection--multiple:hover
 .select2-container--default .select2-selection--single:hover {

@@ -12,7 +12,7 @@
         <ul class="nav navbar-nav">
             {{-- --------------- HOME --------------- --}}
             <li>
-                <a href="/"><i class="fa fa-home"></i>Home</a>
+                <a href="/"><i class="bs-home"></i>Home</a>
             </li>
             {{-- --------------- READ --------------- --}}
             <li>
