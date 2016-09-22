@@ -443,4 +443,12 @@ class User extends Authenticatable
         $notifSettings->$type = true;
         $notifSettings->save();
     }
+
+    public function setCountryIdAttribute($value)
+    {
+        if(empty($value)){
+            $this->attributes['country_id'] = NULL;
+        }
+    }
+
 }

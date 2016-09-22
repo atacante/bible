@@ -48,7 +48,7 @@
 
                         <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                             {!! Form::label('name', 'Name:') !!}
-                            {!! Form::text('name',  '', array('class' => 'input1')) !!}
+                            {!! Form::text('name',  $model->name, array('class' => 'input1')) !!}
                             @if ($errors->has('name'))
                                 <span class="help-block">
                                     {{ $errors->first('name') }}
@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                             {!! Form::label('email', 'Email:') !!}
-                            {!! Form::text('email',  '', array('class' => 'input1')) !!}
+                            {!! Form::text('email',  $model->email, array('class' => 'input1')) !!}
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                     {{ $errors->first('email') }}
@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-group {{ $errors->has('about_me') ? ' has-error' : '' }}">
                         {!! Form::label('about_me', 'About Me:') !!}
-                        {!! Form::textarea('about_me', '', array("class"=>"input1 cu-area-profile")) !!}
+                        {!! Form::textarea('about_me', $model->about_me, array("class"=>"input1 cu-area-profile")) !!}
                         @if ($errors->has('about_me'))
                             <span class="help-block">
                                 {{ $errors->first('about_me') }}
@@ -95,7 +95,7 @@
                     </div>
                     <div class="form-group{{ $errors->has('country_id') ? ' has-error' : '' }}">
                         {!! Form::label('country_id', 'Country', array('class' => 'control-label')) !!}
-                        {!! Form::select('country_id', App\Country::pluck('nicename','id')->toArray(), old('country_id'),['class' => 'form-control input1 j-select2','data-url'=> '/ajax/users-list','placeholder' => 'Select users...']) !!}
+                        {!! Form::select('country_id', App\Country::pluck('nicename','id')->toArray(), ['class' => 'form-control input1 j-select2','data-url'=> '/ajax/users-list','placeholder' => 'Select country...']) !!}
                         @if ($errors->has('country_id'))
                             <span class="help-block">
                                 {{ $errors->first('country_id') }}
@@ -117,7 +117,7 @@
                         @if ($errors->has('city'))
                             <span class="help-block">
                                     {{ $errors->first('city') }}
-                                </span>
+                            </span>
                         @endif
                     </div>
                 </div>
@@ -195,7 +195,7 @@
 
                         <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
                             {!! Form::label('coupon_code', 'Coupon Code:') !!}
-                            {!! Form::text('coupon_code', '', ["class" => "input1"]) !!}
+                            {!! Form::text('coupon_code', $model->coupon_code, ["class" => "input1"]) !!}
                             @if ($errors->has('coupon_code'))
                                 <span class="help-block">
                                     {{ $errors->first('coupon_code') }}
@@ -210,7 +210,7 @@
                                 <div class="{{$model->card_last_four!=''?'' : 'hide' }}">
                                     <input class="form-control input1" type="text" value="**** **** **** {{$model->card_last_four}}" disabled="disabled">
                                 </div>
-                                <div class="{{$model->card_last_four!='hide'?'hide' : '' }}">
+                                <div class="{{$model->card_last_four!=''?'hide' : '' }}">
                                     <input class="form-control input1" type="text" value="No Credit Card" disabled="disabled">
                                 </div>
                             </div>
