@@ -625,6 +625,10 @@ table.table-lexicon p {
 .ml1 {
     margin-left: 10px;
 }
+.m-btn {
+    margin-top: 40px !important;
+    margin-bottom: 50px !important;
+}
 .pad1 {
     padding-bottom: 50px;
 }
@@ -677,6 +681,24 @@ table.table-lexicon p {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-decoration: none !important;
+}
+.bs-copypaste:before {
+    content: "\e937";
+}
+.bs-logout:before {
+    content: "\e938";
+}
+.bs-arrowbottom:before {
+    content: "\e939";
+}
+.bs-edit:before {
+    content: "\e93a";
+}
+.bs-hamburger:before {
+    content: "\e93b";
+}
+.bs-home:before {
+    content: "\e93c";
 }
 .bs-upload:before {
     content: "\e935";
@@ -1868,6 +1890,27 @@ ul.tabs-nav li:last-child {
     border-color: #00b9f7;
     background: #00b9f7;
     color: white;
+}
+.cu-label {
+    font-size: 15px;
+    font-family: work_sansregular;
+}
+.cu-label:before {
+    bottom: 7px !important;
+}
+.cu-btn-copy i.bs-copypaste {
+    font-size: 20px;
+    padding-top: 5px;
+    text-align: center;
+    display: inline-block;
+}
+.cu-btn-copy:hover {
+    background: #79858f;
+    border-color: #79858f;
+    color: white;
+}
+.checkbox-inline + .checkbox-inline, .radio-inline + .radio-inline {
+    margin-left: 0;
 }
 .group-block{
     border: 1px solid;
@@ -4358,6 +4401,7 @@ a.create-record i {
     color: #535353;
     min-height: 45px;
     padding: 0;
+    max-width: 100%;
 }
 .select2-container--default .select2-selection--multiple:hover
 .select2-container--default .select2-selection--single:hover {
@@ -4724,7 +4768,10 @@ ul.icons-list li i {
     top:20px;
     right:20px;
 }
-
+.cu-area-profile {
+    height: 236px !important;
+    max-width: 100%;
+}
 .reader-text .j-diff-block:last-child .btn-reset-compare{
     right:35px;
 }.font-size-12{

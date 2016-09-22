@@ -37,6 +37,7 @@ $(document).ready(function(){
 
     $(".j-select2-ajax").select2({
         minimumInputLength: 2,
+        width: '100%',
         placeholder: $(".j-select2-ajax").attr('placeholder'),
         ajax:{
             url: $(".j-select2-ajax").data('url'),

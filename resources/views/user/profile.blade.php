@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-group {{ $errors->has('about_me') ? ' has-error' : '' }}">
                         {!! Form::label('about_me', 'About Me:') !!}
-                        {!! Form::textarea('about_me', '', array("class"=>"input1")) !!}
+                        {!! Form::textarea('about_me', '', array("class"=>"input1 cu-area-profile")) !!}
                         @if ($errors->has('about_me'))
                             <span class="help-block">
                                 {{ $errors->first('about_me') }}
@@ -139,11 +139,11 @@
                     </div>
                     <div class="form-group{{ $errors->has('invited_by_id') ? ' has-error' : '' }}">
                         {!! Form::label('invited_by_id', 'Invited By') !!}
-                        {!! Form::select('invited_by_id', $model->inviter?[$model->inviter->id => $model->inviter->name]:[], old('invited_by_id'),['class' => 'form-control j-select2-ajax','data-url'=> '/ajax/users-list','placeholder' => 'Select users...']) !!}
+                        {!! Form::select('invited_by_id', $model->inviter?[$model->inviter->id => $model->inviter->name]:[], old('invited_by_id'),['class' => 'j-select2-ajax','data-url'=> '/ajax/users-list','placeholder' => 'Select users...']) !!}
                         @if ($errors->has('invited_by_id'))
                             <span class="help-block">
-                                    {{ $errors->first('invited_by_id') }}
-                                </span>
+                                {{ $errors->first('invited_by_id') }}
+                            </span>
                         @endif
                     </div>
                     <div class="form-group">
@@ -151,7 +151,7 @@
                         <div class="input-group">
                             <input id="invite-link" type="text" class="form-control input1" value="{!! url('/invite/'.$model->id) !!}" readonly="readonly">
                             <span class="input-group-btn">
-                                <button id="copy" title="Copy" class="btn copy btn-default cu-btn-copy" data-clipboard-target="#invite-link" type="button"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+                                <button id="copy" title="Copy" class="btn copy btn-default cu-btn-copy" data-clipboard-target="#invite-link" type="button"><i class="bs-copypaste" aria-hidden="true"></i></button>
                             </span>
                         </div>
                     </div>
@@ -159,18 +159,18 @@
                         {!! Form::label('plan_type', "Subscription plan:") !!}
 
                         <div>
-                            <label class="radio-inline">
-                                {!! Form::radio('plan_type', 'free', true) !!}
-                                Free
-                            </label>
-                            <label class="radio-inline">
-                                {!! Form::radio('plan_type', 'premium', false) !!}
-                                Premium ({!! $model->isPremiumPaid()?'paid | Expires at: '.$model->getPlanExpiresAt() :'non-paid' !!})
-                            </label>
+                            <div class="radio-inline mt15">
+                                {!! Form::radio('plan_type', 'free', true, ["class" => "cust-radio", 'id' => 'free']) !!}
+                                <label for="free" class="label-radio cu-label">Free</label>
+                            </div>
+                            <div class="radio-inline mt15">
+                                {!! Form::radio('plan_type', 'premium', false, ["class" => "cust-radio", 'id' => 'premium']) !!}
+                                <label for="premium" class="label-radio cu-label">Premium ({!! $model->isPremiumPaid()?'paid | Expires at: '.$model->getPlanExpiresAt() :'non-paid' !!})</label>
+                            </div>
                             @if ($errors->has('plan_type'))
                                 <span class="help-block">
                                         {{ $errors->first('plan_type') }}
-                                    </span>
+                                </span>
                             @endif
                         </div>
                     </div>
@@ -180,10 +180,10 @@
 
                             <div>
                                 @foreach(App\User::getPossiblePlans() as $plan_name => $plan)
-                                <label class="radio-inline">
-                                    {!! Form::radio('plan_name', $plan_name, ($model->getActivePlan() == $plan_name)) !!}
-                                    {!! $plan_name.'($'.$plan['amount'].')' !!}
-                                </label>
+                                <div class="radio-inline">
+                                    {!! Form::radio('plan_name', $plan_name, ($model->getActivePlan() == $plan_name), ["class" => "cust-radio", "id" => $plan_name]) !!}
+                                    <label class="label-radio cu-label" for="{{$plan_name}}"> {!! $plan_name.' ($'.$plan['amount'].')' !!}</label>
+                                </div>
                                 @endforeach
                                 @if ($errors->has('plan_name'))
                                     <span class="help-block">
@@ -195,7 +195,7 @@
 
                         <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
                             {!! Form::label('coupon_code', 'Coupon Code:') !!}
-                            {!! Form::text('coupon_code') !!}
+                            {!! Form::text('coupon_code', '', ["class" => "input1"]) !!}
                             @if ($errors->has('coupon_code'))
                                 <span class="help-block">
                                     {{ $errors->first('coupon_code') }}
@@ -270,11 +270,9 @@
                         {!! Form::label('subscribed', "Newsletter:") !!}
 
                         <div>
-                            <label>
-                                {!! Form::hidden('subscribed', 0) !!}
-                                {!! Form::checkbox('subscribed', 1, true) !!}
-                                I want to get the latest news by my Email
-                            </label>
+                            {!! Form::hidden('subscribed', 0) !!}
+                            {!! Form::checkbox('subscribed', 1, true, ["class" => "cust-radio", "id" => "subscribed2"]) !!}
+                            <label for="subscribed2" class="label-checkbox cu-label  mt15">I want to get the latest news by my Email</label>
                         </div>
                     </div>
                 </div>
@@ -285,8 +283,8 @@
             </div>
         </div>
 
-        <div class="box-footer">
-            {!! Form::button('Save', ['type'=>'submit','class'=>'btn btn-primary']) !!}
+        <div>
+            {!! Form::button('Save', ['type'=>'submit','class'=>'btn2-kit m-btn pull-right']) !!}
         </div>
         {!! Form::close() !!}
         @include('partials.imageupload')
