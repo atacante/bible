@@ -5024,3 +5024,18 @@ h3.strongs-subheader{
 .def-highlight, span.word-definition:hover{
     font-weight: bold;
 }
+.icon-date-from{
+    position: absolute;
+    right: 58%;
+    top: 12px;
+    font-size: 19px;
+}
+.icon-date-to{
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    font-size: 19px;
+}
+.transparent{
+    background-color: transparent;
+}
