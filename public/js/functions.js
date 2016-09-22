@@ -367,3 +367,30 @@ reader.clearHighlights = function(){
     $('.def-highlight').removeClass('def-highlight');
 }
 
+site.checkNewWallPosts = function(wallType){
+    var url = false;
+    switch (wallType){
+        case 'public':
+            url = '/community';
+            break;
+        case 'group':
+            url = '/group/view';
+            break;
+    }
+    $.ajax({
+        method: "GET",
+        url: url,
+        data:{
+            checkPosts:1,
+            lastNoteId:$('#j-last-note-id').val(),
+            lastJournalId:$('#j-journal-note-id').val(),
+            lastPrayerId:$('#j-last-prayer-id').val(),
+            lastStatusId:$('#j-last-status-id').val()
+        },
+        success:function(data){
+            $(that).parents('.item-footer').find('.j-item-comments').html(data);
+        }
+    });
+    console.log('checkNewPosts for wall '+wallType);
+}
+
