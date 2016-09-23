@@ -6,11 +6,9 @@
     </h4>
 
     <ul class="study-list">
-
         @if($content['notes']->count())
             @foreach($content['notes'] as $note)
                 <li>
-
                     <div class="note-text j-note-text" data-noteid="{!! $note->id !!}">
                         {!! str_limit(strip_tags($note->note_text,'<p></p>'), $limit = 300, $end = '...') !!}
                     </div>

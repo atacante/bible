@@ -304,7 +304,7 @@ h4.h4-sub-kit {
     margin-top: 0;
 }
 .control-label, .has-error .control-label {
-    color: #1b1b1b;
+    color: #535353;
     font-family: work_sansmedium;
     font-size: 16px;
     font-weight: normal;
@@ -1895,9 +1895,6 @@ ul.tabs-nav li:last-child {
     font-size: 15px;
     font-family: work_sansregular;
 }
-.cu-label:before {
-    bottom: 7px !important;
-}
 .cu-btn-copy i.bs-copypaste {
     font-size: 20px;
     padding-top: 5px;
@@ -3089,6 +3086,11 @@ ul.icon-panel li a {
     line-height: 30px;
     position: relative;
 }
+.inner-pad5 {
+    padding: 80px 45px;
+    line-height: 30px;
+    position: relative;
+}
 .version-title {
     color: #313131;
     font-family: ns_widenormal;
@@ -3108,7 +3110,13 @@ ul.icon-panel li a {
 .verse-text .word-definition:last-child {
     margin-right: 10px;
 }
-
+.req {
+    color: #f90000;
+    font-family: work_sansmedium;
+    font-size: 16px;
+    line-height: 24px;
+    vertical-align: top;
+}
 .verse-text b {
     font-weight: normal !important;
 }
@@ -4635,6 +4643,9 @@ ul.icons-list li i {
     font-size: 18px;
     vertical-align: sub;
 }
+.form-horizontal .control-label {
+    text-align: left;
+}
 @media (max-width: 992px) {
     .pad-r1 {
         padding-right: 15px !important;
@@ -4830,6 +4841,7 @@ label.label-checkbox {
     margin-right: 15px;
     font-weight: normal;
     color: #616161;
+    line-height: 30px;
 }
 label.label-checkbox:before {
     content: "";
@@ -4840,7 +4852,7 @@ label.label-checkbox:before {
     margin-right: 10px;
     position: absolute;
     left: 0px;
-    bottom: 2px;
+    top: 4px;
     background-color: #ffffff;
     font-family: pn__rgregular;
     font-size: 16px;
@@ -4855,6 +4867,7 @@ label.label-radio {
     margin-right: 15px;
     font-weight: normal;
     color: #616161;
+    line-height: 30px;
 }
 label.label-radio:before {
     content: "";
@@ -4866,7 +4879,7 @@ label.label-radio:before {
     margin-right: 10px;
     position: absolute;
     left: 0px;
-    bottom: 2px;
+    top: 4px;
     background-color: #ffffff;
     font-family: pn__rgregular;
     font-size: 16px;
