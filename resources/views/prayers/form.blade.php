@@ -37,7 +37,7 @@
     <div class="form-group">
         <div class="checkbox">
             {!! Form::hidden('answered', 0) !!}
-            {!! Form::checkbox('answered', 1,false,['id' => 'answered','class    ' => 'cust-radio']) !!}
+            {!! Form::checkbox('answered', 1,$model->answered,['id' => 'answered','class' => 'cust-radio']) !!}
             <label class="label-checkbox" for="answered">Answered</label>
         </div>
     </div>
