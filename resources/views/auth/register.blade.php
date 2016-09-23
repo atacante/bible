@@ -235,16 +235,19 @@
 
                         <div class="form-group">
                             <div class="col-xs-8 col-md-offset-4">
-                                <button type="submit" class="btn2-kit mt16">
+                                <button type="submit" class="btn2-kit mt16 cu-btn-pad1">
                                     SIGN UP
                                 </button>
                             </div>
                         </div>
-                        </form>
+                </form>
 
             </div>
+
+
+
         </div>
-        </div>
-        </div>
+    </div>
+</div>
 {{--    </div>--}}
 @endsection
