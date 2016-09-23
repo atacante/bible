@@ -397,6 +397,10 @@ site.checkNewWallPosts = function(wallType){
 }
 
 site.hideAlert = function(){
+
+    var width = $('.in-inner-container').width();
+     $('.alert-container').width(width);
+
     setTimeout(function(){
         $('.alert-container').fadeOut();
     }, 3000);
