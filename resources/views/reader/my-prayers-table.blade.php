@@ -1,7 +1,7 @@
 <div id="prayers" class="verse-prayers my-prayers-list j-my-prayers-list mt3">
     <h4 class="h4-study mb3">
         <i class="bs-pray cu-pray"></i>
-        My Prayers for this Study Verse
+        My <span>Prayers</span> for this Study Verse
         {!! Html::link('/journal/create','Create Prayer', ['class'=>'btn1-kit cu-study-btn j-create-prayer']) !!}
     </h4>
 
@@ -35,7 +35,7 @@
                             </li>
                             <li>
                                 <a title="Edit Prayer" class="j-create-note" href="{!! url('/prayer/update/'.$prayer->id) !!}">
-                                    <i class="bs-journal"></i>
+                                    <i class="bs-edit"></i>
                                 </a>
                             </li>
                             <li>
