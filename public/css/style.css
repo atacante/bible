@@ -5164,6 +5164,18 @@ h3.strongs-subheader{
     margin-right: 8px;
 }
 
+i.bs-note{
+    color: #fcab4b;
+}
+
+i.bs-journal{
+    color: #5d93c2;
+}
+
+i.bs-pray{
+    color: #49ba93;
+}
+
 #popup .modal-dialog .modal-content .modal-header i.bs-note,
 #popup .modal-dialog .modal-content .modal-header i.bs-journal,
 #popup .modal-dialog .modal-content .modal-header i.bs-pray{
@@ -5362,4 +5374,10 @@ h3.strongs-subheader{
 
 .entry-form .radio i{
     width: 20px !important;
+}
+
+.entry-full-page{
+    position: relative;
+    padding: 35px 45px;
+    margin-bottom: 35px;
 }
