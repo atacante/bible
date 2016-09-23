@@ -451,4 +451,11 @@ class User extends Authenticatable
         }
     }
 
+    public function setInvitedByIdAttribute($value)
+    {
+        if(empty($value)){
+            $this->attributes['invited_by_id'] = NULL;
+        }
+    }
+
 }
