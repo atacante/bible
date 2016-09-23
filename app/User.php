@@ -448,6 +448,8 @@ class User extends Authenticatable
     {
         if(empty($value)){
             $this->attributes['country_id'] = NULL;
+        }else{
+            $this->attributes['country_id'] = $value;
         }
     }
 
@@ -455,6 +457,8 @@ class User extends Authenticatable
     {
         if(empty($value)){
             $this->attributes['invited_by_id'] = NULL;
+        }else{
+            $this->attributes['invited_by_id'] = $value;
         }
     }
 
