@@ -2,7 +2,7 @@
     <h4 class="h4-study mb3">
         <i class="bs-pray cu-pray"></i>
         My <span>Prayers</span> for this Study Verse
-        {!! Html::link('/journal/create','Create Prayer', ['class'=>'btn1-kit cu-study-btn j-create-prayer']) !!}
+        {!! Html::link('/prayers/create','Create Prayer', ['class'=>'btn1-kit cu-study-btn j-create-prayer']) !!}
     </h4>
 
     <ul class="study-list">
@@ -34,12 +34,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a title="Edit Prayer" class="j-create-note" href="{!! url('/prayer/update/'.$prayer->id) !!}">
+                                <a title="Edit Prayer" class="j-create-note" href="{!! url('/prayers/update/'.$prayer->id) !!}">
                                     <i class="bs-edit"></i>
                                 </a>
                             </li>
                             <li>
-                                <a title="Delete Prayer" href="{!! url('/prayer/delete',$prayer->id) !!}" data-toggle="modal" data-target="#confirm-delete" data-header="Delete Confirmation" data-confirm="Are you sure you want to delete this item?">
+                                <a title="Delete Prayer" href="{!! url('/prayers/delete',$prayer->id) !!}" data-toggle="modal" data-target="#confirm-delete" data-header="Delete Confirmation" data-confirm="Are you sure you want to delete this item?">
                                     <i class="bs-remove"></i>
                                 </a>
                             </li>
