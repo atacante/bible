@@ -225,7 +225,7 @@ class GroupsController extends Controller
             }
         }
 
-        $view = 'groups.create';
+        $view = 'groups.update';
         if (Request::ajax()) {
             $view = 'groups.form';
         }
