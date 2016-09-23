@@ -81,11 +81,17 @@
                             <div class="col-xs-3">{!! Form::label('date_from', 'Date from') !!}</div>
                             <div class="col-xs-9">
                                 <div class="input-group input-daterange">
-                                    {!! Form::text('date_from',Request::input('date_from'),['placeholder' => 'mm/dd/yyyy','class' => 'form-control datepicker transparent','style' => '']) !!}
-                                    <i class="bs-calendar icon-date-from"></i>
+                                    <div class="c-inline-input">
+                                        {!! Form::text('date_from',Request::input('date_from'),['placeholder' => 'mm/dd/yyyy','class' => 'form-control datepicker transparent','style' => '']) !!}
+                                        <i class="bs-calendar icon-date-to"></i>
+                                    </div>
+
                                     <span class="input-group-addon">To</span>
-                                    {!! Form::text('date_to',Request::input('date_to'),['placeholder' => 'mm/dd/yyyy','class' => 'form-control datepicker transparent','style' => '']) !!}
-                                    <i class="bs-calendar icon-date-to"></i>
+
+                                    <div class="c-inline-input">
+                                        {!! Form::text('date_to',Request::input('date_to'),['placeholder' => 'mm/dd/yyyy','class' => 'form-control datepicker transparent','style' => '']) !!}
+                                        <i class="bs-calendar icon-date-to"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>

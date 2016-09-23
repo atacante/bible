@@ -4455,7 +4455,7 @@ input.datepicker {
     font-size: 16px;
     color: #535353;
     min-height: 45px;
-    padding: 0 50px 0 20px;
+    padding: 0 40px 0 20px;
     text-align: left !important;
  /*   background: url("/images/calendar.png") top right no-repeat;*/
 }
@@ -4635,6 +4635,10 @@ ul.icons-list li i {
 .form-horizontal .control-label {
     text-align: left;
 }
+.c-inline-input {
+    overflow: hidden;
+    position: relative;
+}
 @media (max-width: 992px) {
     .pad-r1 {
         padding-right: 15px !important;
@@ -4653,6 +4657,12 @@ ul.icons-list li i {
     }
     .my-item {
         width: 33.333333%;
+    }
+    input.datepicker {
+        padding: 0 20px;
+    }
+    .icon-date-to {
+        display: none !important;
     }
 }
 @media (max-width: 970px) {
@@ -5082,8 +5092,8 @@ h3.strongs-subheader{
 }
 .icon-date-to{
     position: absolute;
-    right: 2.5%;
-    top: 12px;
+    right: 12px;
+    top: 13px;
     font-size: 19px;
 }
 .transparent{
