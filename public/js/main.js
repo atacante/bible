@@ -1784,5 +1784,5 @@ $(document).ready(function(){
             $(this).find('.j-arrow-up-down').removeClass('arrow-up');
         }
     });
-    // site.hideAlert();
+    site.hideAlert();
 });
