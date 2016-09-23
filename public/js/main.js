@@ -1,6 +1,3 @@
-var site = {
-    wallCheckInterval: 15000//ms
-};
 
 $(document).ready(function(){
     var clipboard = new Clipboard('.copy');
@@ -1780,4 +1777,5 @@ $(document).ready(function(){
         $('body').scrollTo($('.j-compare-verses'),0,{offset:0});
     }
 
+    site.hideAlert();
 });

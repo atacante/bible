@@ -1,4 +1,6 @@
-var site = {};
+var site = {
+    wallCheckInterval: 15000//ms
+};
 var reader = {};
 var user = {};
 
@@ -394,3 +396,8 @@ site.checkNewWallPosts = function(wallType){
     console.log('checkNewPosts for wall '+wallType);
 }
 
+site.hideAlert = function(){
+    setTimeout(function(){
+        $('.alert-container').fadeOut();
+    }, 3000);
+}

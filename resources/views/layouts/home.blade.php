@@ -108,7 +108,9 @@
                     </div>
                 </div>
                 <div class="in-inner-container">
-                    @notification()
+                    <div class="alert-container">
+                        @notification()
+                    </div>
                     @yield('content')
                     @include('admin.partials.deletepop')
                     @include('partials.popup')

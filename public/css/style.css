@@ -5099,3 +5099,10 @@ h3.strongs-subheader{
 .transparent{
     background-color: transparent;
 }
+.alert-container{
+    position: fixed;
+    width: 1260px;
+    z-index: 20;
+    top: 115px;
+    opacity: 0.8;
+}

@@ -106,7 +106,9 @@
                 <div class="bg-g2">
                     <div class="in-inner-container">
                         @include('partials.nav')
-                        @notification()
+                        <div class="alert-container">
+                            @notification()
+                        </div>
                         @yield('content')
                         @include('admin.partials.deletepop')
                         @include('partials.popup')
