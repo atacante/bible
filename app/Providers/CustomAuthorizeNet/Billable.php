@@ -253,7 +253,9 @@ trait Billable
             $billto->setZip(11111);
         }
 
-        $billto->setCountry($this->country->nicename);
+        if($this->country){
+            $billto->setCountry($this->country->nicename);
+        }
 
         // Create the Customer Payment Profile object
         $paymentprofile = new AnetAPI\CustomerPaymentProfileExType();
