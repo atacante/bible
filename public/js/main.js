@@ -831,7 +831,7 @@ $(document).ready(function(){
             url += '?rel='+$('input[name="rel"]').val()
         }
         var fullScreenUrl = url;
-        if($(this).parent('.j-reader-actions').length > 0){
+        if($(this).parent('.j-reader-actions').length > 0 || $('input[name="verse_details"]').length > 0){
             url += '&extraFields=1';
             fullScreenLabel = 'My Study Verse';
             fullScreenUrl = $.trim(url.replace('/notes/create','/reader/my-study-verse'));
@@ -843,8 +843,8 @@ $(document).ready(function(){
             data:{},
             success:function(data){
                 $('#popup').find('.modal-header .modal-title').html('');
-                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left">Create Note</div>');
-                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+fullScreenUrl+'" data-type="note" class="label label-primary full-screen-btn j-full-screen-btn">'+fullScreenLabel+'</a></div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left modal-title-text"><i class="bs-note"></i>Create Note</div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left modal-header-btn"><a href="'+fullScreenUrl+'" data-type="note" class="btn4-kit s-full-screen-btn j-full-screen-btn"><i class="bs-study"></i>'+fullScreenLabel+'</a></div>');
                 //$('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><button type="submit" class="btn btn-primary full-screen-btn j-full-screen-btn">Full screen</button></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
@@ -880,7 +880,7 @@ $(document).ready(function(){
             url += '?rel='+$('input[name="rel"]').val()
         }
         var fullScreenUrl = url;
-        if($(this).parent('.j-reader-actions').length > 0){
+        if($(this).parent('.j-reader-actions').length > 0  || $('input[name="verse_details"]').length > 0){
             url += '&extraFields=1';
             fullScreenLabel = 'My Study Verse';
             fullScreenUrl = $.trim(url.replace('/journal/create','/reader/my-study-verse'));
@@ -891,8 +891,8 @@ $(document).ready(function(){
             url: url,
             data:{},
             success:function(data){
-                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left">Create Journal Entry</div>');
-                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+fullScreenUrl+'" data-type="journal" class="label label-primary full-screen-btn j-full-screen-btn">'+fullScreenLabel+'</a></div>');
+                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left modal-title-text"><i class="bs-journal"></i>Create Journal Entry</div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left modal-header-btn"><a href="'+fullScreenUrl+'" data-type="journal" class="btn4-kit s-full-screen-btn j-full-screen-btn">'+fullScreenLabel+'</a></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
                 $('#popup').modal({show:true});
@@ -926,7 +926,7 @@ $(document).ready(function(){
             url += '?rel='+$('input[name="rel"]').val()
         }
         var fullScreenUrl = url;
-        if($(this).parent('.j-reader-actions').length > 0){
+        if($(this).parent('.j-reader-actions').length > 0  || $('input[name="verse_details"]').length > 0){
             url += '&extraFields=1';
             fullScreenLabel = 'My Study Verse';
             fullScreenUrl = $.trim(url.replace('/prayers/create','/reader/my-study-verse'));
@@ -937,8 +937,8 @@ $(document).ready(function(){
             url: url,
             data:{},
             success:function(data){
-                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left">Create Prayer</div>');
-                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><a href="'+fullScreenUrl+'" data-type="prayer" class="label label-primary full-screen-btn j-full-screen-btn">'+fullScreenLabel+'</a></div>');
+                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left modal-title-text"><i class="bs-pray"></i>Create Prayer</div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left modal-header-btn"><a href="'+fullScreenUrl+'" data-type="prayer" class="btn4-kit s-full-screen-btn j-full-screen-btn">'+fullScreenLabel+'</a></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
                 $('#popup').modal({show:true});
@@ -1776,6 +1776,13 @@ $(document).ready(function(){
     if($('.j-compare-verses').length > 0){
         $('body').scrollTo($('.j-compare-verses'),0,{offset:0});
     }
-
-   // site.hideAlert();
+    $('#popup, .entry-form').on('click','.j-collapse',function(){
+        if($(this).hasClass('collapsed')){
+            $(this).find('.j-arrow-up-down').addClass('arrow-up');
+        }
+        else{
+            $(this).find('.j-arrow-up-down').removeClass('arrow-up');
+        }
+    });
+    // site.hideAlert();
 });
