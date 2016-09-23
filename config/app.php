@@ -278,8 +278,8 @@ return [
 
     'contactEmail' => 'info@bibleproject.com',
 
-    'defaultBibleVersion' => 'king_james',// use 'all' if not needed specific version
-    'defaultChaptersVersion' => 'king_james',
+    'defaultBibleVersion' => 'nasb',// use 'all' if not needed specific version
+    'defaultChaptersVersion' => 'nasb',
     'defaultBookNumber' => 1,
     'defaultChapterNumber' => 1,
     'mailchimpListId' => env('MAILCHIMP_LIST_ID'),

@@ -17,7 +17,7 @@
 @section('content')
     <div class="j-verses-filters">
         {!! Form::open(['method' => 'get','url' => '/reader/'.(isset($filterAction)?$filterAction:'read'), 'id'=>'j-sel-book-form']) !!}
-
+        {!! Form::hidden('diff','on') !!}
         {{-- COMPARE POPUP --}}
         <div class="popup-new j-popup-compare c-popup-compare" style="display: none">
             <div class="popup-arrow"></div>
@@ -25,11 +25,6 @@
                 COMPARE WITH...
             </h4>
             @if(isset($compare['versions']))
-                {{--<div class="sel-compare-versions mt17">
-                    {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['placeholder' => 'Start Typing Version Name (or Language)','multiple' => true, 'class' => 'j-compare-versions', 'style'=>'width:100%;']) !!}
-                </div>--}}
-                {{--<input type="hidden" id="compare-1" name="compare[]" value="" />--}}
-                {{--<input type="hidden" id="compare-2" name="compare[]" value="" />--}}
                 {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['multiple' => true, 'class' => 'hidden','id' => 'compare-versions-select']) !!}
                 <ul class="compare-list j-compare-list">
                     @foreach($compare['versions'] as $key => $version)
@@ -206,7 +201,7 @@
 
                     </div>
                 </div>
-                @if(Request::input('diff',false))
+                @if((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff',false) || Request::input('diff',false) == 'on'))
                 <div class="row">
                     <div class="col-xs-12 text-right legend-block">
                         <div class="legend-item">

@@ -92,10 +92,10 @@ class ViewHelper
 
     public static function prepareVerseText($verse, $allowDiff = false, $readerMode = 'beginner')
     {
-        if((!$readerMode || $readerMode == 'beginner') && !empty($verse->verse_text_with_symbolism) && (!Request::input('diff',false) || $allowDiff)){
+        if((!$readerMode || $readerMode == 'beginner') && !empty($verse->verse_text_with_symbolism) && (!((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff',false) || Request::input('diff',false) == 'on')) || $allowDiff)){
             return $verse->verse_text_with_symbolism;
         }
-        elseif(!empty($verse->verse_text_with_lexicon) && (!Request::input('diff',false) || $allowDiff)){
+        elseif(!empty($verse->verse_text_with_lexicon) && (!((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff',false) || Request::input('diff',false) == 'on')) || $allowDiff)){
             return $verse->verse_text_with_lexicon;
         }
         else{
