@@ -3366,6 +3366,9 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     right: 50px;
     text-decoration: none !important;
 }
+textarea.input1 {
+    padding: 20px;
+}
 .btn-reset:hover {
     background: #00b9f7;
     color: white;
