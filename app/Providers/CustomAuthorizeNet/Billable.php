@@ -142,7 +142,9 @@ trait Billable
             $billto->setZip(11111);
         }
 
-        $billto->setCountry($this->country->nicename);
+        if($this->country){
+            $billto->setCountry($this->country->nicename);
+        }
 
         $paymentprofile = new AnetAPI\CustomerPaymentProfileType();
         $paymentprofile->setCustomerType('individual');
