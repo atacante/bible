@@ -9,7 +9,6 @@
         @if($content['journal']->count())
             @foreach($content['journal'] as $journal)
                 <li>
-
                     <div class="note-text j-note-text" data-journalid="{!! $journal->id !!}">
                         {!! str_limit(strip_tags($journal->journal_text,'<p></p>'), $limit = 300, $end = '...') !!}
                     </div>
@@ -42,7 +41,6 @@
                         </ul>
                         <div class="c-journey-date cu-date1">
                             {!! $journal->humanLastUpdate($journal::DFORMAT) !!}
-                            {{--{!! $note->created_at->format($note::DFORMAT) !!}--}}
                             - {!! ViewHelper::getAccessLevelIcon($journal->access_level) !!}
                         </div>
 
