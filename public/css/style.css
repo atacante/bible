@@ -1827,8 +1827,8 @@ ul.tabs-nav li:last-child {
 }
 #avatar.dropzone .select-image{
     position: absolute;
-    left:0;
-    padding: 32px 36px !important;
+    left: 0;
+    padding: 41px 45px !important;
 }
 .no-avatar {
     width: 100px;
