@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-xs-12">
             <h2 class="h2-new mb3">
-                <i class="bs-logout cu-study2"></i>
+                <i class="bs-login cu-login"></i>
                 LOGIN
             </h2>
         </div>

@@ -683,6 +683,9 @@ table.table-lexicon p {
     -moz-osx-font-smoothing: grayscale;
     text-decoration: none !important;
 }
+.bs-login:before {
+    content: "\e93d";
+}
 .bs-copypaste:before {
     content: "\e937";
 }
@@ -3335,6 +3338,14 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     font-size: 35px;
     padding-right: 7px;
     vertical-align: middle;
+}
+.cu-login {
+    color: #00b9f7;
+    display: inline-block;
+    font-size: 28px;
+    padding-right: 7px;
+    vertical-align: bottom;
+    line-height: 30px;
 }
 .a-study {
     text-decoration: none !important;
