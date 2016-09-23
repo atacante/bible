@@ -343,6 +343,7 @@ h4.h4-sub-kit {
     font-family: ns_widemedium;
     min-width: 145px;
     text-align: center;
+    line-height: 17px;
 }
 .btn2-kit:hover, .btn2-kit:active {
     display: inline-block;
@@ -4381,6 +4382,9 @@ a.create-record i {
 }
 .advansed-pop label.label-checkbox {
     margin-right: 20px;
+}
+.advansed-pop label.label-checkbox:before {
+    top: 14px !important;
 }
 .select2-container--default .select2-selection--multiple,
 .select2-container--default .select2-selection--single {
