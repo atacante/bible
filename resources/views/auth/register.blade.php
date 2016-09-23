@@ -17,8 +17,7 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            {!! Form::label('name', 'Name', array('class' => 'col-md-4 control-label')) !!}
-
+                            <label class="col-md-4 control-label" for="name">Name <span class="req">*</span></label>
                             <div class="col-xs-8">
                                 {!! Form::text('name', old('name'), array('class' => 'form-control input1')) !!}
 
@@ -31,8 +30,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            {!! Form::label('email', 'Email', array('class' => 'col-md-4 control-label')) !!}
-
+                            <label class="col-md-4 control-label" for="email">Email <span class="req">*</span></label>
                             <div class="col-xs-8">
                                 {!! Form::text('email', old('email'), array('class' => 'form-control input1')) !!}
 
@@ -45,8 +43,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            {!! Form::label('password', "Password", array('class' => 'col-md-4 control-label')) !!}
-
+                            <label class="col-md-4 control-label" for="password">Password <span class="req">*</span></label>
                             <div class="col-xs-8">
                                 {!! Form::password('password', array('class' => 'form-control input1')) !!}
 
@@ -59,8 +56,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            {!! Form::label('password_confirmation', "Confirm Password", array('class' => 'col-md-4 control-label')) !!}
-
+                            <label class="col-md-4 control-label" for="password_confirmation">Confirm Password <span class="req">*</span></label>
                             <div class="col-xs-8">
                                 {!! Form::password('password_confirmation', array('class' => 'form-control input1')) !!}
 

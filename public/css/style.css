@@ -3110,7 +3110,13 @@ ul.icon-panel li a {
 .verse-text .word-definition:last-child {
     margin-right: 10px;
 }
-
+.req {
+    color: #f90000;
+    font-family: work_sansmedium;
+    font-size: 16px;
+    line-height: 24px;
+    vertical-align: top;
+}
 .verse-text b {
     font-weight: normal !important;
 }
