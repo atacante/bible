@@ -184,6 +184,7 @@ h4.h4-kit {
     font-weight: normal;
     margin: 0;
     padding: 0;
+    letter-spacing: 1px;
 }
 h5.h5-kit {
     font-family: ns_widenormal;
@@ -2699,6 +2700,12 @@ ul.c-social li a:hover, ul.c-social li a:active {
     display: inline-block;
     padding-right: 15px;
     vertical-align: sub;
+}
+.cu-add {
+    color: #00b9f7;
+    font-size: 18px;
+    display: inline-block;
+    padding-right: 7px;
 }
 .cu-lexicon {
     color: #00b9f7;
