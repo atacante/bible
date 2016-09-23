@@ -1029,16 +1029,6 @@ a {
     border-radius: 0px;
 }
 
-.edit-images-thumbs .img-thumb:hover{
-    /*background-color: #FFF;
-    opacity: 0.5;
-    transition: opacity .25s ease-in-out;
-    -moz-transition: opacity .25s ease-in-out;
-    -webkit-transition: opacity .25s ease-in-out;
-    -o-transition: opacity .25s ease-in-out;
-    -ms-transition: opacity .25s ease-in-out;*/
-}
-
 
 .location-item, .people-item{
     border-bottom: 1px solid #ddd;
@@ -1485,7 +1475,7 @@ a.view-details:hover{
 }
 .small-box h3,
 .small-box p {
-    z-index: 5px;
+    z-index: 5;
 }
 .small-box .icon {
     -webkit-transition: all 0.3s linear;
@@ -1578,7 +1568,7 @@ a.view-details:hover{
 }
 .mini-box h3,
 .mini-box p {
-    z-index: 5px;
+    z-index: 5;
 }
 .mini-box .icon {
     -webkit-transition: all 0.3s linear;
@@ -1992,10 +1982,8 @@ ul.tabs-nav li:last-child {
 
 .group-details .header{
     height: 75px;
-
     background: rgba(74,74,74,1);
     background: -moz-linear-gradient(top, rgba(74,74,74,1) 0%, rgba(0,0,0,0) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(74,74,74,1)), color-stop(100%, rgba(0,0,0,0)));
     background: -webkit-linear-gradient(top, rgba(74,74,74,1) 0%, rgba(0,0,0,0) 100%);
     background: -o-linear-gradient(top, rgba(74,74,74,1) 0%, rgba(0,0,0,0) 100%);
     background: -ms-linear-gradient(top, rgba(74,74,74,1) 0%, rgba(0,0,0,0) 100%);
@@ -2249,7 +2237,6 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     -webkit-box-shadow: none !important;
     font-size: 13px;
     padding: 7px 25px;
-    border-width: 2px;
     border-radius: 0;
     -webkit-border-radius: 0;
     vertical-align: top;
@@ -2300,7 +2287,6 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     -webkit-box-shadow: none !important;
     font-size: 13px;
     padding: 7px 25px;
-    border-width: 2px;
     border-radius: 0;
     -webkit-border-radius: 0;
     vertical-align: top;
@@ -3899,7 +3885,6 @@ textarea.wall-text-area:focus {
 }
 /* -------------- Location Page -------------- */
 .my-item {
-/*    overflow: hidden;*/
     min-height: 1px;
     padding-left: 7px;
     padding-right: 7px;
@@ -4448,7 +4433,7 @@ a.create-record i {
     border-radius: 50px;
     -webkit-border-radius: 50px;
 }
-.advansed-pop ul.select2-selection__rendered 2.5%li.select2-selection__choice .select2-selection__choice__remove {
+.advansed-pop ul.select2-selection__rendered li.select2-selection__choice .select2-selection__choice__remove {
     background: #313d47;
     color: white;
     float: right;
