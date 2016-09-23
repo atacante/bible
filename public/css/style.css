@@ -4448,7 +4448,7 @@ a.create-record i {
     border-radius: 50px;
     -webkit-border-radius: 50px;
 }
-.advansed-pop ul.select2-selection__rendered li.select2-selection__choice .select2-selection__choice__remove {
+.advansed-pop ul.select2-selection__rendered 2.5%li.select2-selection__choice .select2-selection__choice__remove {
     background: #313d47;
     color: white;
     float: right;
@@ -5087,13 +5087,13 @@ h3.strongs-subheader{
 }
 .icon-date-from{
     position: absolute;
-    right: 58%;
+    right: 56%;
     top: 12px;
     font-size: 19px;
 }
 .icon-date-to{
     position: absolute;
-    right: 10px;
+    right: 2.5%;
     top: 12px;
     font-size: 19px;
 }
