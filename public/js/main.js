@@ -817,6 +817,7 @@ $(document).ready(function(){
 
     $("body").on('click','.j-create-note',function (e) {
         e.preventDefault();
+        var that = this;
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
         var text = $('.j-verse-text:first').text();
@@ -843,7 +844,7 @@ $(document).ready(function(){
             data:{},
             success:function(data){
                 $('#popup').find('.modal-header .modal-title').html('');
-                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left modal-title-text"><i class="bs-note"></i>Create Note</div>');
+                $('#popup').find('.modal-header .modal-title').append('<div class="pull-left modal-title-text"><i class="bs-note"></i>'+($(that).attr('title')?$(that).attr('title'):'Create Note')+'</div>');
                 $('#popup').find('.modal-header .modal-title').append('<div class="pull-left modal-header-btn"><a href="'+fullScreenUrl+'" data-type="note" class="btn4-kit s-full-screen-btn j-full-screen-btn"><i class="bs-study"></i>'+fullScreenLabel+'</a></div>');
                 //$('#popup').find('.modal-header .modal-title').append('<div class="pull-left"><button type="submit" class="btn btn-primary full-screen-btn j-full-screen-btn">Full screen</button></div>');
                 $('#popup').find('.modal-body').html(data);
@@ -865,6 +866,7 @@ $(document).ready(function(){
 
     $("body").on('click','.j-create-journal',function (e) {
         e.preventDefault();
+        var that = this;
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
 
@@ -891,7 +893,7 @@ $(document).ready(function(){
             url: url,
             data:{},
             success:function(data){
-                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left modal-title-text"><i class="bs-journal"></i>Create Journal Entry</div>');
+                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left modal-title-text"><i class="bs-journal"></i>'+($(that).attr('title')?$(that).attr('title'):'Create Journal Entry')+'</div>');
                 $('#popup').find('.modal-header .modal-title').append('<div class="pull-left modal-header-btn"><a href="'+fullScreenUrl+'" data-type="journal" class="btn4-kit s-full-screen-btn j-full-screen-btn">'+fullScreenLabel+'</a></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
@@ -911,6 +913,7 @@ $(document).ready(function(){
 
     $("body").on('click','.j-create-prayer',function (e) {
         e.preventDefault();
+        var that = this;
         var url = $(this).attr('href');
         var fullScreenLabel = 'Full screen';
 
@@ -937,7 +940,7 @@ $(document).ready(function(){
             url: url,
             data:{},
             success:function(data){
-                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left modal-title-text"><i class="bs-pray"></i>Create Prayer</div>');
+                $('#popup').find('.modal-header .modal-title').html('<div class="pull-left modal-title-text"><i class="bs-pray"></i>'+($(that).attr('title')?$(that).attr('title'):'Create Prayer')+'</div>');
                 $('#popup').find('.modal-header .modal-title').append('<div class="pull-left modal-header-btn"><a href="'+fullScreenUrl+'" data-type="prayer" class="btn4-kit s-full-screen-btn j-full-screen-btn">'+fullScreenLabel+'</a></div>');
                 $('#popup').find('.modal-body').html(data);
                 $('#popup').find('.modal-footer').html('');
@@ -955,7 +958,7 @@ $(document).ready(function(){
         return false;
     });
 
-    $("body").on('click','.j-full-screen-btn',function (e) {
+    /*$("body").on('click','.j-full-screen-btn',function (e) {
         if($('.j-my-study-verse').length > 0 || $('.j-my-study-item').length > 0){
             e.preventDefault();
             var url = $(this).attr('href');
@@ -984,7 +987,7 @@ $(document).ready(function(){
         //}
         //alert(url);
         //location.href = url;
-    });
+    });*/
 
     if($('.j-reader-block.j-bible-text').length > 0){
         var hash = window.location.hash;
