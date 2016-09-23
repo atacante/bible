@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-group{{ $errors->has('country_id') ? ' has-error' : '' }}">
                         {!! Form::label('country_id', 'Country', array('class' => '')) !!}
-                        {!! Form::select('country_id', App\Country::pluck('nicename','id')->toArray(), ['class' => 'form-control2 input1 j-select2','data-url'=> '/ajax/users-list','placeholder' => 'Select country...']) !!}
+                        {!! Form::select('country_id', App\Country::pluck('nicename','id')->toArray(), Request::input('country_id', null), ['class' => 'form-control2 input1 j-select2','data-url'=> '/ajax/users-list','placeholder' => 'Select country...']) !!}
                         @if ($errors->has('country_id'))
                             <span class="help-block">
                                 {{ $errors->first('country_id') }}
