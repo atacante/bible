@@ -29,12 +29,12 @@
                         </div>
                         <ul class="icons-list pull-right">
                             <li>
-                                <a title="Print Prayer" href="#" data-noteid="{!! $prayer->id !!}" class="j-print-note">
+                                <a title="Print Prayer" href="#" data-prayerid="{!! $prayer->id !!}" class="j-print-prayer">
                                     <i class="bs-print"></i>
                                 </a>
                             </li>
                             <li>
-                                <a title="Edit Prayer" class="j-create-note" href="{!! url('/prayers/update/'.$prayer->id) !!}">
+                                <a title="Edit Prayer" class="j-create-prayer" href="{!! url('/prayers/update/'.$prayer->id) !!}">
                                     <i class="bs-edit"></i>
                                 </a>
                             </li>

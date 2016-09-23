@@ -23,17 +23,17 @@
                         </div>
                         <ul class="icons-list pull-right">
                             <li>
-                                <a title="Print note" href="#" data-noteid="{!! $journal->id !!}" class="j-print-note">
+                                <a title="Print journal entry" href="#" data-journalid="{!! $journal->id !!}" class="j-print-journal">
                                     <i class="bs-print"></i>
                                 </a>
                             </li>
                             <li>
-                                <a title="Edit note" class="j-create-note" href="{!! url('/journal/update/'.$journal->id) !!}">
+                                <a title="Edit journal entry" class="j-create-journal" href="{!! url('/journal/update/'.$journal->id) !!}">
                                     <i class="bs-edit"></i>
                                 </a>
                             </li>
                             <li>
-                                <a title="Delete note" href="{!! url('/journal/delete',$journal->id) !!}" data-toggle="modal" data-target="#confirm-delete" data-header="Delete Confirmation" data-confirm="Are you sure you want to delete this item?">
+                                <a title="Delete journal entry" href="{!! url('/journal/delete',$journal->id) !!}" data-toggle="modal" data-target="#confirm-delete" data-header="Delete Confirmation" data-confirm="Are you sure you want to delete this item?">
                                     <i class="bs-remove"></i>
                                 </a>
                             </li>
@@ -43,9 +43,7 @@
                             {!! $journal->humanLastUpdate($journal::DFORMAT) !!}
                             - {!! ViewHelper::getAccessLevelIcon($journal->access_level) !!}
                         </div>
-
                     </div>
-
                 </li>
             @endforeach
         @else
