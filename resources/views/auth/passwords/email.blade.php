@@ -24,7 +24,7 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-xs-3 control-label">E-Mail Address</label>
+                            <label class="col-xs-3 control-label">E-Mail</label>
 
                             <div class="col-xs-8">
                                 <input type="email" class="form-control input1" name="email" value="{{ old('email') }}">
