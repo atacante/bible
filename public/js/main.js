@@ -1777,5 +1777,5 @@ $(document).ready(function(){
         $('body').scrollTo($('.j-compare-verses'),0,{offset:0});
     }
 
-    site.hideAlert();
+   // site.hideAlert();
 });
