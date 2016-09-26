@@ -332,6 +332,12 @@ class GroupsController extends Controller
             $content['notes']['images'] = $notesQuery->get()->pluck('images','id');
             $notesCount = $notesQuery->count();
 
+            if(!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)){
+                $notesQuery->where('only_show_group_owner',false);
+                $journalQuery->where('only_show_group_owner',false);
+                $prayersQuery->where('only_show_group_owner',false);
+            }
+
             $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery)->union($statusesQuery);
             $entriesQuery->orderBy('published_at','desc')->orderBy('created_at','desc')->limit($limit)->offset($offset);
 

@@ -20,7 +20,7 @@ class Prayer extends BaseModel
 
     protected $table = 'prayers';
     protected $dates = ['created_at','updated_at','published_at'];
-    protected $fillable = ['id','user_id','note_id','journal_id','bible_version','verse_id','lexicon_id','highlighted_text','prayer_text','access_level','rel_code','answered'];
+    protected $fillable = ['id','user_id','note_id','journal_id','bible_version','verse_id','lexicon_id','highlighted_text','prayer_text','access_level','rel_code','answered','only_show_group_owner'];
 
     public function rules()
     {

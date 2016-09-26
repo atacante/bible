@@ -20,7 +20,7 @@ class Note extends BaseModel
 
     protected $table = 'notes';
     protected $dates = ['created_at','updated_at','published_at'];
-    protected $fillable = ['id','user_id','journal_id','prayer_id','verse_id','lexicon_id','highlighted_text','note_text','bible_version','access_level','rel_code'];
+    protected $fillable = ['id','user_id','journal_id','prayer_id','verse_id','lexicon_id','highlighted_text','note_text','bible_version','access_level','rel_code','only_show_group_owner'];
 
     public function rules()
     {

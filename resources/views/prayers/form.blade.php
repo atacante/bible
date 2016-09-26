@@ -96,18 +96,23 @@
             </label>
             <div class="share-with-groups">
                 <div class="radio j-all-groups {!! ViewHelper::checkEntryAccess($model)?'':'disabled' !!}">
-                    {!! Form::radio('share_for_groups', App\Note::ACCESS_PUBLIC_GROUPS, $model->access_level == App\Note::ACCESS_PUBLIC_GROUPS,['id' => 'public-groups-all','class' => 'cust-radio',ViewHelper::checkEntryAccess($model)?'':'disabled])']) !!}
+                    {!! Form::radio('share_for_groups', App\Note::ACCESS_PUBLIC_GROUPS, $model->access_level == App\Note::ACCESS_PUBLIC_GROUPS,['id' => 'public-groups-all','class' => 'cust-radio',ViewHelper::checkEntryAccess($model)?'':'disabled']) !!}
                     <label for="public-groups-all" class="label-radio cu-label">
                         All my groups
                     </label>
                 </div>
                 <div class="radio j-specific-groups {!! ViewHelper::checkEntryAccess($model)?'':'disabled' !!}">
-                    {!! Form::radio('share_for_groups', App\Note::ACCESS_SPECIFIC_GROUPS, $model->access_level == App\Note::ACCESS_SPECIFIC_GROUPS, ['id' => 'public-groups-specific','class' => 'cust-radio',ViewHelper::checkEntryAccess($model)?'':'disabled])']) !!}
+                    {!! Form::radio('share_for_groups', App\Note::ACCESS_SPECIFIC_GROUPS, $model->access_level == App\Note::ACCESS_SPECIFIC_GROUPS, ['id' => 'public-groups-specific','class' => 'cust-radio',ViewHelper::checkEntryAccess($model)?'':'disabled']) !!}
                     <label for="public-groups-specific" class="label-radio cu-label">
                         Selected groups
                     </label>
                 </div>
                 {!! Form::select('groups[]', $content['groups'], $model->groupsShares->pluck('id')->toArray(),['placeholder' => 'Select groups...','multiple' => true,'class' => 'clear-fix j-groups j-select2', 'style' => '',$model->access_level == App\Note::ACCESS_SPECIFIC_GROUPS?'':'disabled']) !!}
+                <div class="checkbox j-only-show-group-owner {!! ViewHelper::checkEntryAccess($model)?'':'disabled' !!}">
+                    {!! Form::hidden('only_show_group_owner', 0) !!}
+                    {!! Form::checkbox('only_show_group_owner', 1,$model->only_show_group_owner,['id' => 'only_show_group_owner','class' => 'cust-radio',ViewHelper::checkEntryAccess($model)?'':'disabled']) !!}
+                    <label class="label-checkbox" for="only_show_group_owner">Only show group leader</label>
+                </div>
             </div>
         </div>
         @if ($errors->has('access_level'))

@@ -1366,6 +1366,8 @@ $(document).ready(function(){
             $('.j-all-groups input[type="radio"]').attr('disabled',false);
             $('.j-specific-groups').removeClass('disabled');
             $('.j-specific-groups input[type="radio"]').attr('disabled',false);
+            $('.j-only-show-group-owner input[name="only_show_group_owner"]').attr('disabled',false);
+            $('.j-only-show-group-owner').removeClass('disabled');
             $('input[name="share_for_groups"][value="public_for_groups"]').attr('checked',true);
         }
         else{
@@ -1373,6 +1375,8 @@ $(document).ready(function(){
             $('.j-all-groups input[type="radio"]').attr('disabled',true);
             $('.j-specific-groups').addClass('disabled');
             $('.j-specific-groups input[type="radio"]').attr('disabled',true);
+            $('.j-only-show-group-owner input[name="only_show_group_owner"]').attr('disabled',true);
+            $('.j-only-show-group-owner').addClass('disabled');
         }
     });
     $('#popup, .entry-form').on('change','input[name="share_for_groups"]',function(e){

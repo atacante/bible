@@ -20,7 +20,7 @@ class Journal extends BaseModel
 
     protected $table = 'journal';
     protected $dates = ['created_at','updated_at','published_at'];
-    protected $fillable = ['id','user_id','note_id','prayer_id','bible_version','verse_id','lexicon_id','highlighted_text','journal_text','access_level','rel_code'];
+    protected $fillable = ['id','user_id','note_id','prayer_id','bible_version','verse_id','lexicon_id','highlighted_text','journal_text','access_level','rel_code','only_show_group_owner'];
 
     public function rules()
     {
