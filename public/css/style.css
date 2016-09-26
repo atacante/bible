@@ -401,6 +401,66 @@ h4.h4-sub-kit {
     color: #ffffff;
     text-decoration: none !important;
 }
+
+/*------------- btn1-icon */
+.btn1-icon, .btn1-icon:visited {
+    display: inline-block;
+    border: 2px solid #00b9f7;
+    background: #00b9f7;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 9px 2px;
+    text-decoration: none !important;
+    outline: none !important;
+    text-transform: uppercase;
+    font-family: ns_widemedium;
+    text-align: center;
+    line-height: 17px;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.btn1-icon:hover, .btn1-icon:active {
+    display: inline-block;
+    border: 2px solid #79858f;
+    background: #79858f;
+    color: #ffffff;
+    text-decoration: none !important;
+    box-sizing: border-box;
+}
+/*------------- btn2-icon */
+.btn2-icon, .btn2-icon:visited {
+    display: inline-block;
+    border: 2px solid #090909;
+    background: white;
+    color: #090909;
+    font-size: 16px;
+    padding: 9px 2px;
+    text-decoration: none !important;
+    outline: none !important;
+    text-transform: uppercase;
+    font-family: ns_widemedium;
+    text-align: center;
+    line-height: 17px;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.btn2-icon:hover, .btn2-icon:active {
+    display: inline-block;
+    border: 2px solid #090909;
+    background: #090909;
+    color: #ffffff;
+    text-decoration: none !important;
+    box-sizing: border-box;
+}
+
+.cu-btn-ic {
+    text-align: center;
+    display: inline-block;
+}
 .pad-l1 {
     padding-left: 40px;
 }
@@ -633,6 +693,10 @@ table.table-lexicon p {
 .m-btn {
     margin-top: 40px !important;
     margin-bottom: 50px !important;
+}
+.m-cu1 {
+    margin-bottom: 15px;
+    margin-top: 25px;
 }
 .pad1 {
     padding-bottom: 50px;
@@ -1010,7 +1074,13 @@ a {
     border-color: #d2d6de;
     padding: 0;
 }
-
+.btns-group1 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    height: 40px;
+}
 .dropzone .dz-message{
     display: none;
 }
@@ -2254,6 +2324,17 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     border-radius: 0;
     -webkit-border-radius: 0;
     vertical-align: top;
+}
+.cu5-btn1 {
+    border-radius: 0;
+    border-width: 2px !important;
+    box-sizing: border-box;
+    font-size: 13px !important;
+    padding: 10px 0 !important;
+    position: relative;
+    text-transform: uppercase;
+    vertical-align: top;
+    width: 100%;
 }
 .cu3-btn1 {
     font-size: 13px;
@@ -3671,6 +3752,15 @@ textarea.wall-text-area:focus {
     background-size: cover !important;
     -webkit-background-size: cover !important;
 }
+.group-image {
+    width: 100%;
+    height: 177px;
+    position: relative;
+    overflow: hidden;
+    background: url('/images/default-group.png') center center no-repeat;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+}
 .people-image {
     width: 100%;
     height: 260px;
@@ -3986,6 +4076,19 @@ h4.h4-locations {
     margin-bottom: 0;
     background: white;
 }
+.my-inner-groups-item {
+    overflow: hidden;
+    position: relative;
+    height: 380px;
+    text-align: center;
+    margin-bottom: 0;
+    background: white;
+}
+.c-group {
+    display: block;
+    padding: 0 25px;
+    margin-top: 15px;
+}
 .pagination {
     border-radius: 0;
     margin: 20px 2px;
@@ -4048,17 +4151,33 @@ h4.h4-locations {
 .cu-search1 {
     font-size: 18px;
 }
+.cu-search2 {
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 8px;
+    vertical-align: sub;
+}
 .cu-sti1 {
     padding-right: 35px;
 }
 .c-friend-text {
-    height: 65px;
-    display: table-cell;
+     height: 65px;
+     display: table-cell;
+     vertical-align: middle;
+     width: 100%;
+     font-family: work_sansregular;
+     font-size: 14px;
+     color: #535353;
+}
+.c-group-text {
+    height: 40px;
+    display: block;
     vertical-align: middle;
     width: 100%;
     font-family: work_sansregular;
     font-size: 14px;
     color: #535353;
+    overflow: hidden;
 }
 .c-friend {
     display: table;
@@ -4103,6 +4222,9 @@ h4.h4-locations {
 }
 .inner-pad3 {
     padding: 25px;
+}
+.inner-pad6 {
+    padding: 15px;
 }
 .verse-image {
     width: 170px;
@@ -4683,6 +4805,12 @@ ul.icons-list li i {
     font-family: work_sansmedium;
     text-decoration: underline;
     margin-top: 26px;
+}
+.c-group-type {
+    margin-left: 20px;
+    text-transform: capitalize;
+    color: #a9a9a9;
+    display: inline-block;
 }
 @media (max-width: 992px) {
     .pad-r1 {

@@ -6,12 +6,12 @@
 
 @section('content')
     <div class="row groups-list j-groups-list">
-        <div class="col-md-2">
+        <div class="col-md-3">
             @include('community.menu')
         </div>
-        <div class="col-md-10" style="line-height: 30px;">
+        <div class="col-md-9">
             @role('user')
-            <ul class="nav nav-pills friends-nav">
+            <ul class="nav nav-pills tabs-nav">
                 <li role="presentation" class="{!! (!Request::get('type') || Request::get('type') == 'all')?'active':'' !!}">
                     <a href="{!! url('/groups?'.http_build_query(array_merge(Request::input(),['type' => 'all']))) !!}">Discover</a>
                 </li>
@@ -26,19 +26,5 @@
                 @include('groups.discover-list')
             @endif
         </div>
-        {{--<div class="col-md-3">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Filters</h3>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            @include('community.friends-filters')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>--}}
     </div>
 @stop
