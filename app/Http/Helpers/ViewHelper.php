@@ -184,7 +184,7 @@ class ViewHelper
                 $html = '<i title="Private" class="bs-s-onlyme color8 font-size-13" aria-hidden="true"></i>';
                 break;
             case Group::ACCESS_PUBLIC:
-                $html = '<i title="Public" class="bs-s-groups font-size-13" aria-hidden="true"></i>';
+                $html = '<i title="Public" class="bs-s-public font-size-13" aria-hidden="true"></i>';
                 break;
         }
 
