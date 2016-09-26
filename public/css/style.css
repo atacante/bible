@@ -624,6 +624,9 @@ table.table-lexicon p {
 .mr6 {
     margin-right: 5px;
 }
+.mr7 {
+    margin-right: 15px;
+}
 .ml1 {
     margin-left: 10px;
 }
@@ -946,16 +949,15 @@ a {
 .word-definition .word-definition{
     border: none;
 }
-
-/*
-.word-definition:hover, .word-definition > span:hover{
-    background: #2ca02c;
-    color: white;
-    border-radius: 3px;
-    cursor: pointer;
+.cu-s-public {
+    vertical-align: text-top;
 }
-*/
-
+.sub-text-radio {
+    font-family: work_sansregular;
+    color: #a1a1a1;
+    font-size: 13px;
+    line-height: 13px;
+}
 .verse-text:hover, .clicked{
     color: #00b9f7 !important;
     cursor: pointer;
@@ -1890,6 +1892,12 @@ ul.tabs-nav li:last-child {
     font-size: 15px;
     font-family: work_sansregular;
 }
+.cu-label2 {
+    color: #505050;
+    font-family: work_sansmedium;
+    font-size: 15px;
+}
+
 .cu-btn-copy i.bs-copypaste {
     font-size: 20px;
     padding-top: 5px;
@@ -2706,6 +2714,7 @@ ul.c-social li a:hover, ul.c-social li a:active {
     font-size: 18px;
     display: inline-block;
     padding-right: 7px;
+    vertical-align: middle;
 }
 .cu-lexicon {
     color: #00b9f7;
@@ -2738,6 +2747,9 @@ ul.c-social li a:hover, ul.c-social li a:active {
     box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
     margin-bottom: 25px;
     outline: none !important;
+}
+textarea {
+    max-width: 100%;
 }
 .gift1 {
      height: 220px;

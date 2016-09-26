@@ -62,20 +62,20 @@
     <div class="form-group row {{ $errors->has('access_level') ? ' has-error' : '' }}">
         {!! Form::label('access_level', "Accessibility", ['class' => 'col-xs-2']) !!}
         <div class="col-xs-10">
-            <div class="radio">
-                <label>
-                    {!! Form::radio('access_level', App\Group::ACCESS_PUBLIC, true) !!}
-                    <i class="fa fa-globe" aria-hidden="true"></i>
-                    Public <br />
-                    <span style="color: #ccc;">Anyone can see the group, its members and their posts.</span>
+            <div class="radio" style="margin-top: 0">
+                {!! Form::radio('access_level', App\Group::ACCESS_PUBLIC, true, ['id' => 'public','class' => 'cust-radio']) !!}
+                <label  for="public" class="label-radio cu-label2">
+                    <i class="fa bs-s-public cu-s-public" aria-hidden="true"></i>
+                    Public
+                    <div class="sub-text-radio">Anyone can see the group, its members and their posts.</div>
                 </label>
             </div>
             <div class="radio">
-                <label>
-                    {!! Form::radio('access_level', App\Group::ACCESS_SECRET, false) !!}
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                    Secret<br />
-                    <span style="color: #ccc;">Anyone can find the group and see who's in it. Only members can see posts.</span>
+                {!! Form::radio('access_level', App\Group::ACCESS_SECRET, false, ['id' => 'secret','class' => 'cust-radio']) !!}
+                <label for="secret" class="label-radio cu-label2">
+                    <i class="fa bs-s-onlyme cu-s-public" aria-hidden="true"></i>
+                    Secret
+                    <div class="sub-text-radio">Anyone can find the group and see who's in it. Only members can see posts.</div>
                 </label>
             </div>
 
@@ -87,9 +87,10 @@
         </div>
     </div>
 
-
-<div class="box-footer">
-    {!! Form::button('Save', ['type'=>'submit','class'=>'btn btn-primary']) !!}
-    {!! Html::link((($url = Session::get('backUrl'))?$url:'/groups?type=my'),'Cancel', ['class'=>'btn btn-danger']) !!}
-</div>
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-10">
+            {!! Form::button('Save', ['type'=>'submit','class'=>'btn2-kit cu-btn-pad1 mr7']) !!}
+            {!! Html::link((($url = Session::get('backUrl'))?$url:'/groups?type=my'),'Cancel', ['class'=>'btn4-kit cu-btn-pad1']) !!}
+        </div>
+    </div>
 {!! Form::close() !!}
