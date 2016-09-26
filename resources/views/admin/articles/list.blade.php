@@ -33,8 +33,8 @@
                         @if(count($content['articles']))
                             @foreach($content['articles'] as $article)
                                 <tr>
-                                    <td>{!! $article->user->name !!}</td>
-                                    <td>{!! $article->category->title !!}</td>
+                                    <td>{!! $article->user?$article->user->name:'(removed)' !!}</td>
+                                    <td>{!! $article->category?$article->category->title:'<i>(not selected)</i>' !!}</td>
                                     <td>{!! $article->title !!}</td>
                                     <td>{!! str_limit($article->text, $limit = 800, $end = '... ')!!}</td>
                                     <td class="text-center">{!! $article->published_at->format($article::DFORMAT) !!}</td>
