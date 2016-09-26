@@ -23,6 +23,7 @@
                                         @endif
                                     </div>
                             @if($key == 9 || $key == 18)
+                                    {{ ($key ==18)?'*shipping to Florida will add 30% tax to your order':'' }}
                                 </div>
                             @endif
                         @endif
