@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\CmsPage;
+use App\Group;
 use App\Journal;
 use App\Note;
 use App\Prayer;
@@ -154,7 +155,7 @@ class ViewHelper
 
         switch($level){
             case Note::ACCESS_PRIVATE:
-                $html = '<i title="Private" class="fa fa-lock color8 font-size-13" aria-hidden="true"></i>';
+                $html = '<i title="Private" class="bs-s-onlyme color8 font-size-13" aria-hidden="true"></i>';
                 break;
             case Note::ACCESS_PUBLIC_ALL:
             case WallPost::ACCESS_PUBLIC_ALL:
@@ -168,6 +169,22 @@ class ViewHelper
                 break;
             case WallPost::ACCESS_PUBLIC_FRIENDS:
                 $html = '<i title="Public - share with friends" class="bs-friends font-size-13" aria-hidden="true"></i>';
+                break;
+        }
+
+        return $html;
+    }
+
+    public static function getGroupAccessLevelIcon($level)
+    {
+        $html = '';
+
+        switch($level){
+            case Group::ACCESS_SECRET:
+                $html = '<i title="Private" class="bs-s-onlyme color8 font-size-13" aria-hidden="true"></i>';
+                break;
+            case Group::ACCESS_PUBLIC:
+                $html = '<i title="Public" class="bs-s-groups font-size-13" aria-hidden="true"></i>';
                 break;
         }
 
