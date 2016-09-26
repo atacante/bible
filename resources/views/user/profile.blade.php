@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-group{{ $errors->has('country_id') ? ' has-error' : '' }}">
                         {!! Form::label('country_id', 'Country', array('class' => '')) !!}
-                        {!! Form::select('country_id', App\Country::pluck('nicename','id')->toArray(), Request::input('country_id', null), ['class' => 'form-control2 input1 j-select2','data-url'=> '/ajax/users-list','placeholder' => 'Select country...']) !!}
+                        {!! Form::select('country_id', App\Country::pluck('nicename','id')->toArray(), old('country_id'), ['class' => 'form-control2 input1 j-select2','data-url'=> '/ajax/users-list','placeholder' => 'Select country...']) !!}
                         @if ($errors->has('country_id'))
                             <span class="help-block">
                                 {{ $errors->first('country_id') }}
@@ -268,7 +268,7 @@
 
                         <div>
                             {!! Form::hidden('subscribed', 0) !!}
-                            {!! Form::checkbox('subscribed', 1, true, ["class" => "cust-radio", "id" => "subscribed2"]) !!}
+                            {!! Form::checkbox('subscribed', 1, $model->subscribed, ["class" => "cust-radio", "id" => "subscribed2"]) !!}
                             <label for="subscribed2" class="label-checkbox cu-label  mt15">I want to get the latest news by my Email</label>
                         </div>
                     </div>
