@@ -110,6 +110,9 @@ class AuthController extends Controller
             'subscribed' => $data['subscribed'],
             'invited_by_id' => $data['invited_by_id']?$data['invited_by_id']:null,
             'country_id' => $data['country_id']?$data['country_id']:null,
+            'state' => $data['state'],
+            'city' => $data['city'],
+            'church_name' => $data['church_name'],
         ]);
 
         if($user){
