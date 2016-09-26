@@ -6,10 +6,12 @@
             @include('community.menu')
         </div>
         <div class="col-xs-9">
-            <div class="panel panel-default">
-                <div class="panel-heading">Edit Group</div>
-                <div class="panel-body">
+            <div class="c-white-content mb2">
+                <div class="inner-pad2">
+                    <h4 class="h4-kit" style="font-size: 18px; line-height: 22px"><i class="bs-edit cu-add"></i>Edit Group</h4>
+
                     @include('groups.form')
+
                 </div>
             </div>
         </div>
