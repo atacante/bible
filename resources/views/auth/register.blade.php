@@ -215,7 +215,7 @@
                             <div class="col-xs-8">
                                 <div>
                                     {!! Form::hidden('subscribed', 0) !!}
-                                    {!! Form::checkbox('subscribed', 1, true, ["class" => "cust-radio", "id" => "subscribed2"]) !!}
+                                    {!! Form::checkbox('subscribed', old('subscribed'), true, ["class" => "cust-radio", "id" => "subscribed2"]) !!}
                                     <label for="subscribed2" class="label-checkbox cu-label mt15">I want to get the latest news by Email</label>
                                 </div>
                             </div>
