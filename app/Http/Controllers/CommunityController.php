@@ -78,6 +78,7 @@ class CommunityController extends Controller
         }
         $content['wall-posts']['images'] = $statusesQuery->get()->pluck('images','id');
         $statusesCount = $statusesQuery->count();
+        $lastIds['status'] = (int) $statusesQuery->max('id');
 
         $journalQuery = Journal::with(['verse','user','images'])
             ->selectRaw('id,user_id,verse_id,created_at,updated_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at,access_level,
@@ -92,6 +93,8 @@ class CommunityController extends Controller
         }
         $content['journal']['images'] = $journalQuery->get()->pluck('images','id');
         $journalCount = $journalQuery->count();
+        $lastIds['journal'] = (int) $journalQuery->max('id');
+
         $prayersQuery = Prayer::with(['verse','user','images'])
             ->selectRaw('id,user_id,verse_id,created_at,updated_at,highlighted_text,prayer_text as text,\'prayer\' as type,bible_version,published_at,access_level,
                 (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Prayer\' AND item_id = prayers.id) as likesCount,
@@ -105,6 +108,8 @@ class CommunityController extends Controller
         }
         $content['prayers']['images'] = $prayersQuery->get()->pluck('images','id');
         $prayersCount = $prayersQuery->count();
+        $lastIds['prayer'] = (int) $prayersQuery->max('id');
+
         $notesQuery = Note::with(['verse','user','images'])
             ->selectRaw('id,user_id,verse_id,created_at,updated_at,highlighted_text,note_text as text,\'note\' as type,bible_version,published_at,access_level,
                 (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Note\' AND item_id = notes.id) as likesCount,
@@ -118,11 +123,20 @@ class CommunityController extends Controller
         }
         $content['notes']['images'] = $notesQuery->get()->pluck('images','id');
         $notesCount = $notesQuery->count();
+        $lastIds['note'] = (int) $notesQuery->max('id');
+
+        if(Request::ajax() && Request::input('checkPosts', null)) {
+            $lastNoteId = Request::input('lastNoteId', 0);
+            $newNotesCount = $notesQuery->where('id', '>', $lastNoteId)->count();
+        }
+
         $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery)->union($statusesQuery);
         $entriesQuery->orderBy('published_at','desc')->orderBy('created_at','desc')->limit($limit)->offset($offset);
 
         $entries = $entriesQuery->get();
+
         $totalCount = $notesCount+$journalCount+$prayersCount+$statusesCount;
+
         $entries = new LengthAwarePaginator(
             $entries,
             $totalCount,
@@ -131,13 +145,30 @@ class CommunityController extends Controller
             ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
         );
         $content['entries'] = $entries;
+
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
         $view = 'community.wall';
         if(Request::ajax()){
-            $view = "community.wall-items";
+
+            if(Request::input('checkPosts', null)){
+                $lastStatusId = Request::input('lastStatusId', 0);
+                $newStatusesCount = $statusesQuery->where('id','>',$lastStatusId)->count();
+
+                $lastJournalId = Request::input('lastJournalId', 0);
+                $newJournalCount = $journalQuery->where('id','>',$lastJournalId)->count();
+
+                $lastPrayerId = Request::input('lastPrayerId', 0);
+                $newPrayersCount = $prayersQuery->where('id','>',$lastPrayerId)->count();
+
+                $newTotalCount = $newNotesCount+$newJournalCount+$newPrayersCount+$newStatusesCount;
+
+                return $newTotalCount;
+            }else{
+                $view = "community.wall-items";
+            }
         }
         $status = new WallPost();
-        return view($view, ['content' => $content,'status'=>$status]);
+        return view($view, ['content' => $content,'status'=>$status, 'lastIds' => $lastIds]);
     }
 
     public function getJoin()

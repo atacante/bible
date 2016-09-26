@@ -5388,3 +5388,10 @@ i.bs-pray{
     padding: 35px 45px;
     margin-bottom: 35px;
 }
+
+.new-posts{
+    position: fixed !important;
+    z-index: 10;
+    bottom: -10px;
+    opacity: 0.2;
+}

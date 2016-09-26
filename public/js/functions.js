@@ -385,15 +385,18 @@ site.checkNewWallPosts = function(wallType){
         data:{
             checkPosts:1,
             lastNoteId:$('#j-last-note-id').val(),
-            lastJournalId:$('#j-journal-note-id').val(),
+            lastJournalId:$('#j-last-journal-id').val(),
             lastPrayerId:$('#j-last-prayer-id').val(),
             lastStatusId:$('#j-last-status-id').val()
         },
         success:function(data){
-            $(that).parents('.item-footer').find('.j-item-comments').html(data);
+            if(data > 0){
+                $('.j-new-posts span').html(data);
+                $('.j-new-posts').removeClass('hidden');
+            }
         }
     });
-    console.log('checkNewPosts for wall '+wallType);
+    console.log('checkNewPosts for wall ' + wallType);
 }
 
 site.hideAlert = function(){
