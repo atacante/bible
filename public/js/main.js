@@ -1375,7 +1375,7 @@ $(document).ready(function(){
             $('.j-specific-groups input[type="radio"]').attr('disabled',true);
         }
     });
-    $('#popup, #note-form').on('change','input[name="share_for_groups"]',function(e){
+    $('#popup, .entry-form').on('change','input[name="share_for_groups"]',function(e){
         var level = $(e.target).val();
         if(level == 'public_for_groups'){
             $('select.j-groups').attr('disabled',true);

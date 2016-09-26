@@ -184,6 +184,7 @@ h4.h4-kit {
     font-weight: normal;
     margin: 0;
     padding: 0;
+    letter-spacing: 1px;
 }
 h5.h5-kit {
     font-family: ns_widenormal;
@@ -2700,6 +2701,12 @@ ul.c-social li a:hover, ul.c-social li a:active {
     padding-right: 15px;
     vertical-align: sub;
 }
+.cu-add {
+    color: #00b9f7;
+    font-size: 18px;
+    display: inline-block;
+    padding-right: 7px;
+}
 .cu-lexicon {
     color: #00b9f7;
     font-size: 32px;
@@ -4848,7 +4855,7 @@ ul.icons-list li i {
     color: #fff;
     position: absolute;
     left: -30px;
-    top: 4px;
+    top: 8px;
     background: #36a741;
     padding: 0;
     font-size: 12px;
@@ -5164,6 +5171,18 @@ h3.strongs-subheader{
     margin-right: 8px;
 }
 
+i.bs-note{
+    color: #fcab4b;
+}
+
+i.bs-journal{
+    color: #5d93c2;
+}
+
+i.bs-pray{
+    color: #49ba93;
+}
+
 #popup .modal-dialog .modal-content .modal-header i.bs-note,
 #popup .modal-dialog .modal-content .modal-header i.bs-journal,
 #popup .modal-dialog .modal-content .modal-header i.bs-pray{
@@ -5362,4 +5381,10 @@ h3.strongs-subheader{
 
 .entry-form .radio i{
     width: 20px !important;
+}
+
+.entry-full-page{
+    position: relative;
+    padding: 35px 45px;
+    margin-bottom: 35px;
 }

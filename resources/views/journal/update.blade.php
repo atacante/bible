@@ -2,14 +2,20 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
-            <h3 class="text-center">My Journal</h3>
+        <div class="col-xs-12">
+            <h2 class="h2-new mb3">
+                <i class="bs-journal cu-gift2" style="margin-right: 7px;"></i>
+                Edit Journal Entry
+            </h2>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">Edit Journal Entry</div>
-        <div class="panel-body">
-            @include('journal.form')
+    <div class="c-white-content">
+        <div class="entry-full-page">
+            <div class="row">
+                <div class="col-xs-12">
+                    @include('journal.form')
+                </div>
+            </div>
         </div>
     </div>
 @endsection
