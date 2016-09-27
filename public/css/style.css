@@ -5200,6 +5200,10 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     background-color: #fe9921;
 }
 
+.alert-info {
+    background-color: #fe9921;
+}
+
 h3.strongs-header{
     text-transform: lowercase;
     line-height: 36px;
