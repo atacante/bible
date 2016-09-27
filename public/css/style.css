@@ -1074,6 +1074,16 @@ a {
     border-color: #d2d6de;
     padding: 0;
 }
+
+.dropzone.dz-clickable .remove-image{
+    cursor: pointer;
+}
+
+.dropzone .dz-preview{
+    width: 140px;
+    height: 140px;
+}
+
 .btns-group1 {
     position: absolute;
     bottom: 20px;

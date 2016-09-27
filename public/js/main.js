@@ -1249,8 +1249,8 @@ $(document).ready(function(){
                 'X-CSRF-Token': $('input[name="_token"]').val()
             },
             uploadMultiple: false,
-            //thumbnailWidth:500,
-            //thumbnailHeight:500,
+            thumbnailWidth:140,
+            thumbnailHeight:140,
             init: function() {
                 this.on("maxfilesexceeded", function(file) {
                     this.removeAllFiles();

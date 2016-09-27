@@ -6,7 +6,7 @@
             <img data-dz-thumbnail="">
         </div>
         <div class="dz-details">
-            <i data-dz-remove class="remove-image j-remove-image fa fa-times-circle fa-4x" style="position:absolute; top: 34px; left: 39px; color: #f4645f; cursor: pointer;"></i>
+            <i data-dz-remove class="remove-image j-remove-image fa fa-times-circle fa-4x" style="/*position:absolute; top: 34px; left: 39px; color: #f4645f; cursor: pointer;*/"></i>
         </div>
         <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
         <div class="dz-error-message"><span data-dz-errormessage=""></span></div>
