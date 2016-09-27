@@ -1139,13 +1139,13 @@ $(document).ready(function(){
                     commentsParent.append(data);
                 }
                 else if($('#popup').is(':visible')){
-                    $('#popup .modal-body').append(data);
                     $('#popup .modal-body .load-more-block').remove();
+                    $('#popup .modal-body').append(data);
                 }
                 else{
                     var parent = $(that).parents('.g-body');
-                    $('.j-wall-items,.j-friends-items,.j-members-list .row').append(data);
                     $('.load-more-block').remove();
+                    $('.j-wall-items,.j-friends-items,.j-members-list .row').append(data);
                     parent.append(data);
                 }
             }

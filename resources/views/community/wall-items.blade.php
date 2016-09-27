@@ -101,6 +101,15 @@
                 </div>
             </div>
         @endforeach
+        @if($content['nextPage'])
+            <div class="load-more-block mt3 mb1 clearfix">
+                <div class="text-center">
+                    {!! Html::link('/community/wall?'.http_build_query(
+                        array_merge(Request::input(),['page' => $content['nextPage']])
+                    ),'Load More', ['class'=>'btn1 load-more','style' => 'width:100%;']) !!}
+                </div>
+            </div>
+        @endif
     @else
         <p class="text-center">This is a private group, please join to view the wall</p>
     @endif
