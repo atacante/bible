@@ -34,7 +34,7 @@
                     @else
                         @if(isset($dataKey) && $dataKey == 'groupsRequested')
                             <a href="{!! url('/groups/accept-request/'.$group->id.'/'.Auth::user()->id,[],false) !!}" class="btn1 cu5-btn1 j-accept-request">Accept</a>
-                            <a href="{!! url('/groups/cancel-request/'.$group->id.'/'.Auth::user()->id,[],false) !!}" class="btn2 cu5-btn1 j-cancel-request" data-toggle="modal" data-target="#cancel-request-sm" data-header="Reject Request" data-confirm="Are you sure you want to reject this request?">Reject</a>
+                           {{-- <a href="{!! url('/groups/cancel-request/'.$group->id.'/'.Auth::user()->id,[],false) !!}" class="btn2 cu5-btn1 j-cancel-request" data-toggle="modal" data-target="#cancel-request-sm" data-header="Reject Request" data-confirm="Are you sure you want to reject this request?">Reject</a>--}}
                         @else
                             @if(Auth::check() && Auth::user()->is('user'))
                             <a href="{!! url('/groups/cancel-request/'.$group->id.'/'.Auth::user()->id,[],false) !!}" class="btn2 cu4-btn1 j-cancel-request {{((!isset($dataKey) || (isset($dataKey) && ($dataKey == 'groups' || $dataKey == 'myGroupsRequests'))) && Auth::check() && in_array($group->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" data-toggle="modal" data-target="#cancel-request-sm" data-header="Cancel Request" data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>

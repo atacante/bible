@@ -33,11 +33,8 @@
                 <h5 class="h5-kit">Groups You Have Joined</h5>
             </div>
         </div>
-        <div class="c-white-content" style="margin-bottom: 15px">
-            <div class="inner-pad6">
-                @include('groups.items',['dataKey' => 'joinedGroups'])
-            </div>
-        </div>
+        @include('groups.items',['dataKey' => 'joinedGroups'])
+
 
     </div>
 </div>
