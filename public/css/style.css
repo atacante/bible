@@ -5552,3 +5552,7 @@ i.bs-pray{
     bottom: -10px;
     opacity: 0.2;
 }
+
+.j-reader-actions i{
+    color: #fff !important;
+}
