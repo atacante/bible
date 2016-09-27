@@ -318,6 +318,11 @@ class GroupsController extends Controller
                 ->whereIn('access_level', [Journal::ACCESS_PUBLIC_GROUPS, Journal::ACCESS_SPECIFIC_GROUPS])
                 ->whereIn('id', $model->journals->modelKeys());
 
+            if (Request::ajax() && Request::input('checkPosts', null)) {
+                $lastJournalId = Request::input('lastJournalId', 0);
+                $journalQuery->where('id', '>', $lastJournalId);
+            }
+
             if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
                 $journalQuery->where('only_show_group_owner', false);
                 $journalQuery->orWhere(function ($sq) {
@@ -338,6 +343,11 @@ class GroupsController extends Controller
                 ->whereIn('access_level', [Prayer::ACCESS_PUBLIC_GROUPS, Prayer::ACCESS_SPECIFIC_GROUPS])
                 ->whereIn('id', $model->prayers->modelKeys());
 
+            if (Request::ajax() && Request::input('checkPosts', null)) {
+                $lastPrayerId = Request::input('lastPrayerId', 0);
+                $prayersQuery->where('id', '>', $lastPrayerId);
+            }
+
             if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
                 $prayersQuery->where('only_show_group_owner', false);
                 $prayersQuery->orWhere(function ($sq) {
@@ -357,6 +367,11 @@ class GroupsController extends Controller
                 ')
                 ->whereIn('access_level', [Note::ACCESS_PUBLIC_GROUPS, Note::ACCESS_SPECIFIC_GROUPS])
                 ->whereIn('id', $model->notes->modelKeys());
+
+            if (Request::ajax() && Request::input('checkPosts', null)) {
+                $lastNoteId = Request::input('lastNoteId', 0);
+                $notesQuery->where('id', '>', $lastNoteId);
+            }
 
             if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
                 $notesQuery->where('only_show_group_owner', false);
