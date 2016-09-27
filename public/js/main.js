@@ -268,10 +268,10 @@ $(document).ready(function(){
 
     $('a[data-target="#confirm-delete"]').click(function(ev) {
         var href = $(this).attr('href');
-        $('#confirm-delete').find('.modal-header .modal-title').text($(this).attr('data-header'));
-        $('#confirm-delete').find('.modal-body').text($(this).attr('data-confirm'));
-        $('#confirm-delete').find('.btn-ok').attr('href', href);
-        $('#confirm-delete').modal({show:true});
+        $('#confirm-delete-sm').find('.modal-header .modal-title').text($(this).attr('data-header'));
+        $('#confirm-delete-sm').find('.modal-body').text($(this).attr('data-confirm'));
+        $('#confirm-delete-sm').find('.btn-ok').attr('href', href);
+        $('#confirm-delete-sm').modal({show:true});
         return false;
     });
 
