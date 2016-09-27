@@ -3382,9 +3382,10 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     vertical-align: top;
     text-align: center;
 }
-.btn-reader:hover {
+.btn-reader:hover,
+.btn-reader i:hover{
     text-decoration: none !important;
-    color: #101010;
+    color: #101010 !important;
 }
 .btn-reader i {
     font-size: 24px;
