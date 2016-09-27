@@ -4,8 +4,8 @@
     <div class="row wall">
         <div class="col-xs-3">
             @include('community.menu')
-            <div class="c-white-content group-info mt15">
-                <div class="inner-pad2">
+            <div class="c-white-content group-info mt13 mb1">
+                <div class="inner-pad3">
                     <div class="clearfix info-block">
                         <div class="clearfix">
                             <div class="pull-left"><strong>Members</strong></div>
@@ -56,32 +56,34 @@
         <div class="col-xs-9">
             <div class="group-details" style="background: url('{!!  $model->group_image?Config::get('app.groupImages').$model->id.'/'.$model->group_image:'/images/nocatimg-m.jpg' !!}'); {!! $model->group_image?'background-size: 100%;':'' !!} background-position: center center;">
                 <div class="header" style="">
-                    <div class="title">
+                    <h3 class="title">
+                        <i class="bs-s-groups"></i>
                         {!! $model->group_name !!}
-                    </div>
-                    <div class="controls">
-                        @if((Auth::user() && $model->owner_id == Auth::user()->id))
-                            <a title="Delete group" href="{!! url('/groups/delete/'.$model->id,[],false) !!}" class="pull-right j-remove-group" data-toggle="modal"
-                               data-target="#confirm-delete" data-header="Delete Confirmation"
-                               data-confirm="Are you sure you want to delete this item?"><i class="fa fa-btn fa-trash" style="font-size: 18px;"></i></a>
-                            <a href="{!! url('/groups/update/'.$model->id,[],false) !!}" class="pull-right"><i class="fa fa-btn fa-cog" style="font-size: 18px;"></i></a>
-                        @else
-                            <div class="pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
-                                @if(Auth::check())
-                                <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[],false) !!}" class="btn btn-danger j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" style="display: block; margin-top: 5px;" data-toggle="modal"
-                                   data-target="#cancel-request-sm" data-header="Cancel Request"
-                                   data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
-                                @endif
-                                <a href="{!! url('/groups/leave-group/'.$model->id,[],false) !!}" class="pull-right btn btn-danger j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}"><i class="fa fa-btn fa-minus" style="font-size: 14px;"></i>Leave Group</a>
-                                <a href="{!! url('/groups/join-group/'.$model->id,[],false) !!}" class="pull-right btn btn-primary j-join-group {!! in_array($model->id,$content['joinedGroupsKeys']) || (Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join Group</a>
-                            </div>
-                        @endif
-                    </div>
+
+                        <div class="controls pull-right">
+                            @if((Auth::user() && $model->owner_id == Auth::user()->id))
+                                <a title="Delete group" href="{!! url('/groups/delete/'.$model->id,[],false) !!}" class="pull-right j-remove-group" data-toggle="modal"
+                                   data-target="#confirm-delete" data-header="Delete Confirmation"
+                                   data-confirm="Are you sure you want to delete this item?"><i class=" bs-remove"></i></a>
+                                <a href="{!! url('/groups/update/'.$model->id,[],false) !!}" class="pull-right"><i class="bs-settings"></i></a>
+                            @else
+                                <div class="pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
+                                    @if(Auth::check())
+                                        <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[],false) !!}" class="btn btn-danger j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" style="display: block; margin-top: 5px;" data-toggle="modal"
+                                           data-target="#cancel-request-sm" data-header="Cancel Request"
+                                           data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
+                                    @endif
+                                    <a href="{!! url('/groups/leave-group/'.$model->id,[],false) !!}" class="pull-right btn btn-danger j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}"><i class="fa fa-btn fa-minus" style="font-size: 14px;"></i>Leave Group</a>
+                                    <a href="{!! url('/groups/join-group/'.$model->id,[],false) !!}" class="pull-right btn btn-primary j-join-group {!! in_array($model->id,$content['joinedGroupsKeys']) || (Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join Group</a>
+                                </div>
+                            @endif
+                        </div>
+                    </h3>
                 </div>
             </div>
             {{--@role('user')--}}
             <div>
-                <ul class="nav nav-pills wall-nav">
+                <ul class="nav nav-pills tabs-nav">
                     <li role="presentation" class="{!! !Request::get('p')?'active':'' !!}">
                         <a href="{!! url('/groups/view/'.$model->id) !!}">Feed</a>
                     </li>

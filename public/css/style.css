@@ -2075,29 +2075,39 @@ ul.tabs-nav li:last-child {
 }
 
 .group-details .header{
-    height: 75px;
-    background: rgba(74,74,74,1);
-    background: -moz-linear-gradient(top, rgba(74,74,74,1) 0%, rgba(0,0,0,0) 100%);
-    background: -webkit-linear-gradient(top, rgba(74,74,74,1) 0%, rgba(0,0,0,0) 100%);
-    background: -o-linear-gradient(top, rgba(74,74,74,1) 0%, rgba(0,0,0,0) 100%);
-    background: -ms-linear-gradient(top, rgba(74,74,74,1) 0%, rgba(0,0,0,0) 100%);
-    background: linear-gradient(to bottom, rgba(74,74,74,1) 0%, rgba(0,0,0,0) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4a4a4a', endColorstr='#000000', GradientType=0 );
+    height: 175px;
+    overflow: hidden;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.89+0,0.31+43,0.06+72,0+100 */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.89) 0%, rgba(0,0,0,0.31) 43%, rgba(0,0,0,0.06) 72%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.89) 0%,rgba(0,0,0,0.31) 43%,rgba(0,0,0,0.06) 72%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.89) 0%,rgba(0,0,0,0.31) 43%,rgba(0,0,0,0.06) 72%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 }
 
 .group-details .title{
-    color: whitesmoke;
-    font-size: 24px;
-    padding: 10px 20px;
+    color: white;
+    font-family: ns_widemedium;
+    font-size: 18px;
+    padding: 10px 30px;
+    text-transform: uppercase;
 }
-
-.group-details .controls{
-    color: whitesmoke;
-    padding: 10px 20px;
+.group-details .title i.bs-s-groups {
+    font-size: 22px;
+    margin-right: 8px;
+    vertical-align: text-bottom;
+}
+.group-details .controls {
+    color: #00b9f7 !important;
+    padding: 0 0 0 20px;
 }
 
 .group-details .controls a{
     margin-left: 5px;
+}
+.group-details .controls a i {
+    color: #00b9f7;
+    font-size: 23px;
+    margin-left: 10px;
 }
 
 .group-details .controls .fa-trash,.group-details .controls .fa-cog{
