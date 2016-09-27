@@ -320,6 +320,10 @@ class GroupsController extends Controller
 
             if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
                 $journalQuery->where('only_show_group_owner', false);
+                $journalQuery->orWhere(function ($sq) {
+                    $sq->where('only_show_group_owner', true);
+                    $sq->where('user_id', Auth::user()->id);
+                });
             }
 
             $content['journal']['images'] = $journalQuery->get()->pluck('images', 'id');
@@ -356,6 +360,10 @@ class GroupsController extends Controller
 
             if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
                 $notesQuery->where('only_show_group_owner', false);
+                $notesQuery->orWhere(function ($sq) {
+                    $sq->where('only_show_group_owner', true);
+                    $sq->where('user_id', Auth::user()->id);
+                });
             }
 
             $content['notes']['images'] = $notesQuery->get()->pluck('images', 'id');
