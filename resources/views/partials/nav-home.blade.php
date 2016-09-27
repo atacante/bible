@@ -57,18 +57,6 @@
                 <ul class="dropdown-menu" aria-labelledby="drop1">
                     <div class="popup-arrow"></div>
                     <li>
-                        <a href="{{ URL::to('/peoples/list') }}">
-                            <i class="bs-people cu-bs-people"></i>
-                            People
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ URL::to('/locations/list') }}">
-                            <i class="bs-places cu-bs-places"></i>
-                            Places
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ URL::to('/site/about') }}">
                             <i class="bs-biblestudylogo cu-bs-biblestudylogo"></i>
                             About Us
