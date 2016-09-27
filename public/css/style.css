@@ -5524,6 +5524,7 @@ i.bs-pray{
 
 .entry-form .box-footer{
     padding: 40px;
+    z-index: 0;
 }
 
 .entry-form .box-footer button{
