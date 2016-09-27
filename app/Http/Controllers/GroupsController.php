@@ -189,7 +189,7 @@ class GroupsController extends Controller
                 Notification::success('Group has been successfully created');
             }
             if (!Request::ajax()) {
-                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/groups?type=my');
+                return Redirect::to('/groups?type=my');
             }
             else{
                 return 1;
@@ -633,7 +633,6 @@ class GroupsController extends Controller
     {
         $group = Group::find($groupId);
         if($group){
-            $group->joinRequests()->detach($userId);
             Auth::user()->joinGroup($group);
             return Request::ajax()?1:Redirect::back();
         }

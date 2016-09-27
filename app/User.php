@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -192,10 +193,11 @@ class User extends Authenticatable
     public function joinGroup(Group $group)
     {
         $data = [];
-        if($group->access_level != Group::ACCESS_SECRET){
+        if($group->access_level != Group::ACCESS_SECRET || $group->joinRequests()->where('user_id',$this->id)->first()){
             $data['approved'] = true;
         }
         $this->joinedGroups()->attach($group->id,$data);
+        $group->joinRequests()->detach($this->id);
     }
 
     public function leaveGroup(Group $group)
