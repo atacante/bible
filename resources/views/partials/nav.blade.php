@@ -15,35 +15,26 @@
                 <a href="/"><i class="bs-home"></i>Home</a>
             </li>
             {{-- --------------- READ --------------- --}}
-            <li>
-                <a class="{!! ViewHelper::classActivePath('reader') !!}" href="{{ URL::to('/reader/read?version=nasb') }}">
-                    <i class="bs-reader"></i>
-                    Reader
-                </a>
-            </li>
-            {{--<li class="dropdown">
+            {{--<li>--}}
+                {{--<a class="{!! ViewHelper::classActivePath('reader') !!}" href="{{ URL::to('/reader/read?version=nasb') }}">--}}
+                    {{--<i class="bs-reader"></i>--}}
+                    {{--Reader--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            <li class="dropdown">
                 <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="bs-reader"></i>
-                    Read
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="drop1">
-                    <li><a href="{{ URL::to('/reader/read?version=nasb') }}">Read</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="{{ URL::to('/locations/list') }}">Locations</a></li>
-                    <li><a href="{{ URL::to('/peoples/list') }}">People</a></li>
-                </ul>
-            </li>--}}
-
-            {{-- --------------- EXPLORE --------------- --}}
-            <li class="dropdown">
-                <a class="{!! ViewHelper::classActivePath(['locations','peoples','site','shop']) !!}" id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="bs-exploer"></i>
-                    Discover BSC
+                    Reader
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="drop1">
                     <div class="popup-arrow"></div>
+                    <li>
+                        <a href="{{ URL::to('/reader/read?version=nasb') }}">
+                            <i class="bs-reader"></i>Read
+                        </a>
+                    </li>
+                    <li role="separator" class="divider"></li>
                     <li>
                         <a href="{{ URL::to('/peoples/list') }}">
                             <i class="bs-people cu-bs-people"></i>
@@ -56,6 +47,18 @@
                             Places
                         </a>
                     </li>
+                </ul>
+            </li>
+
+            {{-- --------------- EXPLORE --------------- --}}
+            <li class="dropdown">
+                <a class="{!! ViewHelper::classActivePath(['site','shop']) !!}" id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="bs-exploer"></i>
+                    Discover BSC
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="drop1">
+                    <div class="popup-arrow"></div>
                     <li>
                         <a href="{{ URL::to('/site/about') }}">
                             <i class="bs-biblestudylogo cu-bs-biblestudylogo"></i>

@@ -3248,10 +3248,12 @@ ul.icon-panel li a {
     left: -89px;
 }
 .navbar-default .dropdown-menu{
-    left: -13px;
+    right: 0;
+    left: auto;
 }
 .navbar-default.navbar-inner-pages .dropdown-menu{
-    left: -31px;
+    right: 0;
+    left: auto;
 }
 .navbar-default .log-pop .dropdown-menu{
     left: -82px;
@@ -4483,6 +4485,11 @@ a.create-record i {
 .c-journey-relations {
     float: right;
 }
+
+.c-journey-relations i{
+    color: #00b9f7 !important;
+}
+
 .tu-text {
     text-transform: capitalize;
 }
@@ -5517,6 +5524,7 @@ i.bs-pray{
 
 .entry-form .box-footer{
     padding: 40px;
+    z-index: 0;
 }
 
 .entry-form .box-footer button{
@@ -5548,4 +5556,8 @@ i.bs-pray{
 
 .new-posts:hover{
     opacity: 1;
+}
+
+.j-reader-actions i{
+    color: #fff !important;
 }
