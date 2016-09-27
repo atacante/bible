@@ -3248,10 +3248,12 @@ ul.icon-panel li a {
     left: -89px;
 }
 .navbar-default .dropdown-menu{
-    left: -13px;
+    right: 0;
+    left: auto;
 }
 .navbar-default.navbar-inner-pages .dropdown-menu{
-    left: -31px;
+    right: 0;
+    left: auto;
 }
 .navbar-default .log-pop .dropdown-menu{
     left: -82px;

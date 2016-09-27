@@ -12,11 +12,39 @@
         <ul class="nav navbar-nav">
 
             {{-- --------------- READ --------------- --}}
-            <li>
+            {{--<li>
                 <a class="{!! ViewHelper::classActivePath('reader') !!}" href="{{ URL::to('/reader/read?version=nasb') }}">
                     <i class="bs-reader"></i>
                     Reader
                 </a>
+            </li>--}}
+            <li class="dropdown">
+                <a id="drop1" href="#" class="dropdown-toggle {!! ViewHelper::classActivePath(['reader','peoples','locations']) !!}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="bs-reader"></i>
+                    Reader
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="drop1">
+                    <div class="popup-arrow"></div>
+                    <li>
+                        <a href="{{ URL::to('/reader/read?version=nasb') }}">
+                            <i class="bs-reader"></i>Read
+                        </a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="{{ URL::to('/peoples/list') }}">
+                            <i class="bs-people cu-bs-people"></i>
+                            People
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/locations/list') }}">
+                            <i class="bs-places cu-bs-places"></i>
+                            Places
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             {{-- --------------- EXPLORE --------------- --}}
