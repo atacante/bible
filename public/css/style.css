@@ -2108,13 +2108,51 @@ ul.tabs-nav li:last-child {
     color: #00b9f7;
     font-size: 23px;
     margin-left: 10px;
+    text-decoration: none;
 }
-
+.group-details .controls a:hover i {
+    color: #ffffff;
+}
 .group-details .controls .fa-trash,.group-details .controls .fa-cog{
     color: whitesmoke;
     font-size: 24px !important;
 }
-
+.widget-group-title {
+    font-family: work_sanssemibold;
+    font-size: 16px;
+    color: #272727;
+    text-transform: capitalize;
+    position: relative;
+    padding-right: 50px;
+}
+.widget-group-title2 {
+    font-family: work_sanssemibold;
+    font-size: 16px;
+    color: #272727;
+    text-transform: capitalize;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.count-members {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #a9a9a9;
+    font-family: work_sansmedium;
+    font-size: 13px;
+    text-decoration: none !important;
+}
+.count-members:hover {
+    color: #010101;
+}
+.c-description-w {
+    font-family: work_sansregular;
+    color: #535353;
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 10px;
+}
 .group-info .info-block{
     margin-bottom: 15px;
 }

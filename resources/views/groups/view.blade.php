@@ -7,22 +7,28 @@
             <div class="c-white-content group-info mt13 mb1">
                 <div class="inner-pad3">
                     <div class="clearfix info-block">
-                        <div class="clearfix">
-                            <div class="pull-left"><strong>Members</strong></div>
-                            <div class="pull-right">
-                                <a href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">
-                                    {!! $model->members->count()+1 !!} member{!! $model->members->count()+1 == 1?'':'s' !!}
-                                </a>
-                            </div>
+                        <div class="widget-group-title">
+                            {!! $model->group_name !!}
+                            <a class="count-members" href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">
+                                <i class="bs-friends"></i>
+                                {!! $model->members->count()+1 !!}
+                            </a>
+                        </div>
+
+                        <div class="c-description-w">
+                            {!! nl2br($model->group_desc) !!}
                         </div>
                         <div>
+                            <div class="widget-group-title2">
+                                Members
+                            </div>
                             @foreach($content['membersSample'] as $member)
                                 <a href="#" title="{!! $member->name !!}"  class="friend-item">
                                     <div class="pull-left" style="margin: 0 2px 2px 0;">
                                         @if($member->avatar)
-                                            <img class="img-thumbnail-mini" height="40" width="40" data-dz-thumbnail="" alt="" src="{!! Config::get('app.userAvatars').$member->id.'/thumbs/'.$member->avatar !!}"/>
+                                            <img class="img-thumbnail-mini2" height="40" width="40" data-dz-thumbnail="" alt="" src="{!! Config::get('app.userAvatars').$member->id.'/thumbs/'.$member->avatar !!}"/>
                                         @else
-                                            <div class="no-avatar-mini img-thumbnail-mini">
+                                            <div class="no-avatar-mini img-thumbnail-mini2">
                                                 <div class="no-avatar-text text-center"><i class="fa fa-user" style="font-size:24px;"></i></div>
                                             </div>
                                         @endif
@@ -32,21 +38,19 @@
                         </div>
                     </div>
                     @if((Auth::user() && $model->owner_id == Auth::user()->id))
-                        <div class="clearfix info-block">
-                            <div><strong>Invite Members</strong></div>
+                        <div>
+                            <div class="widget-group-title2">
+                                Invite Members
+                            </div>
                             <div>
                                 {!! Form::open(['method' => 'post','url' => '/groups/request-users', 'id' => 'request-users-form', 'class' => '','role' => 'form','files' => true]) !!}
                                 {!! Form::hidden('group_id', $model->id) !!}
                                 {!! Form::select('users[]', $content['membersToRequest'], []/*$model->tags->pluck('id')->toArray()*/,['placeholder' => 'Enter user name...','multiple' => true,'class' => 'clear-fix j-select2', 'style' => '']) !!}
-                                {!! Form::button('Send', ['type'=>'submit','class'=>'btn btn-primary','style' => 'padding: 4px 8px; margin-top:5px;']) !!}
+                                {!! Form::button('Send', ['type'=>'submit','class'=>'btn1-kit mt16']) !!}
                                 {!! Form::close() !!}
                             </div>
                         </div>
                     @endif
-                    <div class="clearfix info-block">
-                        <div><strong>Description</strong></div>
-                        <div>{!! nl2br($model->group_desc) !!}</div>
-                    </div>
                 </div>
             </div>
         </div>
