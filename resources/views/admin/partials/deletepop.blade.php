@@ -35,14 +35,14 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="bs-close"></i></span></button>
                 <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <a class="btn btn-danger btn-ok">Yes</a>
+                <button type="button" class="btn4-kit cu-btn-pad1" data-dismiss="modal">No</button>
+                <a class="btn2-kit cu-btn-pad1 btn-ok">Yes</a>
             </div>
         </div>
     </div>
