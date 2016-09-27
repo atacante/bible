@@ -18,6 +18,7 @@
                 @if($order->orderItems->count())
                      @foreach($order->orderItems as $row)
                         <tr>
+                            @if($row->product)
                              <td>
                                  <div class="pull-left" style="margin-right: 10px;">
                                      @if($row->product->images->count())
@@ -33,6 +34,9 @@
                              <td>{!! $row->qty !!}</td>
                              <td>{!! $row->product->price !!}</td>
                              <td> {!! $row->product->price * $row->qty !!} </td>
+                            @else
+                                <td colspan="4">Product is not available any more</td>
+                            @endif
                         </tr>
                     @endforeach
                 @else

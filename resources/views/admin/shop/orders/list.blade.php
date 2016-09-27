@@ -18,7 +18,7 @@
                         @if(count($content['orders']))
                             @foreach($content['orders'] as $order)
                                 <tr>
-                                    <td>{!! $order->user->name !!}</td>
+                                    <td>{!! ($order->user)?$order->user->name:'<i>(removed)</i>' !!}</td>
                                     <td>{!! $order->total_paid !!}</td>
                                     <td>{!! $order->created_at->format($order::DFORMAT) !!}</td>
                                     <td class="text-center" style="width: 50px;">
