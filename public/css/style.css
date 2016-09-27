@@ -4485,6 +4485,11 @@ a.create-record i {
 .c-journey-relations {
     float: right;
 }
+
+.c-journey-relations i{
+    color: #00b9f7 !important;
+}
+
 .tu-text {
     text-transform: capitalize;
 }
