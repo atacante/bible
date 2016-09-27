@@ -3896,7 +3896,7 @@ textarea.wall-text-area:focus {
 .community-menu > li > a > i {
     color: #878787;
     font-size: 20px;
-    vertical-align: top;
+    vertical-align: sub;
     margin-right: 12px;
 }
 .community-menu > li > a:hover > i,
