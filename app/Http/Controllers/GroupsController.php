@@ -261,6 +261,7 @@ class GroupsController extends Controller
         $ignoredRequests = [];
         $myRequests = [];
         $myFriends = [];
+        $lastIds = [];
 
         if(Input::get('p') == 'members'){
             $membersData = $this->getMembers($id);
@@ -335,6 +336,10 @@ class GroupsController extends Controller
 
             if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
                 $prayersQuery->where('only_show_group_owner', false);
+                $prayersQuery->orWhere(function ($sq) {
+                    $sq->where('only_show_group_owner', true);
+                    $sq->where('user_id', Auth::user()->id);
+                });
             }
 
             $content['prayers']['images'] = $prayersQuery->get()->pluck('images', 'id');
