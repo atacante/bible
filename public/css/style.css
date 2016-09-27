@@ -5343,7 +5343,11 @@ h3.strongs-subheader{
 }
 
 .bs-example-modal-sm .modal-dialog .modal-content .modal-body{
-    padding: 32px 15px;
+    padding: 45px 15px 30px;
+}
+
+.bs-example-modal-sm .modal-dialog .modal-content .modal-footer{
+    border-top: 0;
 }
 
 .bs-example-modal-sm .modal-dialog .modal-content .modal-header .close{

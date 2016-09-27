@@ -59,7 +59,7 @@ $(document).ready(function(){
         if(!site.validateEmail(evt.params.args.data.id)){
             $('#popup-sm').find('.modal-header .modal-title').text('Warning');
             $('#popup-sm').find('.modal-body').html("Please enter valid email address");
-            $('#popup-sm').find('.modal-footer').html('<a class="btn btn-danger btn-ok" data-dismiss="modal">Ok</a>');
+            $('#popup-sm').find('.modal-footer').html('<button type="button" class="btn2-kit cu-btn-pad1" data-dismiss="modal">Ok</button>');
             $('#popup-sm').modal({show:true});
             return false;
         }
@@ -92,7 +92,7 @@ $(document).ready(function(){
         if(dateFromField.val() && dateToField.val() && timeFrom > timeTo){
             $('#popup-sm').find('.modal-header .modal-title').text('Warning');
             $('#popup-sm').find('.modal-body').html("End date must be larger than start date");
-            $('#popup-sm').find('.modal-footer').html('<a class="btn btn-danger btn-ok" data-dismiss="modal">Ok</a>');
+            $('#popup-sm').find('.modal-footer').html('<button type="button" class="btn2-kit cu-btn-pad1" data-dismiss="modal">Ok</button>');
             $('#popup-sm').modal({show:true});
             $(this).val('');
         }
@@ -1736,7 +1736,7 @@ $(document).ready(function(){
             },3000);
             //$('#popup-sm').find('.modal-header .modal-title').text('Warning');
             //$('#popup-sm').find('.modal-body').html("You can only select 2 items");
-            //$('#popup-sm').find('.modal-footer').html('<a class="btn btn-danger btn-ok" data-dismiss="modal">Ok</a>');
+            //$('#popup-sm').find('.modal-footer').html('<button type="button" class="btn2-kit cu-btn-pad1" data-dismiss="modal">Ok</button>');
             //$('#popup-sm').modal({show:true});
             return false;
         }
