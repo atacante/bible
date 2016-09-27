@@ -5558,6 +5558,11 @@ i.bs-pray{
     opacity: 1;
 }
 
-.j-reader-actions i{
+.j-reader-actions i,
+.j-wall-item .item-header i{
     color: #fff !important;
+}
+
+.load-more-block{
+    margin-bottom: 15px;
 }
