@@ -29,12 +29,12 @@
 
                 <div title="{!! Auth::user() && Auth::user()->isPremium() || in_array($group->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$group->id)?'You were banned from being part of this group':'' !!}" class="btns-group1">
                     @if((isset($dataKey) && $dataKey == 'myGroups') || /*in_array($group->id,$content['joinedGroupsKeys']) ||*/ (Auth::user() && $group->owner_id == Auth::user()->id))
-                        <a href="{!! url('/groups/update/'.$group->id,[],false) !!}" class="btn1-icon"><i class="bs-settings cu-btn-ic"></i></a>
+                        <a title="Update group" href="{!! url('/groups/update/'.$group->id,[],false) !!}" class="btn1-icon"><i class="bs-settings cu-btn-ic"></i></a>
                         <a title="Delete group" href="{!! url('/groups/delete/'.$group->id,[],false) !!}" class="btn2-icon j-remove-group" data-toggle="modal" data-target="#confirm-delete" data-header="Delete Confirmation" data-confirm="Are you sure you want to delete this item?"><i class="cu-btn-ic bs-remove"></i></a>
                     @else
                         @if(isset($dataKey) && $dataKey == 'groupsRequested')
-                            <a href="{!! url('/groups/accept-request/'.$group->id.'/'.Auth::user()->id,[],false) !!}" class="btn1 cu5-btn1 j-accept-request">Accept</a>
-                           {{-- <a href="{!! url('/groups/cancel-request/'.$group->id.'/'.Auth::user()->id,[],false) !!}" class="btn2 cu5-btn1 j-cancel-request" data-toggle="modal" data-target="#cancel-request-sm" data-header="Reject Request" data-confirm="Are you sure you want to reject this request?">Reject</a>--}}
+                            <a title="Accept group" href="{!! url('/groups/accept-request/'.$group->id.'/'.Auth::user()->id,[],false) !!}" class="btn1-icon j-accept-request"><i class="bs-checkmark cu-btn-ic"></i></a>
+                            <a title="Reject group" href="{!! url('/groups/cancel-request/'.$group->id.'/'.Auth::user()->id,[],false) !!}" class="btn2-icon j-cancel-request" data-toggle="modal" data-target="#cancel-request-sm" data-header="Reject Request" data-confirm="Are you sure you want to reject this request?"><i class="cu-btn-ic bs-close"></i></a>
                         @else
                             @if(Auth::check() && Auth::user()->is('user'))
                             <a href="{!! url('/groups/cancel-request/'.$group->id.'/'.Auth::user()->id,[],false) !!}" class="btn2 cu4-btn1 j-cancel-request {{((!isset($dataKey) || (isset($dataKey) && ($dataKey == 'groups' || $dataKey == 'myGroupsRequests'))) && Auth::check() && in_array($group->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" data-toggle="modal" data-target="#cancel-request-sm" data-header="Cancel Request" data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
