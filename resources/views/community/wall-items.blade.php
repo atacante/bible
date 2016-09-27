@@ -111,8 +111,16 @@
             </div>
         @endif
     @else
-        <p class="text-center">This is a private group, please join to view the wall</p>
+        <div class="c-white-content">
+            <div class="inner-pad3">
+                <p class="text-center">This is a private group, please join to view the wall</p>
+            </div>
+        </div>
     @endif
 @else
-    <p class="text-center">There are no comments available.</p>
+    <div class="c-white-content">
+        <div class="inner-pad3">
+            <p class="text-center">There are no comments available.</p>
+        </div>
+    </div>
 @endif
