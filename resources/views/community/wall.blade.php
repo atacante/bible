@@ -42,10 +42,6 @@
                 </li>
             </ul>
             @endrole
-            {{ Form::hidden('lastNoteId', $lastIds['note'], ['id'=>'j-last-note-id']) }}
-            {{ Form::hidden('lastPrayerId', $lastIds['prayer'], ['id'=>'j-last-prayer-id']) }}
-            {{ Form::hidden('lastJournalId', $lastIds['journal'], ['id'=>'j-last-journal-id']) }}
-            {{ Form::hidden('lastStatusId', $lastIds['status'], ['id'=>'j-last-status-id']) }}
             <div class="c-white-content j-wall-items" data-walltype="{{App\WallPost::WALL_TYPE_PUBLIC}}">
                 @role('user')
                     @if((!Request::get('type') || Request::get('type') == 'all'))

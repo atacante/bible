@@ -24,7 +24,8 @@
     <li class="{{ (Request::is('blog') ? 'active' : '') }}" role="presentation">
         <a href="{{ url('blog') }}"><i class="bs-blog"></i>Blog</a>
     </li>
+    <!-- Button for async new Posts -->
     <li class="active new-posts hidden j-new-posts" role="presentation">
-        <a href="{{ url('community/wall') }}"><i class="bs-publicwall"></i>New Posts ( <span class="font-size-20"></span> )</a>
+        <a href="{{ url(Request::url()) }}"><i class="bs-publicwall"></i>New Posts ( <span class="font-size-20"></span> )</a>
     </li>
 </ul>

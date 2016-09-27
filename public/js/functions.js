@@ -373,10 +373,10 @@ site.checkNewWallPosts = function(wallType){
     var url = false;
     switch (wallType){
         case 'public':
-            url = '/community';
+            url = location.href;
             break;
         case 'group':
-            url = '/group/view';
+            url = location.href;
             break;
     }
     $.ajax({

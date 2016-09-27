@@ -5545,3 +5545,7 @@ i.bs-pray{
     bottom: -10px;
     opacity: 0.2;
 }
+
+.new-posts:hover{
+    opacity: 1;
+}

@@ -1,3 +1,9 @@
+<!-- For async load new posts -->
+{{ Form::hidden('lastNoteId', $lastIds['note'], ['id'=>'j-last-note-id']) }}
+{{ Form::hidden('lastPrayerId', $lastIds['prayer'], ['id'=>'j-last-prayer-id']) }}
+{{ Form::hidden('lastJournalId', $lastIds['journal'], ['id'=>'j-last-journal-id']) }}
+{{ Form::hidden('lastStatusId', $lastIds['status'], ['id'=>'j-last-status-id']) }}
+
 @if($content['entries']->count())
     @if(!ViewHelper::isRoute('groups.view') || (ViewHelper::isRoute('groups.view') && Auth::check() && (Auth::user()->id == $model->owner_id || in_array(Auth::user()->id,$model->members()->lists('users.id')->toArray()))))
         @foreach($content['entries'] as $item)

@@ -251,8 +251,11 @@ class GroupsController extends Controller
             $content['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
         }
 
-        $content['membersSample'] = $this->getMembers($id,'random')['members'];
-        $content['membersToRequest'] = $this->getMembersToRequest($id);
+
+        if (!Request::ajax()) {
+            $content['membersSample'] = $this->getMembers($id,'random')['members'];
+            $content['membersToRequest'] = $this->getMembersToRequest($id);
+        }
 
         $requests = [];
         $ignoredRequests = [];
@@ -282,68 +285,89 @@ class GroupsController extends Controller
             $content['invitations'] = $requestsData['invitations'];
             $content['nextPage'] = $requestsData['nextPage'];
         }
-        else{
-            $statusesQuery = WallPost::with(['user','images'])
+        else {
+            $statusesQuery = WallPost::with(['user', 'images'])
                 ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,status_text as text,type,null as bible_version,published_at,access_level,
                     (SELECT count(*) FROM wall_likes WHERE item_type = \'App\WallPost\' AND item_id = wall_posts.id) as likesCount,
                     (SELECT count(*) FROM wall_comments WHERE type = \'App\WallPost\' AND item_id = wall_posts.id) as commentsCount
                 ')
-                ->where(function($q) {
-                    $q->whereIn('access_level',[WallPost::ACCESS_PUBLIC_ALL]);
-                    if(Auth::user()){
-                        $q->orWhere(function($sq) {
-                            $sq->whereIn('access_level',[WallPost::ACCESS_PRIVATE]);
-                            $sq->where('user_id',Auth::user()->id);
+                ->where(function ($q) {
+                    $q->whereIn('access_level', [WallPost::ACCESS_PUBLIC_ALL]);
+                    if (Auth::user()) {
+                        $q->orWhere(function ($sq) {
+                            $sq->whereIn('access_level', [WallPost::ACCESS_PRIVATE]);
+                            $sq->where('user_id', Auth::user()->id);
                         });
-                        $q->orWhere(function($sq) {
-                            $sq->whereIn('access_level',[WallPost::ACCESS_PUBLIC_FRIENDS]);
-                            $sq->whereIn('user_id',array_merge(Auth::user()->friends->modelKeys(),Auth::user()->requests->modelKeys(),[Auth::user()->id]));
+                        $q->orWhere(function ($sq) {
+                            $sq->whereIn('access_level', [WallPost::ACCESS_PUBLIC_FRIENDS]);
+                            $sq->whereIn('user_id', array_merge(Auth::user()->friends->modelKeys(), Auth::user()->requests->modelKeys(), [Auth::user()->id]));
                         });
                     }
                 })
-                ->where('rel_id',$model->id);
-            $content['wall-posts']['images'] = $statusesQuery->get()->pluck('images','id');
+                ->where('rel_id', $model->id);
+            $content['wall-posts']['images'] = $statusesQuery->get()->pluck('images', 'id');
             $statusesCount = $statusesQuery->count();
-            $journalQuery = Journal::with(['verse','user','images'])
+            $lastIds['status'] = (int)$statusesQuery->max('id');
+
+            $journalQuery = Journal::with(['verse', 'user', 'images'])
                 ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at,access_level,
                     (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Journal\' AND item_id = journal.id) as likesCount,
                     (SELECT count(*) FROM wall_comments WHERE type = \'App\Journal\' AND item_id = journal.id) as commentsCount
                 ')
-                ->whereIn('access_level',[Journal::ACCESS_PUBLIC_GROUPS,Journal::ACCESS_SPECIFIC_GROUPS])
-                ->whereIn('id',$model->journals->modelKeys());
-            $content['journal']['images'] = $journalQuery->get()->pluck('images','id');
+                ->whereIn('access_level', [Journal::ACCESS_PUBLIC_GROUPS, Journal::ACCESS_SPECIFIC_GROUPS])
+                ->whereIn('id', $model->journals->modelKeys());
+
+            if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
+                $journalQuery->where('only_show_group_owner', false);
+            }
+
+            $content['journal']['images'] = $journalQuery->get()->pluck('images', 'id');
             $journalCount = $journalQuery->count();
-            $prayersQuery = Prayer::with(['verse','user','images'])
+            $lastIds['journal'] = (int)$journalQuery->max('id');
+
+            $prayersQuery = Prayer::with(['verse', 'user', 'images'])
                 ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,prayer_text as text,\'prayer\' as type,bible_version,published_at,access_level,
                     (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Prayer\' AND item_id = prayers.id) as likesCount,
                     (SELECT count(*) FROM wall_comments WHERE type = \'App\Prayer\' AND item_id = prayers.id) as commentsCount
                 ')
-                ->whereIn('access_level',[Prayer::ACCESS_PUBLIC_GROUPS,Prayer::ACCESS_SPECIFIC_GROUPS])
-                ->whereIn('id',$model->prayers->modelKeys());
-            $content['prayers']['images'] = $prayersQuery->get()->pluck('images','id');
+                ->whereIn('access_level', [Prayer::ACCESS_PUBLIC_GROUPS, Prayer::ACCESS_SPECIFIC_GROUPS])
+                ->whereIn('id', $model->prayers->modelKeys());
+
+            if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
+                $prayersQuery->where('only_show_group_owner', false);
+            }
+
+            $content['prayers']['images'] = $prayersQuery->get()->pluck('images', 'id');
             $prayersCount = $prayersQuery->count();
-            $notesQuery = Note::with(['verse','user','images'])
+            $lastIds['prayer'] = (int)$prayersQuery->max('id');
+
+            $notesQuery = Note::with(['verse', 'user', 'images'])
                 ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,note_text as text,\'note\' as type,bible_version,published_at,access_level,
                     (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Note\' AND item_id = notes.id) as likesCount,
                     (SELECT count(*) FROM wall_comments WHERE type = \'App\Note\' AND item_id = notes.id) as commentsCount
                 ')
-                ->whereIn('access_level',[Note::ACCESS_PUBLIC_GROUPS,Note::ACCESS_SPECIFIC_GROUPS])
-                ->whereIn('id',$model->notes->modelKeys());
-            $content['notes']['images'] = $notesQuery->get()->pluck('images','id');
-            $notesCount = $notesQuery->count();
+                ->whereIn('access_level', [Note::ACCESS_PUBLIC_GROUPS, Note::ACCESS_SPECIFIC_GROUPS])
+                ->whereIn('id', $model->notes->modelKeys());
 
-            if(!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)){
-                $notesQuery->where('only_show_group_owner',false);
-                $journalQuery->where('only_show_group_owner',false);
-                $prayersQuery->where('only_show_group_owner',false);
+            if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
+                $notesQuery->where('only_show_group_owner', false);
+            }
+
+            $content['notes']['images'] = $notesQuery->get()->pluck('images', 'id');
+            $notesCount = $notesQuery->count();
+            $lastIds['note'] = (int)$notesQuery->max('id');
+
+            if (Request::ajax() && Request::input('checkPosts', null)) {
+                $lastNoteId = Request::input('lastNoteId', 0);
+                $newNotesCount = $notesQuery->where('id', '>', $lastNoteId)->count();
             }
 
             $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery)->union($statusesQuery);
-            $entriesQuery->orderBy('published_at','desc')->orderBy('created_at','desc')->limit($limit)->offset($offset);
+            $entriesQuery->orderBy('published_at', 'desc')->orderBy('created_at', 'desc')->limit($limit)->offset($offset);
 
             $entries = $entriesQuery->get();
 
-            $totalCount = $notesCount+$journalCount+$prayersCount+$statusesCount;
+            $totalCount = $notesCount + $journalCount + $prayersCount + $statusesCount;
             $entries = new LengthAwarePaginator(
                 $entries,
                 $totalCount,
@@ -353,7 +377,22 @@ class GroupsController extends Controller
             );
             $content['entries'] = $entries;
 
-            $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
+            $content['nextPage'] = ($limit * $page < $totalCount) ? $page + 1 : false;
+
+            if(Request::ajax() && Request::input('checkPosts', null)){
+                $lastStatusId = Request::input('lastStatusId', 0);
+                $newStatusesCount = $statusesQuery->where('id','>',$lastStatusId)->count();
+
+                $lastJournalId = Request::input('lastJournalId', 0);
+                $newJournalCount = $journalQuery->where('id','>',$lastJournalId)->count();
+
+                $lastPrayerId = Request::input('lastPrayerId', 0);
+                $newPrayersCount = $prayersQuery->where('id','>',$lastPrayerId)->count();
+
+                $newTotalCount = $newNotesCount+$newJournalCount+$newPrayersCount+$newStatusesCount;
+
+                return $newTotalCount;
+            }
         }
         $status = new WallPost();
         return view('groups.view', [
@@ -363,7 +402,8 @@ class GroupsController extends Controller
             'myFriends' => $myFriends,
             'requests' => $requests,
             'ignoredRequests' => $ignoredRequests,
-            'myRequests' => $myRequests
+            'myRequests' => $myRequests,
+            'lastIds' => $lastIds
         ]);
     }
 
