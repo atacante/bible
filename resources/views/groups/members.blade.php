@@ -8,20 +8,20 @@
                     <div class="friend-image"></div>
                 @endif
 
-                <div class="pull-left" style="margin-right: 10px; width: 215px;">
-                    <div><strong>{!! $member->name !!}{!! Auth::user() && Auth::user()->id == $member->id?' (you)':'' !!}</strong></div>
-                    <div style="line-height: 16px; font-size: 12px;">
-                        <span style="color:#90949c;">{!! str_limit(strip_tags($member->about_me,'<p></p>'), $limit = 70, $end = '... ') !!}</span>
+                <div class="c-friend">
+                    <div class="c-friend-text">
+                        <span class="friend-name">{!! $member->name !!}{!! Auth::user() && Auth::user()->id == $member->id?' (you)':'' !!}</span>
+                        <div>
+                            <span style="color:#90949c;">{!! str_limit(strip_tags($member->about_me,'<p></p>'), $limit = 15, $end = '... ') !!}</span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    {!! str_limit(strip_tags($member->people_description,'<p></p>'), $limit = 500, $end = '... '.Html::link(url('/peoples/view/'.$member->id,[],false), 'View Details', ['class' => 'btn btn-success','style' => 'padding: 0 5px;'], true)) !!}
-                </div>
-                <div class="pull-left">
+
+                <div class="btns-group">
                     @if(Auth::user() && Auth::user()->id != $member->id)
                         @if(Auth::user() && Auth::user()->id == $model->owner_id)
-                        <a href="{!! url('/groups/ban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-danger j-ban-member {!! $member->banned?'hidden':'' !!}" style="padding: 4px 8px;">Ban</a>
-                        <a href="{!! url('/groups/unban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-success j-unban-member {!! !$member->banned?'hidden':'' !!}" style="padding: 4px 8px;">Unban</a>
+                        <a href="{!! url('/groups/ban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn1 cu2-btn1 j-ban-member {!! $member->banned?'hidden':'' !!}">Ban</a>
+                        <a href="{!! url('/groups/unban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn1 cu2-btn1 j-unban-member {!! !$member->banned?'hidden':'' !!}">Unban</a>
                         @endif
                     @endif
                 </div>

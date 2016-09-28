@@ -2158,6 +2158,7 @@ ul.tabs-nav li:last-child {
     font-size: 16px;
     line-height: 22px;
     margin-top: 10px;
+    overflow: hidden;
 }
 .group-info .info-block{
     margin-bottom: 15px;
