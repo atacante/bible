@@ -3986,6 +3986,10 @@ textarea.wall-text-area:focus {
     font-size: 15px;
     color: #333333;
     font-family: work_sansregular;
+    cursor: pointer;
+}
+.wall-text1 p {
+    cursor: pointer;
 }
 .book-desc1 {
     font-family: work_sanssemibold;
