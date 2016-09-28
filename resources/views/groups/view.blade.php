@@ -114,46 +114,54 @@
                 </ul>
             </div>
             {{--@endrole--}}
-            <div class="row cu1-row">
+
                 @if(Request::get('p') == 'members')
-                    <div class="col-xs-12 related-records j-members-list">
-                        <div class="row">
-                            @include('groups.members')
+                    <div class="row cu1-row">
+                        <div class="col-xs-12 related-records j-members-list">
+                            <div class="row">
+                                @include('groups.members')
+                            </div>
                         </div>
                     </div>
+
                 @elseif(Request::get('p') == 'invitations')
-                    <div class="col-xs-12 related-records j-invitations-list">
-                        <div class="row">
-                            @include('groups.invitations')
+                    <div class="row cu1-row">
+                        <div class="col-xs-12 related-records j-invitations-list">
+                            <div class="row">
+                                @include('groups.invitations')
+                            </div>
                         </div>
                     </div>
                 @elseif(Request::get('p') == 'requests')
-                    <div class="col-xs-12 related-records j-requests-list">
-                        <div class="row">
-                            @include('groups.requests')
+                    <div class="row cu1-row">
+                        <div class="col-xs-12 related-records j-requests-list">
+                            <div class="row">
+                                @include('groups.requests')
+                            </div>
                         </div>
                     </div>
                 @else
-                    <div class="col-xs-12 group-wall">
-                        <div class="related-records public-wall j-wall-items" data-walltype="{{App\WallPost::WALL_TYPE_GROUP}}">
-                            @if(Auth::check() && Auth::user()->is('user') && (in_array(Auth::user()->id,$model->members->modelKeys()) || Auth::user()->id == $model->owner_id))
-                                @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_GROUP,'groupId' => $model->id])
-                            @endif
-                            @include('community.wall-items')
-                        </div>
-                        @if( $content['nextPage'])
-                            <div class="load-more-block mt3 mb1">
-                                <div class="text-center">
-                                    {!! Html::link('/groups/view/'.$model->id.'?'.http_build_query(
-                                        array_merge(Request::input(),['page' => $content['nextPage']])
-                                    ),'Load More', ['class'=>'btn1 load-more','style' => 'width:100%;']) !!}
-                                </div>
+                    <div class="row">
+                        <div class="col-xs-12 group-wall">
+                            <div class="related-records public-wall j-wall-items" data-walltype="{{App\WallPost::WALL_TYPE_GROUP}}">
+                                @if(Auth::check() && Auth::user()->is('user') && (in_array(Auth::user()->id,$model->members->modelKeys()) || Auth::user()->id == $model->owner_id))
+                                    @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_GROUP,'groupId' => $model->id])
+                                @endif
+                                @include('community.wall-items')
                             </div>
-                        @endif
+                            @if( $content['nextPage'])
+                                <div class="load-more-block mt3 mb1">
+                                    <div class="text-center">
+                                        {!! Html::link('/groups/view/'.$model->id.'?'.http_build_query(
+                                            array_merge(Request::input(),['page' => $content['nextPage']])
+                                        ),'Load More', ['class'=>'btn1 load-more','style' => 'width:100%;']) !!}
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 @endif
 
-            </div>
 
         </div>
     </div>
