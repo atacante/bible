@@ -3287,8 +3287,11 @@ ul.icon-panel li a {
     font-family: work_sansregular;
 }
 
-.verse-text .word-definition:last-child {
-    margin-right: 10px;
+.verse-text b a{
+    margin-left: 10px;
+}
+.verse-text:first-child b a{
+    margin-left: 0;
 }
 .req {
     color: #f90000;
