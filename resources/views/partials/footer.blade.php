@@ -1,9 +1,17 @@
-<div id="footer" style="background-color: #f5f5f5; padding: 20px 0; margin-top: 20px;">
+<footer class="footer1 text-center" id="footer">
     <div class="container">
         <div class="row col-md-12">
-            <p class="text-muted">
-                <span style="text-align: left; float: left">&copy; 2016 Bible Project</span>
+            <div class="spinner" style="display: none"></div>
+            <ul class="footer-menu">
+                <li><a href="{{ URL::to('/site/about') }}">About Us</a></li>
+                <li><a href="{{ URL::to('/blog') }}">Blog</a></li>
+                <li><a href="{{ URL::to('/shop') }}">Gift Shop</a></li>
+                <li><a href="{{ URL::to('/site/faq') }}">FAQ</a></li>
+                <li><a href="{{ URL::to('/site/contact') }}">Contact Us</a></li>
+            </ul>
+            <p class="copyright">
+                &copy; 2016 Bible Project
             </p>
         </div>
     </div>
-</div>
+</footer>

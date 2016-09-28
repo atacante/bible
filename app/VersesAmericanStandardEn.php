@@ -16,5 +16,16 @@ class VersesAmericanStandardEn extends BaseModel {
         return $this->belongsTo(\App\BooksListEn::class, 'book_id', 'id');
     }
 
+    public function locations() {
+        return $this->belongsToMany(Location::class, 'location_verse', 'verse_id', 'location_id');
+    }
 
+    public function peoples() {
+        return $this->belongsToMany(People::class, 'people_verse', 'verse_id', 'people_id');
+    }
+
+    public function views()
+    {
+        return $this->morphToMany('App\User','item','users_views')->withTimestamps();
+    }
 }

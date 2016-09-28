@@ -35,4 +35,7 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'authorize' => [
+        'model'  => App\User::class,
+    ],
 ];

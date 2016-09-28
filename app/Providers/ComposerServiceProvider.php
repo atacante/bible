@@ -14,7 +14,9 @@ class ComposerServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        View::composer('reader.filters', 'App\Http\Composers\BibleFiltersComposer');
+        View::composer('filters', 'App\Http\Composers\BibleFiltersComposer');
+        View::composer('filters', 'App\Http\Composers\UserFiltersComposer');
+        View::composer('filters', 'App\Http\Composers\NotesFiltersComposer');
     }
 
     /**
