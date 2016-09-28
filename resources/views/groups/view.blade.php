@@ -134,11 +134,22 @@
                         </div>
                     </div>
                 @else
-                    <div class="col-xs-12 related-records public-wall j-wall-items" data-walltype="{{App\WallPost::WALL_TYPE_GROUP}}">
-                        @if(Auth::check() && Auth::user()->is('user') && (in_array(Auth::user()->id,$model->members->modelKeys()) || Auth::user()->id == $model->owner_id))
-                            @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_GROUP,'groupId' => $model->id])
+                    <div class="col-xs-12 group-wall">
+                        <div class="related-records public-wall j-wall-items" data-walltype="{{App\WallPost::WALL_TYPE_GROUP}}">
+                            @if(Auth::check() && Auth::user()->is('user') && (in_array(Auth::user()->id,$model->members->modelKeys()) || Auth::user()->id == $model->owner_id))
+                                @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_GROUP,'groupId' => $model->id])
+                            @endif
+                            @include('community.wall-items')
+                        </div>
+                        @if( $content['nextPage'])
+                            <div class="load-more-block mt3 mb1">
+                                <div class="text-center">
+                                    {!! Html::link('/groups/view/'.$model->id.'?'.http_build_query(
+                                        array_merge(Request::input(),['page' => $content['nextPage']])
+                                    ),'Load More', ['class'=>'btn1 load-more','style' => 'width:100%;']) !!}
+                                </div>
+                            </div>
                         @endif
-                        @include('community.wall-items')
                     </div>
                 @endif
 
