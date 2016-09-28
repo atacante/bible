@@ -58,7 +58,7 @@ Setup in `.env` with real data:
 MAILCHIMP_LIST_ID=***********
 
 ```
-
+//// DATABASE SECTION ////
 Execute migrations
 ~~~
 php artisan migrate
@@ -78,6 +78,7 @@ php artisan symbolism:cache --ver=king_james
 php artisan symbolism:cache --ver=berean
 php artisan symbolism:cache --ver=nasb
 ~~~
+//// END OF DATABASE SECTION ////
 
 FINISH
 ----------------
