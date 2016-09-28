@@ -94,6 +94,7 @@ return [
 
     'key' => env('APP_KEY'),
 
+
     'cipher' => 'AES-256-CBC',
 
     /*
@@ -158,13 +159,30 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\HelpersServiceProvider::class,
+        App\Providers\ValidatorsServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Arcanedev\NoCaptcha\NoCaptchaServiceProvider::class,
+        Krucas\Notification\NotificationServiceProvider::class,
+        Kodeine\Acl\AclServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
+        Laravel\CashierAuthorizeNet\CashierServiceProvider::class,
+        Skovmand\Mailchimp\MailchimpServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
         'User11001\EloquentModelGenerator\EloquentModelGeneratorProvider',
+
+        'Yangqi\Htmldom\HtmldomServiceProvider',
+        'Maatwebsite\Excel\ExcelServiceProvider',
+        'EscapeWork\Assets\AssetsServiceProvider',
     ],
 
     /*
@@ -213,6 +231,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'ViewHelper' => App\Helpers\ViewHelper::class,
+//        'ViewHelper' => App\Facades\ViewHelperFacade::class,
 
         /* Bootstrapper */
         'Accordion' => 'Bootstrapper\Facades\Accordion',
@@ -239,6 +258,17 @@ return [
         'Tabbable' => 'Bootstrapper\Facades\Tabbable',
         'Table' => 'Bootstrapper\Facades\Table',
         'Thumbnail' => 'Bootstrapper\Facades\Thumbnail',
+
+
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Captcha' => Arcanedev\NoCaptcha\Facades\NoCaptcha::class,
+        'Notification' => Krucas\Notification\Facades\Notification::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
+        'Htmldom' => 'Yangqi\Htmldom\Htmldom',
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+        'Cart'  => Gloudemans\Shoppingcart\Facades\Cart::class,
     ],
     /*
     |--------------------------------------------------------------------------
@@ -246,8 +276,48 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'defaultBibleVersion' => 'all',// use 'all' if not needed specific version
-    'defaultChaptersVersion' => 'american_standard',
+    'contactEmail' => 'info@bibleproject.com',
+
+    'defaultBibleVersion' => 'nasb',// use 'all' if not needed specific version
+    'defaultChaptersVersion' => 'nasb',
     'defaultBookNumber' => 1,
     'defaultChapterNumber' => 1,
+    'mailchimpListId' => env('MAILCHIMP_LIST_ID'),
+    'defaultLexicon' => 'kjv',
+
+    /*
+     * User Roles
+     */
+
+    'role' => [
+        'admin' => 'administrator',
+        'teacher' => 'teacher',
+        'user' => 'user'
+    ],
+
+    /*
+     * Reader Modes
+     */
+
+    'defaultReaderMode' => 'beginner',
+
+    'readerModes' => [
+        'beginner' => 'Beginner',
+        'intermediate' => 'Intermediate',
+    ],
+
+    /*
+     * Upload paths
+     */
+
+    'userAvatars' => '/uploads/avatars/',
+    'groupImages' => '/uploads/groups/',
+    'locationImages' => '/uploads/locations/',
+    'peopleImages' => '/uploads/peoples/',
+    'blogImages' => '/uploads/blog/',
+    'notesImages' => '/uploads/notes/',
+    'journalImages' => '/uploads/journal/',
+    'prayersImages' => '/uploads/prayers/',
+    'wallpostsImages' => '/uploads/wallposts/',
+    'productImages' => '/uploads/products/',
 ];

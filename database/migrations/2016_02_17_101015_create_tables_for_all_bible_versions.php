@@ -16,7 +16,7 @@ class CreateTablesForAllBibleVersions extends Migration
     public function up()
     {
         Schema::drop('verses_american_standard_en');
-        $versions = VersionsListEn::versionsList();
+        $versions = VersionsListEn::versionsListAll();
         if ($versions) {
             foreach ($versions as $version) {
                 $this->version = $version['version_code'];
@@ -41,7 +41,7 @@ class CreateTablesForAllBibleVersions extends Migration
      */
     public function down()
     {
-        $versions = VersionsListEn::versionsList();
+        $versions = VersionsListEn::versionsListAll();
         if ($versions) {
             foreach ($versions as $version) {
                 $this->version = $version['version_code'];

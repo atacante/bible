@@ -21,15 +21,4 @@ class Controller extends BaseController
         }
         return $optionsArr;
     }
-
-    protected function prepareChaptersForSelectBox($chapters)
-    {
-        $chaptersArr = [];
-        if(count($chapters)){
-            foreach($chapters as $chapter){
-                $chaptersArr[$chapter['chapter_num']] = $chapter['books_list_en']['book_name'].' '.$chapter['chapter_num'];
-            }
-        }
-        return $chaptersArr;
-    }
 }

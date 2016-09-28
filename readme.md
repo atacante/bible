@@ -1,27 +1,100 @@
-## Laravel PHP Framework
+# PROJECT SETUP
+============================
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Git
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+~~~
+git init
+git remote add origin git@bitbucket.org:clevercrew4bible/bible.git
+git pull origin master
+git config core.filemode false
+~~~
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Composer
 
-## Official Documentation
+~~~
+curl -sS https://getcomposer.org/installer | php
+php composer.phar install --no-scripts
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+~~~
+~~~
+change line #16 in vendor/paisawala/cashier-authorizenetpaisa/src/CashierServiceProvider.php with
+        require(__DIR__.'/../../../autoload.php');
+~~~
+~~~
 
-## Contributing
+php composer.phar update
+~~~
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
+# CONFIGURATION
+---------------
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+~~~
+Copy `.env.example` file with name `.env`
+Run `php artisan key:generate` command
+Create writable (chmod 777) folder `uploads` at `PROJECT_ROOT/public` (`cd PROJECT_ROOT/public && mkdir -m 777 uploads`)
+~~~
 
-### License
+### Database
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Setup in `.env` with real data:
+
+
+```
+DB_HOST=*.*.*.*
+DB_DATABASE=***
+DB_USERNAME=***
+DB_PASSWORD=*******
+DB_CONNECTION=pgsql
+
+```
+
+### Mailchimp
+
+Setup in `.env` with real data:
+
+```
+MAILCHIMP_LIST_ID=***********
+
+```
+//// DATABASE SECTION ////
+Execute migrations
+~~~
+php artisan migrate
+~~~
+
+Execute data seeders 
+~~~
+php artisan db:seed
+~~~
+
+Process data
+~~~
+php artisan lexicon:cache --ver=king_james
+php artisan lexicon:cache --ver=berean
+php artisan lexicon:cache --ver=nasb
+php artisan symbolism:cache --ver=king_james
+php artisan symbolism:cache --ver=berean
+php artisan symbolism:cache --ver=nasb
+~~~
+//// END OF DATABASE SECTION ////
+
+FINISH
+----------------
+~~~
+chmod 0777 -R bootstrap/cache/
+chmod 0777 -R storage/logs/
+chmod 0777 -R storage/framework/
+~~~
+
+Install new cronjob
+~~~
+* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
+~~~
+
+Versioning (css/js)
+~~~
+php artisan asset:dist
+chmod 0777 -R public/assets/
+~~~

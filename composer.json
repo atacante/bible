@@ -8,7 +8,22 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "5.2.*",
-        "patricktalmadge/bootstrapper": "~5"
+        "patricktalmadge/bootstrapper": "~5",
+        "cogpowered/finediff": "0.3.*",
+        "barryvdh/laravel-debugbar": "^2.2",
+        "edvinaskrucas/notification": "5.*",
+        "arcanedev/no-captcha":"~2.2",
+        "kodeine/laravel-acl": "~1.0@dev",
+        "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "unisharp/laravel-ckeditor": "^4.5",
+        "unisharp/laravel-filemanager": "^1.2",
+        "intervention/image": "^2.3",
+        "proengsoft/laravel-jsvalidation": "~1.1",
+        "yangqi/htmldom": "dev-master",
+        "maatwebsite/excel": "~2.1.0",
+        "skovmand/mailchimp-laravel": "1.*",
+        "gloudemans/shoppingcart":"dev-master",
+        "escapework/laravel-asset-versioning":"0.3.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -19,7 +34,13 @@
         "parsecsv/php-parsecsv": "0.4.5",
         "xethron/migrations-generator": "dev-l5",
         "way/generators": "dev-feature/laravel-five-stable",
-        "user11001/eloquent-model-generator": "~2.0"
+        "user11001/eloquent-model-generator": "~2.0",
+        "authorizenet/authorizenet":"1.9.0",
+        "dompdf/dompdf": "^0.6.1",
+        "nesbot/carbon": "~1.0",
+        "symfony/http-kernel": "~2.7|~3.0",
+        "goetas/xsd-reader": "2.*@dev",
+        "vlucas/phpdotenv": "~2.0"
     },
     "autoload": {
         "classmap": [
@@ -55,10 +76,16 @@
     "config": {
         "preferred-install": "dist"
     },
-    "repositories": {
-        "repo-name": {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/goetas/serializer.git"
+        },
+        {
             "type": "git",
             "url": "git@github.com:jamisonvalenta/Laravel-4-Generators.git"
         }
-    }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
