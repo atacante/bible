@@ -3985,11 +3985,10 @@ textarea.wall-text-area:focus {
 .community-menu > li.active > a > i {
     color: #ffffff;
 }
-.wall-text1 {
+.wall-text1, .wall-text2 {
     font-size: 15px;
     color: #333333;
     font-family: work_sansregular;
-    cursor: pointer;
 }
 .wall-text1 p {
     cursor: pointer;
