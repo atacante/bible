@@ -446,7 +446,7 @@ class GroupsController extends Controller
         $offset = $limit*($page-1);
 
         $group = Group::find($groupId);
-        $members = User::join('groups_users','users.id', '=', 'groups_users.user_id')
+        $members = User::leftJoin('groups_users','users.id', '=', 'groups_users.user_id')
             ->addSelect(DB::raw('users.*,(select banned from groups_users where groups_users.user_id = users.id and groups_users.group_id = '.$group->id.') as banned'))
             ->whereHas($type == 'banned' && $order != 'random'?'groupsBanned':'joinedGroups', function ($q) use ($group,$type)
                 {
