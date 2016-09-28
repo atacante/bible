@@ -2060,6 +2060,10 @@ ul.tabs-nav li:last-child {
     padding: 2px 12px;
 }
 
+a.disabled{
+    opacity: 0.5;
+}
+
 .community-menu a.disabled{
     opacity: 0.5;
 }

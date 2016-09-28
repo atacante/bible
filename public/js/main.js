@@ -1293,6 +1293,11 @@ $(document).ready(function(){
 
     $('.j-groups-list,.group-details').on('click','.j-join-group',function(e){
         e.preventDefault();
+
+        if($(this).hasClass('disabled')){
+            return false;
+        }
+
         var url = $(this).attr('href');
         var that = this;
         $.ajax({
@@ -1353,10 +1358,6 @@ $(document).ready(function(){
                 location.reload();
             }
         });
-    });
-
-    $('.community-menu').on('click','a.disabled',function(e){
-        e.preventDefault();
     });
 
     $('#popup, #note-form,#journal-form,#prayer-form').on('change','input[name="access_level"]',function(e){
@@ -1805,4 +1806,8 @@ $(document).ready(function(){
         }
     });
     site.hideAlert();
+
+    $('body').on('click','a.disabled',function(e){
+        e.preventDefault();
+    });
 });
