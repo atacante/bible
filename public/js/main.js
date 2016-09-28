@@ -1093,9 +1093,9 @@ $(document).ready(function(){
     $('.related-records').on('click','.j-highlight-verse',function(e){
         e.preventDefault();
         var verseId = $(this).data('verseid');
-        $('.related-item').addClass('blur');
+        /*$('.related-item').addClass('blur');*/
         $('.related-item').removeClass('highlight');
-        $(this).parents('.related-item').addClass('highlight');
+        /*$(this).parents('.related-item').addClass('highlight');*/
         var target = $(".j-verse-text[data-verseid="+verseId+"]");
         $('body').scrollTo(target,500,{offset:-100});
         $('.j-verse-text').removeClass('highlight');
