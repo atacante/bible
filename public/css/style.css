@@ -433,7 +433,7 @@ h4.h4-sub-kit {
 .btn2-icon, .btn2-icon:visited {
     display: inline-block;
     border: 2px solid #090909;
-    background: white;
+    background: transparent;
     color: #090909;
     font-size: 16px;
     padding: 9px 2px;
@@ -1925,6 +1925,10 @@ ul.tabs-nav li:last-child {
     width: 40px;
     height: 40px;
 }
+.no-avatar-mini2 {
+    width: 30px;
+    height: 30px;
+}
 .no-avatar .no-avatar-text {
     height: 90px;
     width: 90px;
@@ -2103,18 +2107,59 @@ ul.tabs-nav li:last-child {
 
 .group-details .controls a{
     margin-left: 5px;
+    text-decoration: none !important;
 }
-.group-details .controls a i {
+.group-details .controls a i.bs-remove,
+.group-details .controls a i.bs-settings {
     color: #00b9f7;
     font-size: 23px;
     margin-left: 10px;
+    text-decoration: none !important;
 }
-
+.group-details .controls a:hover i {
+    color: #ffffff;
+}
 .group-details .controls .fa-trash,.group-details .controls .fa-cog{
     color: whitesmoke;
     font-size: 24px !important;
 }
-
+.widget-group-title {
+    font-family: work_sanssemibold;
+    font-size: 16px;
+    color: #272727;
+    text-transform: capitalize;
+    position: relative;
+    padding-right: 50px;
+}
+.widget-group-title2 {
+    font-family: work_sanssemibold;
+    font-size: 16px;
+    color: #272727;
+    text-transform: capitalize;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.count-members {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #a9a9a9;
+    font-family: work_sansmedium;
+    font-size: 13px;
+    text-decoration: none !important;
+}
+.count-members:hover {
+    color: #010101;
+}
+.c-description-w {
+    font-family: work_sansregular;
+    color: #535353;
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 10px;
+    overflow: hidden;
+}
 .group-info .info-block{
     margin-bottom: 15px;
 }
@@ -4627,7 +4672,8 @@ a.create-record i {
 }
 
 .advansed-pop ul.select2-selection__rendered li.select2-selection__choice,
-.entry-form ul.select2-selection__rendered li.select2-selection__choice {
+.entry-form ul.select2-selection__rendered li.select2-selection__choice,
+.widget-group ul.select2-selection__rendered li.select2-selection__choice {
     background: #313d47;
     color: white;
     border: none !important;
@@ -4637,7 +4683,9 @@ a.create-record i {
     -webkit-border-radius: 50px;
 }
 .advansed-pop ul.select2-selection__rendered li.select2-selection__choice .select2-selection__choice__remove,
-.entry-form ul.select2-selection__rendered li.select2-selection__choice .select2-selection__choice__remove {
+.entry-form ul.select2-selection__rendered li.select2-selection__choice .select2-selection__choice__remove,
+.widget-group ul.select2-selection__rendered li.select2-selection__choice .select2-selection__choice__remove
+{
     background: #313d47;
     color: white;
     float: right;

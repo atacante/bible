@@ -7,22 +7,28 @@
             <div class="c-white-content group-info mt13 mb1">
                 <div class="inner-pad3">
                     <div class="clearfix info-block">
-                        <div class="clearfix">
-                            <div class="pull-left"><strong>Members</strong></div>
-                            <div class="pull-right">
-                                <a href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">
-                                    {!! $model->members->count()+1 !!} member{!! $model->members->count()+1 == 1?'':'s' !!}
-                                </a>
-                            </div>
+                        <div class="widget-group-title">
+                            {!! $model->group_name !!}
+                            <a class="count-members" href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">
+                                <i class="bs-friends"></i>
+                                {!! $model->members->count()+1 !!}
+                            </a>
+                        </div>
+
+                        <div class="c-description-w">
+                            {!! nl2br($model->group_desc) !!}
                         </div>
                         <div>
+                            <div class="widget-group-title2">
+                                Members
+                            </div>
                             @foreach($content['membersSample'] as $member)
                                 <a href="#" title="{!! $member->name !!}"  class="friend-item">
                                     <div class="pull-left" style="margin: 0 2px 2px 0;">
                                         @if($member->avatar)
-                                            <img class="img-thumbnail-mini" height="40" width="40" data-dz-thumbnail="" alt="" src="{!! Config::get('app.userAvatars').$member->id.'/thumbs/'.$member->avatar !!}"/>
+                                            <img class="img-thumbnail-mini2" height="30" width="30" data-dz-thumbnail="" alt="" src="{!! Config::get('app.userAvatars').$member->id.'/thumbs/'.$member->avatar !!}"/>
                                         @else
-                                            <div class="no-avatar-mini img-thumbnail-mini">
+                                            <div class="no-avatar-mini2 img-thumbnail-mini2">
                                                 <div class="no-avatar-text text-center"><i class="fa fa-user" style="font-size:24px;"></i></div>
                                             </div>
                                         @endif
@@ -32,21 +38,19 @@
                         </div>
                     </div>
                     @if((Auth::user() && $model->owner_id == Auth::user()->id))
-                        <div class="clearfix info-block">
-                            <div><strong>Invite Members</strong></div>
+                        <div class="widget-group">
+                            <div class="widget-group-title2">
+                                Invite Members
+                            </div>
                             <div>
                                 {!! Form::open(['method' => 'post','url' => '/groups/request-users', 'id' => 'request-users-form', 'class' => '','role' => 'form','files' => true]) !!}
                                 {!! Form::hidden('group_id', $model->id) !!}
-                                {!! Form::select('users[]', $content['membersToRequest'], []/*$model->tags->pluck('id')->toArray()*/,['placeholder' => 'Enter user name...','multiple' => true,'class' => 'clear-fix j-select2', 'style' => '']) !!}
-                                {!! Form::button('Send', ['type'=>'submit','class'=>'btn btn-primary','style' => 'padding: 4px 8px; margin-top:5px;']) !!}
+                                {!! Form::select('users[]', $content['membersToRequest'], [],['placeholder' => 'Enter user name...','multiple' => true,'class' => 'clear-fix j-select2', 'style' => '']) !!}
+                                {!! Form::button('Send', ['type'=>'submit','class'=>'btn1-kit mt16']) !!}
                                 {!! Form::close() !!}
                             </div>
                         </div>
                     @endif
-                    <div class="clearfix info-block">
-                        <div><strong>Description</strong></div>
-                        <div>{!! nl2br($model->group_desc) !!}</div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -69,12 +73,14 @@
                             @else
                                 <div class="pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
                                     @if(Auth::check())
-                                        <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[],false) !!}" class="btn btn-danger j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" style="display: block; margin-top: 5px;" data-toggle="modal"
+                                        <a title="Cancel Request" href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[],false) !!}" class="btn2-icon j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" data-toggle="modal"
                                            data-target="#cancel-request-sm" data-header="Cancel Request"
-                                           data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
+                                           data-confirm="Are you sure you want to cancel this request?">
+                                            <i class="bs-close cu-btn-ic"></i>
+                                        </a>
                                     @endif
-                                    <a href="{!! url('/groups/leave-group/'.$model->id,[],false) !!}" class="pull-right btn btn-danger j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}"><i class="fa fa-btn fa-minus" style="font-size: 14px;"></i>Leave Group</a>
-                                    <a href="{!! url('/groups/join-group/'.$model->id,[],false) !!}" class="pull-right btn btn-primary j-join-group {!! in_array($model->id,$content['joinedGroupsKeys']) || (Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}"><i class="fa fa-btn fa-plus" style="font-size: 14px;"></i>Join Group</a>
+                                    <a href="{!! url('/groups/leave-group/'.$model->id,[],false) !!}" class="btn2-kit j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}">Leave Group</a>
+                                    <a href="{!! url('/groups/join-group/'.$model->id,[],false) !!}" class="btn1-kit j-join-group {!! in_array($model->id,$content['joinedGroupsKeys']) || (Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}">Join Group</a>
                                 </div>
                             @endif
                         </div>
@@ -108,7 +114,7 @@
                 </ul>
             </div>
             {{--@endrole--}}
-            <div class="row">
+            <div class="row cu1-row">
                 @if(Request::get('p') == 'members')
                     <div class="col-xs-12 related-records j-members-list">
                         <div class="row">
