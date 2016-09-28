@@ -12,7 +12,7 @@
                     <div class="c-friend-text">
                         <span class="friend-name">{!! $member->name !!}{!! Auth::user() && Auth::user()->id == $member->id?' (you)':'' !!}</span>
                         <div>
-                            <span style="color:#90949c;">{!! str_limit(strip_tags($member->about_me,'<p></p>'), $limit = 15, $end = '... ') !!}</span>
+                            {!! str_limit(strip_tags($member->about_me,'<p></p>'), $limit = 15, $end = '... ') !!}
                         </div>
                     </div>
                 </div>
@@ -38,6 +38,6 @@
     <div class="col-md-12 text-center load-more-block">
         {!! Html::link('/groups/requests/'.$model->id.'?'.http_build_query(
                 array_merge(Request::all(),['page' => $content['nextPage']])
-            ),'See More', ['class'=>'btn btn-default load-more','style' => 'width:100%;']) !!}
+            ),'See More', ['class'=>'btn1 load-more','style' => 'width:100%;']) !!}
     </div>
 @endif

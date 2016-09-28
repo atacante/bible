@@ -1,34 +1,31 @@
 @if(count($content['invitations']))
     @foreach($content['invitations'] as $member)
-        <div class="clearfix col-md-6 friend-item" style="margin-bottom: 15px;">
-            <div class="pull-left" style="margin-right: 10px;">
+        <div class="my-item friend-item">
+            <div class="my-inner-friends-item">
                 @if($member->avatar)
-                    <img class="img-thumbnail" height="100" width="100" data-dz-thumbnail="" alt="" src="{!! Config::get('app.userAvatars').$member->id.'/thumbs/'.$member->avatar !!}"/>
+                    <div class="friend-image" style="background: url('{!! $member->avatar!=''?Config::get('app.userAvatars').$member->id.'/thumbs/'.$member->avatar:'' !!}') center no-repeat;"></div>
                 @else
-                    <div class="no-avatar img-thumbnail">
-                        <div class="no-avatar-text text-center"><i class="fa fa-user fa-4x"></i></div>
+                    <div class="friend-image"></div>
+                @endif
+
+                <div class="c-friend">
+                    <div class="c-friend-text">
+                        <span class="friend-name">{!! $member->name !!}{!! Auth::user() && Auth::user()->id == $member->id?' (you)':'' !!}</span>
+                        <div>
+                            {!! str_limit(strip_tags($member->about_me,'<p></p>'), $limit = 15, $end = '... ') !!}
+                        </div>
                     </div>
-                @endif
-            </div>
-            <div class="pull-left" style="margin-right: 10px; width: 215px;">
-                <div><strong>{!! $member->name !!}{!! Auth::user() && Auth::user()->id == $member->id?' (you)':'' !!}</strong></div>
-                <div style="line-height: 16px; font-size: 12px;">
-                    <span style="color:#90949c;">{!! str_limit(strip_tags($member->about_me,'<p></p>'), $limit = 70, $end = '... ') !!}</span>
                 </div>
-            </div>
-            <div>
-                {!! str_limit(strip_tags($member->people_description,'<p></p>'), $limit = 500, $end = '... '.Html::link(url('/peoples/view/'.$member->id,[],false), 'View Details', ['class' => 'btn btn-success','style' => 'padding: 0 5px;'], true)) !!}
-            </div>
-            <div class="pull-left">
-                @if(Auth::user() && Auth::user()->id != $member->id)
-                <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.$member->id,[],false) !!}" class="btn btn-info j-cancel-request " style="padding: 4px 8px;" data-toggle="modal"
-                   data-target="#cancel-request-sm"
-                   data-header="Cancel Request"
-                   data-callclass="j-cancel-request"
-                   data-confirm="Are you sure you want to cancel this request?">Cancel Request</a>
-                {{--<a href="{!! url('/user/remove-friend/'.$member->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'':'hidden' !!}" style="padding: 4px 8px;">Unfollow</a>--}}
-                {{--<a href="{!! url('/user/follow-friend/'.$member->id,[],false) !!}" class="btn btn-primary j-follow-friend {!! in_array($member->id,Auth::user()->friends->modelKeys())?'hidden':'' !!}" style="padding: 4px 8px;">Follow</a>--}}
-                @endif
+
+                <div class="btns-group1">
+                    @if(Auth::user() && Auth::user()->id != $member->id)
+                    <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.$member->id,[],false) !!}" class="btn2 cu9-btn1 j-cancel-request" data-toggle="modal"
+                       data-target="#cancel-request-sm"
+                       data-header="Cancel Request"
+                       data-callclass="j-cancel-request"
+                       data-confirm="Are you sure you want to cancel this request?">Cancel <br> Request</a>
+                    @endif
+                </div>
             </div>
         </div>
     @endforeach
@@ -38,6 +35,6 @@
     <div class="col-md-12 text-center load-more-block">
         {!! Html::link('/groups/requests/'.$model->id.'?'.http_build_query(
                 array_merge(Request::all(),['page' => $content['nextPage']])
-            ),'See More', ['class'=>'btn btn-default load-more','style' => 'width:100%;']) !!}
+            ),'See More', ['class'=>'btn1 load-more load-more','style' => 'width:100%;']) !!}
     </div>
 @endif
