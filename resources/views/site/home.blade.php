@@ -26,7 +26,7 @@
                 </h2>
                 <p class="p-1 mt5 color2">Make a notes and write a journal. Share your favourites with<br>
                     friends. Do something more. Do one more thing.</p>
-                <a href="{{ URL::to('auth/register') }}" class="btn2 mt3">SIGNUP TO START YOUR JOURNEY</a>
+                <a href="{{ !Auth::check()?URL::to('auth/register'): URL::to('user/my-journey') }}" class="btn2 mt3">{{ Auth::check()?'':'SIGNUP TO ' }}START YOUR JOURNEY</a>
             </div>
         </section>
         <section class="home-ill-section h-ill3">
