@@ -3,7 +3,6 @@
 {{ Form::hidden('lastPrayerId', $lastIds['prayer'], ['id'=>'j-last-prayer-id']) }}
 {{ Form::hidden('lastJournalId', $lastIds['journal'], ['id'=>'j-last-journal-id']) }}
 {{ Form::hidden('lastStatusId', $lastIds['status'], ['id'=>'j-last-status-id']) }}
-
 @if($content['entries']->count())
     @if(!ViewHelper::isRoute('groups.view') || (ViewHelper::isRoute('groups.view') && Auth::check() && (Auth::user()->id == $model->owner_id || in_array(Auth::user()->id,$model->members()->lists('users.id')->toArray()))))
         @foreach($content['entries'] as $item)
@@ -101,10 +100,10 @@
                 </div>
             </div>
         @endforeach
-        @if($content['nextPage'])
+        @if($content['nextPage'] > 2)
             <div class="load-more-block mt3 mb1 clearfix">
                 <div class="text-center">
-                    {!! Html::link('/community/wall?'.http_build_query(
+                    {!! Html::link((ViewHelper::isRoute('groups.view')?'/groups/view/'.$model->id:'/community/wall').'?'.http_build_query(
                         array_merge(Request::input(),['page' => $content['nextPage']])
                     ),'Load More', ['class'=>'btn1 load-more','style' => 'width:100%;']) !!}
                 </div>

@@ -242,7 +242,7 @@ class GroupsController extends Controller
             return Redirect::to('/groups?type=my');
         }
 
-        $limit = 10;
+        $limit = 2;
         $page = Input::get('page',1);
         $offset = $limit*($page-1);
 
@@ -421,9 +421,12 @@ class GroupsController extends Controller
 
                 return $newTotalCount;
             }
+            if(Request::ajax()){
+                $view = 'community.wall-items';
+            }
         }
         $status = new WallPost();
-        return view('groups.view', [
+        return view(isset($view)?$view:'groups.view', [
             'model' => $model,
             'status' => $status,
             'content' => $content,
