@@ -4,18 +4,7 @@
 {{ Form::hidden('lastJournalId', $lastIds['journal'], ['id'=>'j-last-journal-id']) }}
 {{ Form::hidden('lastStatusId', $lastIds['status'], ['id'=>'j-last-status-id']) }}
 @if($content['entries']->count())
-    @if(
-        !ViewHelper::isRoute('groups.view') ||
-        (
-            ViewHelper::isRoute('groups.view') &&
-            Auth::check() &&
-            (Auth::user()->id == $model->owner_id ||
-                (($model->access_level == $model::ACCESS_SECRET) &&
-                in_array(Auth::user()->id,$model->members()->lists('users.id')->toArray())
-                )
-            ) ||
-            ($model->access_level == $model::ACCESS_PUBLIC)
-        ))
+    @if(!ViewHelper::isRoute('groups.view') || (ViewHelper::isRoute('groups.view') && ViewHelper::checkWallAccess($model)))
         @foreach($content['entries'] as $item)
             <div class="related-item j-wall-item">
                 {{--<div class="user-image cu-ui1"></div>--}}

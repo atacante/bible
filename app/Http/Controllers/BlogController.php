@@ -56,13 +56,14 @@ class BlogController extends Controller {
 	 */
 	public function getArticle($id)
 	{
+		$categories =  BlogCategory::all();
 		$article =  BlogArticle::find($id);
 		/* Track user views */
 		if(Auth::check() && $article){
 			UsersViews::thackView($article,UsersViews::CAT_BLOG);
 		}
 		/* End Track user views */
-		return view('blog.article_view',['article'=>$article]);
+		return view('blog.article_view', ['categories'=>$categories, 'article'=>$article]);
 	}
 
 	public function postSaveComment(Request $request)
