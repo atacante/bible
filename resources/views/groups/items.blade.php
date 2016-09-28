@@ -72,7 +72,7 @@
         @elseif(isset($dataKey) && $dataKey == 'myGroups')
         You haven’t got any groups yet.</br>
         Click at the button below to create new.</br>
-        <a href="{!! url('/groups/create',[],false) !!}" class="btn2-kit" style="margin: 10px;"><i class="bs-add cu-search2"></i>Create Group</a>
+        <a href="{!! url('/groups/create',[],false) !!}" class="btn2-kit {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!}" style="margin: 10px;"><i class="bs-add cu-search2"></i>Create Group</a>
         @else
         No results found
         @endif
