@@ -52,7 +52,7 @@ class GroupsController extends Controller
     }
 
     public function getAllGroups(){
-        $limit = 6;
+        $limit = 10;
         $page = Input::get('page',1);
         $offset = $limit*($page-1);
 
@@ -242,7 +242,7 @@ class GroupsController extends Controller
             return Redirect::to('/groups?type=my');
         }
 
-        $limit = 2;
+        $limit = 10;
         $page = Input::get('page',1);
         $offset = $limit*($page-1);
 

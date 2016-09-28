@@ -20,6 +20,7 @@
                 </li>
             </ul>
             @endrole
+
             @if(Request::get('type') == 'my' && Auth::user())
                 @include('groups.my-list')
             @else

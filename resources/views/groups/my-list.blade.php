@@ -5,7 +5,11 @@
                 <h5 class="h5-kit">Groups You Manage</h5>
             </div>
         </div>
-        @include('groups.items',['dataKey' => 'myGroups'])
+        <div class="row">
+            <div class="col-md-12 j-group-items">
+                @include('groups.items',['dataKey' => 'myGroups'])
+            </div>
+        </div>
     </div>
 
 
@@ -16,7 +20,11 @@
                     <h5 class="h5-kit">Group Invitations</h5>
                 </div>
             </div>
-            @include('groups.items',['dataKey' => 'groupsRequested'])
+            <div class="row">
+                <div class="col-md-12 j-group-items">
+                    @include('groups.items',['dataKey' => 'groupsRequested'])
+                </div>
+            </div>
         @endif
 
         @if($content['myGroupsRequests']['items']->count())
@@ -25,7 +33,11 @@
                     <h5 class="h5-kit">Groups You Have Requested to Join</h5>
                 </div>
             </div>
-            @include('groups.items',['dataKey' => 'myGroupsRequests'])
+            <div class="row">
+                <div class="col-md-12 j-group-items">
+                    @include('groups.items',['dataKey' => 'myGroupsRequests'])
+                </div>
+            </div>
         @endif
 
         <div class="c-white-content m-cu1">
@@ -33,8 +45,10 @@
                 <h5 class="h5-kit">Groups You Have Joined</h5>
             </div>
         </div>
-        @include('groups.items',['dataKey' => 'joinedGroups'])
-
-
+        <div class="row">
+            <div class="col-md-12 j-group-items">
+                @include('groups.items',['dataKey' => 'joinedGroups'])
+            </div>
+        </div>
     </div>
 </div>
