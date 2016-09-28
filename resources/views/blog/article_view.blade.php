@@ -12,22 +12,27 @@
         <div class="col-xs-9">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="text-center">{!! $article->title !!}</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" style="line-height: 30px;">
-                    <div class="clearfix location-item-details">
-                        <div>
-                            {!! $article->text !!}
+                    <div class="c-white-content c-blog">
+                        <div class="related-item">
+                            <div class="clearfix">
+                                <div class="item-header mb5">
+                                    <div class="cu-date1">&nbsp; {!! $article->humanLastUpdate() !!}</div>
+                                    <h3 class="h3-sub-kit pull-left">{{$article->title}}</h3>
+                                </div>
+                                <div class="item-body wall-text2">{!! $article->text !!}</div>
+                                <span class="pull-right">Posted by <b>{!! $article->user->name !!}</b></span>
+                            </div>
+                            @include('blog.comments')
                         </div>
                     </div>
                 </div>
             </div>
-            @include('blog.comments')
-            <div class="row">
-                <div class="text-center">
-                    {!! Html::link((($url = Session::get('backUrl'))?$url:'/blog'),'Back to list', ['class'=>'btn btn-primary']) !!}
+
+            <div class="row m-btn">
+                <div class="col-xs-12">
+                    <div class="text-center">
+                        {!! Html::link((($url = Session::get('backUrl'))?$url:'/blog'),'Back to list', ['class'=>'btn1', 'style' => 'width: 100%;']) !!}
+                    </div>
                 </div>
             </div>
         </div>

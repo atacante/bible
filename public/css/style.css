@@ -3287,8 +3287,11 @@ ul.icon-panel li a {
     font-family: work_sansregular;
 }
 
-.verse-text .word-definition:last-child {
-    margin-right: 10px;
+.verse-text b a{
+    margin-left: 10px;
+}
+.verse-text:first-child b a{
+    margin-left: 0;
 }
 .req {
     color: #f90000;
@@ -3982,11 +3985,10 @@ textarea.wall-text-area:focus {
 .community-menu > li.active > a > i {
     color: #ffffff;
 }
-.wall-text1 {
+.wall-text1, .wall-text2 {
     font-size: 15px;
     color: #333333;
     font-family: work_sansregular;
-    cursor: pointer;
 }
 .wall-text1 p {
     cursor: pointer;
@@ -5469,6 +5471,7 @@ h3.strongs-subheader{
     top:12px;
     margin-left: 45px;
     border-left: 1px solid #b7b7b7;
+    line-height:initial;
 }
 
 #popup .modal-dialog .modal-content .modal-header .modal-header-btn i.bs-study{
@@ -5517,7 +5520,8 @@ i.bs-pray{
     text-shadow: none;
 }
 
-#popup .modal-dialog .modal-content .modal-header .modal-title-text{
+#popup .modal-dialog .modal-content .modal-header .modal-title-text,
+#popup .modal-dialog .modal-content .modal-header h4{
     font-size: 28px;
     color: #505050;
     line-height: 70px;
@@ -5531,6 +5535,11 @@ i.bs-pray{
 
 #popup .modal-dialog .modal-content .modal-body .box-body{
     padding: 40px 40px 0 40px;
+}
+
+.entry-form textarea{
+    border: 1px solid #a9a9a9;
+    border-radius: 0;
 }
 
 .entry-form .form-verse-text{

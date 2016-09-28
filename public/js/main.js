@@ -1507,25 +1507,23 @@ $(document).ready(function(){
             method: "GET",
             url: url,
             success:function(data){
-                $('#popup-sm').data('itemtype',$(that).parents('.j-wall-item').find('.j-item-body').data('itemtype'));
-                $('#popup-sm').data('itemid',$(that).parents('.j-wall-item').find('.j-item-body').data('itemid'));
-                $('#popup-sm').find('.modal-header .modal-title').html('Report inappropriate content');
-                $('#popup-sm').find('.modal-body').html(data);
-                $('#popup-sm').find('.modal-footer').html('');//<a href="'+url+'" class="j-send-report"></a>
-                $('#popup-sm').modal({show:true});
+                $('#popup').data('itemtype',$(that).parents('.j-wall-item').find('.j-item-body').data('itemtype'));
+                $('#popup').data('itemid',$(that).parents('.j-wall-item').find('.j-item-body').data('itemid'));
+                $('#popup').find('.modal-header .modal-title').html('Report inappropriate content');
+                $('#popup').find('.modal-body').html(data);
+                $('#popup').find('.modal-footer').html('');//<a href="'+url+'" class="j-send-report"></a>
+                $('#popup').modal({show:true});
             }
         });
     });
 
-    $('#popup-sm').on('click','.j-send-report',function(e){
+    $('#popup,#popup-sm').on('click','.j-send-report',function(e){
         e.preventDefault();
         var that = this;
         var form = $(that).parents('.j-report-form');
         site.ajaxForm(form,function(data){
             form[0].reset();
-            console.log($('#popup-sm').data('itemtype'));
-            console.log($('#popup-sm').data('itemid'));
-            var reportBtn = $('.j-item-body[data-itemtype='+$('#popup-sm').data('itemtype')+'][data-itemid='+$('#popup-sm').data('itemid')+']').parents('.j-wall-item').find('.j-item-report');
+            var reportBtn = $('.j-item-body[data-itemtype='+$('#popup').data('itemtype')+'][data-itemid='+$('#popup').data('itemid')+']').parents('.j-wall-item').find('.j-item-report');
             reportBtn.addClass('disabled');
             reportBtn.addClass('reported');
             $('#popup-sm').modal('hide');

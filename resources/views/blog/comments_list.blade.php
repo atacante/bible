@@ -1,15 +1,19 @@
 @if($article->comments->count())
     @foreach($article->comments as $comment)
-        <div style="margin-top: 5px;">
+
+        <div class="c-people-comment">
             <div class="" style="position: absolute;">
-                @if($comment->user->avatar)
-                    <img class="img-thumbnail" height="54" width="54" data-dz-thumbnail="" alt="" src="{!! Config::get('app.userAvatars').$comment->user->id.'/thumbs/'.$comment->user->avatar !!}"/>
+                @if($comment->user && $comment->user->avatar)
+                    <div class="user-image cu-ui2" style="background: url('{!! $comment->user->avatar!=''?Config::get('app.userAvatars').$comment->user->id.'/thumbs/'.$comment->user->avatar:'' !!}') center no-repeat;"></div>
                 @else
-                    <i class="fa fa-user fa-4x"></i>
+                    <div class="user-image cu-ui2"></div>
                 @endif
             </div>
-            <div class="" style="margin-left: 60px; min-height: 54px;">
-                {!! $comment->text !!}
+            <div class="people-comment-text wall-text1">
+                <div><strong>{!! $comment->user?$comment->user->name:'somebody' !!}</strong>
+                    <span class="cu-date2">{!! $comment->humanFormat('created_at') !!}</span>
+                </div>
+                <div>{!! $comment->text !!}</div>
             </div>
         </div>
     @endforeach

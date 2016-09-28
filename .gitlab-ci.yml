@@ -1,0 +1,37 @@
+stages:
+ - alpha
+ - beta
+ - live
+
+job_for_alpha:
+  stage: alpha
+  script:
+    - hostname
+    - pwd
+  only:
+    - alpha
+  tags:
+    - alpha
+  environment: qa
+
+job_for_beta:
+  stage: beta
+  script:
+    - hostname
+    - pwd
+  only:
+    - beta
+  tags:
+    - beta
+  environment: staging
+
+job_for_live:
+  stage: live
+  script:
+    - hostname
+    - pwd
+  only:
+    - master
+  tags:
+    - live
+  environment: production
