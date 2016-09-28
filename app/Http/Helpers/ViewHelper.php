@@ -334,6 +334,12 @@ class ViewHelper
             case 'myGroups':
                 $action = 'my-groups';
                 break;
+            case 'groupsRequested':
+                $action = 'groups-requested';
+                break;
+            case 'myGroupsRequests':
+                $action = 'my-groups-requests';
+                break;
             case 'joinedGroups':
                 $action = 'joined-groups';
                 break;

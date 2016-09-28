@@ -47,12 +47,11 @@
     </div>
     <div class="clearfix"></div>
 
-
     @if($content[isset($dataKey)?$dataKey:'groups']['nextPage'])
     <div class="g-footer text-center load-more-block">
         {!! Html::link('/groups/'.ViewHelper::getGroupAction(isset($dataKey)?$dataKey:'groups').'?'.http_build_query(
                 array_merge(Request::all(),['page' => $content[isset($dataKey)?$dataKey:'groups']['nextPage']])
-            ),'Load More', ['class'=>'btn load-more','style' => '']) !!}
+            ),'Load More', ['class'=>'btn1 load-more','style' => 'width:100%;']) !!}
     </div>
     @endif
 @else

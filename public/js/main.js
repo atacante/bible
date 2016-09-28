@@ -1124,7 +1124,7 @@ $(document).ready(function(){
         });
     });
 
-    $('.public-wall,.group-wall,.j-members-list,.j-friends-items,.group-block .g-body,#popup').on('click','.load-more',function(e){
+    $('.public-wall,.group-wall,.j-members-list,.j-friends-items,.j-group-items,.group-block .g-body,#popup').on('click','.load-more',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
         var that = this;
@@ -1144,12 +1144,17 @@ $(document).ready(function(){
                 }
                 else{
                     var parent = $(that).parents('.g-body');
-                    $('body .load-more-block').remove();
+                    var parent2 = $(that).parents('.j-group-items');
+                    //$('body .load-more-block').remove();
+                    $(that).parents('.load-more-block').remove();
                     $('.j-wall-items,.j-friends-items,.j-members-list .row').append(data);
+                    parent2.append(data);
                     parent.append(data);
-                    var loadMoreBlock = $('.load-more-block').clone();
-                    $('.load-more-block').remove();
-                    $('.j-wall-items').after(loadMoreBlock);
+                    if($('.j-wall-items').length){
+                        var loadMoreBlock = $('.load-more-block').clone();
+                        $('.load-more-block').remove();
+                        $('.j-wall-items').after(loadMoreBlock);
+                    }
                 }
             }
         });
