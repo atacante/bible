@@ -375,4 +375,15 @@ class ViewHelper
         }
         return $content;
     }
+
+    public static function checkWallAccess($model)
+    {
+        return Auth::check() &&
+            (Auth::user()->id == $model->owner_id ||
+                (($model->access_level == $model::ACCESS_SECRET) &&
+                    in_array(Auth::user()->id,$model->members()->lists('users.id')->toArray())
+                )
+            ) ||
+            ($model->access_level == $model::ACCESS_PUBLIC);
+    }
 }
