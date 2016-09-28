@@ -114,7 +114,7 @@
                 </ul>
             </div>
             {{--@endrole--}}
-            <div class="row">
+            <div class="row cu1-row">
                 @if(Request::get('p') == 'members')
                     <div class="col-xs-12 related-records j-members-list">
                         <div class="row">
