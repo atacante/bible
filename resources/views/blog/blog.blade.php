@@ -6,9 +6,11 @@
             @include('blog.categories')
         </div>
         <div class="col-xs-9">
-                <div class="pull-right friends-nav">
-                    @include('blog.search')
-                </div>
+                <ul class="nav nav-pills tabs-nav">
+                    <li class="pull-right friends-nav mb6">
+                        @include('blog.search')
+                    </li>
+                </ul>
                 <div class="clearfix"></div>
                 @include('blog.articles')
         </div>

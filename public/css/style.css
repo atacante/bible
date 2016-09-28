@@ -660,6 +660,12 @@ table.table-lexicon p {
 .mb4 {
     margin-bottom: 20px !important;
 }
+.mb5 {
+    margin-bottom: 15px !important;
+}
+.mb6 {
+    margin-bottom: 6px !important;
+}
 .mr1 {
     margin-right: 10%;
 }
