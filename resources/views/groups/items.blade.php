@@ -1,8 +1,6 @@
-<div class="row cu1-row">
 @if(count($content[isset($dataKey)?$dataKey:'groups']['items']))
+    <div class="row cu1-row">
     @foreach($content[isset($dataKey)?$dataKey:'groups']['items'] as $group)
-
-
         <div class="my-item">
             <div class="my-inner-groups-item">
                 @if($group->group_image)
@@ -22,7 +20,6 @@
                     </div>
                     <div class="c-group-text mt15">
                          {!! str_limit(strip_tags($group->group_desc,'<p></p>'), $limit = 25, $end = '... ') !!}
-
                     </div>
                 </div>
 
@@ -44,15 +41,10 @@
                         @endif
                     @endif
                 </div>
-
-
             </div>
         </div>
-
-
-
     @endforeach
-</div>
+    </div>
     <div class="clearfix"></div>
 
 
