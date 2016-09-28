@@ -137,9 +137,9 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('plan_type') ? ' has-error' : '' }}">
-                            {!! Form::label('plan_type', "Subscription plan", array('class' => 'col-xs-2 control-label')) !!}
+                            {!! Form::label('plan_type', "Subscription plan", array('class' => 'col-md-4 control-label')) !!}
 
-                            <div class="col-xs-10">
+                            <div class="col-xs-8">
                                 <div class="radio-inline">
                                     {!! Form::radio('plan_type', 'free', true, ["class" => "cust-radio", "id" => "free"]) !!}
                                     <label class="label-radio cu-label" for="free">Free</label>
