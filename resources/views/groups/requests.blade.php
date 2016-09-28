@@ -38,6 +38,6 @@
     <div class="col-md-12 text-center load-more-block">
         {!! Html::link('/groups/requests/'.$model->id.'?'.http_build_query(
                 array_merge(Request::all(),['page' => $content['nextPage']])
-            ),'See More', ['class'=>'btn btn-default load-more','style' => 'width:100%;']) !!}
+            ),'See More', ['class'=>'btn1 load-more','style' => 'width:100%;']) !!}
     </div>
 @endif
