@@ -2661,7 +2661,7 @@ ul.nav.navbar-nav li {
     padding: 20px 0;
 }
 .in-inner-container {
-    padding: 0 50px;
+    padding: 0 50px 30px;
     max-width: 1360px;
     margin: 0 auto;
 }
@@ -4905,6 +4905,10 @@ ul.icons-list li i {
     text-transform: capitalize;
     color: #a9a9a9;
     display: inline-block;
+}
+.c-blog .related-item {
+    border-bottom: 1px solid #e3e3e3;
+    padding: 30px !important;
 }
 @media (max-width: 992px) {
     .pad-r1 {
