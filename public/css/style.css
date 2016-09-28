@@ -5648,3 +5648,7 @@ i.bs-pray{
 .load-more-block{
     margin-bottom: 15px;
 }
+
+ a.show-billing {
+    color:#00b9f7 !important;
+}

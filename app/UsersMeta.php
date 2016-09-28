@@ -17,7 +17,7 @@ class UsersMeta extends BaseModel {
             'shipping_first_name' => 'required',
             'shipping_last_name' => 'required',
 			'shipping_postcode' => 'required',
-            'billing_email' => 'required|email',
+            'billing_email' => 'email',
 		];
 
 		return $rules;
