@@ -30,6 +30,7 @@ job_for_live:
   script:
     - hostname
     - pwd
+    - export PATH=/opt/remi/php56/root/bin/:$PATH && cd $HOME/web && git pull && php artisan migrate && php artisan asset:dist
   only:
     - master
   tags:
