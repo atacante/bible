@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        {!! Form::label('placeholders', 'Placeholders', ["class"=>"col-xs-3"]) !!}
+                        {!! Form::label('placeholders', 'Placeholders', ["class"=>"col-xs-3 mt15"]) !!}
                         <div class="col-xs-9 urls-text">
                             {invite_url} - <span class="iu-text">{!! $content['invite_url'] !!}</span>
                                 <br />
