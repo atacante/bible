@@ -41,7 +41,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-xs-9 col-xs-offset-3">
-                            {!! Form::button('Send', ['type'=>'submit','class'=>'btn1-kit j-send-report']) !!}
+                            {!! Form::button('Send', ['type'=>'submit','class'=>'btn2-kit cu-btn-pad1 mr7 mt16 j-send-report']) !!}
                         </div>
                     </div>
 
