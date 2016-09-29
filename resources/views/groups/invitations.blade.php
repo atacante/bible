@@ -33,7 +33,7 @@
 <div class="clearfix"></div>
 @if($content['nextPage'])
     <div class="col-md-12 text-center load-more-block">
-        {!! Html::link('/groups/requests/'.$model->id.'?'.http_build_query(
+        {!! Html::link('/groups/invitations/'.$model->id.'?'.http_build_query(
                 array_merge(Request::all(),['page' => $content['nextPage']])
             ),'See More', ['class'=>'btn1 load-more load-more','style' => 'width:100%;']) !!}
     </div>
