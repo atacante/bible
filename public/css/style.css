@@ -5537,6 +5537,10 @@ i.bs-pray{
     padding: 40px 40px 0 40px;
 }
 
+#popup .modal-dialog .modal-content .modal-body .friend-item.box-body{
+    padding: 40px;
+}
+
 .entry-form textarea{
     border: 1px solid #a9a9a9;
     border-radius: 0;
@@ -5726,4 +5730,26 @@ i.bs-pray{
 
  a.show-billing {
     color:#00b9f7 !important;
+}
+
+.user-popup h4{
+    margin-top: 0;
+}
+.user-popup .about-me{
+    margin-bottom: 10px;
+}
+.user-popup .cu-cancel {
+    font-size: 13px !important;
+    padding: 10px !important;
+    border-width: 2px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    vertical-align: top;
+    border-width: 2px !important;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    line-height: 15px;
+    margin: 20px 0;
+    width: 100%;
+    text-align: center;
 }
