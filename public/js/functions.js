@@ -328,7 +328,8 @@ site.ajaxForm = function(form,callback){
         },
         error:function(data){
             $.each(data.responseJSON, function(index,value){
-                var formGroup = $(':input[name='+index+']').parents('.form-group');
+                var formGroup = $(':input[name="'+index+'"]').parent('.form-group');
+                console.log(formGroup);
                 formGroup.addClass('has-error');
                 formGroup.append('<span class="help-block">'+value[0]+'</span>');
             });

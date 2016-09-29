@@ -5560,6 +5560,10 @@ i.bs-pray{
     border-radius: 0;
 }
 
+.entry-form .share-with-groups .form-group{
+    margin-bottom: 0;
+}
+
 .entry-form .form-verse-text{
     position: relative;
     padding: 28px;
