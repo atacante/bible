@@ -107,14 +107,16 @@
                         <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn1 mt2 mb1">READ BIBLE NOW</a>
                     </div>
                 </div>
-                <div class="in-inner-container">
+
                     <div class="alert-container">
                         @notification()
                     </div>
-                    @yield('content')
+
+                        @yield('content')
+
                     @include('admin.partials.deletepop')
                     @include('partials.popup')
-                </div>
+
             </div>
         </div>
 

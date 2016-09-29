@@ -9,6 +9,7 @@
     <meta property="twitter:description" content="{{ strip_tags($verse_day) }}">
 @stop
 @section('content')
+    <div class="in-inner-container">
     <div class="c-center-content site-index">
         <section class="home-ill-section h-ill1">
             <div class="pull-right mt2 mr1">
@@ -56,6 +57,9 @@
         </section>
     </div>
     @include('partials.verse-of-day')
+    </div>
+
+
     <div class="c-center-content3 mt11 text-center">
         <i class="bs-gift cu-gift"></i>
         <h2 class="h2-1 color1 text-center mt9">
@@ -80,7 +84,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb1">
         <div class="col-lg-12 text-center pad1">
             <h2 class="h2-1 mt12">
                 <span>Read, EXPLORE, COMPARE, Share</span>
