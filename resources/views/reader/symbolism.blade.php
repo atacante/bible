@@ -1,6 +1,6 @@
 {{--{!! var_dump($lexiconinfo) !!}--}}
 <div style="max-width: 400px; max-height: 300px; overflow-y: auto;">
-    {!! $lexiconinfo->symbolism?$lexiconinfo->symbolism:'No symbolism info' !!}
+    {!! $lexiconinfo->symbolism?$lexiconinfo->symbolism:'No analysis info' !!}
     <div class="clearfix"></div>
     @if($lexiconinfo->locations->count())
         <div class="text-left">
