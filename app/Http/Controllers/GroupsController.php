@@ -447,7 +447,7 @@ class GroupsController extends Controller
     public function getMembers($groupId,$order = false)
     {
         $type = Input::get('type','active');
-        $limit = 10;
+        $limit = 5;
         $page = Input::get('page',1);
         $offset = $limit*($page-1);
 
@@ -464,9 +464,11 @@ class GroupsController extends Controller
             $members->orWhere('users.id',$group->owner_id);
         }
 
-        $totalCount = $members->count();
+        $members->groupBy('users.id')->groupBy('groups_users.user_id')/*->groupBy('groups_users.banned')*/;
 
-        $members->groupBy('users.id')->groupBy('groups_users.user_id')/*->groupBy('groups_users.banned')*/->limit($limit)->offset($offset);
+        $totalCount = $members->get()->count();
+
+        $members->limit($limit)->offset($offset);
 
         if($order == 'random'){
             $members->orderByRaw("RANDOM()");
@@ -495,6 +497,8 @@ class GroupsController extends Controller
             $content['myFriends'] = array_intersect($content['requests'], $content['myRequests']);
         }
 
+//        dd(count($content['members']));
+
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
 
         if(Request::ajax()){
@@ -513,7 +517,7 @@ class GroupsController extends Controller
 
     public function getRequests($groupId)
     {
-        $limit = 10;
+        $limit = 5;
         $page = Input::get('page',1);
         $offset = $limit*($page-1);
 
@@ -546,7 +550,7 @@ class GroupsController extends Controller
 
     public function getInvitations($groupId)
     {
-        $limit = 10;
+        $limit = 5;
         $page = Input::get('page',1);
         $offset = $limit*($page-1);
 

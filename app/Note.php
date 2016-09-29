@@ -24,9 +24,11 @@ class Note extends BaseModel
 
     public function rules()
     {
-        return  [
-            'note_text' => 'required',
-        ];
+        $rules['note_text'] = 'required';
+        if(Request::input('share_for_groups') == self::ACCESS_SPECIFIC_GROUPS){
+            $rules['groups[]'] = 'required';
+        }
+        return $rules;
     }
 
     public static $columns = [
