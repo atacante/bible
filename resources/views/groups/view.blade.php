@@ -126,7 +126,7 @@
 
                 @elseif(Request::get('p') == 'invitations')
                     <div class="row cu1-row">
-                        <div class="col-xs-12 related-records j-invitations-list">
+                        <div class="col-xs-12 related-records j-members-list">
                             <div class="row">
                                 @include('groups.invitations')
                             </div>
@@ -134,7 +134,7 @@
                     </div>
                 @elseif(Request::get('p') == 'requests')
                     <div class="row cu1-row">
-                        <div class="col-xs-12 related-records j-requests-list">
+                        <div class="col-xs-12 related-records j-members-list">
                             <div class="row">
                                 @include('groups.requests')
                             </div>
