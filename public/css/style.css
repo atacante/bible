@@ -1216,6 +1216,10 @@ a.view-details:hover{
     text-transform: lowercase !important;
 }
 
+.text-uppercase{
+    text-transform: uppercase !important;
+}
+
 .text-left{
     text-align: left !important;
 }
@@ -5770,4 +5774,20 @@ i.bs-pray{
     margin: 20px 0;
     width: 100%;
     text-align: center;
+}
+
+.reader-banner{
+    background: url(/images/banner.png) center center no-repeat;
+    height: 404px;
+    color: #ffffff;
+    padding-top: 95px;
+    letter-spacing: 2px;
+}
+
+a.banner-btn{
+    font-family: ns_widedemibold !important;
+    font-size: 18px !important;
+    padding: 25px 50px !important;
+    letter-spacing: 1px;
+    margin-top: 44px;
 }
