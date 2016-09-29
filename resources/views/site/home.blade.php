@@ -16,7 +16,7 @@
                     STUDY THE <span>BIBLE</span> <br>WITH PURPOSE
                 </h2>
                 <p class="p-1 mt5">Learn and compare between different<br> versions of bible.</p>
-                <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn2 mt3">SEE BIBLE VERSIONS</a>
+                <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn2 mt3">Go To Reader</a>
             </div>
         </section>
         <section class="home-ill-section h-ill2">
