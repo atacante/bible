@@ -8,7 +8,10 @@
         </button>
         <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i><div class="logo-text">BIBLE STUDY CO</div></a>
     </div>
-    <div class="pull-left" style="">
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
         <ul class="nav navbar-nav">
 
             {{-- --------------- READ --------------- --}}
@@ -91,34 +94,8 @@
                 </a>
             </li>
         </ul>
-    </div>
 
 
-    @if(Request::segment(1) == 'reader')
-        <div class="pull-left" style="width: 270px; margin: 8px 15px 0;">
-            {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
-            {!! Form::text('q',Request::input('q'),['class' => 'pull-left','placeholder' => 'Search verse everywhere...','style' => 'width:220px; margin-right:5px;']) !!}
-            {!! Form::submit('Go',['class' => 'btn btn-primary pull-left']) !!}
-            {!! Form::close() !!}
-        </div>
-        <div class="pull-left" style="margin: 14px 10px 0;">
-            <div class="radio-inline">
-                <label>
-                    {!! Form::radio('readerMode', 'beginner', (Request::cookie('readerMode',false) == 'beginner'),['class' => 'j-reader-mode']) !!}
-                    {!! Config::get('app.readerModes.beginner') !!}
-                </label>
-            </div>
-            <div class="radio-inline">
-                <label>
-                    {!! Form::radio('readerMode', 'intermediate', (Request::cookie('readerMode',false) == 'intermediate'),['class' => 'j-reader-mode']) !!}
-                    {!! Config::get('app.readerModes.intermediate') !!}
-                </label>
-            </div>
-        </div>
-    @endif
-
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
             @if(Request::is('shop*') || Request::is('order*'))
                 <li class="{{ ViewHelper::classActivePath('shop/cart') }}">
