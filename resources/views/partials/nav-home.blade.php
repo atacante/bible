@@ -12,12 +12,6 @@
         <ul class="nav navbar-nav">
 
             {{-- --------------- READ --------------- --}}
-            {{--<li>
-                <a class="{!! ViewHelper::classActivePath('reader') !!}" href="{{ URL::to('/reader/read?version=nasb') }}">
-                    <i class="bs-reader"></i>
-                    Reader
-                </a>
-            </li>--}}
             <li class="dropdown">
                 <a id="drop1" href="#" class="dropdown-toggle {!! ViewHelper::classActivePath(['reader','peoples','locations']) !!}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="bs-reader"></i>
@@ -90,10 +84,6 @@
                     Community
                 </a>
             </li>
-
-           {{-- <li class="{{ ViewHelper::classActivePath('shop') }}">
-                <a href="{{ URL::to('/shop') }}"><i class="fa fa-shopping-cart"></i> Shop</a>
-            </li>--}}
         </ul>
     </div>
 
@@ -146,7 +136,7 @@
                         @else
                             <div class="user-default"></div>
                         @endif
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                        <span class="user-menu-name">{{ Auth::user()->name }}</span> <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
@@ -156,7 +146,6 @@
                         </li>
                         <li><a href="{{ url('user/profile') }}">My Profile</a></li>
                         @endrole
-                        {{--<li role="separator" class="divider"></li>--}}
                         <li><a href="{{ url('auth/logout') }}">Logout</a></li>
                         @if(Session::has('adminAsUser'))
                             <li><a href="{{ url('auth/admin-logout') }}">Back To Admin</a></li>

@@ -1848,6 +1848,9 @@ a.view-details:hover{
     font-family: ns_widedemibold;
     font-size: 20px;
 }
+.home .navbar-header .navbar-brand{
+    color: #ffffff;
+}
 .navbar-inner-pages .navbar-header .navbar-brand{
     padding: 5px 15px 5px 0;
 }
@@ -2264,6 +2267,26 @@ a:focus, a:hover {
     color: #ffffff;
     text-decoration: none !important;
 }
+
+.home .btn1, .home .btn1:visited {
+    display: inline-block;
+    border: 3px solid #00b9f7;
+    background: #00b9f7;
+    color: #ffffff;
+    font-family: ns_widedemibold;
+    font-size: 18px;
+    padding: 15px 50px;
+    text-decoration: none !important;
+    outline: none !important;
+    text-transform: uppercase;
+}
+.home .btn1:hover, .home .btn1:active {
+    display: inline-block;
+    border-color: #79858f;
+    background: #79858f;
+    color: #ffffff;
+    text-decoration: none !important;
+}
 .cu-btn1 {
     font-size: 13px;
     padding: 7px 25px;
@@ -2528,6 +2551,10 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     line-height: 11px;
 }
 .bg-home {
+    background: url('/images/bg-home-header.png') center top no-repeat;
+    max-width: 100%;
+}
+.home .bg-home {
     background: url('/images/bg-home-header2.png') center top no-repeat;
     max-width: 100%;
 }
@@ -2556,12 +2583,24 @@ ul.nav.navbar-nav {
     margin-right: 5px;
     vertical-align: text-top;
 }
+.home .navbar-nav i {
+    color: #ffffff;
+}
 ul.nav.navbar-nav li  a {
     text-transform: uppercase;
     font-family: ns_widedemibold;
     color: #6b6b6b;
     font-size: 15px;
     padding: 11px 18px;
+}
+.home ul.nav.navbar-nav li  a {
+    color: #ffffff;
+}
+.home a.cu-drop-menu-item {
+    color: #ffffff;
+}
+.dropdown-menu li a {
+   color: #6b6b6b !important;
 }
 .navbar-inner-pages ul.nav.navbar-nav li  a {
     font-size: 13px;
@@ -2681,6 +2720,14 @@ ul.nav.navbar-nav li {
     background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 }
+.home .bg-g1 {
+    min-height: 650px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.4+0,0+100 */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#66000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
 .bg-g2 {
     min-height: 650px;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e6e6+30,e5e6e6+98 */
@@ -2702,6 +2749,15 @@ h1.h1-1 {
     margin: 0;
     font-family: ns_widelight;
 }
+.home h1.h1-1 {
+    color: white;
+}
+.home .user-menu-name {
+    color: #ffffff;
+}
+.home .caret {
+    color: white;
+}
 h1.h1-1 span {
     font-family: ns_widenormal;
 }
@@ -2712,6 +2768,9 @@ h2.h2-3 {
     text-align: center;
     margin: 10px 0;
     font-family: work_sansregular;
+}
+.home h2.h2-3 {
+    color: white;
 }
 h3.h3-1 {
     font-size: 20px;
