@@ -152,6 +152,29 @@ class StaticPagesSeeder extends Seeder
         ];
         CmsPage::insert($seminars);
 
+        CmsPage::where('system_name','membership')->delete();
+        $membership = [
+            'content_type' => CmsPage::CONTENT_PAGE,
+            'title' => 'Membership Levels',
+            'system_name' => 'membership',
+            'text' =>
+                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non,
+                placeat sit! Dolore labore magnam repudiandae sapiente?
+                Adipisci cum fuga illo ipsum optio quis voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Ab cum dolorem hic illum incidunt non, placeat sit! Dolore labore magnam repudiandae sapiente? </p>
+                <p>Adipisci cum fuga illo ipsum optio quis voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Ab cum dolorem hic illum incidunt non, placeat sit!
+                Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non,
+                placeat sit! Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non, placeat sit!
+                Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.</p>',
+            'meta_title' => 'Membership Levels',
+            'meta_keywords' => 'Membership Levels',
+            'meta_description' => 'Membership Levels',
+        ];
+        CmsPage::insert($membership);
+
         CmsPage::where('system_name','diff_explain')->delete();
         $diffTooltip = [
             'content_type' => CmsPage::CONTENT_TOOLTIP,
