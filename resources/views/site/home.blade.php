@@ -9,6 +9,7 @@
     <meta property="twitter:description" content="{{ strip_tags($verse_day) }}">
 @stop
 @section('content')
+    <div class="in-inner-container">
     <div class="c-center-content site-index">
         <section class="home-ill-section h-ill1">
             <div class="pull-right mt2 mr1">
@@ -16,7 +17,7 @@
                     STUDY THE <span>BIBLE</span> <br>WITH PURPOSE
                 </h2>
                 <p class="p-1 mt5">Learn and compare between different<br> versions of bible.</p>
-                <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn2 mt3">SEE BIBLE VERSIONS</a>
+                <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn2 mt3">Go To Reader</a>
             </div>
         </section>
         <section class="home-ill-section h-ill2">
@@ -56,31 +57,38 @@
         </section>
     </div>
     @include('partials.verse-of-day')
+    </div>
+
+
     <div class="c-center-content3 mt11 text-center">
         <i class="bs-gift cu-gift"></i>
         <h2 class="h2-1 color1 text-center mt9">
             SEND A <span>GIFT OF LOVE</span> TO A FRIEND
         </h2>
-        <div class="row mt10">
-            @foreach($products as $product)
-            <div class="col-lg-4">
-                <a href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" target="{!! ($product->external_link)?'_blank':'_self' !!}" class="gift-item">
-                    <div class="gift1" style="background:url('{{($product->images->count())?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'/images/cup.png' }}')  50% 50px no-repeat;">
-                    </div>
-                    <h4 class="h4-gift">
-                        {{$product->name}}
-                    </h4>
-                </a>
+
+        <div class="c-center-content-shop">
+            <div class="row mt10">
+                @foreach($products as $product)
+                <div class="col-lg-4">
+                    <a href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" target="{!! ($product->external_link)?'_blank':'_self' !!}" class="gift-item">
+                        <div class="gift1" style="background:url('{{($product->images->count())?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'/images/cup.png' }}')  50% 50px no-repeat;">
+                        </div>
+                        <h4 class="h4-gift">
+                            {{$product->name}}
+                        </h4>
+                    </a>
+                </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <a href="{{ URL::to('/shop') }}" class="btn3 mt3">VIEW ALL SHOP ITEMS</a>
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb1">
         <div class="col-lg-12 text-center pad1">
             <h2 class="h2-1 mt12">
                 <span>Read, EXPLORE, COMPARE, Share</span>

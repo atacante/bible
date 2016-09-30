@@ -24,9 +24,17 @@ class Journal extends BaseModel
 
     public function rules()
     {
-        return  [
-            'journal_text' => 'required',
-        ];
+        $rules['journal_text'] = 'required';
+        if(Request::input('share_for_groups') == self::ACCESS_SPECIFIC_GROUPS){
+            $rules['groups[]'] = 'required';
+        }
+        return $rules;
+    }
+
+    public function messages()
+    {
+        $messages['groups[].required'] = 'Please select groups from list.';
+        return $messages;
     }
 
     public static $columns = [

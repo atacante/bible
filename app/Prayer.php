@@ -24,9 +24,17 @@ class Prayer extends BaseModel
 
     public function rules()
     {
-        return  [
-            'prayer_text' => 'required',
-        ];
+        $rules['prayer_text'] = 'required';
+        if(Request::input('share_for_groups') == self::ACCESS_SPECIFIC_GROUPS){
+            $rules['groups[]'] = 'required';
+        }
+        return $rules;
+    }
+
+    public function messages()
+    {
+        $messages['groups[].required'] = 'Please select groups from list.';
+        return $messages;
     }
 
     public static $columns = [

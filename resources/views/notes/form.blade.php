@@ -100,11 +100,6 @@
                 </div>
                 <div class="form-group">
                     {!! Form::select('groups[]', $content['groups'], $model->groupsShares->pluck('id')->toArray(),['placeholder' => 'Select groups...','multiple' => true,'class' => 'clear-fix j-groups j-select2', 'style' => '',$model->access_level == App\Note::ACCESS_SPECIFIC_GROUPS?'':'disabled']) !!}
-                    @if ($errors->has('groups'))
-                        <span class="help-block">
-                            {{ $errors->first('groups') }}
-                        </span>
-                    @endif
                 </div>
                 <div class="checkbox j-only-show-group-owner {!! ViewHelper::checkEntryAccess($model)?'':'disabled' !!}">
                     {!! Form::hidden('only_show_group_owner', 0) !!}
@@ -138,7 +133,7 @@
                  role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                     {!! Form::textarea('journal_text',($model->exists && $model->journal)?$model->journal->journal_text:null,['id' => 'journal-text']) !!}
-                    @if ($errors->has('journal_text'))
+                    @if ($errors->has('journal_text'))z
                         <span class="help-block">
                                 {{ $errors->first('journal_text') }}
                             </span>

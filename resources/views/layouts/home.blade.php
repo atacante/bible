@@ -67,7 +67,7 @@
 
     <link rel="shortcut icon" href="{!! asset('assets/site/ico/favicon.ico')  !!} ">
 </head>
-<body>
+<body class="home">
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -107,14 +107,16 @@
                         <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn1 mt2 mb1">READ BIBLE NOW</a>
                     </div>
                 </div>
-                <div class="in-inner-container">
+
                     <div class="alert-container">
                         @notification()
                     </div>
-                    @yield('content')
+
+                        @yield('content')
+
                     @include('admin.partials.deletepop')
                     @include('partials.popup')
-                </div>
+
             </div>
         </div>
 
