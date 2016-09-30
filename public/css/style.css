@@ -2528,7 +2528,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     line-height: 11px;
 }
 .bg-home {
-    background: url('/images/bg-home-header.png') center top no-repeat;
+    background: url('/images/bg-home-header2.png') center top no-repeat;
     max-width: 100%;
 }
 .bg-inner-page {
@@ -2798,6 +2798,14 @@ h2.h2-2 {
     background: #f6f6f6;
     min-height: 449px;
 }
+.c-center-content-shop {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
 .h-ill5 {
     background: url('/images/p5-home.png') left center no-repeat;
     min-height: 449px;
@@ -2863,6 +2871,7 @@ ul.c-social li a:hover, ul.c-social li a:active {
 }
 .c-center-content3 {
     padding: 100px 10px;
+    box-sizing: border-box;
     background: rgb(133,203,246); /* Old browsers */
     background: -moz-linear-gradient(left,  rgba(133,203,246,1) 0%, rgba(133,203,246,1) 31%, rgba(148,228,238,1) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(left,  rgba(133,203,246,1) 0%,rgba(133,203,246,1) 31%,rgba(148,228,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
