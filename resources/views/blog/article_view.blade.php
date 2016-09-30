@@ -31,7 +31,7 @@
             <div class="row m-btn">
                 <div class="col-xs-12">
                     <div class="text-center">
-                        {!! Html::link((($url = Session::get('backUrl'))?$url:'/blog'),'Back to list', ['class'=>'btn1', 'style' => 'width: 100%;']) !!}
+                        {!! Html::link((($url = Session::get('backUrl'))?$url:'/blog'),'Back to list', ['class'=>'btn1 pull-right']) !!}
                     </div>
                 </div>
             </div>
