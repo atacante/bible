@@ -1,5 +1,6 @@
 var site = {
-    wallCheckInterval: 15000//ms
+    wallCheckInterval: 15000,//ms
+    likesAjax: false
 };
 var reader = {};
 var user = {};
