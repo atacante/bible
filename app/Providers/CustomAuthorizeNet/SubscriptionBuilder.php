@@ -27,12 +27,14 @@ class SubscriptionBuilder extends ASubscriptionBuilder
      */
     public function __construct($user, $plan, $amount = false)
     {
+
         $this->user = $user;
         $this->plan = $plan;
         $this->name = Config::get('cashier-authorize')[$this->plan]['name'];
-        if(!$amount){
+        if($amount === false){
             $amount = round(floatval(Config::get('cashier-authorize')[$this->plan]['amount']) * floatval('1.'.$this->getTaxPercentageForPayload()), 2);
         }
+
         $this->amount = round($amount,2);
         $this->requestor = new Requestor;
     }
@@ -123,4 +125,31 @@ class SubscriptionBuilder extends ASubscriptionBuilder
         return $result;
     }
 
+    public function createTrial(){
+
+        if($this->amount > 0){
+            return false;
+        }
+
+        $config = Config::get('cashier-authorize');
+
+        $period = $config[$this->plan]['interval']['length'];
+        // Must use mountain time according to Authorize.net
+        $endInMountainTz = Carbon::now('America/Denver')->addMonths($period);
+
+        $this->user->subscriptions()->create([
+            'name' => $this->name,
+            'authorize_id' => '111111111111',
+            'authorize_plan' => $this->plan,
+            'authorize_payment_id' => '111111111111',
+            'metadata' => json_encode([
+                'refId' => '1111111111111'
+            ]),
+            'quantity' => 1,
+            'trial_ends_at' => null,
+            'ends_at' => $endInMountainTz,
+        ]);
+
+        return true;
+    }
 }

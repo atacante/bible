@@ -344,7 +344,7 @@
 
         {{-- ---------------- Pagination  ---------------- --}}
         <div class="row mt14 mb1">
-            <div class="col-lg-12 j-reader-pagination">
+            <div class="col-xs-12 j-reader-pagination">
                 <div class="pull-left">
                     @if($prevBook = $content['pagination']['bookPrev'])
                         <a href="{!! url('reader/read?'.http_build_query($prevBook),[],false) !!}" class="btn2 mr5 btn-min-w">
@@ -376,7 +376,17 @@
             </div>
         </div>
 
-
+        @if(!Auth::check())
+            <div class="row mb1 mt12">
+                <div class="col-xs-12 reader-banner">
+                    <h2 class="h2-2 color1 text-center text-uppercase">
+                        want to keep your study<br>
+                        progress and share with a new friends?<br>
+                        <a href="{{url('/auth/register')}}" class="btn2-kit banner-btn">Sign Up Now</a>
+                    </h2>
+                </div>
+            </div>
+        @endif
         {!! Form::close() !!}
     </div>
 @stop

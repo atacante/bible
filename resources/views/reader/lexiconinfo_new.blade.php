@@ -19,7 +19,7 @@
     </div>
     <hr class="mt0"/>
     <div class="row">
-        <div class="col-md-12 medium">SYMBOLISM</div>
+        <div class="col-md-12 medium">ANALYSIS</div>
         <div class="col-md-12">{!! $lexiconinfo->symbolism?$lexiconinfo->symbolism:'-' !!}</div>
     </div>
     <hr class="mt0"/>
@@ -42,7 +42,7 @@
     </div>
     <hr class="mt0"/>
     <div class="row">
-        <div class="col-md-1 mr4p medium">SYMBOLISM</div>
+        <div class="col-md-1 mr4p medium">ANALYSIS</div>
         <div class="col-md-10">{!! $lexiconinfo->symbolism?$lexiconinfo->symbolism:'-' !!}</div>
     </div>
     <hr class="mt0"/>

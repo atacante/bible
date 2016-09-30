@@ -1436,46 +1436,69 @@ $(document).ready(function(){
                                 url: url,
                                 success:function(data){
                                     $(that).parent().find('.j-wall-like-btn').toggleClass('hidden');
-
-                                    var curLikesCount = parseInt($(that).parent().find('.j-likes-count').html());
+                                    var elem = $(that).parent().find('.j-likes-count');
+                                    var curLikesCount = parseInt(elem.html());
+                                    var count = 0;
                                     if($(that).hasClass('liked')){
-                                        $(that).parent().find('.j-likes-count').html(curLikesCount-1);
+                                        count = curLikesCount-1;
                                     }
                                     else{
-                                        $(that).parent().find('.j-likes-count').html(curLikesCount+1);
+                                        count = curLikesCount+1;
                                     }
+                                    if(count == 0){
+                                        elem.addClass('hidden');
+                                    }
+                                    else{
+                                        elem.removeClass('hidden');
+                                    }
+                                    elem.html(count);
                                 }
                             });
     });
 
-    $('.j-wall-items').on('mouseout','.j-wall-like-btn,.j-wall-item,.popover',function(e){
-        if(!($('.popover:hover').length || $('.j-wall-item:hover').length)){
-            $('.j-wall-like-btn').each(function () {
-                $(this).popover('destroy');
-            });
-        }
+    $('.j-wall-items').on('mouseout','.j-wall-like-btn,.popover',function(e){
+        var that = this;
+        $(that).removeClass('hovered');
+        setTimeout(function(){
+            if(!($('.popover:hover').length/* || $('.j-wall-like-btn:hover').length*/)){
+                $(that).parent().find('.j-wall-like-btn').popover('destroy');
+                //$('.j-wall-like-btn').each(function () {
+                //    console.log('hide');
+                //    $(that).popover('destroy');
+                //});
+            }
+        },1000);
     });
 
     $('.j-wall-items').on('mouseover','.j-wall-like-btn',function(e){
-        var url = $(this).data('likeslink');
         var that = this;
-        if($(that).parent().find('.popover').length == 0){
-            $.ajax({
-                method: "GET",
-                url: url,
-                success:function(data){
-                    $(that).popover(
-                        {
-                            html: true,
-                            placement:'auto',
-                            title: '',
-                            content: data,
+        $(that).addClass('hovered');
+        setTimeout(function(){
+            if($(that).hasClass('hovered') && !site.likesAjax){
+                var url = $(that).data('likeslink');
+                if($(that).parent().find('.popover').length == 0){
+                    if(site.likesAjax){
+                        site.likesAjax.abort();
+                    }
+                    site.likesAjax = $.ajax({
+                        method: "GET",
+                        url: url,
+                        success:function(data){
+                            $(that).popover(
+                                {
+                                    html: true,
+                                    placement:'auto',
+                                    title: '',
+                                    content: data
+                                }
+                            );
+                            $(that).popover('show');
+                            site.likesAjax = false;
                         }
-                    );
-                    $(that).popover('show');
+                    });
                 }
-            });
-        }
+            }
+        },1000);
     });
 
     $('.j-wall-items').on('click','.j-show-all-likes',function(e){

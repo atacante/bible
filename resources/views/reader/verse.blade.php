@@ -81,7 +81,7 @@
                             @if($lexiconinfo->symbolism)
                             <tr>
                                 <td class="orange-bord" colspan="3">
-                                    <span class="t-label2">Symbolism:</span>
+                                    <span class="t-label2">Analysis:</span>
                                      <br>
                                     {!! $lexiconinfo->symbolism !!}
                                 </td>

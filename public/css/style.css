@@ -309,6 +309,7 @@ h4.h4-sub-kit {
     font-family: work_sansmedium;
     font-size: 16px;
     font-weight: normal;
+    line-height: 22px;
 }
 /*------------- btn1-kit */
 .btn1-kit, .btn1-kit:visited {
@@ -1215,6 +1216,10 @@ a.view-details:hover{
     text-transform: lowercase !important;
 }
 
+.text-uppercase{
+    text-transform: uppercase !important;
+}
+
 .text-left{
     text-align: left !important;
 }
@@ -1843,6 +1848,9 @@ a.view-details:hover{
     font-family: ns_widedemibold;
     font-size: 20px;
 }
+.home .navbar-header .navbar-brand{
+    color: #ffffff;
+}
 .navbar-inner-pages .navbar-header .navbar-brand{
     padding: 5px 15px 5px 0;
 }
@@ -2240,9 +2248,6 @@ a:focus, a:hover {
 }
 
 /* --------------------- NEW DESIGN -------------------------*/
-body {
-    overflow-x: hidden;
-}
 
 /*----------------- Buttons ------------------------*/
 .btn1, .btn1:visited {
@@ -2259,6 +2264,26 @@ body {
 .btn1:hover, .btn1:active {
     display: inline-block;
     background: #00b9f7;
+    color: #ffffff;
+    text-decoration: none !important;
+}
+
+.home .btn1, .home .btn1:visited {
+    display: inline-block;
+    border: 3px solid #00b9f7;
+    background: #00b9f7;
+    color: #ffffff;
+    font-family: ns_widedemibold;
+    font-size: 18px;
+    padding: 15px 50px;
+    text-decoration: none !important;
+    outline: none !important;
+    text-transform: uppercase;
+}
+.home .btn1:hover, .home .btn1:active {
+    display: inline-block;
+    border-color: #79858f;
+    background: #79858f;
     color: #ffffff;
     text-decoration: none !important;
 }
@@ -2527,6 +2552,11 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 }
 .bg-home {
     background: url('/images/bg-home-header.png') center top no-repeat;
+    max-width: 100%;
+}
+.home .bg-home {
+    background: url('/images/bg-home-header2.png') center top no-repeat;
+    max-width: 100%;
 }
 .bg-inner-page {
     background: #89bbf2;
@@ -2553,12 +2583,24 @@ ul.nav.navbar-nav {
     margin-right: 5px;
     vertical-align: text-top;
 }
+.home .navbar-nav i {
+    color: #ffffff;
+}
 ul.nav.navbar-nav li  a {
     text-transform: uppercase;
     font-family: ns_widedemibold;
     color: #6b6b6b;
     font-size: 15px;
     padding: 11px 18px;
+}
+.home ul.nav.navbar-nav li  a {
+    color: #ffffff;
+}
+.home a.cu-drop-menu-item {
+    color: #ffffff;
+}
+.dropdown-menu li a {
+   color: #6b6b6b !important;
 }
 .navbar-inner-pages ul.nav.navbar-nav li  a {
     font-size: 13px;
@@ -2678,6 +2720,14 @@ ul.nav.navbar-nav li {
     background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 }
+.home .bg-g1 {
+    min-height: 650px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.4+0,0+100 */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#66000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
 .bg-g2 {
     min-height: 650px;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e6e6+30,e5e6e6+98 */
@@ -2699,6 +2749,15 @@ h1.h1-1 {
     margin: 0;
     font-family: ns_widelight;
 }
+.home h1.h1-1 {
+    color: white;
+}
+.home .user-menu-name {
+    color: #ffffff;
+}
+.home .caret {
+    color: white;
+}
 h1.h1-1 span {
     font-family: ns_widenormal;
 }
@@ -2709,6 +2768,9 @@ h2.h2-3 {
     text-align: center;
     margin: 10px 0;
     font-family: work_sansregular;
+}
+.home h2.h2-3 {
+    color: white;
 }
 h3.h3-1 {
     font-size: 20px;
@@ -2795,6 +2857,14 @@ h2.h2-2 {
     background: #f6f6f6;
     min-height: 449px;
 }
+.c-center-content-shop {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
 .h-ill5 {
     background: url('/images/p5-home.png') left center no-repeat;
     min-height: 449px;
@@ -2859,14 +2929,13 @@ ul.c-social li a:hover, ul.c-social li a:active {
     text-align: center;
 }
 .c-center-content3 {
-    padding: 100px 208px;
+    padding: 100px 10px;
+    box-sizing: border-box;
     background: rgb(133,203,246); /* Old browsers */
     background: -moz-linear-gradient(left,  rgba(133,203,246,1) 0%, rgba(133,203,246,1) 31%, rgba(148,228,238,1) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(left,  rgba(133,203,246,1) 0%,rgba(133,203,246,1) 31%,rgba(148,228,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right,  rgba(133,203,246,1) 0%,rgba(133,203,246,1) 31%,rgba(148,228,238,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85cbf6', endColorstr='#94e4ee',GradientType=1 ); /* IE6-9 */
-    margin-left: -208px;
-    margin-right: -208px;
 }
 .cu-gift {
     color: #ffffff;
@@ -4922,6 +4991,19 @@ ul.icons-list li i {
     border-bottom: 1px solid #e3e3e3;
     padding: 30px !important;
 }
+.urls-text {
+    color: #333333;
+    font-family: work_sansregular;
+    font-size: 16px;
+}
+.iu-text {
+    color: #00b9f7;
+    text-decoration: none !important;
+}
+.il-text {
+    color: #00b9f7;
+    text-decoration: underline;
+}
 @media (max-width: 992px) {
     .pad-r1 {
         padding-right: 15px !important;
@@ -5546,6 +5628,10 @@ i.bs-pray{
     border-radius: 0;
 }
 
+.entry-form .share-with-groups .form-group{
+    margin-bottom: 0;
+}
+
 .entry-form .form-verse-text{
     position: relative;
     padding: 28px;
@@ -5752,4 +5838,24 @@ i.bs-pray{
     margin: 20px 0;
     width: 100%;
     text-align: center;
+}
+
+.reader-banner{
+    background: url(/images/banner.png) center center no-repeat;
+    height: 404px;
+    color: #ffffff;
+    padding-top: 95px;
+    letter-spacing: 2px;
+}
+
+a.banner-btn{
+    font-family: ns_widedemibold !important;
+    font-size: 18px !important;
+    padding: 25px 50px !important;
+    letter-spacing: 1px;
+    margin-top: 44px;
+}
+
+.user-likes-popover.popover {
+    /*left: 95px !important;*/
 }

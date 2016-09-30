@@ -26,17 +26,13 @@ class StaticPagesSeeder extends Seeder
             'title' => 'About Us',
             'system_name' => 'about',
             'text' =>
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non,
-                placeat sit! Dolore labore magnam repudiandae sapiente?
-                Adipisci cum fuga illo ipsum optio quis voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Ab cum dolorem hic illum incidunt non, placeat sit! Dolore labore magnam repudiandae sapiente? </p>
-                <p>Adipisci cum fuga illo ipsum optio quis voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Ab cum dolorem hic illum incidunt non, placeat sit!
-                Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non,
-                placeat sit! Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non, placeat sit!
-                Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.</p>',
+                '<h2>The Bible Study Company</h2>
+
+<p>Bible Study Company, LLC. (BSC) is a web application designed to provide a simple and easy to use&nbsp;experience in studying the bible. But why should you use BSC? Your first question may be that there are&nbsp;many e-readers on the web and why is BSC any different? We aren&rsquo;t just an e-reader. We hope to become your online study bible, complete with notes, journals, encyclopedia, prayers and social media&nbsp;component.</p>
+
+<p>In our name: Bible Study Company, the emphasis is on&hellip; company. We are a company &ldquo;doing&rdquo; business&nbsp;and we are a &ldquo;company&rdquo; of believers in God who are committed to pursuing the God of the Bible in this&nbsp;way: To find out how He wants us to live a praiseworthy life.&nbsp;</p>
+
+<p>In Matthew 28:19 the Lord Jesus told us to go make disciples of all nations. What is a disciple? Someone&nbsp;who mimics a particular teacher and does what this teacher teaches. In John chapter 1 we see that the&nbsp;Lord Jesus is the living word of God. This living word is recorded in the bible. Thus, we can conclude we&nbsp;are to be disciples of his Word which is the bible.</p>',
             'meta_title' => 'About Us',
             'meta_keywords' => 'About Us',
             'meta_description' => 'About Us',
@@ -151,6 +147,29 @@ class StaticPagesSeeder extends Seeder
             'meta_description' => 'Seminars',
         ];
         CmsPage::insert($seminars);
+
+        CmsPage::where('system_name','membership')->delete();
+        $membership = [
+            'content_type' => CmsPage::CONTENT_PAGE,
+            'title' => 'Membership Levels',
+            'system_name' => 'membership',
+            'text' =>
+                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non,
+                placeat sit! Dolore labore magnam repudiandae sapiente?
+                Adipisci cum fuga illo ipsum optio quis voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Ab cum dolorem hic illum incidunt non, placeat sit! Dolore labore magnam repudiandae sapiente? </p>
+                <p>Adipisci cum fuga illo ipsum optio quis voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Ab cum dolorem hic illum incidunt non, placeat sit!
+                Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non,
+                placeat sit! Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non, placeat sit!
+                Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.</p>',
+            'meta_title' => 'Membership Levels',
+            'meta_keywords' => 'Membership Levels',
+            'meta_description' => 'Membership Levels',
+        ];
+        CmsPage::insert($membership);
 
         CmsPage::where('system_name','diff_explain')->delete();
         $diffTooltip = [
