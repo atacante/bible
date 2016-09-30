@@ -39,7 +39,7 @@
                                     ),ViewHelper::getVerseNum($item->verse).($item->bible_version?' ('.ViewHelper::getVersionName($item->bible_version).')':''), ['class'=>'book-desc1']) !!}
                             </span>
                         @endif
-                            <div class="cu-date1">&nbsp; {!! $item->humanFormat('published_at') !!} - <i class="{{ $item->getAccessIconStyle() }} font-size-13"></i>&nbsp;</div>
+                            <div class="cu-date1">&nbsp; {!! $item->humanLastUpdate() !!} - <i class="{{ $item->getAccessIconStyle() }} font-size-13"></i>&nbsp;</div>
                     </span>
                 </div>
                 <div class="item-body j-item-body"  data-itemid="{!! $item->id !!}" data-itemtype="{!! $item->type !!}">
