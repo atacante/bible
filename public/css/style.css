@@ -5796,3 +5796,7 @@ a.banner-btn{
     letter-spacing: 1px;
     margin-top: 44px;
 }
+
+.user-likes-popover.popover {
+    /*left: 95px !important;*/
+}
