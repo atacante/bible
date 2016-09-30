@@ -7,7 +7,7 @@
                         <div class="cu-date1">&nbsp; {!! $article->humanLastUpdate() !!}</div>
                         <h4 class="h4-sub-kit pull-left">{{$article->title}}</h4>
                     </div>
-                    <div class="item-body j-show-article wall-text1" data-link="{!! url('/blog/article/'.$article->id,[],false) !!}" >{!! str_limit($article->text, $limit = 800, $end = '...</br>'.Html::link(url('/blog/article/'.$article->id,[],false), 'View Details', ['class' => 'btn1-kit','style' => 'padding: 0 5px;'], true)) !!}</div>
+                    <div class="item-body j-show-article wall-text1" data-link="{!! url('/blog/article/'.$article->id,[],false) !!}" >{!! str_limit($article->text, $limit = 800, $end = '...<p>'.Html::link(url('/blog/article/'.$article->id,[],false).'</p>', 'View Details', ['class' => 'btn1-kit','style' => 'padding: 0 5px;'], true)) !!}</div>
                     <span class="pull-right">Posted by <b>{!! $article->user->name !!}</b></span>
                 </div>
             </div>
