@@ -52,6 +52,12 @@ class SiteController extends Controller
         return view('site.seminars', ['page'=>$page]);
     }
 
+    public function getMembership()
+    {
+        $page = CmsPage::getPage('membership');
+        return view('site.membership', ['page'=>$page]);
+    }
+
     public function anyContact(\Illuminate\Http\Request $request)
     {
         $model = new Contact();
