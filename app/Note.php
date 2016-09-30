@@ -31,6 +31,12 @@ class Note extends BaseModel
         return $rules;
     }
 
+    public function messages()
+    {
+        $messages['groups[].required'] = 'Please select groups from list.';
+        return $messages;
+    }
+
     public static $columns = [
         "Note Text"=>"note_text",
         "Verse"=>"verse_id",

@@ -3,7 +3,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Symbolism</th>
+            <th>Analysis</th>
             <th>Definition</th>
             <th>Strong's</th>
             <th>Transliteration</th>

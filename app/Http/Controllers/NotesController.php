@@ -149,7 +149,7 @@ class NotesController extends Controller
         }
 
         if (Request::isMethod('post') && Input::get('full_screen') == 0) {
-            $this->validate($request, $model->rules());
+            $this->validate($request, $model->rules(),$model->messages());
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
             if(!$model->verse){
@@ -208,7 +208,7 @@ class NotesController extends Controller
         }
 
         if (Request::isMethod('put')) {
-            $this->validate($request, $model->rules());
+            $this->validate($request, $model->rules(),$model->messages());
             if ($model->update(Input::all())) {
                 $this->anyUploadImage($model->id);
                 $model->syncTags(Input::get('tags'));

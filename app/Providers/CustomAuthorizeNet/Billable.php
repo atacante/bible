@@ -64,7 +64,11 @@ trait Billable
 
         if($this->askToCreateSubscription($plan)){
             if(!$this->hasPaymentAccount()){
-                $result['subscription'] =  ['success' => false, 'message' => 'You must have Credit Card'];
+                if($this->newSubscription($plan, $amount)->createTrial()){
+                    $result['subscription'] = ['success' => true, 'message' => 'Your have a trial premium account - ends at '.date_format($this->subscription()->ends_at, 'Y-m-d')];
+                }else{
+                    $result['subscription'] =  ['success' => false, 'message' => 'You must have Credit Card'];
+                }
             }else{
                 // Pause is necessary on Authorize between create account and subscribe
                 if($result['account']['success']){
