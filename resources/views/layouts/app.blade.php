@@ -79,7 +79,10 @@
         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
         ga('create', 'UA-84561258-1', 'auto');
+        ga('create', 'UA-84986968-1', 'auto', {'name': 'betaTracker'});
+
         ga('send', 'pageview');
+        ga('betaTracker.send', 'pageview');
 
     </script>
     <div class="bg-inner-page">
