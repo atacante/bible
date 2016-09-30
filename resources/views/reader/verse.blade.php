@@ -13,7 +13,7 @@
     {!! Form::hidden('verse_id',$content['main_verse']['verse']->id) !!}
     <div class="row">
         <div class="col-xs-12">
-            <div class="c-title-and-icons2">
+            <div class="c-title-and-icons2 j-nav-sel2">
                 <a href="{!! url('reader/read?'.http_build_query(
                     [
                         'version' => $content['main_verse']['version_code'],
@@ -57,7 +57,14 @@
             </div>
         </div>
     </div>
-
+    <div class="j-dynamic-arrows" style="position: fixed; max-width: 1360px; height: 45px;  width: 1260px; display: none;">
+        @if($versePrev = $content['pagination']['versePrev'])
+            <a class="genesis-arrow" title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[],false) !!}" style="position: absolute; left:-40px;"><i class="bs-arrowleft cu-arrowleft"></i></a>
+        @endif
+        @if($verseNext = $content['pagination']['verseNext'])
+            <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[],false) !!}" style="position: absolute; right:-40px;"><i class="bs-arrowright cu-arrowright"></i></a>
+        @endif
+    </div>
     @if(count($content['lexicon']))
         <div class="row">
             <div class="col-xs-12">
@@ -288,7 +295,7 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 text-center pagination">
+        <div class="col-xs-12 text-center pagination j-reader-pagination">
             <div class="btn-group" role="group" aria-label="...">
                 @if($versePrev = $content['pagination']['versePrev'])
                     {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn2','style' => 'min-width:250px; margin-right: 30px'], true)}}

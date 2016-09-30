@@ -1801,7 +1801,7 @@ $(document).ready(function(){
         $('.j-short-verses-filters').toggleClass('hidden');
     });
 
-    if($('.j-chapter-content').length > 0){
+    if($('.j-chapter-content,.j-dynamic-arrows').length > 0){
         var eTop = $('.j-nav-sel2').offset().top;
         var arrowsTop = eTop - $(window).scrollTop();
         var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
