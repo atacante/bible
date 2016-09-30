@@ -1,7 +1,20 @@
 stages:
+ - dev
  - alpha
  - beta
  - live
+
+job_for_dev:
+  stage: dev
+  script:
+    - hostname
+    - pwd
+    - ls /var/www/clients/client3/web1/home/cleartech1/simple-deploy.sh
+  only:
+    - dev
+  tags:
+    - dev
+  environment: dev
 
 job_for_alpha:
   stage: alpha
