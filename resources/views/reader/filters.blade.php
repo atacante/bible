@@ -16,7 +16,7 @@
         {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['placeholder' => 'Compare with ...','multiple' => true,'class' => 'pull-left j-compare-versions', 'style' => 'width: 245px; margin-left:35px;']) !!}
     </div>
     {!! Form::submit('Compare',['class' => 'btn btn-primary pull-left','style' => 'margin-left:10px;']) !!}
-    {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), 'Reset', ['class' => 'btn btn-default btn-danger','style' => 'margin-left:10px;'], true) !!}
+    {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[]), 'Reset', ['class' => 'btn btn-default btn-danger','style' => 'margin-left:10px;'], true) !!}
 @endif
 
 {!! Form::close() !!}

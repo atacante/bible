@@ -48,7 +48,7 @@
                     @endforeach
                 </ul>
                 {!! Form::submit('Compare',['class' => 'btn1 cu-btn1 mt17']) !!}
-                {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[],false), 'Reset', ['class' => 'btn2 cu-btn2 mt17','style' => 'margin-left:10px;'], true) !!}
+                {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[]), 'Reset', ['class' => 'btn2 cu-btn2 mt17','style' => 'margin-left:10px;'], true) !!}
             @endif
         </div>
             <div class="permonent-pop j-choose-version-pop" style="display: none;">
@@ -127,7 +127,7 @@
 
                             <div class="text-center">
                                 @if($prevChapter = $content['pagination']['chapterPrev'])
-                                    <a class="genesis-arrow" title="Prev Chapter" href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
+                                    <a class="genesis-arrow" title="Prev Chapter" href="{!! url('reader/read?'.http_build_query($prevChapter),[]) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
                                 @else
                                     <span class="genesis-arrow"><i class="bs-arrowleft cu-arrowleft2"></i></span>
                                 @endif
@@ -140,7 +140,7 @@
                                 </div>
 
                                 @if($nextChapter = $content['pagination']['chapterNext'])
-                                    <a class="genesis-arrow" title="Next Chapter" href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
+                                    <a class="genesis-arrow" title="Next Chapter" href="{!! url('reader/read?'.http_build_query($nextChapter),[]) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
                                 @else
                                     <span class="genesis-arrow"><i class="bs-arrowright cu-arrowright2"></i></span>
                                 @endif
@@ -226,10 +226,10 @@
                                 <div class="j-reader-block j-bible-text {!! (Request::input('compare',false)?count(Request::input('compare',false)) == 1?'col-xs-6':'col-xs-4':"col-xs-12") !!}">
                                     <div class="j-dynamic-arrows" style="position: fixed; max-width: 1360px; height: 45px;  width: 1260px; display: none;">
                                         @if($prevChapter = $content['pagination']['chapterPrev'])
-                                            <a class="genesis-arrow" title="Prev Chapter" href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}" style="position: absolute; left:-40px;"><i class="bs-arrowleft cu-arrowleft"></i></a>
+                                            <a class="genesis-arrow" title="Prev Chapter" href="{!! url('reader/read?'.http_build_query($prevChapter),[]) !!}" style="position: absolute; left:-40px;"><i class="bs-arrowleft cu-arrowleft"></i></a>
                                         @endif
                                         @if($nextChapter = $content['pagination']['chapterNext'])
-                                            <a class="genesis-arrow" title="Next Chapter" href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}" style="position: absolute; right:-40px;"><i class="bs-arrowright cu-arrowright"></i></a>
+                                            <a class="genesis-arrow" title="Next Chapter" href="{!! url('reader/read?'.http_build_query($nextChapter),[]) !!}" style="position: absolute; right:-40px;"><i class="bs-arrowright cu-arrowright"></i></a>
                                         @endif
                                     </div>
                                     <div class="inner-pad1">
@@ -270,7 +270,7 @@
                                                     </span>
                                                 @endforeach
                                             </div>
-                                            {!! Html::link(url('reader/read?'.http_build_query(array_merge(['compare' => array_diff($compareParam,[$version['version_code']])],$compare['resetParams'])),[],false), '&#215;', ['class' => 'btn-reset btn-reset-compare j-btn-reset-compare','style' => ''], true) !!}
+                                            {!! Html::link(url('reader/read?'.http_build_query(array_merge(['compare' => array_diff($compareParam,[$version['version_code']])],$compare['resetParams'])),[]), '&#215;', ['class' => 'btn-reset btn-reset-compare j-btn-reset-compare','style' => ''], true) !!}
                                         </div>
                                     @endforeach
                                 @endif
@@ -287,7 +287,7 @@
                             <div class="inner-pad1 bord1">
                                 <h3 class="h3-related"><i class="bs-staroutlined cu-staroutlined"></i>Related Records <span class="ins-count">({{$content['relatedItems']->count()}})</span></h3>
                                 <div class="date-order-btn">
-                                    <a href="{!! url('reader/read?'.http_build_query(array_merge(Request::input(),['relations-order' => Request::get('relations-order','desc') == 'asc'?'desc':'asc'])),[],false) !!}">
+                                    <a href="{!! url('reader/read?'.http_build_query(array_merge(Request::input(),['relations-order' => Request::get('relations-order','desc') == 'asc'?'desc':'asc'])),[]) !!}">
                                         <span class="fa fa-calendar"></span>
                                         <span class="fa fa-sort-amount-{!! Request::get('relations-order','desc') !!}"></span>
                                     </a>
@@ -347,13 +347,13 @@
             <div class="col-xs-12 j-reader-pagination">
                 <div class="pull-left">
                     @if($prevBook = $content['pagination']['bookPrev'])
-                        <a href="{!! url('reader/read?'.http_build_query($prevBook),[],false) !!}" class="btn2 mr5 btn-min-w">
+                        <a href="{!! url('reader/read?'.http_build_query($prevBook),[]) !!}" class="btn2 mr5 btn-min-w">
                             <div class="btn-top-label1">Prev Book</div>
                             <div class="btn-sub-label1">{{ $filters['books'][$prevBook['book']] }}</div>
                         </a>
                     @endif
                     @if($prevChapter = $content['pagination']['chapterPrev'])
-                        <a href="{!! url('reader/read?'.http_build_query($prevChapter),[],false) !!}" class="btn2 mr5 btn-min-w">
+                        <a href="{!! url('reader/read?'.http_build_query($prevChapter),[]) !!}" class="btn2 mr5 btn-min-w">
                             <div class="btn-top-label1">Prev Chapter</div>
                             <div class="btn-sub-label1">{{ $filters['books'][Request::input('book',1)].' '.$filters['chapters'][$prevChapter['chapter']] }}</div>
                         </a>
@@ -361,13 +361,13 @@
                 </div>
                 <div class="pull-right">
                     @if($nextChapter = $content['pagination']['chapterNext'])
-                        <a href="{!! url('reader/read?'.http_build_query($nextChapter),[],false) !!}" class="btn1 ml1 btn-min-w">
+                        <a href="{!! url('reader/read?'.http_build_query($nextChapter),[]) !!}" class="btn1 ml1 btn-min-w">
                             <div class="btn-top-label1">Next Chapter</div>
                             <div class="btn-sub-label1">{{ $filters['books'][Request::input('book',1)].' '.$filters['chapters'][$nextChapter['chapter']] }}</div>
                         </a>
                     @endif
                     @if($nextBook = $content['pagination']['bookNext'])
-                        <a href="{!! url('reader/read?'.http_build_query($nextBook),[],false) !!}" class="btn1 ml1 btn-min-w">
+                        <a href="{!! url('reader/read?'.http_build_query($nextBook),[]) !!}" class="btn1 ml1 btn-min-w">
                             <div class="btn-top-label1">Next Book</div>
                             <div class="btn-sub-label1">{{ $filters['books'][$nextBook['book']] }}</div>
                         </a>

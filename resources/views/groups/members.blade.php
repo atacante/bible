@@ -20,8 +20,8 @@
                 <div class="btns-group">
                     @if(Auth::user() && Auth::user()->id != $member->id)
                         @if(Auth::user() && Auth::user()->id == $model->owner_id)
-                        <a href="{!! url('/groups/ban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn1 cu2-btn1 j-ban-member {!! $member->banned?'hidden':'' !!}">Ban</a>
-                        <a href="{!! url('/groups/unban-member/'.$model->id.'/'.$member->id,[],false) !!}" class="btn1 cu2-btn1 j-unban-member {!! !$member->banned?'hidden':'' !!}">Unban</a>
+                        <a href="{!! url('/groups/ban-member/'.$model->id.'/'.$member->id,[]) !!}" class="btn1 cu2-btn1 j-ban-member {!! $member->banned?'hidden':'' !!}">Ban</a>
+                        <a href="{!! url('/groups/unban-member/'.$model->id.'/'.$member->id,[]) !!}" class="btn1 cu2-btn1 j-unban-member {!! !$member->banned?'hidden':'' !!}">Unban</a>
                         @endif
                     @endif
                 </div>

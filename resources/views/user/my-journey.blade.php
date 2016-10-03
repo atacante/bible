@@ -139,7 +139,7 @@
                                 <div class="c-journey-tags">
                                     @if(isset($content['tags'][$entry->type][$entry->id]))
                                         @foreach($content['tags'][$entry->type][$entry->id] as $tag)
-                                            {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[],false), '#'.$tag->tag_name, ['class' => 'link-tag'], true)}}
+                                            {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[]), '#'.$tag->tag_name, ['class' => 'link-tag'], true)}}
                                         @endforeach
                                     @endif
                                 </div>
