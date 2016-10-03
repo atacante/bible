@@ -41,7 +41,7 @@
                            data-callclass="j-remove-friend"
                            data-confirm="Are you sure you want to remove this user from friends?">Unfriend</a>
 
-                        <a href="{!! url('/user/cancel-friend-request/'.$people->id,[],false) !!}" class="btn2 cu4-btn1 j-cancel-friend-request {!! in_array($people->id,$myRequests) && !in_array($people->id,$myFriends)?'':'hidden' !!}"
+                        <a href="{!! url('/user/cancel-friend-request/'.$people->id,[]) !!}" class="btn2 cu4-btn1 j-cancel-friend-request {!! in_array($people->id,$myRequests) && !in_array($people->id,$myFriends)?'':'hidden' !!}"
                            data-toggle="modal"
                            data-target="#cancel-request-sm"
                            data-itemid="{!! $people->id !!}"
