@@ -33,7 +33,7 @@
                     'book' => $item->verse->book_id,
                     'chapter' => $item->verse->chapter_num,
                     'verse' => $item->verse->verse_num,
-                ]),[],false) !!}">
+                ]),[]) !!}">
                     --}}{{--<i class="fa fa-pencil pull-right" aria-hidden="true"></i>--}}{{--
                     <i class="fa fa-location-arrow fa-graduation-cap pull-right" aria-hidden="true"></i>
                 </a>--}}

@@ -19,7 +19,7 @@
 
                 <div class="btns-group1">
                     @if(Auth::user() && Auth::user()->id != $member->id)
-                    <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.$member->id,[],false) !!}" class="btn2 cu9-btn1 j-cancel-request" data-toggle="modal"
+                    <a href="{!! url('/groups/cancel-request/'.$model->id.'/'.$member->id,[]) !!}" class="btn2 cu9-btn1 j-cancel-request" data-toggle="modal"
                        data-target="#cancel-request-sm"
                        data-header="Cancel Request"
                        data-callclass="j-cancel-request"
