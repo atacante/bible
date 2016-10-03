@@ -17,11 +17,11 @@
                 </div>
             </div>
             <div>
-                {!! str_limit(strip_tags($like->people_description,'<p></p>'), $limit = 500, $end = '... '.Html::link(url('/peoples/view/'.$like->id,[],false), 'View Details', ['class' => 'btn btn-success','style' => 'padding: 0 5px;'], true)) !!}
+                {!! str_limit(strip_tags($like->people_description,'<p></p>'), $limit = 500, $end = '... '.Html::link(url('/peoples/view/'.$like->id,[]), 'View Details', ['class' => 'btn btn-success','style' => 'padding: 0 5px;'], true)) !!}
             </div>
             <div class="pull-left">
                 @if(Auth::user() && Auth::user()->id != $like->id)
-                    <a href="{!! url('/user/remove-friend/'.$like->id,[],false) !!}" class="btn btn-danger j-remove-friend {!! in_array($like->id,$myFriends)?'':'hidden' !!}"
+                    <a href="{!! url('/user/remove-friend/'.$like->id,[]) !!}" class="btn btn-danger j-remove-friend {!! in_array($like->id,$myFriends)?'':'hidden' !!}"
                        data-toggle="modal"
                        data-target="#cancel-request-sm"
                        data-itemid="{!! $like->id !!}"
@@ -39,10 +39,10 @@
                         @if(in_array($like->id,$ignoredRequests))
                             <a href="#" class="btn btn-danger disabled">Ignored</a>
                         @else
-                            <a href="{!! url('/user/approve-friend-request/'.$like->id,[],false) !!}" class="btn btn-success j-approve-friend-request {!! !in_array($like->id,$myFriends) && in_array($like->id,$requests)?'':'hidden' !!}">Confirm Request</a>
+                            <a href="{!! url('/user/approve-friend-request/'.$like->id,[]) !!}" class="btn btn-success j-approve-friend-request {!! !in_array($like->id,$myFriends) && in_array($like->id,$requests)?'':'hidden' !!}">Confirm Request</a>
                         @endif
                     @else
-                        <a href="{!! url('/user/request-friend/'.$like->id,[],false) !!}" class="btn btn-{!! in_array($like->id,$requests)?'success':'primary' !!} j-follow-friend {!! in_array($like->id,$myFriends) || in_array($like->id,$myRequests)?'hidden':'' !!}">Add Friend</a>
+                        <a href="{!! url('/user/request-friend/'.$like->id,[]) !!}" class="btn btn-{!! in_array($like->id,$requests)?'success':'primary' !!} j-follow-friend {!! in_array($like->id,$myFriends) || in_array($like->id,$myRequests)?'hidden':'' !!}">Add Friend</a>
                     @endif
                 @endif
             </div>
