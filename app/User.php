@@ -101,7 +101,10 @@ class User extends Authenticatable
             case 'PUT':
             {
                 $rules['email'] = 'required|email|max:255|unique:users,email,'.$this->id;
-                if(Input::get('plan_type') == self::PLAN_PREMIUM){
+                if((Input::get('plan_type') == self::PLAN_PREMIUM)
+                    && !$this->isPremium()
+                    && !$this->onPlan(Input::get('plan_name'))
+                ){
                     $rules['plan_name'] = 'required';
                     if(!$this->hasPaymentAccount() && !Input::get('coupon_code', false)){
                         $rules['card_number'] = 'required|numeric';

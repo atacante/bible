@@ -72,7 +72,7 @@
             </div>
 
             {{--@foreach($content['versions'] as $code => $version)--}}
-            {{--<h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[],false), $version['version_name'], ['class' => '','style' => ''], true)}}</h4>--}}
+            {{--<h4>{{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[]), $version['version_name'], ['class' => '','style' => ''], true)}}</h4>--}}
             {{--@foreach($version['verses'] as $verse)--}}
             {{--<span style="">--}}
             {{--<b>{!! link_to('#', $title = $verse->verse_num) !!}</b>&nbsp;{!! $verse->verse_text !!}--}}
