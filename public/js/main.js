@@ -43,6 +43,7 @@ $(document).ready(function(){
                 return term;
             },
             processResults: function (data, params) {
+                //console.log(data);
                 return {results: data}
             }
         },
@@ -97,8 +98,10 @@ $(document).ready(function(){
         }
         switch (name){
             case 'date_from':
+                console.log(e.timeStamp);
                 break;
             case 'date_to':
+                console.log(e.timeStamp);
                 break;
         }
     });
@@ -613,9 +616,11 @@ $(document).ready(function(){
     });
 
     //$('.edit-images-thumbs').on('mouseover','.img-thumb',function(){
+    //    console.log('hover');
     //    $(this).find('img').fadeTo(500, 0.5);
     //});
     //$('.edit-images-thumbs').on('mouseout','.img-thumb',function(){
+    //    console.log('out');
     //    $(this).find('img').fadeTo(500, 1);
     //});
 
@@ -966,6 +971,9 @@ $(document).ready(function(){
         //var noteText = $('textarea[name="note_text"]').val();
         //var journalText = $('textarea[name="journal_text"]').val();
         //var prayerText = $('textarea[name="prayer_text"]').val();
+        //
+        //alert(noteText);
+        //
         //var url = $(this).attr('href');
         //
         //if(noteText){
@@ -977,6 +985,7 @@ $(document).ready(function(){
         //if(prayerText){
         //    url = url+'&prayer_text='+prayerText;
         //}
+        //alert(url);
         //location.href = url;
     });*/
 
@@ -1022,6 +1031,7 @@ $(document).ready(function(){
             data:data,
             success:function(data){
                 if(data.e!=null) {
+                    alert(data.e);
                     if(checkBox.is(':checked')){
                         checkBox.attr('checked', false);
                     } else {
@@ -1186,6 +1196,7 @@ $(document).ready(function(){
 
     $('/*.j-friends-list,.j-members-list,*/#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request,.j-ignore-friend-request',function(e){
         e.preventDefault();
+        console.log('j-cancel-friend-request');
         var url = $(this).attr('href');
         var that = this;
         $.ajax({
@@ -1452,6 +1463,7 @@ $(document).ready(function(){
             if(!($('.popover:hover').length/* || $('.j-wall-like-btn:hover').length*/)){
                 $(that).parent().find('.j-wall-like-btn').popover('destroy');
                 //$('.j-wall-like-btn').each(function () {
+                //    console.log('hide');
                 //    $(that).popover('destroy');
                 //});
             }
@@ -1571,6 +1583,15 @@ $(document).ready(function(){
         $('.j-billing-meta').toggleClass('hidden');
     });
 
+    $('body').on('click','.j-duplicate-billing-address',function(e){
+        e.preventDefault();
+
+        var shippingAddress = $('input[name="shipping_address"]');
+        var billingAddress = $('.j-billing-meta input[name="billing_address"]');
+
+        billingAddress.val(shippingAddress.val());
+    });
+
     $(".j-create-record").on("click", function(e){
         var top = 140;
 
@@ -1648,6 +1669,7 @@ $(document).ready(function(){
     $(".j-version-list li a").on("click", function(e){
         $(".j-version-list li a").removeClass("active");
         $(this).addClass("active");
+       /* alert($(this).data("val"));*/
         var curSelVal = $(this).data("val");
         var curSelText = $(this).html();
         $(".j-select-version").val(curSelVal);
