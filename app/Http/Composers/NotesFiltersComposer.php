@@ -38,7 +38,6 @@ class NotesFiltersComposer {
         }
 
         $filters['books'] = ViewHelper::prepareForSelectBox($booksQuery->toArray(), 'id', 'book_name');
-//        var_dump($filters['books']);exit;
         $filters['chapters'] = ViewHelper::prepareChaptersForSelectBox(BaseModel::getChapters($book));
         $filters['verses'] = ViewHelper::prepareVersesForSelectBox(BaseModel::getVerses($book,$chapter));
         $filters['tags'] = Tag::availableTags();
