@@ -16,7 +16,7 @@
             <div class="in-inner-container text-center">
                 @include('partials.nav-home')
                 <h1 class="h1-1 mt1">ONLINE <span>STUDY BIBLE</span> COMMUNITY</h1>
-                <h2 class="h2-3">Studying Scripture to Live a Praiseworthy Life to God</h2>
+                <h2 class="h2-3">Studying Scripture to Live a Praiseworthy <span class="brr">Life to God</span></h2>
                 <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn1 mt2 mb1">READ BIBLE NOW</a>
             </div>
         </div>
