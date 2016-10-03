@@ -5969,4 +5969,20 @@ a.banner-btn{
         font-size: 12px;
         border-width: 2px;
     }
+    .h-ill1 {
+        background: url('/images/p1-home-m.png') left center no-repeat;
+    }
+    .h-ill2 {
+        background: url('/images/p2-home-m.png') left center no-repeat;
+    }
+    .h-ill3 {
+        background: url('/images/p3-home-m.png') left center no-repeat;
+    }
+    .h-ill4 {
+        background: url('/images/p4-home-m.png') left center no-repeat;
+    }
+    .c-center-content2 {
+        border-radius: 0;
+        -webkit-border-radius: 0;
+    }
 }
