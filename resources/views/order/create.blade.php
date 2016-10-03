@@ -55,7 +55,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_postcode') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_postcode', ucwords(str_replace('_',' ', 'shipping_postcode'))) !!}
-                                {!!  Form::text('shipping_postcode', $model->shipping_city, ['class' => 'form-control input1']) !!}
+                                {!!  Form::text('shipping_postcode', $model->shipping_postcode, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_postcode'))
                                     <span class="help-block">
                                     {{ $errors->first('shipping_postcode') }}
@@ -66,7 +66,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_country') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_country', ucwords(str_replace('_',' ', 'shipping_country'))) !!}
-                                {!!  Form::text('shipping_country', $model->shipping_city, ['class' => 'form-control input1']) !!}
+                                {!!  Form::text('shipping_country', $model->shipping_country, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_country'))
                                     <span class="help-block">
                                     {{ $errors->first('shipping_country') }}
@@ -77,7 +77,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_state') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_state', ucwords(str_replace('_',' ', 'shipping_state'))) !!}
-                                {!!  Form::text('shipping_state', $model->shipping_city, ['class' => 'form-control input1']) !!}
+                                {!!  Form::text('shipping_state', $model->shipping_state, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_state'))
                                     <span class="help-block">
                                     {{ $errors->first('shipping_state') }}
@@ -88,7 +88,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_email') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_email', ucwords(str_replace('_',' ', 'shipping_email'))) !!}
-                                {!!  Form::text('shipping_email', $model->shipping_city, ['class' => 'form-control input1']) !!}
+                                {!!  Form::text('shipping_email', $model->shipping_email, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_email'))
                                     <span class="help-block">
                                     {{ $errors->first('shipping_email') }}
@@ -99,7 +99,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_phone') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_phone', ucwords(str_replace('_',' ', 'shipping_phone'))) !!}
-                                {!!  Form::text('shipping_phone', $model->shipping_city, ['class' => 'form-control input1']) !!}
+                                {!!  Form::text('shipping_phone', $model->shipping_phone, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_phone'))
                                     <span class="help-block">
                                     {{ $errors->first('shipping_phone') }}
@@ -167,7 +167,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('billing_postcode') ? ' has-error' : '' }}">
                                 {!!  Form::label('billing_postcode', ucwords(str_replace('_',' ', 'billing_postcode'))) !!}
-                                {!!  Form::text('billing_postcode', $model->billing_city, ['class' => 'form-control input1']) !!}
+                                {!!  Form::text('billing_postcode', $model->billing_postcode, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('billing_postcode'))
                                     <span class="help-block">
                                     {{ $errors->first('billing_postcode') }}
@@ -178,7 +178,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('billing_country') ? ' has-error' : '' }}">
                                 {!!  Form::label('billing_country', ucwords(str_replace('_',' ', 'billing_country'))) !!}
-                                {!!  Form::text('billing_country', $model->billing_city, ['class' => 'form-control input1']) !!}
+                                {!!  Form::text('billing_country', $model->billing_country, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('billing_country'))
                                     <span class="help-block">
                                     {{ $errors->first('billing_country') }}
@@ -189,7 +189,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('billing_state') ? ' has-error' : '' }}">
                                 {!!  Form::label('billing_state', ucwords(str_replace('_',' ', 'billing_state'))) !!}
-                                {!!  Form::text('billing_state', $model->billing_city, ['class' => 'form-control input1']) !!}
+                                {!!  Form::text('billing_state', $model->billing_state, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('billing_state'))
                                     <span class="help-block">
                                     {{ $errors->first('billing_state') }}
@@ -200,7 +200,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('billing_email') ? ' has-error' : '' }}">
                                 {!!  Form::label('billing_email', ucwords(str_replace('_',' ', 'billing_email'))) !!}
-                                {!!  Form::text('billing_email', $model->billing_city, ['class' => 'form-control input1']) !!}
+                                {!!  Form::text('billing_email', $model->billing_email, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('billing_email'))
                                     <span class="help-block">
                                     {{ $errors->first('billing_email') }}
@@ -211,7 +211,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('billing_phone') ? ' has-error' : '' }}">
                                 {!!  Form::label('billing_phone', ucwords(str_replace('_',' ', 'billing_phone'))) !!}
-                                {!!  Form::text('billing_phone', $model->billing_city, ['class' => 'form-control input1']) !!}
+                                {!!  Form::text('billing_phone', $model->billing_phone, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('billing_phone'))
                                     <span class="help-block">
                                     {{ $errors->first('billing_phone') }}
