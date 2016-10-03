@@ -37,8 +37,8 @@ job_for_beta:
     - pwd
     - php -v
     - cd $HOME/web && git pull origin beta 
-    - cd $HOME/web && yes | php artisan migrate 
-    - cd $HOME/web && yes | php artisan asset:dist
+    - cd $HOME/web && expect migrate.exp 
+    - cd $HOME/web && php artisan asset:dist
   only:
     - beta
   tags:
