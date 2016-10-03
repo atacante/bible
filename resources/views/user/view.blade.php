@@ -16,7 +16,7 @@
                    data-header="Remove user from friends"
                    data-callclass="j-remove-friend"
                    data-confirm="Are you sure you want to remove this user from friends?">Unfriend</a>
-                <a href="{!! url('/user/cancel-friend-request/'.$model->id,[],false) !!}" class="btn2 cu-cancel j-cancel-friend-request {!! in_array($model->id,$myRequests) && !in_array($model->id,$myFriends)?'':'hidden' !!}"
+                <a href="{!! url('/user/cancel-friend-request/'.$model->id,[]) !!}" class="btn2 cu-cancel j-cancel-friend-request {!! in_array($model->id,$myRequests) && !in_array($model->id,$myFriends)?'':'hidden' !!}"
                    data-toggle="modal"
                    data-target="#cancel-request-sm"
                    data-itemid="{!! $model->id !!}"
