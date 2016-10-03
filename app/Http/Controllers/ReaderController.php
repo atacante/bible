@@ -496,7 +496,6 @@ class ReaderController extends Controller
                 }
             }
         }
-//        var_dump($references);
         return ['data' => $references,'totalRef' => $totalRef,'bigestLexicon' => $bigestLexicon];
     }
 

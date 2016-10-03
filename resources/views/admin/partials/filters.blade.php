@@ -1,6 +1,3 @@
-<?php
-//var_dump($filters['books']);
-?>
 <div class="j-admin-verses-filters">
 {!! Form::open(['method' => 'get','url' => '/admin/'.(isset($filterAction)?$filterAction:'')]) !!}
 {{--{!! Form::select('version', array_merge(['all' => 'All Versions'],$filters['versions']), Request::input('version','all'),['class' => 'pull-left', 'style' => 'width: 245px; margin-right:10px;']) !!}--}}

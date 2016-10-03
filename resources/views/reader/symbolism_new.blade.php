@@ -1,4 +1,3 @@
-{{--{!! var_dump($lexiconinfo) !!}--}}
 @if(Request::input('compare',false))
     <div class="popup-arrow3"></div>
     <div class="row">
