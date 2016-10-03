@@ -5820,7 +5820,15 @@ a.banner-btn{
 .user-likes-popover.popover {
     /*left: 95px !important;*/
 }
-
+.user-neme-cut {
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 80px;
+    text-overflow: ellipsis;
+    height: 23px;
+    vertical-align: middle;
+}
 
 
 

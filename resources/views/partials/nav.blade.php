@@ -152,7 +152,7 @@
                         @else
                             <div class="user-default"></div>
                         @endif
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                        <span title="{{ Auth::user()->name }}" class="user-neme-cut">{{ Auth::user()->name }}</span> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         @role('user')
