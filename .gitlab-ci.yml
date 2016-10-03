@@ -9,7 +9,7 @@ job_for_dev:
   script:
     - hostname
     - pwd
-    - ls /var/www/clients/client3/web1/home/cleartech1/simple-deploy.sh
+    - sh /var/www/clients/client3/web1/home/cleartech1/simple-deploy.sh
   only:
     - dev
   tags:
@@ -18,9 +18,13 @@ job_for_dev:
 
 job_for_alpha:
   stage: alpha
+  before_script:
+    - php -v
+    - export PATH=/opt/remi/php56/root/bin/:$PATH
   script:
     - hostname
     - pwd
+    - php -v
   only:
     - alpha
   tags:
@@ -45,12 +49,15 @@ job_for_beta:
     - beta
   environment: staging
 
-.job_for_live:
+job_for_live:
   stage: live
+  before_script:
+    - php -v
+    - export PATH=/opt/remi/php56/root/bin/:$PATH
   script:
     - hostname
     - pwd
-    - export PATH=/opt/remi/php56/root/bin/:$PATH && cd $HOME/web && git pull origin master && php artisan migrate && php artisan asset:dist
+    - php -v
   only:
     - master
   tags:
