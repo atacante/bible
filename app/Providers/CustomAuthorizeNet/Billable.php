@@ -110,7 +110,9 @@ trait Billable
         $creditCard = new AnetAPI\CreditCardType();
         $creditCard->setCardNumber($creditCardDetails['number']);
         $creditCard->setExpirationDate($creditCardDetails['expiration']);
-        $creditCard->setCardCode($creditCardDetails['code']);
+        if($creditCardDetails['code']){
+            $creditCard->setCardCode($creditCardDetails['code']);
+        }
 
         $paymentCreditCard = new AnetAPI\PaymentType();
         $paymentCreditCard->setCreditCard($creditCard);
@@ -223,7 +225,9 @@ trait Billable
         $creditCard = new AnetAPI\CreditCardType();
         $creditCard->setCardNumber($card['number']);
         $creditCard->setExpirationDate($card['expiration']);
-        $creditCard->setCardCode($card['code']);
+        if($card['code']){
+           $creditCard->setCardCode($card['code']);
+        }
 
         $paymentCreditCard = new AnetAPI\PaymentType();
         $paymentCreditCard->setCreditCard($creditCard);
