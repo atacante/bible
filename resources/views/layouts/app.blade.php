@@ -123,10 +123,6 @@
 
             </div>
         </div>
-
-
-
-
         <!-- Scripts -->
         @yield('scripts')
         {!! Captcha::script() !!}
@@ -137,10 +133,10 @@
             site.initCkeditors();
         </script>
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-{{--
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57ed3492aa5fe8f7"></script>
---}}
+{{--
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ffb956064f1f1f"></script>
+--}}
     </div>
 </body>
 </html>
