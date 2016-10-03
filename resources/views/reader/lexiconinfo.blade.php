@@ -1,4 +1,3 @@
-{{--{!! var_dump($lexiconinfo) !!}--}}
 <div style="max-width: 700px; max-height: 300px; overflow-y: auto;">
     <table class="table table-bordered">
         <thead>

@@ -211,12 +211,10 @@ class LocationController extends Controller
     public function anyVerses($id)
     {
         $location = Location::query()->with('verses')->find($id);
-        var_dump($location->verses);exit;
     }
 
     public function anyLocations($id)
     {
         $verse = VersesKingJamesEn::query()->with('locations')->find($id);
-        var_dump($verse->locations);exit;
     }
 }

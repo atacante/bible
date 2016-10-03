@@ -23,7 +23,7 @@
                         <div class="text-left user-descr">
                             <div class="user-name">{!! Auth::user()->name !!}</div>
                             <div>Member Since: {!! Auth::user()->created_at->format('d M, Y') !!}</div>
-                            <div><i class="bs-friends"></i>&nbsp;{!! Auth::user()->friends->count() !!} &nbsp;&nbsp;&nbsp; <i class="bs-s-groups"></i>&nbsp;{!! Auth::user()->joinedGroups->count() !!} &nbsp;</div>
+                            <div><i class="bs-friends"></i>&nbsp;{!! count(array_intersect(Auth::user()->requests->modelKeys(), Auth::user()->friends->modelKeys())) !!} &nbsp;&nbsp;&nbsp; <i class="bs-s-groups"></i>&nbsp;{!! Auth::user()->joinedGroups->count() !!} &nbsp;</div>
                         </div>
                     </div>
                 </li>

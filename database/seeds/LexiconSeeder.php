@@ -38,8 +38,8 @@ class LexiconSeeder extends Seeder
                     $book_name = implode(' ',$bookAndChapter);
                     $bookObj = BooksListEn::query()->where('book_name',$book_name)->first(['id']);
                     if(!$bookObj){
-                        var_dump($bookAndChapter);//array_pop() result
-                        var_dump($row);
+//                        var_dump($bookAndChapter);//array_pop() result
+//                        var_dump($row);
                     }
                     $verse_num = $book[1];
 
