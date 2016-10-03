@@ -5820,7 +5820,15 @@ a.banner-btn{
 .user-likes-popover.popover {
     /*left: 95px !important;*/
 }
-
+.user-neme-cut {
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 80px;
+    text-overflow: ellipsis;
+    height: 23px;
+    vertical-align: middle;
+}
 
 
 
@@ -5908,5 +5916,57 @@ a.banner-btn{
     p.p-1 {
         font-size: 11px;
         line-height: 13px;
+    }
+    .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+        margin-left: 0;
+        overflow-x: hidden;
+    }
+    .mr1 {
+        margin-right: 0;
+    }
+    .home-ill-section {
+        padding-left: 135px;
+        padding-right: 15px;
+        min-height: 1px;
+    }
+    .col-left1 {
+        width: 100%;
+    }
+    .h-ill5 {
+        background-size: cover;
+        min-height: 265px;
+    }
+    h2.h2-2 {
+        font-size: 17px;
+    }
+    .c-center-content {
+        border-radius: 0 !important;
+    }
+    .home .bg-g1 {
+        margin-left: 5px;
+        margin-right: 5px;
+        min-height: 500px;
+    }
+    .inner-container {
+        padding: 5px 0;
+    }
+    .home .btn1,
+    .home .btn1:visited {
+        font-size: 12px;
+        padding: 10px 40px;
+    }
+    .brr {
+        display: block;
+    }
+    .h-ill1, .h-ill2, .h-ill3, .h-ill4 {
+        background-position: left center;
+    }
+    .btn2, .btn2:hover, .btn2:visited, .btn2:focus {
+        padding: 10px 20px;
+        font-size: 12px;
+        border-width: 2px;
     }
 }

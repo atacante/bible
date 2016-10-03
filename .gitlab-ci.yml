@@ -37,15 +37,15 @@ job_for_beta:
     - pwd
     - php -v
     - cd $HOME/web && git pull origin beta 
-    - cd $HOME/web && yes | php artisan migrate 
-    - cd $HOME/web && yes | php artisan asset:dist
+    - cd $HOME/web && php artisan migrate --force --no-interaction
+    - cd $HOME/web && php artisan asset:dist
   only:
     - beta
   tags:
     - beta
   environment: staging
 
-job_for_live:
+.job_for_live:
   stage: live
   script:
     - hostname
