@@ -329,7 +329,7 @@ site.ajaxForm = function(form,callback){
         },
         error:function(data){
             $.each(data.responseJSON, function(index,value){
-                var formGroup = $(':input[name="'+index+'"]').parent('.form-group');
+                var formGroup = $(':input[name="'+index+'"],:input[name="'+index+'[]"]').parent('.form-group');
                 formGroup.addClass('has-error');
                 formGroup.append('<span class="help-block">'+value[0]+'</span>');
             });
