@@ -10,11 +10,11 @@
         <div class="col-md-12">
             <h3 class="h3-kit mb4 strongs-header">
                 @if($prevNum = $content['pages']['prevNum'])
-                    <a class="genesis-arrow" title="Prev Strong's Number" href="{!! url('reader/strongs/'.$prevNum.'/'.$content['dictionaryType'],[],false) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
+                    <a class="genesis-arrow" title="Prev Strong's Number" href="{!! url('reader/strongs/'.$prevNum.'/'.$content['dictionaryType'],[]) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
                 @endif
                 {!! $content['title'] !!}
                 @if($nextNum = $content['pages']['nextNum'])
-                    <a class="genesis-arrow" title="Next Strong's Number" href="{!! url('reader/strongs/'.$nextNum.'/'.$content['dictionaryType'],[],false) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
+                    <a class="genesis-arrow" title="Next Strong's Number" href="{!! url('reader/strongs/'.$nextNum.'/'.$content['dictionaryType'],[]) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
                 @endif
             </h3>
         </div>

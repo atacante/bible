@@ -43,7 +43,7 @@
         <div>
             Tags:
             @foreach($model->tags as $tag)
-                {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
+                {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[]), $tag->tag_name, ['class' => 'label label-info'], true)}}
             @endforeach
         </div>
     @endif

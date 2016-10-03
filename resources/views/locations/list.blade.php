@@ -70,7 +70,7 @@
                             </div>
                             <div class="c-inner-location-text">
                                 <h4 class="h4-locations">{!! $location->location_name !!}</h4>
-                                {!! str_limit(strip_tags($location->location_description,'<p></p>'), $limit = 140, $end = '... <br>'.Html::link(url('/locations/view/'.$location->id,[],false), 'View Details', ['class' => 'btn1 cu2-btn1','style' => 'padding: 0 5px;'], true)) !!}
+                                {!! str_limit(strip_tags($location->location_description,'<p></p>'), $limit = 140, $end = '... <br>'.Html::link(url('/locations/view/'.$location->id,[]), 'View Details', ['class' => 'btn1 cu2-btn1','style' => 'padding: 0 5px;'], true)) !!}
                             </div>
                         </div>
                     </div>

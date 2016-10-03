@@ -9,7 +9,7 @@
                 @endif
             </div>
             <div class="row">
-                <a href="{!! url('/user/remove-friend/'.$model->id,[],false) !!}" class="btn2 cu-cancel j-remove-friend {!! in_array($model->id,$myFriends)?'':'hidden' !!}"
+                <a href="{!! url('/user/remove-friend/'.$model->id,[]) !!}" class="btn2 cu-cancel j-remove-friend {!! in_array($model->id,$myFriends)?'':'hidden' !!}"
                    data-toggle="modal"
                    data-target="#cancel-request-sm"
                    data-itemid="{!! $model->id !!}"
@@ -27,10 +27,10 @@
                     @if(in_array($model->id,$ignoredRequests))
                         <a href="#" class="btn2 cu-cancel disabled">Ignored</a>
                     @else
-                        <a href="{!! url('/user/approve-friend-request/'.$model->id,[],false) !!}" class="btn1 cu-cancel j-approve-friend-request {!! !in_array($model->id,$myFriends) && in_array($model->id,$requests)?'':'hidden' !!}">Confirm Request</a>
+                        <a href="{!! url('/user/approve-friend-request/'.$model->id,[]) !!}" class="btn1 cu-cancel j-approve-friend-request {!! !in_array($model->id,$myFriends) && in_array($model->id,$requests)?'':'hidden' !!}">Confirm Request</a>
                     @endif
                 @else
-                    <a href="{!! url('/user/request-friend/'.$model->id,[],false) !!}" class="btn1 cu-cancel j-follow-friend {!! in_array($model->id,$myFriends) || in_array($model->id,$myRequests)?'hidden':'' !!}">Add Friend</a>
+                    <a href="{!! url('/user/request-friend/'.$model->id,[]) !!}" class="btn1 cu-cancel j-follow-friend {!! in_array($model->id,$myFriends) || in_array($model->id,$myRequests)?'hidden':'' !!}">Add Friend</a>
                 @endif
             </div>
         </div>

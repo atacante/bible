@@ -1,14 +1,14 @@
 <div class="row cu1-row">
 @if(count($products))
     @foreach($products as $product)
-        <div data-itemid="{!! $product->id !!}" class="my-item j-show-product" data-link="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}">
+        <div data-itemid="{!! $product->id !!}" class="my-item j-show-product" data-link="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[]) !!}">
             <div class="my-inner-location-item">
 
 
                 @if($product->images->count())
-                    <a target="{!! ($product->external_link)?'_blank':'_self'!!}" href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" class="product-image" data-dz-thumbnail="" data-image="{!!Config::get('app.productImages').'thumbs/'.$product->images[0]->image !!}" style="background: url('{!! $product->images[0]->image!=''?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'' !!}') center no-repeat;"></a>
+                    <a target="{!! ($product->external_link)?'_blank':'_self'!!}" href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[]) !!}" class="product-image" data-dz-thumbnail="" data-image="{!!Config::get('app.productImages').'thumbs/'.$product->images[0]->image !!}" style="background: url('{!! $product->images[0]->image!=''?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'' !!}') center no-repeat;"></a>
                 @else
-                    <a target="{!! ($product->external_link)?'_blank':'_self'!!}" href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[],false) !!}" class="product-image" data-dz-thumbnail="" data-image="" style="">
+                    <a target="{!! ($product->external_link)?'_blank':'_self'!!}" href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[]) !!}" class="product-image" data-dz-thumbnail="" data-image="" style="">
                         <i class="bs-producticon cu-producticon"></i>
                     </a>
                 @endif
@@ -27,10 +27,10 @@
                             <a class="btn1 cu2-2-btn1 j-show-product" href="{{$product->external_link}}" target="_blank" data-link = "{{$product->external_link}}">Details <i class="bs-arrowrt cu-arrowrt"></i></a>
                         </div>
                     @else
-                        <a class="btn4 btn4-cu2" href="{{url('/shop/add-to-cart/'.$product->id,[],false)}}">
+                        <a class="btn4 btn4-cu2" href="{{url('/shop/add-to-cart/'.$product->id,[])}}">
                             <i class="bs-cart cu-cart"></i>
                         </a>
-                        {!! Html::link(url('/shop/product/'.$product->id,[],false),'Details', ['class'=>'btn2 cu2-1-btn1']) !!}
+                        {!! Html::link(url('/shop/product/'.$product->id,[]),'Details', ['class'=>'btn2 cu2-1-btn1']) !!}
                     @endif
                 </div>
 

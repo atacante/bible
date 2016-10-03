@@ -19,8 +19,8 @@
 
                 <div class="btns-group">
                     @if(Auth::user() && Auth::user()->id != $member->id)
-                        <a title="Approve" href="{!! url('/groups/approve-group-join-request',[$model->id,$member->id],false) !!}" class="btn1-icon j-approve-group-join-request"><i class="bs-checkmark cu-btn-ic"></i></a>
-                        <a title="Reject" href="{!! url('/groups/reject-group-join-request',[$model->id,$member->id],false) !!}" class="btn2-icon j-reject-group-join-request"
+                        <a title="Approve" href="{!! url('/groups/approve-group-join-request',[$model->id,$member->id]) !!}" class="btn1-icon j-approve-group-join-request"><i class="bs-checkmark cu-btn-ic"></i></a>
+                        <a title="Reject" href="{!! url('/groups/reject-group-join-request',[$model->id,$member->id]) !!}" class="btn2-icon j-reject-group-join-request"
                            data-toggle="modal"
                            data-target="#cancel-request-sm"
                            data-itemid="{!! $member->id !!}"
