@@ -114,6 +114,7 @@
                 </div>
             </div>
         </div>
+        @if(!Auth::check())
         <div class="container-fluid">
             <div class="row mb1">
                 <div class="col-lg-12 text-center pad1">
@@ -124,7 +125,7 @@
                 </div>
             </div>
         </div>
-
+        @endif
 
 
         @include('admin.partials.deletepop')
