@@ -50,16 +50,16 @@ job_for_beta:
   environment: staging
 
 #job_for_live:
-  stage: live
-  before_script:
-    - php -v
-    - export PATH=/opt/remi/php56/root/bin/:$PATH
-  script:
-    - hostname
-    - pwd
-    - php -v
-  only:
-    - master
-  tags:
-    - live
-  environment: production
+#  stage: live
+#  before_script:
+#    - php -v
+#    - export PATH=/opt/remi/php56/root/bin/:$PATH
+#  script:
+#    - hostname
+#    - pwd
+#    - php -v
+#  only:
+#    - master
+#  tags:
+#    - live
+#  environment: production
