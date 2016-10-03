@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="alert-container">
+        <div class="alert-container home-alert-container">
             @notification()
         </div>
 
