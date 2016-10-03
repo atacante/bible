@@ -26,14 +26,14 @@ class Note extends BaseModel
     {
         $rules['note_text'] = 'required';
         if(Request::input('share_for_groups') == self::ACCESS_SPECIFIC_GROUPS){
-            $rules['groups[]'] = 'required';
+            $rules['groups'] = 'required';
         }
         return $rules;
     }
 
     public function messages()
     {
-        $messages['groups[].required'] = 'Please select groups from list.';
+        $messages['groups.required'] = 'Please select groups from list.';
         return $messages;
     }
 
