@@ -236,6 +236,16 @@
                         @endif
                     </div>
 
+                    <div class="form-group {{ $errors->has('card_code') ? ' has-error' : '' }}">
+                        {!! Form::label('card_code', 'Credit Card Code:') !!}
+                        {!! Form::text('card_code', null, ['placeholder' => '***', 'class' => 'input1', 'style' => 'width: 125px;']) !!}
+                        @if ($errors->has('card_code'))
+                            <span class="help-block">
+                                {{ $errors->first('card_code') }}
+                            </span>
+                        @endif
+                    </div>
+
                     <div class="form-group {{ $errors->has('billing_name') ? ' has-error' : '' }}">
                         {!! Form::label('billing_name', 'Billing Name:') !!}
                         {!! Form::text('billing_name', ($model->userMeta)?$model->userMeta->billing_first_name .' '.$model->userMeta->billing_last_name: '', ['class' => 'input1']) !!}

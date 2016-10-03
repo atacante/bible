@@ -34,12 +34,7 @@ class ModelHelper
                     return strlen($b)-strlen($a);
                 });
                 if($verse->book_id == 40 && $verse->chapter_num == 1 && $verse->verse_num == 2){
-//                    var_dump($verse->book_id);
-//                    var_dump($verse->chapter_num);
-//                    var_dump($verse->verse_num);
-//                    var_dump($verse->verse_text);
-//                    var_dump($parts);
-//                    exit;
+
                 }
 
                 foreach ($parts as $key => $part) {

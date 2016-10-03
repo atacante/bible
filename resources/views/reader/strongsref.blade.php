@@ -10,11 +10,11 @@
         <div class="col-md-12">
             <h3 class="text-center">
                 @if($prevNum = $content['pages']['prevNum'])
-                    <a title="Prev Strong's Number" href="{!! url('reader/strongs-references/'.$prevNum.'/'.$content['dictionaryType'],[],false) !!}"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                    <a title="Prev Strong's Number" href="{!! url('reader/strongs-references/'.$prevNum.'/'.$content['dictionaryType'],[]) !!}"><i class="glyphicon glyphicon-chevron-left"></i></a>
                 @endif
                     Strong's {!! $content['strongNum'] !!} Occurrences
                 @if($nextNum = $content['pages']['nextNum'])
-                    <a title="Next Strong's Number" href="{!! url('reader/strongs-references/'.$nextNum.'/'.$content['dictionaryType'],[],false) !!}"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                    <a title="Next Strong's Number" href="{!! url('reader/strongs-references/'.$nextNum.'/'.$content['dictionaryType'],[]) !!}"><i class="glyphicon glyphicon-chevron-right"></i></a>
                 @endif
             </h3>
 

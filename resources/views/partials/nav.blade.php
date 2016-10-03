@@ -34,6 +34,12 @@
                             <i class="bs-reader"></i>Read
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ URL::to('/reader/verse?version=nasb&book=1&chapter=1&verse=1') }}">
+                            <i class="bs-lexicon cu-lexicon" style="font-size: 13px; vertical-align: baseline;"></i>
+                            Study Using Lexicon
+                        </a>
+                    </li>
                     <li role="separator" class="divider"></li>
                     <li>
                         <a href="{{ URL::to('/peoples/list') }}">

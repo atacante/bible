@@ -1,7 +1,20 @@
 stages:
+ - dev
  - alpha
  - beta
  - live
+
+job_for_dev:
+  stage: dev
+  script:
+    - hostname
+    - pwd
+    - ls /var/www/clients/client3/web1/home/cleartech1/simple-deploy.sh
+  only:
+    - dev
+  tags:
+    - dev
+  environment: dev
 
 job_for_alpha:
   stage: alpha
@@ -16,10 +29,16 @@ job_for_alpha:
 
 job_for_beta:
   stage: beta
+  before_script:
+    - php -v
+    - export PATH=/opt/remi/php56/root/bin/:$PATH
   script:
     - hostname
     - pwd
-    - export PATH=/opt/remi/php56/root/bin/:$PATH && cd $HOME/web && git pull origin beta && php artisan migrate && php artisan asset:dist
+    - php -v
+    - cd $HOME/web && git pull origin beta 
+    - cd $HOME/web && yes | php artisan migrate 
+    - cd $HOME/web && yes | php artisan asset:dist
   only:
     - beta
   tags:

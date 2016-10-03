@@ -16,16 +16,16 @@
                 </div>
                 <div class="btns-group">
                     @if(Request::get('type') == 'inbox-requests')
-                        <a href="{!! url('/user/approve-friend-request/'.$people->id,[],false) !!}" class="btn1 cu7-btn1 j-approve-friend-request">Approve</a>
-                        <a href="{!! url('/community/find-friends?type=my',[],false) !!}" class="btn2 cu2-btn1 j-friends-btn hidden">Friends</a>
-                        <a href="{!! url('/user/reject-friend-request/'.$people->id,[],false) !!}" style="left: auto; right: 25px;" class="btn2 cu8-btn1 j-reject-friend-request"
+                        <a href="{!! url('/user/approve-friend-request/'.$people->id,[]) !!}" class="btn1 cu7-btn1 j-approve-friend-request">Approve</a>
+                        <a href="{!! url('/community/find-friends?type=my',[]) !!}" class="btn2 cu2-btn1 j-friends-btn hidden">Friends</a>
+                        <a href="{!! url('/user/reject-friend-request/'.$people->id,[]) !!}" style="left: auto; right: 25px;" class="btn2 cu8-btn1 j-reject-friend-request"
                            data-toggle="modal"
                            data-target="#cancel-request-sm"
                            data-itemid="{!! $people->id !!}"
                            data-header="Reject Request"
                            data-callclass="j-reject-friend-request"
                            data-confirm="Are you sure you want to reject this request?">Reject</a>
-                        <a href="{!! url('/user/ignore-friend-request/'.$people->id,[],false) !!}" class="btn2 cu8-btn1 j-ignore-friend-request"
+                        <a href="{!! url('/user/ignore-friend-request/'.$people->id,[]) !!}" class="btn2 cu8-btn1 j-ignore-friend-request"
                            data-toggle="modal"
                            data-target="#cancel-request-sm"
                            data-itemid="{!! $people->id !!}"
@@ -33,7 +33,7 @@
                            data-callclass="j-ignore-friend-request"
                            data-confirm="Are you sure you want to ignore this request?">Ignore</a>
                     @else
-                        <a href="{!! url('/user/remove-friend/'.$people->id,[],false) !!}" class="btn2 cu2-btn1 j-remove-friend {!! in_array($people->id,$myFriends)?'':'hidden' !!}"
+                        <a href="{!! url('/user/remove-friend/'.$people->id,[]) !!}" class="btn2 cu2-btn1 j-remove-friend {!! in_array($people->id,$myFriends)?'':'hidden' !!}"
                            data-toggle="modal"
                            data-target="#cancel-request-sm"
                            data-itemid="{!! $people->id !!}"
@@ -41,7 +41,7 @@
                            data-callclass="j-remove-friend"
                            data-confirm="Are you sure you want to remove this user from friends?">Unfriend</a>
 
-                        <a href="{!! url('/user/cancel-friend-request/'.$people->id,[],false) !!}" class="btn2 cu4-btn1 j-cancel-friend-request {!! in_array($people->id,$myRequests) && !in_array($people->id,$myFriends)?'':'hidden' !!}"
+                        <a href="{!! url('/user/cancel-friend-request/'.$people->id,[]) !!}" class="btn2 cu4-btn1 j-cancel-friend-request {!! in_array($people->id,$myRequests) && !in_array($people->id,$myFriends)?'':'hidden' !!}"
                            data-toggle="modal"
                            data-target="#cancel-request-sm"
                            data-itemid="{!! $people->id !!}"
@@ -52,10 +52,10 @@
                                 @if(in_array($people->id,$ignoredRequests))
                                     <a href="#" class="btn2 cu2-btn1 disabled" style="">Ignored</a>
                                 @else
-                                    <a href="{!! url('/user/approve-friend-request/'.$people->id,[],false) !!}" class="btn2 cu4-btn1 j-approve-friend-request {!! !in_array($people->id,$myFriends) && in_array($people->id,$requests)?'':'hidden' !!}">Confirm Request</a>
+                                    <a href="{!! url('/user/approve-friend-request/'.$people->id,[]) !!}" class="btn2 cu4-btn1 j-approve-friend-request {!! !in_array($people->id,$myFriends) && in_array($people->id,$requests)?'':'hidden' !!}">Confirm Request</a>
                                 @endif
                             @else
-                                <a href="{!! url('/user/request-friend/'.$people->id,[],false) !!}" class="btn1 cu2-btn1 j-follow-friend {!! in_array($people->id,$myFriends) || in_array($people->id,$myRequests)?'hidden':'' !!}">Add Friend</a>
+                                <a href="{!! url('/user/request-friend/'.$people->id,[]) !!}" class="btn1 cu2-btn1 j-follow-friend {!! in_array($people->id,$myFriends) || in_array($people->id,$myRequests)?'hidden':'' !!}">Add Friend</a>
                             @endif
                     @endif
                     @if(in_array($people->id,$myFriends))

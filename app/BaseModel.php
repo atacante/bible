@@ -162,7 +162,6 @@ class BaseModel extends Model {
 //                    ->groupBy(DB::raw('book_id,chapter_num,verse_num'))
 //                    ->orderByRaw(DB::raw('rankPhrase DESC,rankWord DESC'));
 //
-//        var_dump($finalQuery->toSql());exit;
         $versesModel = self::getVersesModelByVersionCode(Config::get('app.defaultBibleVersion'));
         $finalQuery = $versesModel::query()
             ->select(DB::raw('

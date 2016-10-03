@@ -90,7 +90,7 @@
     <div class="row mt14 mb1">
         <div class="col-xs-12 text-right">
             {!! Html::link((($url = Session::get('backUrl'))?$url:'/shop'),'Back to list', ['class'=>'btn2 ml1']) !!}
-            {!! Html::link(url('/shop/add-to-cart/'.$product->id,[],false),'Add To Cart', ['class'=>'btn1 ml1']) !!}
+            {!! Html::link(url('/shop/add-to-cart/'.$product->id,[]),'Add To Cart', ['class'=>'btn1 ml1']) !!}
         </div>
     </div>
 @stop

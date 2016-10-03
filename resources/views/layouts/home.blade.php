@@ -75,7 +75,10 @@
         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
         ga('create', 'UA-84561258-1', 'auto');
+        ga('create', 'UA-84986968-1', 'auto', {'name': 'betaTracker'});
+
         ga('send', 'pageview');
+        ga('betaTracker.send', 'pageview');
 
     </script>
     <div class="bg-home">
@@ -97,28 +100,11 @@
             }(document, 'script', 'facebook-jssdk'));
         </script>
 
-        <div class="container-fluid main-container">
-            <div class="inner-container">
-                <div class="bg-g1">
-                    <div class="in-inner-container text-center">
-                        @include('partials.nav-home')
-                        <h1 class="h1-1 mt1">ONLINE <span>STUDY BIBLE</span> COMMUNITY</h1>
-                        <h2 class="h2-3">Studying Scripture to Live a Praiseworthy Life to God</h2>
-                        <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn1 mt2 mb1">READ BIBLE NOW</a>
-                    </div>
-                </div>
 
-                    <div class="alert-container">
-                        @notification()
-                    </div>
 
-                        @yield('content')
+        @yield('content')
 
-                    @include('admin.partials.deletepop')
-                    @include('partials.popup')
 
-            </div>
-        </div>
 
         @include('partials.footer')
 
@@ -134,7 +120,8 @@
             site.initCkeditors();
         </script>
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ffb956064f1f1f"></script>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57ed3492aa5fe8f7"></script>
+        {{--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ffb956064f1f1f"></script>--}}
     </div>
 </body>
 </html>

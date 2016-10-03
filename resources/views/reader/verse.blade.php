@@ -13,7 +13,7 @@
     {!! Form::hidden('verse_id',$content['main_verse']['verse']->id) !!}
     <div class="row">
         <div class="col-xs-12">
-            <div class="c-title-and-icons2">
+            <div class="c-title-and-icons2 j-nav-sel2">
                 <a href="{!! url('reader/read?'.http_build_query(
                     [
                         'version' => $content['main_verse']['version_code'],
@@ -26,7 +26,7 @@
                 </a>
 
                 @if($versePrev = $content['pagination']['versePrev'])
-                    <a class="genesis-arrow" title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[],false) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
+                    <a class="genesis-arrow" title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[]) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
                 @endif
 
                 <h3 class="h3-kit cu2-title">
@@ -34,7 +34,7 @@
                 </h3>
 
                 @if($verseNext = $content['pagination']['verseNext'])
-                    <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[],false) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
+                    <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[]) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
                 @endif
 
                 <div class="btns-panel">
@@ -57,7 +57,14 @@
             </div>
         </div>
     </div>
-
+    <div class="j-dynamic-arrows" style="position: fixed; max-width: 1360px; height: 45px;  width: 1260px; display: none;">
+        @if($versePrev = $content['pagination']['versePrev'])
+            <a class="genesis-arrow" title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[]) !!}" style="position: absolute; left:-40px;"><i class="bs-arrowleft cu-arrowleft"></i></a>
+        @endif
+        @if($verseNext = $content['pagination']['verseNext'])
+            <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[]) !!}" style="position: absolute; right:-40px;"><i class="bs-arrowright cu-arrowright"></i></a>
+        @endif
+    </div>
     @if(count($content['lexicon']))
         <div class="row">
             <div class="col-xs-12">
@@ -154,7 +161,7 @@
                         <div class="inner-pad3">
                             <h4 class="title-people">{!! $location->location_name !!}</h4>
                             <p class="p-medium2">
-                                {!! str_limit(strip_tags($location->location_description,''), $limit = 360, $end = '... '.Html::link(url('/locations/view/'.$location->id,[],false), 'View Details', ['class' => 'a-kit'], true)) !!}
+                                {!! str_limit(strip_tags($location->location_description,''), $limit = 360, $end = '... '.Html::link(url('/locations/view/'.$location->id,[]), 'View Details', ['class' => 'a-kit'], true)) !!}
                             </p>
                         </div>
                     </div>
@@ -221,7 +228,7 @@
                     <div class="inner-pad3">
                         <h4 class="title-people">{!! $people->people_name !!}</h4>
                         <p class="p-medium2">
-                            {!! str_limit(strip_tags($people->people_description,''), $limit = 460, $end = '... '.Html::link(url('/peoples/view/'.$people->id,[],false), 'View Details', ['class' => 'a-kit'], true)) !!}
+                            {!! str_limit(strip_tags($people->people_description,''), $limit = 460, $end = '... '.Html::link(url('/peoples/view/'.$people->id,[]), 'View Details', ['class' => 'a-kit'], true)) !!}
                         </p>
                     </div>
                 </div>
@@ -264,7 +271,7 @@
     <div class="row j-bible-text">
         <div class="col-xs-12">
             <div class="c-white-item inner-pad3 mb4">
-                {{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => Request::input('version')])),[],false), $content['main_verse']['version_name'], ['class' => 'paralel-link'], true)}}
+                {{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => Request::input('version')])),[]), $content['main_verse']['version_name'], ['class' => 'paralel-link'], true)}}
                 <span class="verse-text j-verse-text p-medium2" data-version="{!! $content['main_verse']['version_code'] !!}"  data-verseid="{!! $content['main_verse']['verse']->id !!}">
                     {!! ViewHelper::prepareVerseText($content['main_verse']['verse'],true) !!}
                 </span>
@@ -277,7 +284,7 @@
             @foreach($content['verse'] as $code => $version)
                 @if($version['verse'])
                     <div class="c-white-item inner-pad3 mb4">
-                        {{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[],false), $version['version_name'], ['class' => 'paralel-link'], true)}}
+                        {{ Html::link(url('reader/read?'.http_build_query(array_merge(Request::input(),['version' => $code])),[]), $version['version_name'], ['class' => 'paralel-link'], true)}}
                         <span class="verse-text j-verse-text p-medium2" data-version="{!! $code !!}"  data-verseid="{!! $version['verse']->id !!}" style="">
                         {!! ViewHelper::prepareVerseText($version['verse']) !!}
                         </span>
@@ -288,13 +295,13 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 text-center pagination">
+        <div class="col-xs-12 text-center pagination j-reader-pagination">
             <div class="btn-group" role="group" aria-label="...">
                 @if($versePrev = $content['pagination']['versePrev'])
-                    {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[],false), 'Prev Verse', ['class' => 'btn2','style' => 'min-width:250px; margin-right: 30px'], true)}}
+                    {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[]), 'Prev Verse', ['class' => 'btn2','style' => 'min-width:250px; margin-right: 30px'], true)}}
                 @endif
                 @if($verseNext = $content['pagination']['verseNext'])
-                    {{ Html::link(url('reader/verse?'.http_build_query($verseNext),[],false), 'Next Verse', ['class' => 'btn1','style' => 'min-width:250px;'], true)}}
+                    {{ Html::link(url('reader/verse?'.http_build_query($verseNext),[]), 'Next Verse', ['class' => 'btn1','style' => 'min-width:250px;'], true)}}
                 @endif
             </div>
         </div>

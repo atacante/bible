@@ -23,7 +23,7 @@
                         <div class="c-journey-tags">
                             @if(count($prayer->tags))
                                 @foreach($prayer->tags as $tag)
-                                    {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[],false), '#'.$tag->tag_name, ['class' => 'link-tag'], true)}}
+                                    {{ Html::link(url('user/my-journey?'.http_build_query(['tags[]' => $tag->id]),[]), '#'.$tag->tag_name, ['class' => 'link-tag'], true)}}
                                 @endforeach
                             @endif
                         </div>
@@ -85,7 +85,7 @@
                     <td>
                         @if(count($prayer->tags))
                             @foreach($prayer->tags as $tag)
-                                {{ Html::link(url('prayers/list?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
+                                {{ Html::link(url('prayers/list?'.http_build_query(['tags[]' => $tag->id]),[]), $tag->tag_name, ['class' => 'label label-info'], true)}}
                                 <br/>
                             @endforeach
                         @endif

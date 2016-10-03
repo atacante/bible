@@ -986,6 +986,7 @@ table.table-lexicon p {
 }
 body{
     font-family: work_sansregular;
+    overflow-x: hidden;
 }
 del {
     color: #fe9921;
@@ -1274,8 +1275,8 @@ a.view-details:hover{
 
 .main-container{
     min-height: 400px;
-    padding-left: 20px;
-    padding-right: 20px;
+/*    padding-left: 20px;
+    padding-right: 20px;*/
 }
 
 .my-journal-list .box-header,.my-notes-list .box-header, .my-prayers-list .box-header, .my-entries-list .box-header{
@@ -2737,9 +2738,7 @@ ul.nav.navbar-nav li {
     background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(229,230,230,1) 680px,rgba(229,230,230,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e6e6',GradientType=0 ); /* IE6-9 */
 }
-.container-fluid {
 
-}
 h1.h1-1 {
     font-size: 48px;
     line-height: 62px;
@@ -2929,8 +2928,8 @@ ul.c-social li a:hover, ul.c-social li a:active {
     text-align: center;
 }
 .c-center-content3 {
-    padding: 100px 10px;
-    box-sizing: border-box;
+/*    padding: 100px 10px;
+    box-sizing: border-box;*/
     background: rgb(133,203,246); /* Old browsers */
     background: -moz-linear-gradient(left,  rgba(133,203,246,1) 0%, rgba(133,203,246,1) 31%, rgba(148,228,238,1) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(left,  rgba(133,203,246,1) 0%,rgba(133,203,246,1) 31%,rgba(148,228,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -2984,7 +2983,7 @@ ul.c-social li a:hover, ul.c-social li a:active {
     -webkit-border-radius: 10px;
     -webkit-box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
     box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
-    margin-bottom: 25px;
+    margin: 8px 10px 25px;
     outline: none !important;
 }
 textarea {
@@ -5004,44 +5003,6 @@ ul.icons-list li i {
     color: #00b9f7;
     text-decoration: underline;
 }
-@media (max-width: 992px) {
-    .pad-r1 {
-        padding-right: 15px !important;
-    }
-    .pad-l1 {
-        padding-left: 15px !important;
-    }
-}
-@media (max-width: 1280px) {
-    .col-left1, .col-right1 {
-        display: inline-block;
-        float: none;
-    }
-    .c-center-content2 {
-        text-align: center;
-    }
-    .my-item {
-        width: 33.333333%;
-    }
-    input.datepicker {
-        padding: 0 20px;
-    }
-    .icon-date-to {
-        display: none !important;
-    }
-}
-@media (max-width: 970px) {
-    .my-item {
-        width: 50%;
-    }
-}
-@media (max-width: 750px) {
-    .my-item {
-        width: 100%;
-    }
-}
-
-
 .highlight{
     color: #00b9f7;
     font-family: work_sansbold;
@@ -5858,4 +5819,94 @@ a.banner-btn{
 
 .user-likes-popover.popover {
     /*left: 95px !important;*/
+}
+
+
+
+
+
+
+
+/* ------------------------------------- */
+/* ------------------------------------- */
+/* ------------------------------------- */
+/* ------------------------------------- */
+/* ------------ RESPONSIVE ------------- */
+
+@media (max-width: 1280px) {
+    .col-left1, .col-right1 {
+        display: inline-block;
+        float: none;
+    }
+    .c-center-content2 {
+        text-align: center;
+    }
+    .my-item {
+        width: 33.333333%;
+    }
+    input.datepicker {
+        padding: 0 20px;
+    }
+    .icon-date-to {
+        display: none !important;
+    }
+}
+
+
+@media (max-width: 992px) {
+    .pad-r1 {
+        padding-right: 15px !important;
+    }
+    .pad-l1 {
+        padding-left: 15px !important;
+    }
+}
+
+
+@media (max-width: 970px) {
+    .my-item {
+        width: 50%;
+    }
+}
+
+
+@media (max-width: 750px) {
+    .my-item {
+        width: 100%;
+    }
+    .in-inner-container {
+        padding: 0 0 30px;
+    }
+    ul.footer-menu li {
+        display: block;
+    }
+    h1.h1-1 {
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .navbar-header .navbar-brand {
+        font-size: 13px;
+    }
+    .cu-biblestudylogo {
+        font-size: 30px;
+        line-height: 34px;
+    }
+    .navbar-default {
+        padding: 10px 0;
+    }
+    .mt1 {
+        margin-top: 50px !important;
+    }
+    h2.h2-3 {
+        font-size: 12px;
+        line-height: 14px;
+    }
+    h2.h2-1 {
+        font-size: 16px;
+        line-height: 18px;
+    }
+    p.p-1 {
+        font-size: 11px;
+        line-height: 13px;
+    }
 }
