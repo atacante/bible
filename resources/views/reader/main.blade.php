@@ -123,7 +123,7 @@
                         </div>
                         <div class="c-title-and-icons j-nav-sel2">
                             <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                            <div class="addthis_sharing_toolbox c-sharing top-vertical1"></div>
+                            <div class="addthis_inline_share_toolbox c-sharing top-vertical1"></div>
 
                             <div class="text-center">
                                 @if($prevChapter = $content['pagination']['chapterPrev'])
@@ -324,7 +324,7 @@
                                             {!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}
                                         </div>
                                         @if(Auth::user() && Auth::user()->isPremium() && $item->type == 'prayer')
-                                                <div class="addthis_sharing_toolbox j-custom-sharing" data-url="{{url('/community')}}" data-title="{!! strip_tags($item->text) !!}"></div>
+                                                <div class="addthis_inline_share_toolbox j-custom-sharing" data-url="{{url('/community')}}" data-title="{!! strip_tags($item->text) !!}"></div>
                                         @endif
                                     </div>
                                 </div>

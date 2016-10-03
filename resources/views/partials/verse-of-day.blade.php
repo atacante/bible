@@ -26,7 +26,7 @@
                 SHARE WITH:
             </h4>
             <!-- Go to www.addthis.com/dashboard to customize your tools -->
-            <div class="addthis_sharing_toolbox c-social"></div>
+            <div class="addthis_inline_share_toolbox c-social"></div>
         </div>
     </div>
 </div>
