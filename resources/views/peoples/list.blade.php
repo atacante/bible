@@ -58,7 +58,7 @@
                             </div>
                             <div class="c-inner-location-text">
                                 <h4 class="h4-locations">{!! $people->people_name !!}</h4>
-                                {!! str_limit(strip_tags($people->people_description,'<p></p>'), $limit = 140, $end = '... '.Html::link(url('/peoples/view/'.$people->id,[],false), 'View Details', ['class' => 'btn1 cu2-btn1','style' => 'padding: 0 5px;'], true)) !!}
+                                {!! str_limit(strip_tags($people->people_description,'<p></p>'), $limit = 140, $end = '... '.Html::link(url('/peoples/view/'.$people->id,[]), 'View Details', ['class' => 'btn1 cu2-btn1','style' => 'padding: 0 5px;'], true)) !!}
                             </div>
 
                         </div>

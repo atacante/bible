@@ -131,7 +131,7 @@
                             <td>
                                 @if(count($note->tags))
                                     @foreach($note->tags as $tag)
-                                        {{ Html::link(url('notes/list?'.http_build_query(['tags[]' => $tag->id]),[],false), $tag->tag_name, ['class' => 'label label-info'], true)}}
+                                        {{ Html::link(url('notes/list?'.http_build_query(['tags[]' => $tag->id]),[]), $tag->tag_name, ['class' => 'label label-info'], true)}}
                                         <br />
                                     @endforeach
                                 @endif
