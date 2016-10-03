@@ -109,6 +109,7 @@ class User extends Authenticatable
                     if(!$this->hasPaymentAccount() && !Input::get('coupon_code', false)){
                         $rules['card_number'] = 'required|numeric';
                         $rules['card_expiration'] = 'required';
+                        $rules['card_code'] = 'required|numeric';
                         $rules['billing_name'] = 'required';
                         $rules['billing_address'] = 'required';
                         $rules['billing_zip'] = 'required|numeric';
@@ -117,6 +118,7 @@ class User extends Authenticatable
                     if(Input::get('card_number') || Input::get('card_expiration')){
                         $rules['card_expiration'] = 'required';
                         $rules['card_number'] = 'required|numeric';
+                        $rules['card_code'] = 'required|numeric';
                         $rules['billing_name'] = 'required';
                         $rules['billing_address'] = 'required';
                         $rules['billing_zip'] = 'required|numeric';
