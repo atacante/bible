@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	//config.toolbar = 'Basic',
 	config.toolbar = [
 		//['Styles','Format','Font','FontSize'],
-		['webSpeechEnabled', 'webSpeechSettings' ],
+		[(!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform))?'':'webSpeechEnabled', 'webSpeechSettings'],
 		//'/',
 		['Bold','Italic','Underline','StrikeThrough','-','Undo','Redo','-','Cut','Copy','Paste','Find','Replace','-','Outdent','Indent','-','Print'],
 		//'/',

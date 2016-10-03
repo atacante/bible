@@ -145,6 +145,7 @@
                             <div class="form-group {{ $errors->has('billing_address') ? ' has-error' : '' }}">
                                 {!!  Form::label('billing_address', ucwords(str_replace('_',' ', 'billing_address'))) !!}
                                 {!!  Form::text('billing_address', $model->billing_address, ['class' => 'form-control input1']) !!}
+                                <a href="#" class="j-duplicate-billing-address">Same as shipping</a>
                                 @if ($errors->has('billing_address'))
                                     <span class="help-block">
                                     {{ $errors->first('billing_address') }}
