@@ -45,7 +45,7 @@ job_for_beta:
     - beta
   environment: staging
 
-job_for_live:
+.job_for_live:
   stage: live
   script:
     - hostname
