@@ -288,7 +288,7 @@ class GroupsController extends Controller
         }
         else {
             $statusesQuery = WallPost::with(['user', 'images'])
-                ->selectRaw('id,user_id,verse_id,created_at,null as highlighted_text,status_text as text,type,null as bible_version,published_at,access_level,
+                ->selectRaw('id,user_id,verse_id,created_at,updated_at,null as highlighted_text,status_text as text,type,null as bible_version,published_at,access_level,
                     (SELECT count(*) FROM wall_likes WHERE item_type = \'App\WallPost\' AND item_id = wall_posts.id) as likesCount,
                     (SELECT count(*) FROM wall_comments WHERE type = \'App\WallPost\' AND item_id = wall_posts.id) as commentsCount
                 ')
@@ -311,7 +311,7 @@ class GroupsController extends Controller
             $lastIds['status'] = (int)$statusesQuery->max('id');
 
             $journalQuery = Journal::with(['verse', 'user', 'images'])
-                ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at,access_level,
+                ->selectRaw('id,user_id,verse_id,created_at,updated_at,highlighted_text,journal_text as text,\'journal\' as type,bible_version,published_at,access_level,
                     (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Journal\' AND item_id = journal.id) as likesCount,
                     (SELECT count(*) FROM wall_comments WHERE type = \'App\Journal\' AND item_id = journal.id) as commentsCount
                 ')
@@ -338,7 +338,7 @@ class GroupsController extends Controller
             $lastIds['journal'] = (int)$journalQuery->max('id');
 
             $prayersQuery = Prayer::with(['verse', 'user', 'images'])
-                ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,prayer_text as text,\'prayer\' as type,bible_version,published_at,access_level,
+                ->selectRaw('id,user_id,verse_id,created_at,updated_at,highlighted_text,prayer_text as text,\'prayer\' as type,bible_version,published_at,access_level,
                     (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Prayer\' AND item_id = prayers.id) as likesCount,
                     (SELECT count(*) FROM wall_comments WHERE type = \'App\Prayer\' AND item_id = prayers.id) as commentsCount
                 ')
@@ -365,7 +365,7 @@ class GroupsController extends Controller
             $lastIds['prayer'] = (int)$prayersQuery->max('id');
 
             $notesQuery = Note::with(['verse', 'user', 'images'])
-                ->selectRaw('id,user_id,verse_id,created_at,highlighted_text,note_text as text,\'note\' as type,bible_version,published_at,access_level,
+                ->selectRaw('id,user_id,verse_id,created_at,updated_at,highlighted_text,note_text as text,\'note\' as type,bible_version,published_at,access_level,
                     (SELECT count(*) FROM wall_likes WHERE item_type = \'App\Note\' AND item_id = notes.id) as likesCount,
                     (SELECT count(*) FROM wall_comments WHERE type = \'App\Note\' AND item_id = notes.id) as commentsCount
                 ')
