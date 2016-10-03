@@ -756,7 +756,6 @@ class GroupsController extends Controller
         $groupId = Request::get('group_id',$id);
         if (Input::hasFile('file')) {
             $file = Input::file('file');
-//            var_dump($file);exit;
             $filePath = Config::get('app.groupImages').$groupId.'/';
             if(!File::isDirectory(public_path() . $filePath)){
                 File::makeDirectory(public_path() . $filePath, 0777, true);

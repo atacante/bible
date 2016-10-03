@@ -37,7 +37,6 @@ class AppServiceProvider extends ServiceProvider
         /*LexiconKjv::saving(function($model)
         {
             if($model->isDirty('verse_part')){
-                var_dump($model->getDirty());
 //                $model->updateCache();
             }
             return true; //if false the model wont save! 

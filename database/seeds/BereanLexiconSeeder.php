@@ -39,8 +39,6 @@ class BereanLexiconSeeder extends Seeder
 
                     $verse_num = $book[1];
 
-//                    var_dump($row["Verse"]);
-
                     $data[$key]['book_id'] = $bookObj->id;
                     $data[$key]['chapter_num'] = $chapter;
                     $data[$key]['verse_num'] = $verse_num;
