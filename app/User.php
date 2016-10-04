@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -465,6 +466,13 @@ class User extends Authenticatable
         }else{
             $this->attributes['invited_by_id'] = $value;
         }
+    }
+
+    public static function adminEmails()
+    {
+        return self::whereHas('roles', function ($q) {
+            $q->whereIn('slug',[Config::get('app.role.admin')]);
+        })->pluck('email')->toArray();
     }
 
 }
