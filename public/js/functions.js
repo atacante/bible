@@ -416,3 +416,10 @@ site.hideAlert = function(){
         container.fadeOut();
     }, 3000);
 }
+
+site.showPremiumWarning = function(){
+    $('#popup-sm').find('.modal-header .modal-title').text('Warning');
+    $('#popup-sm').find('.modal-body').html("Upgrade to a premium membership to use this feature.");
+    $('#popup-sm').find('.modal-footer').html('<button type="button" class="btn2-kit cu-btn-pad1" data-dismiss="modal">Ok</button>');
+    $('#popup-sm').modal({show:true});
+}

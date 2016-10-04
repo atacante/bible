@@ -43,7 +43,6 @@ $(document).ready(function(){
                 return term;
             },
             processResults: function (data, params) {
-                //console.log(data);
                 return {results: data}
             }
         },
@@ -1303,6 +1302,7 @@ $(document).ready(function(){
         e.preventDefault();
 
         if($(this).hasClass('disabled')){
+            site.showPremiumWarning();
             return false;
         }
 
@@ -1847,5 +1847,6 @@ $(document).ready(function(){
 
     $('body').on('click','a.disabled',function(e){
         e.preventDefault();
+        site.showPremiumWarning();
     });
 });
