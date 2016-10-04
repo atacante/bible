@@ -6065,4 +6065,27 @@ a.banner-btn{
     .c-center-content3.mt11 {
         margin-top: 0 !important;
     }
+    .at-share-btn-elements .at-icon-wrapper {
+        background: white !important;
+        color: #00b9f7 !important;
+        height: 50px !important;
+        width: 50px !important;
+    }
+    .at-icon-wrapper.at-share-btn {
+        border: 2px solid #00b9f7 !important;
+        border-radius: 50% !important;
+        -webkit-border-radius: 50% !important;
+        -moz-border-radius: 50% !important;
+    }
+    .at-share-btn-elements .at-icon {
+        fill: #00b9f7 !important;
+        width: 39px !important;
+        height: 48px !important;
+    }
+    .at-share-tbx-element .at-share-btn {
+        margin-right: 20px !important;
+    }
+    .at-share-tbx-element .at-share-btn:last-child {
+        margin-right: 0px !important;
+    }
 }
