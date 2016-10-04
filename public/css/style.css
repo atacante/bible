@@ -5991,6 +5991,9 @@ a.banner-btn{
     .c-center-content2 {
         border-radius: 0;
         -webkit-border-radius: 0;
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     .mt8 {
         margin-top: 10px !important;
@@ -6017,7 +6020,7 @@ a.banner-btn{
         margin-top: 35px !important;
     }
     .col-right1 {
-        padding: 10px;
+        padding: 10px 10px 0;
     }
     .col-right1 .p-2 {
         text-align: left;
@@ -6052,5 +6055,14 @@ a.banner-btn{
     }
     .mt12 {
         margin-top: 50px !important;
+    }
+    .c-share-panel {
+        border: none;
+        background: white;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    .c-center-content3.mt11 {
+        margin-top: 0 !important;
     }
 }
