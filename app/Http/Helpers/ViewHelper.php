@@ -386,4 +386,17 @@ class ViewHelper
             ) ||
             ($model->access_level == $model::ACCESS_PUBLIC);
     }
+
+    public static function checkBillingInfoToShow()
+    {
+        return !empty(Request::old('billing_first_name')) ||
+               !empty(Request::old('billing_last_name')) ||
+               !empty(Request::old('billing_address')) ||
+               !empty(Request::old('billing_city')) ||
+               !empty(Request::old('billing_postcode')) ||
+               !empty(Request::old('billing_country')) ||
+               !empty(Request::old('billing_state')) ||
+               !empty(Request::old('billing_email')) ||
+               !empty(Request::old('billing_phone'));
+    }
 }

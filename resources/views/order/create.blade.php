@@ -11,6 +11,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_first_name') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_first_name', ucwords(str_replace('_',' ', 'shipping_first_name'))) !!}
+                                <span class="req">*</span>
                                 {!!  Form::text('shipping_first_name', $model->shipping_first_name, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_first_name'))
                                     <span class="help-block">
@@ -22,6 +23,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_last_name') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_last_name', ucwords(str_replace('_',' ', 'shipping_last_name'))) !!}
+                                <span class="req">*</span>
                                 {!!  Form::text('shipping_last_name', $model->shipping_last_name, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_last_name'))
                                     <span class="help-block">
@@ -33,6 +35,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_address') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_address', ucwords(str_replace('_',' ', 'shipping_address'))) !!}
+                                <span class="req">*</span>
                                 {!!  Form::text('shipping_address', $model->shipping_address, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_address'))
                                     <span class="help-block">
@@ -44,6 +47,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_city') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_city', ucwords(str_replace('_',' ', 'shipping_city'))) !!}
+                                <span class="req">*</span>
                                 {!!  Form::text('shipping_city', $model->shipping_city, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_city'))
                                     <span class="help-block">
@@ -55,6 +59,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_postcode') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_postcode', ucwords(str_replace('_',' ', 'shipping_postcode'))) !!}
+                                <span class="req">*</span>
                                 {!!  Form::text('shipping_postcode', $model->shipping_postcode, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_postcode'))
                                     <span class="help-block">
@@ -88,6 +93,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_email') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_email', ucwords(str_replace('_',' ', 'shipping_email'))) !!}
+                                <span class="req">*</span>
                                 {!!  Form::text('shipping_email', $model->shipping_email, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_email'))
                                     <span class="help-block">
@@ -117,7 +123,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="j-billing-meta hidden">
+                <div class="j-billing-meta {!! ViewHelper::checkBillingInfoToShow()?'':'hidden' !!}">
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('billing_first_name') ? ' has-error' : '' }}">

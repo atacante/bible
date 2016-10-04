@@ -1573,12 +1573,12 @@ $(document).ready(function(){
     $('body').on('click','.j-show-billing',function(e){
         e.preventDefault();
 
-        var shippingEmail = $('input[name="shipping_email"]');
+        /*var shippingEmail = $('input[name="shipping_email"]');
         var billingEmail = $('.j-billing-meta input[name="billing_email"]');
 
         if(billingEmail.val() == ''){
             billingEmail.val(shippingEmail.val());
-        }
+        }*/
 
         $('.j-billing-meta').toggleClass('hidden');
     });
