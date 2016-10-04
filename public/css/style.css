@@ -5976,6 +5976,11 @@ a.banner-btn{
         text-align: center;
         width: 100%;
     }
+    .btn3, .btn3:visited, .btn3:hover, .btn3:focus {
+        padding: 10px 15px;
+        font-size: 12px;
+        border-width: 2px;
+    }
     .h-ill1 {
         background: url('/images/p1-home-m.png') left center no-repeat;
     }
@@ -6061,6 +6066,7 @@ a.banner-btn{
         background: white;
         margin-left: -10px;
         margin-right: -10px;
+        padding: 20px 0 0 !important;
     }
     .c-center-content3.mt11 {
         margin-top: 0 !important;
@@ -6087,5 +6093,25 @@ a.banner-btn{
     }
     .at-share-tbx-element .at-share-btn:last-child {
         margin-right: 0px !important;
+    }
+    .c-share-panel h4.h4-1 {
+        font-size: 13px;
+    }
+    .c-center-content-shop .mt10 {
+        margin-top: 0 !important;
+    }
+    h2.gift-title {
+        display: inline-block;
+        width: 110px;
+        text-align: left;
+    }
+    h2.gift-title span {
+        display: inline-block;
+    }
+    .cu-gift {
+        font-size: 45px;
+        display: inline-block;
+        vertical-align: super;
+        margin-right: 10px;
     }
 }

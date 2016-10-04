@@ -85,7 +85,7 @@
                 <div class="col-xs-12">
                     <div class="text-center pad2">
                         <i class="bs-gift cu-gift"></i>
-                        <h2 class="h2-1 color1 text-center mt9">
+                        <h2 class="h2-1 color1 text-center mt9 gift-title">
                             SEND A <span>GIFT OF LOVE</span> TO A FRIEND
                         </h2>
 
