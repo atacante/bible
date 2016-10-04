@@ -83,7 +83,7 @@
         <div class="container-fluid c-center-content3 mt11">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class=" text-center" style="padding: 100px 10px">
+                    <div class="text-center pad2">
                         <i class="bs-gift cu-gift"></i>
                         <h2 class="h2-1 color1 text-center mt9">
                             SEND A <span>GIFT OF LOVE</span> TO A FRIEND

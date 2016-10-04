@@ -5829,7 +5829,9 @@ a.banner-btn{
     height: 23px;
     vertical-align: middle;
 }
-
+.pad2 {
+    padding: 100px 10px;
+}
 
 
 
@@ -5931,6 +5933,7 @@ a.banner-btn{
         padding-left: 135px;
         padding-right: 15px;
         min-height: 1px;
+        min-height: 262px;
     }
     .col-left1 {
         width: 100%;
@@ -5944,6 +5947,8 @@ a.banner-btn{
     }
     .c-center-content {
         border-radius: 0 !important;
+        box-shadow: none;
+        -webkit-box-shadow: none;
     }
     .home .bg-g1 {
         margin-left: 5px;
@@ -5965,9 +5970,11 @@ a.banner-btn{
         background-position: left center;
     }
     .btn2, .btn2:hover, .btn2:visited, .btn2:focus {
-        padding: 10px 20px;
+        padding: 10px 15px;
         font-size: 12px;
         border-width: 2px;
+        text-align: center;
+        width: 100%;
     }
     .h-ill1 {
         background: url('/images/p1-home-m.png') left center no-repeat;
@@ -5984,5 +5991,66 @@ a.banner-btn{
     .c-center-content2 {
         border-radius: 0;
         -webkit-border-radius: 0;
+    }
+    .mt8 {
+        margin-top: 10px !important;
+    }
+    .mt3 {
+        margin-top: 10px !important;
+    }
+    .mr3 {
+        margin-right: 0 !important;
+    }
+    .mt6 {
+        margin-top: 10px !important;
+    }
+    .mt4 {
+        margin-top: 10px !important;
+    }
+    .mt2 {
+        margin-top: 10px !important;
+    }
+    .h-ill4 .mt4 {
+        margin-top: 22px !important;
+    }
+    .h-ill1 .mt2 {
+        margin-top: 35px !important;
+    }
+    .col-right1 {
+        padding: 10px;
+    }
+    .col-right1 .p-2 {
+        text-align: left;
+        line-height: 22px;
+        font-size: 17px;
+    }
+    .mt7 {
+        margin-top: 25px !important;
+    }
+    .pad2 {
+        padding: 40px 10px;
+    }
+    ul.footer-menu li a {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    ul.footer-menu li {
+        display: block;
+        padding: 7px 20px;
+    }
+    .copyright {
+        margin-top: 25px;
+    }
+    .footer1 {
+        padding: 25px 0;
+    }
+    .mt13 {
+        margin-top: 10px !important;
+    }
+    .mb1 {
+        margin-bottom: 0;
+    }
+    .mt12 {
+        margin-top: 50px !important;
     }
 }
