@@ -418,8 +418,11 @@ site.hideAlert = function(){
 }
 
 site.showPremiumWarning = function(){
-    $('#popup-sm').find('.modal-header .modal-title').text('Warning');
+    $('#popup-sm').find('.modal-header .modal-title').text('Premium Feature');
     $('#popup-sm').find('.modal-body').html("Upgrade to a premium membership to use this feature.");
-    $('#popup-sm').find('.modal-footer').html('<button type="button" class="btn2-kit cu-btn-pad1" data-dismiss="modal">Ok</button>');
+    $('#popup-sm').find('.modal-footer').html('' +
+        '<button type="button" class="btn4-kit cu-btn-pad1" data-dismiss="modal">Cancel</button>' +
+        '<a href="/user/profile" class="btn2-kit cu-btn-pad1 btn-ok" style="margin-left: 7px;">Upgrade</a>' +
+    '');
     $('#popup-sm').modal({show:true});
 }
