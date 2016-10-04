@@ -88,15 +88,15 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $mess = false;
+        $mess = '';
         if($data['subscribed']) {
             $mess = MailchimpComponent::addEmailToList($data['email']);
         }
         $data['mess'] = $mess;
-        if (!$mess){
+        if ($mess != ''){
             Mail::send('emails.mailchimp', $data, function($message) use($data)
             {
-                $message->to($data['email'])->subject('Subscription Mailchimp Error');
+                $message->to(User::adminEmails())->subject('Subscription Mailchimp Error');
             });
         }
 
