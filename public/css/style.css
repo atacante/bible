@@ -6114,4 +6114,34 @@ a.banner-btn{
         vertical-align: super;
         margin-right: 10px;
     }
+    .c-center-content-shop .col-lg-4 {
+        width: 30%;
+        display: inline-block;
+        padding: 0;
+    }
+    .gift1 {
+        height: 58px;
+        background-position: 50% 0 !important;
+        background-size: cover !important;
+        margin: 10px;
+    }
+    h4.h4-gift {
+        text-transform: uppercase;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #464646;
+        font-size: 11px;
+        line-height: 13px;
+        font-family: ns_widemedium;
+        white-space: nowrap;
+        padding: 0 5px;
+    }
+    .gift-item {
+        height: 100px;
+        margin: 25px 2px 25px;
+        overflow: hidden;
+    }
+    .c-center-content-shop {
+        overflow: initial;
+    }
 }
