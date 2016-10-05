@@ -11,41 +11,162 @@
     {!! Form::hidden('verse_details',true) !!}
     {!! Form::hidden('bible_version',$content['main_verse']['version_code']) !!}
     {!! Form::hidden('verse_id',$content['main_verse']['verse']->id) !!}
+    {!! Form::open(['method' => 'get','url' => '/reader/'.(isset($filterAction)?$filterAction:'verse'), 'id'=>'j-sel-book-form']) !!}
     <div class="row">
+        <div class="permonent-pop j-choose-version-pop" style="display: none;">
+            <div class="pp-title">
+                CHOOSE Version
+                <a href="#" class="btn-reset cu-btr1 j-close-choose-version">&#215;</a>
+            </div>
+            <ul class="pp-c-items j-version-list">
+                {{--<li><a  data-val="all" href="#">All Versions</a></li>--}}
+                @foreach ($filters['versions'] as $val=>$version)
+                    <li><a class="{{ $val==$content['main_verse']['version_code']?"active":"" }}" data-val="{{$val}}" href="#">{{ $filters['versions'][$val] }}</a></li>
+                @endforeach
+            </ul>
+        </div>
         <div class="col-xs-12">
-            <div class="c-title-and-icons2 j-nav-sel2">
-                <a href="{!! url('reader/read?'.http_build_query(
-                    [
-                        'version' => $content['main_verse']['version_code'],
-                        'book' => $content['main_verse']['verse']->book_id,
-                        'chapter' => $content['main_verse']['verse']->chapter_num
-                    ])."#verse".$content['main_verse']['verse']->id,[],false) !!}"
-                   class="btn1-kit cu1-btn">
-                    <i class="bs-arrowback cu-arrowback"></i>
-                    Back to Reader
-                </a>
+            <div class="row j-nav-sel" style="position: relative;">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <div class="genesis-panel">
+                            <h4 class="h4-sel-version j-sel-version-label"><span class="j-sel-version-text">{!! $content['main_verse']['version_name'] !!}</span> <span class="c-arrow-sel"><b></b></span></h4>
 
-                @if($versePrev = $content['pagination']['versePrev'])
-                    <a class="genesis-arrow" title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[]) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
-                @endif
+                            <div class="sel-version" style="display: none">
+                                {!! Form::select('version', array_merge((Request::segment(2) == 'verse'?[]:['all' => 'All Versions']),$filters['versions']), Request::input('version','all'),['class' => 'genesis-select j-select-version']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="permonent-pop j-choose-book-pop" style="display: none;">
+                        <div class="pp-title">
+                            CHOOSE BOOK
+                            <a href="#" class="btn-reset cu-btr1 j-close-choose-book">&#215;</a>
+                        </div>
+                        <table class="t-choose-book j-book-list" style="width:100%;">
+                            <?php
+                            $n = 0;
+                            $book_mas[$n] = "";
+                            foreach ($filters['books'] as $val=>$book){
+                                $n++;
+                                $book_mas[$n]['val'] = $val;
+                                $book_mas[$n]['text'] = $filters['books'][$val];
+                            }
 
-                <h3 class="h3-kit cu2-title">
-                    {!! $content['main_verse']['verse']->booksListEn->book_name.' <span class="fsz1">'.$content['main_verse']['verse']->chapter_num.':'.$content['main_verse']['verse']->verse_num.'</span>' !!}
-                </h3>
+                            $count_columns = 4;
+                            $count_books = count($filters['books']);
+                            $count_books_on_column =  ceil ((((int)$count_books) / $count_columns));
+                            $b = 0;
+                            for ($i=1; $i<=$count_columns; $i++) {
+                                for ($j=1; $j<=$count_books_on_column; $j++) {
+                                    $b++;
+                                    if (isset($book_mas[$b]["text"])) {
+                                        $mas[$i][$j] = $book_mas[$b]["val"];
+                                    } else {
+                                        $mas[$i][$j] = "";
+                                    }
+                                }
+                            }
 
-                @if($verseNext = $content['pagination']['verseNext'])
-                    <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[]) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
-                @endif
+                            for($j=1; $j<=$count_books_on_column; $j++) {
+                                echo '<tr>';
+                                for ($i=1; $i<=$count_columns; $i++){
+                                    if($mas[$i][$j]>0){
+                                        $val1 = $mas[$i][$j];
+                                        $active = Request::input('book',1)==$mas[$i][$j]?'active':'';
+                                        echo '<td><a class="'.$active.'" data-val="'.$mas[$i][$j].'" href="#">'.$filters['books'][$val1].'</a></td>';
+                                    } else {
+                                        echo '<td></td>';
+                                    }
+                                }
+                                echo '</tr>';
+                            }
+                            ?>
+                        </table>
+                    </div>
+                    <div class="c-title-and-icons j-nav-sel2">
+                        <a href="{!! url('reader/read?'.http_build_query(
+                            [
+                                'version' => $content['main_verse']['version_code'],
+                                'book' => $content['main_verse']['verse']->book_id,
+                                'chapter' => $content['main_verse']['verse']->chapter_num
+                            ])."#verse".$content['main_verse']['verse']->id,[],false) !!}"
+                            class="btn1-kit cu1-btn">
+                            <i class="bs-arrowback cu-arrowback"></i>
+                            Back to Reader
+                        </a>
 
-                <div class="btns-panel">
-                    <a href="{{ url('/notes/create') }}" class="btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
-                    <a href="{{ url('/journal/create') }}" class="btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
-                    <a href="{{ url('/prayers/create') }}" class="btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
+                        <div class="text-center">
+                            @if($versePrev = $content['pagination']['versePrev'])
+                                <a class="genesis-arrow" title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[]) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
+                            @else
+                                <span class="genesis-arrow"><i class="bs-arrowleft cu-arrowleft2"></i></span>
+                            @endif
+
+                            <div class="genesis-panel">
+                                <div class="sel-book">
+                                    <h4 class="h4-sel-book j-sel-book-label"><span class="j-sel-book-text">{!! $filters['books'][Request::input('book',1)] !!}</span> <span class="c-arrow-sel"><b></b></span></h4>
+                                    {!! Form::select('book', $filters['books'], Request::input('book'),['class' => 'genesis-select j-select-book', 'style' => 'display: none']) !!}
+                                </div>
+                            </div>
+
+                            @if($verseNext = $content['pagination']['verseNext'])
+                                <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[]) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
+                            @else
+                                <span class="genesis-arrow"><i class="bs-arrowright cu-arrowright2"></i></span>
+                            @endif
+                        </div>
+
+                        {{-- Right icons panel --}}
+                        <div class="btns-panel">
+                            <a href="{{ url('/notes/create') }}" class="btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
+                            <a href="{{ url('/journal/create') }}" class="btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
+                            <a href="{{ url('/prayers/create') }}" class="btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
+                        </div>
+                    </div>
+
+                    {{-- CHAPTER SELECT --}}
+                    <div class="text-center j-nav-sel2 j-nav-sel3">
+                        <div class="genesis-panel">
+                            <div class="sel-chapter">
+                                <h4 class="h4-sel-book j-sel-chapter-label"><span class="j-sel-chapter-text">{!! $filters['chapters'][Request::input('chapter',1)] !!}</span> <span class="c-arrow-sel"><b></b></span></h4>
+                                {!! Form::select('chapter',$filters['chapters'], Request::input('chapter'),['class' => 'genesis-select j-select-chapter', 'style' => 'display:none;']) !!}
+                                <span style="font-size: 30px;">:</span>
+                                <h4 class="h4-sel-book j-sel-verse-label"><span class="j-sel-verse-text">{!! $filters['verses'][Request::input('verse',1)] !!}</span> <span class="c-arrow-sel"><b></b></span></h4>
+                                {!! Form::select('verse',$filters['verses'], Request::input('verse'),['class' => 'genesis-select j-select-verse', 'style' => 'display:none;']) !!}
+                            </div>
+                            {!! Form::token() !!}
+                            {{-- {!! Form::submit('Go',['class' => 'genesis-btn j-genesis-btn']) !!}--}}
+                        </div>
+                    </div>
+                    {{-- CHAPTER POPUP --}}
+                    <div class="permonent-pop j-choose-chapter-pop" style="display: none;">
+                        <div class="pp-title">
+                            CHOOSE CHAPTER
+                            <a href="#" class="btn-reset cu-btr1 j-close-choose-chapter">&#215;</a>
+                        </div>
+                        <ul class="c-chapter-list j-chapter-list">
+                            @foreach ($filters['chapters'] as $key=>$chapter)
+                                <li><a class="{{ $key==Request::input('chapter',1)?"active":"" }}" data-val="{{$key}}" href="#">{{ $filters['chapters'][$key] }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    {{-- CHAPTER POPUP --}}
+                    <div class="permonent-pop j-choose-verse-pop" style="display: none;">
+                        <div class="pp-title">
+                            CHOOSE VERSE
+                            <a href="#" class="btn-reset cu-btr1 j-close-choose-verse">&#215;</a>
+                        </div>
+                        <ul class="c-chapter-list j-verse-list">
+                            @foreach ($filters['verses'] as $key=>$verse)
+                                <li><a class="{{ $key==Request::input('verse',1)?"active":"" }}" data-val="{{$key}}" href="#">{{ $filters['verses'][$key] }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
+    {!! Form::close() !!}
 
     <div class="row">
         <div class="col-xs-12">
