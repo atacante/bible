@@ -43,7 +43,8 @@ class ViewHelper
         $versesArr = [];
         if(count($verses)){
             foreach($verses as $verse){
-                $versesArr[$verse['verse_num']] = 'Verse'.' '.$verse['verse_num'];
+//                $versesArr[$verse['verse_num']] = 'Verse'.' '.$verse['verse_num'];
+                $versesArr[$verse['verse_num']] = $verse['verse_num'];
             }
         }
         return $versesArr;
