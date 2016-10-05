@@ -5976,6 +5976,11 @@ a.banner-btn{
         text-align: center;
         width: 100%;
     }
+    .btn3, .btn3:visited, .btn3:hover, .btn3:focus {
+        padding: 10px 15px;
+        font-size: 12px;
+        border-width: 2px;
+    }
     .h-ill1 {
         background: url('/images/p1-home-m.png') left center no-repeat;
     }
@@ -5991,6 +5996,9 @@ a.banner-btn{
     .c-center-content2 {
         border-radius: 0;
         -webkit-border-radius: 0;
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     .mt8 {
         margin-top: 10px !important;
@@ -6017,7 +6025,7 @@ a.banner-btn{
         margin-top: 35px !important;
     }
     .col-right1 {
-        padding: 10px;
+        padding: 10px 10px 0;
     }
     .col-right1 .p-2 {
         text-align: left;
@@ -6052,5 +6060,88 @@ a.banner-btn{
     }
     .mt12 {
         margin-top: 50px !important;
+    }
+    .c-share-panel {
+        border: none;
+        background: white;
+        margin-left: -10px;
+        margin-right: -10px;
+        padding: 20px 0 0 !important;
+    }
+    .c-center-content3.mt11 {
+        margin-top: 0 !important;
+    }
+    .at-share-btn-elements .at-icon-wrapper {
+        background: white !important;
+        color: #00b9f7 !important;
+        height: 50px !important;
+        width: 50px !important;
+    }
+    .at-icon-wrapper.at-share-btn {
+        border: 2px solid #00b9f7 !important;
+        border-radius: 50% !important;
+        -webkit-border-radius: 50% !important;
+        -moz-border-radius: 50% !important;
+    }
+    .at-share-btn-elements .at-icon {
+        fill: #00b9f7 !important;
+        width: 39px !important;
+        height: 48px !important;
+    }
+    .at-share-tbx-element .at-share-btn {
+        margin-right: 20px !important;
+    }
+    .at-share-tbx-element .at-share-btn:last-child {
+        margin-right: 0px !important;
+    }
+    .c-share-panel h4.h4-1 {
+        font-size: 13px;
+    }
+    .c-center-content-shop .mt10 {
+        margin-top: 0 !important;
+    }
+    h2.gift-title {
+        display: inline-block;
+        width: 110px;
+        text-align: left;
+    }
+    h2.gift-title span {
+        display: inline-block;
+    }
+    .cu-gift {
+        font-size: 45px;
+        display: inline-block;
+        vertical-align: super;
+        margin-right: 10px;
+    }
+    .c-center-content-shop .col-lg-4 {
+        width: 30%;
+        display: inline-block;
+        padding: 0;
+    }
+    .gift1 {
+        height: 58px;
+        background-position: 50% 0 !important;
+        background-size: cover !important;
+        margin: 10px;
+    }
+    h4.h4-gift {
+        text-transform: uppercase;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #464646;
+        font-size: 11px;
+        line-height: 13px;
+        font-family: ns_widemedium;
+        white-space: nowrap;
+        padding: 0 5px;
+    }
+    .gift-item {
+        height: 100px;
+        margin: 25px 2px 25px;
+        overflow: hidden;
+    }
+    .c-center-content-shop {
+        overflow: initial;
     }
 }
