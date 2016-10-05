@@ -2599,7 +2599,7 @@ h1.h1-1 span {
     font-family: ns_widenormal;
 }
 h2.h2-3 {
-    font-size: 20px;
+    font-size: 1.43rem;
     color: #7b828a;
     display: block;
     text-align: center;
@@ -2610,7 +2610,7 @@ h2.h2-3 {
     color: white;
 }
 h3.h3-1 {
-    font-size: 20px;
+    font-size: 1.43rem;
     color: #7b828a;
     display: block;
     text-align: center;
@@ -2652,7 +2652,7 @@ h3.h3-1 {
     background: url('/images/p4-home.png') right center no-repeat;
 }
 h2.h2-1 {
-    font-size: 38px;
+    font-size: 2.71rem;
     color: #404040;
     display: block;
     font-family: ns_widelight;
@@ -2664,12 +2664,12 @@ h2.h2-1 span {
 p.p-1 {
     font-family: work_sansregular;
     color: #7b828a;
-    font-size: 18px;
-    line-height: 20px;
+    font-size: 1.29rem;
+    line-height: 1.43rem;
 }
 h2.h2-2 {
-    font-size: 38px;
-    line-height: 44px;
+    font-size: 2.71rem;
+    line-height: 3.14rem;
     color: #313131;
     display: block;
     text-align: center;
@@ -2682,7 +2682,7 @@ h2.h2-2 {
     padding-right: 20px;
     vertical-align: bottom;
     height: 20px;
-    line-height: 41px;
+    line-height: 2.92rem;
 }
 .c-center-content2 {
     width: 100%;
@@ -2717,9 +2717,9 @@ h2.h2-2 {
 }
 p.p-2 {
     font-family: work_sansregular;
-    font-size: 23px;
+    font-size: 1.64rem;
     color: #7b828a;
-    line-height: 28px;
+    line-height: 2rem;
 }
 p.p-2 span.ital {
     font-style: italic;
@@ -2730,7 +2730,7 @@ p.p-2 span.ital {
     margin-top: 25px;
 }
 h4.h4-1 {
-    font-size: 23px;
+    font-size: 1.64rem;
     color: #000000;
     font-family: ns_widenormal;
     text-transform: uppercase;
@@ -2747,14 +2747,14 @@ ul.c-social li {
 ul.c-social li a {
     display: inline-block;
     color: #00b9f7;
-    font-size: 22px;
+    font-size: 1.57rem;
     border: 3px solid #00b9f7;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     width: 58px;
     height: 58px;
     text-align: center;
-    line-height: 54px;
+    line-height: 3.86rem;
 }
 ul.c-social li a:hover, ul.c-social li a:active {
     background: #00b9f7;
@@ -2766,8 +2766,6 @@ ul.c-social li a:hover, ul.c-social li a:active {
     text-align: center;
 }
 .c-center-content3 {
-/*    padding: 100px 10px;
-    box-sizing: border-box;*/
     background: rgb(133,203,246); /* Old browsers */
     background: -moz-linear-gradient(left,  rgba(133,203,246,1) 0%, rgba(133,203,246,1) 31%, rgba(148,228,238,1) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(left,  rgba(133,203,246,1) 0%,rgba(133,203,246,1) 31%,rgba(148,228,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -2776,39 +2774,39 @@ ul.c-social li a:hover, ul.c-social li a:active {
 }
 .cu-gift {
     color: #ffffff;
-    font-size: 76px;
+    font-size: 5.43rem;
 }
 .cu-gift2 {
     color: #00b9f7;
-    font-size: 40px;
+    font-size: 2.86rem;
     display: inline-block;
     padding-right: 15px;
     vertical-align: sub;
 }
 .cu-add {
     color: #00b9f7;
-    font-size: 18px;
+    font-size: 1.29rem;
     display: inline-block;
     padding-right: 7px;
     vertical-align: middle;
 }
 .cu-lexicon {
     color: #00b9f7;
-    font-size: 32px;
+    font-size: 2.29rem;
     display: inline-block;
     padding-right: 10px;
     vertical-align: text-bottom;
 }
 .cu-places {
     color: #00b9f7;
-    font-size: 34px;
+    font-size: 2.43rem;
     display: inline-block;
     padding-right: 5px;
     vertical-align: text-bottom;
 }
 .cu-people {
     color: #00b9f7;
-    font-size: 34px;
+    font-size: 2.43rem;
     display: inline-block;
     padding-right: 5px;
     vertical-align: text-bottom;
@@ -2842,7 +2840,7 @@ textarea {
 h4.h4-gift {
     text-transform: uppercase;
     color: #464646;
-    font-size: 23px;
+    font-size: 1.64rem;
     font-family: ns_widemedium;
 }
 .footer1 {
@@ -2862,8 +2860,8 @@ ul.footer-menu li a {
     display: inline-block;
     color: #f3f3f3;
     font-family: work_sansmedium;
-    font-size: 18px;
-    line-height: 17px;
+    font-size: 1.29rem;
+    line-height: 1.21rem;
     text-transform: uppercase;
     text-decoration: none;
     border-bottom: 1px solid #ffffff;
@@ -2876,12 +2874,12 @@ ul.footer-menu li a:hover {
 .copyright {
     color: #bdbdbd;
     font-family: work_sansregular;
-    font-size: 15px;
+    font-size: 1.07rem;
     text-transform: uppercase;
 }
 .logo-text {
     display: inline-block;
-    height: 55px;
+    height: 3.93rem;
     vertical-align: top;
 }
 .c-reader-content, .c-white-content {
@@ -2902,14 +2900,14 @@ ul.footer-menu li a:hover {
     right: 15px;
 }
 .btn-top-label1 {
-    line-height: 18px;
+    line-height: 1.29rem;
     text-transform: uppercase;
     text-align: center;
 }
 .btn-sub-label1 {
     color: #a4a4a4;
     font-family: ns_widebook;
-    line-height: 18px;
+    line-height: 1.29rem;
     text-align: center;
     text-transform: capitalize;
 }
@@ -2934,7 +2932,7 @@ ul.footer-menu li a:hover {
     -webkit-box-shadow: none;
     padding: 0 0 0 30px;
     color: #bfbfbf;
-    font-size: 14px;
+    font-size: 1rem;
     font-family: "work_sanslight";
 }
 .search-btn1 {
@@ -2943,7 +2941,7 @@ ul.footer-menu li a:hover {
     position: absolute;
     top: 0;
     left: 0;
-    line-height: 34px;
+    line-height: 2.43rem;
 }
 .search-btn1 i {
     color: #acacac;
@@ -2980,7 +2978,7 @@ ul.footer-menu li a:hover {
 }
 .c-sharing {
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 0;
 }
 .icon-panel {
@@ -2989,8 +2987,8 @@ ul.footer-menu li a:hover {
     top: 0;
 }
 .cu-print {
-    font-size: 25px;
-    line-height: 25px;
+    font-size: 1.79rem;
+    line-height: 1.79rem;
     color: #00b9f7;
 }
 .c-icon1 {
@@ -3040,7 +3038,6 @@ ul.icon-panel li a {
 }
 .genesis-panel .select2-container {
     width: auto !important;
-/*    min-width: 300px;*/
 }
 .genesis-panel .select2-container--default .select2-selection--single {
     border: none !important;
@@ -3049,7 +3046,7 @@ ul.icon-panel li a {
     min-width: 200px;
 }
 .sel-book, .sel-chapter {
-    margin: 0px 0;
+    margin: 0 0;
 }
 .sel-chapter {
     margin: -5px 0 0;
@@ -3057,7 +3054,7 @@ ul.icon-panel li a {
 .sel-version .select2-container--default .select2-selection--single .select2-selection__rendered {
     font-family: ns_widenormal;
     color: #010101;
-    font-size: 14px;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -3066,7 +3063,7 @@ ul.icon-panel li a {
 {
     font-family: ns_widemedium;
     color: #010101;
-    font-size: 30px;
+    font-size: 2.14rem;
     text-transform: uppercase;
 }
 .genesis-arrow {
@@ -3074,11 +3071,10 @@ ul.icon-panel li a {
     vertical-align: top;
     padding: 5px 5px 0;
     text-decoration: none !important;
-
 }
 .genesis-arrow > i {
     color: #12bef7;
-    font-size: 36px;
+    font-size: 2.57rem;
 }
 .top-vertical1 {
     top: 50%;
@@ -3087,7 +3083,6 @@ ul.icon-panel li a {
 .popup-new {
     position: absolute;
     top: 255px;
-   /* right: 160px;*/
     border: 1px solid #cccccc;
     padding: 50px;
     background: white;
@@ -3096,7 +3091,7 @@ ul.icon-panel li a {
     box-shadow: 0 0 15px 5px rgba(100,100,100,0.1);
     color: #535353;
     font-family: work_sansregular;
-    font-size: 15px;
+    font-size: 1.07rem;
 }
 .j-popup-settings {
     margin-top: -25px;
@@ -3125,7 +3120,6 @@ ul.icon-panel li a {
 .j-popup-compare .popup-arrow {
     right: 97px;
 }
-
 .pop-should-see .popup-arrow {
     left: 153px;
 }
@@ -3135,29 +3129,26 @@ ul.icon-panel li a {
 .popup-title {
     text-transform: uppercase;
     color: #010101;
-    font-size: 20px;
+    font-size: 1.43rem;
     font-family: ns_widenormal;
     margin-top: 0;
 }
 .verse-text {
     color: #535353;
     font-family: work_sansregular;
-    font-size: 18px;
+    font-size: 1.29rem;
 }
 .verse-search-text {
     color: #535353;
     font-family: work_sansregular;
-    font-size: 18px;
+    font-size: 1.29rem;
     text-align: justify;
 }
 .col-xs-6 .verse-text, .col-xs-4 .verse-text {
-    font-size: 16px;
+    font-size: 1.14rem;
 }
 .col-xs-6  .verse-text b a, .col-xs-4 .verse-text b a {
-    font-size: 16px;
-}
-.c-reader-content .row .col-md-6:first-child {
-    /*border-right: 1px solid #f3f3f3;*/
+    font-size: 1.14rem;
 }
 .c-reader-content .row .col-md-6:last-child .inner-pad1 {
     padding-left: 40px;
