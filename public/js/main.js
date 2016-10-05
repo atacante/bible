@@ -1699,6 +1699,7 @@ $(document).ready(function(){
         $(".j-select-book").val(curSelVal);
         $(".j-sel-book-text").html(curSelText);
         $(".j-select-chapter").val(1);
+        $(".j-select-verse").val(1);
         $(".j-choose-book-pop").hide();
         $(".j-nav-sel2").show();
         $("#j-sel-book-form").submit();
@@ -1724,6 +1725,7 @@ $(document).ready(function(){
         var curSelText = $(this).html();
         $(".j-select-chapter").val(curSelVal);
         $(".j-sel-chapter-text").html(curSelText);
+        $(".j-select-verse").val(1);
         $(".j-choose-chapter-pop").hide();
         $(".j-nav-sel3").show();
         $("#j-sel-book-form").submit();
@@ -1732,6 +1734,30 @@ $(document).ready(function(){
     $(".j-sel-chapter-label").on("click", function(e){
         $(".j-nav-sel3").hide();
         $(".j-choose-chapter-pop").show();
+        e.preventDefault();
+    });
+
+    /* ----------------- VERSE ----------------- */
+    $(".j-close-choose-verse").on("click", function(e){
+        $(".j-choose-verse-pop").hide();
+        $(".j-nav-sel3").show();
+        e.preventDefault();
+    });
+    $(".j-verse-list a").on("click", function(e){
+        $(".j-verse-list a").removeClass("active");
+        $(this).addClass("active");
+        var curSelVal = $(this).data("val");
+        var curSelText = $(this).html();
+        $(".j-select-verse").val(curSelVal);
+        $(".j-sel-verse-text").html(curSelText);
+        $(".j-choose-verse-pop").hide();
+        $(".j-nav-sel3").show();
+        $("#j-sel-book-form").submit();
+        e.preventDefault();
+    });
+    $(".j-sel-verse-label").on("click", function(e){
+        $(".j-nav-sel3").hide();
+        $(".j-choose-verse-pop").show();
         e.preventDefault();
     });
 
