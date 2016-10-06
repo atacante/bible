@@ -5910,6 +5910,10 @@ a.banner-btn{
     }
 }
 
+#search-verse input{
+    color:#6b6b6b;
+}
+
 #search-verse input::-webkit-input-placeholder {color:#6b6b6b;}
 #search-verse input::-moz-placeholder          {color:#6b6b6b;}/* Firefox 19+ */
 #search-verse input:-moz-placeholder           {color:#6b6b6b;}/* Firefox 18- */
