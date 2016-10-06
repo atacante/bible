@@ -5146,6 +5146,12 @@ h3.strongs-subheader{
 .cu-bs-gift{
     font-size: 1.14rem !important;
 }
+.cu-bs-blog{
+    font-size: 1rem !important;
+}
+.cu-bs-study{
+    font-size: 1.15rem !important;
+}
 .cu-bs-faq{
     font-size: 1.21rem !important;
 }
@@ -5873,7 +5879,10 @@ a.banner-btn{
         overflow: initial;
     }
 }
-
+.blog-cat-title{
+    margin: 0 !important;
+    font-size: 2.2rem !important;
+}
 @media (max-width: 767px) {
     html {
         font-size: 6px;
