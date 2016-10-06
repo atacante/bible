@@ -58,7 +58,7 @@ class OrderController extends Controller
         $tax = 0.00;
 
         if(strtolower(trim($data['shipping_state'])) == 'florida'){
-            $tax = round(0.3 * $subtotal, 2);
+            $tax = round(0.07 * $subtotal, 2);
         }
 
         $total = $subtotal + $tax;
