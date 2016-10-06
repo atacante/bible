@@ -21,7 +21,7 @@
                                                    'verse' => $reference['link']['verse_num'],
                                                ]),
                                            strtoupper($lexiconCode)).": " !!}
-                    <span class="verse-text j-verse-text" data-version="{!! $reference['bible_version'][$lexiconCode] !!}" data-verseid="{!! $reference['verse'][$lexiconCode]['id'] !!}">{!! ViewHelper::highlightLexiconText($lexiconData[0]['verse_part'],$reference['verse'][$lexiconCode]['verse_text']) !!}</span>
+                    <span class="" data-version="{!! $reference['bible_version'][$lexiconCode] !!}" data-verseid="{!! $reference['verse'][$lexiconCode]['id'] !!}">{!! ViewHelper::highlightLexiconText($lexiconData[0]['verse_part'],$reference['verse'][$lexiconCode]['verse_text']) !!}</span>
                 </div>
             @endforeach
         </div>
