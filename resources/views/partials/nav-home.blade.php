@@ -9,7 +9,7 @@
         <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i><div class="logo-text">BIBLE STUDY CO</div></a>
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse c-menu-home" id="bs-example-navbar-collapse-1">
 
 
         <ul class="nav navbar-nav">
