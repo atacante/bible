@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\BlogCategory;
 use App\CmsPage;
 use App\Group;
 use App\Journal;
@@ -399,5 +400,14 @@ class ViewHelper
                !empty(Request::old('billing_state')) ||
                !empty(Request::old('billing_email')) ||
                !empty(Request::old('billing_phone'));
+    }
+
+    public static function getBlogCatId($catName)
+    {
+        $cat = BlogCategory::where('title',$catName)->first();
+        if($cat){
+            return $cat->id;
+        }
+        return false;
     }
 }

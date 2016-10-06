@@ -5146,6 +5146,12 @@ h3.strongs-subheader{
 .cu-bs-gift{
     font-size: 1.14rem !important;
 }
+.cu-bs-blog{
+    font-size: 1rem !important;
+}
+.cu-bs-study{
+    font-size: 1.15rem !important;
+}
 .cu-bs-faq{
     font-size: 1.21rem !important;
 }
@@ -5560,34 +5566,13 @@ a.banner-btn{
     text-align: center;
     overflow: hidden;
 }
+
 /* ------------------------------------- */
 /* ------------------------------------- */
 /* ------------------------------------- */
 /* ------------------------------------- */
 /* ------------ RESPONSIVE ------------- */
-@media (max-width: 767px) {
-    html {
-        font-size: 6px;
-    }
-    .mini-box {
-        text-align: center;
-    }
-    .mini-box .icon {
-        display: none;
-    }
-    .mini-box p {
-        font-size: 12px;
-    }
-    .small-box {
-        text-align: center;
-    }
-    .small-box .icon {
-        display: none;
-    }
-    .small-box p {
-        font-size: 0.86rem;
-    }
-}
+
 @media (max-width: 970px) {
     html {
         font-size: 8px;
@@ -5597,6 +5582,13 @@ a.banner-btn{
     }
 }
 @media (max-width: 992px) {
+    .navbar-header {
+        float: none;
+        display: inline-block;
+    }
+    .navbar-default {
+        text-align: center;
+    }
     .pad-r1 {
         padding-right: 15px !important;
     }
@@ -5885,5 +5877,35 @@ a.banner-btn{
     }
     .c-center-content-shop {
         overflow: initial;
+    }
+}
+.blog-cat-title{
+    margin: 0 !important;
+    font-size: 2.2rem !important;
+}
+@media (max-width: 767px) {
+    html {
+        font-size: 6px;
+    }
+    .navbar-header {
+        display: block;
+    }
+    .mini-box {
+        text-align: center;
+    }
+    .mini-box .icon {
+        display: none;
+    }
+    .mini-box p {
+        font-size: 12px;
+    }
+    .small-box {
+        text-align: center;
+    }
+    .small-box .icon {
+        display: none;
+    }
+    .small-box p {
+        font-size: 0.86rem;
     }
 }
