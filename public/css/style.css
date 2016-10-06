@@ -5909,3 +5909,12 @@ a.banner-btn{
         font-size: 0.86rem;
     }
 }
+
+#search-verse input::-webkit-input-placeholder {color:#6b6b6b;}
+#search-verse input::-moz-placeholder          {color:#6b6b6b;}/* Firefox 19+ */
+#search-verse input:-moz-placeholder           {color:#6b6b6b;}/* Firefox 18- */
+#search-verse input:-ms-input-placeholder      {color:#6b6b6b;}
+
+#search-verse button i{
+    color:#6b6b6b;
+}
