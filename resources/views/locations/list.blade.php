@@ -55,8 +55,8 @@
                                             @endif
                                     </div>
                                 @else
-                                    <div class="no-image img-thumbnail">
-                                        <div class="no-image-text text-center">No image</div>
+                                    <div class="location-image">
+                                        <i class="bs-places"></i>
                                     </div>
                                 @endif
 
