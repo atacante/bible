@@ -1,0 +1,9 @@
+/* Home page styles */
+
+.home {
+  background-color: #fff;
+
+  a {
+    color: #BBB;
+  }
+}

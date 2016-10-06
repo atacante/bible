@@ -1,0 +1,22 @@
+button {
+  background-color: #fff;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: red;
+}
+/* Home page styles */
+.home {
+  background-color: #fff;
+}
+.home a {
+  color: #BBB;
+}
+body {
+  background-color: #fff;
+  color: #000;
+}
+
+/*# sourceMappingURL=app.css.map */

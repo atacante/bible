@@ -1,5 +1,7 @@
 var elixir = require('laravel-elixir');
 
+require('laravel-elixir-postcss');
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -12,5 +14,12 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+  // mix.sass('app.scss');
+  mix.postcss('app.css', {
+    plugins:[
+      require('postcss-easy-import')({glob: true}),
+      require('postcss-nested'),
+      require('postcss-custom-media')
+    ],
+  });
 });

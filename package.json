@@ -1,7 +1,14 @@
 {
   "private": true,
   "devDependencies": {
-    "gulp": "^3.8.8"
+    "cssnano": "^3.7.6",
+    "gulp": "^3.8.8",
+    "install": "^0.8.1",
+    "laravel-elixir-postcss": "^0.4.1",
+    "npm": "^3.10.8",
+    "postcss-custom-media": "^5.0.1",
+    "postcss-easy-import": "^1.0.1",
+    "postcss-nested": "^1.0.0"
   },
   "dependencies": {
     "laravel-elixir": "^4.0.0",

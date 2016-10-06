@@ -1,0 +1,9 @@
+@import url('./components/**/*.css');
+@import url('./pages/**/*.css');
+
+@custom-media --phone (max-width: 30em);
+
+body {
+  background-color: #fff;
+  color: #000;
+}
