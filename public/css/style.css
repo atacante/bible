@@ -3737,6 +3737,22 @@ textarea.wall-text-area:focus {
     background-size: cover !important;
     -webkit-background-size: cover !important;
 }
+.location-image {
+    width: 100%;
+    height: 260px;
+    position: relative;
+    overflow: hidden;
+    /*background: url('/images/default.jpg') center no-repeat;*/
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    padding: 60px;
+    background-color: #79858F;
+}
+.location-image i{
+    font-size: 10rem;
+    color: #D2D7DC;
+}
+
 .product-image {
     width: 100%;
     height: 260px;
