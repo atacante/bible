@@ -82,6 +82,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('shipping_state') ? ' has-error' : '' }}">
                                 {!!  Form::label('shipping_state', ucwords(str_replace('_',' ', 'shipping_state'))) !!}
+                                (shipping to Florida will add 7% tax to your order)
                                 {!!  Form::text('shipping_state', $model->shipping_state, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('shipping_state'))
                                     <span class="help-block">
@@ -113,14 +114,12 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6 mt3">*shipping to Florida will add 30% tax to your order</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-6 mb4">
-                        <a class="j-show-billing show-billing" href="#">
-                            Fill Billing Information
-                        </a>
+                        <input class="j-show-billing cust-radio" type="checkbox" name="show-billing" id="show-billing" checked />
+                        <label class="label-checkbox" for="show-billing">Billing Information: Same as Shipping</label>
                     </div>
                 </div>
                 <div class="j-billing-meta {!! ViewHelper::checkBillingInfoToShow()?'':'hidden' !!}">
@@ -150,7 +149,6 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group {{ $errors->has('billing_address') ? ' has-error' : '' }}">
                                 {!!  Form::label('billing_address', ucwords(str_replace('_',' ', 'billing_address'))) !!}
-                                <a href="#" class="j-duplicate-billing-address">Same as shipping</a>
                                 {!!  Form::text('billing_address', $model->billing_address, ['class' => 'form-control input1']) !!}
                                 @if ($errors->has('billing_address'))
                                     <span class="help-block">
