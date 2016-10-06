@@ -1722,7 +1722,7 @@ a.view-details:hover{
 }
 .navbar-header .navbar-brand{
     padding: 5px 15px;
-    line-height: 2.3rem;
+    line-height: 32px;
     color: #404040;
     font-family: ns_widedemibold;
     font-size: 1.4rem;
