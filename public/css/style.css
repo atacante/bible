@@ -2630,7 +2630,6 @@ h3.h3-1 {
 .home-ill-section {
     display: block;
     width: 100%;
-    min-height: 447px;
     background-size: cover !important;
     -webkit-background-size: cover !important;
     -moz-background-size: cover !important;
@@ -2638,18 +2637,23 @@ h3.h3-1 {
     padding-bottom: 30px;
     padding-left: 50px;
     padding-right: 50px;
+    position: relative;
 }
 .h-ill1 {
     background: url('/images/p1-home.png') right center no-repeat;
+    padding-top: 39.2%;
 }
 .h-ill2 {
     background: url('/images/p2-home.png') right center no-repeat;
+    padding-top: 39.2%;
 }
 .h-ill3 {
     background: url('/images/p3-home.png') center center no-repeat;
+    padding-top: 39.2%;
 }
 .h-ill4 {
     background: url('/images/p4-home.png') right center no-repeat;
+    padding-top: 39.2%;
 }
 h2.h2-1 {
     font-size: 2.71rem;
@@ -2814,34 +2818,27 @@ ul.c-social li a:hover, ul.c-social li a:active {
 .gift-item {
     background: #ffffff;
     display: block;
-    height: 292px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -webkit-box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
     box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
     margin: 8px 10px 25px;
     outline: none !important;
+    overflow: hidden;
 }
 textarea {
     max-width: 100%;
 }
 .gift1 {
-     height: 220px;
-     background: url("/images/edit.png") center 65px no-repeat;
-}
-.gift2 {
-    height: 220px;
-    background: url("/images/t-shirt.png") center 42px no-repeat;
-}
-.gift3 {
-    height: 220px;
-    background: url("/images/cup.png") center 50px no-repeat;
+    margin: 10px;
+    padding-top: 70%;
 }
 h4.h4-gift {
     text-transform: uppercase;
     color: #464646;
     font-size: 1.64rem;
     font-family: ns_widemedium;
+    padding-bottom: 5%;
 }
 .footer1 {
     background-color: #404040;
@@ -5534,15 +5531,44 @@ a.banner-btn{
 .pad2 {
     padding: 100px 10px;
 }
-
-
-
+.ill-text-pos1 {
+    position: absolute;
+    top: 17%;
+    right: 10%;
+}
+.ill-text-pos2 {
+    position: absolute;
+    top: 21%;
+    right: 13%;
+}
+.ill-text-pos3 {
+    position: absolute;
+    top: 17%;
+    right: 32%;
+}
+.ill-text-pos4 {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+}
+.c-home-products .product-item {
+    width: 30%;
+    display: inline-block;
+    padding: 0;
+}
+.c-home-products {
+    text-align: center;
+    overflow: hidden;
+}
 /* ------------------------------------- */
 /* ------------------------------------- */
 /* ------------------------------------- */
 /* ------------------------------------- */
 /* ------------ RESPONSIVE ------------- */
 @media (max-width: 767px) {
+    html {
+        font-size: 6px;
+    }
     .mini-box {
         text-align: center;
     }
@@ -5563,6 +5589,9 @@ a.banner-btn{
     }
 }
 @media (max-width: 970px) {
+    html {
+        font-size: 8px;
+    }
     .my-item {
         width: 50%;
     }
@@ -5574,8 +5603,16 @@ a.banner-btn{
     .pad-l1 {
         padding-left: 15px !important;
     }
+    .h-ill5 {
+        background-size: cover;
+        width: 100%;
+        padding-top: 100%;
+    }
 }
 @media (max-width: 1280px) {
+    html {
+        font-size: 10px;
+    }
     .col-left1, .col-right1 {
         display: inline-block;
         float: none;
@@ -5593,7 +5630,7 @@ a.banner-btn{
         display: none !important;
     }
 }
-@media (max-width: 1024px) {
+@media (max-width: 750px) {
     .my-item {
         width: 100%;
     }
@@ -5648,12 +5685,10 @@ a.banner-btn{
         min-height: 1px;
         min-height: 262px;
     }
-    .col-left1 {
-        width: 100%;
-    }
     .h-ill5 {
         background-size: cover;
-        min-height: 265px;
+        width: 100%;
+        padding-top: 100%;
     }
     h2.h2-2 {
         font-size: 17px;
@@ -5827,16 +5862,11 @@ a.banner-btn{
         vertical-align: super;
         margin-right: 10px;
     }
-    .c-center-content-shop .col-lg-4 {
-        width: 30%;
-        display: inline-block;
-        padding: 0;
-    }
     .gift1 {
-        height: 58px;
         background-position: 50% 0 !important;
         background-size: cover !important;
         margin: 10px;
+        padding-top: 70%;
     }
     h4.h4-gift {
         text-transform: uppercase;
@@ -5850,7 +5880,6 @@ a.banner-btn{
         padding: 0 5px;
     }
     .gift-item {
-        height: 100px;
         margin: 25px 2px 25px;
         overflow: hidden;
     }
