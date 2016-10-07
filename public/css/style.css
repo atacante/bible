@@ -5912,15 +5912,29 @@ a.banner-btn{
 
 #search-verse input{
     color:#6b6b6b;
+    font-weight: bold;
 }
 
-#search-verse input::-webkit-input-placeholder {color:#6b6b6b;}
-#search-verse input::-moz-placeholder          {color:#6b6b6b;}/* Firefox 19+ */
-#search-verse input:-moz-placeholder           {color:#6b6b6b;}/* Firefox 18- */
-#search-verse input:-ms-input-placeholder      {color:#6b6b6b;}
+#search-verse input::-webkit-input-placeholder {
+    color:#6b6b6b;
+    font-weight: bold;
+}
+#search-verse input::-moz-placeholder          {
+    color:#6b6b6b;
+    font-weight: bold;
+}/* Firefox 19+ */
+#search-verse input:-moz-placeholder           {
+    color:#6b6b6b;
+    font-weight: bold;
+}/* Firefox 18- */
+#search-verse input:-ms-input-placeholder      {
+    color:#6b6b6b;
+    font-weight: bold;
+}
 
 #search-verse button i{
     color:#6b6b6b;
+    font-weight: bold;
 }
 
 .j-create-order-form input {
