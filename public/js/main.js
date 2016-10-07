@@ -1571,13 +1571,7 @@ $(document).ready(function(){
     });
 
     $('body').on('click','.j-show-billing',function(e){
-
-        /*var shippingEmail = $('input[name="shipping_email"]');
-        var billingEmail = $('.j-billing-meta input[name="billing_email"]');
-
-        if(billingEmail.val() == ''){
-            billingEmail.val(shippingEmail.val());
-        }*/
+        order.fillBillingInfo();
 
         $('.j-billing-meta').toggleClass('hidden');
     });
@@ -1861,10 +1855,12 @@ $(document).ready(function(){
     });
     site.hideAlert();
 
-    // Only for Create Order page
-    if(location.pathname == '/order/create'){
+    $('body').on('click','.j-submit-order', function(e){
+        e.preventDefault();
         order.fillBillingInfo();
-    }
+        $('.j-create-order-form').submit();
+        return false;
+    });
 
     $('body').on('click','a.disabled',function(e){
         e.preventDefault();
