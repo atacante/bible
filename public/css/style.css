@@ -5936,3 +5936,7 @@ a.banner-btn{
     color:#6b6b6b;
     font-weight: bold;
 }
+
+.j-create-order-form input {
+    height: 32px;
+}
