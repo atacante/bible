@@ -62,6 +62,7 @@
   background: url('/images/p4-home.png') right center no-repeat;
 }
 
+/* ----------- SEND A GIFT OF LOVE TO A FRIEND  ---------- */
 .cu-verseoftheday {
   color: #00b9f7;
   padding-right: 20px;
@@ -94,4 +95,14 @@
   margin-top: 400px;
   color: #cdcdcd;
   text-align: center;
+}
+.gift1 {
+  height: 220px;
+  background: url("/images/edit.png") center 65px no-repeat;
+}
+h4.h4-gift {
+  text-transform: uppercase;
+  color: #464646;
+  font-size: 1.64rem;
+  font-family: ns_widemedium;
 }

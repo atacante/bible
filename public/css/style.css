@@ -2829,14 +2829,14 @@ textarea {
      height: 220px;
      background: url("/images/edit.png") center 65px no-repeat;
 }
-.gift2 {
+/*.gift2 {
     height: 220px;
     background: url("/images/t-shirt.png") center 42px no-repeat;
 }
 .gift3 {
     height: 220px;
     background: url("/images/cup.png") center 50px no-repeat;
-}
+}*/
 h4.h4-gift {
     text-transform: uppercase;
     color: #464646;
