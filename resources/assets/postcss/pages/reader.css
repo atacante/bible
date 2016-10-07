@@ -1,0 +1,42 @@
+.btn-top-label1 {
+    line-height: 1.29rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+.btn-sub-label1 {
+    color: #a4a4a4;
+    font-family: ns_widebook;
+    line-height: 1.29rem;
+    text-align: center;
+    text-transform: capitalize;
+}
+.btn-min-w {
+    min-width: 288px;
+}
+.btn1:hover .btn-sub-label1,
+.btn2:hover .btn-sub-label1 {
+    color: white;
+}
+.c-sharing {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.icon-panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+ul.icon-panel li {
+    display: inline-block;
+    list-style: none;
+    padding: 0 8px;
+}
+ul.icon-panel li:last-child {
+    display: inline-block;
+    list-style: none;
+    padding-right: 0;
+}
+ul.icon-panel li a {
+    text-decoration: none !important;
+}

@@ -136,3 +136,38 @@ ul.nav.navbar-nav li {
     border: none;
     padding: 40px 0 30px;
 }
+.logo-text {
+    display: inline-block;
+    height: 3.93rem;
+    vertical-align: top;
+}
+
+/* ------------ Search header input ----------- */
+.c-search1 {
+    width: 220px;
+    margin: 8px 15px 0;
+    position: relative;
+}
+.search-text1 {
+    border: none;
+    border-bottom: 1px solid #878787;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding: 0 0 0 30px;
+    color: #bfbfbf;
+    font-size: 1rem;
+    font-family: "work_sanslight";
+}
+.search-btn1 {
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 2.43rem;
+}
+.search-btn1 i {
+    color: #acacac;
+}

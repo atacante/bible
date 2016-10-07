@@ -438,3 +438,10 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   text-transform: uppercase;
   top: 2px;
 }
+.btn-settings {
+  position: absolute;
+  display: block;
+  top: 3px;
+  right: 0;
+  text-decoration: none !important;
+}

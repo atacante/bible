@@ -249,3 +249,8 @@
     padding-right: 5px;
     vertical-align: text-bottom;
 }
+.cu-print {
+    font-size: 1.79rem;
+    line-height: 1.79rem;
+    color: #00b9f7;
+}

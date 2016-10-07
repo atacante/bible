@@ -46,3 +46,39 @@
     background: linear-gradient(to right,  rgba(133,203,246,1) 0%,rgba(133,203,246,1) 31%,rgba(148,228,238,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85cbf6', endColorstr='#94e4ee',GradientType=1 ); /* IE6-9 */
 }
+.c-reader-content, .c-white-content {
+    background: #ffffff;
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-sizing: border-box;
+}
+.c-reader-content2 {
+    background: #ffffff;
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    right: 15px;
+}
+.c-title-and-icons {
+    padding: 0 130px;
+    position: relative;
+}
+.c-title-and-icons2 {
+    padding: 0 270px;
+    position: relative;
+    text-align: center;
+}
+.c-title-and-icons3 {
+    padding: 0 50px;
+    position: relative;
+    text-align: center;
+}
+.c-title-and-icons4 {
+    padding: 0 150px;
+    position: relative;
+    text-align: center;
+}
