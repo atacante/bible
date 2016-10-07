@@ -1,0 +1,29 @@
+.c-share-panel {
+    padding: 20px 0;
+    border-top: 1px solid #9a9d9e;
+    margin-top: 25px;
+}
+ul.c-social {
+    display: block;
+    padding-left: 0;
+}
+ul.c-social li {
+    display: inline-block;
+    margin-right: 20px;
+}
+ul.c-social li a {
+    display: inline-block;
+    color: #00b9f7;
+    font-size: 1.57rem;
+    border: 3px solid #00b9f7;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 58px;
+    height: 58px;
+    text-align: center;
+    line-height: 3.86rem;
+}
+ul.c-social li a:hover, ul.c-social li a:active {
+    background: #00b9f7;
+    color: #ffffff;
+}

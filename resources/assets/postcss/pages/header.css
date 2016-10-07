@@ -1,0 +1,138 @@
+.count-prod {
+    font-size: 1.14rem;
+    line-height: 0.79rem;
+}
+.cu-biblestudylogo {
+    color: #00b9f7;
+    margin-right: 15px;
+    font-size: 3.93rem;
+    line-height: 2.57rem;
+}
+.navbar-inner-pages .cu-biblestudylogo {
+    font-size: 46px;
+    line-height: 35px;
+}
+ul.nav.navbar-nav {
+    margin-top: 2px;
+}
+.navbar-inner-pages .navbar-nav i {
+    font-size: 1.07rem;
+}
+.navbar-nav i {
+    font-size: 1.43rem;
+    color: #555555;
+    margin-right: 5px;
+    vertical-align: text-top;
+}
+.home .navbar-nav i {
+    color: #ffffff;
+}
+ul.nav.navbar-nav li  a {
+    text-transform: uppercase;
+    font-family: ns_widedemibold;
+    color: #6b6b6b;
+    font-size: 1.07rem;
+    padding: 11px 18px;
+}
+.home ul.nav.navbar-nav li  a {
+    color: #ffffff;
+}
+.home a.cu-drop-menu-item {
+    color: #ffffff;
+}
+.dropdown-menu li a {
+    color: #6b6b6b !important;
+}
+.navbar-inner-pages ul.nav.navbar-nav li  a {
+    font-size: 0.93rem;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a.active,
+.navbar-default .navbar-nav > li.open > a,
+.navbar-default .navbar-nav > li.open > a:focus,
+.navbar-default .navbar-nav > li.open > a:hover,
+.navbar-default .navbar-right > li > a:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > a:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:focus,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:hover,
+.navbar-inner-pages.navbar-default .navbar-right > li > a:hover{
+    color: white !important;
+    background-color: #00b9f7 !important;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+}
+.navbar-default .navbar-nav > li > a.active,
+.navbar-default .navbar-right > li > a.active,
+.navbar-inner-pages.navbar-default .navbar-right > li > a.active
+{
+    background-color: #313d47 !important;
+}
+ul.dropdown-menu{
+    padding: 10px 0 !important;
+}
+ul.dropdown-menu li{
+    margin: 0px !important;
+}
+ul.dropdown-menu li a{
+    padding: 11px 30px !important;
+}
+ul.dropdown-menu li i{
+    color: #00b9f7 !important;
+    width: 1.29rem;
+    display: inline-block;
+}
+
+.navbar-default .navbar-nav > li > a:hover > i,
+.navbar-default .navbar-nav > li > a.active > i{
+    color: white;
+}
+.navbar-inner-pages.navbar-default .navbar-nav > a:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:focus,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:hover {
+    background-color: #313d47;
+}
+.navbar-default .navbar-nav > .open > a i,
+.navbar-default .navbar-nav > .open > a:focus i,
+.navbar-default .navbar-nav > .open > a:hover i {
+    color: white;
+}
+ul.nav.navbar-nav li.bord-menu-item  a{
+    border: 2px solid #00b9f7 !important;
+    color: #00b9f7 !important;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    padding: 9px 16px;
+}
+ul.nav.navbar-nav li.bord-menu-item  a:hover{
+    color: white !important;
+}
+ul.nav.navbar-nav li.bord-menu-item  a.active{
+    color: white !important;
+    border: 2px solid #313d47  !important;
+    background-color: #313d47 !important;
+}
+.navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a{
+    border: 2px solid #00b9f7 !important;
+    color: #00b9f7 !important;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    padding: 9px 16px;
+}
+.navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a:hover{
+    color: white !important;
+}
+.navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a.active{
+    color: white !important;
+    border: 2px solid #313d47  !important;
+    background-color: #313d47 !important;
+}
+ul.nav.navbar-nav li {
+    margin: 0 8px;
+}
+.navbar-default {
+    background: transparent;
+    border: none;
+    padding: 40px 0 30px;
+}

@@ -1,0 +1,70 @@
+h1.h1-1 {
+    font-size: 3.43rem;
+    line-height: 4.43rem;
+    color: #404040;
+    display: block;
+    text-align: center;
+    margin: 0;
+    font-family: ns_widelight;
+}
+h1.h1-1 span {
+    font-family: ns_widenormal;
+}
+h2.h2-3 {
+    font-size: 1.43rem;
+    color: #7b828a;
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    font-family: work_sansregular;
+}
+h3.h3-1 {
+    font-size: 1.43rem;
+    color: #7b828a;
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    font-family: work_sansregular;
+}
+h2.h2-1 {
+    font-size: 2.71rem;
+    color: #404040;
+    display: block;
+    font-family: ns_widelight;
+    text-transform: uppercase;
+}
+h2.h2-1 span {
+    font-family: ns_widenormal;
+}
+p.p-1 {
+    font-family: work_sansregular;
+    color: #7b828a;
+    font-size: 1.29rem;
+    line-height: 1.43rem;
+}
+h2.h2-2 {
+    font-size: 2.71rem;
+    line-height: 3.14rem;
+    color: #313131;
+    display: block;
+    text-align: center;
+    margin: 0;
+    font-family: ns_widenormal;
+    text-transform: uppercase;
+}
+p.p-2 {
+    font-family: work_sansregular;
+    font-size: 1.64rem;
+    color: #7b828a;
+    line-height: 2rem;
+}
+p.p-2 span.ital {
+    font-style: italic;
+}
+h4.h4-1 {
+    font-size: 1.64rem;
+    color: #000000;
+    font-family: ns_widenormal;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+}
