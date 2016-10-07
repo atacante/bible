@@ -285,6 +285,7 @@ class ReaderController extends Controller
     public function getVerse()
     {
         Session::flash('backUrl', Request::fullUrl());
+        Session::set('verseUrl', Request::fullUrl());
 
         $version_code = Request::input('version', Config::get('app.defaultBibleVersion'));
         if($version_code == 'all'){
@@ -411,7 +412,10 @@ class ReaderController extends Controller
 
     public function anyStrongs($num,$dictionaryType)
     {
-        Session::flash('backUrl', Request::fullUrl());
+//        Session::flash('backUrl', Request::fullUrl());
+        if (Session::has('backUrl')) {
+            Session::keep('backUrl');
+        }
 
         $content['strongs_concordance'] = StrongsConcordance::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
         $content['strongs_nasec'] = StrongsNasec::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();

@@ -8,6 +8,10 @@
     {{--    @include('reader.filters')--}}
     <div class="row">
         <div class="col-md-12">
+            <a href="{!! Session::get('verseUrl') !!}" class="btn1-kit" style="position: absolute; top: 3px; left: 15px; font-size: 0.93rem;">
+                <i class="bs-arrowback cu-arrowback"></i>
+                Back to Lexicon
+            </a>
             <h3 class="h3-kit mb4 strongs-header">
                 @if($prevNum = $content['pages']['prevNum'])
                     <a class="genesis-arrow" title="Prev Strong's Number" href="{!! url('reader/strongs/'.$prevNum.'/'.$content['dictionaryType'],[]) !!}"><i class="bs-arrowleft cu-arrowleft"></i></a>
