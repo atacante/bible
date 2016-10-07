@@ -85,3 +85,12 @@ ul.c-social li a:hover, ul.c-social li a:active {
     color: #12bef7;
     font-size: 2.57rem;
 }
+.spinner {
+    background: rgba(255, 255, 255, 0.5) url('/images/ajax-loader.gif') center no-repeat;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+}

@@ -51,3 +51,23 @@
     font-family: ns_widenormal;
     margin-top: 0;
 }
+.popup-arrow2 {
+    position: absolute;
+    background: #00b9f7;
+    right: 50%;
+    margin-right: -4px;
+    bottom: -6px;
+    transform: rotate(45deg);
+    width: 12px;
+    height: 12px;
+}
+.popup-arrow3 {
+    position: absolute;
+    background: #F7F7F7;
+    border-top: 1px solid #EEEEEE;
+    border-left: 1px solid #EEEEEE;
+    top: -12px;
+    transform: rotate(45deg);
+    width: 24px;
+    height: 24px;
+}

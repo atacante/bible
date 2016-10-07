@@ -63,6 +63,7 @@
     left: 15px;
     right: 15px;
 }
+
 .c-title-and-icons {
     padding: 0 130px;
     position: relative;
@@ -81,4 +82,20 @@
     padding: 0 150px;
     position: relative;
     text-align: center;
+}
+
+.inner-pad1 {
+    padding: 40px 45px;
+    line-height: 2.14rem;
+    position: relative;
+}
+.inner-pad2 {
+    padding: 35px 45px;
+    line-height: 2.14rem;
+    position: relative;
+}
+.inner-pad5 {
+    padding: 80px 45px;
+    line-height: 2.14rem;
+    position: relative;
 }

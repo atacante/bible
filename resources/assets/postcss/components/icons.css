@@ -254,3 +254,24 @@
     line-height: 1.79rem;
     color: #00b9f7;
 }
+.cu-study {
+    color: #00b9f7;
+    font-size: 1.71rem;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.cu-study2 {
+    color: #00b9f7;
+    display: inline-block;
+    font-size: 2.5rem;
+    padding-right: 7px;
+    vertical-align: middle;
+}
+.cu-login {
+    color: #00b9f7;
+    display: inline-block;
+    font-size: 2rem;
+    padding-right: 7px;
+    vertical-align: bottom;
+    line-height: 2.14rem;
+}
