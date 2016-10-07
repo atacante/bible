@@ -2,7 +2,7 @@
 
     @section('content')
         <div class="c-white-content">
-            {!! Form::model($model, ['method' => 'post', 'url' => '/order/checkout']) !!}
+            {!! Form::model($model, ['class'=>'j-create-order-form', 'method' => 'post', 'url' => '/order/checkout']) !!}
             <h3 class="h3-kit cu1-title">{{ $page_title or "Page Title" }}</h3>
             <div class="panel-body">
                 {!! Form::hidden('user_id', $user_id) !!}
@@ -230,7 +230,7 @@
         </div>
 
         <div class="mb1 mt13">
-            {!! Form::button('Confirm', ['type'=>'submit','class'=>'btn2-kit pull-right']) !!}
+            {!! Form::button('Confirm', ['type'=>'button','class'=>'btn2-kit pull-right j-submit-order']) !!}
             <div class="clearfix"></div>
         </div>
         {!! Form::close() !!}
