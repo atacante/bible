@@ -149,7 +149,12 @@ class UserController extends Controller
                     $user->upgradeToPremium(Input::get('plan_name'));
                 }else{
                     $user->downgradeToFree();
-                    $user->createAccountAndOrSubscribe();
+                    $result = $user->createAccountAndOrSubscribe();
+
+                    if(Session::has('url.intended') && $result['account']['success']){
+                        Notification::success($result['account']['message']);
+                        return redirect()->intended();
+                    }
                 }
 
                 Notification::successInstant('Your profile info successfully saved');

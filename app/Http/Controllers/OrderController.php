@@ -115,6 +115,11 @@ class OrderController extends Controller
 
     public function getCreate(){
 
+        if(!Auth::user()->hasPaymentAccount()){
+            Notification::error('Please add valid credit card to finish your order!');
+           return redirect()->guest('user/profile');
+        }
+
         $model = UsersMeta::where(['user_id' => Auth::user()->id])->orderBy('created_at', SORT_DESC)->first();
 
         if(!$model){
