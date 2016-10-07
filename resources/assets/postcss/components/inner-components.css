@@ -94,3 +94,29 @@ ul.c-social li a:hover, ul.c-social li a:active {
     right: 0;
     z-index: 999999;
 }
+.cu-btr1 {
+    top:20px;
+    right: 20px;
+}
+.c-arrow-sel {
+    height: 17px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 20px;
+}
+.c-arrow-sel b {
+    border-color: #313d47 transparent transparent;
+    border-style: solid;
+    border-width: 5px 4px 0;
+    height: 0;
+    left: 50%;
+    margin-left: -4px;
+    margin-top: -2px;
+    position: absolute;
+    top: 50%;
+    width: 0;
+}
+.h4-sel-book .c-arrow-sel {
+    top: 10px;
+}

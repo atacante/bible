@@ -152,3 +152,8 @@ ul.icon-panel li a {
     margin-right: 8px;
     vertical-align: top;
 }
+.a-study {
+    text-decoration: none !important;
+    vertical-align: top;
+    display: inline-block;
+}

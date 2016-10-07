@@ -1,0 +1,15 @@
+ul.community-menu li {
+    margin: 20px;
+}
+ul.community-menu li.active a {
+    background-color: #313d47;
+    color: white;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+ul.community-menu li a:hover, ul.community-menu li.active a:hover {
+    background-color: #00b9f7;
+    color: white;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}

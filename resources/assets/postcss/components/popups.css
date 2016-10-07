@@ -71,3 +71,128 @@
     width: 24px;
     height: 24px;
 }
+.permonent-pop {
+    min-height: 100px;
+    background: white;
+    border: 1px solid #cccccc;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
+    box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
+}
+.pop-should-see {
+    min-height: 100px;
+    width: 324px;
+    background: white;
+    border: 1px solid #cccccc;
+    position: absolute;
+    z-index: 1;
+    -webkit-box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
+    box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
+}
+.pp-title {
+    color: #010101;
+    font-family: ns_widenormal;
+    font-size: 1.43rem;
+    text-align: center;
+    padding: 20px 80px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.pop-should-see .pp-title {
+    padding: 20px 30px;
+}
+ul.pp-c-items {
+    display: block;
+    overflow: hidden;
+    padding-left: 0;
+    margin: 0;
+}
+ul.pp-c-items li {
+    display: block;
+    list-style: none;
+}
+ul.pp-c-items li a {
+    display: block;
+    padding: 8px 20px;
+    border-top: 1px solid #cccccc;
+    text-decoration: none !important;
+    font-family: ns_widemedium;
+    text-transform: uppercase;
+    color: #000000;
+    font-size: 1rem;
+    text-align: center;
+}
+ul.pp-c-items li a:hover {
+    background: #00b9f7;
+    color: white;
+}
+ul.pp-c-items li a.active {
+    background: #313d47;
+    color: white;
+}
+
+/* ------------- Reader - Verse select popup ------------ */
+table.t-choose-book {
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+table.t-choose-book tr td {
+    border: 1px solid #cccccc;
+}
+table.t-choose-book tr td:first-child {
+    border-left: 1px solid transparent;
+}
+table.t-choose-book tr td:last-child {
+    border-right: 1px solid transparent;
+}
+table.t-choose-book tr:last-child td {
+    border-bottom: 1px solid transparent;
+}
+table.t-choose-book tr td a {
+    display: block;
+    padding: 8px 20px;
+    text-decoration: none !important;
+    font-family: ns_widemedium;
+    text-transform: uppercase;
+    color: #000000;
+    font-size: 1rem;
+}
+table.t-choose-book tr td a:hover {
+    background: #00b9f7;
+    color: white;
+}
+table.t-choose-book tr td a.active {
+    background: #313d47;
+    color: white;
+}
+ul.c-chapter-list {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    padding: 0 18px;
+}
+ul.c-chapter-list li {
+    display: inline-block;
+    margin: 2px 0;
+}
+ul.c-chapter-list li a {
+    display: block;
+    border: 1px solid #cccccc;
+    padding: 10px 0;
+    min-width: 45px;
+    min-height: 44px;
+    text-decoration: none !important;
+    color: #000000;
+    font-family: ns_widenormal;
+    font-size: 1rem;
+}
+ul.c-chapter-list li a:hover {
+    background: #00b9f7;
+    color: white;
+}
+ul.c-chapter-list li a.active {
+    background: #313d47;
+    color: white;
+}

@@ -1,3 +1,43 @@
 .like-item {
     display: inline-block;
 }
+ul.items-status li a {
+    font-family: inherit;
+    text-transform: capitalize;
+    color: #000000;
+    font-size: 1rem;
+    text-align: left;
+    padding-left: 57px;
+    position: relative;
+    border: none;
+}
+ul.items-status li a i{
+    position: absolute;
+    top: 11px;
+    left: 30px;
+}
+.c-wall-post {
+    background: #e3e3e3;
+    padding: 20px;
+}
+textarea.wall-text-area {
+    max-width: 100%;
+    min-width: 100%;
+    padding: 18px 120px 2px 20px;
+    height: 54px;
+    min-height: 54px;
+    border: none;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    color: #8d8d8d;
+    font-size: 1.07rem;
+    font-family: work_sansregular;
+}
+textarea.wall-text-area:focus {
+    outline: none;
+    box-shadow: none;
+}
+.c-area-group1 {
+    padding: 0 100px;
+    position: relative;
+}
