@@ -40,3 +40,16 @@ ul.icon-panel li:last-child {
 ul.icon-panel li a {
     text-decoration: none !important;
 }
+.top-vertical1 {
+    top: 50%;
+    margin-top: -13px;
+}
+.col-xs-6 .verse-text, .col-xs-4 .verse-text {
+    font-size: 1.14rem;
+}
+.col-xs-6  .verse-text b a, .col-xs-4 .verse-text b a {
+    font-size: 1.14rem;
+}
+.c-reader-content .row .col-md-6:last-child .inner-pad1 {
+    padding-left: 40px;
+}

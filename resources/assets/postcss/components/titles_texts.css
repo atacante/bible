@@ -68,3 +68,14 @@ h4.h4-1 {
     text-transform: uppercase;
     padding-bottom: 15px;
 }
+.verse-text {
+    color: #535353;
+    font-family: work_sansregular;
+    font-size: 1.29rem;
+}
+.verse-search-text {
+    color: #535353;
+    font-family: work_sansregular;
+    font-size: 1.29rem;
+    text-align: justify;
+}

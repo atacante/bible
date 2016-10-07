@@ -27,3 +27,61 @@ ul.c-social li a:hover, ul.c-social li a:active {
     background: #00b9f7;
     color: #ffffff;
 }
+
+/* ------------ Genesis selects panel -------------- */
+.genesis-panel {
+    text-align: center;
+    display: inline-block;
+    min-width: 400px;
+}
+.genesis-select {
+    display: inline-block;
+    width: auto;
+    border: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+.genesis-btn {
+    display: inline-block;
+    width: auto;
+}
+.genesis-panel .select2-container {
+    width: auto !important;
+}
+.genesis-panel .select2-container--default .select2-selection--single {
+    border: none !important;
+}
+.select2-dropdown {
+    min-width: 200px;
+}
+.sel-book, .sel-chapter {
+    margin: 0 0;
+}
+.sel-chapter {
+    margin: -5px 0 0;
+}
+.sel-version .select2-container--default .select2-selection--single .select2-selection__rendered {
+    font-family: ns_widenormal;
+    color: #010101;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sel-book .select2-container--default .select2-selection--single .select2-selection__rendered,
+.sel-chapter .select2-container--default .select2-selection--single .select2-selection__rendered
+{
+    font-family: ns_widemedium;
+    color: #010101;
+    font-size: 2.14rem;
+    text-transform: uppercase;
+}
+.genesis-arrow {
+    display: inline-block;
+    vertical-align: top;
+    padding: 5px 5px 0;
+    text-decoration: none !important;
+}
+.genesis-arrow > i {
+    color: #12bef7;
+    font-size: 2.57rem;
+}
