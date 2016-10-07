@@ -126,6 +126,14 @@ class AuthController extends Controller
         return $user;
     }
 
+    public function authenticated()
+    {
+        if(Auth::check() && Auth::user()->is(Config::get('app.role.user')) && Auth::user()->last_reader_url){
+            return redirect(Auth::user()->last_reader_url);
+        }
+        return redirect()->intended($this->redirectPath());
+    }
+
     public function getLogin()
     {
         if (Session::has('backUrl')) {
