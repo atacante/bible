@@ -260,3 +260,15 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     background-color: transparent !important;
     color: #6b6b6b !important;
 }
+.checkbox-disabled {
+    opacity: 0.5;
+}
+.user-neme-cut {
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 80px;
+    text-overflow: ellipsis;
+    height: 23px;
+    vertical-align: middle;
+}

@@ -300,3 +300,76 @@
     margin-right: 15px;
     vertical-align: sub;
 }
+.cu-starsolid-settings {
+    color: #36a741;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    padding: 0 0 2px 0;
+    font-size: 0.86rem;
+    border-radius: 5px;
+}
+.parallel-verses .cu-starsolid-settings {
+    background: #f3f3f3;
+}
+.cu-starsolid-settings-popup {
+    color: #fff;
+    position: absolute;
+    left: -30px;
+    top: 8px;
+    background: #36a741;
+    padding: 0;
+    font-size: 0.86rem;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    line-height: 0.93rem;
+    text-align: center;
+}
+.cu-bs-contactus {
+    font-size: 0.86rem !important;
+    vertical-align: initial !important;
+}
+.cu-bs-people {
+    font-size: 1.07rem !important;
+}
+.cu-bs-places{
+    font-size: 1.29rem !important;
+}
+.cu-bs-biblestudylogo{
+    font-size: 1.29rem !important;
+}
+.cu-bs-gift{
+    font-size: 1.14rem !important;
+}
+.cu-bs-blog{
+    font-size: 1rem !important;
+}
+.cu-bs-study{
+    font-size: 1.15rem !important;
+}
+.cu-bs-faq{
+    font-size: 1.21rem !important;
+}
+.icon-date-from{
+    position: absolute;
+    right: 56%;
+    top: 12px;
+    font-size: 1.36rem;
+}
+.icon-date-to{
+    position: absolute;
+    right: 12px;
+    top: 13px;
+    font-size: 1.36rem;
+}
+i.bs-note{
+    color: #fcab4b;
+}
+i.bs-journal{
+    color: #5d93c2;
+}
+i.bs-pray{
+    color: #49ba93;
+}

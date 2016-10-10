@@ -186,3 +186,41 @@ ul.c-social li a:hover, ul.c-social li a:active {
 .carousel-control {
     opacity: 1;
 }
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+}
+.alert {
+    border-radius: 0;
+    border: none;
+    color: #ffffff;
+}
+.alert-success {
+    background-color: #64cd93;
+}
+.alert-danger {
+    background-color: #fe9921;
+}
+.alert-info {
+    background-color: #fe9921;
+}
+.transparent{
+    background-color: transparent;
+}
+.alert-container{
+    position: fixed;
+    width: 1260px;
+    z-index: 20;
+    top: 115px;
+    opacity: 0.8;
+}
+.entry-full-page{
+    position: relative;
+    padding: 35px 45px;
+    margin-bottom: 35px;
+}
+.load-more-block{
+    margin-bottom: 15px;
+}

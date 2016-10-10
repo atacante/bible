@@ -106,3 +106,32 @@ h4.h4-gift {
   font-size: 1.64rem;
   font-family: ns_widemedium;
 }
+.ill-text-pos1 {
+  position: absolute;
+  top: 17%;
+  right: 10%;
+}
+.ill-text-pos2 {
+  position: absolute;
+  top: 21%;
+  right: 13%;
+}
+.ill-text-pos3 {
+  position: absolute;
+  top: 17%;
+  right: 32%;
+}
+.ill-text-pos4 {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+}
+.c-home-products .product-item {
+  width: 30%;
+  display: inline-block;
+  padding: 0;
+}
+.c-home-products {
+  text-align: center;
+  overflow: hidden;
+}

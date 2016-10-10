@@ -4872,11 +4872,11 @@ ul.icons-list li i {
     margin: 10px 0 10px 0px;
 }
 
-.compare-list li{
+.compare-list li {
     padding: 5px;
 }
 
-.live-search-list{
+.live-search-list {
     padding: 0;
     margin: 10px 0 0 -5px;
 }
@@ -5038,10 +5038,10 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     vertical-align: middle;
     margin-right: 3px;
 }
-.relative{
+.relative {
     position: relative;
 }
-.absolute{
+.absolute {
     position: absolute;
 }
 .search-back {
@@ -5074,13 +5074,13 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
     box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
 }
-.checkbox-disabled{
+.checkbox-disabled {
     opacity: 0.5;
 }
-.legend-block{
+.legend-block {
     margin-bottom: 10px;
 }
-.legend-item{
+.legend-item {
     display: inline-block;
     margin-left: 20px;
 }
@@ -5101,15 +5101,15 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     vertical-align: top;
     margin-left: 5px;
 }
-.user-avatar{
+.user-avatar {
     border-radius: 50%;
 }
-.alert{
+.alert {
     border-radius: 0;
     border: none;
     color: #ffffff;
 }
-.alert-success{
+.alert-success {
     background-color: #64cd93;
 }
 .alert-danger {
@@ -5118,25 +5118,24 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
 .alert-info {
     background-color: #fe9921;
 }
-h3.strongs-header{
+h3.strongs-header {
     text-transform: lowercase;
     line-height: 2.57rem;
     text-align: center;
 }
-h3.strongs-subheader{
+h3.strongs-subheader {
     margin: 30px 0 5px;
 }
-.cu-bs-contactus{
+.cu-bs-contactus {
     font-size: 0.86rem !important;
     vertical-align: initial !important;
 }
-.cu-bs-people{
+.cu-bs-people {
     font-size: 1.07rem !important;
 }
 .cu-bs-places{
     font-size: 1.29rem !important;
 }
-
 .cu-bs-biblestudylogo{
     font-size: 1.29rem !important;
 }
@@ -5484,7 +5483,7 @@ i.bs-pray{
 .load-more-block{
     margin-bottom: 15px;
 }
- a.show-billing {
+a.show-billing {
     color:#00b9f7 !important;
 }
 .user-popup h4{

@@ -72,3 +72,6 @@
     width: 170px;
     height: 184px;
 }
+.user-avatar {
+    border-radius: 50%;
+}
