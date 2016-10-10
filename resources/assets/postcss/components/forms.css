@@ -14,3 +14,73 @@ textarea.input1 {
 .cu-arrowleft2, .cu-arrowright2 {
     color: transparent !important;
 }
+.pagination {
+    border-radius: 0;
+    margin: 20px 2px;
+}
+.pagination li {
+    border-radius: 0;
+}
+.pagination > li > a, .pagination > li > span {
+    border-radius: 0 !important;
+    margin: 0 3px;
+    height: 44px;
+    min-width: 44px;
+    border: none !important;
+    text-align: center;
+    line-height: 2.21rem !important;
+    font-family: ns_widenormal;
+    font-size: 1rem;
+    color: #000;
+    -webkit-box-shadow: 0 0 1px 1px rgba(100,100,100,0.1);
+    box-shadow: 0 0 1px 1px rgba(100,100,100,0.1);
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+    color: #00b9f7;
+    font-size: 2.29rem;
+    font-weight: lighter;
+    padding-top: 3px;
+}
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: #00b9f7;
+    border-color: #00b9f7;
+}
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    background-color: #00b9f7 !important;
+    border-color: #00b9f7 !important;
+    color: #ffffff !important;
+}
+.search-text-input {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    color: #8d8d8d;
+    width: 280px;
+    font-family: work_sansregular;
+    font-size: 1rem;
+    border: 1px solid #e3e3e3;
+    float: left;
+    margin-right: 5px;
+}
+.cu-search1 {
+    font-size: 1.29rem;
+}
+.cu-search2 {
+    display: inline-block;
+    font-size: 1.29rem;
+    margin-right: 8px;
+    vertical-align: sub;
+}
+.cu-sti1 {
+    padding-right: 35px;
+}

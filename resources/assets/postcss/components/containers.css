@@ -99,3 +99,15 @@
     line-height: 2.14rem;
     position: relative;
 }
+.c-white-item {
+    background: white;
+    -webkit-box-shadow: 0 0 10px 2px rgba(150,150,150,0.1);
+    box-shadow: 0 0 10px 2px rgba(150,150,150,0.1);
+    position: relative;
+}
+.inner-pad3 {
+    padding: 25px;
+}
+.inner-pad6 {
+    padding: 10px;
+}

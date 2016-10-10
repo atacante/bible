@@ -464,3 +464,42 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   color: white;
   text-decoration: none !important;
 }
+
+.btn4, .btn4:visited {
+  display: inline-block;
+  border: 3px solid #00b9f7;
+  background: #00b9f7;
+  color: #ffffff;
+  font-family: ns_widemedium;
+  font-size: 1.14rem;
+  text-decoration: none !important;
+  outline: none !important;
+  text-transform: uppercase !important;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0 !important;
+  width: 100px;
+  height: 54px;
+  line-height: 3.43rem;
+}
+.btn4:hover, .btn4:active {
+  border: 3px solid #79858f;
+  display: inline-block;
+  background: #79858f;
+  color: #ffffff;
+  text-decoration: none !important;
+}
+.btn4-cu1 {
+  height: 40px !important;
+  line-height: 2.5rem !important;
+  width: 85px;
+}
+.btn4-cu2 {
+  bottom: 25px;
+  height: 38px !important;
+  left: 30px;
+  line-height: 2.14rem !important;
+  top: auto;
+  width: 41px;
+}

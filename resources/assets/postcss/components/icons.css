@@ -275,3 +275,10 @@
     vertical-align: bottom;
     line-height: 2.14rem;
 }
+.cu-producticon {
+    color: #d2d7dc;
+    font-size: 5rem;
+    display: block;
+    text-align: center;
+    padding-top: 90px;
+}

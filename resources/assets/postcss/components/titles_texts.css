@@ -106,3 +106,17 @@ h4.h4-1 {
     font-size: 2.14rem;
     margin: 0;
 }
+.cu-date1 {
+    float: right !important;
+    color: #a9a9a9;
+    font-family: work_sansregular;
+    font-size: 1.14rem !important;
+}
+.cu-date2 {
+    color: #a9a9a9;
+    font-family: work_sansregular;
+    font-size: 1.14rem;
+}
+.inner-pad3 p {
+    margin: 0;
+}

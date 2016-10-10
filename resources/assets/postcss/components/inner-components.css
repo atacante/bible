@@ -120,3 +120,69 @@ ul.c-social li a:hover, ul.c-social li a:active {
 .h4-sel-book .c-arrow-sel {
     top: 10px;
 }
+.public-wall .related-item {
+    border-bottom: 1px solid #e3e3e3;
+    padding: 30px 30px 30px 120px !important;
+    position: relative;
+}
+.related-records .related-item {
+    padding: 0px;
+    position: relative;
+}
+.box-footer {
+    position: relative;
+    z-index: 99999999;
+}
+.related-item .cu1-actions > a {
+    margin-right: 50px;
+    font-family: work_sanssemibold;
+    font-size: 1rem;
+}
+.avatar-item1 {
+    margin: 0 2px !important;
+}
+.related-item .cu1-actions a i {
+    margin-right: 2px;
+    font-size: 1.14rem;
+}
+.related-item .cu1-actions {
+    padding: 15px 0 5px;
+}
+.carousel-indicators li {
+    width: 16px !important;
+    height: 16px !important;
+    border: 3px solid #ffffff;
+    margin: 0 !important;
+    -webkit-box-shadow: 0 0 2px 1px rgba(0,0,0,0.1);
+    box-shadow: 0 0 2px 1px rgba(0,0,0,0.1);
+}
+.carousel-indicators li.active {
+    width: 16px !important;
+    height: 16px !important;
+    border: 3px solid #ffffff;
+    margin: 0 !important;
+}
+.carousel-indicators {
+    bottom: 5px;
+}
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-next,
+.carousel-control .icon-prev {
+    margin-top: 45px;
+}
+.carousel-control .bs-arrowleft,
+.carousel-control .bs-arrowright {
+    position: absolute;
+    bottom: 17px;
+    color:  #fff !important;
+}
+.carousel-control .bs-arrowleft {
+    right: 0;
+}
+.carousel-control .bs-arrowright {
+    left: 0;
+}
+.carousel-control {
+    opacity: 1;
+}

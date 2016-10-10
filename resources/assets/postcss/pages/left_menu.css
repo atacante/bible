@@ -13,3 +13,20 @@ ul.community-menu li a:hover, ul.community-menu li.active a:hover {
     border-radius: 50px;
     -webkit-border-radius: 50px;
 }
+.community-menu > li > a {
+    color: #505050;
+    font-size: 0.93rem;
+    font-family: ns_widemedium;
+    text-transform: uppercase;
+    padding: 12px 25px;
+}
+.community-menu > li > a > i {
+    color: #878787;
+    font-size: 1.43rem;
+    vertical-align: sub;
+    margin-right: 12px;
+}
+.community-menu > li > a:hover > i,
+.community-menu > li.active > a > i {
+    color: #ffffff;
+}
