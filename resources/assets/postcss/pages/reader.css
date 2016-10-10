@@ -157,3 +157,52 @@ ul.icon-panel li a {
     vertical-align: top;
     display: inline-block;
 }
+.study-list {
+    display: block;
+    background: white;
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+.study-list > li {
+    display: block;
+    border-bottom: 1px solid #e3e3e3;
+    position: relative;
+    padding: 25px 30px;
+}
+.study-list > li:hover {
+    background: #f3f6f9;
+}
+.study-list > li:hover .journey-text-link {
+    text-decoration: underline;
+    color: #00b9f7 !important;
+}
+.study-list > li p {
+    color: #535353;
+    font-family: work_sansregular;
+    font-size: 1.07rem;
+}
+.c-study-bottom {
+    overflow: hidden;
+    margin-top: 20px;
+}
+ul.icons-list {
+    display: block;
+    padding-left: 10px;
+}
+ul.icons-list li {
+    display: inline-block;
+    color: #00b9f7;
+}
+ul.icons-list li a {
+    display: inline-block;
+    margin-left: 20px;
+}
+ul.icons-list li i {
+    display: inline-block;
+    color: #00b9f7 !important;
+    font-size: 1.29rem;
+    vertical-align: sub;
+}

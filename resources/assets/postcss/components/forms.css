@@ -84,3 +84,105 @@ textarea.input1 {
 .cu-sti1 {
     padding-right: 35px;
 }
+.select2-container--default .select2-selection--multiple,
+.select2-container--default .select2-selection--single {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    border: 1px solid #a9a9a9;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    font-family: work_sansregular;
+    font-size: 1.14rem;
+    color: #535353;
+    min-height: 45px;
+    padding: 0;
+    max-width: 100%;
+    line-height: 20px;
+}
+.select2-container--default .select2-selection--multiple:hover
+.select2-container--default .select2-selection--single:hover {
+    border-color: #000000;
+}
+.select2-container--default .select2-selection--multiple:focus,
+.select2-container--default .select2-selection--single:focus {
+    border-color: #64cd93;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.select2-container .select2-selection--single .select2-selection__rendered {
+    display: block;
+    overflow: hidden;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 8px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    right: 1px;
+    top: 9px;
+    width: 20px;
+}
+.advansed-pop ul.select2-selection__rendered li.select2-selection__choice,
+.entry-form ul.select2-selection__rendered li.select2-selection__choice,
+.widget-group ul.select2-selection__rendered li.select2-selection__choice {
+    background: #313d47;
+    color: white;
+    border: none !important;
+    line-height: 2.36rem;
+    padding: 0 20px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+.advansed-pop ul.select2-selection__rendered li.select2-selection__choice .select2-selection__choice__remove,
+.entry-form ul.select2-selection__rendered li.select2-selection__choice .select2-selection__choice__remove,
+.widget-group ul.select2-selection__rendered li.select2-selection__choice .select2-selection__choice__remove
+{
+    background: #313d47;
+    color: white;
+    float: right;
+    font-size: 1.43rem;
+    margin-left: 4px;
+}
+input.datepicker {
+    position: relative;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    border: 1px solid #a9a9a9;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    font-family: work_sansregular;
+    font-size: 1.14rem;
+    color: #535353;
+    min-height: 45px;
+    padding: 0 40px 0 20px;
+    text-align: left !important;
+}
+input.datepicker:before {
+    content: "\e901";
+    font-family: 'bs' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none !important;
+}
+.form-horizontal .control-label {
+    text-align: left;
+}
+.c-inline-input {
+    overflow: hidden;
+    position: relative;
+}
+.forgot-link {
+    font-size: 1.14rem;
+    font-family: work_sansmedium;
+    text-decoration: underline;
+    margin-top: 26px;
+}

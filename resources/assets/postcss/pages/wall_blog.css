@@ -123,3 +123,11 @@ textarea.wall-text-area:focus {
     margin-left: 50px;
     min-height: 40px;
 }
+.c-blog .related-item {
+    border-bottom: 1px solid #e3e3e3;
+    padding: 30px !important;
+}
+.right-position {
+     left: auto !important;
+     right: 20px !important;
+}

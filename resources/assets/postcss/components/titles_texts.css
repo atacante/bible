@@ -120,3 +120,17 @@ h4.h4-1 {
 .inner-pad3 p {
     margin: 0;
 }
+.highlight{
+    color: #00b9f7;
+    font-family: work_sansbold;
+    border-bottom: 1px solid #00b9f7;
+}
+.medium {
+    font-family: work_sansmedium;
+}
+.show-more{
+    cursor: pointer;
+}
+.show-more:hover{
+    color: #00b9f7 !important;
+}

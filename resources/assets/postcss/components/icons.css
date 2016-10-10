@@ -282,3 +282,21 @@
     text-align: center;
     padding-top: 90px;
 }
+.cu-note {
+    color: #fea841;
+    font-size: 1.86rem;
+    margin-right: 15px;
+    vertical-align: sub;
+}
+.cu-jornal {
+    color: #6397c4;
+    font-size: 1.86rem;
+    margin-right: 15px;
+    vertical-align: sub;
+}
+.cu-pray {
+    color: #4cbb95;
+    font-size: 1.86rem;
+    margin-right: 15px;
+    vertical-align: sub;
+}

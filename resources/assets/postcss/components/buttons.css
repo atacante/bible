@@ -503,3 +503,8 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   top: auto;
   width: 41px;
 }
+.cu-study-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

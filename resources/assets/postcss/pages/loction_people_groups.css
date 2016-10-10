@@ -99,3 +99,9 @@ h4.h4-locations {
     font-size: 1.14rem;
     color: #010101;
 }
+.c-group-type {
+    margin-left: 20px;
+    text-transform: capitalize;
+    color: #a9a9a9;
+    display: inline-block;
+}

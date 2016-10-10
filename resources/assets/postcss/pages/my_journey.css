@@ -187,3 +187,38 @@ a.create-record i {
     vertical-align: middle;
     font-size: 1.29rem;
 }
+.popup-title1 {
+    margin: 0;
+    font-family: ns_widenormal;
+    font-size: 1.29rem;
+    color: #505050;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+}
+.cu1-settings {
+    color: #00b9f7;
+    margin-right: 10px;
+}
+.inner-pad4 {
+    padding: 35px 30px 65px;
+}
+.advansed-pop label {
+    color: #535353;
+    padding-top: 10px;
+}
+.input-daterange .input-group-addon {
+    background: white;
+    color: #535353;
+    font-family: work_sansmedium;
+    font-size: 1.14rem;
+    font-weight: normal;
+    border: none !important;
+    padding: 0 10px 0 10px;
+}
+.advansed-pop label.label-checkbox {
+    margin-right: 20px;
+}
+.advansed-pop label.label-checkbox:before {
+    top: 14px !important;
+}
