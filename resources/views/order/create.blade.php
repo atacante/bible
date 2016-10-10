@@ -225,6 +225,42 @@
                         </div>
                     </div>
                 </div>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12 col-md-3">
+                        <div class="form-group {{ $errors->has('card_number') ? ' has-error' : '' }}">
+                            {!!  Form::label('card_number', ucwords(str_replace('_',' ', 'card_number'))) !!}
+                            {!!  Form::text('card_number', null, ['placeholder'=>'XXXXXXXXXXXXXXXX','class' => 'form-control input1']) !!}
+                            @if ($errors->has('card_number'))
+                                <span class="help-block">
+                                    {{ $errors->first('card_number') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-2">
+                        <div class="form-group {{ $errors->has('card_expiration') ? ' has-error' : '' }}">
+                            {!!  Form::label('card_expiration', ucwords(str_replace('_',' ', 'card_expiration'))) !!}
+                            {!!  Form::text('card_expiration', null, ['placeholder'=>'MM-YYYY', 'class' => 'form-control input1']) !!}
+                            @if ($errors->has('card_expiration'))
+                                <span class="help-block">
+                                    {{ $errors->first('card_expiration') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-2">
+                        <div class="form-group {{ $errors->has('card_code') ? ' has-error' : '' }}">
+                            {!!  Form::label('card_code', ucwords(str_replace('_',' ', 'card_code'))) !!}
+                            {!!  Form::text('card_code', null, ['placeholder'=>'XXX', 'class' => 'form-control input1']) !!}
+                            @if ($errors->has('card_code'))
+                                <span class="help-block">
+                                    {{ $errors->first('card_code') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
                 <!-- /.box-body -->
             </div>
         </div>
