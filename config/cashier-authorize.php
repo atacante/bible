@@ -11,7 +11,7 @@
 
 return [
 
-   '1 day' => [
+   '7 days' => [
         'name' => 'default',
         'interval' => [
             'length' => 7, // number of instances for billing
