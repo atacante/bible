@@ -412,4 +412,49 @@ trait Billable
                 return $value->name === $subscription;
             });
     }
+
+    public static function chargeCreditCard($amount, $card){
+
+        // Create the payment data for a credit card
+        $creditCard = new AnetAPI\CreditCardType();
+        $creditCard->setCardNumber($card['number']);
+        $creditCard->setExpirationDate($card['expiration']);
+
+        if(!empty($card['code'])){
+            $creditCard->setCardCode($card['code']);
+        }
+
+        $paymentOne = new AnetAPI\PaymentType();
+        $paymentOne->setCreditCard($creditCard);
+
+        //create a transaction
+        $transactionRequestType = new AnetAPI\TransactionRequestType();
+        $transactionRequestType->setTransactionType("authCaptureTransaction");
+        $transactionRequestType->setAmount($amount);
+        $transactionRequestType->setPayment($paymentOne);
+
+        $requestor = new Requestor();
+        $request = $requestor->prepare((new AnetAPI\CreateTransactionRequest()));
+        $request->setTransactionRequest($transactionRequestType);
+        $controller = new AnetController\CreateTransactionController($request);
+        $response = $controller->executeWithApiResponse($requestor->env);
+
+        if ($response != null) {
+            $tresponse = $response->getTransactionResponse();
+            if (($tresponse != null) && ($tresponse->getResponseCode() == '1') ) {
+                return [
+                    'authCode' => $tresponse->getAuthCode(),
+                    'transId' => $tresponse->getTransId(),
+                ];
+            } else if (($tresponse != null) && ($tresponse->getResponseCode() == "2") ) {
+                return false;
+            } else if (($tresponse != null) && ($tresponse->getResponseCode() == "4") ) {
+                throw new Exception("ERROR: HELD FOR REVIEW", 1);
+            }
+        } else {
+            throw new Exception("ERROR: NO RESPONSE", 1);
+        }
+
+        return false;
+    }
 }
