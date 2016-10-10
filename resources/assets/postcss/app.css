@@ -6,3 +6,7 @@
 html {
   font-size: 14px;
 }
+body{
+  font-family: work_sansregular;
+  overflow-x: hidden;
+}

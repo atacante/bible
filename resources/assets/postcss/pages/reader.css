@@ -289,3 +289,19 @@ a.banner-btn{
     letter-spacing: 1px;
     margin-top: 44px;
 }
+del {
+    color: #fe9921;
+    text-decoration: none;
+    font-style: italic;
+}
+del:before {
+    content: "(";
+}
+del:after {
+    content: ") ";
+}
+ins {
+    color: #36A741 ;
+    text-decoration: none;
+    font-weight: bold;
+}

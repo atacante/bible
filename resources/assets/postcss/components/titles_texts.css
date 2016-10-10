@@ -152,3 +152,151 @@ h4.h4-1 {
 .font-size-22 {
     font-size: 1.57rem;
 }
+h1.h1-kit {
+    font-family: ns_widenormal;
+    font-size: 3.43rem;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+h2.h2-kit {
+    font-family: ns_widenormal;
+    font-size: 2.7rem;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+h3.h3-kit {
+    font-family: ns_widemedium;
+    font-size: 2.14rem;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 2px;
+}
+h4.h4-kit {
+    font-family: ns_widenormal;
+    font-size: 1.43rem;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1px;
+}
+h5.h5-kit {
+    font-family: ns_widenormal;
+    font-size: 1.14rem;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+h6.h6-kit {
+    font-family: ns_widenormal;
+    font-size: 1rem;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+h1.h1-sub-kit {
+    font-family: work_sansregular;
+    font-size: 2.71rem;
+    color: #404040;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+h2.h2-sub-kit {
+    font-family: work_sansregular;
+    font-size: 2.14rem;
+    color: #404040;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+h3.h3-sub-kit {
+    font-family: work_sanssemibold;
+    font-size: 1.29rem;
+    color: #404040;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+h4.h4-sub-kit {
+    font-family: work_sanssemibold;
+    font-size: 1.07rem;
+    color: #404040;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+.p-regular {
+    color: #535353;
+    font-family: work_sansregular;
+    font-size: 1.07rem;
+    line-height: 22px;
+}
+.p-medium {
+    color: #535353;
+    font-family: work_sansregular;
+    font-size: 1.14rem;
+    line-height: 2.14rem;
+}
+.p-medium2 {
+    color: #535353;
+    font-family: work_sansregular;
+    font-size: 1.14rem;
+    line-height: 1.43rem;
+}
+.p-big {
+    color: #535353;
+    font-family: work_sansregular;
+    font-size: 1.29rem;
+    line-height: 2.29rem;
+}
+.cu1-title {
+    text-align: center;
+    padding: 30px 30px 50px !important;
+}
+.cu2-title {
+    display: inline-block;
+    padding: 0 40px !important;
+}
+.fsz1 {
+    font-size: 2.57rem !important;
+    line-height: 2.5rem;
+}
+.fz1 {
+    font-size: 1.71rem !important;
+}
+.c-queries {
+    font-size: 4.29rem;
+    font-family: work_sansregular;
+    color: #000000;
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    margin-left: -10px;
+}
+.h2-new {
+    position: relative;
+    color: #010101;
+    font-size: 2.14rem;
+    font-family: ns_widemedium;
+    font-weight: normal;
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}

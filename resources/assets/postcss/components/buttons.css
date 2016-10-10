@@ -508,3 +508,18 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   top: 0;
   right: 0;
 }
+.cu1-btn {
+  font-size: 0.93rem;
+  position: absolute;
+  top: 3px;
+  left: 0;
+  padding: 7px 20px;
+}
+.a-kit {
+  text-decoration: underline;
+  color: #00b9f7;
+}
+.a-kit:hover {
+  text-decoration: none;
+  color: #00b9f7;
+}
