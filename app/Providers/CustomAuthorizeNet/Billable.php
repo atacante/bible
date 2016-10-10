@@ -349,12 +349,14 @@ trait Billable
      */
     public function askToCreateAccount(){
         if( ($card['number'] = Input::get('card_number')) &&
-            ($card['expiration'] = Input::get('card_expiration')) &&
-            ($card['code'] = Input::get('card_code')) &&
-            ($card['billing_name'] = Input::get('billing_name')) &&
-            ($card['billing_address'] = Input::get('billing_address')) &&
-            ($card['billing_zip'] = Input::get('billing_zip'))
+            ($card['expiration'] = Input::get('card_expiration'))
         ){
+
+            $card['code'] = Input::get('card_code');
+            $card['billing_name'] = Input::get('billing_name');
+            $card['billing_address'] = Input::get('billing_address');
+            $card['billing_zip'] = Input::get('billing_zip');
+
             return $card;
         }
 
