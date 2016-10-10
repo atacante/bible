@@ -54,6 +54,8 @@
                                                 </a>
                                             @endif
                                     </div>
+                                @else
+                                    <div class="people-image"></div>
                                 @endif
                             </div>
                             <div class="c-inner-location-text">

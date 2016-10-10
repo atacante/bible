@@ -9,7 +9,7 @@
         <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i><div class="logo-text">BIBLE STUDY CO</div></a>
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse c-menu-home" id="bs-example-navbar-collapse-1">
 
 
         <ul class="nav navbar-nav">
@@ -71,6 +71,20 @@
                             Gift Shop
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ URL::to('/blog') }}">
+                            <i class="bs-blog cu-bs-blog"></i>
+                            Blog
+                        </a>
+                    </li>
+                    @if($catId = ViewHelper::getBlogCatId('Study Tools'))
+                        <li>
+                            <a href="{{ URL::to('/blog?category='.$catId) }}">
+                                <i class="bs-study cu-bs-study"></i>
+                                Study Tools
+                            </a>
+                        </li>
+                    @endif
                     <li>
                         <a href="{{ URL::to('/site/faq') }}">
                             <i class="bs-faq cu-bs-faq"></i>

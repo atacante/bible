@@ -1571,25 +1571,9 @@ $(document).ready(function(){
     });
 
     $('body').on('click','.j-show-billing',function(e){
-        e.preventDefault();
-
-        /*var shippingEmail = $('input[name="shipping_email"]');
-        var billingEmail = $('.j-billing-meta input[name="billing_email"]');
-
-        if(billingEmail.val() == ''){
-            billingEmail.val(shippingEmail.val());
-        }*/
+        order.fillBillingInfo();
 
         $('.j-billing-meta').toggleClass('hidden');
-    });
-
-    $('body').on('click','.j-duplicate-billing-address',function(e){
-        e.preventDefault();
-
-        var shippingAddress = $('input[name="shipping_address"]');
-        var billingAddress = $('.j-billing-meta input[name="billing_address"]');
-
-        billingAddress.val(shippingAddress.val());
     });
 
     $(".j-create-record").on("click", function(e){
@@ -1870,6 +1854,13 @@ $(document).ready(function(){
         }
     });
     site.hideAlert();
+
+    $('body').on('click','.j-submit-order', function(e){
+        e.preventDefault();
+        order.fillBillingInfo();
+        $('.j-create-order-form').submit();
+        return false;
+    });
 
     $('body').on('click','a.disabled',function(e){
         e.preventDefault();

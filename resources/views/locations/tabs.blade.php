@@ -9,7 +9,7 @@
                     {!! Html::link('/peoples/list','PEOPLE', ['class'=>(Request::is('peoples/list'))?'active':'']) !!}
                 </li>
                 <li class="pull-right">
-                    @include('locations.filters')
+                    @include(Request::segment(1).'.filters')
                 </li>
             </ul>
         </div>
