@@ -26,4 +26,9 @@ class VersesAmericanKingJamesEn extends BaseModel {
     {
         return $this->morphToMany('App\User','item','users_views')->withTimestamps();
     }
+
+    public function bookmarks()
+    {
+        return $this->morphToMany('App\User','item','bookmarks')->orderBy('bookmarks.created_at','desc');
+    }
 }

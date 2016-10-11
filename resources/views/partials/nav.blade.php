@@ -155,9 +155,9 @@
             @else
 
                 @role('user')
-                <li>
-                    <a class="my-journey {{ ViewHelper::classActivePath('user.my-journey') }}" href="{{ url('user/my-journey') }}"><i class="bs-myjourney"></i>My Journey</a>
-                </li>
+                    <li>
+                        <a class="my-journey {{ ViewHelper::classActivePath('user.my-journey') }}" href="{{ url('user/my-journey') }}"><i class="bs-myjourney"></i>My Journey</a>
+                    </li>
                 @endrole
                 <li class="dropdown log-pop">
                     <a href="#" class="dropdown-toggle cu-drop-menu-item" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -185,6 +185,9 @@
             @endif
         </ul>
     </div>
+    @if(Auth::check() && Request::segment(1) == 'reader')
+        <a class="my-bookmarks j-my-bookmarks" href="{{ url('user/my-bookmarks/'.Request::get('version')) }}"><i class="fa fa-bookmark-o" aria-hidden="true"></i>My Bookmarks</a>
+    @endif
 </nav>
 
 {{-- ---------------- Radio Blocks ---------------- --}}
