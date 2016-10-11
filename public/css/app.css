@@ -3369,6 +3369,7 @@ h4.h4-sub-kit {
   padding-bottom: 30px;
   padding-left: 50px;
   padding-right: 50px;
+  position: relative;
 }
 /* --------- backgrounds for sections -------- */
 .h-ill1 {
@@ -3419,8 +3420,8 @@ h4.h4-sub-kit {
   text-align: center;
 }
 .gift1 {
-  height: 220px;
-  background: url("/images/edit.png") center 65px no-repeat;
+  margin: 10px;
+  padding-top: 70%;
 }
 h4.h4-gift {
   text-transform: uppercase;
@@ -3456,6 +3457,16 @@ h4.h4-gift {
 }
 .c-home-products {
   text-align: center;
+  overflow: hidden;
+}
+.gift-item {
+  background: #ffffff;
+  display: block;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
+  margin: 8px 10px 25px;
+  outline: none !important;
   overflow: hidden;
 }
 .urls-text {
