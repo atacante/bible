@@ -24,6 +24,9 @@ class User extends Authenticatable
     const PLAN_FREE = 'free';
     const PLAN_PREMIUM = 'premium';
 
+    const BOOKMARK_CHAPTER = 'chapter';
+    const BOOKMARK_VERSE = 'verse';
+
 //    public $coupon_code;
     /**
      * The attributes that are mass assignable.
@@ -128,6 +131,16 @@ class User extends Authenticatable
         }
 
         return $rules;
+    }
+
+    public function bookmarks($model)
+    {
+        return $this->morphedByMany($model,'item','bookmarks')->withPivot('bookmark_type', 'bible_version')/*->orderBy('bookmarks.created_at','desc')*/;
+    }
+
+    public function bookmarksAmericanKingJames()
+    {
+        return $this->morphedByMany(VersesAmericanKingJamesEn::class,'item','bookmarks')->withPivot('bookmark_type', 'bible_version')/*->orderBy('bookmarks.created_at','desc')*/;
     }
 
     public function notificationsSettings() {

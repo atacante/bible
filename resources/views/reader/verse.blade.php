@@ -175,6 +175,14 @@
                 <h4 class="j-bible-text">
                     <span class="verse-text color4" data-version="{!! $content['main_verse']['version_code'] !!}" data-verseid="{!! $content['main_verse']['verse']->id !!}">{!! $content['main_verse']['verse']->verse_text /*ViewHelper::prepareVerseText($content['main_verse']['verse'],true)*/ !!}</span>
                 </h4>
+                <div class="bookmark-btn">
+                    <a href="{!! url('reader/delete-bookmark',[App\User::BOOKMARK_VERSE,$content['main_verse']['version_code'],$content['main_verse']['verse']->id]) !!}" class="j-bookmark {!! ViewHelper::checkBookmark(App\User::BOOKMARK_VERSE,$content['main_verse']['verse'])?'':'hidden' !!}">
+                        <i title="Remove from bookmarks" class="fa fa-bookmark cu-print" style="font-size: 2rem;"></i>
+                    </a>
+                    <a href="{!! url('reader/bookmark',[App\User::BOOKMARK_VERSE,$content['main_verse']['version_code'],$content['main_verse']['verse']->id]) !!}" class="j-bookmark {!! !ViewHelper::checkBookmark(App\User::BOOKMARK_VERSE,$content['main_verse']['verse'])?'':'hidden' !!}">
+                        <i title="Add to bookmarks" class="fa fa-bookmark-o cu-print" style="font-size: 2rem;"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -183,7 +191,7 @@
             <a class="genesis-arrow" title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[]) !!}" style="position: absolute; left:-40px;"><i class="bs-arrowleft cu-arrowleft"></i></a>
         @endif
         @if($verseNext = $content['pagination']['verseNext'])
-            <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[]) !!}" style="position: absolute; right:-40px;"><i class="bs-arrowright cu-arrowright"></i></a>
+            <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[]) !!}" style="position: absolute; right:0px;"><i class="bs-arrowright cu-arrowright"></i></a>
         @endif
     </div>
     @if(count($content['lexicon']))
