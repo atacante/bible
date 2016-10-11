@@ -1,3 +1,4 @@
+/* READER */
 a.my-bookmarks{
     position: absolute;
     right: 0;
@@ -21,4 +22,22 @@ a.my-bookmarks:hover{
 
 .my-bookmarks-list .bookmark-item{
     line-height: 30px;
+}
+
+/* NAV */
+.navbar-nav i.cu-nav-icons{
+    font-size: 1.07rem ;
+    vertical-align: baseline;
+}
+
+
+/* HOME */
+.h-ill5 {
+    background: url('/images/p5-home.jpg') left center no-repeat;
+    min-height: 449px;
+}
+
+.home .bg-home {
+    background: url('/images/bg-home-header.jpg') center top no-repeat;
+    max-width: 100%;
 }

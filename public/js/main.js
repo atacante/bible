@@ -1876,7 +1876,7 @@ $(document).ready(function(){
             url: url,
             success:function(data){
                 $('#popup-sm').find('.modal-header .modal-title').html('<i class="fa fa-bookmark-o" style="margin-left: 15px;" aria-hidden="true"></i> My Bookmarks');
-                $('#popup-sm').find('.modal-body').html('<div class="my-bookmarks-list j-my-bookmarks-list">'+data+'</div>');
+                $('#popup-sm').find('.modal-body').css('padding','20px').html('<div class="my-bookmarks-list j-my-bookmarks-list">'+data+'</div>');
                 $('#popup-sm').find('.modal-footer').remove();
                 $('#popup-sm').modal({show:true});
             }

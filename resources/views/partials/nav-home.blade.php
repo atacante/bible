@@ -28,13 +28,21 @@
                             <i class="bs-reader"></i>Read
                         </a>
                     </li>
+                    <li role="separator" class="divider"></li>
                     <li>
                         <a href="{{ URL::to('/reader/verse?version=nasb&book=1&chapter=1&verse=1') }}">
                             <i class="bs-lexicon cu-lexicon" style="font-size: 14px; vertical-align: baseline;"></i>
                             Study Using Lexicon
                         </a>
                     </li>
-                    <li role="separator" class="divider"></li>
+                    @if($catId = ViewHelper::getBlogCatId('Study Tools'))
+                        <li>
+                            <a href="{{ URL::to('/blog?category='.$catId) }}">
+                                <i class="bs-study cu-bs-study"></i>
+                                Study Tools
+                            </a>
+                        </li>
+                    @endif
                     <li>
                         <a href="{{ URL::to('/peoples/list') }}">
                             <i class="bs-people cu-bs-people"></i>
@@ -60,6 +68,24 @@
                 <ul class="dropdown-menu" aria-labelledby="drop1">
                     <div class="popup-arrow"></div>
                     <li>
+                        <a href="{{ URL::to('/site/events') }}">
+                            <i class="fa fa-calendar cu-nav-icons"></i>
+                            BSC Events
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/site/membership') }}">
+                            <i class="bs-community cu-nav-icons"></i>
+                            Membership
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/site/how-it-works') }}">
+                            <i class="fa fa-question-circle cu-nav-icons" style="font-size: 1.3rem;"></i>
+                            How It Works
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ URL::to('/site/about') }}">
                             <i class="bs-biblestudylogo cu-bs-biblestudylogo"></i>
                             About Us
@@ -71,20 +97,12 @@
                             Gift Shop
                         </a>
                     </li>
-                    <li>
+                    {{--<li>
                         <a href="{{ URL::to('/blog') }}">
                             <i class="bs-blog cu-bs-blog"></i>
                             Blog
                         </a>
-                    </li>
-                    @if($catId = ViewHelper::getBlogCatId('Study Tools'))
-                        <li>
-                            <a href="{{ URL::to('/blog?category='.$catId) }}">
-                                <i class="bs-study cu-bs-study"></i>
-                                Study Tools
-                            </a>
-                        </li>
-                    @endif
+                    </li>--}}
                     <li>
                         <a href="{{ URL::to('/site/faq') }}">
                             <i class="bs-faq cu-bs-faq"></i>
@@ -101,11 +119,46 @@
             </li>
 
             {{-- --------------- COMMUNITY --------------- --}}
-            <li>
+            {{--<li>
                 <a class="{!! ViewHelper::classActivePath(['community','groups','blog']) !!}" href="{{ URL::to('/community') }}">
                     <i class="bs-community"></i>
                     Community
                 </a>
+            </li>--}}
+            <li class="dropdown">
+                <a id="drop1" href="#" class="dropdown-toggle {!! ViewHelper::classActivePath(['community','groups','blog']) !!}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="bs-community"></i>
+                    Community
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="drop1">
+                    <div class="popup-arrow"></div>
+                    <li>
+                        <a href="{{ URL::to('/community') }}">
+                            <i class="bs-publicwall cu-nav-icons"></i>
+                            Public Wall
+                        </a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="{{ URL::to('/groups') }}">
+                            <i class="bs-s-groups cu-nav-icons"></i>
+                            Groups
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/community/find-friends') }}">
+                            <i class="bs-friends cu-nav-icons"></i>
+                            Friends
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/blog') }}">
+                            <i class="bs-blog cu-nav-icons"></i>
+                            Blog
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
 
