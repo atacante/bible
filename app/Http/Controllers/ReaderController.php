@@ -36,7 +36,7 @@ use App\Http\Controllers\Controller;
 
 class ReaderController extends Controller
 {
-    private $readerMode = 'beginner';
+    private $readerMode = 'intermediate';
 
     private function flashNotification($message){
         Notification::info($message);
@@ -136,7 +136,7 @@ class ReaderController extends Controller
         if($mode){
             Cookie::queue(Cookie::forever('readerMode', $mode));
         }else{
-            $mode = Cookie::get('readerMode', 'beginner');
+            $mode = Cookie::get('readerMode', 'intermediate');
         }
 
         $related = Request::input('related', false);
