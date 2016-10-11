@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -125,6 +126,14 @@ class AuthController extends Controller
         return $user;
     }
 
+    public function authenticated()
+    {
+        if(Auth::check() && Auth::user()->is(Config::get('app.role.user')) && Auth::user()->last_reader_url){
+            return redirect(Auth::user()->last_reader_url);
+        }
+        return redirect()->intended($this->redirectPath());
+    }
+
     public function getLogin()
     {
         if (Session::has('backUrl')) {
@@ -152,6 +161,27 @@ class AuthController extends Controller
         Auth::Logout();
         Session::flush();
         return redirect('/');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(\Illuminate\Http\Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        Auth::guard($this->getGuard())->login($this->create($request->all()));
+
+        return redirect()->intended($this->redirectPath());
     }
 
     public function getAdminLogout()

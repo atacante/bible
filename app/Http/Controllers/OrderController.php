@@ -58,7 +58,7 @@ class OrderController extends Controller
         $tax = 0.00;
 
         if(strtolower(trim($data['shipping_state'])) == 'florida'){
-            $tax = round(0.3 * $subtotal, 2);
+            $tax = round(0.07 * $subtotal, 2);
         }
 
         $total = $subtotal + $tax;
@@ -114,6 +114,11 @@ class OrderController extends Controller
     }
 
     public function getCreate(){
+
+        if(!Auth::user()->hasPaymentAccount()){
+            Notification::error('Please add valid credit card to finish your order!');
+           return redirect()->guest('user/profile');
+        }
 
         $model = UsersMeta::where(['user_id' => Auth::user()->id])->orderBy('created_at', SORT_DESC)->first();
 

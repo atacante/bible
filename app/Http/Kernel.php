@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\VerifyCsrfToken::class,
         \App\Http\Middleware\LogLastUserActivity::class,
         \App\Http\Middleware\Headers::class,
+        \App\Http\Middleware\Boot::class,
     ];
 
     /**

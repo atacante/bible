@@ -249,3 +249,130 @@
     padding-right: 5px;
     vertical-align: text-bottom;
 }
+.cu-print {
+    font-size: 1.79rem;
+    line-height: 1.79rem;
+    color: #00b9f7;
+}
+.cu-study {
+    color: #00b9f7;
+    font-size: 1.71rem;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.cu-study2 {
+    color: #00b9f7;
+    display: inline-block;
+    font-size: 2.5rem;
+    padding-right: 7px;
+    vertical-align: middle;
+}
+.cu-login {
+    color: #00b9f7;
+    display: inline-block;
+    font-size: 2rem;
+    padding-right: 7px;
+    vertical-align: bottom;
+    line-height: 2.14rem;
+}
+.cu-producticon {
+    color: #d2d7dc;
+    font-size: 5rem;
+    display: block;
+    text-align: center;
+    padding-top: 90px;
+}
+.cu-note {
+    color: #fea841;
+    font-size: 1.86rem;
+    margin-right: 15px;
+    vertical-align: sub;
+}
+.cu-jornal {
+    color: #6397c4;
+    font-size: 1.86rem;
+    margin-right: 15px;
+    vertical-align: sub;
+}
+.cu-pray {
+    color: #4cbb95;
+    font-size: 1.86rem;
+    margin-right: 15px;
+    vertical-align: sub;
+}
+.cu-starsolid-settings {
+    color: #36a741;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    padding: 0 0 2px 0;
+    font-size: 0.86rem;
+    border-radius: 5px;
+}
+.parallel-verses .cu-starsolid-settings {
+    background: #f3f3f3;
+}
+.cu-starsolid-settings-popup {
+    color: #fff;
+    position: absolute;
+    left: -30px;
+    top: 8px;
+    background: #36a741;
+    padding: 0;
+    font-size: 0.86rem;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    line-height: 0.93rem;
+    text-align: center;
+}
+.cu-bs-contactus {
+    font-size: 0.86rem !important;
+    vertical-align: initial !important;
+}
+.cu-bs-people {
+    font-size: 1.07rem !important;
+}
+.cu-bs-places{
+    font-size: 1.29rem !important;
+}
+.cu-bs-biblestudylogo{
+    font-size: 1.29rem !important;
+}
+.cu-bs-gift{
+    font-size: 1.14rem !important;
+}
+.cu-bs-blog{
+    font-size: 1rem !important;
+}
+.cu-bs-study{
+    font-size: 1.15rem !important;
+}
+.cu-bs-faq{
+    font-size: 1.21rem !important;
+}
+.icon-date-from{
+    position: absolute;
+    right: 56%;
+    top: 12px;
+    font-size: 1.36rem;
+}
+.icon-date-to{
+    position: absolute;
+    right: 12px;
+    top: 13px;
+    font-size: 1.36rem;
+}
+i.bs-note{
+    color: #fcab4b;
+}
+i.bs-journal{
+    color: #5d93c2;
+}
+i.bs-pray{
+    color: #49ba93;
+}
+.cu-s-public {
+    vertical-align: text-top;
+}

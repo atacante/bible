@@ -5,6 +5,8 @@ var site = {
 var reader = {};
 var user = {};
 
+var order = {};
+
 site.fillSelect = function (selector,items){
     $(selector).empty();
     $.each(items, function(value,key) {
@@ -425,4 +427,25 @@ site.showPremiumWarning = function(){
         '<a href="/user/profile" class="btn2-kit cu-btn-pad1 btn-ok" style="margin-left: 7px;">Upgrade</a>' +
     '');
     $('#popup-sm').modal({show:true});
+}
+
+order.fillBillingInfo = function(){
+
+    $('input[name^=shipping_]').each(function(){
+        var shippingInput = $(this);
+        var name = shippingInput.attr('name').replace('shipping_','');
+
+        var billingInput = $('input[name=billing_'+name+']');
+        if(billingInput.val() == ''){
+            billingInput.val(shippingInput.val())
+        }
+
+    });
+
+
+
+    var shippingAddress = $('input[name="shipping_address"]');
+    var billingAddress = $('.j-billing-meta input[name="billing_address"]');
+
+    billingAddress.val(shippingAddress.val());
 }

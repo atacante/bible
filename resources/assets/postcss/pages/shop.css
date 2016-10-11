@@ -1,0 +1,20 @@
+.price-label {
+    padding: 20px 0 5px;
+    font-size: 1.43rem;
+    font-family: work_sansbold;
+    color: #535353;
+}
+.price-label2 {
+    padding: 0px;
+    font-size: 1.43rem;
+    font-family: work_sansbold;
+    color: #535353;
+}
+.cu-cart {
+    font-size: 1.36rem;
+    line-height: 2.21rem;
+}
+.cu-cart2 {
+    font-size: 0.86rem;
+    padding-right: 2px;
+}
