@@ -100,7 +100,7 @@ class OrderController extends Controller
 
         }else{
             Notification::error('Your order was not placed! Please add valid credit card');
-            return redirect('/user/profile');
+            return redirect('order/create');
         }
 
     }
