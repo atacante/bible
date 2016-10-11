@@ -88,7 +88,13 @@
                     <li>
                         <a href="{{ URL::to('/site/about') }}">
                             <i class="bs-biblestudylogo cu-bs-biblestudylogo"></i>
-                            About Us
+                            About BSC
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/site/recommended-resources') }}">
+                            <i class="bs-upload cu-bs-biblestudylogo"></i>
+                            Recommended Resources
                         </a>
                     </li>
                     <li>

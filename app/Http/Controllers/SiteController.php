@@ -33,6 +33,12 @@ class SiteController extends Controller
         return view('site.about', ['page'=>$page]);
     }
 
+    public function getRecommendedResources()
+    {
+        $page = CmsPage::getPage('recommended_resources');
+        return view('site.page', ['page'=>$page]);
+    }
+
     public function getEvents()
     {
         $page = CmsPage::getPage('bsc_events');
