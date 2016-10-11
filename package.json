@@ -6,6 +6,7 @@
     "install": "^0.8.1",
     "laravel-elixir-postcss": "^0.4.1",
     "npm": "^3.10.8",
+    "postcss-cssnext": "^2.8.0",
     "postcss-custom-media": "^5.0.1",
     "postcss-easy-import": "^1.0.1",
     "postcss-nested": "^1.0.0"

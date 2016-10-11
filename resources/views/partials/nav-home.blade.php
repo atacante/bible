@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav id="header" class="navbar navbar-default">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle Navigation</span>

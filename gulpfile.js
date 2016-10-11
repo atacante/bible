@@ -18,8 +18,7 @@ elixir(function(mix) {
   mix.postcss('app.css', {
     plugins:[
       require('postcss-easy-import')({glob: true}),
-      require('postcss-nested'),
-      require('postcss-custom-media')
+      require('postcss-cssnext'),
     ],
   });
 });

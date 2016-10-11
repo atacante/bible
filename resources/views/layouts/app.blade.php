@@ -32,7 +32,8 @@
         {!!Html::style('js/dropzone/dist/min/basic.min.css')!!}
         {!!Html::style('js/dropzone/dist/min/dropzone.min.css')!!}
 
-        {!!Html::style(Asset::v('/css/style.css'))!!}
+        {{-- {!!Html::style(Asset::v('/css/style.css'))!!} --}}
+        {!!Html::style(Asset::v('/css/app.css'))!!}
 
         {!!Html::style('css/ionicons-2.0.1/css/ionicons.min.css')!!}
 
