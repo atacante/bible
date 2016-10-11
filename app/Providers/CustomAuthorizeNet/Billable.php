@@ -4,6 +4,7 @@ namespace App\Providers\CustomAuthorizeNet;
 
 use App\UsersMeta;
 use Illuminate\Support\Facades\Config;
+use Laravel\CashierAuthorizeNet\Subscription;
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\constants as AnetConstants;
 use net\authorize\api\controller as AnetController;
@@ -386,9 +387,13 @@ trait Billable
 
         if($this->subscription()) {
             if($this->upgrade_plan){
-                $this->subscription()->cancelNow();
+                if(!$this->isOnCoupon()){
+                    $this->subscription()->cancelNow();
+                }
             }else{
-                $this->subscription()->cancel();
+                if(!$this->isOnCoupon()){
+                    $this->subscription()->cancel();
+                }
                 $this->upgrade_plan = $new_plan;
                 $this->save();
                 $canceledNow = false;
@@ -455,6 +460,23 @@ trait Billable
             }
         } else {
             throw new Exception("ERROR: NO RESPONSE", 1);
+        }
+
+        return false;
+    }
+
+    public function isOnCoupon(){
+        $subscription = $this->subscription();
+
+        if(!$subscription){
+            return false;
+        }
+
+        if(($this->subscription()->authorize_id == '111111111111') &&
+           ($this->subscription()->authorize_payment_id == '111111111111')
+          )
+        {
+            return true;
         }
 
         return false;
