@@ -12,6 +12,7 @@ use App\Note;
 use App\Prayer;
 use App\StrongsConcordance;
 use App\StrongsNasec;
+use App\User;
 use App\UsersViews;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
@@ -675,5 +676,43 @@ class ReaderController extends Controller
     {
         Cookie::queue(Cookie::forever('readerMode', $mode));
         return Redirect::to(URL::previous());
+    }
+
+    public function anyBookmark($type,$bibleVersion,$verseId)
+    {
+        $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
+        $model = $versesModel::find($verseId);
+        $user = Auth::user();
+        if (!$model) {
+            abort(404);
+        }
+        if (!$user) {
+            abort(403);
+        }
+        $bookmarked = 0;
+        if(!$model->bookmarks()->where('user_id',Auth::user()->id)->where('bookmark_type', $type)->get()->count()){
+            $model->bookmarks()->attach($user->id,['bookmark_type' => $type,'bible_version' => $bibleVersion]);
+            $bookmarked = 1;
+        }
+        return $bookmarked;
+    }
+
+    public function anyDeleteBookmark($type,$bibleVersion,$verseId)
+    {
+        $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
+        $model = $versesModel::find($verseId);
+        $user = Auth::user();
+        if (!$model) {
+            abort(404);
+        }
+        if (!$user) {
+            abort(403);
+        }
+        $bookmarked = 0;
+        if($model->bookmarks()->where('user_id',Auth::user()->id)->where('bookmark_type', $type)->get()->count()){
+            $model->bookmarks()->detach($user->id,['bookmark_type' => $type,'bible_version' => $bibleVersion]);
+            $bookmarked = 1;
+        }
+        return $bookmarked;
     }
 }

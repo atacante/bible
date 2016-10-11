@@ -148,6 +148,16 @@
 
                             {{-- Right icons panel --}}
                             <ul class="icon-panel top-vertical1">
+                                {{--@role('user')--}}
+                                <li>
+                                    <a href="{!! url('reader/delete-bookmark',[App\User::BOOKMARK_CHAPTER,$content['version_code'],$content['verses'][0]->id]) !!}" class="j-bookmark {!! ViewHelper::checkBookmark(App\User::BOOKMARK_CHAPTER,$content['verses'][0])?'':'hidden' !!}">
+                                        <i title="Remove from bookmarks" class="fa fa-bookmark cu-print" style="font-size: 2rem;"></i>
+                                    </a>
+                                    <a href="{!! url('reader/bookmark',[App\User::BOOKMARK_CHAPTER,$content['version_code'],$content['verses'][0]->id]) !!}" class="j-bookmark {!! !ViewHelper::checkBookmark(App\User::BOOKMARK_CHAPTER,$content['verses'][0])?'':'hidden' !!}">
+                                        <i title="Add to bookmarks" class="fa fa-bookmark-o cu-print" style="font-size: 2rem;"></i>
+                                    </a>
+                                </li>
+                                {{--@endrole--}}
                                 <li>
                                     <a href="#" class="j-btn-compare">
                                         <i class="bs-compare cu-print"></i>

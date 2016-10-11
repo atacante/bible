@@ -410,4 +410,23 @@ class ViewHelper
         }
         return false;
     }
+
+    public static function getBookmarkIcon($type,$verse)
+    {
+        $class = 'fa-bookmark-o';
+        $title = 'Add to bookmarks';
+        if(self::checkBookmark($type,$verse)){
+            $class = 'fa-bookmark';
+            $title = 'Remove from bookmarks';
+        }
+        return '<i title="'.$title.'" class="fa '.$class.' cu-print" style="font-size: 2rem;"></i>';
+    }
+
+    public static function checkBookmark($type,$verse)
+    {
+        if(Auth::check()){
+            return (boolean)$verse->bookmarks()->where('user_id',Auth::user()->id)->where('bookmark_type', $type)->get()->count();
+        }
+        return false;
+    }
 }
