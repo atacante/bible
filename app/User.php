@@ -367,7 +367,10 @@ class User extends Authenticatable
     public function downgradeToFree()
     {
         if($this->subscription()){
-            $this->subscription()->cancel();
+
+            if(!$this->isOnCoupon()){
+                $this->subscription()->cancel();
+            }
 
             if($this->subscription()->onGracePeriod()){
                 $this->plan_type = self::PLAN_PREMIUM;
