@@ -1,0 +1,378 @@
+/*---------------------- Fonts --------------------------*/
+@font-face {
+    font-family: 'bs';
+    src: url('/fonts/bs.eot');
+    src: url('/fonts/bs.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/bs.woff') format('woff'),
+    url('/fonts/bs.ttf') format('truetype'),
+    url('/fonts/bs.svg#bs') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/*----------------- Icons Set ---------------------*/
+[class^="bs-"], [class*=" bs-"] {
+    font-family: 'bs' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none !important;
+}
+.bs-login:before {
+    content: "\e93d";
+}
+.bs-copypaste:before {
+    content: "\e937";
+}
+.bs-logout:before {
+    content: "\e938";
+}
+.bs-arrowbottom:before {
+    content: "\e939";
+}
+.bs-edit:before {
+    content: "\e93a";
+}
+.bs-hamburger:before {
+    content: "\e93b";
+}
+.bs-home:before {
+    content: "\e93c";
+}
+.bs-upload:before {
+    content: "\e935";
+}
+.bs-calendar:before {
+    content: "\e936";
+}
+.bs-add:before {
+    content: "\e917";
+}
+.bs-remove:before {
+    content: "\e91d";
+}
+.bs-checkmark:before {
+    content: "\e91e";
+}
+.bs-s-groupscustom:before {
+    content: "\e91f";
+}
+.bs-s-groups:before {
+    content: "\e920";
+}
+.bs-friends:before {
+    content: "\e921";
+}
+.bs-user:before {
+    content: "\e922";
+}
+.bs-invite:before {
+    content: "\e923";
+}
+.bs-arrowrt:before {
+    content: "\e924";
+}
+.bs-arrowback:before {
+    content: "\e925";
+}
+.bs-contactus:before {
+    content: "\e926";
+}
+.bs-faq:before {
+    content: "\e927";
+}
+.bs-seminars:before {
+    content: "\e928";
+}
+.bs-producticon:before {
+    content: "\e929";
+}
+.bs-cart:before {
+    content: "\e92a";
+}
+.bs-parallel:before {
+    content: "\e92b";
+}
+.bs-people:before {
+    content: "\e92c";
+}
+.bs-places:before {
+    content: "\e92d";
+}
+.bs-s-onlyme:before {
+    content: "\e92e";
+}
+.bs-s-public:before {
+    content: "\e92f";
+}
+.bs-report:before {
+    content: "\e930";
+}
+.bs-comments:before {
+    content: "\e931";
+}
+.bs-like:before {
+    content: "\e932";
+}
+.bs-publicwall:before {
+    content: "\e933";
+}
+.bs-blog:before {
+    content: "\e934";
+}
+.bs-lexicon:before {
+    content: "\e900";
+}
+.bs-pray:before {
+    content: "\e901";
+}
+.bs-journal:before {
+    content: "\e902";
+}
+.bs-note:before {
+    content: "\e903";
+}
+.bs-study:before {
+    content: "\e904";
+}
+.bs-staroutlined:before {
+    content: "\e905";
+}
+.bs-starsolid:before {
+    content: "\e906";
+}
+.bs-arrowdown:before {
+    content: "\e907";
+}
+.bs-close:before {
+    content: "\e908";
+}
+.bs-arrowright:before {
+    content: "\e909";
+}
+.bs-arrowleft:before {
+    content: "\e90a";
+}
+.bs-search:before {
+    content: "\e90b";
+}
+.bs-compare:before {
+    content: "\e90c";
+}
+.bs-print:before {
+    content: "\e90d";
+}
+.bs-settings:before {
+    content: "\e90e";
+}
+.bs-myjourney:before {
+    content: "\e90f";
+}
+.bs-googleplussmall:before {
+    content: "\e910";
+}
+.bs-twittersmall:before {
+    content: "\e911";
+}
+.bs-fbsmall:before {
+    content: "\e912";
+}
+.bs-googleplus:before {
+    content: "\e913";
+}
+.bs-biblestudylogo:before {
+    content: "\e914";
+}
+.bs-community:before {
+    content: "\e915";
+}
+.bs-exploer:before {
+    content: "\e916";
+}
+.bs-fb:before {
+    content: "\e918";
+}
+.bs-gift:before {
+    content: "\e919";
+}
+.bs-reader:before {
+    content: "\e91a";
+}
+.bs-twitter:before {
+    content: "\e91b";
+}
+.bs-verseoftheday:before {
+    content: "\e91c";
+}
+
+/* ------------- Icons customization ------------- */
+.cu-gift {
+    color: #ffffff;
+    font-size: 5.43rem;
+}
+.cu-gift2 {
+    color: #00b9f7;
+    font-size: 2.86rem;
+    display: inline-block;
+    padding-right: 15px;
+    vertical-align: sub;
+}
+.cu-add {
+    color: #00b9f7;
+    font-size: 1.29rem;
+    display: inline-block;
+    padding-right: 7px;
+    vertical-align: middle;
+}
+.cu-lexicon {
+    color: #00b9f7;
+    font-size: 2.29rem;
+    display: inline-block;
+    padding-right: 10px;
+    vertical-align: text-bottom;
+}
+.cu-places {
+    color: #00b9f7;
+    font-size: 2.43rem;
+    display: inline-block;
+    padding-right: 5px;
+    vertical-align: text-bottom;
+}
+.cu-people {
+    color: #00b9f7;
+    font-size: 2.43rem;
+    display: inline-block;
+    padding-right: 5px;
+    vertical-align: text-bottom;
+}
+.cu-print {
+    font-size: 1.79rem;
+    line-height: 1.79rem;
+    color: #00b9f7;
+}
+.cu-study {
+    color: #00b9f7;
+    font-size: 1.71rem;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.cu-study2 {
+    color: #00b9f7;
+    display: inline-block;
+    font-size: 2.5rem;
+    padding-right: 7px;
+    vertical-align: middle;
+}
+.cu-login {
+    color: #00b9f7;
+    display: inline-block;
+    font-size: 2rem;
+    padding-right: 7px;
+    vertical-align: bottom;
+    line-height: 2.14rem;
+}
+.cu-producticon {
+    color: #d2d7dc;
+    font-size: 5rem;
+    display: block;
+    text-align: center;
+    padding-top: 90px;
+}
+.cu-note {
+    color: #fea841;
+    font-size: 1.86rem;
+    margin-right: 15px;
+    vertical-align: sub;
+}
+.cu-jornal {
+    color: #6397c4;
+    font-size: 1.86rem;
+    margin-right: 15px;
+    vertical-align: sub;
+}
+.cu-pray {
+    color: #4cbb95;
+    font-size: 1.86rem;
+    margin-right: 15px;
+    vertical-align: sub;
+}
+.cu-starsolid-settings {
+    color: #36a741;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    padding: 0 0 2px 0;
+    font-size: 0.86rem;
+    border-radius: 5px;
+}
+.parallel-verses .cu-starsolid-settings {
+    background: #f3f3f3;
+}
+.cu-starsolid-settings-popup {
+    color: #fff;
+    position: absolute;
+    left: -30px;
+    top: 8px;
+    background: #36a741;
+    padding: 0;
+    font-size: 0.86rem;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    line-height: 0.93rem;
+    text-align: center;
+}
+.cu-bs-contactus {
+    font-size: 0.86rem !important;
+    vertical-align: initial !important;
+}
+.cu-bs-people {
+    font-size: 1.07rem !important;
+}
+.cu-bs-places{
+    font-size: 1.29rem !important;
+}
+.cu-bs-biblestudylogo{
+    font-size: 1.29rem !important;
+}
+.cu-bs-gift{
+    font-size: 1.14rem !important;
+}
+.cu-bs-blog{
+    font-size: 1rem !important;
+}
+.cu-bs-study{
+    font-size: 1.15rem !important;
+}
+.cu-bs-faq{
+    font-size: 1.21rem !important;
+}
+.icon-date-from{
+    position: absolute;
+    right: 56%;
+    top: 12px;
+    font-size: 1.36rem;
+}
+.icon-date-to{
+    position: absolute;
+    right: 12px;
+    top: 13px;
+    font-size: 1.36rem;
+}
+i.bs-note{
+    color: #fcab4b;
+}
+i.bs-journal{
+    color: #5d93c2;
+}
+i.bs-pray{
+    color: #49ba93;
+}
+.cu-s-public {
+    vertical-align: text-top;
+}

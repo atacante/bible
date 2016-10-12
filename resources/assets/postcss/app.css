@@ -1,0 +1,17 @@
+@import url('variables.css');
+@import url('fonts.css');
+@import url('icons.css');
+@import url('media-queries.css');
+@import url('./components/*.css');
+@import url('./pages/*.css');
+@import url('media-queries-temp.css');
+@import url('other-styles-temp.css');
+
+html {
+  font-size: 14px;
+}
+
+body{
+  font-family: work_sansregular;
+  overflow-x: hidden;
+}

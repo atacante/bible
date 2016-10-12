@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'ns_wide_bookbold';
+    src: url('/fonts/Novecentosanswide-Bold-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Bold-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Bold-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Bold-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Bold-webfont.svg#ns_wide_bookbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widebook';
+    src: url('/fonts/Novecentosanswide-Book-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Book-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Book-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Book-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Book-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Book-webfont.svg#ns_widebook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widedemibold';
+    src: url('/fonts/Novecentosanswide-DemiBold-webfont.eot');
+    src: url('/fonts/Novecentosanswide-DemiBold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-DemiBold-webfont.svg#ns_widedemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widelight';
+    src: url('/fonts/Novecentosanswide-Light-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Light-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Light-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Light-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Light-webfont.svg#ns_widelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widemedium';
+    src: url('/fonts/Novecentosanswide-Medium-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Medium-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Medium-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Medium-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Medium-webfont.svg#ns_widemedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ns_widenormal';
+    src: url('/fonts/Novecentosanswide-Normal-webfont.eot');
+    src: url('/fonts/Novecentosanswide-Normal-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Novecentosanswide-Normal-webfont.woff2') format('woff2'),
+    url('/fonts/Novecentosanswide-Normal-webfont.woff') format('woff'),
+    url('/fonts/Novecentosanswide-Normal-webfont.ttf') format('truetype'),
+    url('/fonts/Novecentosanswide-Normal-webfont.svg#ns_widenormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'work_sansblack';
+    src: url('/fonts/worksans-black-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansbold';
+    src: url('/fonts/worksans-bold-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansextrabold';
+    src: url('/fonts/worksans-extrabold-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-extrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansextralight';
+    src: url('/fonts/worksans-extralight-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-extralight-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sanslight';
+    src: url('/fonts/worksans-light-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansmedium';
+    src: url('/fonts/worksans-medium-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansregular';
+    src: url('/fonts/worksans-regular-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sanssemibold';
+    src: url('/fonts/worksans-semibold-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'work_sansthin';
+    src: url('/fonts/worksans-thin-webfont.woff2') format('woff2'),
+    url('/fonts/worksans-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

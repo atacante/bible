@@ -1,0 +1,11 @@
+.a-kit {
+  text-decoration: underline;
+  color: #00b9f7;
+}
+.a-kit:hover {
+  text-decoration: none;
+  color: #00b9f7;
+}
+a {
+  outline: none !important;
+}

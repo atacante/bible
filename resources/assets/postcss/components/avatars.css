@@ -1,0 +1,83 @@
+.user-image {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: -2px;
+    left: 10px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    overflow: hidden;
+    background: url('/images/default.jpg') center center no-repeat;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+}
+.friend-image {
+    width: 100%;
+    height: 177px;
+    position: relative;
+    overflow: hidden;
+    background: url('/images/default.jpg') center no-repeat;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+}
+.group-image {
+    width: 100%;
+    height: 177px;
+    position: relative;
+    overflow: hidden;
+    background: url('/images/default-group.png') center center no-repeat;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+}
+.people-image {
+    width: 100%;
+    height: 260px;
+    position: relative;
+    overflow: hidden;
+    background: url('/images/default.jpg') center no-repeat;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+}
+.product-image {
+    width: 100%;
+    height: 260px;
+    position: relative;
+    overflow: hidden;
+    background: #79858f;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    cursor: pointer;
+    border-bottom: 1px solid #e3e3e3;
+    display: block;
+}
+.product-image-big {
+    width: 100%;
+    height: 340px;
+    position: relative;
+    overflow: hidden;
+    background: #79858f;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    border-bottom: 1px solid #e3e3e3;
+    display: block;
+}
+.img-thumbnail {
+    border-radius: 0;
+    border: 1px solid #e8e8e8;
+    width: 97px;
+    height: 97px;
+    padding: 2px;
+}
+.verse-image {
+    width: 170px;
+    height: 184px;
+}
+.user-avatar {
+    border-radius: 50%;
+}
+.cu-ui2 {
+    height: 42px !important;
+    width: 42px !important;
+    left: 0px !important;
+    top: 0 !important;
+}

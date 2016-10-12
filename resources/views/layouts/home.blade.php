@@ -19,7 +19,7 @@
         <meta property="twitter:title" content="Bible">
         <meta property="twitter:description" content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei.">
     @show
-        {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css')!!}
+        {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css')!!}
         {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')!!}
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css')!!}
         {!!Html::style('js/bootstrap-datepicker/css/bootstrap-datepicker3.css')!!}
@@ -27,8 +27,9 @@
         {!!Html::style('js/dropzone/dist/min/basic.min.css')!!}
         {!!Html::style('js/dropzone/dist/min/dropzone.min.css')!!}
 
-        {!!Html::style(Asset::v('/css/style.css'))!!}
-        {!!Html::style(Asset::v('/css/temp.css'))!!}
+        {{-- {!!Html::style(Asset::v('/css/style.css'))!!} --}}
+        {{-- {!!Html::style(Asset::v('/css/style.css'))!!} --}}
+        {!!Html::style(Asset::v('/css/app.css'))!!}
 
         {!!Html::style('css/ionicons-2.0.1/css/ionicons.min.css')!!}
 

@@ -1,0 +1,314 @@
+ul.journey-top-panel {
+    display: block;
+    background: white;
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin-bottom: 40px;
+}
+ul.journey-top-panel li {
+    display: inline-block;
+    border-left: 1px solid #e3e3e3;
+    min-height: 123px;
+    box-sizing: border-box;
+    text-align: center;
+}
+ul.journey-top-panel li:first-child {
+    border-left: none;
+}
+.w1 {
+    width: 165px;
+    float: right;
+}
+.i-ansvered {
+    display: inline-block;
+    color: #00a65a !important;
+}
+.i-ansvered i {
+    color: #00a65a !important;
+    display: inline-block;
+    font-size: 1.36rem !important;
+    padding-left: 5px;
+}
+a.create-record {
+    display: block;
+    width: 250px;
+    height: 123px;
+    background: #00b9f7;
+    color: #ffffff !important;
+    font-size: 1.29rem;
+    font-family: ns_widenormal;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    line-height: 120px;
+}
+a.create-record:hover {
+    background: #79858f;
+}
+a.create-record i {
+    font-size: 2.29rem;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.a-create-journey {
+    text-decoration: none !important;
+    min-height: 122px;
+    display: block;
+}
+.a-create-journey:hover {
+    cursor: default;
+}
+.acj-counter {
+    font-size: 3.57rem;
+    font-family: ns_widenormal;
+    padding-top: 5px;
+}
+.acj-counter i {
+    font-size: 2.14rem;
+    font-family: ns_widenormal;
+}
+.c-user-journey {
+    padding-left: 96px;
+    margin: 35px 0 0 20px;
+}
+.jorney-ui {
+    margin-left: -96px;
+    position:relative;
+    float:left;
+}
+.user-descr {
+    color: #a9a9a9;
+    font-family: work_sansmedium;
+    font-size: 0.93rem;
+    line-height: 1.43rem;
+}
+.user-name {
+    color: #505050;
+    font-family: work_sansmedium;
+    font-size: 1.29rem;
+}
+.journey-list {
+    display: block;
+    background: white;
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+.journey-list li {
+    display: block;
+    border-bottom: 1px solid #e3e3e3;
+    position: relative;
+    padding: 30px 30px 30px 120px;
+}
+.journey-list li:hover {
+    background: #f3f6f9;
+}
+.journey-list li:hover .journey-text-link {
+    text-decoration: underline;
+    color: #00b9f7 !important;
+}
+.journey-text-link {
+    font-family: work_sansregular;
+    font-size: 1.07rem;
+    color: #1b1b1b !important;
+    line-height: 1.5rem;
+}
+.c-journey-top {
+    overflow: hidden;
+}
+.journey-title {
+    float: left;
+    font-family: work_sanssemibold;
+    color: #313d47;
+    font-size: 1.14rem;
+}
+.journey-title a {
+    font-family: work_sanssemibold;
+    color: #313d47;
+    font-size: 1.14rem;
+    text-decoration: underline;
+}
+.journey-title a:hover {
+    text-decoration: none;
+}
+.journey-title a i {
+    background: black;
+    color: white;
+    display: inline-block;
+    height: 17px;
+    width: 17px;
+    line-height: 1.21rem;
+    text-align: center;
+    font-size: 0.5rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    vertical-align: text-top;
+}
+.journey-title a:hover i {
+    background: #79858f;
+}
+.c-journey-date {
+    float: right;
+    font-size: 0.93rem;
+}
+.c-journey-bottom {
+    overflow: hidden;
+}
+.c-journey-tags {
+    float: left;
+}
+.c-journey-relations {
+    float: right;
+}
+.c-journey-relations i{
+    color: #00b9f7 !important;
+}
+.tu-text {
+    text-transform: capitalize;
+}
+.link-tag {
+    color: #00b9f7;
+    font-family: work_sansregular;
+    font-size: 1.07rem;
+    text-decoration: underline;
+    margin-right: 8px;
+}
+.link-tag:hover {
+    text-decoration: none;
+}
+.rel-label {
+    color: #313d47;
+    font-family: work_sanssemibold;
+    font-size: 1.07rem;
+    display: inline-block;
+    margin-right: 10px;
+}
+.rel-link {
+    margin-right: 10px;
+    font-family: work_sanssemibold;
+    font-size: 1rem;
+    text-decoration: none !important;
+}
+.rel-link i {
+    vertical-align: middle;
+    font-size: 1.29rem;
+}
+.popup-title1 {
+    margin: 0;
+    font-family: ns_widenormal;
+    font-size: 1.29rem;
+    color: #505050;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+}
+.cu1-settings {
+    color: #00b9f7;
+    margin-right: 10px;
+}
+.inner-pad4 {
+    padding: 35px 30px 65px;
+}
+.advansed-pop label {
+    color: #535353;
+    padding-top: 10px;
+}
+.input-daterange .input-group-addon {
+    background: white;
+    color: #535353;
+    font-family: work_sansmedium;
+    font-size: 1.14rem;
+    font-weight: normal;
+    border: none !important;
+    padding: 0 10px 0 10px;
+}
+.advansed-pop label.label-checkbox {
+    margin-right: 20px;
+}
+.advansed-pop label.label-checkbox:before {
+    top: 14px !important;
+}
+.adv-search {
+    top: 12px;
+    right: 64px;
+    color: #00b9f7;
+    text-transform: capitalize;
+    cursor: pointer;
+    font-family: work_sansregular;
+    font-size: 1.14rem;
+}
+.adv-search:hover {
+    color: #79858f;
+}
+.adv-search i {
+    font-size: 1.29rem;
+    vertical-align: middle;
+    margin-right: 3px;
+}
+.search-back {
+    right: 0 !important;
+    padding: 11px 14px 5px;
+    background-color: #00b9f7;
+    font-size: 1.43rem;
+    color: #ffffff;
+    cursor: pointer;
+}
+.search-back:hover {
+    display: inline-block;
+    background: #79858f;
+    color: #ffffff;
+    text-decoration: none !important;
+}
+.white-search {
+    background: white;
+    border: 1px solid #e3e3e3;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding-right: 240px;
+}
+.white-search:hover {
+    border: 1px solid #00b9f7;
+}
+.c-white-block {
+    -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
+}
+.popup-create-record ul{
+    padding-left: 0;
+}
+.popup-create-record li{
+    list-style: none;
+}
+.popup-create-record li a{
+    text-transform: uppercase;
+    font-family: ns_widedemibold;
+    color: #6b6b6b;
+    font-size: 1rem;
+    padding: 11px 30px;
+    text-align: left;
+    position: relative;
+    border: none;
+    text-decoration: none;
+    display: block;
+    line-height: 1rem;
+}
+.popup-create-record li a:hover{
+    background: #00b9f7 !important;
+    color: white !important;
+}
+.popup-create-record li i {
+    color: #00b9f7;
+    width: 20px;
+    display: inline-block;
+    font-size: 1.07rem;
+    vertical-align: text-bottom;
+}
+.popup-create-record li a:hover i{
+    color: white;
+}

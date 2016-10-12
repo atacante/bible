@@ -1,74 +1,114 @@
-<h2>Order is placed</h2>
-<div class="box box-success">
-    <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-            </thead>
-            <tbody>
-            @if($order->orderItems->count())
-                @foreach($order->orderItems as $row)
-                    <tr>
-                        <td>
-                            <div class="pull-left" style="margin-right: 10px;">
-                                @if($row->product->images->count())
-                                    <img class="img-thumbnail" height="100" width="100" data-dz-thumbnail="" alt="" src="{!! url(Config::get('app.productImages').'thumbs/'.$row->product->images[0]->image) !!}" />
-                                @else
-                                    <div class="no-avatar img-thumbnail">
-                                        <div class="no-avatar-text text-center"><i class="fa fa-shopping-cart fa-4x"></i></div>
-                                    </div>
-                                @endif
-                            </div>
-                            <p><strong>{!! $row->product->name !!}</strong></p>
-                        </td>
-                        <td>{!! $row->qty !!}</td>
-                        <td>{!! $row->product->price !!}</td>
-                        <td> {!! $row->product->price * $row->qty !!} </td>
-                    </tr>
-                @endforeach
-            @else
+    <table class="kit-table1 pull-left" style="width:49%">
+        <thead>
+        <tr>
+            <th colspan="2">
+                Ship To
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="label1">
+                Name:
+            </td>
+            <td style="padding-right: 5px">
+                {{ $order->userMeta->shipping_first_name.' '.$order->userMeta->shipping_last_name }}
+            </td>
+        </tr>
+        <tr>
+            <td class="label1">
+                Address:
+            </td>
+            <td style="padding-right: 5px">
+                {{
+                   $order->userMeta->shipping_postcode.', '.
+                   $order->userMeta->shipping_address.', '.
+                   $order->userMeta->shipping_city.', '.
+                   $order->userMeta->shipping_state.', '.
+                   $order->userMeta->shipping_country
+                }}
+            </td>
+        </tr>
+        <tr>
+            <td class="label1">
+                Email:
+            </td>
+            <td style="padding-right: 5px">
+                {{ $order->userMeta->shipping_email }}
+            </td>
+        </tr>
+        <tr>
+            <td class="label1">
+                Phone:
+            </td>
+            <td style="padding-right: 5px">
+                {{ $order->userMeta->shipping_phone }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <table class="kit-table1 pull-right" style="width:50%">
+        <thead>
+        <tr>
+            <th style="width: 140px">Order Placed</th>
+            <th style="width: 40%"></th>
+            <th>Quantity</th>
+            <th style="padding-right: 5px">Price</th>
+            {{--<th style="width:12%">Subtotal</th>--}}
+        </tr>
+        </thead>
+        <tbody>
+        @if($order->orderItems->count())
+            @foreach($order->orderItems as $row)
                 <tr>
-                    <td colspan="9">
-                        <p class="text-center">No items added</p>
+                    <td>
+                        @if($row->product->images->count())
+                            <img style="width:80px; height:80px " class="img-thumbnail" data-dz-thumbnail="" alt="" src="{!! url(Config::get('app.productImages').'thumbs/'.$row->product->images[0]->image) !!}" />
+                        @else
+                            <div class="no-avatar img-thumbnail">
+                                <div class="no-avatar-text text-center"><i class="fa fa-shopping-cart fa-4x"></i></div>
+                            </div>
+                        @endif
                     </td>
+                    <td>
+                        <p>{!! $row->product->name !!}</p>
+                    </td>
+                    <td>{!! $row->qty !!}</td>
+                    <td style="padding-right: 5px">${!! $row->product->price !!}</td>
+                    {{--<td>${!! $row->product->price * $row->qty !!} </td>--}}
                 </tr>
-            @endif
-            </tbody>
-            <tfoot>
+            @endforeach
+        @else
             <tr>
-                <td colspan="2">&nbsp;</td>
-                <td>Total</td>
-                <td><?php echo $order->total_paid; ?></td>
+                <td colspan="8">
+                    <p class="text-center">No items added</p>
+                </td>
             </tr>
-            </tfoot>
-        </table>
+        @endif
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td class="label1">Subtotal</td>
+            <td style="padding-right: 5px">${!! $order->subtotal !!}</td>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td class="label1">Tax</td>
+            <td style="padding-right: 5px">${!! $order->tax !!}</td>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td class="label1">Total</td>
+            <td style="padding-right: 5px">${!! $order->total_paid !!}</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <div class="clearfix"></div>
+    <div class="mb1">
+        {!! Html::link(url('/shop'),'Back To Shop', ['class'=>'btn2-kit pull-right']) !!}
+        <div class="clearfix"></div>
     </div>
     <!-- /.box-body -->
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading"><h4>Customer Details</h4></div>
-    <div class="panel-body">
-        <div class="box-body">
-            @foreach($order->userMeta->getFillable() as $key => $property)
-                @if($property != 'user_id')
-                    @if($key == 1 || $key == 10)
-                        <div class="col-md-6">
-                            @endif
-                            <div class="form-group">
-                                {!!  Form::label($property, ucwords(str_replace('_',' ', $property))) !!}
-                                {!!  Form::text($property, $order->userMeta->$property, ['class' => 'form-control', 'disabled' => true]) !!}
-                            </div>
-                            @if($key == 9 || $key == 18)
-                        </div>
-                    @endif
-                @endif
-            @endforeach
-        </div>
-    </div>
-</div>

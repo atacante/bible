@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav id="header" class="navbar navbar-default">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle Navigation</span>
@@ -81,7 +81,7 @@
                     </li>
                     <li>
                         <a href="{{ URL::to('/site/how-it-works') }}">
-                            <i class="fa fa-question-circle cu-nav-icons" style="font-size: 1.3rem;"></i>
+                            <i class="fa fa-question-circle-o cu-nav-icons" style="font-size: 1.3rem; vertical-align: text-bottom;"></i>
                             How It Works
                         </a>
                     </li>
@@ -93,7 +93,7 @@
                     </li>
                     <li>
                         <a href="{{ URL::to('/site/recommended-resources') }}">
-                            <i class="bs-upload cu-bs-biblestudylogo"></i>
+                            <i class="bs-upload cu-bs-biblestudylogo" style="vertical-align: text-bottom;"></i>
                             Recommended Resources
                         </a>
                     </li>
@@ -109,12 +109,12 @@
                             Blog
                         </a>
                     </li>--}}
-                    <li>
-                        <a href="{{ URL::to('/site/faq') }}">
-                            <i class="bs-faq cu-bs-faq"></i>
-                            FAQ
-                        </a>
-                    </li>
+                    {{--<li>--}}
+                        {{--<a href="{{ URL::to('/site/faq') }}">--}}
+                            {{--<i class="bs-faq cu-bs-faq"></i>--}}
+                            {{--FAQ--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                     <li>
                         <a href="{{ URL::to('/site/contact') }}">
                             <i class="bs-contactus cu-bs-contactus"></i>

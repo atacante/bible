@@ -18,6 +18,23 @@ job_for_dev:
     - dev
   environment: dev
 
+node_job_for_dev:
+  stage: dev
+  script:
+    - hostname
+    - cd /var/www/clients/client3/web1/web
+    - pwd
+    - node --version
+    - npm i
+    - npm run build
+    - find /var/www/clients/client3/web1/web/ -user root -exec chown 5004:5005 {} \;
+  only:
+    - dev
+  tags:
+    - sh1_clevercrew_docker
+  image: node
+  environment: dev
+
 job_for_alpha:
   stage: alpha
   before_script:
@@ -51,6 +68,21 @@ job_for_beta:
     - beta
   tags:
     - beta
+  environment: staging
+
+node_job_for_beta:
+  stage: beta
+  script:
+    - export BETA_HOME=/home/bible
+    - cd $BETA_HOME/web
+    - npm i
+    - npm run build
+    - find $BETA_HOME/web -user root -exec chown 1001:1001 {} \;
+  only:
+    - beta
+  tags:
+    -  biblestudyco_docker
+  image: node
   environment: staging
 
 #job_for_live:
