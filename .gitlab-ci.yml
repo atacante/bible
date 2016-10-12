@@ -18,6 +18,20 @@ job_for_dev:
     - dev
   environment: dev
 
+node_job_for_dev:
+  stage: dev
+  script:
+    - hostname
+    - cd /var/www/clients/client3/web1/web
+    - pwd
+    - node --version
+  only:
+    - dev
+  tags:
+    - sh1_clevercrew_docker
+  image: node
+  environment: dev
+
 job_for_alpha:
   stage: alpha
   before_script:
