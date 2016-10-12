@@ -723,10 +723,11 @@ ul.tabs-nav li:last-child {
     border-radius: 50%;
     -webkit-border-radius: 50%;
     overflow: hidden;
+    padding: 0;
 }
 #avatar.dropzone .dz-preview .dz-image {
-    width: 140px;
-    height: 140px;
+    width: 140px !important;
+    height: 140px !important;
 }
 #avatar.dropzone .dz-preview{
     margin: 0;
