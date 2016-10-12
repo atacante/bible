@@ -1080,15 +1080,3 @@ a.my-bookmarks:hover{
 .dropdown-menu .popup-arrow{
     transform: rotate(45deg);
 }
-
-
-/* HOME */
-.h-ill5 {
-    background: url('/images/p5-home.jpg') left center no-repeat;
-    min-height: 449px;
-}
-
-.home .bg-home {
-    background: url('/images/bg-home-header.jpg') center top no-repeat;
-    max-width: 100%;
-}

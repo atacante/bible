@@ -1588,7 +1588,7 @@ $(document).ready(function(){
     });
 
     $(".j-btn-settings").on("click", function(e){
-        var left = 330;
+        var left = 320;
         var top = 25;
         if($(this).parents('.j-parallel-verses').length > 0){
             left = 235;

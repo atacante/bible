@@ -1235,9 +1235,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     min-height: 650px;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e6e6+30,e5e6e6+98 */
     background: rgb(255,255,255); /* Old browsers */ /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e6e6 680px,#e5e6e6 100%);
     background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,230,230,1) 680px,rgba(229,230,230,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  #ffffff 0%,#e5e6e6 680px,#e5e6e6 100%);
     background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(229,230,230,1) 680px,rgba(229,230,230,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e6e6',GradientType=0 ); /* IE6-9 */
 }
@@ -1262,9 +1260,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 }
 .c-center-content3 {
     background: rgb(133,203,246); /* Old browsers */ /* FF3.6-15 */
-    background: -webkit-linear-gradient(left,  #85cbf6 0%,#85cbf6 31%,#94e4ee 100%);
     background: -webkit-linear-gradient(left,  rgba(133,203,246,1) 0%,rgba(133,203,246,1) 31%,rgba(148,228,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right,  #85cbf6 0%,#85cbf6 31%,#94e4ee 100%);
     background: linear-gradient(to right,  rgba(133,203,246,1) 0%,rgba(133,203,246,1) 31%,rgba(148,228,238,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85cbf6', endColorstr='#94e4ee',GradientType=1 ); /* IE6-9 */
 }
@@ -2260,7 +2256,6 @@ ul.c-social li a:hover, ul.c-social li a:active {
     font-size: 2.57rem;
 }
 .spinner {
-    background: #ffffff url('/images/ajax-loader.gif') center no-repeat;
     background: rgba(255, 255, 255, 0.5) url('/images/ajax-loader.gif') center no-repeat;
     position: fixed;
     top: 0;
@@ -3361,23 +3356,19 @@ h4.h4-sub-kit {
   max-width: 100%;
 }
 .home .bg-home {
-  background: url('/images/bg-home-header2.png') center top no-repeat;
+  background: url('/images/bg-home-header.jpg') center top no-repeat;
   max-width: 100%;
 }
 .bg-g1 {
   min-height: 650px; /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  #ffffff 0%, #ffffff 30%, #ffffff 100%);
   background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  #ffffff 0%, #ffffff 30%, #ffffff 100%);
   background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='rgba(0, 255, 255, 1)',GradientType=0 ); /* IE6-9 */
 }
 .home .bg-g1 {
   min-height: 650px;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.4+0,0+100 */ /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  #000000 0%,#000000 100%);
   background: -webkit-linear-gradient(top,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  #000000 0%,#000000 100%);
   background: linear-gradient(to bottom,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(102, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0)',GradientType=0 ); /* IE6-9 */
 }
@@ -5489,13 +5480,11 @@ a.view-details:hover{
     color: rgba(255, 255, 255, 0.8);
     display: block;
     z-index: 10;
-    background: #000000;
     background: rgba(0, 0, 0, 0.1);
     text-decoration: none;
 }
 .small-box > .small-box-footer:hover {
     color: #fff;
-    background: #000000;
     background: rgba(0, 0, 0, 0.15);
 }
 .small-box h3 {
@@ -5529,7 +5518,6 @@ a.view-details:hover{
     z-index: 0;
     font-size: 90.02px;
     font-size: 6.43rem;
-    color: #000000;
     color: rgba(0, 0, 0, 0.15);
 }
 .small-box:hover {
@@ -5570,13 +5558,11 @@ a.view-details:hover{
     color: rgba(255, 255, 255, 0.8);
     display: block;
     z-index: 10;
-    background: #000000;
     background: rgba(0, 0, 0, 0.1);
     text-decoration: none;
 }
 .mini-box > .mini-box-footer:hover {
     color: #fff;
-    background: #000000;
     background: rgba(0, 0, 0, 0.15);
 }
 .mini-box h3 {
@@ -5611,7 +5597,6 @@ a.view-details:hover{
     z-index: 0;
     font-size: 35px;
     font-size: 2.5rem;
-    color: #000000;
     color: rgba(0, 0, 0, 0.15);
 }
 .mini-box:hover {
@@ -5997,9 +5982,7 @@ a.disabled{
     height: 175px;
     overflow: hidden;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.89+0,0.31+43,0.06+72,0+100 */ /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  #000000 0%,#000000 43%,#000000 72%,#000000 100%);
     background: -webkit-linear-gradient(top,  rgba(0,0,0,0.89) 0%,rgba(0,0,0,0.31) 43%,rgba(0,0,0,0.06) 72%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  #000000 0%,#000000 43%,#000000 72%,#000000 100%);
     background: linear-gradient(to bottom,  rgba(0,0,0,0.89) 0%,rgba(0,0,0,0.31) 43%,rgba(0,0,0,0.06) 72%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(227, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0)',GradientType=0 ); /* IE6-9 */
 }
@@ -6182,15 +6165,6 @@ a.my-bookmarks:hover{
 .dropdown-menu .popup-arrow{
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
-}
-/* HOME */
-.h-ill5 {
-    background: url('/images/p5-home.jpg') left center no-repeat;
-    min-height: 449px;
-}
-.home .bg-home {
-    background: url('/images/bg-home-header.jpg') center top no-repeat;
-    max-width: 100%;
 }
 html {
   font-size: 14px;
