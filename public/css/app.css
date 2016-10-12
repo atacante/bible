@@ -6064,6 +6064,16 @@ a.my-bookmarks:hover{
     font-size: 1.07rem ;
     vertical-align: baseline;
 }
+.c-menu-home .navbar-nav .dropdown-menu .popup-arrow{
+    /*-webkit-background-clip: padding-box;*/
+    /*background-clip: padding-box;*/
+    border-left: 1px solid #81878b;
+    border-top: 1px solid #81878b;
+}
+.dropdown-menu .popup-arrow{
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
 /* HOME */
 .h-ill5 {
     background: url('/images/p5-home.jpg') left center no-repeat;
