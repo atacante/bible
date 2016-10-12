@@ -24,7 +24,7 @@
     @show @section('meta_google')
         <meta itemprop="image" content=""/>
     @show
-        {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css')!!}
+        {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css')!!}
         {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')!!}
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css')!!}
         {!!Html::style('js/bootstrap-datepicker/css/bootstrap-datepicker3.css')!!}
