@@ -12,6 +12,6 @@ Homestead.json
 
 # composer itself is not needed
 composer.phar
-/storage/debugbar/.gitignore
-/public/css/app.css.map
+/storage/debugbar/*
+/public/assets/*
 /public/css/app.css.map
