@@ -10,6 +10,8 @@ job_for_dev:
     - hostname
     - pwd
     - sh /var/www/clients/client3/web1/home/cleartech1/simple-deploy.sh
+    - export PATH=/opt/remi/php70/root/bin/:$PATH && cd /var/www/clients/client3/web1/web && php artisan clear-compiled
+    - export PATH=/opt/remi/php70/root/bin/:$PATH && cd /var/www/clients/client3/web1/web && php artisan optimize
   only:
     - dev
   tags:
@@ -43,6 +45,8 @@ job_for_beta:
     - cd $HOME/web && git pull origin beta 
     - cd $HOME/web && php artisan migrate --force --no-interaction
     - cd $HOME/web && php artisan asset:dist
+    - cd $HOME/web && php artisan clear-compiled
+    - cd $HOME/web && php artisan optimize
   only:
     - beta
   tags:
