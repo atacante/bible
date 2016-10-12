@@ -11,6 +11,9 @@
     "postcss-easy-import": "^1.0.1",
     "postcss-nested": "^1.0.0"
   },
+  "scripts": {
+    "build": "gulp"
+  },
   "dependencies": {
     "laravel-elixir": "^4.0.0",
     "bootstrap-sass": "^3.0.0"
