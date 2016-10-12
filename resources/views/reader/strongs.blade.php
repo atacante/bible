@@ -21,9 +21,19 @@
                     <a class="genesis-arrow" title="Next Strong's Number" href="{!! url('reader/strongs/'.$nextNum.'/'.$content['dictionaryType'],[]) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
                 @endif
             </h3>
+            <div class="btns-panel" style="right: 15px;">
+                <a href="{{ url('/notes/create') }}" class="btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
+                <a href="{{ url('/journal/create') }}" class="btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
+                <a href="{{ url('/prayers/create') }}" class="btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
+            </div>
         </div>
     </div>
-    <div class="row strongs-page" style="line-height: 30px;">
+    <div class="row strongs-page j-strongs-page" style="line-height: 30px;">
+        @if($verse = Session::get('prevVerse'))
+            {!! Form::hidden('bible_version',$verse['version_code']) !!}
+            {!! Form::hidden('verse_id',$verse['verse']->id) !!}
+            <div class="j-verse-text hidden">{!! $verse['verse']->verse_text !!}</div>
+        @endif
         <div class="col-md-6">
             <div class="c-white-content">
                 <div class="inner-pad1">

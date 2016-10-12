@@ -309,6 +309,8 @@ class ReaderController extends Controller
                 ->where('verse_num', $verse)
                 ->first();
 
+            Session::set('prevVerse', $content['main_verse']);
+
             /* Track user views */
             if(Auth::check() && $content['main_verse']['verse']){
                 UsersViews::thackView($content['main_verse']['verse'],UsersViews::CAT_LEXICON,$version_code);
@@ -411,7 +413,7 @@ class ReaderController extends Controller
         return view('reader.my-study-item', ['content' => $content]);
     }
 
-    public function anyStrongs($num,$dictionaryType)
+    public function anyStrongs($num,$dictionaryType,$bibleVersion = false,$verseId = false)
     {
 //        Session::flash('backUrl', Request::fullUrl());
         if (Session::has('backUrl')) {
@@ -447,6 +449,13 @@ class ReaderController extends Controller
         $content['strongNum'] = $num;
         $content['dictionaryType'] = $dictionaryType;
         $content['pages'] = $this->strongsPagination($num,$dictionaryType);
+
+//        $content['verse'] = false;
+//        if($bibleVersion && $verseId){
+//            $verseModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
+//            $content['version_code'] = $bibleVersion;
+//            $content['verse'] = $verseModel::find($verseId);
+//        }
         return view('reader.strongs', ['content' => $content]);
     }
 

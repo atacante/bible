@@ -822,7 +822,7 @@ $(document).ready(function(){
         var text = $('.j-verse-text:first').text();
         var filteredText = text.replace(/^\s+\d+\s+/,'');
 
-        if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0){
+        if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0 || $('.j-strongs-page').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
             url += '&text='+filteredText;
@@ -831,7 +831,7 @@ $(document).ready(function(){
             url += '?rel='+$('input[name="rel"]').val()
         }
         var fullScreenUrl = url;
-        if($(this).parent('.j-reader-actions').length > 0 || $('input[name="verse_details"]').length > 0){
+        if($(this).parent('.j-reader-actions').length > 0 || $('input[name="verse_details"]').length > 0 || $('.j-strongs-page').length > 0){
             url += '&extraFields=1';
             fullScreenLabel = 'My Study Verse';
             fullScreenUrl = $.trim(url.replace('/notes/create','/reader/my-study-verse'));
@@ -872,7 +872,7 @@ $(document).ready(function(){
         var text = $('.j-verse-text:first').text();
         var filteredText = text.replace(/^\s+\d+\s+/,'');
 
-        if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0){
+        if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0  || $('.j-strongs-page').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
             url += '&text='+filteredText;
@@ -881,7 +881,7 @@ $(document).ready(function(){
             url += '?rel='+$('input[name="rel"]').val()
         }
         var fullScreenUrl = url;
-        if($(this).parent('.j-reader-actions').length > 0  || $('input[name="verse_details"]').length > 0){
+        if($(this).parent('.j-reader-actions').length > 0  || $('input[name="verse_details"]').length > 0  || $('.j-strongs-page').length > 0){
             url += '&extraFields=1';
             fullScreenLabel = 'My Study Verse';
             fullScreenUrl = $.trim(url.replace('/journal/create','/reader/my-study-verse'));
@@ -919,7 +919,7 @@ $(document).ready(function(){
         var text = $('.j-verse-text:first').text();
         var filteredText = text.replace(/^\s+\d+\s+/,'');
 
-        if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0){
+        if($('.j-my-study-verse').length > 0 || $('input[name="verse_details"]').length > 0  || $('.j-strongs-page').length > 0){
             url += '?version='+$('input[name="bible_version"]').val()
             url += '&verse_id='+$('input[name="verse_id"]').val();
             url += '&text='+filteredText;
@@ -928,7 +928,7 @@ $(document).ready(function(){
             url += '?rel='+$('input[name="rel"]').val()
         }
         var fullScreenUrl = url;
-        if($(this).parent('.j-reader-actions').length > 0  || $('input[name="verse_details"]').length > 0){
+        if($(this).parent('.j-reader-actions').length > 0  || $('input[name="verse_details"]'  || $('.j-strongs-page').length > 0).length > 0){
             url += '&extraFields=1';
             fullScreenLabel = 'My Study Verse';
             fullScreenUrl = $.trim(url.replace('/prayers/create','/reader/my-study-verse'));
