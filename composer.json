@@ -23,7 +23,8 @@
         "maatwebsite/excel": "~2.1.0",
         "skovmand/mailchimp-laravel": "1.*",
         "gloudemans/shoppingcart":"dev-master",
-        "escapework/laravel-asset-versioning":"0.3.*"
+        "escapework/laravel-asset-versioning":"0.3.*",
+        "johnpaulmedina/laravel-usps": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
