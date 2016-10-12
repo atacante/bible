@@ -3361,7 +3361,6 @@ h4.h4-sub-kit {
 .home-ill-section {
   display: block;
   width: 100%;
-  min-height: 447px;
   background-size: cover !important;
   -webkit-background-size: cover !important;
   -moz-background-size: cover !important;
@@ -3374,15 +3373,19 @@ h4.h4-sub-kit {
 /* --------- backgrounds for sections -------- */
 .h-ill1 {
   background: url('/images/p1-home.png') right center no-repeat;
+  padding-top: 39.2%;
 }
 .h-ill2 {
   background: url('/images/p2-home.png') right center no-repeat;
+  padding-top: 39.2%;
 }
 .h-ill3 {
   background: url('/images/p3-home.png') center center no-repeat;
+  padding-top: 39.2%;
 }
 .h-ill4 {
   background: url('/images/p4-home.png') right center no-repeat;
+  padding-top: 39.2%;
 }
 /* ----------- SEND A GIFT OF LOVE TO A FRIEND  ---------- */
 .cu-verseoftheday {
@@ -3429,6 +3432,7 @@ h4.h4-gift {
   font-size: 22.959px;
   font-size: 1.64rem;
   font-family: ns_widemedium;
+  padding-bottom: 5%;
 }
 .ill-text-pos1 {
   position: absolute;
