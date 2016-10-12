@@ -12,3 +12,4 @@ Homestead.json
 
 # composer itself is not needed
 composer.phar
+/storage/debugbar/.gitignore

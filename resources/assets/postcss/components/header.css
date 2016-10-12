@@ -1,0 +1,274 @@
+.count-prod {
+    font-size: 1.14rem;
+    line-height: 0.79rem;
+}
+.cu-biblestudylogo {
+    color: #00b9f7;
+    margin-right: 15px;
+    font-size: 3.93rem;
+    line-height: 2.57rem;
+}
+.navbar-inner-pages .cu-biblestudylogo {
+    font-size: 46px;
+    line-height: 35px;
+}
+ul.nav.navbar-nav {
+    margin-top: 2px;
+}
+.navbar-inner-pages .navbar-nav i {
+    font-size: 1.07rem;
+}
+.navbar-nav i {
+    font-size: 1.43rem;
+    color: #555555;
+    margin-right: 5px;
+    vertical-align: text-top;
+}
+.home .navbar-nav i {
+    color: #ffffff;
+}
+ul.nav.navbar-nav li  a {
+    text-transform: uppercase;
+    font-family: ns_widedemibold;
+    color: #6b6b6b;
+    font-size: 1.07rem;
+    padding: 11px 18px;
+}
+.home ul.nav.navbar-nav li  a {
+    color: #ffffff;
+}
+.home a.cu-drop-menu-item {
+    color: #ffffff;
+}
+.dropdown-menu li a {
+    color: #6b6b6b !important;
+}
+.navbar-inner-pages ul.nav.navbar-nav li  a {
+    font-size: 0.93rem;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a.active,
+.navbar-default .navbar-nav > li.open > a,
+.navbar-default .navbar-nav > li.open > a:focus,
+.navbar-default .navbar-nav > li.open > a:hover,
+.navbar-default .navbar-right > li > a:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > a:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:focus,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:hover,
+.navbar-inner-pages.navbar-default .navbar-right > li > a:hover{
+    color: white !important;
+    background-color: #00b9f7 !important;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+}
+.navbar-default .navbar-nav > li > a.active,
+.navbar-default .navbar-right > li > a.active,
+.navbar-inner-pages.navbar-default .navbar-right > li > a.active
+{
+    background-color: #313d47 !important;
+}
+ul.dropdown-menu{
+    padding: 10px 0 !important;
+}
+ul.dropdown-menu li{
+    margin: 0px !important;
+}
+ul.dropdown-menu li a{
+    padding: 11px 30px !important;
+}
+ul.dropdown-menu li i{
+    color: #00b9f7 !important;
+    width: 1.29rem;
+    display: inline-block;
+}
+
+.navbar-default .navbar-nav > li > a:hover > i,
+.navbar-default .navbar-nav > li > a.active > i{
+    color: white;
+}
+.navbar-inner-pages.navbar-default .navbar-nav > a:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:focus,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a:hover {
+    background-color: #313d47;
+}
+.navbar-default .navbar-nav > .open > a i,
+.navbar-default .navbar-nav > .open > a:focus i,
+.navbar-default .navbar-nav > .open > a:hover i {
+    color: white;
+}
+ul.nav.navbar-nav li.bord-menu-item  a{
+    border: 2px solid #00b9f7 !important;
+    color: #00b9f7 !important;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    padding: 9px 16px;
+}
+ul.nav.navbar-nav li.bord-menu-item  a:hover{
+    color: white !important;
+}
+ul.nav.navbar-nav li.bord-menu-item  a.active{
+    color: white !important;
+    border: 2px solid #313d47  !important;
+    background-color: #313d47 !important;
+}
+.navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a{
+    border: 2px solid #00b9f7 !important;
+    color: #00b9f7 !important;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    padding: 9px 16px;
+}
+.navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a:hover{
+    color: white !important;
+}
+.navbar-inner-pages ul.nav.navbar-nav li.bord-menu-item  a.active{
+    color: white !important;
+    border: 2px solid #313d47  !important;
+    background-color: #313d47 !important;
+}
+ul.nav.navbar-nav li {
+    margin: 0 8px;
+}
+.navbar-default {
+    background: transparent;
+    border: none;
+    padding: 40px 0 30px;
+}
+.logo-text {
+    display: inline-block;
+    height: 3.93rem;
+    vertical-align: top;
+}
+
+/* ------------ Search header input ----------- */
+.c-search1 {
+    width: 220px;
+    margin: 8px 15px 0;
+    position: relative;
+}
+.search-text1 {
+    border: none;
+    border-bottom: 1px solid #878787;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding: 0 0 0 30px;
+    color: #bfbfbf;
+    font-size: 1rem;
+    font-family: "work_sanslight";
+}
+.search-btn1 {
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 2.43rem;
+}
+.search-btn1 i {
+    color: #acacac;
+}
+
+/* -------------------- Login Dropdown Menu ------------------ */
+.dropdown-menu{
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -webkit-box-shadow: 0 0 15px 5px rgba(100,100,100,0.1);
+    box-shadow: 0 0 15px 5px rgba(100,100,100,0.1);
+    padding: 10px 5px;
+    min-width: 200px;
+    left: -31px;
+    top: 56px;
+}
+.navbar-default.navbar-inner-pages .log-pop .dropdown-menu{
+    left: -89px;
+}
+.navbar-default .dropdown-menu{
+    right: 0;
+    left: auto;
+}
+.navbar-default.navbar-inner-pages .dropdown-menu{
+    right: 0;
+    left: auto;
+}
+.navbar-default .log-pop .dropdown-menu{
+    left: -82px;
+}
+.log-pop.dropdown .dropdown-menu li a {
+    font-size: 0.93rem;
+    font-family: ns_widemedium;
+    color: #000000;
+}
+.dropdown-menu li a:hover,
+.dropdown-menu li a:hover i{
+    background: #00b9f7 !important;
+    color: white !important;
+}
+.dropdown-menu .popup-arrow {
+    right: 14px;
+    top: -7px;
+    transform: rotate(36deg) skew(-20deg);
+    width: 12px;
+    height: 12px;
+}
+.user-default {
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    display: inline-block;
+    background: url('/images/default.jpg') center no-repeat;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.user-default2 {
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    display: inline-block;
+    background: url('/images/default.jpg') center no-repeat;
+    background-size: cover !important;
+    vertical-align: middle;
+    margin: 0 2px !important;
+}
+.like-item {
+    display: inline-block;
+}
+.cu-drop-menu-item {
+    padding-top: 9px !important;
+}
+ul.nav.navbar-nav li a.cu-drop-menu-item:hover,
+ul.nav.navbar-nav li a.cu-drop-menu-item:focus,
+ul.nav.navbar-nav li a.cu-drop-menu-item:active,
+ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
+
+.navbar-inner-pages.navbar-default .navbar-nav > a.cu-drop-menu-item:hover,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a.cu-drop-menu-item,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a.cu-drop-menu-item:focus,
+.navbar-inner-pages.navbar-default .navbar-nav > .open > a.cu-drop-menu-item:hover,
+
+.navbar-default .navbar-nav > a.cu-drop-menu-item:hover,
+.navbar-default .navbar-nav > .open > a.cu-drop-menu-item,
+.navbar-default .navbar-nav > .open > a.cu-drop-menu-item:focus,
+.navbar-default .navbar-nav > .open > a.cu-drop-menu-item:hover
+{
+    background-color: transparent !important;
+    color: #6b6b6b !important;
+}
+.checkbox-disabled {
+    opacity: 0.5;
+}
+.user-neme-cut {
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 80px;
+    text-overflow: ellipsis;
+    height: 23px;
+    vertical-align: middle;
+}
