@@ -300,3 +300,9 @@ h4.h4-sub-kit {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
+.sub-text-radio {
+    font-family: work_sansregular;
+    color: #a1a1a1;
+    font-size: 0.93rem;
+    line-height: 0.93rem;
+}

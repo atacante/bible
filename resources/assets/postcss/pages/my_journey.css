@@ -37,7 +37,7 @@ a.create-record {
     width: 250px;
     height: 123px;
     background: #00b9f7;
-    color: #ffffff;
+    color: #ffffff !important;
     font-size: 1.29rem;
     font-family: ns_widenormal;
     text-decoration: none !important;
@@ -302,11 +302,11 @@ a.create-record i {
     background: #00b9f7 !important;
     color: white !important;
 }
-.popup-create-record li i{
+.popup-create-record li i {
     color: #00b9f7;
     width: 20px;
     display: inline-block;
-    font-size: 1.07px;
+    font-size: 1.07rem;
     vertical-align: text-bottom;
 }
 .popup-create-record li a:hover i{

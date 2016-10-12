@@ -3342,6 +3342,14 @@ h4.h4-sub-kit {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
+.sub-text-radio {
+    font-family: work_sansregular;
+    color: #a1a1a1;
+    font-size: 13.02px;
+    font-size: 0.93rem;
+    line-height: 13.02px;
+    line-height: 0.93rem;
+}
 /* Home page styles */
 .bg-home {
   background: url('/images/bg-home-header.png') center top no-repeat;
@@ -3700,7 +3708,7 @@ a.create-record {
     width: 250px;
     height: 123px;
     background: #00b9f7;
-    color: #ffffff;
+    color: #ffffff !important;
     font-size: 18.06px;
     font-size: 1.29rem;
     font-family: ns_widenormal;
@@ -3988,11 +3996,12 @@ a.create-record i {
     background: #00b9f7 !important;
     color: white !important;
 }
-.popup-create-record li i{
+.popup-create-record li i {
     color: #00b9f7;
     width: 20px;
     display: inline-block;
-    font-size: 1.07px;
+    font-size: 14.98px;
+    font-size: 1.07rem;
     vertical-align: text-bottom;
 }
 .popup-create-record li a:hover i{
