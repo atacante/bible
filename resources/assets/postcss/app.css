@@ -4,6 +4,7 @@
 @import url('media-queries.css');
 @import url('./components/*.css');
 @import url('./pages/*.css');
+@import url('./components/media-queries.css');
 
 html {
   font-size: 14px;
