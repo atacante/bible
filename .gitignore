@@ -14,3 +14,4 @@ Homestead.json
 composer.phar
 /storage/debugbar/.gitignore
 /public/css/app.css.map
+/public/css/app.css.map
