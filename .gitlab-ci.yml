@@ -1,7 +1,9 @@
 stages:
  - dev
+ - dev_node
  - alpha
  - beta
+ - beta_node
  - live
 
 job_for_dev:
@@ -19,7 +21,7 @@ job_for_dev:
   environment: dev
 
 node_job_for_dev:
-  stage: dev
+  stage: dev_node
   script:
     - hostname
     - cd /var/www/clients/client3/web1/web
@@ -71,7 +73,7 @@ job_for_beta:
   environment: staging
 
 node_job_for_beta:
-  stage: beta
+  stage: beta_node
   script:
     - export BETA_HOME=/home/bible
     - cd $BETA_HOME/web
