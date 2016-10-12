@@ -270,6 +270,8 @@ reader.getActionsHtml = function(){
                 '<a title="Create prayer" href="#" class="j-create-prayer btn-create-prayer btn-reader"><i class="bs-pray"></i></a>' +
                 '<div class="spliter1 hidden"></div>'+
                 '<a title="Show definition" href="#" class="hidden j-show-definition btn-show-definition btn-reader"><i class="bs-lexicon"></i></a>' +
+                /*'<div class="spliter1"></div>'+
+                '<a title="Show definition" href="#" class="j-bookmark btn-add-bookmark btn-reader"><i style="font-size: 1.9rem;" class="fa fa-bookmark-o"></i></a>' +*/
                 '<div class="popup-arrow2"></div>'+
             '</div>';
 }
@@ -419,6 +421,16 @@ site.hideAlert = function(){
     }, 3000);
 }
 
+site.showAuthWarning = function(text){
+    $('#popup-sm').find('.modal-header .modal-title').text('Warning');
+    $('#popup-sm').find('.modal-body').html("Log in to your account to use this feature.");
+    $('#popup-sm').find('.modal-footer').html('' +
+        '<button type="button" class="btn4-kit cu-btn-pad1" data-dismiss="modal">Cancel</button>' +
+        '<a href="/auth/login" class="btn2-kit cu-btn-pad1 btn-ok" style="margin-left: 7px;">Login</a>' +
+        '');
+    $('#popup-sm').modal({show:true});
+}
+
 site.showPremiumWarning = function(){
     $('#popup-sm').find('.modal-header .modal-title').text('Premium Feature');
     $('#popup-sm').find('.modal-body').html("Upgrade to a premium membership to use this feature.");
@@ -449,3 +461,4 @@ order.fillBillingInfo = function(){
 
     billingAddress.val(shippingAddress.val());
 }
+

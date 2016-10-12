@@ -175,7 +175,7 @@ $(document).ready(function(){
         var lexversion = $(this).data('lexversion');
         e.stopPropagation();
 
-        $('.j-reader-actions div,a').removeClass('hidden');
+        $('.j-reader-actions div,.j-reader-actions a').removeClass('hidden');
 
         $('.j-show-definition').attr('data-lexid',definitionId);
         $('.j-show-definition').attr('data-lexversion',lexversion);
@@ -1865,5 +1865,67 @@ $(document).ready(function(){
     $('body').on('click','a.disabled',function(e){
         e.preventDefault();
         site.showPremiumWarning();
+    });
+
+    $('body').on('click','.j-my-bookmarks',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $('#popup-sm').find('.modal-header .modal-title').html('<i class="fa fa-bookmark-o" style="margin-left: 15px;" aria-hidden="true"></i> My Bookmarks');
+                $('#popup-sm').find('.modal-body').css('padding','20px').html('<div class="my-bookmarks-list j-my-bookmarks-list">'+data+'</div>');
+                $('#popup-sm').find('.modal-footer').remove();
+                $('#popup-sm').modal({show:true});
+            }
+        });
+    });
+    $('body').on('click','.j-bookmark',function(e){
+        e.preventDefault();
+        $(that).toggleClass('hidden');
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                if(data){
+                    $('.j-bookmark').toggleClass('hidden');
+                }
+            },
+            error:function(err){
+                if(err.status){
+                    site.showAuthWarning();
+                }
+            }
+        });
+    });
+    $('body').on('click','.j-my-bookmarks-list .j-remove-bookmark',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $(that).parent().remove();
+            }
+        });
+    });
+
+    $('body').on('click','.j-my-bookmarks-list .load-more',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $('#popup-sm .modal-body .load-more-block').remove();
+                $('#popup-sm .modal-body .j-my-bookmarks-list').append(data);
+            }
+        });
     });
 });
