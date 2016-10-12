@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,9 @@ class User extends Authenticatable
     const PLAN_FREE = 'free';
     const PLAN_PREMIUM = 'premium';
 
+    const BOOKMARK_CHAPTER = 'chapter';
+    const BOOKMARK_VERSE = 'verse';
+
 //    public $coupon_code;
     /**
      * The attributes that are mass assignable.
@@ -30,7 +34,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','plan_type','about_me','avatar','invited_by_id', 'subscribed','church_name','country_id','state','city'
+        'name', 'email', 'password','plan_type','about_me','avatar','invited_by_id', 'subscribed','church_name','country_id','state','city','last_reader_url'
     ];
 
     /**
@@ -127,6 +131,16 @@ class User extends Authenticatable
         }
 
         return $rules;
+    }
+
+    public function bookmarks($model)
+    {
+        return $this->morphedByMany($model,'item','bookmarks')->withPivot('bookmark_type', 'bible_version')/*->orderBy('bookmarks.created_at','desc')*/;
+    }
+
+    public function bookmarksAmericanKingJames()
+    {
+        return $this->morphedByMany(VersesAmericanKingJamesEn::class,'item','bookmarks')->withPivot('bookmark_type', 'bible_version')/*->orderBy('bookmarks.created_at','desc')*/;
     }
 
     public function notificationsSettings() {
@@ -366,7 +380,10 @@ class User extends Authenticatable
     public function downgradeToFree()
     {
         if($this->subscription()){
-            $this->subscription()->cancel();
+
+            if(!$this->isOnCoupon()){
+                $this->subscription()->cancel();
+            }
 
             if($this->subscription()->onGracePeriod()){
                 $this->plan_type = self::PLAN_PREMIUM;
@@ -465,6 +482,13 @@ class User extends Authenticatable
         }else{
             $this->attributes['invited_by_id'] = $value;
         }
+    }
+
+    public static function adminEmails()
+    {
+        return self::whereHas('roles', function ($q) {
+            $q->whereIn('slug',[Config::get('app.role.admin')]);
+        })->pluck('email')->toArray();
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Providers\CustomAuthorizeNet;
 
 use App\UsersMeta;
 use Illuminate\Support\Facades\Config;
+use Laravel\CashierAuthorizeNet\Subscription;
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\constants as AnetConstants;
 use net\authorize\api\controller as AnetController;
@@ -349,12 +350,14 @@ trait Billable
      */
     public function askToCreateAccount(){
         if( ($card['number'] = Input::get('card_number')) &&
-            ($card['expiration'] = Input::get('card_expiration')) &&
-            ($card['code'] = Input::get('card_code')) &&
-            ($card['billing_name'] = Input::get('billing_name')) &&
-            ($card['billing_address'] = Input::get('billing_address')) &&
-            ($card['billing_zip'] = Input::get('billing_zip'))
+            ($card['expiration'] = Input::get('card_expiration'))
         ){
+
+            $card['code'] = Input::get('card_code');
+            $card['billing_name'] = Input::get('billing_name');
+            $card['billing_address'] = Input::get('billing_address');
+            $card['billing_zip'] = Input::get('billing_zip');
+
             return $card;
         }
 
@@ -384,9 +387,13 @@ trait Billable
 
         if($this->subscription()) {
             if($this->upgrade_plan){
-                $this->subscription()->cancelNow();
+                if(!$this->isOnCoupon()){
+                    $this->subscription()->cancelNow();
+                }
             }else{
-                $this->subscription()->cancel();
+                if(!$this->isOnCoupon()){
+                    $this->subscription()->cancel();
+                }
                 $this->upgrade_plan = $new_plan;
                 $this->save();
                 $canceledNow = false;
@@ -411,5 +418,67 @@ trait Billable
             ->first(function ($key, $value) use ($subscription) {
                 return $value->name === $subscription;
             });
+    }
+
+    public static function chargeCreditCard($amount, $card){
+
+        // Create the payment data for a credit card
+        $creditCard = new AnetAPI\CreditCardType();
+        $creditCard->setCardNumber($card['number']);
+        $creditCard->setExpirationDate($card['expiration']);
+
+        if(!empty($card['code'])){
+            $creditCard->setCardCode($card['code']);
+        }
+
+        $paymentOne = new AnetAPI\PaymentType();
+        $paymentOne->setCreditCard($creditCard);
+
+        //create a transaction
+        $transactionRequestType = new AnetAPI\TransactionRequestType();
+        $transactionRequestType->setTransactionType("authCaptureTransaction");
+        $transactionRequestType->setAmount($amount);
+        $transactionRequestType->setPayment($paymentOne);
+
+        $requestor = new Requestor();
+        $request = $requestor->prepare((new AnetAPI\CreateTransactionRequest()));
+        $request->setTransactionRequest($transactionRequestType);
+        $controller = new AnetController\CreateTransactionController($request);
+        $response = $controller->executeWithApiResponse($requestor->env);
+
+        if ($response != null) {
+            $tresponse = $response->getTransactionResponse();
+            if (($tresponse != null) && ($tresponse->getResponseCode() == '1') ) {
+                return [
+                    'authCode' => $tresponse->getAuthCode(),
+                    'transId' => $tresponse->getTransId(),
+                ];
+            } else if (($tresponse != null) && ($tresponse->getResponseCode() == "2") ) {
+                return false;
+            } else if (($tresponse != null) && ($tresponse->getResponseCode() == "4") ) {
+                throw new Exception("ERROR: HELD FOR REVIEW", 1);
+            }
+        } else {
+            throw new Exception("ERROR: NO RESPONSE", 1);
+        }
+
+        return false;
+    }
+
+    public function isOnCoupon(){
+        $subscription = $this->subscription();
+
+        if(!$subscription){
+            return false;
+        }
+
+        if(($this->subscription()->authorize_id == '111111111111') &&
+           ($this->subscription()->authorize_payment_id == '111111111111')
+          )
+        {
+            return true;
+        }
+
+        return false;
     }
 }

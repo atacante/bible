@@ -12,6 +12,7 @@ use App\Note;
 use App\Prayer;
 use App\StrongsConcordance;
 use App\StrongsNasec;
+use App\User;
 use App\UsersViews;
 use App\VersesAmericanStandardEn;
 use App\VersionsListEn;
@@ -35,7 +36,7 @@ use App\Http\Controllers\Controller;
 
 class ReaderController extends Controller
 {
-    private $readerMode = 'beginner';
+    private $readerMode = 'intermediate';
 
     private function flashNotification($message){
         Notification::info($message);
@@ -135,7 +136,7 @@ class ReaderController extends Controller
         if($mode){
             Cookie::queue(Cookie::forever('readerMode', $mode));
         }else{
-            $mode = Cookie::get('readerMode', 'beginner');
+            $mode = Cookie::get('readerMode', 'intermediate');
         }
 
         $related = Request::input('related', false);
@@ -285,6 +286,7 @@ class ReaderController extends Controller
     public function getVerse()
     {
         Session::flash('backUrl', Request::fullUrl());
+        Session::set('verseUrl', Request::fullUrl());
 
         $version_code = Request::input('version', Config::get('app.defaultBibleVersion'));
         if($version_code == 'all'){
@@ -411,7 +413,10 @@ class ReaderController extends Controller
 
     public function anyStrongs($num,$dictionaryType)
     {
-        Session::flash('backUrl', Request::fullUrl());
+//        Session::flash('backUrl', Request::fullUrl());
+        if (Session::has('backUrl')) {
+            Session::keep('backUrl');
+        }
 
         $content['strongs_concordance'] = StrongsConcordance::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
         $content['strongs_nasec'] = StrongsNasec::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
@@ -671,5 +676,43 @@ class ReaderController extends Controller
     {
         Cookie::queue(Cookie::forever('readerMode', $mode));
         return Redirect::to(URL::previous());
+    }
+
+    public function anyBookmark($type,$bibleVersion,$verseId)
+    {
+        $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
+        $model = $versesModel::find($verseId);
+        $user = Auth::user();
+        if (!$model) {
+            abort(404);
+        }
+        if (!$user) {
+            abort(403);
+        }
+        $bookmarked = 0;
+        if(!$model->bookmarks()->where('user_id',Auth::user()->id)->where('bookmark_type', $type)->get()->count()){
+            $model->bookmarks()->attach($user->id,['bookmark_type' => $type,'bible_version' => $bibleVersion]);
+            $bookmarked = 1;
+        }
+        return $bookmarked;
+    }
+
+    public function anyDeleteBookmark($type,$bibleVersion,$verseId)
+    {
+        $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
+        $model = $versesModel::find($verseId);
+        $user = Auth::user();
+        if (!$model) {
+            abort(404);
+        }
+        if (!$user) {
+            abort(403);
+        }
+        $bookmarked = 0;
+        if($model->bookmarks()->where('user_id',Auth::user()->id)->where('bookmark_type', $type)->get()->count()){
+            $model->bookmarks()->detach($user->id,['bookmark_type' => $type,'bible_version' => $bibleVersion]);
+            $bookmarked = 1;
+        }
+        return $bookmarked;
     }
 }

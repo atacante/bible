@@ -28,6 +28,7 @@
         {!!Html::style('js/dropzone/dist/min/dropzone.min.css')!!}
 
         {!!Html::style(Asset::v('/css/style.css'))!!}
+        {!!Html::style(Asset::v('/css/temp.css'))!!}
 
         {!!Html::style('css/ionicons-2.0.1/css/ionicons.min.css')!!}
 
@@ -68,6 +69,12 @@
     <link rel="shortcut icon" href="{!! asset('assets/site/ico/favicon.ico')  !!} ">
 </head>
 <body class="home">
+    <script>window.inlineManualOptions = { language: 'en'};</script>
+    <script>!function () {
+            var e = document.createElement("script"), t = document.getElementsByTagName("script")[0];
+            e.async = 1, e.src = "https://inlinemanual.com/embed/player.1c7905f80a315c6bbe0bae5a64527dd9.js", e.charset = "UTF-8", t.parentNode.insertBefore(e, t)
+        }();
+    </script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

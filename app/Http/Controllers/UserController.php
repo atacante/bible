@@ -149,7 +149,12 @@ class UserController extends Controller
                     $user->upgradeToPremium(Input::get('plan_name'));
                 }else{
                     $user->downgradeToFree();
-                    $user->createAccountAndOrSubscribe();
+                    $result = $user->createAccountAndOrSubscribe();
+
+                    if(Session::has('url.intended') && $result['account']['success']){
+                        Notification::success($result['account']['message']);
+                        return redirect()->intended();
+                    }
                 }
 
                 Notification::successInstant('Your profile info successfully saved');
@@ -426,6 +431,35 @@ class UserController extends Controller
                 'myRequests' => $myRequests,
                 'relatedGroups' => $relatedGroups
             ]);
+        }
+    }
+
+    public function getMyBookmarks($bibleVersion = false)
+    {
+        $limit = 10;
+        $page = Input::get('page',1);
+        $offset = $limit*($page-1);
+
+        $content['bible_version'] = $bibleVersion?$bibleVersion:Config::get('app.defaultBibleVersion');
+
+        $versesModel = BaseModel::getVersesModelByVersionCode($content['bible_version']);
+
+        $user = Auth::user();
+        $content['bookmarks'] = $user->bookmarks($versesModel);
+        $totalCount = $content['bookmarks']->count();
+        $content['bookmarks']->orderBy('bookmarks.id','desc')->limit($limit)->offset($offset);
+
+        $content['bookmarks'] = new LengthAwarePaginator(
+            $content['bookmarks']->get(),
+            $totalCount,
+            $limit,
+            \Illuminate\Pagination\Paginator::resolveCurrentPage(), //resolve the path
+            ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+        $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
+
+        if(Request::ajax()){
+            return view('user.bookmark-items', ['content' => $content]);
         }
     }
 

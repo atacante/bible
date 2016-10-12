@@ -58,12 +58,15 @@ class OrderController extends Controller
         $tax = 0.00;
 
         if(strtolower(trim($data['shipping_state'])) == 'florida'){
-            $tax = round(0.3 * $subtotal, 2);
+            $tax = round(0.07 * $subtotal, 2);
         }
 
         $total = $subtotal + $tax;
 
-        $charged = Auth::user()->charge($total, ['description' => 'online payment']);
+        /* Charge Part */
+        // Guests and Users
+        $card = ['number' => $data['card_number'], 'code' => $data['card_code'], 'expiration' => $data['card_expiration']];
+        $charged = User::chargeCreditCard($total, $card);
 
         if(is_array($charged) && $charged['transId']){
 
@@ -74,7 +77,7 @@ class OrderController extends Controller
                 $order->tax = $tax;
                 $order->subtotal = $subtotal;
                 $order->total_paid = $total;
-                $order->user_id= Auth::user()->id;
+                $order->user_id= $data['user_id'];
                 $order->user_meta_id= $userMeta->id;
                 $order->transaction_id= $charged['transId'];
                 $order->save();
@@ -97,13 +100,19 @@ class OrderController extends Controller
 
         }else{
             Notification::error('Your order was not placed! Please add valid credit card');
-            return redirect('/user/profile');
+            return redirect('order/create');
         }
 
     }
 
     public function getShow($orderId){
-        $order = Order::where(['id' => $orderId, 'user_id' => Auth::user()->id])->first();
+        $user_id = 0;
+
+        if(Auth::check()){
+            $user_id = Auth::user()->id;
+        }
+
+        $order = Order::where(['id' => $orderId, 'user_id' => $user_id])->first();
 
         if(!$order){
             Notification::error('Your are not allowed to see this order!');
@@ -114,8 +123,13 @@ class OrderController extends Controller
     }
 
     public function getCreate(){
+        $model = false;
+        $user_id = 0;
 
-        $model = UsersMeta::where(['user_id' => Auth::user()->id])->orderBy('created_at', SORT_DESC)->first();
+        if(Auth::check()){
+            $user_id = Auth::user()->id;
+            $model = UsersMeta::where(['user_id' => $user_id])->orderBy('created_at', SORT_DESC)->first();
+        }
 
         if(!$model){
             $model = new UsersMeta();
@@ -124,7 +138,7 @@ class OrderController extends Controller
         return view('order.create',
             [
                 'model' => $model,
-                'user_id' => Auth::user()->id,
+                'user_id' => $user_id,
                 'page_title' => 'Create New Order'
             ]);
     }

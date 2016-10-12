@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\BlogCategory;
 use App\CmsPage;
 use App\Group;
 use App\Journal;
@@ -43,7 +44,8 @@ class ViewHelper
         $versesArr = [];
         if(count($verses)){
             foreach($verses as $verse){
-                $versesArr[$verse['verse_num']] = 'Verse'.' '.$verse['verse_num'];
+//                $versesArr[$verse['verse_num']] = 'Verse'.' '.$verse['verse_num'];
+                $versesArr[$verse['verse_num']] = $verse['verse_num'];
             }
         }
         return $versesArr;
@@ -108,7 +110,7 @@ class ViewHelper
     {
         $phrase = str_replace('[','<i>',$phrase);
         $phrase = str_replace(']','</i>',$phrase);
-        $text = str_replace($phrase,'<i><span><strong>'.$phrase.'</strong></span></i>',$text);
+        $text = str_replace($phrase,'<strong>'.$phrase.'</strong>',$text);
         return $text;
     }
 
@@ -385,5 +387,46 @@ class ViewHelper
                 )
             ) ||
             ($model->access_level == $model::ACCESS_PUBLIC);
+    }
+
+    public static function checkBillingInfoToShow()
+    {
+        return !empty(Request::old('billing_first_name')) ||
+               !empty(Request::old('billing_last_name')) ||
+               !empty(Request::old('billing_address')) ||
+               !empty(Request::old('billing_city')) ||
+               !empty(Request::old('billing_postcode')) ||
+               !empty(Request::old('billing_country')) ||
+               !empty(Request::old('billing_state')) ||
+               !empty(Request::old('billing_email')) ||
+               !empty(Request::old('billing_phone'));
+    }
+
+    public static function getBlogCatId($catName)
+    {
+        $cat = BlogCategory::where('title',$catName)->first();
+        if($cat){
+            return $cat->id;
+        }
+        return false;
+    }
+
+    public static function getBookmarkIcon($type,$verse)
+    {
+        $class = 'fa-bookmark-o';
+        $title = 'Add to bookmarks';
+        if(self::checkBookmark($type,$verse)){
+            $class = 'fa-bookmark';
+            $title = 'Remove from bookmarks';
+        }
+        return '<i title="'.$title.'" class="fa '.$class.' cu-print" style="font-size: 2rem;"></i>';
+    }
+
+    public static function checkBookmark($type,$verse)
+    {
+        if(Auth::check()){
+            return (boolean)$verse->bookmarks()->where('user_id',Auth::user()->id)->where('bookmark_type', $type)->get()->count();
+        }
+        return false;
     }
 }

@@ -10,91 +10,93 @@
 @stop
 
 @section('content')
-<div class="container-fluid main-container">
-    <div class="inner-container">
-        <div class="bg-g1">
-            <div class="in-inner-container text-center">
-                @include('partials.nav-home')
-                <h1 class="h1-1 mt1">ONLINE <span>STUDY BIBLE</span> COMMUNITY</h1>
-                <h2 class="h2-3">Studying Scripture to Live a Praiseworthy <span class="brr">Life to God</span></h2>
-                <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn1 mt2 mb1">READ BIBLE NOW</a>
+    <div class="container-fluid main-container">
+        <div class="inner-container">
+            <div class="bg-g1">
+                <div class="in-inner-container text-center">
+                    @include('partials.nav-home')
+                    <h1 class="h1-1 mt1">ONLINE <span>STUDY BIBLE</span> COMMUNITY</h1>
+                    <h2 class="h2-3">Studying Scripture to Live a Praiseworthy <span class="brr">Life to God</span></h2>
+                    <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn1 mt2 mb1">READ BIBLE NOW</a>
+                </div>
             </div>
-        </div>
 
-        <div class="alert-container home-alert-container">
-            @notification()
-        </div>
-
-
-
-
-
-        <div class="in-inner-container">
-            <div class="c-center-content site-index">
-                <section class="home-ill-section h-ill1">
-                    <div class="pull-right mt2 mr1">
-                        <h2 class="h2-1">
-                            STUDY THE <span>BIBLE</span> <br>WITH PURPOSE
-                        </h2>
-                        <p class="p-1 mt5">Learn and compare between different<br> versions of bible.</p>
-                        <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn2 mt3">Go To Reader</a>
-                    </div>
-                </section>
-                <section class="home-ill-section h-ill2">
-                    <div class="pull-right mt4 mr1">
-                        <h2 class="h2-1 color3">
-                            <span>Create</span> your own journey
-                        </h2>
-                        <p class="p-1 mt5 color2">Make a notes and write a journal. Share your favourites with<br>
-                            friends. Do something more. Do one more thing.</p>
-                        <a href="{{ !Auth::check()?URL::to('auth/register'): URL::to('user/my-journey') }}" class="btn2 mt3">{{ Auth::check()?'':'SIGNUP TO ' }}START YOUR JOURNEY</a>
-                    </div>
-                </section>
-                <section class="home-ill-section h-ill3">
-                    <div class="pull-right mt6 mr3">
-                        <h2 class="h2-1">
-                            get involved in<br>
-                            <span>OUR community</span>
-                        </h2>
-                        <p class="p-1 mt5">Share your thoughts, prayers with others.<br>
-                            Make a new friends.<br>
-                            Probably more impressive description.
-                        </p>
-                        <a href="{{ URL::to('/community') }}" class="btn2 mt3">COMMUNITY OVERVIEW</a>
-                    </div>
-                </section>
-                <section class="home-ill-section h-ill4">
-                    <div class="pull-right mt4 mr1">
-                        <h2 class="h2-1">
-                            <span>EXPLORE</span> the SYMBOLISM
-                        </h2>
-                        <p class="p-1 mt5 color2">
-                            Learn more about historic locations & people.<br>
-                            Probably more desription here.
-                        </p>
-                        <a href="{{ URL::to('/locations/list') }}" class="btn2 mt3">EXPLORE LOCATIONS & PEOPLE</a>
-                    </div>
-                </section>
+            <div class="alert-container home-alert-container">
+                @notification()
             </div>
-            @include('partials.verse-of-day')
+
+            <div class="in-inner-container">
+                <div class="c-center-content site-index">
+
+                    <section class="home-ill-section h-ill1">
+                        <div class="ill-text-pos1">
+                            <h2 class="h2-1">
+                                STUDY THE <span>BIBLE</span> <br>WITH PURPOSE
+                            </h2>
+                            <p class="p-1 mt5">Learn and compare between different<br> versions of bible.</p>
+                            <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn2 mt3">Go To Reader</a>
+                        </div>
+                    </section>
+
+                    <section class="home-ill-section h-ill2">
+                        <div class="ill-text-pos2">
+                            <h2 class="h2-1 color3">
+                                <span>Create</span> your own journey
+                            </h2>
+                            <p class="p-1 mt5 color2">Make a notes and write a journal. Share your favourites with<br>
+                                friends. Do something more. Do one more thing.</p>
+                            <a href="{{ !Auth::check()?URL::to('auth/register'): URL::to('user/my-journey') }}" class="btn2 mt3">{{ Auth::check()?'':'SIGNUP TO ' }}START YOUR JOURNEY</a>
+                        </div>
+                    </section>
+
+                    <section class="home-ill-section h-ill3">
+                        <div class="ill-text-pos3">
+                            <h2 class="h2-1">
+                                get involved in<br>
+                                <span>OUR community</span>
+                            </h2>
+                            <p class="p-1 mt5">Share your thoughts, prayers with others.<br>
+                                Make a new friends.<br>
+                                Probably more impressive description.
+                            </p>
+                            <a href="{{ URL::to('/community') }}" class="btn2 mt3">COMMUNITY OVERVIEW</a>
+                        </div>
+                    </section>
+
+                    <section class="home-ill-section h-ill4">
+                        <div class="ill-text-pos4">
+                            <h2 class="h2-1">
+                                <span>EXPLORE</span> the SYMBOLISM
+                            </h2>
+                            <p class="p-1 mt5 color2">
+                                Learn more about historic locations & people.<br>
+                                Probably more desription here.
+                            </p>
+                            <a href="{{ URL::to('/locations/list') }}" class="btn2 mt3">EXPLORE LOCATIONS & PEOPLE</a>
+                        </div>
+                    </section>
+
+                </div>
+                @include('partials.verse-of-day')
+            </div>
         </div>
     </div>
-</div>
+
         <div class="container-fluid c-center-content3 mt11">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class=" text-center" style="padding: 100px 10px">
+                    <div class="text-center pad2">
                         <i class="bs-gift cu-gift"></i>
-                        <h2 class="h2-1 color1 text-center mt9">
+                        <h2 class="h2-1 color1 text-center mt9 gift-title">
                             SEND A <span>GIFT OF LOVE</span> TO A FRIEND
                         </h2>
 
                         <div class="c-center-content-shop">
-                            <div class="row mt10">
+                            <div class="mt10 c-home-products">
                                 @foreach($products as $product)
-                                <div class="col-lg-4">
+                                <div class="product-item">
                                     <a href="{!! ($product->external_link)? $product->external_link : url('/shop/product/'.$product->id,[]) !!}" target="{!! ($product->external_link)?'_blank':'_self' !!}" class="gift-item">
-                                        <div class="gift1" style="background:url('{{($product->images->count())?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'/images/cup.png' }}')  50% 50px no-repeat;">
+                                        <div class="gift1" style="background:url('{{($product->images->count())?Config::get('app.productImages').'thumbs/'.$product->images[0]->image:'/images/cup.png' }}')  50% 5% no-repeat;">
                                         </div>
                                         <h4 class="h4-gift">
                                             {{$product->name}}

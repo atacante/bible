@@ -43,7 +43,6 @@ $(document).ready(function(){
                 return term;
             },
             processResults: function (data, params) {
-                //console.log(data);
                 return {results: data}
             }
         },
@@ -176,7 +175,7 @@ $(document).ready(function(){
         var lexversion = $(this).data('lexversion');
         e.stopPropagation();
 
-        $('.j-reader-actions div,a').removeClass('hidden');
+        $('.j-reader-actions div,.j-reader-actions a').removeClass('hidden');
 
         $('.j-show-definition').attr('data-lexid',definitionId);
         $('.j-show-definition').attr('data-lexversion',lexversion);
@@ -1303,6 +1302,7 @@ $(document).ready(function(){
         e.preventDefault();
 
         if($(this).hasClass('disabled')){
+            site.showPremiumWarning();
             return false;
         }
 
@@ -1571,25 +1571,9 @@ $(document).ready(function(){
     });
 
     $('body').on('click','.j-show-billing',function(e){
-        e.preventDefault();
-
-        var shippingEmail = $('input[name="shipping_email"]');
-        var billingEmail = $('.j-billing-meta input[name="billing_email"]');
-
-        if(billingEmail.val() == ''){
-            billingEmail.val(shippingEmail.val());
-        }
+        order.fillBillingInfo();
 
         $('.j-billing-meta').toggleClass('hidden');
-    });
-
-    $('body').on('click','.j-duplicate-billing-address',function(e){
-        e.preventDefault();
-
-        var shippingAddress = $('input[name="shipping_address"]');
-        var billingAddress = $('.j-billing-meta input[name="billing_address"]');
-
-        billingAddress.val(shippingAddress.val());
     });
 
     $(".j-create-record").on("click", function(e){
@@ -1699,6 +1683,7 @@ $(document).ready(function(){
         $(".j-select-book").val(curSelVal);
         $(".j-sel-book-text").html(curSelText);
         $(".j-select-chapter").val(1);
+        $(".j-select-verse").val(1);
         $(".j-choose-book-pop").hide();
         $(".j-nav-sel2").show();
         $("#j-sel-book-form").submit();
@@ -1724,6 +1709,7 @@ $(document).ready(function(){
         var curSelText = $(this).html();
         $(".j-select-chapter").val(curSelVal);
         $(".j-sel-chapter-text").html(curSelText);
+        $(".j-select-verse").val(1);
         $(".j-choose-chapter-pop").hide();
         $(".j-nav-sel3").show();
         $("#j-sel-book-form").submit();
@@ -1732,6 +1718,30 @@ $(document).ready(function(){
     $(".j-sel-chapter-label").on("click", function(e){
         $(".j-nav-sel3").hide();
         $(".j-choose-chapter-pop").show();
+        e.preventDefault();
+    });
+
+    /* ----------------- VERSE ----------------- */
+    $(".j-close-choose-verse").on("click", function(e){
+        $(".j-choose-verse-pop").hide();
+        $(".j-nav-sel3").show();
+        e.preventDefault();
+    });
+    $(".j-verse-list a").on("click", function(e){
+        $(".j-verse-list a").removeClass("active");
+        $(this).addClass("active");
+        var curSelVal = $(this).data("val");
+        var curSelText = $(this).html();
+        $(".j-select-verse").val(curSelVal);
+        $(".j-sel-verse-text").html(curSelText);
+        $(".j-choose-verse-pop").hide();
+        $(".j-nav-sel3").show();
+        $("#j-sel-book-form").submit();
+        e.preventDefault();
+    });
+    $(".j-sel-verse-label").on("click", function(e){
+        $(".j-nav-sel3").hide();
+        $(".j-choose-verse-pop").show();
         e.preventDefault();
     });
 
@@ -1845,7 +1855,77 @@ $(document).ready(function(){
     });
     site.hideAlert();
 
+    $('body').on('click','.j-submit-order', function(e){
+        e.preventDefault();
+        order.fillBillingInfo();
+        $('.j-create-order-form').submit();
+        return false;
+    });
+
     $('body').on('click','a.disabled',function(e){
         e.preventDefault();
+        site.showPremiumWarning();
+    });
+
+    $('body').on('click','.j-my-bookmarks',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $('#popup-sm').find('.modal-header .modal-title').html('<i class="fa fa-bookmark-o" style="margin-left: 15px;" aria-hidden="true"></i> My Bookmarks');
+                $('#popup-sm').find('.modal-body').css('padding','20px').html('<div class="my-bookmarks-list j-my-bookmarks-list">'+data+'</div>');
+                $('#popup-sm').find('.modal-footer').remove();
+                $('#popup-sm').modal({show:true});
+            }
+        });
+    });
+    $('body').on('click','.j-bookmark',function(e){
+        e.preventDefault();
+        $(that).toggleClass('hidden');
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                if(data){
+                    $('.j-bookmark').toggleClass('hidden');
+                }
+            },
+            error:function(err){
+                if(err.status){
+                    site.showAuthWarning();
+                }
+            }
+        });
+    });
+    $('body').on('click','.j-my-bookmarks-list .j-remove-bookmark',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $(that).parent().remove();
+            }
+        });
+    });
+
+    $('body').on('click','.j-my-bookmarks-list .load-more',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        $.ajax({
+            method: "GET",
+            url: url,
+            success:function(data){
+                $('#popup-sm .modal-body .load-more-block').remove();
+                $('#popup-sm .modal-body .j-my-bookmarks-list').append(data);
+            }
+        });
     });
 });
