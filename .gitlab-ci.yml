@@ -73,13 +73,11 @@ job_for_beta:
 node_job_for_beta:
   stage: beta
   script:
-    - hostname
-    - cd $HOME/web
-    - pwd
-    - node --version
+    - export BETA_HOME=/home/bible
+    - cd $BETA_HOME/web
     - npm i
     - npm run build
-    - find $HOME/web -user root -exec chown 1001:1001 {} \;
+    - find $BETA_HOME/web -user root -exec chown 1001:1001 {} \;
   only:
     - beta
   tags:
