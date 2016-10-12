@@ -64,7 +64,7 @@
                 <tr>
                     <td>
                         @if($row->product->images->count())
-                            <img style="width:100px; height:100px " class="img-thumbnail" data-dz-thumbnail="" alt="" src="{!! url(Config::get('app.productImages').'thumbs/'.$row->product->images[0]->image) !!}" />
+                            <img style="width:80px; height:80px " class="img-thumbnail" data-dz-thumbnail="" alt="" src="{!! url(Config::get('app.productImages').'thumbs/'.$row->product->images[0]->image) !!}" />
                         @else
                             <div class="no-avatar img-thumbnail">
                                 <div class="no-avatar-text text-center"><i class="fa fa-shopping-cart fa-4x"></i></div>
