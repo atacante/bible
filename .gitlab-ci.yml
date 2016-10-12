@@ -70,6 +70,23 @@ job_for_beta:
     - beta
   environment: staging
 
+node_job_for_beta:
+  stage: beta
+  script:
+    - hostname
+    - cd $HOME/web
+    - pwd
+    - node --version
+    - npm i
+    - npm run build
+    - find $HOME/web -user root -exec chown 1001:1001 {} \;
+  only:
+    - beta
+  tags:
+    -  biblestudyco_docker
+  image: node
+  environment: staging
+
 #job_for_live:
 #  stage: live
 #  before_script:
