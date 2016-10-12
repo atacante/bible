@@ -4457,6 +4457,49 @@ ins {
     text-decoration: none;
     font-weight: bold;
 }
+.verse-text b {
+    font-weight: normal !important;
+}
+.verse-text b a {
+    color: #282828;
+    font-size: 18.06px;
+    font-size: 1.29rem;
+    font-family: work_sansbold;
+    text-decoration: none !important;
+    font-weight: normal !important;
+}
+.verse-text:hover, .clicked{
+    color: #00b9f7 !important;
+    cursor: pointer;
+    border-bottom: 1px solid #00b9f7;
+}
+.verse-text:hover b a, .clicked b a{
+    color: #00b9f7 !important;
+}
+.c-verse-text-top .verse-text:hover {
+    color: #010101 !important;
+    cursor: default;
+    border-bottom: none;
+}
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+.def-highlight, span.word-definition:hover{
+    font-weight: bold;
+}
+.word-definition{
+    border-bottom: 1px dotted;
+}
+.word-definition .word-definition{
+    border: none;
+}
+.spliter1 {
+    display: inline-block;
+    height: 24px;
+    width: 1px;
+    background: white;
+}
 .price-label {
     padding: 20px 0 5px;
     font-size: 20.02px;
