@@ -1034,3 +1034,49 @@ a:focus, a:hover {
     border-bottom-left-radius: 4px !important;
     border-bottom-right-radius: 4px !important;
 }
+
+/* From temp.css */
+
+/* READER */
+a.my-bookmarks{
+    position: absolute;
+    right: 0;
+    top: 110px;
+    text-transform: uppercase;
+    font-family: ns_widedemibold;
+    font-size: 0.93rem;
+}
+
+a.my-bookmarks i{
+    font-size: 1.79rem;
+    color: #00b9f7;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+a.my-bookmarks:hover{
+    text-decoration: none;
+    color: #00b9f7;
+}
+
+.my-bookmarks-list .bookmark-item{
+    line-height: 30px;
+}
+
+/* NAV */
+.navbar-nav i.cu-nav-icons{
+    font-size: 1.07rem ;
+    vertical-align: baseline;
+}
+
+
+/* HOME */
+.h-ill5 {
+    background: url('/images/p5-home.jpg') left center no-repeat;
+    min-height: 449px;
+}
+
+.home .bg-home {
+    background: url('/images/bg-home-header.jpg') center top no-repeat;
+    max-width: 100%;
+}
