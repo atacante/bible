@@ -27,6 +27,7 @@ node_job_for_dev:
     - node --version
     - npm i
     - npm run build
+    - find /var/www/clients/client3/web1/web/ -user root -exec chown 5004:5005 {} \;
   only:
     - dev
   tags:
