@@ -224,3 +224,17 @@ ul.c-social li a:hover, ul.c-social li a:active {
 .load-more-block{
     margin-bottom: 15px;
 }
+
+/* --- social icons --- */
+.at-icon-wrapper {
+    background: #00b9f7 !important;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    height: 26px !important;
+    width: 26px !important;
+    margin-right: 8px;
+}
+.at-icon {
+    height: 26px !important;
+    width: 26px !important;
+}
