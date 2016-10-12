@@ -4156,7 +4156,7 @@ h4.h4-study {
     font-size: 20.02px;
     font-size: 1.43rem;
     font-family: ns_widenormal;
-    color: #010101;
+    color: #010101 !important;
     text-align: center;
     text-transform: uppercase;
     padding: 0 200px;
