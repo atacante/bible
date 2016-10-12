@@ -350,3 +350,32 @@ ins {
     width: 1px;
     background: white;
 }
+.lex-content {
+    background-color: #F7F7F7;
+    border: 1px solid #EEEEEE;
+    border-radius: 2px;
+    padding: 15px 20px;
+    margin: 30px 0;
+    position: relative;
+    color: initial;
+}
+.lex-content:hover {
+    color: #535353;
+}
+.lex-content i.bs-lexicon {
+    color: #00b9f7;
+}
+.lex-content b {
+    font-family: work_sansbold;
+}
+.btn-reset:hover {
+    background: #00b9f7;
+    color: white;
+    text-decoration: none !important;
+}
+.lex-content .btn-reset{
+    height: 28px;
+    width: 28px;
+    top: 20px;
+    right: 20px;
+}
