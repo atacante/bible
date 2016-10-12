@@ -112,3 +112,12 @@ h4.h4-locations {
     position: absolute;
     right: 20px;
 }
+.c-friend-text {
+    color: #535353;
+    display: table-cell;
+    font-family: work_sansregular;
+    font-size: 1rem;
+    height: 65px;
+    vertical-align: middle;
+    width: 100%;
+}
