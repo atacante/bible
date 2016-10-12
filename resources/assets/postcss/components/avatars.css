@@ -75,3 +75,9 @@
 .user-avatar {
     border-radius: 50%;
 }
+.cu-ui2 {
+    height: 42px !important;
+    width: 42px !important;
+    left: 0px !important;
+    top: 0 !important;
+}

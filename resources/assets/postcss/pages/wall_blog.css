@@ -41,7 +41,7 @@ textarea.wall-text-area:focus {
     padding: 0 100px;
     position: relative;
 
-    .form-group {
+    & .form-group {
         margin-bottom: 0;
     }
 }
@@ -85,8 +85,8 @@ textarea.wall-text-area:focus {
     text-decoration: none;
 }
 .public-wall .item-comments {
-    border: none;
-    padding: 10px 0;
+    border: none !important;
+    padding: 10px 0 !important;
 }
 .c-wall-comment {
     background: #f6f6f6;

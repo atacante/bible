@@ -621,6 +621,12 @@ i.bs-pray{
 .user-avatar {
     border-radius: 50%;
 }
+.cu-ui2 {
+    height: 42px !important;
+    width: 42px !important;
+    left: 0px !important;
+    top: 0 !important;
+}
 /*------------- btn1-kit */
 .btn1-kit, .btn1-kit:visited {
   display: inline-block;
@@ -4605,11 +4611,10 @@ textarea.wall-text-area:focus {
 }
 .c-area-group1 {
     padding: 0 100px;
-    position: relative;
-
-    .form-group {
-        margin-bottom: 0;
-    }
+    position: relative
+}
+.c-area-group1 .form-group {
+    margin-bottom: 0;
 }
 .c-privacy {
     height: 54px;
@@ -4653,8 +4658,8 @@ textarea.wall-text-area:focus {
     text-decoration: none;
 }
 .public-wall .item-comments {
-    border: none;
-    padding: 10px 0;
+    border: none !important;
+    padding: 10px 0 !important;
 }
 .c-wall-comment {
     background: #f6f6f6;
