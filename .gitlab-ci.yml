@@ -25,6 +25,8 @@ node_job_for_dev:
     - cd /var/www/clients/client3/web1/web
     - pwd
     - node --version
+    - npm i
+    - npm run build
   only:
     - dev
   tags:
