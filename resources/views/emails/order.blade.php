@@ -47,6 +47,7 @@
         </tr>
         </tbody>
     </table>
+    <p></p>
     <table class="kit-table1 pull-right" style="width:50%">
         <thead>
         <tr>
@@ -63,7 +64,7 @@
                 <tr>
                     <td>
                         @if($row->product->images->count())
-                            <img class="img-thumbnail" data-dz-thumbnail="" alt="" src="{!! url(Config::get('app.productImages').'thumbs/'.$row->product->images[0]->image) !!}" />
+                            <img style="width:100px; height:100px " class="img-thumbnail" data-dz-thumbnail="" alt="" src="{!! url(Config::get('app.productImages').'thumbs/'.$row->product->images[0]->image) !!}" />
                         @else
                             <div class="no-avatar img-thumbnail">
                                 <div class="no-avatar-text text-center"><i class="fa fa-shopping-cart fa-4x"></i></div>
@@ -71,7 +72,7 @@
                         @endif
                     </td>
                     <td>
-                        <p><strong>{!! $row->product->name !!}</strong></p>
+                        <p>{!! $row->product->name !!}</p>
                     </td>
                     <td>{!! $row->qty !!}</td>
                     <td style="padding-right: 5px">${!! $row->product->price !!}</td>
