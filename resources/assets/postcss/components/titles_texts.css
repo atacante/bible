@@ -27,7 +27,8 @@ h3.h3-1 {
     font-family: work_sansregular;
 }
 h2.h2-1 {
-    font-size: 2.71rem;
+    /*font-size: 2.71rem;*/
+    font-size: responsive 12px 38px;
     color: #404040;
     display: block;
     font-family: ns_widelight;
