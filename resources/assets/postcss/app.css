@@ -8,8 +8,7 @@
 @import url('other-styles-temp.css');
 
 html {
-  font-size: responsive;
-
+  font-size: 14px;
 }
 
 body{

@@ -3028,12 +3028,22 @@ h3.h3-1 {
     font-family: work_sansregular;
 }
 h2.h2-1 {
-    font-size: 37.94px;
-    font-size: 2.71rem;
+    /*font-size: 2.71rem;*/
+    font-size: calc(12px + 26 * ((100vw - 420px) / 860));
     color: #404040;
     display: block;
     font-family: ns_widelight;
     text-transform: uppercase;
+}
+@media screen and (min-width: 1280px) {
+    h2.h2-1 {
+        font-size: 38px;
+    }
+}
+@media screen and (max-width: 420px) {
+    h2.h2-1 {
+        font-size: 12px;
+    }
 }
 h2.h2-1 span {
     font-family: ns_widenormal;
@@ -4731,56 +4741,8 @@ textarea.wall-text-area:focus {
      left: auto !important;
      right: 20px !important;
 }
-@media (max-width: 970px) {
-    html {
-        font-size: 8px;
-    }
-    .my-item {
-        width: 50%;
-    }
-}
-@media (max-width: 992px) {
-    .navbar-header {
-        float: none;
-        display: inline-block;
-    }
-    .navbar-default {
-        text-align: center;
-    }
-    .pad-r1 {
-        padding-right: 15px !important;
-    }
-    .pad-l1 {
-        padding-left: 15px !important;
-    }
-    .h-ill5 {
-        background-size: cover;
-        width: 100%;
-        padding-top: 100%;
-    }
-}
-@media (max-width: 1280px) {
-    html {
-        font-size: 10px;
-    }
-    .col-left1, .col-right1 {
-        display: inline-block;
-        float: none;
-    }
-    .c-center-content2 {
-        text-align: center;
-    }
-    .my-item {
-        width: 33.333333%;
-    }
-    input.datepicker {
-        padding: 0 20px;
-    }
-    .icon-date-to {
-        display: none !important;
-    }
-}
-@media (max-width: 750px) {
+/* Extra small devices (phones, less than 768px) */
+@media (max-width: 767px) {
     .my-item {
         width: 100%;
     }
@@ -5037,8 +4999,7 @@ textarea.wall-text-area:focus {
         overflow: visible;
         overflow: initial;
     }
-}
-@media (max-width: 767px) {
+
     html {
         font-size: 6px;
     }
@@ -5062,6 +5023,55 @@ textarea.wall-text-area:focus {
     }
     .small-box p {
         font-size: 0.86rem;
+    }
+}
+/* Small devices (tablets, 992px max) */
+@media (max-width: 992px) {
+    html {
+        font-size: 8px;
+    }
+    .my-item {
+        width: 50%;
+    }
+    .navbar-header {
+        float: none;
+        display: inline-block;
+    }
+    .navbar-default {
+        text-align: center;
+    }
+    .pad-r1 {
+        padding-right: 15px !important;
+    }
+    .pad-l1 {
+        padding-left: 15px !important;
+    }
+    .h-ill5 {
+        background-size: cover;
+        width: 100%;
+        padding-top: 100%;
+    }
+}
+/* Medium devices (Small desktops 1280px max) */
+@media (max-width: 1280px) {
+    html {
+        font-size: 10px;
+    }
+    .col-left1, .col-right1 {
+        display: inline-block;
+        float: none;
+    }
+    .c-center-content2 {
+        text-align: center;
+    }
+    .my-item {
+        width: 33.333333%;
+    }
+    input.datepicker {
+        padding: 0 20px;
+    }
+    .icon-date-to {
+        display: none !important;
     }
 }
 .blog-cat-title {
