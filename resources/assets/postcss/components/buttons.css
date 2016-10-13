@@ -356,7 +356,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   border: 3px solid #404040;
   color: #404040;
   font-family: ns_widedemibold;
-  font-size: 1.29rem;
+  font-size: responsive 10px 18px;
   padding: 15px 50px;
   text-decoration: none !important;
   outline: none !important;
@@ -368,7 +368,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   background: #404040;
   color: #ffffff;
   font-family: ns_widedemibold;
-  font-size: 1.29rem;
+  font-size: responsive 10px 18px;
   padding: 15px 50px;
   text-decoration: none !important;
 }
@@ -397,7 +397,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   border: 3px solid #ffffff;
   color: #ffffff;
   font-family: ns_widedemibold;
-  font-size: 1.29rem;
+  font-size: responsive 10px 18px;
   padding: 15px 50px;
   text-decoration: none !important;
   outline: none !important;
@@ -408,7 +408,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   background: #ffffff;
   color: #404040;
   font-family: ns_widedemibold;
-  font-size: 1.29rem;
+  font-size: responsive 10px 18px;
   padding: 15px 50px;
   text-decoration: none !important;
 }

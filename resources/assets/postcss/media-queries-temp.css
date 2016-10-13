@@ -1,3 +1,45 @@
+
+/* Medium devices (Small desktops 1280px max) */
+@media (--medium) {
+    html {
+        font-size: 10px;
+    }
+    .c-center-content2 {
+        text-align: center;
+    }
+    .my-item {
+        width: 33.333333%;
+    }
+    input.datepicker {
+        padding: 0 20px;
+    }
+    .icon-date-to {
+        display: none !important;
+    }
+}
+/* Small devices (tablets, 992px max) */
+@media (--small) {
+    html {
+        font-size: 8px;
+    }
+    .my-item {
+        width: 50%;
+    }
+    .navbar-header {
+        float: none;
+        display: inline-block;
+    }
+    .navbar-default {
+        text-align: center;
+    }
+    .pad-r1 {
+        padding-right: 15px !important;
+    }
+    .pad-l1 {
+        padding-left: 15px !important;
+    }
+}
+
 /* Extra small devices (phones, less than 768px) */
 @media (--xsmall) {
     .my-item {
@@ -48,17 +90,7 @@
     .mr1 {
         margin-right: 0;
     }
-    .home-ill-section {
-        padding-left: 135px;
-        padding-right: 15px;
-        min-height: 1px;
-        min-height: 262px;
-    }
-    .h-ill5 {
-        background-size: cover;
-        width: 100%;
-        padding-top: 100%;
-    }
+
     h2.h2-2 {
         font-size: 17px;
     }
@@ -66,11 +98,6 @@
         border-radius: 0 !important;
         box-shadow: none;
         -webkit-box-shadow: none;
-    }
-    .home .bg-g1 {
-        margin-left: 5px;
-        margin-right: 5px;
-        min-height: 500px;
     }
     .inner-container {
         padding: 5px 0;
@@ -86,18 +113,7 @@
     .h-ill1, .h-ill2, .h-ill3, .h-ill4 {
         background-position: left center;
     }
-    .btn2, .btn2:hover, .btn2:visited, .btn2:focus {
-        padding: 10px 15px;
-        font-size: 12px;
-        border-width: 2px;
-        text-align: center;
-        width: 100%;
-    }
-    .btn3, .btn3:visited, .btn3:hover, .btn3:focus {
-        padding: 10px 15px;
-        font-size: 12px;
-        border-width: 2px;
-    }
+
 
     .c-center-content2 {
         border-radius: 0;
@@ -271,53 +287,3 @@
     }
 }
 
-/* Small devices (tablets, 992px max) */
-@media (--small) {
-    html {
-        font-size: 8px;
-    }
-    .my-item {
-        width: 50%;
-    }
-    .navbar-header {
-        float: none;
-        display: inline-block;
-    }
-    .navbar-default {
-        text-align: center;
-    }
-    .pad-r1 {
-        padding-right: 15px !important;
-    }
-    .pad-l1 {
-        padding-left: 15px !important;
-    }
-    .h-ill5 {
-        background-size: cover;
-        width: 100%;
-        padding-top: 100%;
-    }
-}
-
-/* Medium devices (Small desktops 1280px max) */
-@media (--medium) {
-    html {
-        font-size: 10px;
-    }
-    .col-left1, .col-right1 {
-        display: inline-block;
-        float: none;
-    }
-    .c-center-content2 {
-        text-align: center;
-    }
-    .my-item {
-        width: 33.333333%;
-    }
-    input.datepicker {
-        padding: 0 20px;
-    }
-    .icon-date-to {
-        display: none !important;
-    }
-}

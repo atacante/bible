@@ -1014,12 +1014,21 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   border: 3px solid #404040;
   color: #404040;
   font-family: ns_widedemibold;
-  font-size: 18.06px;
-  font-size: 1.29rem;
+  font-size: calc(10px + 8 * ((100vw - 420px) / 860));
   padding: 15px 50px;
   text-decoration: none !important;
   outline: none !important;
   text-transform: uppercase;
+}
+@media screen and (min-width: 1280px) {
+    .btn2, .btn2:visited {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .btn2, .btn2:visited {
+        font-size: 10px;
+    }
 }
 .btn2:hover, .btn2:active {
   display: inline-block;
@@ -1027,10 +1036,19 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   background: #404040;
   color: #ffffff;
   font-family: ns_widedemibold;
-  font-size: 18.06px;
-  font-size: 1.29rem;
+  font-size: calc(10px + 8 * ((100vw - 420px) / 860));
   padding: 15px 50px;
   text-decoration: none !important;
+}
+@media screen and (min-width: 1280px) {
+    .btn2:hover, .btn2:active {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .btn2:hover, .btn2:active {
+        font-size: 10px;
+    }
 }
 .cu-btn2 {
   font-size: 13.02px;
@@ -1059,11 +1077,20 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   border: 3px solid #ffffff;
   color: #ffffff;
   font-family: ns_widedemibold;
-  font-size: 18.06px;
-  font-size: 1.29rem;
+  font-size: calc(10px + 8 * ((100vw - 420px) / 860));
   padding: 15px 50px;
   text-decoration: none !important;
   outline: none !important;
+}
+@media screen and (min-width: 1280px) {
+    .btn3, .btn3:visited {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .btn3, .btn3:visited {
+        font-size: 10px;
+    }
 }
 .btn3:hover, .btn3:active {
   display: inline-block;
@@ -1071,10 +1098,19 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   background: #ffffff;
   color: #404040;
   font-family: ns_widedemibold;
-  font-size: 18.06px;
-  font-size: 1.29rem;
+  font-size: calc(10px + 8 * ((100vw - 420px) / 860));
   padding: 15px 50px;
   text-decoration: none !important;
+}
+@media screen and (min-width: 1280px) {
+    .btn3:hover, .btn3:active {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .btn3:hover, .btn3:active {
+        font-size: 10px;
+    }
 }
 .btn5, .btn5:visited {
   display: inline-block;
@@ -3362,6 +3398,7 @@ h4.h4-sub-kit {
 }
 .home {
 
+
   /* --------- backgrounds for sections -------- */
 
 
@@ -3382,6 +3419,15 @@ h4.h4-sub-kit {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(102, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0)',GradientType=0 );
     /* IE6-9 */
 }
+@media (max-width: 767px) {
+    .home {
+        .bg-g1 {
+            margin-left: 5px;
+            margin-right: 5px;
+            min-height: 500px;
+        }
+    }
+  }
 .home h1.h1-1 {
     color: white;
 }
@@ -3439,6 +3485,48 @@ h4.h4-sub-kit {
         background: url('/images/p4-home-m.png') left center no-repeat;
     }
   }
+.home .ill-text-pos1 {
+    position: absolute;
+    top: 17%;
+    right: 10%;
+}
+.home .ill-text-pos2 {
+    position: absolute;
+    top: 21%;
+    right: 13%;
+}
+.home .ill-text-pos3 {
+    position: absolute;
+    top: 17%;
+    right: 32%;
+}
+.home .ill-text-pos4 {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+}
+@media (max-width: 767px) {
+    .home {
+
+}
+    .home .ill-text-pos1,
+    .home .ill-text-pos2,
+    .home .ill-text-pos3,
+    .home .ill-text-pos4 {
+        right: 10%;
+        left: 35%;
+        top: 10%;
+    }
+    .home .btn2, .home .btn2:hover, .home .btn2:visited, .home .btn2:focus {
+        padding: 10px 15px;
+        border-width: 2px;
+        text-align: center;
+    }
+    .home .btn3, .home .btn3:visited, .home .btn3:hover, .home .btn3:focus {
+        padding: 10px 15px;
+        border-width: 2px;
+    }
+  }
 .home .cu-verseoftheday {
     color: #00b9f7;
     padding-right: 20px;
@@ -3459,6 +3547,16 @@ h4.h4-sub-kit {
     background: url('/images/p5-home.jpg') left center no-repeat;
     min-height: 449px;
 }
+@media (max-width: 767px) {
+    .home {
+
+}
+    .home .h-ill5 {
+        background-size: cover;
+        width: 100%;
+        padding-top: 100%;
+    }
+  }
 .home .col-left1 {
     width: 449px;
     float: left;
@@ -3468,6 +3566,16 @@ h4.h4-sub-kit {
     max-width: 680px;
     padding: 65px 55px 40px;
 }
+@media (max-width: 1280px) {
+    .home {
+
+}
+    .home .col-left1,
+    .home .col-right1 {
+        display: inline-block;
+        float: none;
+    }
+  }
 .home .luke {
     margin-top: 400px;
     color: #cdcdcd;
@@ -3484,26 +3592,6 @@ h4.h4-sub-kit {
     font-size: 1.64rem;
     font-family: ns_widemedium;
     padding-bottom: 5%;
-}
-.home .ill-text-pos1 {
-    position: absolute;
-    top: 17%;
-    right: 10%;
-}
-.home .ill-text-pos2 {
-    position: absolute;
-    top: 21%;
-    right: 13%;
-}
-.home .ill-text-pos3 {
-    position: absolute;
-    top: 17%;
-    right: 32%;
-}
-.home .ill-text-pos4 {
-    position: absolute;
-    top: 20%;
-    right: 10%;
 }
 .home .c-home-products .product-item {
     width: 30%;
@@ -4757,6 +4845,46 @@ textarea.wall-text-area:focus {
      left: auto !important;
      right: 20px !important;
 }
+/* Medium devices (Small desktops 1280px max) */
+@media (max-width: 1280px) {
+    html {
+        font-size: 10px;
+    }
+    .c-center-content2 {
+        text-align: center;
+    }
+    .my-item {
+        width: 33.333333%;
+    }
+    input.datepicker {
+        padding: 0 20px;
+    }
+    .icon-date-to {
+        display: none !important;
+    }
+}
+/* Small devices (tablets, 992px max) */
+@media (max-width: 992px) {
+    html {
+        font-size: 8px;
+    }
+    .my-item {
+        width: 50%;
+    }
+    .navbar-header {
+        float: none;
+        display: inline-block;
+    }
+    .navbar-default {
+        text-align: center;
+    }
+    .pad-r1 {
+        padding-right: 15px !important;
+    }
+    .pad-l1 {
+        padding-left: 15px !important;
+    }
+}
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
     .my-item {
@@ -4807,17 +4935,7 @@ textarea.wall-text-area:focus {
     .mr1 {
         margin-right: 0;
     }
-    .home-ill-section {
-        padding-left: 135px;
-        padding-right: 15px;
-        min-height: 1px;
-        min-height: 262px;
-    }
-    .h-ill5 {
-        background-size: cover;
-        width: 100%;
-        padding-top: 100%;
-    }
+
     h2.h2-2 {
         font-size: 17px;
     }
@@ -4825,11 +4943,6 @@ textarea.wall-text-area:focus {
         border-radius: 0 !important;
         box-shadow: none;
         -webkit-box-shadow: none;
-    }
-    .home .bg-g1 {
-        margin-left: 5px;
-        margin-right: 5px;
-        min-height: 500px;
     }
     .inner-container {
         padding: 5px 0;
@@ -4845,18 +4958,7 @@ textarea.wall-text-area:focus {
     .h-ill1, .h-ill2, .h-ill3, .h-ill4 {
         background-position: left center;
     }
-    .btn2, .btn2:hover, .btn2:visited, .btn2:focus {
-        padding: 10px 15px;
-        font-size: 12px;
-        border-width: 2px;
-        text-align: center;
-        width: 100%;
-    }
-    .btn3, .btn3:visited, .btn3:hover, .btn3:focus {
-        padding: 10px 15px;
-        font-size: 12px;
-        border-width: 2px;
-    }
+
 
     .c-center-content2 {
         border-radius: 0;
@@ -5028,55 +5130,6 @@ textarea.wall-text-area:focus {
     }
     .small-box p {
         font-size: 0.86rem;
-    }
-}
-/* Small devices (tablets, 992px max) */
-@media (max-width: 992px) {
-    html {
-        font-size: 8px;
-    }
-    .my-item {
-        width: 50%;
-    }
-    .navbar-header {
-        float: none;
-        display: inline-block;
-    }
-    .navbar-default {
-        text-align: center;
-    }
-    .pad-r1 {
-        padding-right: 15px !important;
-    }
-    .pad-l1 {
-        padding-left: 15px !important;
-    }
-    .h-ill5 {
-        background-size: cover;
-        width: 100%;
-        padding-top: 100%;
-    }
-}
-/* Medium devices (Small desktops 1280px max) */
-@media (max-width: 1280px) {
-    html {
-        font-size: 10px;
-    }
-    .col-left1, .col-right1 {
-        display: inline-block;
-        float: none;
-    }
-    .c-center-content2 {
-        text-align: center;
-    }
-    .my-item {
-        width: 33.333333%;
-    }
-    input.datepicker {
-        padding: 0 20px;
-    }
-    .icon-date-to {
-        display: none !important;
     }
 }
 .blog-cat-title {
