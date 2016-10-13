@@ -1403,6 +1403,22 @@ ul.footer-menu li a:hover {
     font-size: 1.07rem;
     text-transform: uppercase;
 }
+@media (max-width: 767px) {
+    & ul.footer-menu li a {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    & ul.footer-menu li {
+        display: block;
+        padding: 7px 20px;
+    }
+    & .copyright {
+        margin-top: 25px;
+    }
+    & .footer1 {
+        padding: 25px 0;
+    }
+}
 .req {
     color: #f90000;
     font-family: work_sansmedium;
@@ -5061,20 +5077,7 @@ textarea.wall-text-area:focus {
     .pad2 {
         padding: 40px 10px;
     }
-    ul.footer-menu li a {
-        font-size: 14px;
-        line-height: 16px;
-    }
-    ul.footer-menu li {
-        display: block;
-        padding: 7px 20px;
-    }
-    .copyright {
-        margin-top: 25px;
-    }
-    .footer1 {
-        padding: 25px 0;
-    }
+
     .mt13 {
         margin-top: 10px !important;
     }
