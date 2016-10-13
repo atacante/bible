@@ -1,43 +1,7 @@
-@media (max-width: 970px) {
-    html {
-        font-size: 8px;
-    }
-    .my-item {
-        width: 50%;
-    }
-}
 
+/* Medium devices (Small desktops 1280px max) */
+@media (--medium) {
 
-@media (max-width: 992px) {
-    .navbar-header {
-        float: none;
-        display: inline-block;
-    }
-    .navbar-default {
-        text-align: center;
-    }
-    .pad-r1 {
-        padding-right: 15px !important;
-    }
-    .pad-l1 {
-        padding-left: 15px !important;
-    }
-    .h-ill5 {
-        background-size: cover;
-        width: 100%;
-        padding-top: 100%;
-    }
-}
-
-
-@media (max-width: 1280px) {
-    html {
-        font-size: 10px;
-    }
-    .col-left1, .col-right1 {
-        display: inline-block;
-        float: none;
-    }
     .c-center-content2 {
         text-align: center;
     }
@@ -51,9 +15,29 @@
         display: none !important;
     }
 }
+/* Small devices (tablets, 992px max) */
+@media (--small) {
 
+    .my-item {
+        width: 50%;
+    }
+    .navbar-header {
+        float: none;
+        display: inline-block;
+    }
+    .navbar-default {
+        text-align: center;
+    }
+    .pad-r1 {
+        padding-right: 15px !important;
+    }
+    .pad-l1 {
+        padding-left: 15px !important;
+    }
+}
 
-@media (max-width: 750px) {
+/* Extra small devices (phones, less than 768px) */
+@media (--xsmall) {
     .my-item {
         width: 100%;
     }
@@ -102,17 +86,7 @@
     .mr1 {
         margin-right: 0;
     }
-    .home-ill-section {
-        padding-left: 135px;
-        padding-right: 15px;
-        min-height: 1px;
-        min-height: 262px;
-    }
-    .h-ill5 {
-        background-size: cover;
-        width: 100%;
-        padding-top: 100%;
-    }
+
     h2.h2-2 {
         font-size: 17px;
     }
@@ -120,11 +94,6 @@
         border-radius: 0 !important;
         box-shadow: none;
         -webkit-box-shadow: none;
-    }
-    .home .bg-g1 {
-        margin-left: 5px;
-        margin-right: 5px;
-        min-height: 500px;
     }
     .inner-container {
         padding: 5px 0;
@@ -140,30 +109,8 @@
     .h-ill1, .h-ill2, .h-ill3, .h-ill4 {
         background-position: left center;
     }
-    .btn2, .btn2:hover, .btn2:visited, .btn2:focus {
-        padding: 10px 15px;
-        font-size: 12px;
-        border-width: 2px;
-        text-align: center;
-        width: 100%;
-    }
-    .btn3, .btn3:visited, .btn3:hover, .btn3:focus {
-        padding: 10px 15px;
-        font-size: 12px;
-        border-width: 2px;
-    }
-    .h-ill1 {
-        background: url('/images/p1-home-m.png') left center no-repeat;
-    }
-    .h-ill2 {
-        background: url('/images/p2-home-m.png') left center no-repeat;
-    }
-    .h-ill3 {
-        background: url('/images/p3-home-m.png') left center no-repeat;
-    }
-    .h-ill4 {
-        background: url('/images/p4-home-m.png') left center no-repeat;
-    }
+
+
     .c-center-content2 {
         border-radius: 0;
         -webkit-border-radius: 0;
@@ -232,39 +179,15 @@
     .mt12 {
         margin-top: 50px !important;
     }
-    .c-share-panel {
-        border: none;
-        background: white;
-        margin-left: -10px;
-        margin-right: -10px;
-        padding: 20px 0 0 !important;
-    }
+
     .c-center-content3.mt11 {
         margin-top: 0 !important;
     }
-    .at-share-btn-elements .at-icon-wrapper {
-        background: white !important;
-        color: #00b9f7 !important;
-        height: 50px !important;
-        width: 50px !important;
-    }
-    .at-icon-wrapper.at-share-btn {
-        border: 2px solid #00b9f7 !important;
-        border-radius: 50% !important;
-        -webkit-border-radius: 50% !important;
-        -moz-border-radius: 50% !important;
-    }
-    .at-share-btn-elements .at-icon {
-        fill: #00b9f7 !important;
-        width: 39px !important;
-        height: 48px !important;
-    }
-    .at-share-tbx-element .at-share-btn {
-        margin-right: 20px !important;
-    }
-    .at-share-tbx-element .at-share-btn:last-child {
-        margin-right: 0px !important;
-    }
+
+
+
+
+
     .c-share-panel h4.h4-1 {
         font-size: 13px;
     }
@@ -309,13 +232,10 @@
     .c-center-content-shop {
         overflow: initial;
     }
-}
 
-
-@media (max-width: 767px) {
-    html {
+/*    html {
         font-size: 6px;
-    }
+    }*/
     .navbar-header {
         display: block;
     }
@@ -338,3 +258,4 @@
         font-size: 0.86rem;
     }
 }
+
