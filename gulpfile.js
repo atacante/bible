@@ -19,6 +19,7 @@ elixir(function(mix) {
     plugins:[
       require('postcss-easy-import')({glob: true}),
       require('postcss-cssnext'),
+      require('postcss-responsive-type')()
     ],
   });
 });
