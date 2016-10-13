@@ -1,11 +1,9 @@
-/* Home page styles */
-
 .bg-home {
   background: url('/images/bg-home-header.png') center top no-repeat;
   max-width: 100%;
 }
 .home .bg-home {
-  background: url('/images/bg-home-header2.png') center top no-repeat;
+  background: url('/images/bg-home-header.jpg') center top no-repeat;
   max-width: 100%;
 }
 .bg-g1 {

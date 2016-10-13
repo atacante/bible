@@ -3350,13 +3350,12 @@ h4.h4-sub-kit {
     line-height: 13.02px;
     line-height: 0.93rem;
 }
-/* Home page styles */
 .bg-home {
   background: url('/images/bg-home-header.png') center top no-repeat;
   max-width: 100%;
 }
 .home .bg-home {
-  background: url('/images/bg-home-header2.png') center top no-repeat;
+  background: url('/images/bg-home-header.jpg') center top no-repeat;
   max-width: 100%;
 }
 .bg-g1 {
@@ -3668,6 +3667,23 @@ h4.h4-locations {
     text-transform: capitalize;
     color: #a9a9a9;
     display: inline-block;
+}
+.btns-group1 {
+    bottom: 20px;
+    height: 40px;
+    left: 20px;
+    position: absolute;
+    right: 20px;
+}
+.c-friend-text {
+    color: #535353;
+    display: table-cell;
+    font-family: work_sansregular;
+    font-size: 14px;
+    font-size: 1rem;
+    height: 65px;
+    vertical-align: middle;
+    width: 100%;
 }
 ul.journey-top-panel {
     display: block;
@@ -6165,15 +6181,6 @@ a.my-bookmarks:hover{
 .dropdown-menu .popup-arrow{
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
-}
-/* HOME */
-.h-ill5 {
-    background: url('/images/p5-home.jpg') left center no-repeat;
-    min-height: 449px;
-}
-.home .bg-home {
-    background: url('/images/bg-home-header.jpg') center top no-repeat;
-    max-width: 100%;
 }
 html {
   font-size: 14px;

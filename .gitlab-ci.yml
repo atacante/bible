@@ -1,7 +1,9 @@
 stages:
  - dev
+ - dev_node
  - alpha
  - beta
+ - beta_node
  - live
 
 job_for_dev:
@@ -16,6 +18,23 @@ job_for_dev:
     - dev
   tags:
     - dev
+  environment: dev
+
+node_job_for_dev:
+  stage: dev_node
+  script:
+    - hostname
+    - cd /var/www/clients/client3/web1/web
+    - pwd
+    - node --version
+    - npm i
+    - npm run build
+    - find /var/www/clients/client3/web1/web/ -user root -exec chown 5004:5005 {} \;
+  only:
+    - dev
+  tags:
+    - sh1_clevercrew_docker
+  image: node
   environment: dev
 
 job_for_alpha:
@@ -42,7 +61,7 @@ job_for_beta:
     - hostname
     - pwd
     - php -v
-    - cd $HOME/web && git pull origin beta 
+    - cd $HOME/web && git pull origin beta
     - cd $HOME/web && php artisan migrate --force --no-interaction
     - cd $HOME/web && php artisan asset:dist
     - cd $HOME/web && php artisan clear-compiled
@@ -51,6 +70,21 @@ job_for_beta:
     - beta
   tags:
     - beta
+  environment: staging
+
+node_job_for_beta:
+  stage: beta_node
+  script:
+    - export BETA_HOME=/home/bible
+    - cd $BETA_HOME/web
+    - npm install
+    - npm run build
+    - find $BETA_HOME/web -user root -exec chown 1001:1001 {} \;
+  only:
+    - beta
+  tags:
+    -  biblestudyco_docker
+  image: node
   environment: staging
 
 #job_for_live:

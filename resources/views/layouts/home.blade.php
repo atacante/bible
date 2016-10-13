@@ -30,7 +30,6 @@
         {{-- {!!Html::style(Asset::v('/css/style.css'))!!} --}}
         {{-- {!!Html::style(Asset::v('/css/style.css'))!!} --}}
         {!!Html::style(Asset::v('/css/app.css'))!!}
-        {!!Html::style(Asset::v('/css/temp.css'))!!}
 
         {!!Html::style('css/ionicons-2.0.1/css/ionicons.min.css')!!}
 
