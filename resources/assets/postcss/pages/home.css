@@ -1,151 +1,158 @@
-.bg-home {
-  background: url('/images/bg-home-header.png') center top no-repeat;
-  max-width: 100%;
-}
-.home .bg-home {
-  background: url('/images/bg-home-header.jpg') center top no-repeat;
-  max-width: 100%;
-}
-.bg-g1 {
-  min-height: 650px;
-  background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
-}
-.home .bg-g1 {
-  min-height: 650px;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.4+0,0+100 */
-  background: -moz-linear-gradient(top,  rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#66000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-}
-.home h1.h1-1 {
-  color: white;
-}
-.home .user-menu-name {
-  color: #ffffff;
-}
-.home .caret {
-  color: white;
-}
-.home h2.h2-3 {
-  color: white;
-}
-.home-ill-section {
-  display: block;
-  width: 100%;
-  background-size: cover !important;
-  -webkit-background-size: cover !important;
-  -moz-background-size: cover !important;
-  overflow: hidden;
-  padding-bottom: 30px;
-  padding-left: 50px;
-  padding-right: 50px;
-  position: relative;
-}
+.home {
+ & .bg-home {
+    background: url('/images/bg-home-header.jpg') center top no-repeat;
+    max-width: 100%;
+  }
+ & .bg-g1 {
+    min-height: 650px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.4+0,0+100 */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#66000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+  }
+ & h1.h1-1 {
+    color: white;
+  }
+ & .user-menu-name {
+    color: #ffffff;
+  }
+ & .caret {
+    color: white;
+  }
+ & h2.h2-3 {
+    color: white;
+  }
+ & .home-ill-section {
+    display: block;
+    width: 100%;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    overflow: hidden;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    position: relative;
+  }
 
-/* --------- backgrounds for sections -------- */
-.h-ill1 {
-  background: url('/images/p1-home.png') right center no-repeat;
-  padding-top: 39.2%;
-}
-.h-ill2 {
-  background: url('/images/p2-home.png') right center no-repeat;
-  padding-top: 39.2%;
-}
-.h-ill3 {
-  background: url('/images/p3-home.png') center center no-repeat;
-  padding-top: 39.2%;
-}
-.h-ill4 {
-  background: url('/images/p4-home.png') right center no-repeat;
-  padding-top: 39.2%;
-}
+  /* --------- backgrounds for sections -------- */
+ & .h-ill1 {
+    background: url('/images/p1-home.png') right center no-repeat;
+    padding-top: 39.2%;
+  }
+ & .h-ill2 {
+    background: url('/images/p2-home.png') right center no-repeat;
+    padding-top: 39.2%;
+  }
+ & .h-ill3 {
+    background: url('/images/p3-home.png') center center no-repeat;
+    padding-top: 39.2%;
+  }
+ & .h-ill4 {
+    background: url('/images/p4-home.png') right center no-repeat;
+    padding-top: 39.2%;
+  }
 
-/* ----------- SEND A GIFT OF LOVE TO A FRIEND  ---------- */
-.cu-verseoftheday {
-  color: #00b9f7;
-  padding-right: 20px;
-  vertical-align: bottom;
-  height: 20px;
-  line-height: 2.92rem;
-}
-.c-center-content-shop {
-  width: 100%;
-  max-width: 1140px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-}
-.h-ill5 {
-  background: url('/images/p5-home.jpg') left center no-repeat;
-  min-height: 449px;
-}
-.col-left1 {
-  width: 449px;
-  float: left;
-}
-.col-right1 {
-  float: left;
-  max-width: 680px;
-  padding: 65px 55px 40px;
-}
-.luke {
-  margin-top: 400px;
-  color: #cdcdcd;
-  text-align: center;
-}
-.gift1 {
-  margin: 10px;
-  padding-top: 70%;
-}
-h4.h4-gift {
-  text-transform: uppercase;
-  color: #464646;
-  font-size: 1.64rem;
-  font-family: ns_widemedium;
-  padding-bottom: 5%;
-}
-.ill-text-pos1 {
-  position: absolute;
-  top: 17%;
-  right: 10%;
-}
-.ill-text-pos2 {
-  position: absolute;
-  top: 21%;
-  right: 13%;
-}
-.ill-text-pos3 {
-  position: absolute;
-  top: 17%;
-  right: 32%;
-}
-.ill-text-pos4 {
-  position: absolute;
-  top: 20%;
-  right: 10%;
-}
-.c-home-products .product-item {
-  width: 30%;
-  display: inline-block;
-  padding: 0;
-}
-.c-home-products {
-  text-align: center;
-  overflow: hidden;
-}
-.gift-item {
-  background: #ffffff;
-  display: block;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -webkit-box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
-  box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
-  margin: 8px 10px 25px;
-  outline: none !important;
-  overflow: hidden;
+  @media (--xsmall) {
+    & .h-ill1 {
+      background: url('/images/p1-home-m.png') left center no-repeat;
+    }
+    & .h-ill2 {
+      background: url('/images/p2-home-m.png') left center no-repeat;
+    }
+    & .h-ill3 {
+      background: url('/images/p3-home-m.png') left center no-repeat;
+    }
+    & .h-ill4 {
+      background: url('/images/p4-home-m.png') left center no-repeat;
+    }
+  }
+
+
+  /* ----------- SEND A GIFT OF LOVE TO A FRIEND  ---------- */
+ & .cu-verseoftheday {
+    color: #00b9f7;
+    padding-right: 20px;
+    vertical-align: bottom;
+    height: 20px;
+    line-height: 2.92rem;
+  }
+ & .c-center-content-shop {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+  }
+ & .h-ill5 {
+    background: url('/images/p5-home.jpg') left center no-repeat;
+    min-height: 449px;
+  }
+ & .col-left1 {
+    width: 449px;
+    float: left;
+  }
+ & .col-right1 {
+    float: left;
+    max-width: 680px;
+    padding: 65px 55px 40px;
+  }
+ & .luke {
+    margin-top: 400px;
+    color: #cdcdcd;
+    text-align: center;
+  }
+ & .gift1 {
+    margin: 10px;
+    padding-top: 70%;
+  }
+ & h4.h4-gift {
+    text-transform: uppercase;
+    color: #464646;
+    font-size: 1.64rem;
+    font-family: ns_widemedium;
+    padding-bottom: 5%;
+  }
+ & .ill-text-pos1 {
+    position: absolute;
+    top: 17%;
+    right: 10%;
+  }
+ & .ill-text-pos2 {
+    position: absolute;
+    top: 21%;
+    right: 13%;
+  }
+ & .ill-text-pos3 {
+    position: absolute;
+    top: 17%;
+    right: 32%;
+  }
+ & .ill-text-pos4 {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+  }
+ & .c-home-products .product-item {
+    width: 30%;
+    display: inline-block;
+    padding: 0;
+  }
+ & .c-home-products {
+    text-align: center;
+    overflow: hidden;
+  }
+ & .gift-item {
+    background: #ffffff;
+    display: block;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -webkit-box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 8px 5px rgba(0,0,0,0.1);
+    margin: 8px 10px 25px;
+    outline: none !important;
+    overflow: hidden;
+  }
 }
