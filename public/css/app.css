@@ -1368,18 +1368,18 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 }
 .footer1 {
     background-color: #404040;
-    padding: 50px 0;
+    padding: 50px 0
 }
-ul.footer-menu {
+.footer1 ul.footer-menu {
     display: block;
     text-align: center;
     padding-left: 0;
 }
-ul.footer-menu li {
+.footer1 ul.footer-menu li {
     display: inline-block;
     padding: 10px 20px;
 }
-ul.footer-menu li a {
+.footer1 ul.footer-menu li a {
     display: inline-block;
     color: #f3f3f3;
     font-family: work_sansmedium;
@@ -1392,11 +1392,11 @@ ul.footer-menu li a {
     border-bottom: 1px solid #ffffff;
     outline: none;
 }
-ul.footer-menu li a:hover {
+.footer1 ul.footer-menu li a:hover {
     text-decoration: none;
     border-bottom: 1px solid transparent;
 }
-.copyright {
+.footer1 .copyright {
     color: #bdbdbd;
     font-family: work_sansregular;
     font-size: 14.98px;
@@ -1404,19 +1404,19 @@ ul.footer-menu li a:hover {
     text-transform: uppercase;
 }
 @media (max-width: 767px) {
-    & ul.footer-menu li a {
+    .footer1 {
+        padding: 25px 0
+    }
+    .footer1 ul.footer-menu li a {
         font-size: 14px;
         line-height: 16px;
     }
-    & ul.footer-menu li {
+    .footer1 ul.footer-menu li {
         display: block;
         padding: 7px 20px;
     }
-    & .copyright {
+    .footer1 .copyright {
         margin-top: 25px;
-    }
-    & .footer1 {
-        padding: 25px 0;
     }
 }
 .req {
