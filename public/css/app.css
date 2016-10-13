@@ -1403,6 +1403,22 @@ ul.footer-menu li a:hover {
     font-size: 1.07rem;
     text-transform: uppercase;
 }
+@media (max-width: 767px) {
+    & ul.footer-menu li a {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    & ul.footer-menu li {
+        display: block;
+        padding: 7px 20px;
+    }
+    & .copyright {
+        margin-top: 25px;
+    }
+    & .footer1 {
+        padding: 25px 0;
+    }
+}
 .req {
     color: #f90000;
     font-family: work_sansmedium;
@@ -3624,6 +3640,19 @@ h4.h4-sub-kit {
         margin-right: -10px;
         padding: 20px 0 0 !important;
     }
+    .home .c-share-panel h4.h4-1 {
+        font-size: calc(13px + 10 * ((100vw - 420px) / 860));
+    }
+    @media screen and (min-width: 1280px) {
+        .home .c-share-panel h4.h4-1 {
+            font-size: 23px;
+        }
+    }
+    @media screen and (max-width: 420px) {
+        .home .c-share-panel h4.h4-1 {
+            font-size: 13px;
+        }
+    }
     .home .at-share-btn-elements .at-icon-wrapper {
         background: white !important;
         color: #00b9f7 !important;
@@ -3646,6 +3675,19 @@ h4.h4-sub-kit {
     }
     .home .at-share-tbx-element .at-share-btn:last-child {
         margin-right: 0px !important;
+    }
+    .home h2.h2-2 {
+        font-size: calc(17px + 21 * ((100vw - 420px) / 860));
+    }
+    @media screen and (min-width: 1280px) {
+        .home h2.h2-2 {
+            font-size: 38px;
+        }
+    }
+    @media screen and (max-width: 420px) {
+        .home h2.h2-2 {
+            font-size: 17px;
+        }
     }
   }
 .urls-text {
@@ -4968,9 +5010,7 @@ textarea.wall-text-area:focus {
         margin-right: 0;
     }
 
-    h2.h2-2 {
-        font-size: 17px;
-    }
+
     .c-center-content {
         border-radius: 0 !important;
         box-shadow: none;
@@ -5037,20 +5077,7 @@ textarea.wall-text-area:focus {
     .pad2 {
         padding: 40px 10px;
     }
-    ul.footer-menu li a {
-        font-size: 14px;
-        line-height: 16px;
-    }
-    ul.footer-menu li {
-        display: block;
-        padding: 7px 20px;
-    }
-    .copyright {
-        margin-top: 25px;
-    }
-    .footer1 {
-        padding: 25px 0;
-    }
+
     .mt13 {
         margin-top: 10px !important;
     }
@@ -5069,9 +5096,7 @@ textarea.wall-text-area:focus {
 
 
 
-    .c-share-panel h4.h4-1 {
-        font-size: 13px;
-    }
+
     .c-center-content-shop .mt10 {
         margin-top: 0 !important;
     }

@@ -210,6 +210,9 @@
       margin-right: -10px;
       padding: 20px 0 0 !important;
     }
+    & .c-share-panel h4.h4-1 {
+      font-size: responsive 13px 23px;
+    }
     & .at-share-btn-elements .at-icon-wrapper {
       background: white !important;
       color: #00b9f7 !important;
@@ -232,6 +235,9 @@
     }
     & .at-share-tbx-element .at-share-btn:last-child {
       margin-right: 0px !important;
+    }
+    & h2.h2-2 {
+      font-size: responsive 17px 38px;
     }
   }
 }

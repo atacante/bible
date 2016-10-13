@@ -32,3 +32,19 @@ ul.footer-menu li a:hover {
     font-size: 1.07rem;
     text-transform: uppercase;
 }
+@media (--xsmall) {
+    & ul.footer-menu li a {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    & ul.footer-menu li {
+        display: block;
+        padding: 7px 20px;
+    }
+    & .copyright {
+        margin-top: 25px;
+    }
+    & .footer1 {
+        padding: 25px 0;
+    }
+}
