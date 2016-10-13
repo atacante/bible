@@ -26,7 +26,7 @@ class ProgressBarHelper
         if($message){
             $this->startMessage = $message;
         }
-        if($this->itemsCount > 0){
+        if($this->itemsCount > 1){
             echo $this->startMessage."\n";
         }
     }
@@ -35,7 +35,7 @@ class ProgressBarHelper
     {
         $this->itemsCounter++;
         if($this->itemsCounter == $this->progressBarPart){
-            if($this->itemsCount > 0) {
+            if($this->itemsCount > 1) {
                 echo "Progress " . ($this->status + $this->persentStep) . "%\n";
             }
             $this->status += $this->persentStep;
@@ -48,7 +48,7 @@ class ProgressBarHelper
         if($message){
             $this->finishMessage = $message;
         }
-        if($this->itemsCount > 0) {
+        if($this->itemsCount > 1) {
             echo $this->finishMessage . "\n";
         }
     }
