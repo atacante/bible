@@ -1,59 +1,5 @@
-@media (max-width: 970px) {
-    html {
-        font-size: 8px;
-    }
-    .my-item {
-        width: 50%;
-    }
-}
-
-
-@media (max-width: 992px) {
-    .navbar-header {
-        float: none;
-        display: inline-block;
-    }
-    .navbar-default {
-        text-align: center;
-    }
-    .pad-r1 {
-        padding-right: 15px !important;
-    }
-    .pad-l1 {
-        padding-left: 15px !important;
-    }
-    .h-ill5 {
-        background-size: cover;
-        width: 100%;
-        padding-top: 100%;
-    }
-}
-
-
-@media (max-width: 1280px) {
-    html {
-        font-size: 10px;
-    }
-    .col-left1, .col-right1 {
-        display: inline-block;
-        float: none;
-    }
-    .c-center-content2 {
-        text-align: center;
-    }
-    .my-item {
-        width: 33.333333%;
-    }
-    input.datepicker {
-        padding: 0 20px;
-    }
-    .icon-date-to {
-        display: none !important;
-    }
-}
-
-
-@media (max-width: 750px) {
+/* Extra small devices (phones, less than 768px) */
+@media (max-width: 767px) {
     .my-item {
         width: 100%;
     }
@@ -309,10 +255,7 @@
     .c-center-content-shop {
         overflow: initial;
     }
-}
 
-
-@media (max-width: 767px) {
     html {
         font-size: 6px;
     }
@@ -336,5 +279,56 @@
     }
     .small-box p {
         font-size: 0.86rem;
+    }
+}
+
+/* Small devices (tablets, 992px max) */
+@media (max-width: 992px) {
+    html {
+        font-size: 8px;
+    }
+    .my-item {
+        width: 50%;
+    }
+    .navbar-header {
+        float: none;
+        display: inline-block;
+    }
+    .navbar-default {
+        text-align: center;
+    }
+    .pad-r1 {
+        padding-right: 15px !important;
+    }
+    .pad-l1 {
+        padding-left: 15px !important;
+    }
+    .h-ill5 {
+        background-size: cover;
+        width: 100%;
+        padding-top: 100%;
+    }
+}
+
+/* Medium devices (Small desktops 1280px max) */
+@media (max-width: 1280px) {
+    html {
+        font-size: 10px;
+    }
+    .col-left1, .col-right1 {
+        display: inline-block;
+        float: none;
+    }
+    .c-center-content2 {
+        text-align: center;
+    }
+    .my-item {
+        width: 33.333333%;
+    }
+    input.datepicker {
+        padding: 0 20px;
+    }
+    .icon-date-to {
+        display: none !important;
     }
 }
