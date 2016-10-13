@@ -1,9 +1,7 @@
 
 /* Medium devices (Small desktops 1280px max) */
 @media (--medium) {
-    html {
-        font-size: 10px;
-    }
+
     .c-center-content2 {
         text-align: center;
     }
@@ -19,9 +17,7 @@
 }
 /* Small devices (tablets, 992px max) */
 @media (--small) {
-    html {
-        font-size: 8px;
-    }
+
     .my-item {
         width: 50%;
     }
@@ -183,39 +179,15 @@
     .mt12 {
         margin-top: 50px !important;
     }
-    .c-share-panel {
-        border: none;
-        background: white;
-        margin-left: -10px;
-        margin-right: -10px;
-        padding: 20px 0 0 !important;
-    }
+
     .c-center-content3.mt11 {
         margin-top: 0 !important;
     }
-    .at-share-btn-elements .at-icon-wrapper {
-        background: white !important;
-        color: #00b9f7 !important;
-        height: 50px !important;
-        width: 50px !important;
-    }
-    .at-icon-wrapper.at-share-btn {
-        border: 2px solid #00b9f7 !important;
-        border-radius: 50% !important;
-        -webkit-border-radius: 50% !important;
-        -moz-border-radius: 50% !important;
-    }
-    .at-share-btn-elements .at-icon {
-        fill: #00b9f7 !important;
-        width: 39px !important;
-        height: 48px !important;
-    }
-    .at-share-tbx-element .at-share-btn {
-        margin-right: 20px !important;
-    }
-    .at-share-tbx-element .at-share-btn:last-child {
-        margin-right: 0px !important;
-    }
+
+
+
+
+
     .c-share-panel h4.h4-1 {
         font-size: 13px;
     }
@@ -261,9 +233,9 @@
         overflow: initial;
     }
 
-    html {
+/*    html {
         font-size: 6px;
-    }
+    }*/
     .navbar-header {
         display: block;
     }
