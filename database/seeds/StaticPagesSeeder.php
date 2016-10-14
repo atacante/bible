@@ -210,6 +210,31 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($recommendedResources);
         }
 
+        $partners = CmsPage::where('system_name','partners')->first();
+        if(!$partners){
+            $partners = [
+                'content_type' => CmsPage::CONTENT_PAGE,
+                'title' => 'Partners',
+                'system_name' => 'partners',
+                'text' =>
+                    '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non,
+                placeat sit! Dolore labore magnam repudiandae sapiente?
+                Adipisci cum fuga illo ipsum optio quis voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Ab cum dolorem hic illum incidunt non, placeat sit! Dolore labore magnam repudiandae sapiente? </p>
+                <p>Adipisci cum fuga illo ipsum optio quis voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Ab cum dolorem hic illum incidunt non, placeat sit!
+                Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non,
+                placeat sit! Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non, placeat sit!
+                Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.</p>',
+                'meta_title' => 'Partners',
+                'meta_keywords' => 'Partners',
+                'meta_description' => 'Partners',
+            ];
+            CmsPage::insert($partners);
+        }
+
         $diffTooltip = CmsPage::where('system_name','diff_explain')->first();
         if(!$diffTooltip){
             $diffTooltip = [

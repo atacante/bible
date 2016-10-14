@@ -122,6 +122,12 @@
                         {{--</a>--}}
                     {{--</li>--}}
                     <li>
+                        <a href="{{ URL::to('/site/partners') }}">
+                            <i class="bs-community cu-nav-icons"></i>
+                            Partners
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ URL::to('/site/contact') }}">
                             <i class="bs-contactus cu-bs-contactus"></i>
                             Contact Us

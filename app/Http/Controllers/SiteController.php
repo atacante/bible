@@ -39,6 +39,12 @@ class SiteController extends Controller
         return view('site.page', ['page'=>$page]);
     }
 
+    public function getPartners()
+    {
+        $page = CmsPage::getPage('partners');
+        return view('site.page', ['page'=>$page]);
+    }
+
     public function getEvents()
     {
         $page = CmsPage::getPage('bsc_events');
