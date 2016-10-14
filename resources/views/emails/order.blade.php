@@ -100,6 +100,11 @@
         </tr>
         <tr>
             <td colspan="2">&nbsp;</td>
+            <td class="label1">Shipping Rate</td>
+            <td style="padding-right: 5px">${!! $order->shipping_rate !!}</td>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
             <td class="label1">Total</td>
             <td style="padding-right: 5px">${!! $order->total_paid !!}</td>
         </tr>

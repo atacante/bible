@@ -183,6 +183,7 @@ return [
         'Yangqi\Htmldom\HtmldomServiceProvider',
         'Maatwebsite\Excel\ExcelServiceProvider',
         'EscapeWork\Assets\AssetsServiceProvider',
+        'Usps\UspsServiceProvider',
     ],
 
     /*
@@ -269,6 +270,7 @@ return [
         'Htmldom' => 'Yangqi\Htmldom\Htmldom',
         'Excel' => 'Maatwebsite\Excel\Facades\Excel',
         'Cart'  => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Usps' => 'Usps\Facades\Usps',
     ],
     /*
     |--------------------------------------------------------------------------
