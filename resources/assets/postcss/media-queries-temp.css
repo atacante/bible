@@ -76,26 +76,13 @@
         font-size: 11px;
         line-height: 13px;
     }
-    .container-fluid {
-        padding-right: 0;
-        padding-left: 0;
-        margin-right: 0;
-        margin-left: 0;
-        overflow-x: hidden;
-    }
+
     .mr1 {
         margin-right: 0;
     }
 
 
-    .c-center-content {
-        border-radius: 0 !important;
-        box-shadow: none;
-        -webkit-box-shadow: none;
-    }
-    .inner-container {
-        padding: 5px 0;
-    }
+
     .home .btn1,
     .home .btn1:visited {
         font-size: 12px;
@@ -170,15 +157,6 @@
     }
 
 
-
-
-
-
-
-
-/*    html {
-        font-size: 6px;
-    }*/
     .navbar-header {
         display: block;
     }

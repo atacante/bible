@@ -1262,6 +1262,11 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     margin: 0 auto;
     padding: 20px 0;
 }
+@media (max-width: 767px) {
+    .inner-container {
+        padding: 0;
+    }
+}
 .in-inner-container {
     padding: 0 50px 30px;
     max-width: 1360px;
@@ -1283,6 +1288,13 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     border-radius: 10px;
     -webkit-border-radius: 10px;
     box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+}
+@media (max-width: 767px) {
+    .c-center-content {
+        border-radius: 0 !important;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
 }
 .c-center-content2 {
     width: 100%;
@@ -1365,6 +1377,15 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 }
 .pad2 {
     padding: 100px 10px;
+}
+@media (max-width: 767px) {
+    .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+        margin-left: 0;
+        overflow-x: hidden;
+    }
 }
 .footer1 {
     background-color: #404040;
@@ -3437,11 +3458,11 @@ h4.h4-sub-kit {
 }
 @media (max-width: 767px) {
     .home {
-        .bg-g1 {
-            margin-left: 5px;
-            margin-right: 5px;
-            min-height: 500px;
-        }
+
+}
+    .home .bg-g1 {
+        margin: 5px 5px 0 5px;
+        min-height: 500px;
     }
   }
 .home h1.h1-1 {
@@ -5067,26 +5088,13 @@ textarea.wall-text-area:focus {
         font-size: 11px;
         line-height: 13px;
     }
-    .container-fluid {
-        padding-right: 0;
-        padding-left: 0;
-        margin-right: 0;
-        margin-left: 0;
-        overflow-x: hidden;
-    }
+
     .mr1 {
         margin-right: 0;
     }
 
 
-    .c-center-content {
-        border-radius: 0 !important;
-        box-shadow: none;
-        -webkit-box-shadow: none;
-    }
-    .inner-container {
-        padding: 5px 0;
-    }
+
     .home .btn1,
     .home .btn1:visited {
         font-size: 12px;
@@ -5161,15 +5169,6 @@ textarea.wall-text-area:focus {
     }
 
 
-
-
-
-
-
-
-/*    html {
-        font-size: 6px;
-    }*/
     .navbar-header {
         display: block;
     }
