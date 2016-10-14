@@ -142,7 +142,8 @@
   }
   & .h-ill5 {
     background: url('/images/p5-home.jpg') left center no-repeat;
-    min-height: 449px;
+    min-height: 460px;
+    background-size: cover;
   }
 
 
@@ -151,6 +152,7 @@
       background-size: cover;
       width: 100%;
       padding-top: 100%;
+      min-height: 100%;
     }
     & .c-center-content-shop .mt10 {
       margin-top: 0 !important;
@@ -256,7 +258,7 @@
       background: white;
       margin-left: -10px;
       margin-right: -10px;
-      padding: 20px 0 0 !important;
+      padding: 20px 0 !important;
     }
     & .c-share-panel h4.h4-1 {
       font-size: responsive 13px 23px;
@@ -286,6 +288,93 @@
     }
     & h2.h2-2 {
       font-size: responsive 17px 38px;
+    }
+    & .c-center-content2 {
+      text-align: center;
+    }
+  }
+
+  @media (--xsmall) {
+    & .c-center-content3.mt11 {
+      margin-top: 0 !important;
+    }
+    & .col-right1 {
+      padding: 10px 10px 0;
+    }
+    & .col-right1 .p-2 {
+      text-align: left;
+      line-height: responsive 16px 20px;
+      font-size: responsive 13px 15px;
+    }
+    & .mt7 {
+      margin-top: 25px !important;
+    }
+    & .pad2 {
+      padding: 40px 10px;
+    }
+    & .mt13 {
+      margin-top: 10px !important;
+    }
+    & .mb1 {
+      margin-bottom: 0;
+    }
+    & .mt12 {
+      margin-top: 50px !important;
+    }
+    & .c-center-content2 {
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      width: auto;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    & .mt1 {
+      margin-top: 50px !important;
+    }
+    & h2.h2-3 {
+      font-size: 12px;
+      line-height: 14px;
+    }
+    & h2.h2-1 {
+      font-size: 16px;
+      line-height: 18px;
+    }
+    & p.p-1 {
+      font-size: 11px;
+      line-height: 13px;
+    }
+    & .mr1 {
+      margin-right: 0;
+    }
+    & .btn1,
+    & .btn1:visited {
+      font-size: 12px;
+      padding: 10px 40px;
+    }
+    & .brr {
+      display: block;
+    }
+    & .mt8 {
+      margin-top: 10px !important;
+    }
+    & .mt3 {
+      margin-top: 10px !important;
+    }
+    & .mr3 {
+      margin-right: 0 !important;
+    }
+    & .mt6 {
+      margin-top: 10px !important;
+    }
+    & .mt4 {
+      margin-top: 10px !important;
+    }
+    & .mt2 {
+      margin-top: 10px !important;
+    }
+    & h1.h1-1 {
+      font-size: 24px;
+      line-height: 28px;
     }
   }
 }

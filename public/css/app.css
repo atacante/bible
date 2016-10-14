@@ -1031,7 +1031,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   border: 3px solid #404040;
   color: #404040;
   font-family: ns_widedemibold;
-  font-size: calc(10px + 8 * ((100vw - 420px) / 860));
+  font-size: calc(11px + 7 * ((100vw - 420px) / 860));
   padding: 15px 50px;
   text-decoration: none !important;
   outline: none !important;
@@ -1044,7 +1044,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 }
 @media screen and (max-width: 420px) {
     .btn2, .btn2:visited {
-        font-size: 10px;
+        font-size: 11px;
     }
 }
 .btn2:hover, .btn2:active {
@@ -1053,7 +1053,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   background: #404040;
   color: #ffffff;
   font-family: ns_widedemibold;
-  font-size: calc(10px + 8 * ((100vw - 420px) / 860));
+  font-size: calc(11px + 7 * ((100vw - 420px) / 860));
   padding: 15px 50px;
   text-decoration: none !important;
 }
@@ -1064,7 +1064,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 }
 @media screen and (max-width: 420px) {
     .btn2:hover, .btn2:active {
-        font-size: 10px;
+        font-size: 11px;
     }
 }
 .cu-btn2 {
@@ -1094,7 +1094,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   border: 3px solid #ffffff;
   color: #ffffff;
   font-family: ns_widedemibold;
-  font-size: calc(10px + 8 * ((100vw - 420px) / 860));
+  font-size: calc(11px + 7 * ((100vw - 420px) / 860));
   padding: 15px 50px;
   text-decoration: none !important;
   outline: none !important;
@@ -1106,7 +1106,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 }
 @media screen and (max-width: 420px) {
     .btn3, .btn3:visited {
-        font-size: 10px;
+        font-size: 11px;
     }
 }
 .btn3:hover, .btn3:active {
@@ -1115,7 +1115,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   background: #ffffff;
   color: #404040;
   font-family: ns_widedemibold;
-  font-size: calc(10px + 8 * ((100vw - 420px) / 860));
+  font-size: calc(11px + 7 * ((100vw - 420px) / 860));
   padding: 15px 50px;
   text-decoration: none !important;
 }
@@ -1126,7 +1126,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 }
 @media screen and (max-width: 420px) {
     .btn3:hover, .btn3:active {
-        font-size: 10px;
+        font-size: 11px;
     }
 }
 .btn5, .btn5:visited {
@@ -1288,6 +1288,11 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     padding: 0 50px 30px;
     max-width: 1360px;
     margin: 0 auto;
+}
+@media (max-width: 767px) {
+    .in-inner-container {
+        padding: 0 0 30px;
+    }
 }
 .bg-g2 {
     min-height: 650px;
@@ -3608,7 +3613,8 @@ h4.h4-sub-kit {
 }
 .home .h-ill5 {
     background: url('/images/p5-home.jpg') left center no-repeat;
-    min-height: 449px;
+    min-height: 460px;
+    background-size: cover;
 }
 @media (max-width: 767px) {
     .home {
@@ -3618,6 +3624,7 @@ h4.h4-sub-kit {
         background-size: cover;
         width: 100%;
         padding-top: 100%;
+        min-height: 100%;
     }
     .home .c-center-content-shop .mt10 {
         margin-top: 0 !important;
@@ -3751,7 +3758,7 @@ h4.h4-sub-kit {
         background: white;
         margin-left: -10px;
         margin-right: -10px;
-        padding: 20px 0 0 !important;
+        padding: 20px 0 !important;
     }
     .home .c-share-panel h4.h4-1 {
         font-size: calc(13px + 10 * ((100vw - 420px) / 860));
@@ -3801,6 +3808,115 @@ h4.h4-sub-kit {
         .home h2.h2-2 {
             font-size: 17px;
         }
+    }
+    .home .c-center-content2 {
+        text-align: center;
+    }
+  }
+@media (max-width: 767px) {
+    .home {
+
+}
+    .home .c-center-content3.mt11 {
+        margin-top: 0 !important;
+    }
+    .home .col-right1 {
+        padding: 10px 10px 0;
+    }
+    .home .col-right1 .p-2 {
+        text-align: left;
+        line-height: calc(16px + 4 * ((100vw - 420px) / 860));
+        font-size: calc(13px + 2 * ((100vw - 420px) / 860));
+    }
+    @media screen and (min-width: 1280px) {
+        .home .col-right1 .p-2 {
+            font-size: 15px;
+        }
+    }
+    @media screen and (max-width: 420px) {
+        .home .col-right1 .p-2 {
+            font-size: 13px;
+        }
+    }
+    @media screen and (min-width: 1280px) {
+        .home .col-right1 .p-2 {
+            line-height: 20px;
+        }
+    }
+    @media screen and (max-width: 420px) {
+        .home .col-right1 .p-2 {
+            line-height: 16px;
+        }
+    }
+    .home .mt7 {
+        margin-top: 25px !important;
+    }
+    .home .pad2 {
+        padding: 40px 10px;
+    }
+    .home .mt13 {
+        margin-top: 10px !important;
+    }
+    .home .mb1 {
+        margin-bottom: 0;
+    }
+    .home .mt12 {
+        margin-top: 50px !important;
+    }
+    .home .c-center-content2 {
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .home .mt1 {
+        margin-top: 50px !important;
+    }
+    .home h2.h2-3 {
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .home h2.h2-1 {
+        font-size: 16px;
+        line-height: 18px;
+    }
+    .home p.p-1 {
+        font-size: 11px;
+        line-height: 13px;
+    }
+    .home .mr1 {
+        margin-right: 0;
+    }
+    .home .btn1,
+    .home .btn1:visited {
+        font-size: 12px;
+        padding: 10px 40px;
+    }
+    .home .brr {
+        display: block;
+    }
+    .home .mt8 {
+        margin-top: 10px !important;
+    }
+    .home .mt3 {
+        margin-top: 10px !important;
+    }
+    .home .mr3 {
+        margin-right: 0 !important;
+    }
+    .home .mt6 {
+        margin-top: 10px !important;
+    }
+    .home .mt4 {
+        margin-top: 10px !important;
+    }
+    .home .mt2 {
+        margin-top: 10px !important;
+    }
+    .home h1.h1-1 {
+        font-size: 24px;
+        line-height: 28px;
     }
   }
 .urls-text {
@@ -5041,10 +5157,6 @@ textarea.wall-text-area:focus {
 }
 /* Medium devices (Small desktops 1280px max) */
 @media (max-width: 1280px) {
-
-    .c-center-content2 {
-        text-align: center;
-    }
     .my-item {
         width: 33.333333%;
     }
@@ -5057,7 +5169,6 @@ textarea.wall-text-area:focus {
 }
 /* Small devices (tablets, 992px max) */
 @media (max-width: 992px) {
-
     .my-item {
         width: 50%;
     }
@@ -5080,16 +5191,6 @@ textarea.wall-text-area:focus {
     .my-item {
         width: 100%;
     }
-    .in-inner-container {
-        padding: 0 0 30px;
-    }
-    ul.footer-menu li {
-        display: block;
-    }
-    h1.h1-1 {
-        font-size: 24px;
-        line-height: 28px;
-    }
     .navbar-header .navbar-brand {
         font-size: 13px;
     }
@@ -5100,105 +5201,10 @@ textarea.wall-text-area:focus {
     .navbar-default {
         padding: 10px 0;
     }
-    .mt1 {
-        margin-top: 50px !important;
-    }
-    h2.h2-3 {
-        font-size: 12px;
-        line-height: 14px;
-    }
-    h2.h2-1 {
-        font-size: 16px;
-        line-height: 18px;
-    }
-    p.p-1 {
-        font-size: 11px;
-        line-height: 13px;
-    }
-
-    .mr1 {
-        margin-right: 0;
-    }
-
-
-
-    .home .btn1,
-    .home .btn1:visited {
-        font-size: 12px;
-        padding: 10px 40px;
-    }
-    .brr {
-        display: block;
-    }
-    .h-ill1, .h-ill2, .h-ill3, .h-ill4 {
-        background-position: left center;
-    }
-
-
-    .c-center-content2 {
-        border-radius: 0;
-        -webkit-border-radius: 0;
-        width: auto;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    .mt8 {
-        margin-top: 10px !important;
-    }
-    .mt3 {
-        margin-top: 10px !important;
-    }
-    .mr3 {
-        margin-right: 0 !important;
-    }
-    .mt6 {
-        margin-top: 10px !important;
-    }
-    .mt4 {
-        margin-top: 10px !important;
-    }
-    .mt2 {
-        margin-top: 10px !important;
-    }
-    .h-ill4 .mt4 {
-        margin-top: 22px !important;
-    }
-    .h-ill1 .mt2 {
-        margin-top: 35px !important;
-    }
-    .col-right1 {
-        padding: 10px 10px 0;
-    }
-    .col-right1 .p-2 {
-        text-align: left;
-        line-height: 22px;
-        font-size: 17px;
-    }
-    .mt7 {
-        margin-top: 25px !important;
-    }
-    .pad2 {
-        padding: 40px 10px;
-    }
-
-    .mt13 {
-        margin-top: 10px !important;
-    }
-    .mb1 {
-        margin-bottom: 0;
-    }
-    .mt12 {
-        margin-top: 50px !important;
-    }
-
-    .c-center-content3.mt11 {
-        margin-top: 0 !important;
-    }
-
-
     .navbar-header {
         display: block;
     }
+
     .mini-box {
         text-align: center;
     }
