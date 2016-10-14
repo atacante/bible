@@ -11,10 +11,13 @@
 .my-inner-location-item {
     overflow: hidden;
     position: relative;
-    /*height: 542px;*/
+    height: 542px;
     text-align: center;
     margin-bottom: 0;
     background: white;
+}
+.my-inner-people-item{
+    height: auto;
 }
 .cu1-row {
     margin-left: -7px;
@@ -50,6 +53,7 @@
     -webkit-box-shadow: 0 0 25px 4px rgba(150,150,150,0.1);
     box-shadow: 0 0 25px 4px rgba(150,150,150,0.1);
 }
+
 h4.h4-locations {
     text-transform: uppercase;
     color: #010101;

@@ -13,7 +13,7 @@
             @if(count($content['peoples']))
                 @foreach($content['peoples'] as $people)
                     <div class="my-item">
-                        <div class="my-inner-location-item">
+                        <div class="my-inner-location-item my-inner-people-item">
 
                             <div class="">
                                 @if($people->images->count())
