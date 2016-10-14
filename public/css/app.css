@@ -1262,6 +1262,11 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     margin: 0 auto;
     padding: 20px 0;
 }
+@media (max-width: 767px) {
+    .inner-container {
+        padding: 0;
+    }
+}
 .in-inner-container {
     padding: 0 50px 30px;
     max-width: 1360px;
@@ -1283,6 +1288,13 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     border-radius: 10px;
     -webkit-border-radius: 10px;
     box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+}
+@media (max-width: 767px) {
+    .c-center-content {
+        border-radius: 0 !important;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
 }
 .c-center-content2 {
     width: 100%;
@@ -1366,20 +1378,29 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 .pad2 {
     padding: 100px 10px;
 }
+@media (max-width: 767px) {
+    .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+        margin-left: 0;
+        overflow-x: hidden;
+    }
+}
 .footer1 {
     background-color: #404040;
-    padding: 50px 0;
+    padding: 50px 0
 }
-ul.footer-menu {
+.footer1 ul.footer-menu {
     display: block;
     text-align: center;
     padding-left: 0;
 }
-ul.footer-menu li {
+.footer1 ul.footer-menu li {
     display: inline-block;
     padding: 10px 20px;
 }
-ul.footer-menu li a {
+.footer1 ul.footer-menu li a {
     display: inline-block;
     color: #f3f3f3;
     font-family: work_sansmedium;
@@ -1392,11 +1413,11 @@ ul.footer-menu li a {
     border-bottom: 1px solid #ffffff;
     outline: none;
 }
-ul.footer-menu li a:hover {
+.footer1 ul.footer-menu li a:hover {
     text-decoration: none;
     border-bottom: 1px solid transparent;
 }
-.copyright {
+.footer1 .copyright {
     color: #bdbdbd;
     font-family: work_sansregular;
     font-size: 14.98px;
@@ -1404,19 +1425,19 @@ ul.footer-menu li a:hover {
     text-transform: uppercase;
 }
 @media (max-width: 767px) {
-    & ul.footer-menu li a {
+    .footer1 {
+        padding: 25px 0
+    }
+    .footer1 ul.footer-menu li a {
         font-size: 14px;
         line-height: 16px;
     }
-    & ul.footer-menu li {
+    .footer1 ul.footer-menu li {
         display: block;
         padding: 7px 20px;
     }
-    & .copyright {
+    .footer1 .copyright {
         margin-top: 25px;
-    }
-    & .footer1 {
-        padding: 25px 0;
     }
 }
 .req {
@@ -3437,11 +3458,11 @@ h4.h4-sub-kit {
 }
 @media (max-width: 767px) {
     .home {
-        .bg-g1 {
-            margin-left: 5px;
-            margin-right: 5px;
-            min-height: 500px;
-        }
+
+}
+    .home .bg-g1 {
+        margin: 5px 5px 0 5px;
+        min-height: 500px;
     }
   }
 .home h1.h1-1 {
@@ -3543,6 +3564,7 @@ h4.h4-sub-kit {
         padding: 10px 15px;
         border-width: 2px;
     }
+
   }
 .home .cu-verseoftheday {
     color: #00b9f7;
@@ -3572,6 +3594,37 @@ h4.h4-sub-kit {
         background-size: cover;
         width: 100%;
         padding-top: 100%;
+    }
+    .home .c-center-content-shop .mt10 {
+        margin-top: 0 !important;
+    }
+    .home h2.gift-title {
+        display: inline-block;
+        width: 110px;
+        text-align: left;
+    }
+    .home h2.gift-title span {
+        display: inline-block;
+    }
+    .home .cu-gift {
+        font-size: 45px;
+        display: inline-block;
+        vertical-align: super;
+        margin-right: 10px;
+    }
+    .home .gift1 {
+        background-position: 50% 0 !important;
+        background-size: cover !important;
+        margin: 10px;
+        padding-top: 70%;
+    }
+    .home .gift-item {
+        margin: 25px 2px 25px;
+        overflow: hidden;
+    }
+    .home .c-center-content-shop {
+        overflow: visible;
+        overflow: initial;
     }
   }
 .home .col-left1 {
@@ -3610,6 +3663,42 @@ h4.h4-sub-kit {
     font-family: ns_widemedium;
     padding-bottom: 5%;
 }
+@media (max-width: 1280px) {
+    .home {
+
+}
+    .home h4.h4-gift {
+        text-transform: uppercase;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #464646;
+        font-size: calc(11px + 12 * ((100vw - 420px) / 860));
+        line-height: calc(13px + 12 * ((100vw - 420px) / 860));
+        font-family: ns_widemedium;
+        white-space: nowrap;
+        padding: 0 5px;
+    }
+    @media screen and (min-width: 1280px) {
+        .home h4.h4-gift {
+            line-height: 25px;
+        }
+    }
+    @media screen and (max-width: 420px) {
+        .home h4.h4-gift {
+            line-height: 13px;
+        }
+    }
+    @media screen and (min-width: 1280px) {
+        .home h4.h4-gift {
+            font-size: 23px;
+        }
+    }
+    @media screen and (max-width: 420px) {
+        .home h4.h4-gift {
+            font-size: 11px;
+        }
+    }
+  }
 .home .c-home-products .product-item {
     width: 30%;
     display: inline-block;
@@ -4999,26 +5088,13 @@ textarea.wall-text-area:focus {
         font-size: 11px;
         line-height: 13px;
     }
-    .container-fluid {
-        padding-right: 0;
-        padding-left: 0;
-        margin-right: 0;
-        margin-left: 0;
-        overflow-x: hidden;
-    }
+
     .mr1 {
         margin-right: 0;
     }
 
 
-    .c-center-content {
-        border-radius: 0 !important;
-        box-shadow: none;
-        -webkit-box-shadow: none;
-    }
-    .inner-container {
-        padding: 5px 0;
-    }
+
     .home .btn1,
     .home .btn1:visited {
         font-size: 12px;
@@ -5093,56 +5169,6 @@ textarea.wall-text-area:focus {
     }
 
 
-
-
-
-
-    .c-center-content-shop .mt10 {
-        margin-top: 0 !important;
-    }
-    h2.gift-title {
-        display: inline-block;
-        width: 110px;
-        text-align: left;
-    }
-    h2.gift-title span {
-        display: inline-block;
-    }
-    .cu-gift {
-        font-size: 45px;
-        display: inline-block;
-        vertical-align: super;
-        margin-right: 10px;
-    }
-    .gift1 {
-        background-position: 50% 0 !important;
-        background-size: cover !important;
-        margin: 10px;
-        padding-top: 70%;
-    }
-    h4.h4-gift {
-        text-transform: uppercase;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: #464646;
-        font-size: 11px;
-        line-height: 13px;
-        font-family: ns_widemedium;
-        white-space: nowrap;
-        padding: 0 5px;
-    }
-    .gift-item {
-        margin: 25px 2px 25px;
-        overflow: hidden;
-    }
-    .c-center-content-shop {
-        overflow: visible;
-        overflow: initial;
-    }
-
-/*    html {
-        font-size: 6px;
-    }*/
     .navbar-header {
         display: block;
     }

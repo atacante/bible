@@ -5,6 +5,11 @@
     margin: 0 auto;
     padding: 20px 0;
 }
+@media (--xsmall) {
+    .inner-container {
+        padding: 0;
+    }
+}
 .in-inner-container {
     padding: 0 50px 30px;
     max-width: 1360px;
@@ -28,6 +33,13 @@
     -webkit-border-radius: 10px;
     -webkit-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
     box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+}
+@media (--xsmall) {
+    .c-center-content {
+        border-radius: 0 !important;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
 }
 .c-center-content2 {
     width: 100%;
@@ -113,4 +125,13 @@
 }
 .pad2 {
     padding: 100px 10px;
+}
+@media (--xsmall) {
+    .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+        margin-left: 0;
+        overflow-x: hidden;
+    }
 }

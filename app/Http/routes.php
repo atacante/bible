@@ -70,6 +70,7 @@ $router->group([
         'subscription' => 'SubscriptionController',
         'complaints' => 'ComplaintsController',
         'reports' => 'ReportsController',
+        'symbolism-encyclopedia' => 'SymbolismEncyclopediaController',
 //        'auth' => 'AdminAuth\AuthController',
     ]);
 });
