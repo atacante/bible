@@ -98,6 +98,7 @@
     top: 20%;
     right: 10%;
   }
+
   @media (--xsmall) {
     & .ill-text-pos1,
     & .ill-text-pos2,
@@ -114,11 +115,13 @@
       border-width: 2px;
       text-align: center;
     }
+
     & .btn3, & .btn3:visited,
     & .btn3:hover, & .btn3:focus {
       padding: 10px 15px;
       border-width: 2px;
     }
+
   }
 
 
@@ -142,13 +145,47 @@
     background: url('/images/p5-home.jpg') left center no-repeat;
     min-height: 449px;
   }
+
+
   @media (--xsmall) {
     & .h-ill5 {
       background-size: cover;
       width: 100%;
       padding-top: 100%;
     }
+    & .c-center-content-shop .mt10 {
+      margin-top: 0 !important;
+    }
+    & h2.gift-title {
+      display: inline-block;
+      width: 110px;
+      text-align: left;
+    }
+    & h2.gift-title span {
+      display: inline-block;
+    }
+    & .cu-gift {
+      font-size: 45px;
+      display: inline-block;
+      vertical-align: super;
+      margin-right: 10px;
+    }
+    & .gift1 {
+      background-position: 50% 0 !important;
+      background-size: cover !important;
+      margin: 10px;
+      padding-top: 70%;
+    }
+    & .gift-item {
+      margin: 25px 2px 25px;
+      overflow: hidden;
+    }
+    & .c-center-content-shop {
+      overflow: initial;
+    }
   }
+
+
   & .col-left1 {
     width: 449px;
     float: left;
@@ -181,7 +218,19 @@
     font-family: ns_widemedium;
     padding-bottom: 5%;
   }
-
+  @media (--medium) {
+    & h4.h4-gift {
+      text-transform: uppercase;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #464646;
+      font-size: responsive 11px 23px;
+      line-height: responsive 13px 25px;
+      font-family: ns_widemedium;
+      white-space: nowrap;
+      padding: 0 5px;
+    }
+  }
   & .c-home-products .product-item {
     width: 30%;
     display: inline-block;
