@@ -152,7 +152,7 @@ class OrderController extends Controller
     }
 
     public function getUspsRateAjax($zip){
-        dd($zip);
+
         if(empty($zip)){
             return 'Please fill Shipping Postcode';
         }
@@ -174,7 +174,7 @@ class OrderController extends Controller
         // add the package to the rate stack
         $rate->addPackage($package);
 
-// Perform the request and print out the result
+        // Perform the request and print out the result
         $rate->getRate();
 
         $response =  $rate->getArrayResponse();
