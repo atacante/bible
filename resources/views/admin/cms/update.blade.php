@@ -48,12 +48,21 @@
             @endif
             <div class="form-group {{ $errors->has('text') ? ' has-error' : '' }}">
                 {!! Form::label('text', 'Text:') !!}
-                {!! Form::textarea('text',null,['class' => ($model->exists && $model->content_type == App\CmsPage::CONTENT_PAGE)?'ck-editor':'']) !!}
+                {!! Form::textarea('text',null,['class' => ($model->exists && $model->content_type == App\CmsPage::CONTENT_PAGE)?'ckeditor':'']) !!}
                 @if ($errors->has('text'))
                     <span class="help-block">
-                {{ $errors->first('text') }}
-            </span>
+                        {{ $errors->first('text') }}
+                    </span>
                 @endif
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        {!! Form::hidden('published', 0) !!}
+                        {!! Form::checkbox('published', 1,$model->published) !!}
+                        <span>Published</span>
+                    </label>
+                </div>
             </div>
         </div>
         <!-- /.box-body -->

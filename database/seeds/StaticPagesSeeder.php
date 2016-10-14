@@ -267,5 +267,16 @@ class StaticPagesSeeder extends Seeder
             ];
             CmsPage::insert($intermediateTooltip);
         }
+
+        $betaModeTooltip = CmsPage::where('system_name','beta_mode')->first();
+        if(!$betaModeTooltip){
+            $betaModeTooltip = [
+                'content_type' => CmsPage::CONTENT_TOOLTIP,
+                'title' => 'Beta Mode',
+                'system_name' => 'beta_mode',
+                'text' => 'Beta Mode',
+            ];
+            CmsPage::insert($betaModeTooltip);
+        }
     }
 }

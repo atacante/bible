@@ -67,36 +67,46 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="drop1">
                     <div class="popup-arrow"></div>
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'bsc_events'))
                     <li>
                         <a href="{{ URL::to('/site/events') }}">
-                            <i class="fa fa-calendar cu-nav-icons"></i>
+                            <i class="bs-calendar cu-nav-icons"></i>
                             BSC Events
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'membership'))
                     <li>
                         <a href="{{ URL::to('/site/membership') }}">
                             <i class="bs-community cu-nav-icons"></i>
                             Membership
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'how_it_works'))
                     <li>
                         <a href="{{ URL::to('/site/how-it-works') }}">
                             <i class="fa fa-question-circle-o cu-nav-icons" style="font-size: 1.3rem; vertical-align: text-bottom;"></i>
                             How It Works
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'about'))
                     <li>
                         <a href="{{ URL::to('/site/about') }}">
                             <i class="bs-biblestudylogo cu-bs-biblestudylogo"></i>
                             About BSC
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'recommended_resources'))
                     <li>
                         <a href="{{ URL::to('/site/recommended-resources') }}">
                             <i class="bs-upload cu-bs-biblestudylogo" style="vertical-align: text-bottom;"></i>
                             Recommended Resources
                         </a>
                     </li>
+                    @endif
                     <li>
                         <a href="{{ URL::to('/shop') }}">
                             <i class="bs-gift cu-bs-gift"></i>
@@ -115,18 +125,22 @@
                             {{--FAQ--}}
                         {{--</a>--}}
                     {{--</li>--}}
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'partners'))
                     <li>
                         <a href="{{ URL::to('/site/partners') }}">
                             <i class="bs-community cu-nav-icons"></i>
                             Partners
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'contact_main'))
                     <li>
                         <a href="{{ URL::to('/site/contact') }}">
                             <i class="bs-contactus cu-bs-contactus"></i>
                             Contact Us
                         </a>
                     </li>
+                    @endif
                 </ul>
             </li>
 

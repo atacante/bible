@@ -58,7 +58,6 @@
                     </li>
                 </ul>
             </li>
-
             {{-- --------------- EXPLORE --------------- --}}
             <li class="dropdown">
                 <a class="{!! ViewHelper::classActivePath(['site','shop']) !!}" id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -68,36 +67,46 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="drop1">
                     <div class="popup-arrow"></div>
-                    <li>
-                        <a href="{{ URL::to('/site/events') }}">
-                            <i class="bs-calendar cu-nav-icons"></i>
-                            BSC Events
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ URL::to('/site/membership') }}">
-                            <i class="bs-community cu-nav-icons"></i>
-                            Membership
-                        </a>
-                    </li>
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'bsc_events'))
+                        <li>
+                            <a href="{{ URL::to('/site/events') }}">
+                                <i class="bs-calendar cu-nav-icons"></i>
+                                BSC Events
+                            </a>
+                        </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'membership'))
+                        <li>
+                            <a href="{{ URL::to('/site/membership') }}">
+                                <i class="bs-community cu-nav-icons"></i>
+                                Membership
+                            </a>
+                        </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'how_it_works'))
                     <li>
                         <a href="{{ URL::to('/site/how-it-works') }}">
                             <i class="fa fa-question-circle-o cu-nav-icons" style="font-size: 1.3rem; vertical-align: top;"></i>
                             How It Works
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'about'))
                     <li>
                         <a href="{{ URL::to('/site/about') }}">
                             <i class="bs-biblestudylogo cu-bs-biblestudylogo"></i>
                             About BSC
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'recommended_resources'))
                     <li>
                         <a href="{{ URL::to('/site/recommended-resources') }}">
                             <i class="bs-upload cu-bs-biblestudylogo" style="vertical-align: bottom;"></i>
                             Recommended Resources
                         </a>
                     </li>
+                    @endif
                     <li>
                         <a href="{{ URL::to('/shop') }}">
                             <i class="bs-gift cu-bs-gift"></i>
@@ -116,18 +125,22 @@
                             {{--FAQ--}}
                         {{--</a>--}}
                     {{--</li>--}}
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'partners'))
                     <li>
                         <a href="{{ URL::to('/site/partners') }}">
                             <i class="bs-community cu-nav-icons"></i>
                             Partners
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'contact_main'))
                     <li>
                         <a href="{{ URL::to('/site/contact') }}">
                             <i class="bs-contactus cu-bs-contactus"></i>
                             Contact Us
                         </a>
                     </li>
+                    @endif
                 </ul>
             </li>
 
