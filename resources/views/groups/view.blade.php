@@ -93,9 +93,11 @@
                     <li role="presentation" class="{!! !Request::get('p')?'active':'' !!}">
                         <a href="{!! url('/groups/view/'.$model->id) !!}">Feed</a>
                     </li>
+                    @if($model->access_level != App\Group::ACCESS_SECRET || (Auth::user() && $model->owner_id == Auth::user()->id) || in_array($model->id,$content['joinedGroupsKeys']))
                     <li role="presentation" class="{!! (Request::get('p') == 'members' && !Request::get('type'))?'active':'' !!}">
                         <a href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">Members</a>
                     </li>
+                    @endif
                     @if((Auth::user() && $model->owner_id == Auth::user()->id))
                         <li role="presentation" class="{!! (Request::get('p') == 'requests')?'active':'' !!}">
                             <a href="{!! url('/groups/view/'.$model->id.'?p=requests') !!}">Requests</a>

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Request;
 class Group extends BaseModel
 {
     const ACCESS_PUBLIC = 'public';
-    const ACCESS_SECRET = 'secret';
+    const ACCESS_SECRET = 'private';
     const ACCESS_PUBLIC_MEMBERS = 'public_members';
 
     public $timestamps = true;

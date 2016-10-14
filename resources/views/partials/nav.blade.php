@@ -8,19 +8,14 @@
         </button>
         <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i></a>
     </div>
-    <div class="pull-left" style="">
+
+    <div class="collapse navbar-collapse c-menu-home" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             {{-- --------------- HOME --------------- --}}
             <li>
                 <a href="/"><i class="bs-home"></i>Home</a>
             </li>
             {{-- --------------- READ --------------- --}}
-            {{--<li>--}}
-                {{--<a class="{!! ViewHelper::classActivePath('reader') !!}" href="{{ URL::to('/reader/read?version=nasb') }}">--}}
-                    {{--<i class="bs-reader"></i>--}}
-                    {{--Reader--}}
-                {{--</a>--}}
-            {{--</li>--}}
             <li class="dropdown">
                 <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="bs-reader"></i>
@@ -122,6 +117,12 @@
                         {{--</a>--}}
                     {{--</li>--}}
                     <li>
+                        <a href="{{ URL::to('/site/partners') }}">
+                            <i class="bs-community cu-nav-icons"></i>
+                            Partners
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ URL::to('/site/contact') }}">
                             <i class="bs-contactus cu-bs-contactus"></i>
                             Contact Us
@@ -131,12 +132,6 @@
             </li>
 
             {{-- --------------- COMMUNITY --------------- --}}
-            {{--<li>--}}
-                {{--<a class="{!! ViewHelper::classActivePath(['community','groups','blog']) !!}" href="{{ URL::to('/community') }}">--}}
-                    {{--<i class="bs-community"></i>--}}
-                    {{--Community--}}
-                {{--</a>--}}
-            {{--</li>--}}
             <li class="dropdown">
                 <a id="drop1" href="#" class="dropdown-toggle {!! ViewHelper::classActivePath(['community','groups','blog']) !!}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="bs-community"></i>
@@ -172,28 +167,18 @@
                     </li>
                 </ul>
             </li>
-        </ul>
-    </div>
-
-
-    @if(Request::segment(1) == 'reader')
-        <div class="pull-left c-search1" style="">
-            {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
-            {!! Form::text('q',Request::input('q'),['class' => 'search-text1','placeholder' => 'Search verse everywhere...']) !!}
-            {{--{!! Form::submit('<i class="bs-search"></i>',['class' => 'search-btn1']) !!}--}}
-            <button class="search-btn1" type="submit"><i class="bs-search"></i></button>
-            {!! Form::close() !!}
-        </div>
-    @endif
-
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-           {{-- @if(Request::is('shop*') || Request::is('order*'))
-                <li class="{{ ViewHelper::classActivePath('shop/cart') }}">
-                    <a href="{{ URL::to('/shop/cart') }}"><i class="fa fa-shopping-cart"></i> {!! Cart::count() !!} item(s)</a>
+            @if(Request::segment(1) == 'reader')
+                <li class="pull-left c-search1" style="">
+                    {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
+                    {!! Form::text('q',Request::input('q'),['class' => 'search-text1','placeholder' => 'Search verse everywhere...']) !!}
+                    <button class="search-btn1" type="submit"><i class="bs-search"></i></button>
+                    {!! Form::close() !!}
                 </li>
-            @endif--}}
+            @endif
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+
             @if (Auth::guest())
                 <li><a class="{{ (Request::is('auth/login') ? 'active' : '') }}" href="{{ URL::to('auth/login') }}">Login</a></li>
                 <li class=" bord-menu-item"><a class="{{ (Request::is('auth/register') ? 'active' : '') }}" href="{{ URL::to('auth/register') }}">Sign Up</a></li>
@@ -217,10 +202,8 @@
                         @role('user')
                         <li>
                             <div class="popup-arrow"></div>
-                            {{--<a href="{{ url('user/my-journey') }}">My Journey</a></li>--}}
                         <li><a href="{{ url('user/profile') }}">My Profile</a></li>
                         @endrole
-                        {{--<li role="separator" class="divider"></li>--}}
                         <li><a href="{{ url('auth/logout') }}">Logout</a></li>
                         @if(Session::has('adminAsUser'))
                             <li><a href="{{ url('auth/admin-logout') }}">Back To Admin</a></li>
@@ -252,7 +235,6 @@
                         <div class="cu-starsolid-settings-popup">i</div>
                     @endif
                     {!! Form::hidden('related', 0) !!}
-                    {{--<input id="check-full" class="cust-radio" type="checkbox" name="check-full" value="fulltime">--}}
                     {!! Form::checkbox('related', null, ($content['showRelated'])?1:0, ['id'=>'check-related','class'=>'cust-radio']) !!}
                     <label class="label-checkbox" for="check-related">Show Related Records</label>
                 </div>
@@ -263,15 +245,13 @@
             @if(Request::segment(2) == 'verse')
                 {!! Form::hidden('verse', Request::input('verse', false)) !!}
             @endif
-            {{--{!! $content['heading'] !!}--}}
+
             @if($compareVersions = Request::input('compare', false))
                 @foreach($compareVersions as $version)
                     {!! Form::hidden('compare[]', $version) !!}
                 @endforeach
             @endif
-                {{--{!! link_to('reader/read?'.http_build_query(array_merge(Request::input(),['diff' => Request::input('diff',false)?0:1])), (Request::input('diff',false)?'hide':'show').' diff',['class' => 'btn btn-'.(Request::input('diff',false)?'danger':'success'), 'style' =>'padding: 0 5px;']) !!}--}}
             <div title="{{ ViewHelper::getContent(App\CmsPage::CONTENT_TOOLTIP,'diff_explain')->text  }}" class="mt15 {!! Request::input('compare', false) || Request::segment(2) == 'verse'?'':'checkbox-disabled' !!}" style="position: relative; {{ !isset($content['showRelated'])?'margin-top: 20px !important;':'' }}">
-                {{--<input type="checkbox">--}}
                 @if(ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip') || ViewHelper::checkNotifTooltip('got_verse_diff_tooltip'))
                     <div class="cu-starsolid-settings-popup">i</div>
                 @endif
