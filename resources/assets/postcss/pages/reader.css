@@ -44,6 +44,11 @@ ul.icon-panel li a {
     top: 50%;
     margin-top: -13px;
 }
+@media (--xsmall) {
+    .top-vertical1 {
+        margin-top: 60px;
+    }
+}
 .col-xs-6 .verse-text, .col-xs-4 .verse-text {
     font-size: 1.14rem;
 }

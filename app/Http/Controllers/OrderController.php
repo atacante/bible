@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Krucas\Notification\Facades\Notification;
+use Usps\RatePackage;
 
 class OrderController extends Controller
 {
@@ -53,6 +54,12 @@ class OrderController extends Controller
 
         $data = $request->all();
 
+        $usps_rate = $this->getUspsRateAjax($data['shipping_postcode']);
+
+        if(!is_numeric($usps_rate)){
+            $usps_rate = 0.00;
+        }
+
         //Retrieve cart information
         $subtotal = Cart::total();
         $tax = 0.00;
@@ -61,7 +68,7 @@ class OrderController extends Controller
             $tax = round(0.07 * $subtotal, 2);
         }
 
-        $total = $subtotal + $tax;
+        $total = $subtotal + $tax + $usps_rate;
 
         /* Charge Part */
         // Guests and Users
@@ -75,6 +82,7 @@ class OrderController extends Controller
             if ($userMeta = $userMeta->create($data)) {
                 $order = new Order();
                 $order->tax = $tax;
+                $order->shipping_rate = $usps_rate;
                 $order->subtotal = $subtotal;
                 $order->total_paid = $total;
                 $order->user_id= $data['user_id'];
@@ -141,6 +149,42 @@ class OrderController extends Controller
                 'user_id' => $user_id,
                 'page_title' => 'Create New Order'
             ]);
+    }
+
+    public function getUspsRateAjax($zip){
+
+        if(empty($zip)){
+            return 'Please fill Shipping Postcode';
+        }
+
+        // Initiate and set the username provided from usps
+        $rate = new \Usps\Rate(env('USPS_USERNAME'));
+
+        $package = new RatePackage;
+        $package->setService(RatePackage::SERVICE_PRIORITY);
+        //$package->setFirstClassMailType(RatePackage::MAIL_TYPE_PARCEL);
+        $package->setZipOrigination(33707);
+        $package->setZipDestination($zip);
+        $package->setPounds(0);
+        $package->setOunces(10);
+        $package->setContainer(RatePackage::CONTAINER_SM_FLAT_RATE_BOX);
+        $package->setSize(RatePackage::SIZE_REGULAR);
+        //  $package->setField('Machinable', true);
+
+        // add the package to the rate stack
+        $rate->addPackage($package);
+
+        // Perform the request and print out the result
+        $rate->getRate();
+
+        $response =  $rate->getArrayResponse();
+
+        if($rate->isSuccess()){
+            $usps_rate = $response['RateV4Response']['Package']['Postage']['Rate'];
+            return $usps_rate;
+        }else{
+            return $response['RateV4Response']['Package']['Error']['Description'];
+        }
     }
 }
 

@@ -227,6 +227,13 @@
                 </div>
                 <hr />
                 <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        {!! Form::button('Quote Shipping Rate', ['type'=>'button','class'=>'btn2-kit j-quote-rate']) !!}
+                        <span class="j-quote-result"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
                     <div class="col-xs-12 col-md-3">
                         <div class="form-group {{ $errors->has('card_number') ? ' has-error' : '' }}">
                             {!!  Form::label('card_number', ucwords(str_replace('_',' ', 'card_number'))) !!}
