@@ -1,10 +1,6 @@
 
 /* Medium devices (Small desktops 1280px max) */
 @media (--medium) {
-
-    .c-center-content2 {
-        text-align: center;
-    }
     .my-item {
         width: 33.333333%;
     }
@@ -15,9 +11,9 @@
         display: none !important;
     }
 }
+
 /* Small devices (tablets, 992px max) */
 @media (--small) {
-
     .my-item {
         width: 50%;
     }
@@ -41,16 +37,6 @@
     .my-item {
         width: 100%;
     }
-    .in-inner-container {
-        padding: 0 0 30px;
-    }
-    ul.footer-menu li {
-        display: block;
-    }
-    h1.h1-1 {
-        font-size: 24px;
-        line-height: 28px;
-    }
     .navbar-header .navbar-brand {
         font-size: 13px;
     }
@@ -61,105 +47,10 @@
     .navbar-default {
         padding: 10px 0;
     }
-    .mt1 {
-        margin-top: 50px !important;
-    }
-    h2.h2-3 {
-        font-size: 12px;
-        line-height: 14px;
-    }
-    h2.h2-1 {
-        font-size: 16px;
-        line-height: 18px;
-    }
-    p.p-1 {
-        font-size: 11px;
-        line-height: 13px;
-    }
-
-    .mr1 {
-        margin-right: 0;
-    }
-
-
-
-    .home .btn1,
-    .home .btn1:visited {
-        font-size: 12px;
-        padding: 10px 40px;
-    }
-    .brr {
-        display: block;
-    }
-    .h-ill1, .h-ill2, .h-ill3, .h-ill4 {
-        background-position: left center;
-    }
-
-
-    .c-center-content2 {
-        border-radius: 0;
-        -webkit-border-radius: 0;
-        width: auto;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    .mt8 {
-        margin-top: 10px !important;
-    }
-    .mt3 {
-        margin-top: 10px !important;
-    }
-    .mr3 {
-        margin-right: 0 !important;
-    }
-    .mt6 {
-        margin-top: 10px !important;
-    }
-    .mt4 {
-        margin-top: 10px !important;
-    }
-    .mt2 {
-        margin-top: 10px !important;
-    }
-    .h-ill4 .mt4 {
-        margin-top: 22px !important;
-    }
-    .h-ill1 .mt2 {
-        margin-top: 35px !important;
-    }
-    .col-right1 {
-        padding: 10px 10px 0;
-    }
-    .col-right1 .p-2 {
-        text-align: left;
-        line-height: 22px;
-        font-size: 17px;
-    }
-    .mt7 {
-        margin-top: 25px !important;
-    }
-    .pad2 {
-        padding: 40px 10px;
-    }
-
-    .mt13 {
-        margin-top: 10px !important;
-    }
-    .mb1 {
-        margin-bottom: 0;
-    }
-    .mt12 {
-        margin-top: 50px !important;
-    }
-
-    .c-center-content3.mt11 {
-        margin-top: 0 !important;
-    }
-
-
     .navbar-header {
         display: block;
     }
+
     .mini-box {
         text-align: center;
     }

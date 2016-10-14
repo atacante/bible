@@ -15,6 +15,12 @@
     max-width: 1360px;
     margin: 0 auto;
 }
+@media (--xsmall) {
+    .in-inner-container {
+        padding: 0 0 30px;
+    }
+}
+
 .bg-g2 {
     min-height: 650px;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e6e6+30,e5e6e6+98 */
