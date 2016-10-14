@@ -24,7 +24,7 @@ class Group extends BaseModel
         $rules =  [
             'group_name' => 'required',
             'group_desc' => 'required',
-            'group_email' => 'required|unique:groups',
+//            'group_email' => 'required|unique:groups',
         ];
 
         switch(Request::method())

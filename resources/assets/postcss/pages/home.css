@@ -242,6 +242,7 @@
     overflow: hidden;
   }
   & .gift-item {
+
     background: #ffffff;
     display: block;
     border-radius: 10px;
