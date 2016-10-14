@@ -83,8 +83,14 @@
 }
 
 .c-title-and-icons {
-    padding: 0 130px;
+    padding: 0 165px;
     position: relative;
+}
+@media (--small) {
+    .c-title-and-icons {
+        padding: 0 5px;
+        position: relative;
+    }
 }
 .c-title-and-icons2 {
     padding: 0 270px;
