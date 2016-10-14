@@ -3742,6 +3742,14 @@ h4.h4-sub-kit {
     outline: none !important;
     overflow: hidden;
 }
+@media (max-width: 767px) {
+    .home {
+
+}
+    .home .gift-item {
+        margin: 8px 3px 25px;
+    }
+  }
 @media (max-width: 1280px) {
     .home {
 

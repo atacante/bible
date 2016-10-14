@@ -252,6 +252,11 @@
     outline: none !important;
     overflow: hidden;
   }
+  @media (--xsmall) {
+    & .gift-item {
+      margin: 8px 3px 25px;
+    }
+  }
   @media (--medium) {
     & .c-share-panel {
       border: none;
