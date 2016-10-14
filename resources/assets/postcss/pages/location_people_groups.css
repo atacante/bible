@@ -11,7 +11,7 @@
 .my-inner-location-item {
     overflow: hidden;
     position: relative;
-    height: 542px;
+    /*height: 542px;*/
     text-align: center;
     margin-bottom: 0;
     background: white;
