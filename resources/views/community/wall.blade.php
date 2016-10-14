@@ -54,7 +54,7 @@
                 <div class="load-more-block mt3 mb1">
                     <div class="text-center">
                         {!! Html::link('/community/wall?'.http_build_query(
-                            array_merge(Request::input(),['page' => $content['nextPage']])
+                            array_merge(Request::except('checkPosts'),['page' => $content['nextPage']])
                         ),'Load More', ['class'=>'btn1 load-more','style' => 'width:100%;']) !!}
                     </div>
                 </div>
