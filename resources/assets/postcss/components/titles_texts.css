@@ -94,6 +94,12 @@ h4.h4-1 {
     cursor: pointer;
     margin-bottom: 10px;
 }
+@media (--xsmall) {
+    .h4-sel-version {
+        font-size: 0.6rem;
+        line-height: 1.4rem;
+    }
+}
 .h4-sel-book {
     display: inline-block;
     text-align: center;
@@ -107,6 +113,12 @@ h4.h4-1 {
     font-family: ns_widemedium;
     font-size: 2.14rem;
     margin: 0;
+}
+@media (--xsmall) {
+    .h4-sel-book {
+        font-size: 1.29rem;
+        /*line-height: 1.4rem;*/
+    }
 }
 .cu-date1 {
     float: right !important;
