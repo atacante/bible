@@ -182,6 +182,7 @@ class OrderController extends Controller
             $usps_rate = $response['RateV4Response']['Package']['Postage']['Rate'];
             return $usps_rate;
         }else{
+            dd($response);
             return $response['RateV4Response']['Package']['Error']['Description'];
         }
     }
