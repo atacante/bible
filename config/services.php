@@ -38,4 +38,8 @@ return [
     'authorize' => [
         'model'  => App\User::class,
     ],
+
+    'usps' => [
+        'username' => env('USPS_USERNAME'),
+    ]
 ];

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5a3554c7b851f4e32361d45eb45f05ab",
-    "content-hash": "e52c75fc309f4db6c94d541aac0d452f",
+    "hash": "0e8b99170f638b0aa5ad53eab375a525",
+    "content-hash": "89bccb47a2362ccd687c8e760c4b8e2a",
     "packages": [
         {
             "name": "arcanedev/no-captcha",
@@ -846,6 +846,52 @@
                 "tokenizer"
             ],
             "time": "2015-12-05 17:17:57"
+        },
+        {
+            "name": "johnpaulmedina/laravel-usps",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnpaulmedina/laravel-usps.git",
+                "reference": "e4bd79b6c05c9c485128a69b33e029254770c2e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpaulmedina/laravel-usps/zipball/e4bd79b6c05c9c485128a69b33e029254770c2e7",
+                "reference": "e4bd79b6c05c9c485128a69b33e029254770c2e7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Usps": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Paul Medina",
+                    "email": "medina.jpaul@gmail.com"
+                },
+                {
+                    "name": "Vincent Gabriel"
+                }
+            ],
+            "description": "USPS API for Laravel 5",
+            "homepage": "https://github.com/johnpaulmedina/laravel-usps/",
+            "keywords": [
+                "laravel",
+                "laravel usps",
+                "laravel5",
+                "usps"
+            ],
+            "time": "2016-05-28 17:15:57"
         },
         {
             "name": "kodeine/laravel-acl",
@@ -3976,6 +4022,7 @@
                 "xml",
                 "xsd"
             ],
+            "abandoned": "goetas-webservices/xsd2php",
             "time": "2016-08-03 14:50:12"
         },
         {
@@ -4250,6 +4297,71 @@
                 "testing"
             ],
             "time": "2016-05-22 21:52:33"
+        },
+        {
+            "name": "paisawala/cashier-authorizenetpaisa",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shahidkarimi/lara-authorizenet-paisa.git",
+                "reference": "87d004b6f923a40cdf2b77ec37f76454f941f7bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shahidkarimi/lara-authorizenet-paisa/zipball/87d004b6f923a40cdf2b77ec37f76454f941f7bd",
+                "reference": "87d004b6f923a40cdf2b77ec37f76454f941f7bd",
+                "shasum": ""
+            },
+            "require": {
+                "authorizenet/authorizenet": "1.9.0",
+                "dompdf/dompdf": "^0.6.1",
+                "illuminate/container": "^5.2|^5.1",
+                "illuminate/database": "~5.1",
+                "illuminate/support": "~5.1",
+                "nesbot/carbon": "~1.0",
+                "php": ">=5.5.9",
+                "symfony/http-kernel": "~2.7|~3.0"
+            },
+            "require-dev": {
+                "goetas/xsd-reader": "2.*@dev",
+                "goetas/xsd2php": "2.0.x-dev#fdc2ab0bb3f2b3ab796ca567cf8c0f3446a7ea3a",
+                "illuminate/http": "~5.1",
+                "illuminate/routing": "~5.1",
+                "illuminate/view": "~5.1",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0",
+                "vlucas/phpdotenv": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\CashierAuthorizeNet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shahid Karimi",
+                    "email": "karimi.shahid@gmail.com"
+                }
+            ],
+            "description": "Laravel Cashier-Authorize provides an expressive, fluent interface to Authorize.net's subscription billing services.",
+            "keywords": [
+                "authorize.net",
+                "billing",
+                "laravel",
+                "payment module",
+                "stripe"
+            ],
+            "time": "2016-06-28 09:57:19"
         },
         {
             "name": "parsecsv/php-parsecsv",
@@ -5771,71 +5883,6 @@
                 "zf2"
             ],
             "time": "2016-02-18 20:53:00"
-        },
-        {
-            "name": "paisawala/cashier-authorizenetpaisa",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shahidkarimi/lara-authorizenet-paisa.git",
-                "reference": "87d004b6f923a40cdf2b77ec37f76454f941f7bd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shahidkarimi/lara-authorizenet-paisa/zipball/87d004b6f923a40cdf2b77ec37f76454f941f7bd",
-                "reference": "87d004b6f923a40cdf2b77ec37f76454f941f7bd",
-                "shasum": ""
-            },
-            "require": {
-                "authorizenet/authorizenet": "1.9.0",
-                "dompdf/dompdf": "^0.6.1",
-                "illuminate/container": "^5.2|^5.1",
-                "illuminate/database": "~5.1",
-                "illuminate/support": "~5.1",
-                "nesbot/carbon": "~1.0",
-                "php": ">=5.5.9",
-                "symfony/http-kernel": "~2.7|~3.0"
-            },
-            "require-dev": {
-                "goetas/xsd-reader": "2.*@dev",
-                "goetas/xsd2php": "2.0.x-dev#fdc2ab0bb3f2b3ab796ca567cf8c0f3446a7ea3a",
-                "illuminate/http": "~5.1",
-                "illuminate/routing": "~5.1",
-                "illuminate/view": "~5.1",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~4.0",
-                "vlucas/phpdotenv": "~2.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "6.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\CashierAuthorizeNet\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Shahid Karimi",
-                    "email": "karimi.shahid@gmail.com"
-                }
-            ],
-            "description": "Laravel Cashier-Authorize provides an expressive, fluent interface to Authorize.net's subscription billing services.",
-            "keywords": [
-                "authorize.net",
-                "billing",
-                "laravel",
-                "payment module",
-                "stripe"
-            ],
-            "time": "2016-06-28 09:57:19"
         }
     ],
     "aliases": [],
@@ -5844,6 +5891,7 @@
         "kodeine/laravel-acl": 20,
         "yangqi/htmldom": 20,
         "gloudemans/shoppingcart": 20,
+        "johnpaulmedina/laravel-usps": 20,
         "xethron/migrations-generator": 20,
         "way/generators": 20,
         "goetas/xsd-reader": 20
