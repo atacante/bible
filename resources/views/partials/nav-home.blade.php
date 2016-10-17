@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i><div class="logo-text">BIBLE STUDY CO</div></a>
+        <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i><div class="logo-text">BIBLE STUDY COMPANY</div></a>
     </div>
 
     <div class="collapse navbar-collapse c-menu-home" id="bs-example-navbar-collapse-1">
@@ -230,5 +230,11 @@
                 </li>
             @endif
         </ul>
+    </div>
+    <div class="c-search1" style="margin: 20px auto 0; width: 320px;">
+        {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
+        {!! Form::text('q',Request::input('q'),['class' => 'search-text1','placeholder' => 'Search verse everywhere...']) !!}
+        <button class="search-btn1" type="submit"><i class="bs-search"></i></button>
+        {!! Form::close() !!}
     </div>
 </nav>
