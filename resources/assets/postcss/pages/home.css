@@ -54,7 +54,7 @@
     padding-top: 39.2%;
   }
   & .h-ill3 {
-    background: url('/images/p3-home.png') center center no-repeat;
+    background: url('/images/p3-home.jpg') center center no-repeat;
     padding-top: 39.2%;
   }
   & .h-ill4 {
@@ -70,7 +70,7 @@
       background: url('/images/p2-home-m.png') left center no-repeat;
     }
     & .h-ill3 {
-      background: url('/images/p3-home-m.png') left center no-repeat;
+      background: url('/images/p3-home.jpg') left center no-repeat;
     }
     & .h-ill4 {
       background: url('/images/p4-home-m.png') left center no-repeat;

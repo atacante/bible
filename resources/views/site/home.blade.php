@@ -51,15 +51,15 @@
 
                     <section class="home-ill-section h-ill3">
                         <div class="ill-text-pos3">
-                            <h2 class="h2-1">
+                            <h2 class="h2-1 color1">
                                 get involved in<br>
                                 <span>OUR community</span>
                             </h2>
-                            <p class="p-1 mt5">Share your thoughts, prayers with others.<br>
+                            <p class="p-1 mt5 color1">Share your thoughts, prayers with others.<br>
                                 Make a new friends.<br>
                                 Probably more impressive description.
                             </p>
-                            <a href="{{ URL::to('/community') }}" class="btn2 mt3">COMMUNITY OVERVIEW</a>
+                            <a href="{{ URL::to('/community') }}" class="btn3 mt3">COMMUNITY OVERVIEW</a>
                         </div>
                     </section>
 
