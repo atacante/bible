@@ -372,6 +372,19 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   padding: 15px 50px;
   text-decoration: none !important;
 }
+@media (--xsmall) {
+  .btn1,
+  .btn1:visited,
+  .btn1:hover,
+  .btn1:active,
+  .btn2,
+  .btn2:visited,
+  .btn2:hover,
+  .btn2:active {
+    border-width: 2px;
+    padding: 5px 10px;
+  }
+}
 .cu-btn2 {
   font-size: 0.93rem;
   padding: 7px 25px;

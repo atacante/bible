@@ -359,21 +359,21 @@
         {{-- ---------------- Pagination  ---------------- --}}
         <div class="row mt14 mb1">
             <div class="col-xs-12 j-reader-pagination">
-                <div class="pull-left">
-                    @if($prevBook = $content['pagination']['bookPrev'])
-                        <a href="{!! url('reader/read?'.http_build_query($prevBook),[]) !!}" class="btn2 mr5 btn-min-w">
-                            <div class="btn-top-label1">Prev Book</div>
-                            <div class="btn-sub-label1">{{ $filters['books'][$prevBook['book']] }}</div>
-                        </a>
-                    @endif
+                <div class="reader-res-bott-panel-l pull-left">
                     @if($prevChapter = $content['pagination']['chapterPrev'])
                         <a href="{!! url('reader/read?'.http_build_query($prevChapter),[]) !!}" class="btn2 mr5 btn-min-w">
                             <div class="btn-top-label1">Prev Chapter</div>
                             <div class="btn-sub-label1">{{ $filters['books'][Request::input('book',1)].' '.$filters['chapters'][$prevChapter['chapter']] }}</div>
                         </a>
                     @endif
+                    @if($prevBook = $content['pagination']['bookPrev'])
+                        <a href="{!! url('reader/read?'.http_build_query($prevBook),[]) !!}" class="btn2 mr5 btn-min-w pull-left">
+                            <div class="btn-top-label1">Prev Book</div>
+                            <div class="btn-sub-label1">{{ $filters['books'][$prevBook['book']] }}</div>
+                        </a>
+                    @endif
                 </div>
-                <div class="pull-right">
+                <div class="reader-res-bott-panel-r pull-right">
                     @if($nextChapter = $content['pagination']['chapterNext'])
                         <a href="{!! url('reader/read?'.http_build_query($nextChapter),[]) !!}" class="btn1 ml1 btn-min-w">
                             <div class="btn-top-label1">Next Chapter</div>

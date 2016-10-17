@@ -1,4 +1,14 @@
 .home {
+  & .c-search1 {
+    margin: 20px auto 0;
+    width: 320px;
+  }
+  @media (--xsmall) {
+    & .c-search1 {
+      width: 80%;
+      max-width: 320px;
+    }
+  }
   & .bg-home {
     background: url('/images/bg-home-header.jpg') center top no-repeat;
     max-width: 100%;

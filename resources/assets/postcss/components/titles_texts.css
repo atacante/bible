@@ -74,7 +74,14 @@ h4.h4-1 {
     font-family: work_sansregular;
     font-size: 1.29rem;
 }
-
+@media (--xsmall) {
+    .verse-text {
+        color: #535353;
+        font-family: work_sansregular;
+        font-size: 0.91rem;
+        line-height: 1.46rem;
+    }
+}
 .verse-search-text {
     color: #535353;
     font-family: work_sansregular;
