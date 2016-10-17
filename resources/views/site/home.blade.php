@@ -50,11 +50,11 @@
 
                     <section class="home-ill-section h-ill3" style="background: url('/images/{{ $homedata['home_community_block']->background }}') center center no-repeat;">
                         <div class="ill-text-pos3">
-                            <h2 class="h2-1">
+                            <h2 class="h2-1 color1">
                                 {!! $homedata['home_community_block']->text !!}
                             </h2>
-                            <p class="p-1 mt5">{!! $homedata['home_community_block']->description !!}</p>
-                            <a href="{{ URL::to('/community') }}" class="btn2 mt3">COMMUNITY OVERVIEW</a>
+                            <p class="p-1 mt5 color1">{!! $homedata['home_community_block']->description !!}</p>
+                            <a href="{{ URL::to('/community') }}" class="btn3 mt3">COMMUNITY OVERVIEW</a>
                         </div>
                     </section>
 
