@@ -159,11 +159,13 @@ class UserController extends Controller
 
                 Notification::successInstant('Your profile info successfully saved');
             }
+            // Need to refresh user before serve
+            $user = User::find($user->id);
         }
 
         return view('user.profile',
             [
-                'model' => Auth::user(),
+                'model' => $user,
                 'page_title' => 'My Profile',
             ]);
     }
