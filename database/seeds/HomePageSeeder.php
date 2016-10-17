@@ -77,7 +77,7 @@ class HomePageSeeder extends Seeder
                 'text' =>'<span>EXPLORE</span> the SYMBOLISM',
                 'description' => 'Learn more about historic locations & people.<br>
                                 Probably more desription here.',
-                'background' => 'p4-home.jpg'
+                'background' => 'p4-home.png'
             ];
             CmsPage::insert($homeExploreBlock);
         }
