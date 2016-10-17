@@ -27,15 +27,29 @@
     }
     .reader-res-bott-panel-l {
         width: 50%;
+        padding-left: 15px;
+        & .btn-min-w:first-child {
+            min-width: 100%;
+        }
         & .btn2, & .btn1 {
             float: right !important;
             margin-bottom: 5px;
         }
+        & .mr5 {
+            margin-right: 3px;
+        }
     }
     .reader-res-bott-panel-r {
         width: 50%;
+        padding-right: 15px;
+        & .btn-min-w:first-child {
+            min-width: 100%;
+        }
         & .btn2, & .btn1 {
             margin-bottom: 5px;
+        }
+        & .ml1 {
+            margin-left: 3px;
         }
     }
 }
