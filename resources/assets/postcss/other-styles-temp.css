@@ -24,6 +24,23 @@
     font-weight: bold;
 }
 
+.bg-home #search-verse input::-webkit-input-placeholder {
+    color:white;
+    font-weight: bold;
+}
+.bg-home #search-verse input::-moz-placeholder          {
+    color:white;
+    font-weight: bold;
+}/* Firefox 19+ */
+.bg-home #search-verse input:-moz-placeholder           {
+    color:white;
+    font-weight: bold;
+}/* Firefox 18- */
+.bg-home #search-verse input:-ms-input-placeholder      {
+    color:white;
+    font-weight: bold;
+}
+
 #search-verse button i{
     color:#6b6b6b;
     font-weight: bold;
