@@ -117,6 +117,7 @@
 @media(--xsmall) {
     .inner-pad1 {
         padding: 15px 20px;
+        line-height: 1.46rem;
     }
 }
 .inner-pad2 {

@@ -231,7 +231,7 @@
             @endif
         </ul>
     </div>
-    <div class="c-search1" style="margin: 20px auto 0; width: 320px;">
+    <div class="c-search1">
         {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
         {!! Form::text('q',Request::input('q'),['class' => 'search-text1','placeholder' => 'Search verse everywhere...']) !!}
         <button class="search-btn1" type="submit"><i class="bs-search"></i></button>

@@ -1,4 +1,17 @@
 .home {
+  & .c-search1 {
+    margin: 20px auto 0;
+    width: 320px;
+  }
+  & .search-text1 {
+    background: rgba(255,255,255,0.2);
+  }
+  @media (--xsmall) {
+    & .c-search1 {
+      width: 80%;
+      max-width: 320px;
+    }
+  }
   & .bg-home {
     background: url('/images/bg-home-header.jpg') center top no-repeat;
     max-width: 100%;
@@ -54,7 +67,7 @@
     padding-top: 39.2%;
   }
   & .h-ill3 {
-    background: url('/images/p3-home.png') center center no-repeat;
+    background: url('/images/p3-home.jpg') center center no-repeat;
     padding-top: 39.2%;
   }
   & .h-ill4 {
@@ -70,7 +83,7 @@
       background: url('/images/p2-home-m.png') left center no-repeat;
     }
     & .h-ill3 {
-      background: url('/images/p3-home-m.png') left center no-repeat;
+      background: url('/images/p3-home.jpg') left center no-repeat;
     }
     & .h-ill4 {
       background: url('/images/p4-home-m.png') left center no-repeat;

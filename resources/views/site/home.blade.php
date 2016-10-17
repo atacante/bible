@@ -15,8 +15,8 @@
             <div class="bg-g1">
                 <div class="in-inner-container text-center">
                     @include('partials.nav-home')
-                    <h1 class="h1-1 mt1">ONLINE <span>STUDY BIBLE</span> COMMUNITY</h1>
-                    <h2 class="h2-3">Studying Scripture to Live a Praiseworthy <span class="brr">Life to God</span></h2>
+                    <h1 class="h1-1 mt1">{!! $homedata['home_main_block']->text !!}</h1>
+                    <h2 class="h2-3">{!! $homedata['home_main_block']->description !!}</h2>
                     <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn1 mt2 mb1">READ BIBLE NOW</a>
                 </div>
             </div>
@@ -28,49 +28,43 @@
             <div class="in-inner-container">
                 <div class="c-center-content site-index">
 
-                    <section class="home-ill-section h-ill1">
+                    <section class="home-ill-section h-ill1" style="background: url('/images/{{ $homedata['home_reader_block']->background }}') center top no-repeat;">
                         <div class="ill-text-pos1">
                             <h2 class="h2-1">
-                                STUDY THE <span>BIBLE</span> <br>WITH PURPOSE
+                                {!! $homedata['home_reader_block']->text !!}
                             </h2>
-                            <p class="p-1 mt5">Learn and compare between different<br> versions of bible.</p>
+                            <p class="p-1 mt5">{!! $homedata['home_reader_block']->description !!}</p>
                             <a href="{{ URL::to('/reader/read?version=nasb') }}" class="btn2 mt3">Go To Reader</a>
                         </div>
                     </section>
 
-                    <section class="home-ill-section h-ill2">
+                    <section class="home-ill-section h-ill2" style="background: url('/images/{{ $homedata['home_journey_block']->background }}') right center no-repeat;">
                         <div class="ill-text-pos2">
                             <h2 class="h2-1 color3">
-                                <span>Create</span> your own journey
+                                {!! $homedata['home_journey_block']->text !!}
                             </h2>
-                            <p class="p-1 mt5 color2">Make a notes and write a journal. Share your favourites with<br>
-                                friends. Do something more. Do one more thing.</p>
+                            <p class="p-1 mt5 color2">{!! $homedata['home_journey_block']->description !!}</p>
                             <a href="{{ !Auth::check()?URL::to('auth/register'): URL::to('user/my-journey') }}" class="btn2 mt3">{{ Auth::check()?'':'SIGNUP TO ' }}START YOUR JOURNEY</a>
                         </div>
                     </section>
 
-                    <section class="home-ill-section h-ill3">
+                    <section class="home-ill-section h-ill3" style="background: url('/images/{{ $homedata['home_community_block']->background }}') center center no-repeat;">
                         <div class="ill-text-pos3">
-                            <h2 class="h2-1">
-                                get involved in<br>
-                                <span>OUR community</span>
+                            <h2 class="h2-1 color1">
+                                {!! $homedata['home_community_block']->text !!}
                             </h2>
-                            <p class="p-1 mt5">Share your thoughts, prayers with others.<br>
-                                Make a new friends.<br>
-                                Probably more impressive description.
-                            </p>
-                            <a href="{{ URL::to('/community') }}" class="btn2 mt3">COMMUNITY OVERVIEW</a>
+                            <p class="p-1 mt5 color1">{!! $homedata['home_community_block']->description !!}</p>
+                            <a href="{{ URL::to('/community') }}" class="btn3 mt3">COMMUNITY OVERVIEW</a>
                         </div>
                     </section>
 
-                    <section class="home-ill-section h-ill4">
+                    <section class="home-ill-section h-ill4" style="background: url('/images/{{ $homedata['home_explore_block']->background }}') right center no-repeat;">
                         <div class="ill-text-pos4">
                             <h2 class="h2-1">
-                                <span>EXPLORE</span> the SYMBOLISM
+                                {!! $homedata['home_explore_block']->text !!}
                             </h2>
                             <p class="p-1 mt5 color2">
-                                Learn more about historic locations & people.<br>
-                                Probably more desription here.
+                               {!! $homedata['home_explore_block']->description !!}
                             </p>
                             <a href="{{ URL::to('/locations/list') }}" class="btn2 mt3">EXPLORE LOCATIONS & PEOPLE</a>
                         </div>

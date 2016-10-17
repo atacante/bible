@@ -683,7 +683,9 @@ a.view-details:hover{
     padding: 5px 15px 5px 0;
 }
 @media (--xsmall) {
-    padding-left: 15px;
+    .navbar-inner-pages .navbar-header .navbar-brand{
+        padding: 5px 15px 5px 15px;
+    }
 }
 .navbar-header .ion-ios-book, .navbar-header .ion-ios-book-outline{
     font-size: 3rem;
@@ -1058,31 +1060,7 @@ a:focus, a:hover {
 
 /* From temp.css */
 
-/* READER */
-a.my-bookmarks{
-    position: absolute;
-    right: 0;
-    top: 110px;
-    text-transform: uppercase;
-    font-family: ns_widedemibold;
-    font-size: 0.93rem;
-}
 
-a.my-bookmarks i{
-    font-size: 1.79rem;
-    color: #00b9f7;
-    vertical-align: middle;
-    margin-right: 5px;
-}
-
-a.my-bookmarks:hover{
-    text-decoration: none;
-    color: #00b9f7;
-}
-
-.my-bookmarks-list .bookmark-item{
-    line-height: 30px;
-}
 
 /* NAV */
 .navbar-nav i.cu-nav-icons{

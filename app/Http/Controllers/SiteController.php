@@ -24,7 +24,14 @@ class SiteController extends Controller
 
         $products = ShopProduct::whereIn('homepage_position',[1,2,3])->orderBy('homepage_position', 'ASC')->get();
 
-        return view('site.home', ['verse_day' => $verse_day, 'products' => $products]);
+        $homedata = [];
+        $homedata['home_main_block'] = CmsPage::getPage('home_main_block');
+        $homedata['home_reader_block'] = CmsPage::getPage('home_reader_block');
+        $homedata['home_journey_block'] = CmsPage::getPage('home_journey_block');
+        $homedata['home_community_block'] = CmsPage::getPage('home_community_block');
+        $homedata['home_explore_block'] = CmsPage::getPage('home_explore_block');
+
+        return view('site.home', ['verse_day' => $verse_day, 'products' => $products, 'homedata'=>$homedata]);
     }
 
     public function getAbout()
