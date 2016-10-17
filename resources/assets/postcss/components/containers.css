@@ -1,5 +1,6 @@
 .bg-inner-page {
     background: #89bbf2;
+    padding: 5px;
 }
 .inner-container {
     margin: 0 auto;
@@ -112,6 +113,11 @@
     padding: 40px 45px;
     line-height: 2.14rem;
     position: relative;
+}
+@media(--xsmall) {
+    .inner-pad1 {
+        padding: 15px 20px;
+    }
 }
 .inner-pad2 {
     padding: 35px 45px;

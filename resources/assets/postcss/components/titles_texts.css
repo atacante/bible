@@ -98,6 +98,7 @@ h4.h4-1 {
     .h4-sel-version {
         font-size: 0.6rem;
         line-height: 1.4rem;
+        margin: 2px;
     }
 }
 .h4-sel-book {
