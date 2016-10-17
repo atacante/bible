@@ -428,3 +428,31 @@ ins {
         padding: 0 15px 5px;
     }
 }
+a.my-bookmarks {
+    float: right;
+    text-transform: uppercase;
+    font-family: ns_widedemibold;
+    font-size: 0.93rem;
+}
+a.my-bookmarks i {
+    font-size: 1.79rem;
+    color: #00b9f7;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+a.my-bookmarks:hover{
+    text-decoration: none;
+    color: #00b9f7;
+}
+.my-bookmarks-list .bookmark-item{
+    line-height: 30px;
+}
+@media(--xsmall) {
+    a.my-bookmarks{
+        margin-right: 15px;
+        font-size: 0.6rem;
+    }
+    a.my-bookmarks i {
+        font-size: 1.28rem;
+    }
+}

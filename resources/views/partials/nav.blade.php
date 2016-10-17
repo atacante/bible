@@ -226,10 +226,16 @@
             @endif
         </ul>
     </div>
-    @if(Auth::check() && Request::segment(1) == 'reader')
-        <a class="my-bookmarks j-my-bookmarks" href="{{ url('user/my-bookmarks/'.Request::get('version')) }}"><i class="fa fa-bookmark-o" aria-hidden="true"></i>My Bookmarks</a>
-    @endif
 </nav>
+<div class="row">
+    <div class="col-xs-12">
+        {{-- bookmarks list button --}}
+        @if(Auth::check() && Request::segment(1) == 'reader')
+            <a class="my-bookmarks j-my-bookmarks" href="{{ url('user/my-bookmarks/'.Request::get('version')) }}">{{--<i class="fa fa-bookmark-o" aria-hidden="true"></i>--}}My Bookmarks</a>
+        @endif
+    </div>
+</div>
+
 
 {{-- ---------------- Radio Blocks ---------------- --}}
 @if(Request::segment(1) == 'reader')
