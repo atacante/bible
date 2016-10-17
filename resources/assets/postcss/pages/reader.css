@@ -384,3 +384,8 @@ ins {
     top: 20px;
     right: 20px;
 }
+@media (--xsmall) {
+    .resp-offset {
+        padding: 0 15px 5px;
+    }
+}

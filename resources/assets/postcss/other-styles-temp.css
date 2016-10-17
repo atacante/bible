@@ -682,6 +682,9 @@ a.view-details:hover{
 .navbar-inner-pages .navbar-header .navbar-brand{
     padding: 5px 15px 5px 0;
 }
+@media (--xsmall) {
+    padding-left: 15px;
+}
 .navbar-header .ion-ios-book, .navbar-header .ion-ios-book-outline{
     font-size: 3rem;
     color: #337ab7;
