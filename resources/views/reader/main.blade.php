@@ -394,7 +394,7 @@
         </div>
 
         @if(!Auth::check())
-            <div class="row mb1 mt12">
+            <div class="row mb1-r mb1 mt12">
                 <div class="col-xs-12 reader-banner">
                     <h2 class="h2-2 color1 text-center text-uppercase">
                         want to keep your study<br>

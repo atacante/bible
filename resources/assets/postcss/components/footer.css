@@ -36,18 +36,19 @@
 
 @media (--xsmall) {
     .footer1 {
-        padding: 25px 0;
+        padding: 17px 0;
 
         & ul.footer-menu li a {
-            font-size: 14px;
-            line-height: 16px;
+            font-size: 12px;
+            line-height: 10px;
         }
         & ul.footer-menu li {
             display: block;
-            padding: 7px 20px;
+            padding: 4px 20px;
         }
         & .copyright {
             margin-top: 25px;
+            font-size: 12px;
         }
     }
 }
