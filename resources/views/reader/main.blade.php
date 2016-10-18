@@ -79,52 +79,95 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="permonent-pop j-choose-book-pop" style="display: none;">
                         <div class="pp-title">
                             CHOOSE BOOK
                             <a href="#" class="btn-reset cu-btr1 j-close-choose-book">&#215;</a>
                         </div>
-                        <table class="t-choose-book j-book-list" style="width:100%;">
-                        <?php
-                        $n = 0;
-                        $book_mas[$n] = "";
-                        foreach ($filters['books'] as $val=>$book){
-                            $n++;
-                            $book_mas[$n]['val'] = $val;
-                            $book_mas[$n]['text'] = $filters['books'][$val];
-                        }
-
-                        $count_columns = 4;
-                        $count_books = count($filters['books']);
-                        $count_books_on_column =  ceil ((((int)$count_books) / $count_columns));
-                        $b = 0;
-                        for ($i=1; $i<=$count_columns; $i++) {
-                            for ($j=1; $j<=$count_books_on_column; $j++) {
-                                $b++;
-                                if (isset($book_mas[$b]["text"])) {
-                                    $mas[$i][$j] = $book_mas[$b]["val"];
-                                } else {
-                                    $mas[$i][$j] = "";
+                        {{-- desctop version --}}
+                        <table class="t-choose-book j-book-list j-choose-desctop" style="width:100%; display: none;">
+                            <?php
+                            $n = 0;
+                            $book_mas[$n] = "";
+                            foreach ($filters['books'] as $val=>$book){
+                                $n++;
+                                $book_mas[$n]['val'] = $val;
+                                $book_mas[$n]['text'] = $filters['books'][$val];
+                            }
+                            $count_columns = 4;
+                            $count_books = count($filters['books']);
+                            $count_books_on_column =  ceil ((((int)$count_books) / $count_columns));
+                            $b = 0;
+                            for ($i=1; $i<=$count_columns; $i++) {
+                                for ($j=1; $j<=$count_books_on_column; $j++) {
+                                    $b++;
+                                    if (isset($book_mas[$b]["text"])) {
+                                        $mas[$i][$j] = $book_mas[$b]["val"];
+                                    } else {
+                                        $mas[$i][$j] = "";
+                                    }
                                 }
                             }
-                        }
+                            for($j=1; $j<=$count_books_on_column; $j++) {
+                                echo '<tr>';
+                                for ($i=1; $i<=$count_columns; $i++){
+                                    if($mas[$i][$j]>0){
+                                        $val1 = $mas[$i][$j];
+                                        $active = Request::input('book',1)==$mas[$i][$j]?'active':'';
+                                        echo '<td><a class="'.$active.'" data-val="'.$mas[$i][$j].'" href="#">'.$filters['books'][$val1].'</a></td>';
+                                    } else {
+                                        echo '<td></td>';
+                                    }
+                                }
+                                echo '</tr>';
+                            }
+                            ?>
+                        </table>
 
-                        for($j=1; $j<=$count_books_on_column; $j++) {
-                            echo '<tr>';
-                            for ($i=1; $i<=$count_columns; $i++){
-                                if($mas[$i][$j]>0){
-                                    $val1 = $mas[$i][$j];
-                                    $active = Request::input('book',1)==$mas[$i][$j]?'active':'';
-                                    echo '<td><a class="'.$active.'" data-val="'.$mas[$i][$j].'" href="#">'.$filters['books'][$val1].'</a></td>';
-                                } else {
-                                    echo '<td></td>';
+                        {{-- mobile version --}}
+                        <table class="t-choose-book j-book-list j-choose-mobile" style="width:100%; display: none;">
+                            <?php
+                            $n = 0;
+                            $book_mas[$n] = "";
+                            foreach ($filters['books'] as $val=>$book){
+                                $n++;
+                                $book_mas[$n]['val'] = $val;
+                                $book_mas[$n]['text'] = $filters['books'][$val];
+                            }
+                            $count_columns = 1;
+                            $count_books = count($filters['books']);
+                            $count_books_on_column =  ceil ((((int)$count_books) / $count_columns));
+                            $b = 0;
+                            for ($i=1; $i<=$count_columns; $i++) {
+                                for ($j=1; $j<=$count_books_on_column; $j++) {
+                                    $b++;
+                                    if (isset($book_mas[$b]["text"])) {
+                                        $mas[$i][$j] = $book_mas[$b]["val"];
+                                    } else {
+                                        $mas[$i][$j] = "";
+                                    }
                                 }
                             }
-                            echo '</tr>';
-                        }
-                        ?>
+                            for($j=1; $j<=$count_books_on_column; $j++) {
+                                echo '<tr>';
+                                for ($i=1; $i<=$count_columns; $i++){
+                                    if($mas[$i][$j]>0){
+                                        $val1 = $mas[$i][$j];
+                                        $active = Request::input('book',1)==$mas[$i][$j]?'active':'';
+                                        echo '<td><a class="'.$active.'" data-val="'.$mas[$i][$j].'" href="#">'.$filters['books'][$val1].'</a></td>';
+                                    } else {
+                                        echo '<td></td>';
+                                    }
+                                }
+                                echo '</tr>';
+                            }
+                            ?>
                         </table>
                     </div>
+
+
+
                     <div class="c-title-and-icons j-nav-sel2">
                         <!-- Go to www.addthis.com/dashboard to customize your tools -->
                         <div class="addthis_inline_share_toolbox c-sharing top-vertical1"></div>

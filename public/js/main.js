@@ -1693,7 +1693,25 @@ $(document).ready(function(){
     $(".j-sel-book-label").on("click", function(e){
         $(".j-nav-sel2").hide();
         $(".j-choose-book-pop").show();
+        if ($("body").width()<751){
+            $(".j-choose-desctop").hide();
+            $(".j-choose-mobile").show();
+        } else {
+            $(".j-choose-mobile").hide();
+            $(".j-choose-desctop").show();
+        }
+
         e.preventDefault();
+    });
+
+    $(window).resize(function() {
+        if ($("body").width() < 768) {
+            $(".j-choose-desctop").hide();
+            $(".j-choose-mobile").show();
+        } else {
+            $(".j-choose-mobile").hide();
+            $(".j-choose-desctop").show();
+        }
     });
 
     /* ----------------- CHAPTER ----------------- */

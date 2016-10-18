@@ -89,6 +89,7 @@
         z-index: 999;
         background: #313d47;
         border: none;
+        text-align: center;
     }
 }
 .pop-should-see {
@@ -193,6 +194,16 @@ table.t-choose-book tr td a.active {
     background: #313d47;
     color: white;
 }
+@media (--xsmall) {
+    table.t-choose-book tr td {
+        border: 1px solid #4c5963;
+    }
+    table.t-choose-book tr td a {
+        color: #77838d;
+        font-size: 11px;
+        text-align: left;
+    }
+}
 ul.c-chapter-list {
     display: block;
     overflow: hidden;
@@ -221,6 +232,32 @@ ul.c-chapter-list li a:hover {
 ul.c-chapter-list li a.active {
     background: #313d47;
     color: white;
+}
+@media (--xsmall){
+    ul.c-chapter-list {
+        display: inline-block;
+        overflow: hidden;
+        text-align: center;
+        padding: 0;
+        margin: 0 auto;
+        width: 90%;
+    }
+    ul.c-chapter-list li {
+        display: inline-block;
+        margin: 2px 0;
+    }
+    ul.c-chapter-list li a {
+        display: block;
+        border: 1px solid #4c5963;
+        min-width: 30px;
+        min-height: 30px;
+        text-decoration: none !important;
+        color: #77838d;
+        padding: 0;
+        text-align: center;
+        font-size: 11px;
+        line-height: 30px;
+    }
 }
 /* Mini Popup */
 .bs-example-modal-sm .modal-dialog{

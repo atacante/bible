@@ -211,12 +211,22 @@ ul.icon-panel li a {
     -webkit-box-shadow: 0 0 15px 5px rgba(100,100,100,0.2);
     box-shadow: 0 0 15px 5px rgba(100,100,100,0.2);
 }
+@media (--xsmall) {
+    .j-reader-actions {
+        padding: 15px 0 8px;
+    }
+}
 .btn-reader {
     display:inline-block;
     color:white;
     padding: 0 20px;
     vertical-align: top;
     text-align: center;
+}
+@media (--xsmall) {
+    .btn-reader {
+        padding: 0 12px;
+    }
 }
 .btn-reader:hover,
 .btn-reader i:hover{
@@ -226,6 +236,11 @@ ul.icon-panel li a {
 .btn-reader i {
     font-size: 1.71rem;
     display: block;
+}
+@media (--xsmall) {
+    .btn-reader i {
+        font-size: 1.4rem;
+    }
 }
 .h3-related {
     color: #313131;
