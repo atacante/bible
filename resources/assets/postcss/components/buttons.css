@@ -477,7 +477,13 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   color: white;
   text-decoration: none !important;
 }
-
+@media (--xsmall) {
+  .btn-reset{
+    border: none;
+    font-size: 3.5rem;
+    font-family: work_sansextralight;
+  }
+}
 .btn4, .btn4:visited {
   display: inline-block;
   border: 3px solid #00b9f7;
