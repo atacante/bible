@@ -52,6 +52,28 @@
             margin-left: 3px;
         }
     }
+    .btn-book-resp-l {
+        width: 80%;
+        background: #404040;
+        color: #ffffff;
+        & .btn-top-label1 {
+            color: #ffffff;
+        }
+        & .btn-sub-label1 {
+            color: #ffffff;
+        }
+    }
+    .btn-book-resp-r {
+        width: 80%;
+        background: #00b9f7;
+        color: #ffffff;
+        & .btn-top-label1 {
+            color: #ffffff;
+        }
+        & .btn-sub-label1 {
+            color: #ffffff;
+        }
+    }
 }
 .btn1:hover .btn-sub-label1,
 .btn2:hover .btn-sub-label1 {
