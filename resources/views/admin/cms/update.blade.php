@@ -90,16 +90,17 @@
                 </div>
              @endif
 
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        {!! Form::hidden('published', 0) !!}
-                        {!! Form::checkbox('published', 1,$model->published) !!}
-                        <span>Published</span>
-                    </label>
+            @if($model->exists && $model->content_type != App\CmsPage::CONTENT_HOME)
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::hidden('published', 0) !!}
+                            {!! Form::checkbox('published', 1,$model->published) !!}
+                            <span>Published</span>
+                        </label>
+                    </div>
                 </div>
-            </div>
-
+            @endif
         </div>
         <!-- /.box-body -->
 
