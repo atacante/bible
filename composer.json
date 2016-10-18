@@ -41,7 +41,8 @@
         "nesbot/carbon": "~1.0",
         "symfony/http-kernel": "~2.7|~3.0",
         "goetas/xsd-reader": "2.*@dev",
-        "vlucas/phpdotenv": "~2.0"
+        "vlucas/phpdotenv": "~2.0",
+        "atacante/cashier-authorizenetpaisa": "dev-master"
     },
     "autoload": {
         "classmap": [
@@ -81,6 +82,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/goetas/serializer.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/atacante/lara-authorizenet-paisa.git"
         },
         {
             "type": "git",
