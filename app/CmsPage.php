@@ -5,6 +5,7 @@ namespace App;
 class CmsPage extends BaseModel
 {
     const CONTENT_PAGE = 'page';
+    const CONTENT_HOME = 'home';
     const CONTENT_TEXT = 'text';
     const CONTENT_TOOLTIP = 'tooltip';
 
