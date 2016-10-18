@@ -1,3 +1,22 @@
+.reader {
+    @media (--xsmall) {
+        & .mt12 {
+            margin-top: 0 !important;
+        }
+        & .mb1 {
+            margin-bottom: 30px !important;
+        }
+        & .mb1-r.mb1 {
+            margin-bottom: 0px !important;
+        }
+        & .mt14 {
+            margin-top: 30px !important;
+        }
+        & .in-inner-container {
+            padding: 0 !important;
+        }
+    }
+}
 .btn-top-label1 {
     line-height: 1.29rem;
     text-transform: uppercase;
@@ -16,27 +35,72 @@
 @media (--xsmall) {
     .btn-top-label1 {
         font-size: 0.79rem;
-        line-height: 1.29rem;
+        line-height: 0.9rem;
     }
     .btn-sub-label1 {
         font-size: 0.72rem;
-        line-height: 1.29rem;
+        line-height: 0.9rem;
     }
     .btn-min-w {
         min-width: 0;
     }
     .reader-res-bott-panel-l {
         width: 50%;
+        padding-left: 15px;
+        & .btn-min-w:first-child {
+            min-width: 100%;
+        }
         & .btn2, & .btn1 {
             float: right !important;
             margin-bottom: 5px;
+            padding: 10px 5px;
+        }
+        & .mr5 {
+            margin-right: 3px;
         }
     }
     .reader-res-bott-panel-r {
         width: 50%;
+        padding-right: 15px;
+        & .btn-min-w:first-child {
+            min-width: 100%;
+        }
         & .btn2, & .btn1 {
             margin-bottom: 5px;
+            padding: 10px 5px;
         }
+        & .ml1 {
+            margin-left: 3px;
+        }
+    }
+    .btn-book-resp-l {
+        width: 80%;
+        background: #404040;
+        color: #ffffff;
+        padding: 5px !important;
+        & .btn-top-label1 {
+            color: #ffffff;
+        }
+        & .btn-sub-label1 {
+            color: #ffffff;
+        }
+    }
+    .btn-book-resp-r {
+        width: 80%;
+        background: #00b9f7;
+        color: #ffffff;
+        padding: 5px !important;
+        & .btn-top-label1 {
+            color: #ffffff;
+        }
+        & .btn-sub-label1 {
+            color: #ffffff;
+        }
+    }
+    .btn-book-resp-l:hover,
+    .btn-book-resp-r:hover {
+        background: #79858f;
+        border-color: #79858f;
     }
 }
 .btn1:hover .btn-sub-label1,
@@ -306,7 +370,7 @@ h3.strongs-subheader {
 .j-wall-item .item-header i.verse-icon2{
     color: #fff !important;
 }
-.reader-banner{
+.reader-banner {
     background: url(/images/banner.png) center center no-repeat;
     height: 404px;
     color: #ffffff;
@@ -315,8 +379,10 @@ h3.strongs-subheader {
 }
 @media (--xsmall) {
     .reader-banner {
+        height: auto;
+        padding: 30px 30px;
         & h2.h2-2 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
     }
 }
@@ -326,6 +392,12 @@ a.banner-btn{
     padding: 25px 50px !important;
     letter-spacing: 1px;
     margin-top: 44px;
+}
+@media (--xsmall) {
+    a.banner-btn {
+        padding: 15px 50px !important;
+        margin-top: 30px;
+    }
 }
 del {
     color: #fe9921;

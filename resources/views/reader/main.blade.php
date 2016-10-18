@@ -359,6 +359,7 @@
         {{-- ---------------- Pagination  ---------------- --}}
         <div class="row mt14 mb1">
             <div class="col-xs-12 j-reader-pagination">
+
                 <div class="reader-res-bott-panel-l pull-left">
                     @if($prevChapter = $content['pagination']['chapterPrev'])
                         <a href="{!! url('reader/read?'.http_build_query($prevChapter),[]) !!}" class="btn2 mr5 btn-min-w">
@@ -367,12 +368,13 @@
                         </a>
                     @endif
                     @if($prevBook = $content['pagination']['bookPrev'])
-                        <a href="{!! url('reader/read?'.http_build_query($prevBook),[]) !!}" class="btn2 mr5 btn-min-w pull-left">
+                        <a href="{!! url('reader/read?'.http_build_query($prevBook),[]) !!}" class="btn2 mr5 btn-min-w pull-left btn-book-resp-l">
                             <div class="btn-top-label1">Prev Book</div>
                             <div class="btn-sub-label1">{{ $filters['books'][$prevBook['book']] }}</div>
                         </a>
                     @endif
                 </div>
+
                 <div class="reader-res-bott-panel-r pull-right">
                     @if($nextChapter = $content['pagination']['chapterNext'])
                         <a href="{!! url('reader/read?'.http_build_query($nextChapter),[]) !!}" class="btn1 ml1 btn-min-w">
@@ -381,17 +383,18 @@
                         </a>
                     @endif
                     @if($nextBook = $content['pagination']['bookNext'])
-                        <a href="{!! url('reader/read?'.http_build_query($nextBook),[]) !!}" class="btn1 ml1 btn-min-w">
+                        <a href="{!! url('reader/read?'.http_build_query($nextBook),[]) !!}" class="btn1 ml1 btn-min-w btn-book-resp-r">
                             <div class="btn-top-label1">Next Book</div>
                             <div class="btn-sub-label1">{{ $filters['books'][$nextBook['book']] }}</div>
                         </a>
                     @endif
                 </div>
+
             </div>
         </div>
 
         @if(!Auth::check())
-            <div class="row mb1 mt12">
+            <div class="row mb1-r mb1 mt12">
                 <div class="col-xs-12 reader-banner">
                     <h2 class="h2-2 color1 text-center text-uppercase">
                         want to keep your study<br>
