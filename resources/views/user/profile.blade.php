@@ -162,7 +162,7 @@
                             </div>
                             <div class="radio-inline mt15">
                                 {!! Form::radio('plan_type', 'premium', false, ["class" => "cust-radio", 'id' => 'premium']) !!}
-                                <label for="premium" class="label-radio cu-label">Premium ({!! $model->isPremiumPaid()?'paid | Expires at: '.$model->getPlanExpiresAt() :'non-paid' !!})</label>
+                                <label for="premium" class="label-radio cu-label">Premium {!! $model->isPremiumPaid()?'(paid | Expires at: '.$model->getPlanExpiresAt().')' :'' !!}</label>
                             </div>
                             @if ($errors->has('plan_type'))
                                 <span class="help-block">
