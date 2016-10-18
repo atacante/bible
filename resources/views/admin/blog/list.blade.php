@@ -45,4 +45,20 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-yellow" style="background-color: #1657d1 !important;">
+                <div class="inner">
+                    <h3> 1 </h3>
+                    <p>Home Page</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-home"></i>
+                </div>
+                <a href="{{ url('admin/cms/home') }}" class="small-box-footer">
+                    View All <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 @endsection
