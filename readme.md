@@ -22,8 +22,8 @@ change line #16 in vendor/paisawala/cashier-authorizenetpaisa/src/CashierService
         require(__DIR__.'/../../../autoload.php');
 ~~~
 ~~~
-
-php composer.phar update
+php artisan clear-compiled
+php artisan optimize
 ~~~
 
 

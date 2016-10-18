@@ -58,14 +58,14 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script type='text/javascript'>
+    {{--<script type='text/javascript'>
         (function (d, t) {
             var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
             bh.type = 'text/javascript';
             bh.src = 'https://www.bugherd.com/sidebarv2.js?apikey=1qxwxwtzbfhqfsdbhfxumw';
             s.parentNode.insertBefore(bh, s);
         })(document, 'script');
-    </script>
+    </script>--}}
 
     <link rel="shortcut icon" href="{!! asset('assets/site/ico/favicon.ico')  !!} ">
 </head>
@@ -89,7 +89,7 @@
         ga('betaTracker.send', 'pageview');
 
     </script>
-    <div class="bg-home">
+    <div class="bg-home" style="background: url('/images/{{ $homedata['home_main_block']->background }}') center top no-repeat;">
         <script>
             window.fbAsyncInit = function() {
                 FB.init({

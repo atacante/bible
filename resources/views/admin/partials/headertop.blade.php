@@ -15,6 +15,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ion ion-ios-book"></i> Reader <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="{!! ViewHelper::classActivePath('admin.lexicon') !!}"><a href="{{ url('admin/lexicon/list') }}"><span><i class="ion ion-university"></i> Lexicons</span></a></li>
+                            <li class="{!! ViewHelper::classActivePath('admin.lexicon') !!}"><a href="{{ url('admin/symbolism-encyclopedia/list') }}"><span><i class="fa fa-book"></i> Analysis</span></a></li>
                             <li class="{!! ViewHelper::classActivePath('admin.bible') !!}"><a href="{{ url('admin/bible/versions') }}"><span><i class="ion ion-ios-book"></i> Bibles</span></a></li>
                             <li class="{!! ViewHelper::classActivePath('admin.location') !!}"><a href="{{ url('admin/location/list') }}"><span><i class="ion ion-ios-location"></i> Locations</span></a></li>
                             <li class="{!! ViewHelper::classActivePath('admin.peoples') !!}"><a href="{{ url('admin/peoples/list') }}"><span><i class="ion ion-ios-people"></i> People</span></a></li>

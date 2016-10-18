@@ -356,7 +356,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   border: 3px solid #404040;
   color: #404040;
   font-family: ns_widedemibold;
-  font-size: 1.29rem;
+  font-size: responsive 11px 18px;
   padding: 15px 50px;
   text-decoration: none !important;
   outline: none !important;
@@ -368,9 +368,22 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   background: #404040;
   color: #ffffff;
   font-family: ns_widedemibold;
-  font-size: 1.29rem;
+  font-size: responsive 11px 18px;
   padding: 15px 50px;
   text-decoration: none !important;
+}
+@media (--xsmall) {
+  .btn1,
+  .btn1:visited,
+  .btn1:hover,
+  .btn1:active,
+  .btn2,
+  .btn2:visited,
+  .btn2:hover,
+  .btn2:active {
+    border-width: 2px;
+    padding: 5px 10px;
+  }
 }
 .cu-btn2 {
   font-size: 0.93rem;
@@ -397,7 +410,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   border: 3px solid #ffffff;
   color: #ffffff;
   font-family: ns_widedemibold;
-  font-size: 1.29rem;
+  font-size: responsive 11px 18px;
   padding: 15px 50px;
   text-decoration: none !important;
   outline: none !important;
@@ -408,7 +421,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   background: #ffffff;
   color: #404040;
   font-family: ns_widedemibold;
-  font-size: 1.29rem;
+  font-size: responsive 11px 18px;
   padding: 15px 50px;
   text-decoration: none !important;
 }

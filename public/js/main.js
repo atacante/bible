@@ -1862,6 +1862,27 @@ $(document).ready(function(){
         return false;
     });
 
+    $('body').on('click','.j-quote-rate', function(e){
+        var zip = $('input[name=shipping_postcode]').val();
+
+        if(!zip){
+            $('.j-quote-result').text('Please fill Shipping Postcode');
+            return false;
+        }
+
+        $('.spinner').show();
+        $.ajax({
+            method: "GET",
+            url: '/order/usps-rate-ajax/'+zip,
+            success:function(data){
+                $('.j-quote-result').text(data);
+                $('.spinner').hide();
+            }
+        });
+
+        return false;
+    });
+
     $('body').on('click','a.disabled',function(e){
         e.preventDefault();
         site.showPremiumWarning();

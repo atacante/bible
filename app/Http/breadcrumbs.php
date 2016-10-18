@@ -111,6 +111,32 @@ Breadcrumbs::register('peopleUpdate', function($breadcrumbs)
     $breadcrumbs->push('Edit people');
 });
 
+
+
+
+// Admin > Terms
+Breadcrumbs::register('terms', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Terms', url('admin/symbolism-encyclopedia/list'));
+});
+
+// Admin > Terms > [CreateTerm]
+Breadcrumbs::register('termCreate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('terms');
+    $breadcrumbs->push("Create new term");
+});
+
+// Admin > Terms > [UpdateTerm]
+Breadcrumbs::register('termUpdate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('terms');
+    $breadcrumbs->push('Edit term');
+});
+
+
+
 // Admin > Coupons
 Breadcrumbs::register('coupons', function($breadcrumbs)
 {

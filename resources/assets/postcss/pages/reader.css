@@ -13,6 +13,32 @@
 .btn-min-w {
     min-width: 288px;
 }
+@media (--xsmall) {
+    .btn-top-label1 {
+        font-size: 0.79rem;
+        line-height: 1.29rem;
+    }
+    .btn-sub-label1 {
+        font-size: 0.72rem;
+        line-height: 1.29rem;
+    }
+    .btn-min-w {
+        min-width: 0;
+    }
+    .reader-res-bott-panel-l {
+        width: 50%;
+        & .btn2, & .btn1 {
+            float: right !important;
+            margin-bottom: 5px;
+        }
+    }
+    .reader-res-bott-panel-r {
+        width: 50%;
+        & .btn2, & .btn1 {
+            margin-bottom: 5px;
+        }
+    }
+}
 .btn1:hover .btn-sub-label1,
 .btn2:hover .btn-sub-label1 {
     color: white;
@@ -43,6 +69,11 @@ ul.icon-panel li a {
 .top-vertical1 {
     top: 50%;
     margin-top: -13px;
+}
+@media (--xsmall) {
+    .top-vertical1 {
+        margin-top: 60px;
+    }
 }
 .col-xs-6 .verse-text, .col-xs-4 .verse-text {
     font-size: 1.14rem;
@@ -282,6 +313,13 @@ h3.strongs-subheader {
     padding-top: 95px;
     letter-spacing: 2px;
 }
+@media (--xsmall) {
+    .reader-banner {
+        & h2.h2-2 {
+            font-size: 1.5rem;
+        }
+    }
+}
 a.banner-btn{
     font-family: ns_widedemibold !important;
     font-size: 1.29rem !important;
@@ -314,6 +352,12 @@ ins {
     font-family: work_sansbold;
     text-decoration: none !important;
     font-weight: normal !important;
+}
+@media (--xsmall) {
+    .verse-text b a {
+        font-size: 0.91rem;
+        line-height: 1.46rem;
+    }
 }
 .verse-text:hover, .clicked{
     color: #00b9f7 !important;
@@ -378,4 +422,37 @@ ins {
     width: 28px;
     top: 20px;
     right: 20px;
+}
+@media (--xsmall) {
+    .resp-offset {
+        padding: 0 15px 5px;
+    }
+}
+a.my-bookmarks {
+    float: right;
+    text-transform: uppercase;
+    font-family: ns_widedemibold;
+    font-size: 0.93rem;
+}
+a.my-bookmarks i {
+    font-size: 1.79rem;
+    color: #00b9f7;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+a.my-bookmarks:hover{
+    text-decoration: none;
+    color: #00b9f7;
+}
+.my-bookmarks-list .bookmark-item{
+    line-height: 30px;
+}
+@media(--xsmall) {
+    a.my-bookmarks{
+        margin-right: 15px;
+        font-size: 0.6rem;
+    }
+    a.my-bookmarks i {
+        font-size: 1.28rem;
+    }
 }

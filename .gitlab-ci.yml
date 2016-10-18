@@ -2,9 +2,11 @@ stages:
  - dev
  - dev_node
  - alpha
+ - alpha_node
  - beta
  - beta_node
  - live
+ - live_node
 
 job_for_dev:
   stage: dev
@@ -46,10 +48,30 @@ job_for_alpha:
     - hostname
     - pwd
     - php -v
+    - cd $HOME/web && git pull origin alpha
+    - cd $HOME/web && php artisan migrate --force --no-interaction
+    - cd $HOME/web && php artisan asset:dist
+    - cd $HOME/web && php artisan clear-compiled
+    - cd $HOME/web && php artisan optimize
   only:
     - alpha
   tags:
     - alpha
+  environment: qa
+
+node_job_for_alpha:
+  stage: alpha_node
+  script:
+    - export ALPHA_HOME=/home/bible_alpha
+    - cd $ALPHA_HOME/web
+    - npm install
+    - npm run build
+    - find $ALPHA_HOME/web -user root -exec chown 1002:1002 {} \;
+  only:
+    - alpha
+  tags:
+    -  biblestudyco_docker
+  image: node
   environment: qa
 
 job_for_beta:
@@ -75,11 +97,11 @@ job_for_beta:
 node_job_for_beta:
   stage: beta_node
   script:
-    - export BETA_HOME=/home/bible
+    - export BETA_HOME=/home/bible_beta
     - cd $BETA_HOME/web
     - npm install
     - npm run build
-    - find $BETA_HOME/web -user root -exec chown 1001:1001 {} \;
+    - find $BETA_HOME/web -user root -exec chown 1003:1003 {} \;
   only:
     - beta
   tags:
@@ -87,17 +109,37 @@ node_job_for_beta:
   image: node
   environment: staging
 
-#job_for_live:
-#  stage: live
-#  before_script:
-#    - php -v
-#    - export PATH=/opt/remi/php56/root/bin/:$PATH
-#  script:
-#    - hostname
-#    - pwd
-#    - php -v
-#  only:
-#    - master
-#  tags:
-#    - live
-#  environment: production
+job_for_live:
+  stage: live
+  before_script:
+    - php -v
+    - export PATH=/opt/remi/php56/root/bin/:$PATH
+  script:
+    - hostname
+    - pwd
+    - php -v
+#    - cd $HOME/web && git pull origin master
+#    - cd $HOME/web && php artisan migrate --force --no-interaction
+#    - cd $HOME/web && php artisan asset:dist
+#    - cd $HOME/web && php artisan clear-compiled
+#    - cd $HOME/web && php artisan optimize
+  only:
+    - master
+  tags:
+    - live
+  environment: production
+
+node_job_for_live:
+  stage: live_node
+  script:
+    - export LIVE_HOME=/home/bible
+    - cd $LIVE_HOME/web
+#    - rm -rf ./node_modules && npm i
+#    - npm run build:prod
+#    - find $LIVE_HOME/web -user root -exec chown 1001:1001 {} \;
+  only:
+    - master
+  tags:
+    -  biblestudyco_docker
+  image: node
+  environment: production

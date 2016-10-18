@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="form-group row {{ $errors->has('group_email') ? ' has-error' : '' }}">
+    {{--<div class="form-group row {{ $errors->has('group_email') ? ' has-error' : '' }}">
         {!! Form::label('group_email', 'Email', ['class' => 'col-xs-2']) !!}
         <div class="col-xs-10">
             {!! Form::text('group_email',null,['class' => 'input1']) !!}
@@ -22,7 +22,7 @@
                 </span>
             @endif
         </div>
-    </div>
+    </div>--}}
 
     <div class="form-group row {{ $errors->has('group_desc') ? ' has-error' : '' }}">
         {!! Form::label('group_desc', 'Description', ['class' => 'col-xs-2']) !!}
@@ -74,7 +74,7 @@
                 {!! Form::radio('access_level', App\Group::ACCESS_SECRET, false, ['id' => 'secret','class' => 'cust-radio']) !!}
                 <label for="secret" class="label-radio cu-label2">
                     <i class="fa bs-s-onlyme cu-s-public" aria-hidden="true"></i>
-                    Secret
+                    Private
                     <div class="sub-text-radio">Anyone can find the group and see who's in it. Only members can see posts.</div>
                 </label>
             </div>

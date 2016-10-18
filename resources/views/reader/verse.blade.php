@@ -191,7 +191,7 @@
             <a class="genesis-arrow" title="Prev Verse" href="{!! url('reader/verse?'.http_build_query($versePrev),[]) !!}" style="position: absolute; left:-40px;"><i class="bs-arrowleft cu-arrowleft"></i></a>
         @endif
         @if($verseNext = $content['pagination']['verseNext'])
-            <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[]) !!}" style="position: absolute; right:0px;"><i class="bs-arrowright cu-arrowright"></i></a>
+            <a class="genesis-arrow" title="Next Verse" href="{!! url('reader/verse?'.http_build_query($verseNext),[]) !!}" style="position: absolute; right:-40px;"><i class="bs-arrowright cu-arrowright"></i></a>
         @endif
     </div>
     @if(count($content['lexicon']))

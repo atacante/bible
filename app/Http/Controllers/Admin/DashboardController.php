@@ -9,6 +9,7 @@ use App\Helpers\ViewHelper;
 use App\LexiconsListEn;
 use App\Location;
 use App\People;
+use App\SymbolismEncyclopedia;
 use App\VersionsListEn;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class DashboardController extends Controller
 {
     public function index(){
         $content['lexiconsCount'] = count(LexiconsListEn::lexiconsList());
+        $content['termsCount'] = SymbolismEncyclopedia::query()->count();
         $content['bibleVersionsCount'] = count(VersionsListEn::versionsList());
         $content['usersCount'] = User::query()
             ->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')

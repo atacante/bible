@@ -429,4 +429,22 @@ class ViewHelper
         }
         return false;
     }
+
+    public static function getTooltipText($systemName)
+    {
+        $tooltip = CmsPage::where('system_name',$systemName)->where('published',true)->first();
+        if($tooltip){
+            return $tooltip->text;
+        }
+        return false;
+    }
+
+    public static function checkPublished($items,$systemName)
+    {
+        $item = $items->where('system_name',$systemName)->first();
+        if($item){
+            return true;
+        }
+        return false;
+    }
 }

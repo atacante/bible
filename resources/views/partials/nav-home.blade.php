@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i><div class="logo-text">BIBLE STUDY CO</div></a>
+        <a title="Bible" class="navbar-brand" href="/"><i class="bs-biblestudylogo cu-biblestudylogo"></i><div class="logo-text">BIBLE STUDY COMPANY</div></a>
     </div>
 
     <div class="collapse navbar-collapse c-menu-home" id="bs-example-navbar-collapse-1">
@@ -67,36 +67,46 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="drop1">
                     <div class="popup-arrow"></div>
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'bsc_events'))
                     <li>
                         <a href="{{ URL::to('/site/events') }}">
-                            <i class="fa fa-calendar cu-nav-icons"></i>
+                            <i class="bs-calendar cu-nav-icons"></i>
                             BSC Events
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'membership'))
                     <li>
                         <a href="{{ URL::to('/site/membership') }}">
                             <i class="bs-community cu-nav-icons"></i>
                             Membership
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'how_it_works'))
                     <li>
                         <a href="{{ URL::to('/site/how-it-works') }}">
                             <i class="fa fa-question-circle-o cu-nav-icons" style="font-size: 1.3rem; vertical-align: text-bottom;"></i>
                             How It Works
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'about'))
                     <li>
                         <a href="{{ URL::to('/site/about') }}">
                             <i class="bs-biblestudylogo cu-bs-biblestudylogo"></i>
                             About BSC
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'recommended_resources'))
                     <li>
                         <a href="{{ URL::to('/site/recommended-resources') }}">
                             <i class="bs-upload cu-bs-biblestudylogo" style="vertical-align: text-bottom;"></i>
                             Recommended Resources
                         </a>
                     </li>
+                    @endif
                     <li>
                         <a href="{{ URL::to('/shop') }}">
                             <i class="bs-gift cu-bs-gift"></i>
@@ -115,12 +125,22 @@
                             {{--FAQ--}}
                         {{--</a>--}}
                     {{--</li>--}}
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'partners'))
+                    <li>
+                        <a href="{{ URL::to('/site/partners') }}">
+                            <i class="bs-community cu-nav-icons"></i>
+                            Partners
+                        </a>
+                    </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'contact_main'))
                     <li>
                         <a href="{{ URL::to('/site/contact') }}">
                             <i class="bs-contactus cu-bs-contactus"></i>
                             Contact Us
                         </a>
                     </li>
+                    @endif
                 </ul>
             </li>
 
@@ -210,5 +230,11 @@
                 </li>
             @endif
         </ul>
+    </div>
+    <div class="c-search1">
+        {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
+        {!! Form::text('q',Request::input('q'),['class' => 'search-text1','placeholder' => 'Search verse everywhere...']) !!}
+        <button class="search-btn1" type="submit"><i class="bs-search"></i></button>
+        {!! Form::close() !!}
     </div>
 </nav>

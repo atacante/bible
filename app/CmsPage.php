@@ -5,10 +5,11 @@ namespace App;
 class CmsPage extends BaseModel
 {
     const CONTENT_PAGE = 'page';
+    const CONTENT_HOME = 'home';
     const CONTENT_TEXT = 'text';
     const CONTENT_TOOLTIP = 'tooltip';
 
-    protected $fillable = ['title', 'text', 'meta_title', 'meta_description', 'meta_keywords'];
+    protected $fillable = ['title', 'text', 'meta_title', 'meta_description', 'meta_keywords','published'];
     protected $dates = ['created_at', 'updated_at'];
 
     public function rules()

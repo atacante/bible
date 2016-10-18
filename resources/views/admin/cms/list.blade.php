@@ -13,6 +13,7 @@
                             <th>Content Type</th>
                             <th>System Name</th>
                             <th>Title</th>
+                            <th class="text-center">Published</th>
                             {{--<th>Content</th>--}}
                             {{--<th>Meta Title</th>--}}
                             {{--<th>Meta Keywords</th>--}}
@@ -25,6 +26,13 @@
                                     <td>{!! $page->content_type !!}</td>
                                     <td>{!! $page->system_name !!}</td>
                                     <td>{!! $page->title !!}</td>
+                                    <td class="text-center">
+                                        @if($page->published)
+                                            <span class="label label-success">yes</span>
+                                        @else
+                                            <span class="label label-danger">no</span>
+                                        @endif
+                                    </td>
                                     {{--<td>{!! $page->text !!}</td>--}}
                                     {{--<td>{!! $page->meta_title !!}</td>--}}
                                     {{--<td>{!! $page->meta_keywords !!}</td>--}}
