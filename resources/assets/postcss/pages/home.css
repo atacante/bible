@@ -13,7 +13,6 @@
     }
   }
   & .bg-home {
-    background: url('/images/bg-home-header.jpg') center top no-repeat;
     max-width: 100%;
   }
   & .bg-g1 {
@@ -59,19 +58,15 @@
 
   /* --------- backgrounds for sections -------- */
   & .h-ill1 {
-    background: url('/images/p1-home.png') right center no-repeat;
     padding-top: 39.2%;
   }
   & .h-ill2 {
-    background: url('/images/p2-home.png') right center no-repeat;
     padding-top: 39.2%;
   }
   & .h-ill3 {
-    background: url('/images/p3-home.jpg') center center no-repeat;
     padding-top: 39.2%;
   }
   & .h-ill4 {
-    background: url('/images/p4-home.png') right center no-repeat;
     padding-top: 39.2%;
   }
 
