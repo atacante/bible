@@ -11,6 +11,15 @@
     font-family: work_sansregular;
     font-size: 1.07rem;
 }
+@media(--xsmall){
+    .popup-new {
+        top: auto !important;
+        left: auto !important;
+        position: relative;
+        margin-bottom: 10px;
+        width: 100% !important;
+    }
+}
 .j-popup-settings {
     margin-top: -25px;
     margin-left: -290px;

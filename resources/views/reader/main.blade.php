@@ -20,40 +20,6 @@
         {!! Form::hidden('diff','on') !!}
 
 
-        {{-- COMPARE POPUP --}}
-        <div class="popup-new j-popup-compare c-popup-compare" style="display: none">
-            <div class="popup-arrow"></div>
-            <h4 class="popup-title">
-                COMPARE WITH...
-            </h4>
-            @if(isset($compare['versions']))
-                {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['multiple' => true, 'class' => 'hidden','id' => 'compare-versions-select']) !!}
-                <ul class="compare-list j-compare-list">
-                    @foreach($compare['versions'] as $key => $version)
-                        @if(in_array($key,Request::input('compare',[])))
-                            <li class="j-versions-to-compare-list" data-versioncode="{{ $key }}">
-                                {{ $version }}
-                                <a href="#" class="btn-reset j-remove-compare" style="position: relative; top: auto; right: auto; display: inline-block; font-size: 17px; height: 20px; width: 20px; line-height: 17px;">×</a>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
-                <input type="text" class="live-search-box j-live-search-box" placeholder="Start Typing Version Name (or Language)" />
-                <ul class="live-search-list j-live-search-list">
-                    @foreach($compare['versions'] as $key => $version)
-                        @if(!in_array($key,Request::input('compare',[])))
-                            <li class="j-versions-to-compare-list" data-versioncode="{{ $key }}">
-                                {{ $version }}
-                                <a href="#" class="btn-reset j-remove-compare hidden" style="position: relative; top: auto; right: auto; display: inline-block; font-size: 17px; height: 20px; width: 20px; line-height: 17px;">×</a>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
-                {!! Form::submit('Compare',['class' => 'btn1 cu-btn1 mt17']) !!}
-                {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[]), 'Reset', ['class' => 'btn2 cu-btn2 mt17','style' => 'margin-left:10px;'], true) !!}
-            @endif
-        </div>
-
 
         <div class="permonent-pop j-choose-version-pop" style="display: none;">
             <div class="pp-title">
@@ -67,6 +33,9 @@
             </ul>
         </div>
 
+
+
+        {{-- --}}
         <div class="j-chapter-content ">
             <div class="row j-nav-sel resp-offset" style="position: relative;">
                 <div class="col-lg-12">
@@ -258,6 +227,42 @@
 
                 </div>
             </div>
+
+
+            {{-- COMPARE POPUP --}}
+            <div class="popup-new j-popup-compare c-popup-compare" style="display: none">
+                <div class="popup-arrow"></div>
+                <h4 class="popup-title">
+                    COMPARE WITH...
+                </h4>
+                @if(isset($compare['versions']))
+                    {!! Form::select('compare[]', array_merge([],$compare['versions']), Request::input('compare'),['multiple' => true, 'class' => 'hidden','id' => 'compare-versions-select']) !!}
+                    <ul class="compare-list j-compare-list">
+                        @foreach($compare['versions'] as $key => $version)
+                            @if(in_array($key,Request::input('compare',[])))
+                                <li class="j-versions-to-compare-list" data-versioncode="{{ $key }}">
+                                    {{ $version }}
+                                    <a href="#" class="btn-reset j-remove-compare" style="position: relative; top: auto; right: auto; display: inline-block; font-size: 17px; height: 20px; width: 20px; line-height: 17px;">×</a>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                    <input type="text" class="live-search-box j-live-search-box" placeholder="Start Typing Version Name (or Language)" />
+                    <ul class="live-search-list j-live-search-list">
+                        @foreach($compare['versions'] as $key => $version)
+                            @if(!in_array($key,Request::input('compare',[])))
+                                <li class="j-versions-to-compare-list" data-versioncode="{{ $key }}">
+                                    {{ $version }}
+                                    <a href="#" class="btn-reset j-remove-compare hidden" style="position: relative; top: auto; right: auto; display: inline-block; font-size: 17px; height: 20px; width: 20px; line-height: 17px;">×</a>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                    {!! Form::submit('Compare',['class' => 'btn1 cu-btn1 mt17']) !!}
+                    {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[]), 'Reset', ['class' => 'btn2 cu-btn2 mt17','style' => 'margin-left:10px;'], true) !!}
+                @endif
+            </div>
+
             @if((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff',false) || Request::input('diff',false) == 'on'))
             <div class="row">
                 <div class="col-xs-12 text-right legend-block">
@@ -409,6 +414,11 @@
                             <div class="btn-top-label1">Prev Chapter</div>
                             <div class="btn-sub-label1">{{ $filters['books'][Request::input('book',1)].' '.$filters['chapters'][$prevChapter['chapter']] }}</div>
                         </a>
+                    @else
+                        <a href="#" class="btn2 mr5 btn-min-w" style="visibility: hidden">
+                            <div class="btn-top-label1">Prev Chapter</div>
+                            <div class="btn-sub-label1">none</div>
+                        </a>
                     @endif
                     @if($prevBook = $content['pagination']['bookPrev'])
                         <a href="{!! url('reader/read?'.http_build_query($prevBook),[]) !!}" class="btn2 mr5 btn-min-w pull-left btn-book-resp-l">
@@ -423,6 +433,11 @@
                         <a href="{!! url('reader/read?'.http_build_query($nextChapter),[]) !!}" class="btn1 ml1 btn-min-w">
                             <div class="btn-top-label1">Next Chapter</div>
                             <div class="btn-sub-label1">{{ $filters['books'][Request::input('book',1)].' '.$filters['chapters'][$nextChapter['chapter']] }}</div>
+                        </a>
+                    @else
+                        <a href="#" class="btn1 ml1 btn-min-w" style="visibility: hidden">
+                            <div class="btn-top-label1">Next Chapter</div>
+                            <div class="btn-sub-label1">none</div>
                         </a>
                     @endif
                     @if($nextBook = $content['pagination']['bookNext'])
