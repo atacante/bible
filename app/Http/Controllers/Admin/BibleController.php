@@ -7,15 +7,18 @@ use App\Helpers\ViewHelper;
 use App\Location;
 use App\LocationVerse;
 use App\People;
+use App\VerseOfDay;
 use App\VersionsListEn;
-use Illuminate\Http\Request as httpRequest;
+use Illuminate\Http\Request as HttpRequest;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
 use Krucas\Notification\Facades\Notification;
 
 class BibleController extends Controller
@@ -60,7 +63,7 @@ class BibleController extends Controller
             ]);
     }
 
-    public function anyUpdate(\Illuminate\Http\Request $request,$code,$id)
+    public function anyUpdate(HttpRequest $request,$code,$id)
     {
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
@@ -110,5 +113,77 @@ class BibleController extends Controller
                 ]);
             }
         }
+    }
+
+    public function anyVerseday(){
+        if (Request::isMethod('post')) {
+            $data = Input::all();
+
+            if(!isset($data['book']) || !isset($data['chapter']) || !isset($data['verse'])){
+                Notification::error('You should select book, chapter and verse');
+
+                return ($url = Session::get('backUrl'))
+                    ? Redirect::to($url)
+                    : Redirect::to(ViewHelper::adminUrlSegment().'/bible/verseday');
+            }
+
+            $book_id = $data['book'];
+            $chapter_id = $data['chapter'];
+            $verse_num = $data['verse'];
+
+            $verse = BaseModel::getVerse($book_id, $chapter_id, $verse_num);
+            $previousVerse = VerseOfDay::getTodayVerse();
+
+            if($verseOfDay = VerseOfDay::createById($verse->id)){
+                if(!$this->anyUploadImage($verseOfDay)){
+                      $verseOfDay->image = $previousVerse->image;
+                      $verseOfDay->save();
+                }
+                Notification::success('Verse Of The Day has been successfully updated');
+            }
+            return ($url = Session::get('backUrl'))
+                ? Redirect::to($url)
+                : Redirect::to(ViewHelper::adminUrlSegment().'/bible/verseday');
+        }
+
+        $verseOfDay = VerseOfDay::getTodayVerse();
+
+        return view('admin.bible.verse_of_day', [
+            'page_title' => 'Verse Of The Day',
+            'verseOfDay' => $verseOfDay
+        ]);
+    }
+
+    public function anyUploadImage($model)
+    {
+        if (Input::hasFile('file')) {
+            $file = Input::file('file');
+
+            $tmpFilePath = Config::get('app.verseOfDayImages');
+            $tmpThumbPath = $tmpFilePath . 'thumbs/';
+            $tmpFileName = time() . '-' . $file->getClientOriginalName();
+            $file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
+            $path = $tmpFilePath . $tmpFileName;
+
+            $this->makeDir(public_path() . $tmpThumbPath);
+            $thumbPath = public_path($tmpThumbPath . $tmpFileName);
+            if($file){
+                $model->image = $tmpFileName;
+                $model->save();
+            }
+            // Resizing 340x340
+            Image::make($file->getRealPath())->fit(100, 100)->save($thumbPath)->destroy();
+
+            return true;
+        }
+        return false;
+    }
+
+    private function makeDir($path)
+    {
+        if (!is_dir($path)) {
+            return mkdir($path);
+        }
+        return true;
     }
 }
