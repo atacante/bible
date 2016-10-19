@@ -194,6 +194,11 @@
   vertical-align: top;
   background-color: transparent;
 }
+@media(--xsmall) {
+  .cu-btn1 {
+    padding: 7px 25px !important;
+  }
+}
 .cu2-btn1 {
   font-size: 0.93rem !important;
   padding: 10px 0 !important;
