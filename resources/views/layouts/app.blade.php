@@ -53,6 +53,7 @@
 
         {!!Html::script(Asset::v('/js/main.js'))!!}
         {!!Html::script(Asset::v('/js/functions.js'))!!}
+        {!!Html::script('/js/jquery.mark.min.js')!!}
 
         @yield('styles')
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

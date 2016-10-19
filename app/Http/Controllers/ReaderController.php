@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\BaseModel;
 use App\BooksListEn;
 use App\Helpers\ViewHelper;
+use App\Highlight;
 use App\Journal;
 use App\LexiconKjv;
 use App\LexiconsListEn;
@@ -723,5 +724,59 @@ class ReaderController extends Controller
             $bookmarked = 1;
         }
         return $bookmarked;
+    }
+
+    public function anyGetHighlights()
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return "[]";
+        }
+        $version = Input::get('version',Config::get('app.defaultBibleVersion'));
+        $book = Input::get('book',1);
+        $chapter = Input::get('chapter',1);
+
+        $highlightsModel = new Highlight();
+        $highlightsModel->version = $version;
+        $highlights = $highlightsModel->where('user_id',$user->id)->where(function($w) use($book,$chapter){
+            $w->orWhereHas('verseFrom', function ($q) use($book,$chapter) {
+                $q->where('book_id', $book);
+                $q->where('chapter_num', $chapter);
+            });
+            $w->orWhereHas('verseTo', function ($q) use($book,$chapter) {
+                $q->where('book_id', $book);
+                $q->where('chapter_num', $chapter);
+            });
+        });
+        return $highlights->get()->toJson();
+    }
+
+    public function anySaveHighlight()
+    {
+        $user = Auth::user();
+        if (!$user) {
+            abort(403);
+        }
+
+        $model = new Highlight();
+        $model->user_id = $user->id;
+        $model->bible_version = Input::get('bible_version');
+        $model->verse_from_id = Input::get('verse_from_id');
+        $model->verse_to_id = Input::get('verse_to_id');
+        $model->highlighted_text = Input::get('highlighted_text');
+        $model->color = Input::get('color');
+        $model->save();
+        return $model->id;
+    }
+
+    public function anyRemoveHighlight()
+    {
+        $result = Highlight::
+              whereIn('id',Input::get('ids'))
+              /*where('bible_version',Input::get('bible_version'))
+            ->where('verse_from_id',Input::get('verse_from_id'))
+            ->where('verse_to_id',Input::get('verse_from_id'))*/
+            ->delete();
+        return $result;
     }
 }
