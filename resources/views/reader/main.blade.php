@@ -95,44 +95,46 @@
                         </table>
 
                         {{-- mobile version --}}
-                        <table class="t-choose-book j-book-list j-choose-mobile" style="width:100%; display: none;">
-                            <?php
-                            $n = 0;
-                            $book_mas[$n] = "";
-                            foreach ($filters['books'] as $val=>$book){
-                                $n++;
-                                $book_mas[$n]['val'] = $val;
-                                $book_mas[$n]['text'] = $filters['books'][$val];
-                            }
-                            $count_columns = 1;
-                            $count_books = count($filters['books']);
-                            $count_books_on_column =  ceil ((((int)$count_books) / $count_columns));
-                            $b = 0;
-                            for ($i=1; $i<=$count_columns; $i++) {
-                                for ($j=1; $j<=$count_books_on_column; $j++) {
-                                    $b++;
-                                    if (isset($book_mas[$b]["text"])) {
-                                        $mas[$i][$j] = $book_mas[$b]["val"];
-                                    } else {
-                                        $mas[$i][$j] = "";
+                        <div class="j-choose-mobile" style="display: none;">
+                            <table class="t-choose-book j-book-list " style="width:100%;">
+                                <?php
+                                $n = 0;
+                                $book_mas[$n] = "";
+                                foreach ($filters['books'] as $val=>$book){
+                                    $n++;
+                                    $book_mas[$n]['val'] = $val;
+                                    $book_mas[$n]['text'] = $filters['books'][$val];
+                                }
+                                $count_columns = 1;
+                                $count_books = count($filters['books']);
+                                $count_books_on_column =  ceil ((((int)$count_books) / $count_columns));
+                                $b = 0;
+                                for ($i=1; $i<=$count_columns; $i++) {
+                                    for ($j=1; $j<=$count_books_on_column; $j++) {
+                                        $b++;
+                                        if (isset($book_mas[$b]["text"])) {
+                                            $mas[$i][$j] = $book_mas[$b]["val"];
+                                        } else {
+                                            $mas[$i][$j] = "";
+                                        }
                                     }
                                 }
-                            }
-                            for($j=1; $j<=$count_books_on_column; $j++) {
-                                echo '<tr>';
-                                for ($i=1; $i<=$count_columns; $i++){
-                                    if($mas[$i][$j]>0){
-                                        $val1 = $mas[$i][$j];
-                                        $active = Request::input('book',1)==$mas[$i][$j]?'active':'';
-                                        echo '<td><a class="'.$active.'" data-val="'.$mas[$i][$j].'" href="#">'.$filters['books'][$val1].'</a></td>';
-                                    } else {
-                                        echo '<td></td>';
+                                for($j=1; $j<=$count_books_on_column; $j++) {
+                                    echo '<tr>';
+                                    for ($i=1; $i<=$count_columns; $i++){
+                                        if($mas[$i][$j]>0){
+                                            $val1 = $mas[$i][$j];
+                                            $active = Request::input('book',1)==$mas[$i][$j]?'active':'';
+                                            echo '<td><a class="'.$active.'" data-val="'.$mas[$i][$j].'" href="#">'.$filters['books'][$val1].'</a></td>';
+                                        } else {
+                                            echo '<td></td>';
+                                        }
                                     }
+                                    echo '</tr>';
                                 }
-                                echo '</tr>';
-                            }
-                            ?>
-                        </table>
+                                ?>
+                            </table>
+                        </div>
                     </div>
 
 
@@ -167,7 +169,7 @@
                             {{--@role('user')--}}
                             <li>
                                 <a href="{!! url('reader/delete-bookmark',[App\User::BOOKMARK_CHAPTER,$content['version_code'],$content['verses'][0]->id]) !!}" class="j-bookmark {!! ViewHelper::checkBookmark(App\User::BOOKMARK_CHAPTER,$content['verses'][0])?'':'hidden' !!}">
-                                    <i title="Remove from bookmarks" class="fa fa-bookmark cu-print" style="font-size: 2rem;"></i>
+                                    <i title="Remove from bookmarks" class="fa fa-bookmark cu-print"></i>
                                 </a>
                                 <a href="{!! url('reader/bookmark',[App\User::BOOKMARK_CHAPTER,$content['version_code'],$content['verses'][0]->id]) !!}" class="j-bookmark {!! !ViewHelper::checkBookmark(App\User::BOOKMARK_CHAPTER,$content['verses'][0])?'':'hidden' !!}">
                                     <i title="Add to bookmarks" class="fa fa-bookmark-o cu-print"></i>
@@ -262,6 +264,9 @@
                     {!! Html::link(url('reader/read?'.http_build_query($compare['resetParams']),[]), 'Reset', ['class' => 'btn2 cu-btn2 mt17','style' => 'margin-left:10px;'], true) !!}
                 @endif
             </div>
+
+            @include('reader.settings_popup')
+
 
             @if((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff',false) || Request::input('diff',false) == 'on'))
             <div class="row">

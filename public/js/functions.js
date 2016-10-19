@@ -2,7 +2,9 @@ var site = {
     wallCheckInterval: 15000,//ms
     likesAjax: false
 };
-var reader = {};
+var reader = {
+    highlightMode: false
+};
 var user = {};
 
 var order = {};
@@ -276,6 +278,30 @@ reader.getActionsHtml = function(){
             '</div>';
 }
 
+reader.getHighlightActionsHtml = function(withRemove){
+    return '<div class="j-reader-actions" style="position: absolute;">' +
+        '<a title="Highlight selected text" href="#" class="j-highlight-text j-green btn-reader" data-colorclass="j-green"><i class="bs-journal"></i></a>' +
+        // '<div class="spliter1"></div>'+
+        '<a title="Highlight selected text" href="#" class="j-highlight-text j-yellow btn-reader" data-colorclass="j-yellow"><i class="bs-journal"></i></a>' +
+        (withRemove?'<a title=" Remove highlighted text" href="#" class="j-remove-highlighted-text  btn-remove-highlighted-text btn-reader"><i class="fa fa-eraser"></i></a>':'') +
+        '<div class="popup-arrow2"></div>'+
+        '</div>';
+}
+
+reader.highlight = function(keyword,colorClass,markId) {
+    // Determine selected options
+    var options = {
+        acrossElements:true,
+        separateWordSearch:false,
+        className: colorClass+' j-mark-'+markId
+    };
+    $(".j-bible-text")/*.unmark()*/.mark(keyword, options);
+    $(".j-bible-text").find('.j-mark-'+markId).each(function(){
+        // $($(this).context).data('id',markId);
+        $(this).data('id',markId);
+    });
+};
+
 site.initCkeditors = function(){
     if($("#note-text,#journal-text,#prayer-text,.ckeditor").length > 0){
         $('#note-text,#journal-text,#prayer-text,.ckeditor').ckeditor({
@@ -292,7 +318,9 @@ site.initTagging = function(){
     $(".j-tags").select2({
         width: '100%',
         tags: true,
-        tokenSeparators: [',']
+        tokenSeparators: [','],
+        selectOnClose: true,
+        selectOnBlur: true
     });
 }
 
@@ -460,5 +488,23 @@ order.fillBillingInfo = function(){
     var billingAddress = $('.j-billing-meta input[name="billing_address"]');
 
     billingAddress.val(shippingAddress.val());
+}
+
+reader.getHighlights = function(){
+    $.ajax({
+        method: "GET",
+        url: '/reader/get-highlights',
+        dataType:'json',
+        data:{
+            version:$('input[name=version]').val(),
+            book:$('input[name=book]').val(),
+            chapter:$('input[name=chapter]').val(),
+        },
+        success:function(data){
+            $.each(data,function (index,item) {
+                reader.highlight(item.highlighted_text,item.color,item.id);
+            });
+        }
+    });
 }
 
