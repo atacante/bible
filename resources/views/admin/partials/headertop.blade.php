@@ -19,6 +19,7 @@
                             <li class="{!! ViewHelper::classActivePath('admin.bible') !!}"><a href="{{ url('admin/bible/versions') }}"><span><i class="ion ion-ios-book"></i> Bibles</span></a></li>
                             <li class="{!! ViewHelper::classActivePath('admin.location') !!}"><a href="{{ url('admin/location/list') }}"><span><i class="ion ion-ios-location"></i> Locations</span></a></li>
                             <li class="{!! ViewHelper::classActivePath('admin.peoples') !!}"><a href="{{ url('admin/peoples/list') }}"><span><i class="ion ion-ios-people"></i> People</span></a></li>
+                            <li class="{!! ViewHelper::classActivePath('admin.peoples') !!}"><a href="{{ url('admin/bible/verseday') }}"><span><i class="ion ion-ios-home"></i> Verse of the day</span></a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

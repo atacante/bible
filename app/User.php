@@ -179,6 +179,11 @@ class User extends Authenticatable
         return $this->hasMany(WallPost::class, 'user_id', 'id');
     }
 
+    public function highlights()
+    {
+        return $this->hasMany(Highlight::class, 'user_id', 'id');
+    }
+
     public function myGroups()
     {
         return $this->hasMany(Group::class, 'owner_id', 'id');

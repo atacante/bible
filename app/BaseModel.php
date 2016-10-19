@@ -89,6 +89,17 @@ class BaseModel extends Model {
             ->toArray();
     }
 
+    public static function getVerse($book_id,$chapter_num,$verse_num){
+        $version = Request::input('version',Config::get('app.defaultBibleVersion'));
+        $versesModel = self::getVersesModelByVersionCode($version);
+
+            return $versesModel::query()
+                ->where('book_id',$book_id)
+                ->where('chapter_num',$chapter_num)
+                ->where('verse_num',$verse_num)
+                ->first();
+    }
+
     private static function prepareVersesUnionQuery($version,$q){
 
         $keywords = explode(' ',$q);

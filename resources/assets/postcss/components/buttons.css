@@ -34,6 +34,12 @@
   text-align: center;
   line-height: 1.21rem;
 }
+@media(--xsmall){
+  .btn2-kit, .btn2-kit:visited {
+    min-width: 0;
+    font-size: 0.7rem;
+  }
+}
 .btn2-kit:hover, .btn2-kit:active {
   display: inline-block;
   border: 2px solid #79858f;
@@ -89,7 +95,12 @@
   color: #ffffff;
   text-decoration: none !important;
 }
-
+@media(--xsmall){
+  .btn4-kit, .btn4-kit:visited {
+    min-width: 0;
+    font-size: 0.7rem;
+  }
+}
 /*------------- btn1-icon */
 .btn1-icon, .btn1-icon:visited {
   display: inline-block;
@@ -193,6 +204,11 @@
   -webkit-border-radius: 0;
   vertical-align: top;
   background-color: transparent;
+}
+@media(--xsmall) {
+  .cu-btn1 {
+    padding: 7px 25px !important;
+  }
 }
 .cu2-btn1 {
   font-size: 0.93rem !important;
