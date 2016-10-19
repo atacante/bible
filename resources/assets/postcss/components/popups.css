@@ -367,6 +367,16 @@ ul.c-chapter-list li a.active {
         font-family: work_sansregular;
     }
 }
+@media(--xsmall) {
+    .j-choose-mobile {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+    }
+}
 /* Big Popup */
 #popup .modal-dialog{
     width: auto !important;
