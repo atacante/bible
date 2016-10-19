@@ -6,6 +6,11 @@ $(document).ready(function(){
         e.clearSelection();
     });
 
+    /* Highlight text in reader */
+    if($('.j-reader-block').length > 0){
+        reader.getHighlights();
+    }
+
     /* "New Posts" functionality for the wall */
     if($('.j-wall-items').length > 0){
         setInterval(function(){
@@ -52,7 +57,9 @@ $(document).ready(function(){
         tags: true,
         allowClear: true,
         dropdownCssClass: 'hideSearch',
-        tokenSeparators: [',',' ']
+        tokenSeparators: [',',' '],
+        selectOnClose: true,
+        selectOnBlur: true
     });
     $('.j-invite-emails').on('select2:selecting', function (evt) {
         if(!site.validateEmail(evt.params.args.data.id)){
@@ -97,10 +104,8 @@ $(document).ready(function(){
         }
         switch (name){
             case 'date_from':
-                console.log(e.timeStamp);
                 break;
             case 'date_to':
-                console.log(e.timeStamp);
                 break;
         }
     });
@@ -171,8 +176,12 @@ $(document).ready(function(){
 
     //New reader logic
     $('body').on('click','.word-definition',function(e) {
-        var definitionId = $(this).data('lexid');
-        var lexversion = $(this).data('lexversion');
+        var that = this;
+        if(!$(that).hasClass('word-definition')){ // Check if context is not child
+            that = $(this).parent('.word-definition');
+        }
+        var definitionId = $(that).data('lexid');
+        var lexversion = $(that).data('lexversion');
         e.stopPropagation();
 
         $('.j-reader-actions div,.j-reader-actions a').removeClass('hidden');
@@ -181,7 +190,7 @@ $(document).ready(function(){
         $('.j-show-definition').attr('data-lexversion',lexversion);
 
         $('.def-highlight').removeClass('def-highlight');
-        $(this).addClass('def-highlight');
+        $(that).addClass('def-highlight');
 
     });
 
@@ -615,11 +624,9 @@ $(document).ready(function(){
     });
 
     //$('.edit-images-thumbs').on('mouseover','.img-thumb',function(){
-    //    console.log('hover');
     //    $(this).find('img').fadeTo(500, 0.5);
     //});
     //$('.edit-images-thumbs').on('mouseout','.img-thumb',function(){
-    //    console.log('out');
     //    $(this).find('img').fadeTo(500, 1);
     //});
 
@@ -680,11 +687,13 @@ $(document).ready(function(){
         }
     });
 
-// Old logic of editing
-/*    $(".j-bible-text").mouseup(function(eventObject) {
+// Text selection
+    $(".j-bible-text").mouseup(function(eventObject) {
         var selectedObject = site.getSelected();
         var text = selectedObject.toString();
         if(text){
+            reader.highlightMode = true;
+            reader.selectedText = text;
             var startElement = selectedObject.anchorNode.parentElement;
             var endElement = selectedObject.focusNode.parentElement;
             var version = $(startElement).data('version');
@@ -702,10 +711,12 @@ $(document).ready(function(){
             if(!startVerseId){
                 startVerseId = $(startElement).parents('.j-verse-text').data('verseid');
             }
+            reader.startVerseId = startVerseId;
             var endVerseId = $(endElement).data('verseid');
             if(!endVerseId){
                 endVerseId = $(endElement).parents('.j-verse-text').data('verseid');
             }
+            reader.endVerseId = endVerseId;
 
             var verseId = 0;
             if(!startVerseId || !endVerseId){
@@ -715,45 +726,134 @@ $(document).ready(function(){
                 verseId = Math.min((startVerseId || 0), (endVerseId || 0));
             }
 
-            /!*var menu = '<a title="Create note" href="/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-note" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>';
-            menu += '<a title="Create Journal Entry" href="/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-journal" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-book"></i></a>';
-            menu += '<a title="Create prayer" href="/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-prayer" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 8px;"><i class="fa fa-btn fa-hand-paper-o"></i></a>';*!/
+            var startParent = $(startElement).parents('.j-verse-text');
+            var endParent = $(endElement).parents('.j-verse-text');
+            var hasMark = false;
+            if($(startElement).parent().context.localName == 'mark'){
+                hasMark = true;
+            }
+            if($(endElement).parent().context.localName == 'mark'){
+                hasMark = true;
+            }
+            if(!hasMark){
+                if($(startElement).index() <= $(endElement).index()){
+                    var marks = $(startElement).nextUntil($(endElement).next()).andSelf().find('mark');
+                    if(marks.length > 0){
+                        hasMark = true;
+                    }
+                }
+                else{
+                    var marks = $(startElement).prevUntil($(endElement).prev()).andSelf().find('mark');
+                    if(marks.length > 0){
+                        hasMark = true;
+                    }
+                }
+            }
 
-            $('body').append(reader.getActionsHtml());
-            $('.j-create-note').attr('href','/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
-            $('.j-create-journal').attr('href','/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
-            $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text);
+            $('body').append(reader.getHighlightActionsHtml(hasMark));
 
             $('.j-reader-actions').css({
                 top: ($(endElement).offset().top-66) + "px",
-                left: (eventObject.pageX-105) + "px"
+                left: (eventObject.pageX-(text.length > 3?60:43)) + "px"
             }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
-            /!*$('.j-create-note').css({
-                top: ($(endElement).offset().top-26) + "px",
-                left: (eventObject.pageX-15) + "px"
-            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
-            $('.j-create-journal').css({
-                top: ($(endElement).offset().top-26) + "px",
-                left: (eventObject.pageX+20) + "px"
-            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );
-            $('.j-create-prayer').css({
-                top: ($(endElement).offset().top-26) + "px",
-                left: (eventObject.pageX+55) + "px"
-            }).animate( { "opacity": "show", top:($(endElement).offset().top-35)} , 200 );*!/
         }
         else {
-            /!*$('.j-create-note').remove();
-            $('.j-create-journal').remove();
-            $('.j-create-prayer').remove();*!/
             $('.j-reader-actions').remove();
         }
-    });*/
+    });
+
+    $("body").on('click','.j-highlight-text',function (e) {
+        e.preventDefault();
+        window.getSelection().empty();
+        $('.j-reader-actions').remove();
+        var color = $(this).data('colorclass');
+        // var markId = new Date().getTime();
+        // reader.highlight(reader.selectedText,color,markId);
+        $.ajax({
+            method: "POST",
+            url: '/reader/save-highlight',
+            data:{
+                bible_version:$('input[name=version]').val(),
+                verse_from_id:reader.startVerseId,
+                verse_to_id:reader.endVerseId,
+                color:color,
+                highlighted_text:reader.selectedText,
+                _token:$('input[name="_token"]').val()
+            },
+            success:function(data){
+                reader.highlight(reader.selectedText,color,data);
+            },
+            error:function(e){
+                if(e.status == 403){
+                    site.showAuthWarning();
+                }
+            }
+        });
+    });
+
+    $("body").on('click','.j-remove-highlighted-text',function (e) {
+        e.preventDefault();
+        var selectedObject = site.getSelected();
+        var startElement = selectedObject.anchorNode.parentElement;
+        var endElement = selectedObject.focusNode.parentElement;
+        window.getSelection().empty();
+        $('.j-reader-actions').remove();
+
+        var markIds = [];
+
+        if($(startElement).parent().context.localName == 'mark'){
+            markIds.push($($(startElement).parent().context).data('id'));
+        }
+        if($(endElement).parent().context.localName == 'mark'){
+            markIds.push($($(endElement).parent().context).data('id'));
+        }
+
+        if($(startElement).index() <= $(endElement).index()){
+            var marks = $(startElement).nextUntil($(endElement).next()).andSelf().find('mark');
+            if(marks.length > 0){
+                marks.each(function(e){
+                    markIds.push($(this).data('id'));
+                });
+            }
+        }
+        else{
+            var marks =  $(startElement).prevUntil($(endElement).prev()).andSelf().find('mark');
+            if(marks.length > 0){
+                marks.each(function(e){
+                    markIds.push($(this).data('id'));
+                });
+            }
+        }
+
+        markIds = $.unique(markIds);
+
+        if(markIds.length > 0){
+            for(var i = 0; i < markIds.length; i++){
+                $('.j-verse-text').unmark({className:'j-mark-'+markIds[i]});
+            }
+            $.ajax({
+                method: "GET",
+                url: '/reader/remove-highlight',
+                data:{ids:markIds},
+                success:function(data){
+
+                },
+                error:function(e){
+
+                }
+            });
+        }
+    });
 
     // New logic of editing
     $(".j-verse-text").click(function(eventObject) {
+        if(reader.highlightMode){
+            reader.highlightMode = false;
+            return false;
+        }
         var selectedObject = $(this);
 
-        if($(eventObject.target)[0].localName == 'span'){
+        if($(eventObject.target)[0].localName == 'span' || $(eventObject.target)[0].localName == 'mark'){
 
             reader.clearHighlights();
             selectedObject.addClass('clicked');
@@ -1195,7 +1295,6 @@ $(document).ready(function(){
 
     $('/*.j-friends-list,.j-members-list,*/#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request,.j-ignore-friend-request',function(e){
         e.preventDefault();
-        console.log('j-cancel-friend-request');
         var url = $(this).attr('href');
         var that = this;
         $.ajax({
@@ -1463,7 +1562,6 @@ $(document).ready(function(){
             if(!($('.popover:hover').length/* || $('.j-wall-like-btn:hover').length*/)){
                 $(that).parent().find('.j-wall-like-btn').popover('destroy');
                 //$('.j-wall-like-btn').each(function () {
-                //    console.log('hide');
                 //    $(that).popover('destroy');
                 //});
             }

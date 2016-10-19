@@ -18,6 +18,7 @@
                         <div class="c-description-w">
                             {!! nl2br($model->group_desc) !!}
                         </div>
+                        @if($model->access_level != App\Group::ACCESS_SECRET || (Auth::user() && $model->owner_id == Auth::user()->id) || in_array($model->id,$content['joinedGroupsKeys']))
                         <div>
                             <div class="widget-group-title2">
                                 Members
@@ -36,6 +37,7 @@
                                 </a>
                             @endforeach
                         </div>
+                        @endif
                     </div>
                     @if((Auth::user() && $model->owner_id == Auth::user()->id))
                         <div class="widget-group">
