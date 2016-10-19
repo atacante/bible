@@ -19,10 +19,10 @@ class VerseOfDay extends Model
 
     public static function getTodayVerse()
     {
-        $verse = self::where('show_at',Carbon::today())->first();
+        $verse = self::where('show_at',Carbon::today())->orderBy('id', 'DESC')->first();
         if(!$verse){
             $todayVerse = self::getRandomVerse();
-            $verse = self::create(['verse_id' => $todayVerse->id,'show_at' => Carbon::today()]);
+            self::createById($todayVerse->id);
         }
         return $verse;
     }
@@ -31,4 +31,15 @@ class VerseOfDay extends Model
     {
         return VersesNasbEn::orderByRaw("RANDOM()")->limit(1)->first();
     }
+
+    public static function createById($verseId, $tomorrow = false)
+    {
+        $showAt = ($tomorrow)? Carbon::tomorrow() : Carbon::today();
+
+        $verse = self::create(['verse_id' => $verseId,'show_at' => $showAt]);
+
+        return $verse;
+    }
+
+
 }
