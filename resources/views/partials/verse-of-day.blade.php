@@ -1,7 +1,10 @@
 @if($data['verseOfDay'])
 <h2 class="h2-2 mt7" id="day-verse"><i class="bs-verseoftheday cu-verseoftheday"></i>VERSE OF THE DAY</h2>
 <div class="c-center-content2 mt8">
-    <div class="col-left1 h-ill5">
+    <div class="col-left1 h-ill5"
+         style="background:
+            url('{{ (!$data['verseOfDay']->image)? '/images/p5-home.jpg':
+                      Config::get('app.verseOfDayImages').$data['verseOfDay']->image }}') left center no-repeat;">
         {{--<div class="luke">LUKE 6:37</div>--}}
     </div>
     <div class="col-right1">
