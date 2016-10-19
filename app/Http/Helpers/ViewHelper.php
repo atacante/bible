@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\BlogCategory;
 use App\CmsPage;
+use App\Country;
 use App\Group;
 use App\Journal;
 use App\Note;
@@ -446,5 +447,10 @@ class ViewHelper
             return true;
         }
         return false;
+    }
+
+    public static function getCountriesList()
+    {
+        return Country::orderByRaw('CASE WHEN iso=\'US\' THEN 0 ELSE 1 END, id')->pluck('nicename','id')->toArray();
     }
 }
