@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0e8b99170f638b0aa5ad53eab375a525",
-    "content-hash": "89bccb47a2362ccd687c8e760c4b8e2a",
+    "hash": "9f47436778d74020a15d5b42ba699376",
+    "content-hash": "929caaaeef92e7633fffb76f5da9f4da",
     "packages": [
         {
             "name": "arcanedev/no-captcha",
@@ -70,16 +70,16 @@
         },
         {
             "name": "arcanedev/support",
-            "version": "3.15.0",
+            "version": "3.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ARCANEDEV/Support.git",
-                "reference": "9dfe987cada7341966be38110e8b349f5c30e9fa"
+                "reference": "79e78435df2e2e453915260cbdb47181211661b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/9dfe987cada7341966be38110e8b349f5c30e9fa",
-                "reference": "9dfe987cada7341966be38110e8b349f5c30e9fa",
+                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/79e78435df2e2e453915260cbdb47181211661b3",
+                "reference": "79e78435df2e2e453915260cbdb47181211661b3",
                 "shasum": ""
             },
             "require": {
@@ -125,32 +125,32 @@
                 "laravel",
                 "support"
             ],
-            "time": "2016-09-18 16:31:53"
+            "time": "2016-10-07 18:11:30"
         },
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "V2.2.3",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "ecd1ce5c4a827e2f6a8fb41bcf67713beb1c1cbd"
+                "reference": "0c87981df959c7c1943abe227baf607c92f204f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/ecd1ce5c4a827e2f6a8fb41bcf67713beb1c1cbd",
-                "reference": "ecd1ce5c4a827e2f6a8fb41bcf67713beb1c1cbd",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/0c87981df959c7c1943abe227baf607c92f204f9",
+                "reference": "0c87981df959c7c1943abe227baf607c92f204f9",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "5.1.*|5.2.*|5.3.*",
-                "maximebf/debugbar": "~1.11.0|~1.12.0",
+                "maximebf/debugbar": "~1.13.0",
                 "php": ">=5.5.9",
                 "symfony/finder": "~2.7|~3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -179,7 +179,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2016-07-29 15:00:36"
+            "time": "2016-09-15 14:05:56"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -538,12 +538,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Crinsane/LaravelShoppingcart.git",
-                "reference": "95b46c59dd4060d741466cf3b4d677887cc3daeb"
+                "reference": "143d51b22b365068b2308bb3732eadffb4df266c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Crinsane/LaravelShoppingcart/zipball/95b46c59dd4060d741466cf3b4d677887cc3daeb",
-                "reference": "95b46c59dd4060d741466cf3b4d677887cc3daeb",
+                "url": "https://api.github.com/repos/Crinsane/LaravelShoppingcart/zipball/143d51b22b365068b2308bb3732eadffb4df266c",
+                "reference": "143d51b22b365068b2308bb3732eadffb4df266c",
                 "shasum": ""
             },
             "require": {
@@ -580,7 +580,7 @@
                 "laravel",
                 "shoppingcart"
             ],
-            "time": "2016-09-06 18:43:37"
+            "time": "2016-10-13 10:10:37"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1126,20 +1126,20 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.27",
+            "version": "1.0.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "50e2045ed70a7e75a5e30bc3662904f3b67af8a9"
+                "reference": "b732cc946c48cf102ddffd41ffcd54901a28ccdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/50e2045ed70a7e75a5e30bc3662904f3b67af8a9",
-                "reference": "50e2045ed70a7e75a5e30bc3662904f3b67af8a9",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b732cc946c48cf102ddffd41ffcd54901a28ccdb",
+                "reference": "b732cc946c48cf102ddffd41ffcd54901a28ccdb",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
@@ -1205,7 +1205,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-08-10 08:55:11"
+            "time": "2016-10-17 23:14:19"
         },
         {
             "name": "maatwebsite/excel",
@@ -1322,16 +1322,16 @@
         },
         {
             "name": "maximebf/debugbar",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maximebf/php-debugbar.git",
-                "reference": "e634fbd32cd6bc3fa0e8c972b52d4bf49bab3988"
+                "reference": "5f49a5ed6cfde81d31d89378806670d77462526e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/e634fbd32cd6bc3fa0e8c972b52d4bf49bab3988",
-                "reference": "e634fbd32cd6bc3fa0e8c972b52d4bf49bab3988",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/5f49a5ed6cfde81d31d89378806670d77462526e",
+                "reference": "5f49a5ed6cfde81d31d89378806670d77462526e",
                 "shasum": ""
             },
             "require": {
@@ -1350,7 +1350,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -1379,7 +1379,7 @@
                 "debug",
                 "debugbar"
             ],
-            "time": "2016-05-15 13:11:34"
+            "time": "2016-09-15 14:01:59"
         },
         {
             "name": "monolog/monolog",
@@ -1877,16 +1877,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
                 "shasum": ""
             },
             "require": {
@@ -1920,7 +1920,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-09-19 16:02:08"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "psy/psysh",
@@ -2250,7 +2250,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.1.4",
+            "version": "v3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -3210,6 +3210,73 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "atacante/cashier-authorizenetpaisa",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/atacante/lara-authorizenet-paisa.git",
+                "reference": "d5fcccfc303fa19d408ec3c000b6dc70cca71af5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/atacante/lara-authorizenet-paisa/zipball/d5fcccfc303fa19d408ec3c000b6dc70cca71af5",
+                "reference": "d5fcccfc303fa19d408ec3c000b6dc70cca71af5",
+                "shasum": ""
+            },
+            "require": {
+                "authorizenet/authorizenet": "1.9.0",
+                "dompdf/dompdf": "^0.6.1",
+                "illuminate/container": "^5.2|^5.1",
+                "illuminate/database": "~5.1",
+                "illuminate/support": "~5.1",
+                "nesbot/carbon": "~1.0",
+                "php": ">=5.5.9",
+                "symfony/http-kernel": "~2.7|~3.0"
+            },
+            "require-dev": {
+                "goetas/xsd-reader": "2.*@dev",
+                "goetas/xsd2php": "2.0.x-dev#fdc2ab0bb3f2b3ab796ca567cf8c0f3446a7ea3a",
+                "illuminate/http": "~5.1",
+                "illuminate/routing": "~5.1",
+                "illuminate/view": "~5.1",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0",
+                "vlucas/phpdotenv": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\CashierAuthorizeNet\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shahid Karimi",
+                    "email": "karimi.shahid@gmail.com"
+                }
+            ],
+            "description": "Laravel Cashier-Authorize provides an expressive, fluent interface to Authorize.net's subscription billing services.",
+            "keywords": [
+                "authorize.net",
+                "billing",
+                "laravel",
+                "payment module",
+                "stripe"
+            ],
+            "support": {
+                "source": "https://github.com/atacante/lara-authorizenet-paisa/tree/master"
+            },
+            "time": "2016-10-18 14:32:46"
+        },
         {
             "name": "authorizenet/authorizenet",
             "version": "1.9.0",
@@ -4299,71 +4366,6 @@
             "time": "2016-05-22 21:52:33"
         },
         {
-            "name": "paisawala/cashier-authorizenetpaisa",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shahidkarimi/lara-authorizenet-paisa.git",
-                "reference": "87d004b6f923a40cdf2b77ec37f76454f941f7bd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shahidkarimi/lara-authorizenet-paisa/zipball/87d004b6f923a40cdf2b77ec37f76454f941f7bd",
-                "reference": "87d004b6f923a40cdf2b77ec37f76454f941f7bd",
-                "shasum": ""
-            },
-            "require": {
-                "authorizenet/authorizenet": "1.9.0",
-                "dompdf/dompdf": "^0.6.1",
-                "illuminate/container": "^5.2|^5.1",
-                "illuminate/database": "~5.1",
-                "illuminate/support": "~5.1",
-                "nesbot/carbon": "~1.0",
-                "php": ">=5.5.9",
-                "symfony/http-kernel": "~2.7|~3.0"
-            },
-            "require-dev": {
-                "goetas/xsd-reader": "2.*@dev",
-                "goetas/xsd2php": "2.0.x-dev#fdc2ab0bb3f2b3ab796ca567cf8c0f3446a7ea3a",
-                "illuminate/http": "~5.1",
-                "illuminate/routing": "~5.1",
-                "illuminate/view": "~5.1",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~4.0",
-                "vlucas/phpdotenv": "~2.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "6.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\CashierAuthorizeNet\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Shahid Karimi",
-                    "email": "karimi.shahid@gmail.com"
-                }
-            ],
-            "description": "Laravel Cashier-Authorize provides an expressive, fluent interface to Authorize.net's subscription billing services.",
-            "keywords": [
-                "authorize.net",
-                "billing",
-                "laravel",
-                "payment module",
-                "stripe"
-            ],
-            "time": "2016-06-28 09:57:19"
-        },
-        {
             "name": "parsecsv/php-parsecsv",
             "version": "0.4.5",
             "source": {
@@ -4537,16 +4539,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "9270140b940ff02e58ec577c237274e92cd40cdd"
+                "reference": "8331b5efe816ae05461b7ca1e721c01b46bafb3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/9270140b940ff02e58ec577c237274e92cd40cdd",
-                "reference": "9270140b940ff02e58ec577c237274e92cd40cdd",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/8331b5efe816ae05461b7ca1e721c01b46bafb3e",
+                "reference": "8331b5efe816ae05461b7ca1e721c01b46bafb3e",
                 "shasum": ""
             },
             "require": {
@@ -4578,7 +4580,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2016-06-10 09:48:41"
+            "time": "2016-09-30 07:12:33"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -5540,16 +5542,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.1.4",
+            "version": "v3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "f291ed25eb1435bddbe8a96caaef16469c2a092d"
+                "reference": "368b9738d4033c8b93454cb0dbd45d305135a6d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/f291ed25eb1435bddbe8a96caaef16469c2a092d",
-                "reference": "f291ed25eb1435bddbe8a96caaef16469c2a092d",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/368b9738d4033c8b93454cb0dbd45d305135a6d3",
+                "reference": "368b9738d4033c8b93454cb0dbd45d305135a6d3",
                 "shasum": ""
             },
             "require": {
@@ -5585,7 +5587,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-02 02:12:52"
+            "time": "2016-09-25 08:27:07"
         },
         {
             "name": "user11001/eloquent-model-generator",
@@ -5894,7 +5896,8 @@
         "johnpaulmedina/laravel-usps": 20,
         "xethron/migrations-generator": 20,
         "way/generators": 20,
-        "goetas/xsd-reader": 20
+        "goetas/xsd-reader": 20,
+        "atacante/cashier-authorizenetpaisa": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

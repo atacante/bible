@@ -89,7 +89,10 @@
         ga('betaTracker.send', 'pageview');
 
     </script>
-    <div class="bg-home" style="background: url('/images/{{ $homedata['home_main_block']->background }}') center top no-repeat;">
+    <div class="bg-home"
+         style="background:
+                 url('{{(!$homedata['home_main_block']->background)? '/images/bg-home-header.jpg':
+                        Config::get('app.homeImages'). $homedata['home_main_block']->background }}') center top no-repeat;">
         <script>
             window.fbAsyncInit = function() {
                 FB.init({

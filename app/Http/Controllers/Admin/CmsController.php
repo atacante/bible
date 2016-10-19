@@ -9,10 +9,12 @@ use App\Helpers\ViewHelper;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
 use Krucas\Notification\Facades\Notification;
 
 
@@ -39,7 +41,22 @@ class CmsController extends Controller
 
         /*$cmsModel = BlogArticle::query();*/
 
-        $content['cms'] = CmsPage::orderBy('created_at', SORT_DESC)->paginate(20);
+        $content['cms'] = CmsPage::where('content_type', '!=', 'home')->orderBy('created_at', SORT_DESC)->paginate(20);
+
+        return view('admin.cms.list',
+            [
+                'page_title' => 'Static Pages',
+                'content' => $content,
+                'filterAction' => 'cms/list/',
+            ]);
+    }
+
+    public function getHome()
+    {
+
+        Session::flash('backUrl', Request::fullUrl());
+
+        $content['cms'] = CmsPage::where('content_type', '=', 'home')->orderBy('created_at', SORT_DESC)->paginate(20);
 
         return view('admin.cms.list',
             [
@@ -59,16 +76,67 @@ class CmsController extends Controller
             $this->validate($request, $model->rules());
             $data = Input::all();
             if ($model->update($data)) {
-                Notification::success('CMS has been successfully updated');
+                if(Input::hasFile('file')){
+                    $this->anyUploadImage($model);
+                }
+                Notification::success(($model->content_type == CmsPage::CONTENT_HOME)?'Homepage has been successfully updated':'CMS has been successfully updated');
             }
             return ($url = Session::get('backUrl'))
                 ? Redirect::to($url)
-                : Redirect::to(ViewHelper::adminUrlSegment() . '/cms/list/');
+                : Redirect::to(ViewHelper::adminUrlSegment() .
+                    (($model->content_type == CmsPage::CONTENT_HOME)?'/cms/home/' :'/cms/list/'));
         }
         return view('admin.cms.update',
             [
                 'model' => $model,
                 'page_title' => 'Edit CMS'
             ]);
+    }
+
+    public function anyUploadImage($model)
+    {
+        if (Input::hasFile('file')) {
+            $file = Input::file('file');
+
+            $tmpFilePath = Config::get('app.homeImages');
+            $tmpThumbPath = $tmpFilePath . 'thumbs/';
+            $tmpFileName = time() . '-' . $file->getClientOriginalName();
+            $file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
+            $path = $tmpFilePath . $tmpFileName;
+
+            $this->makeDir(public_path() . $tmpThumbPath);
+            $thumbPath = public_path($tmpThumbPath . $tmpFileName);
+            if($file){
+                $this->unlinkLocationImage($model->background);
+                $model->background = $tmpFileName;
+                $model->save();
+            }
+            // Resizing 340x340
+            Image::make($file->getRealPath())->fit(200, 100)->save($thumbPath)->destroy();
+
+            return true;
+        }
+        return false;
+    }
+
+    private function makeDir($path)
+    {
+        if (!is_dir($path)) {
+            return mkdir($path);
+        }
+        return true;
+    }
+
+    private function unlinkLocationImage($filename)
+    {
+        $tmpFilePath = public_path(Config::get('app.homeImages').$filename);
+        $tmpThumbPath = public_path(Config::get('app.homeImages').'thumbs/'.$filename);
+
+        if (is_file($tmpFilePath)) {
+            unlink($tmpFilePath);
+        }
+        if (is_file($tmpThumbPath)) {
+            unlink($tmpThumbPath);
+        }
     }
 }

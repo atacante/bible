@@ -11,6 +11,15 @@
     font-family: work_sansregular;
     font-size: 1.07rem;
 }
+@media(--xsmall){
+    .popup-new {
+        top: auto !important;
+        left: auto !important;
+        position: relative;
+        margin-bottom: 10px;
+        width: 100% !important;
+    }
+}
 .j-popup-settings {
     margin-top: -25px;
     margin-left: -290px;
@@ -41,7 +50,7 @@
 .pop-should-see .popup-arrow {
     left: 153px;
 }
-.popup-create-record .popup-arrow{
+.popup-create-record .popup-arrow {
     left:40px;
 }
 .popup-title {
@@ -79,6 +88,19 @@
     -webkit-box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
     box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
 }
+@media (--xsmall) {
+    .permonent-pop {
+        position: fixed;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        z-index: 999;
+        background: #313d47;
+        border: none;
+        text-align: center;
+    }
+}
 .pop-should-see {
     min-height: 100px;
     width: 324px;
@@ -98,7 +120,13 @@
     text-transform: uppercase;
     position: relative;
 }
-
+@media (--xsmall) {
+    .pp-title {
+        padding: 20px 48px;
+        color: #9faab3;
+        font-size: 1.16rem;
+    }
+}
 .pop-should-see .pp-title {
     padding: 20px 30px;
 }
@@ -122,6 +150,14 @@ ul.pp-c-items li a {
     color: #000000;
     font-size: 1rem;
     text-align: center;
+}
+@media(--xsmall) {
+    ul.pp-c-items li a {
+        color: #77838d;
+        border-color: #4c5963;
+        font-size: 0.8rem;
+        text-align: left;
+    }
 }
 ul.pp-c-items li a:hover {
     background: #00b9f7;
@@ -167,6 +203,16 @@ table.t-choose-book tr td a.active {
     background: #313d47;
     color: white;
 }
+@media (--xsmall) {
+    table.t-choose-book tr td {
+        border: 1px solid #4c5963;
+    }
+    table.t-choose-book tr td a {
+        color: #77838d;
+        font-size: 11px;
+        text-align: left;
+    }
+}
 ul.c-chapter-list {
     display: block;
     overflow: hidden;
@@ -195,6 +241,32 @@ ul.c-chapter-list li a:hover {
 ul.c-chapter-list li a.active {
     background: #313d47;
     color: white;
+}
+@media (--xsmall){
+    ul.c-chapter-list {
+        display: inline-block;
+        overflow: hidden;
+        text-align: center;
+        padding: 0;
+        margin: 0 auto;
+        width: 90%;
+    }
+    ul.c-chapter-list li {
+        display: inline-block;
+        margin: 2px 0;
+    }
+    ul.c-chapter-list li a {
+        display: block;
+        border: 1px solid #4c5963;
+        min-width: 30px;
+        min-height: 30px;
+        text-decoration: none !important;
+        color: #77838d;
+        padding: 0;
+        text-align: center;
+        font-size: 11px;
+        line-height: 30px;
+    }
 }
 /* Mini Popup */
 .bs-example-modal-sm .modal-dialog{

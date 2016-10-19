@@ -322,4 +322,5 @@ return [
     'prayersImages' => '/uploads/prayers/',
     'wallpostsImages' => '/uploads/wallposts/',
     'productImages' => '/uploads/products/',
+    'homeImages' => '/uploads/home/',
 ];

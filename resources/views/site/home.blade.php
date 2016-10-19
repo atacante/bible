@@ -28,7 +28,10 @@
             <div class="in-inner-container">
                 <div class="c-center-content site-index">
 
-                    <section class="home-ill-section h-ill1" style="background: url('/images/{{ $homedata['home_reader_block']->background }}') center top no-repeat;">
+                    <section class="home-ill-section h-ill1"
+                             style="background:
+                                     url('{{ (!$homedata['home_reader_block']->background)? '/images/p1-home.png':
+                                                Config::get('app.homeImages').$homedata['home_reader_block']->background }}') center top no-repeat;">
                         <div class="ill-text-pos1">
                             <h2 class="h2-1">
                                 {!! $homedata['home_reader_block']->text !!}
@@ -38,7 +41,10 @@
                         </div>
                     </section>
 
-                    <section class="home-ill-section h-ill2" style="background: url('/images/{{ $homedata['home_journey_block']->background }}') right center no-repeat;">
+                    <section class="home-ill-section h-ill2"
+                             style="background:
+                                     url('{{ (!$homedata['home_journey_block']->background)? '/images/p2-home.png':
+                                                Config::get('app.homeImages').$homedata['home_journey_block']->background }}') right center no-repeat;">
                         <div class="ill-text-pos2">
                             <h2 class="h2-1 color3">
                                 {!! $homedata['home_journey_block']->text !!}
@@ -48,7 +54,10 @@
                         </div>
                     </section>
 
-                    <section class="home-ill-section h-ill3" style="background: url('/images/{{ $homedata['home_community_block']->background }}') center center no-repeat;">
+                    <section class="home-ill-section h-ill3"
+                             style="background:
+                                     url('{{ (!$homedata['home_community_block']->background)? '/images/p3-home.jpg':
+                                                Config::get('app.homeImages').$homedata['home_community_block']->background }}') center center no-repeat;">
                         <div class="ill-text-pos3">
                             <h2 class="h2-1 color1">
                                 {!! $homedata['home_community_block']->text !!}
@@ -58,7 +67,10 @@
                         </div>
                     </section>
 
-                    <section class="home-ill-section h-ill4" style="background: url('/images/{{ $homedata['home_explore_block']->background }}') right center no-repeat;">
+                    <section class="home-ill-section h-ill4"
+                             style="background:
+                                     url('{{ (!$homedata['home_explore_block']->background)? '/images/p4-home.png':
+                                                Config::get('app.homeImages').$homedata['home_explore_block']->background }}') right center no-repeat;">
                         <div class="ill-text-pos4">
                             <h2 class="h2-1">
                                 {!! $homedata['home_explore_block']->text !!}
