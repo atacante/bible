@@ -499,6 +499,11 @@ span.word-definition mark:hover{
     position: relative;
     color: initial;
 }
+@media(--xsmall){
+    .lex-content {
+        margin: 30px -30px;
+    }
+}
 .lex-content:hover {
     color: #535353;
 }
@@ -516,12 +521,24 @@ span.word-definition mark:hover{
 .lex-content .btn-reset{
     height: 28px;
     width: 28px;
-    top: 20px;
+    top: 12px;
     right: 20px;
 }
 @media (--xsmall) {
     .resp-offset {
         padding: 0 15px 5px;
+    }
+    .lex-content .btn-reset{
+        height: 26px;
+        width: 26px;
+        background: #00b9f7;
+        color: white;
+        text-decoration: none !important;
+        & :hover{
+            background: white !important;
+            color: #00b9f7;
+            text-decoration: none !important;
+        }
     }
 }
 a.my-bookmarks {
