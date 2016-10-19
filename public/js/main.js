@@ -102,10 +102,8 @@ $(document).ready(function(){
         }
         switch (name){
             case 'date_from':
-                console.log(e.timeStamp);
                 break;
             case 'date_to':
-                console.log(e.timeStamp);
                 break;
         }
     });
@@ -624,11 +622,9 @@ $(document).ready(function(){
     });
 
     //$('.edit-images-thumbs').on('mouseover','.img-thumb',function(){
-    //    console.log('hover');
     //    $(this).find('img').fadeTo(500, 0.5);
     //});
     //$('.edit-images-thumbs').on('mouseout','.img-thumb',function(){
-    //    console.log('out');
     //    $(this).find('img').fadeTo(500, 1);
     //});
 
@@ -786,7 +782,7 @@ $(document).ready(function(){
                 reader.highlight(reader.selectedText,color,data);
             },
             error:function(e){
-                if(e.status == 401){
+                if(e.status == 403){
                     site.showAuthWarning();
                 }
             }
@@ -831,7 +827,6 @@ $(document).ready(function(){
 
         if(markIds.length > 0){
             for(var i = 0; i < markIds.length; i++){
-                console.log(markIds[i]);
                 $('.j-verse-text').unmark({className:'j-mark-'+markIds[i]});
             }
             $.ajax({
@@ -850,7 +845,6 @@ $(document).ready(function(){
 
     // New logic of editing
     $(".j-verse-text").click(function(eventObject) {
-        console.log($(eventObject.target)[0].localName);
         if(reader.highlightMode){
             reader.highlightMode = false;
             return false;
@@ -1299,7 +1293,6 @@ $(document).ready(function(){
 
     $('/*.j-friends-list,.j-members-list,*/#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request,.j-ignore-friend-request',function(e){
         e.preventDefault();
-        console.log('j-cancel-friend-request');
         var url = $(this).attr('href');
         var that = this;
         $.ajax({
@@ -1567,7 +1560,6 @@ $(document).ready(function(){
             if(!($('.popover:hover').length/* || $('.j-wall-like-btn:hover').length*/)){
                 $(that).parent().find('.j-wall-like-btn').popover('destroy');
                 //$('.j-wall-like-btn').each(function () {
-                //    console.log('hide');
                 //    $(that).popover('destroy');
                 //});
             }
