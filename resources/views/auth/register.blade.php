@@ -76,7 +76,7 @@
                         {!! Form::label('country_id', 'Country', array('class' => 'col-md-4 control-label')) !!}
 
                         <div class="col-xs-8">
-                            {!! Form::select('country_id', App\Country::pluck('nicename','id')->toArray(), old('country_id'),['class' => 'form-control input1 j-select2','data-url'=> '/ajax/users-list','placeholder' => 'Select country...']) !!}
+                            {!! Form::select('country_id', ViewHelper::getCountriesList(), old('country_id'),['class' => 'form-control input1 j-select2','data-url'=> '/ajax/users-list','placeholder' => 'Select country...']) !!}
                             @if ($errors->has('country_id'))
                                 <span class="help-block">
                                     {{ $errors->first('country_id') }}
