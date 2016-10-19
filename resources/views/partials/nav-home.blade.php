@@ -161,13 +161,19 @@
 
     <a href="#" class="close"></a>
   </nav>
-    <a class="show-menu">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </a>
-</div>
+  <a class="show-menu">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </a>
 
+</div>
+<div class="c-search1">
+    {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
+    {!! Form::text('q',Request::input('q'),['class' => 'search-text1','placeholder' => 'Search verse everywhere...']) !!}
+    <button class="search-btn1" type="submit"><i class="bs-search"></i></button>
+    {!! Form::close() !!}
+</div>
 <nav id="header" class="navbar navbar-default">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
