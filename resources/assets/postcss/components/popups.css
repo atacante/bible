@@ -16,8 +16,10 @@
         top: auto !important;
         left: auto !important;
         position: relative;
-        margin-bottom: 10px;
-        width: 100% !important;
+        margin: 0 10px 10px;
+        width: auto !important;
+        font-size: 1rem;
+        padding: 30px;
     }
 }
 .j-popup-settings {
@@ -28,7 +30,7 @@
     width: 250px;
     padding: 0;
 }
-.popup-create-record .pp-title{
+.popup-create-record .pp-title {
     text-align: left;
     padding: 20px 30px;
     color: #6b6b6b;
@@ -43,6 +45,9 @@
     transform: rotate(45deg);
     width: 12px;
     height: 12px;
+}
+.popup-arrow {
+    margin-right: -12px;
 }
 .j-popup-compare .popup-arrow {
     right: 97px;
@@ -59,6 +64,12 @@
     font-size: 1.43rem;
     font-family: ns_widenormal;
     margin-top: 0;
+}
+@media(--xsmall){
+    .popup-title {
+        font-size: 1.23rem;
+        margin-bottom: 20px !important;
+    }
 }
 .popup-arrow2 {
     position: absolute;

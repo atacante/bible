@@ -342,6 +342,11 @@ ul.icons-list li i {
     height: 40px;
     padding: 5px 12px;
 }
+@media (--xsmall){
+    .live-search-box {
+        font-size: 0.71rem;
+    }
+}
 .btn-reset-compare{
     top: 20px;
     right: 20px;
