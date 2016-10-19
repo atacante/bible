@@ -1028,7 +1028,7 @@ $(document).ready(function(){
             url += '?rel='+$('input[name="rel"]').val()
         }
         var fullScreenUrl = url;
-        if($(this).parent('.j-reader-actions').length > 0  || $('input[name="verse_details"]'  || $('.j-strongs-page').length > 0).length > 0){
+        if($(this).parent('.j-reader-actions').length > 0  || $('input[name="verse_details"]').length > 0  || $('.j-strongs-page').length > 0){
             url += '&extraFields=1';
             fullScreenLabel = 'My Study Verse';
             fullScreenUrl = $.trim(url.replace('/prayers/create','/reader/my-study-verse'));
