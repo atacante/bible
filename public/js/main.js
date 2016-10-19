@@ -57,7 +57,9 @@ $(document).ready(function(){
         tags: true,
         allowClear: true,
         dropdownCssClass: 'hideSearch',
-        tokenSeparators: [',',' ']
+        tokenSeparators: [',',' '],
+        selectOnClose: true,
+        selectOnBlur: true
     });
     $('.j-invite-emails').on('select2:selecting', function (evt) {
         if(!site.validateEmail(evt.params.args.data.id)){

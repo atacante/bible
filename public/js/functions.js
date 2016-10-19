@@ -318,7 +318,9 @@ site.initTagging = function(){
     $(".j-tags").select2({
         width: '100%',
         tags: true,
-        tokenSeparators: [',']
+        tokenSeparators: [','],
+        selectOnClose: true,
+        selectOnBlur: true
     });
 }
 
