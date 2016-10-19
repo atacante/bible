@@ -263,6 +263,9 @@
                 @endif
             </div>
 
+            @include('reader.settings_popup')
+
+
             @if((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff',false) || Request::input('diff',false) == 'on'))
             <div class="row">
                 <div class="col-xs-12 text-right legend-block">

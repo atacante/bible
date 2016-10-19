@@ -26,6 +26,12 @@
     margin-top: -25px;
     margin-left: -290px;
 }
+@media(--xsmall){
+    .j-popup-settings {
+        margin-top: 0;
+        margin-left: 10px;
+    }
+}
 .popup-create-record {
     width: 250px;
     padding: 0;
@@ -46,8 +52,12 @@
     width: 12px;
     height: 12px;
 }
-.popup-arrow {
-    margin-right: -12px;
+@media(--xsmall){
+    .j-popup-compare {
+        & .popup-arrow {
+            margin-right: -12px;
+        }
+    }
 }
 .j-popup-compare .popup-arrow {
     right: 97px;
@@ -283,6 +293,11 @@ ul.c-chapter-list li a.active {
 .bs-example-modal-sm .modal-dialog{
     width: 450px;
 }
+@media(--xsmall){
+    .bs-example-modal-sm .modal-dialog{
+        width: auto;
+    }
+}
 .bs-example-modal-sm .modal-dialog .modal-content{
     border-radius: 0;
     border: none;
@@ -291,8 +306,18 @@ ul.c-chapter-list li a.active {
     background-color: #e3e3e3;
     height: 95px;
 }
+@media(--xsmall){
+    .bs-example-modal-sm .modal-dialog .modal-content .modal-header{
+        height: auto;
+    }
+}
 .bs-example-modal-sm .modal-dialog .modal-content .modal-body{
     padding: 45px 15px 30px;
+}
+@media(--xsmall){
+    .bs-example-modal-sm .modal-dialog .modal-content .modal-body{
+        padding: 20px 15px;
+    }
 }
 .bs-example-modal-sm .modal-dialog .modal-content .modal-footer{
     border-top: 0;
@@ -303,9 +328,19 @@ ul.c-chapter-list li a.active {
     opacity: 1;
     text-shadow: none;
 }
+@media(--xsmall){
+    .bs-example-modal-sm .modal-dialog .modal-content .modal-header .close{
+        margin: 9px 5px;
+    }
+}
 .bs-example-modal-sm .modal-dialog .modal-content .modal-header i.bs-close{
     color: #00ade7;
     font-size: 1.57rem;
+}
+@media(--xsmall){
+    .bs-example-modal-sm .modal-dialog .modal-content .modal-header i.bs-close{
+        font-size: 1rem;
+    }
 }
 .bs-example-modal-sm .modal-dialog .modal-content .modal-header h4{
     font-size: 2rem;
@@ -314,12 +349,24 @@ ul.c-chapter-list li a.active {
     text-transform: uppercase;
     font-family: work_sansregular;
 }
+@media(--xsmall){
+    .bs-example-modal-sm .modal-dialog .modal-content .modal-header h4{
+        font-size: 1.5rem;
+        line-height: 3rem;
+    }
+}
 .bs-example-modal-sm .modal-dialog .modal-content .modal-body{
     color: #313d47;
     font-family: work_sanssemibold;
     font-size: 1.29rem;
 }
-
+@media(--xsmall){
+    .bs-example-modal-sm .modal-dialog .modal-content .modal-body{
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+        font-family: work_sansregular;
+    }
+}
 /* Big Popup */
 #popup .modal-dialog{
     width: auto !important;
