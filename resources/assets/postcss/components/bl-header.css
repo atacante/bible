@@ -293,6 +293,11 @@
             }
           }
 
+          &.outline {
+            border: 2px solid var(--mainColor);
+            color: var(--mainColor);
+          }
+
         }
 
         & .sub-nav {

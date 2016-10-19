@@ -126,8 +126,8 @@
           <a class="{{ (Request::is('auth/login') ? 'active' : '') }}"
             href="{{ URL::to('auth/login') }}">Login</a>
           </li>
-        <li class="bord-menu-item">
-          <a class="{{ (Request::is('auth/register') ? 'active' : '') }}"
+        <li>
+          <a class="outline {{ (Request::is('auth/register') ? 'active' : '') }}"
             href="{{ URL::to('auth/register') }}">Sign Up</a>
         </li>
       @else
