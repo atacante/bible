@@ -266,7 +266,7 @@
             </div>
 
             @include('reader.settings_popup')
-
+            {!! Form::close() !!}
 
             @if((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff',false) || Request::input('diff',false) == 'on'))
             <div class="row">
@@ -467,6 +467,5 @@
                 </div>
             </div>
         @endif
-        {!! Form::close() !!}
     </div>
 @stop
