@@ -266,6 +266,7 @@
             </div>
 
             @include('reader.settings_popup')
+            {!! Form::close() !!}
 
             <!-- Mobile Related Records -->
             <div style="display: none">
@@ -416,6 +417,5 @@
                 </div>
             </div>
         @endif
-        {!! Form::close() !!}
     </div>
 @stop
