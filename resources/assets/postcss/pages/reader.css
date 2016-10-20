@@ -502,6 +502,7 @@ span.word-definition mark:hover{
 @media(--xsmall){
     .lex-content {
         margin: 30px -30px;
+        background-color: #e3e3e3;
     }
 }
 .lex-content:hover {
@@ -543,7 +544,7 @@ span.word-definition mark:hover{
     }
     .resp-line {
         display: block;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #a1a1a1;
         margin: 15px;
     }
 }

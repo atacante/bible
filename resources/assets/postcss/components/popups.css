@@ -101,6 +101,14 @@
     width: 24px;
     height: 24px;
 }
+@media(--xsmall){
+    .popup-arrow3 {
+        background: #e3e3e3;
+    }
+    hr {
+        border-top: 1px solid #a1a1a1;
+    }
+}
 .permonent-pop {
     min-height: 100px;
     background: white;
