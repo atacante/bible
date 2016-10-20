@@ -115,7 +115,7 @@ class User extends Authenticatable
                         $rules['card_expiration'] = 'required';
                         $rules['billing_name'] = 'required';
                         $rules['billing_address'] = 'required';
-                        $rules['billing_zip'] = 'required|numeric';
+                        $rules['billing_zip'] = 'required';
                     }
                 }else{
                     if(Input::get('card_number') || Input::get('card_expiration')){
@@ -123,7 +123,7 @@ class User extends Authenticatable
                         $rules['card_number'] = 'required|numeric';
                         $rules['billing_name'] = 'required';
                         $rules['billing_address'] = 'required';
-                        $rules['billing_zip'] = 'required|numeric';
+                        $rules['billing_zip'] = 'required';
                     }
                 }
             }
