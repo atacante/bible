@@ -10,6 +10,7 @@ use App\Journal;
 use App\Note;
 use App\Prayer;
 use App\Tag;
+use App\UsStates;
 use App\VersionsListEn;
 use App\WallPost;
 use Illuminate\Support\Facades\Auth;
@@ -452,5 +453,10 @@ class ViewHelper
     public static function getCountriesList()
     {
         return Country::orderByRaw('CASE WHEN iso=\'US\' THEN 0 ELSE 1 END, id')->pluck('nicename','id')->toArray();
+    }
+
+    public static function getUsStatesList()
+    {
+        return UsStates::pluck('name','name')->toArray();
     }
 }
