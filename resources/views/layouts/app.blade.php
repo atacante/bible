@@ -50,6 +50,7 @@
         {!!Html::style('js/fancybox/source/jquery.fancybox.css?v=2.1.5')!!}
 {{--        {!!Html::script('js/jsdiff/diff.min.js')!!}--}}
         {!!Html::script('js/clipboard.min.js')!!}
+        {!!Html::script(Asset::v('/js/bl.js'))!!}
 
         {!!Html::script(Asset::v('/js/main.js'))!!}
         {!!Html::script(Asset::v('/js/functions.js'))!!}
