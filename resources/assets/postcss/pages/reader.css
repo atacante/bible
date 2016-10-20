@@ -524,6 +524,7 @@ span.word-definition mark:hover{
     top: 12px;
     right: 20px;
 }
+
 @media (--xsmall) {
     .resp-offset {
         padding: 0 15px 5px;
@@ -539,6 +540,11 @@ span.word-definition mark:hover{
             color: #00b9f7;
             text-decoration: none !important;
         }
+    }
+    .resp-line {
+        display: block;
+        border-bottom: 1px solid #eee;
+        margin: 15px;
     }
 }
 a.my-bookmarks {
