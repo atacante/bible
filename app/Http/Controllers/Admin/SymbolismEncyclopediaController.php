@@ -81,6 +81,7 @@ class SymbolismEncyclopediaController extends Controller
 
     public function anyDelete($id)
     {
+        ini_set("max_execution_time","0");
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
         }

@@ -325,9 +325,21 @@ site.initTagging = function(){
 }
 
 site.initSelect2 = function(){
-    $(".j-select2").select2({
+    $(".j-select2,.j-select2-country,.j-select2-state").select2({
         placeholder: $(".j-select2").attr('placeholder'),
         width: '100%',
+    });
+    $('.j-select2-country').on('select2:select', function (evt) {
+        if($(this).val() == 226){
+            $('.j-state').toggleClass('hidden');
+        }
+        else{
+            $('.j-state').removeClass('hidden');
+            $('.j-select2-state').parents('.j-state').addClass('hidden');
+        }
+    });
+    $('.j-select2-state').on('select2:select', function (evt) {
+        $('.j-state input[name=state]').val($(this).val());
     });
 }
 
