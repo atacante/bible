@@ -7,7 +7,7 @@
                         <h4 class="popup-title">
                             Settings
                         </h4>
-                        {!!  Form::open(['method' => 'get','url' => '/reader/'.Request::segment(2)/*,'onsubmit' => Request::segment(2) == 'verse'?"alert(1);location.href=this.action+'#parallel-verses'; return false;":''*/]) !!}
+{{--                        {!!  Form::open(['method' => 'get','url' => '/reader/'.Request::segment(2)]) !!}--}}
                         @if(isset($content['showRelated']))
                             <div class="mt15" style="position: relative; margin-top: 20px !important;">
                                 {{--<input type="checkbox">--}}
@@ -19,18 +19,18 @@
                                 <label class="label-checkbox" for="check-related">Show Related Records</label>
                             </div>
                         @endif
-                        {!! Form::hidden('version', Request::input('version', Config::get('app.defaultBibleVersion'))) !!}
-                        {!! Form::hidden('book', Request::input('book', Config::get('app.defaultBookNumber'))) !!}
-                        {!! Form::hidden('chapter', Request::input('chapter', Config::get('app.defaultChapterNumber'))) !!}
+                        {{--{!! Form::hidden('version', Request::input('version', Config::get('app.defaultBibleVersion'))) !!}--}}
+                        {{--{!! Form::hidden('book', Request::input('book', Config::get('app.defaultBookNumber'))) !!}--}}
+                        {{--{!! Form::hidden('chapter', Request::input('chapter', Config::get('app.defaultChapterNumber'))) !!}--}}
                         @if(Request::segment(2) == 'verse')
                             {!! Form::hidden('verse', Request::input('verse', false)) !!}
                         @endif
 
-                        @if($compareVersions = Request::input('compare', false))
+                        {{--@if($compareVersions = Request::input('compare', false))
                             @foreach($compareVersions as $version)
                                 {!! Form::hidden('compare[]', $version) !!}
                             @endforeach
-                        @endif
+                        @endif--}}
                         <div title="{{ ViewHelper::getContent(App\CmsPage::CONTENT_TOOLTIP,'diff_explain')->text  }}" class="mt15 {!! Request::input('compare', false) || Request::segment(2) == 'verse'?'':'checkbox-disabled' !!}" style="position: relative; {{ !isset($content['showRelated'])?'margin-top: 20px !important;':'' }}">
                             @if(ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip') || ViewHelper::checkNotifTooltip('got_verse_diff_tooltip'))
                                 <div class="cu-starsolid-settings-popup">i</div>
@@ -54,7 +54,7 @@
                         <div class="mt16">
                             {!! Form::button('OK', ['type'=>'submit','class'=>'btn1 cu-btn1']) !!}
                         </div>
-                        <?php echo Form::close() ?>
+{{--                        {!! Form::close() !!}--}}
                     </div>
                 </div>
             @endif
