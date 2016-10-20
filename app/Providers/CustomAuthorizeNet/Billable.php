@@ -64,7 +64,7 @@ trait Billable
         }
 
         if($this->askToCreateSubscription($plan)){
-            if(!$this->hasPaymentAccount()){
+            if(!$this->hasPaymentAccount() || $amount <= 0){
                 if($this->newSubscription($plan, $amount)->createTrial()){
                     $result['subscription'] = ['success' => true, 'message' => 'Your have a trial premium account - ends at '.date_format($this->subscription()->ends_at, 'Y-m-d')];
                 }else{
