@@ -134,7 +134,9 @@ class BibleController extends Controller
             $verse = BaseModel::getVerse($book_id, $chapter_id, $verse_num);
             $previousVerse = VerseOfDay::getTodayVerse();
 
-            if($verseOfDay = VerseOfDay::createById($verse->id)){
+            $tomorrow = (bool) $data['tomorrow'];
+
+            if($verseOfDay = VerseOfDay::createById($verse->id, $tomorrow)){
                 if(!$this->anyUploadImage($verseOfDay)){
                       $verseOfDay->image = $previousVerse->image;
                       $verseOfDay->save();
