@@ -254,6 +254,16 @@
     line-height: 1.79rem;
     color: #00b9f7;
 }
+.cu1-close {
+    font-size: 1rem;
+}
+@media(--xsmall){
+    .cu1-close {
+        font-size: 0.8rem;
+        line-height: 26px;
+        vertical-align: calc(9px);
+    }
+}
 @media (--xsmall) {
     .cu-print {
         font-size: 1.28rem;
