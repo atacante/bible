@@ -296,6 +296,10 @@
           &.outline {
             border: 2px solid var(--mainColor);
             color: var(--mainColor);
+
+            &:hover {
+              color: white;
+            }
           }
 
         }
@@ -346,6 +350,7 @@
 
             &:hover {
               border-radius: 0;
+              color: white;
 
               &:before {
                 color: white;
