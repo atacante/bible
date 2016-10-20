@@ -8,9 +8,9 @@
         </h2>
     </div>
 </div>
-<div class="c-white-content mb2">
+<div class="bl-register c-white-content mb2">
     <div class="inner-pad5">
-        <div class="row">
+        <div class="bl-form row">
             <div class="col-xs-6 col-md-offset-3">
                 @if($text = ViewHelper::getTooltipText('beta_mode'))
                 <div class="alert alert-info" role="alert" style="color: #31708f; background-color: #d9edf7; border: 1px solid #bce8f1;">
@@ -214,7 +214,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group checkbox">
                         <div class="col-md-4"></div>
                         <div class="col-xs-8">
                             <div>
