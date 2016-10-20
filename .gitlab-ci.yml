@@ -47,7 +47,7 @@ node_job_for_dev:
 job_for_alpha:
   stage: alpha
   before_script:
-    - export PATH=/opt/remi/php56/root/bin/:$PATH
+    - export PATH=/opt/remi/php70/root/bin/:$PATH
     - path_to_vhost='/home/bible_alpha/web/'
   script:
     - cd $path_to_vhost
@@ -83,7 +83,7 @@ node_job_for_alpha:
 job_for_beta:
   stage: beta
   before_script:
-    - export PATH=/opt/remi/php56/root/bin/:$PATH
+    - export PATH=/opt/remi/php70/root/bin/:$PATH
     - path_to_vhost='/home/bible_beta/web/'
   script:
     - cd $path_to_vhost
@@ -119,7 +119,7 @@ node_job_for_beta:
 job_for_live:
   stage: live
   before_script:
-    - export PATH=/opt/remi/php56/root/bin/:$PATH
+    - export PATH=/opt/remi/php70/root/bin/:$PATH
     - path_to_vhost='/home/bible/web/'
   script:
     - cd $path_to_vhost
