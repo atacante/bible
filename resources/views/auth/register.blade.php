@@ -222,6 +222,51 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group {{ $errors->has('card_code') ? ' has-error' : '' }}">
+                            {!! Form::label('card_code', 'Credit Card Code:', ['class' => 'col-md-4']) !!}
+                            <div class="col-xs-8">
+                                {!! Form::text('card_code', null, ['placeholder' => '***', 'class' => 'input1', 'style' => 'width: 125px;']) !!}
+                                @if ($errors->has('card_code'))
+                                    <span class="help-block">
+                                        {{ $errors->first('card_code') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group {{ $errors->has('billing_name') ? ' has-error' : '' }}">
+                            {!! Form::label('billing_name', 'Billing Name:', ['class' => 'col-md-4']) !!}
+                            <div class="col-xs-8">
+                                {!! Form::text('billing_name', null, ['class' => 'input1']) !!}
+                                @if ($errors->has('billing_name'))
+                                    <span class="help-block">
+                                        {{ $errors->first('billing_name') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group {{ $errors->has('billing_address') ? ' has-error' : '' }}">
+                            {!! Form::label('billing_address', 'Billing Address:', ['class' => 'col-md-4']) !!}
+                             <div class="col-xs-8">
+                                {!! Form::text('billing_address', null, ['class' => 'input1']) !!}
+                                @if ($errors->has('billing_address'))
+                                    <span class="help-block">
+                                        {{ $errors->first('billing_address') }}
+                                    </span>
+                                @endif
+                             </div>
+                        </div>
+                        <div class="form-group {{ $errors->has('billing_zip') ? ' has-error' : '' }}">
+                            {!! Form::label('billing_zip', 'Billing Zip:', ['class' => 'col-md-4']) !!}
+                            <div class="col-xs-8">
+                                {!! Form::text('billing_zip', null, ['class' => 'input1']) !!}
+                                @if ($errors->has('billing_zip'))
+                                    <span class="help-block">
+                                        {{ $errors->first('billing_zip') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
