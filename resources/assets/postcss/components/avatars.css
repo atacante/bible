@@ -30,7 +30,7 @@
     -webkit-background-size: cover !important;
 }
 .people-image {
-    display: none;
+    /*display: none;*/
     width: 100%;
     height: 260px;
     position: relative;
@@ -39,7 +39,6 @@
     background-size: cover !important;
     -webkit-background-size: cover !important;
 }
-
 .location-image {
     width: 100%;
     height: 260px;
@@ -55,7 +54,9 @@
     font-size: 10rem;
     color: #D2D7DC;
 }
-
+.verse-image i{
+    font-size: 5rem;
+}
 .product-image {
     width: 100%;
     height: 260px;
@@ -98,4 +99,14 @@
     width: 42px !important;
     left: 0px !important;
     top: 0 !important;
+}
+/* ------- delete people photo */
+.del-photo .cu-ci1-inner {
+    display: none;
+}
+.del-photo.cu-ci1 {
+    padding-left: 0 !important;
+}
+.del-photo2 {
+    display: none !important;
 }

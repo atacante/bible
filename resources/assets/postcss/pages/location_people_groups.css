@@ -125,3 +125,9 @@ h4.h4-locations {
     vertical-align: middle;
     width: 100%;
 }
+.location-map-btn {
+    margin-top: 5px;
+    position: absolute;
+    left: 50%;
+    margin-left: -40px;
+}

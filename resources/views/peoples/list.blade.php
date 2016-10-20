@@ -15,7 +15,7 @@
                     <div class="my-item">
                         <div class="my-inner-location-item my-inner-people-item">
 
-                            <div class="">
+                            <div class="del-photo2">
                                 @if($people->images->count())
                                     <div id="people-{!! $people->id !!}" class="carousel slide" data-ride="carousel" data-interval="{!! rand(5000,7000) !!}">
                                         <!-- Indicators -->
