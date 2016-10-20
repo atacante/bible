@@ -17,6 +17,19 @@
             <div class="form-group">
                 {!! Form::select('verse',array_merge([0 => 'All Verses'],(Request::input('chapter') == 0?[]:$filters['verses'])), Request::input('verse'),['class' => 'form-control', (Request::input('chapter') == 0?'disabled':''), 'style' => 'width: 115px;']) !!}
             </div>
+            <div class="form-group">
+                {!! Form::label('Starts From') !!}
+                <div>
+                    <div class="radio-inline mt15">
+                        {!! Form::radio('tomorrow', '0', true, ["class" => "cust-radio", 'id' => 'tomorrow-off']) !!}
+                        <label for="tomorrow-off" class="label-radio cu-label">Today</label>
+                    </div>
+                    <div class="radio-inline mt15">
+                        {!! Form::radio('tomorrow', '1', false, ["class" => "cust-radio", 'id' => 'tomorrow-on']) !!}
+                        <label for="tomorrow-on" class="label-radio cu-label">Tomorrow</label>
+                    </div>
+                </div>
+            </div>
             {!! Form::token() !!}
 
             <div class="form-group">

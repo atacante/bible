@@ -166,7 +166,7 @@
             </div>
         </div>
     </div>
-    {!! Form::close() !!}
+
 
     <div class="row">
         <div class="col-xs-12">
@@ -285,6 +285,10 @@
                                             </a>
                                         @endif
                                 </div>
+                            @else
+                                <div class="location-image verse-image">
+                                    <i class="bs-places"></i>
+                                </div>
                             @endif
                         </div>
                         <div class="inner-pad3">
@@ -313,7 +317,7 @@
         <div class="row">
             <div class="col-xs-12">
             @foreach($content['main_verse']['verse']->peoples as $people)
-                <div class="c-white-item mb4 cu-ci1">
+                <div class="c-white-item mb4 cu-ci1 del-photo">
                     <div class="cu-ci1-inner">
                         @if($people->images->count())
                             <div id="people-{!! $people->id !!}" class="carousel slide" data-ride="carousel" data-interval="{!! rand(5000,7000) !!}">
@@ -436,4 +440,5 @@
             </div>
         </div>
     </div>
+    {!! Form::close() !!}
 @stop

@@ -178,9 +178,6 @@ a.view-details:hover{
     width: 190px;
     line-height: 12.86rem;
 }
-.location-map-btn{
-    margin-top: 5px;
-}
 .location-item-details .g-map-embed iframe{
     width: 300px;
     height: 300px;

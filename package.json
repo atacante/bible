@@ -5,13 +5,13 @@
     "install": "^0.8.1",
     "laravel-elixir-postcss": "^0.4.1",
     "mark.js": "github:julmot/mark.js",
-    "npm": "^3.10.8",
     "postcss-cssnext": "^2.8.0",
     "postcss-easy-import": "^1.0.1",
     "postcss-responsive-type": "^0.4.0"
   },
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "build:prod": "gulp"
   },
   "dependencies": {
     "laravel-elixir": "^4.0.0",

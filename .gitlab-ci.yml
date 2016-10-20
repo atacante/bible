@@ -10,12 +10,17 @@ stages:
 
 job_for_dev:
   stage: dev
+  before_script:
+    - export PATH=/opt/remi/php70/root/bin/:$PATH
+    - path_to_vhost='/var/www/clients/client3/web1/web/'
   script:
-    - hostname
-    - pwd
-    - sh /var/www/clients/client3/web1/home/cleartech1/simple-deploy.sh
-    - export PATH=/opt/remi/php70/root/bin/:$PATH && cd /var/www/clients/client3/web1/web && php artisan clear-compiled
-    - export PATH=/opt/remi/php70/root/bin/:$PATH && cd /var/www/clients/client3/web1/web && php artisan optimize
+    - cd $path_to_vhost
+    - php -v
+    - git pull origin dev
+    - php artisan migrate --force --no-interaction
+    - php artisan asset:dist
+    - php artisan clear-compiled
+    - php artisan optimize
   only:
     - dev
   tags:
@@ -24,14 +29,14 @@ job_for_dev:
 
 node_job_for_dev:
   stage: dev_node
+  before_script:
+    - path_to_vhost='/var/www/clients/client3/web1/web/'
   script:
-    - hostname
-    - cd /var/www/clients/client3/web1/web
-    - pwd
+    - cd $path_to_vhost
     - node --version
-    - npm i
+    - npm install
     - npm run build
-    - find /var/www/clients/client3/web1/web/ -user root -exec chown 5004:5005 {} \;
+    - find $path_to_vhost -user root -exec chown 5004:5005 {} \;
   only:
     - dev
   tags:
@@ -42,17 +47,16 @@ node_job_for_dev:
 job_for_alpha:
   stage: alpha
   before_script:
-    - php -v
     - export PATH=/opt/remi/php56/root/bin/:$PATH
+    - path_to_vhost='/home/bible_alpha/web/'
   script:
-    - hostname
-    - pwd
+    - cd $path_to_vhost
     - php -v
-    - cd $HOME/web && git pull origin alpha
-    - cd $HOME/web && php artisan migrate --force --no-interaction
-    - cd $HOME/web && php artisan asset:dist
-    - cd $HOME/web && php artisan clear-compiled
-    - cd $HOME/web && php artisan optimize
+    - git pull origin alpha
+    - php artisan migrate --force --no-interaction
+    - php artisan asset:dist
+    - php artisan clear-compiled
+    - php artisan optimize
   only:
     - alpha
   tags:
@@ -61,33 +65,34 @@ job_for_alpha:
 
 node_job_for_alpha:
   stage: alpha_node
+  before_script:
+    - path_to_vhost='/home/bible_alpha/web/'
   script:
-    - export ALPHA_HOME=/home/bible_alpha
-    - cd $ALPHA_HOME/web
+    - cd $path_to_vhost
+    - node --version
     - npm install
     - npm run build
-    - find $ALPHA_HOME/web -user root -exec chown 1002:1002 {} \;
+    - find $path_to_vhost -user root -exec chown 1002:1002 {} \;
   only:
     - alpha
   tags:
-    -  biblestudyco_docker
+    - biblestudyco_docker
   image: node
   environment: qa
 
 job_for_beta:
   stage: beta
   before_script:
-    - php -v
     - export PATH=/opt/remi/php56/root/bin/:$PATH
+    - path_to_vhost='/home/bible_beta/web/'
   script:
-    - hostname
-    - pwd
+    - cd $path_to_vhost
     - php -v
-    - cd $HOME/web && git pull origin beta
-    - cd $HOME/web && php artisan migrate --force --no-interaction
-    - cd $HOME/web && php artisan asset:dist
-    - cd $HOME/web && php artisan clear-compiled
-    - cd $HOME/web && php artisan optimize
+    - git pull origin beta
+    - php artisan migrate --force --no-interaction
+    - php artisan asset:dist
+    - php artisan clear-compiled
+    - php artisan optimize
   only:
     - beta
   tags:
@@ -96,33 +101,34 @@ job_for_beta:
 
 node_job_for_beta:
   stage: beta_node
+  before_script:
+    - path_to_vhost='/home/bible_beta/web/'
   script:
-    - export BETA_HOME=/home/bible_beta
-    - cd $BETA_HOME/web
+    - cd $path_to_vhost
+    - node --version
     - npm install
     - npm run build
-    - find $BETA_HOME/web -user root -exec chown 1003:1003 {} \;
+    - find $path_to_vhost -user root -exec chown 1003:1003 {} \;
   only:
     - beta
   tags:
-    -  biblestudyco_docker
+    - biblestudyco_docker
   image: node
   environment: staging
 
 job_for_live:
   stage: live
   before_script:
-    - php -v
     - export PATH=/opt/remi/php56/root/bin/:$PATH
+    - path_to_vhost='/home/bible/web/'
   script:
-    - hostname
-    - pwd
+    - cd $path_to_vhost
     - php -v
-#    - cd $HOME/web && git pull origin master
-#    - cd $HOME/web && php artisan migrate --force --no-interaction
-#    - cd $HOME/web && php artisan asset:dist
-#    - cd $HOME/web && php artisan clear-compiled
-#    - cd $HOME/web && php artisan optimize
+    - git pull origin master
+    - php artisan migrate --force --no-interaction
+    - php artisan asset:dist
+    - php artisan clear-compiled
+    - php artisan optimize
   only:
     - master
   tags:
@@ -131,15 +137,17 @@ job_for_live:
 
 node_job_for_live:
   stage: live_node
+  before_script:
+    - path_to_vhost='/home/bible/web/'
   script:
-    - export LIVE_HOME=/home/bible
-    - cd $LIVE_HOME/web
-#    - rm -rf ./node_modules && npm i
-#    - npm run build:prod
-#    - find $LIVE_HOME/web -user root -exec chown 1001:1001 {} \;
+    - cd $path_to_vhost
+    - node --version
+    - rm -rf ./node_modules && npm install
+    - npm run build:prod
+    - find $path_to_vhost -user root -exec chown 1001:1001 {} \;
   only:
     - master
   tags:
-    -  biblestudyco_docker
+    - biblestudyco_docker
   image: node
   environment: production
