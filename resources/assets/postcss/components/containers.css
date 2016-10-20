@@ -16,7 +16,7 @@
     max-width: 1360px;
     margin: 0 auto;
 }
-@media (--xsmall) {
+@media (--small) {
     .in-inner-container {
         padding: 0 0 30px;
     }
