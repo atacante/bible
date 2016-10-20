@@ -1803,6 +1803,7 @@ $(document).ready(function(){
     });
     $(".j-btn-related-rec").on("click", function (e) {
         $(".j-mobile-rel-rec").toggle();
+        e.preventDefault();
     });
     $(window).resize(function() {
         if ($("body").width() < 768) {
