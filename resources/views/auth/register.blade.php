@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-xs-12">
-        <h2 class="h2-new mb3">
+        <h2 class="bl-register h2-new mb3">
             SIGN UP
         </h2>
     </div>
