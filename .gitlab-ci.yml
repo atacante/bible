@@ -16,11 +16,11 @@ job_for_dev:
   script:
     - cd $path_to_vhost
     - php -v
-    - cd git pull origin dev
-    - cd php artisan migrate --force --no-interaction
-    - cd php artisan asset:dist
-    - cd php artisan clear-compiled
-    - cd php artisan optimize
+    - git pull origin dev
+    - php artisan migrate --force --no-interaction
+    - php artisan asset:dist
+    - php artisan clear-compiled
+    - php artisan optimize
   only:
     - dev
   tags:
@@ -52,11 +52,11 @@ job_for_alpha:
   script:
     - cd $path_to_vhost
     - php -v
-    - cd git pull origin alpha
-    - cd php artisan migrate --force --no-interaction
-    - cd php artisan asset:dist
-    - cd php artisan clear-compiled
-    - cd php artisan optimize
+    - git pull origin alpha
+    - php artisan migrate --force --no-interaction
+    - php artisan asset:dist
+    - php artisan clear-compiled
+    - php artisan optimize
   only:
     - alpha
   tags:
@@ -76,7 +76,7 @@ node_job_for_alpha:
   only:
     - alpha
   tags:
-    -  biblestudyco_docker
+    - biblestudyco_docker
   image: node
   environment: qa
 
@@ -88,11 +88,11 @@ job_for_beta:
   script:
     - cd $path_to_vhost
     - php -v
-    - cd git pull origin beta
-    - cd php artisan migrate --force --no-interaction
-    - cd php artisan asset:dist
-    - cd php artisan clear-compiled
-    - cd php artisan optimize
+    - git pull origin beta
+    - php artisan migrate --force --no-interaction
+    - php artisan asset:dist
+    - php artisan clear-compiled
+    - php artisan optimize
   only:
     - beta
   tags:
@@ -112,7 +112,7 @@ node_job_for_beta:
   only:
     - beta
   tags:
-    -  biblestudyco_docker
+    - biblestudyco_docker
   image: node
   environment: staging
 
@@ -124,11 +124,11 @@ job_for_live:
   script:
     - cd $path_to_vhost
     - php -v
-    - cd git pull origin master
-    - cd php artisan migrate --force --no-interaction
-    - cd php artisan asset:dist
-    - cd php artisan clear-compiled
-    - cd php artisan optimize
+    - git pull origin master
+    - php artisan migrate --force --no-interaction
+    - php artisan asset:dist
+    - php artisan clear-compiled
+    - php artisan optimize
   only:
     - master
   tags:
@@ -148,6 +148,6 @@ node_job_for_live:
   only:
     - master
   tags:
-    -  biblestudyco_docker
+    - biblestudyco_docker
   image: node
   environment: production
