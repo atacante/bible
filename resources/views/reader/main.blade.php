@@ -167,7 +167,7 @@
                         {{-- Right icons panel --}}
                         <ul class="icon-panel top-vertical1">
                             {{--@role('user')--}}
-                            <li>
+                            <li class="btn-related-rec-resp">
                                 <a href="#" class="j-btn-related-rec">
                                     <i class="bs-staroutlined cu-print"></i>
                                 </a>
@@ -274,7 +274,9 @@
             {!! Form::close() !!}
 
             <!-- Mobile Related Records -->
-            <div style="display: none">
+
+            <div class="my1-col-md-4 related-records j-mobile-rel-rec" style="display: none">
+                <div class="popup-arrow"></div>
                 @include('reader.related')
             </div>
 
@@ -355,8 +357,9 @@
                     </div>
 
                 </div>
-
-                @include('reader.related')
+                <div class="my1-col-md-4 related-records j-desktop-rel-rec">
+                    @include('reader.related')
+                </div>
 
             </div>
         </div>

@@ -465,6 +465,14 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     position: relative;
     vertical-align: top;
 }
+@media(--xsmall){
+    .my1-col-md-8 {
+        width: 100%;
+    }
+    .j-desktop-rel-rec {
+        display: none !important;
+    }
+}
 .my1-col-md-4 {
     width: 33.3333%;
     display: table-cell;

@@ -277,6 +277,11 @@
     vertical-align: middle;
     margin-right: 8px;
 }
+@media (--xsmall) {
+    .cu-study {
+        font-size: 1.23rem;
+    }
+}
 .cu-study2 {
     color: #00b9f7;
     display: inline-block;
