@@ -125,6 +125,13 @@
     line-height: 2.14rem;
     position: relative;
 }
+@media(--xsmall){
+    .inner-pad2 {
+        padding: 15px 20px;
+        line-height: 2.14rem;
+        position: relative;
+    }
+}
 .inner-pad5 {
     padding: 80px 45px;
     line-height: 2.14rem;

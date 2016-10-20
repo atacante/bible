@@ -289,6 +289,13 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     font-family: work_sansregular;
     margin-bottom: 35px;
 }
+@media(--xsmall){
+    .entry-form .form-verse-text{
+        padding: 15px;
+        font-size: 0.9rem;
+        line-height: 1rem;
+    }
+}
 .entry-form .form-verse-text .form-verse-num{
     font-weight: bold;
     text-decoration: underline;
@@ -296,8 +303,19 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     font-family: work_sanssemibold;
     margin-left: 52px;
 }
+@media(--xsmall){
+    .entry-form .form-verse-text .form-verse-num{
+        margin-left: 25px;
+        display: block;
+    }
+}
 .entry-form .form-verse-text .form-highlighted-text{
     margin-left: 52px;
+}
+@media(--xsmall){
+    .entry-form .form-verse-text .form-highlighted-text{
+        margin-left: 25px;
+    }
 }
 .entry-form .form-verse-text .form-verse-quotes{
     position: absolute;
@@ -306,6 +324,13 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     font-weight: bold;
     color: #505050;
     font-family: work_sanssemibold;
+}
+@media(--xsmall){
+    .entry-form .form-verse-text .form-verse-quotes{
+        top: 25px;
+        left: 10px;
+        font-size: 3rem;
+    }
 }
 .entry-form label{
     text-transform: uppercase;
@@ -464,6 +489,14 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     padding-right: 15px;
     position: relative;
     vertical-align: top;
+}
+@media(--xsmall){
+    .my1-col-md-8 {
+        width: 100%;
+    }
+    .j-desktop-rel-rec {
+        display: none !important;
+    }
 }
 .my1-col-md-4 {
     width: 33.3333%;

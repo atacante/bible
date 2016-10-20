@@ -240,85 +240,9 @@ a.view-details:hover{
     -webkit-border-radius: 5px;
     margin: 10px 0;
 }
-.related-records .related-item .item-body .verse-block {
-    color: #858585;
-    font-size: 1.14rem;
-    font-family: work_sansregular;
-    font-style: italic;
-    position: relative;
-    padding: 10px 0;
-    line-height: 1.71rem;
-}
 
-.verse-block-bott {
-    display: block;
-    padding-left: 26px;
-    padding-top: 10px;
-    position: relative;
-    color: #535353;
-    font-size: 1.14rem;
-    font-family: work_sansmedium;
-    line-height: 1.71rem;
-}
-.verse-icon {
-    position: absolute;
-    display: block;
-    top: 11px;
-    left: 0;
-    color: #535353;
-    font-size: 1.36rem;
-    font-family: "bs" !important;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    line-height: 1;
-    text-decoration: none !important;
-    text-transform: none;
-}
-.verse-icon2 {
-    position: absolute;
-    display: block;
-    background: #79858f;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    -webkit-border-radius: 50px;
-    top: 20px;
-    left: 74px;
-    color: #ffffff;
-    font-size: 0.86rem;
-    font-family: "bs" !important;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    line-height: 1.43rem;
-    text-align: center;
-    text-decoration: none !important;
-    text-transform: none;
-    border: 3px solid #ffffff;
-}
-.c-verse-icon3 {
-    position: absolute;
-    display: block;
-    top: 30px;
-    left: 30px;
-    color: #535353;
-    font-family: "bs" !important;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    text-decoration: none !important;
-    text-transform: none;
-    text-align: center;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border: 1px solid;
-    font-size: 1.78rem;
-    height: 60px;
-    width: 60px;
-    line-height: 4.29rem;
 
-}
+
 .fa-book:before {
     content: "\e903";
 }
@@ -373,18 +297,6 @@ a.view-details:hover{
     margin: 0 10px;
 }
 
-.related-records .date-order-btn {
-    position: absolute;
-    top: 38px;
-    right: 38px;
-    color: #00b9f7;
-}
-.related-records .date-order-btn a span {
-    color: #00b9f7;
-}
-.related-records .date-order-btn a {
-    text-decoration: none;
-}
 #note-form .fa,#journal-form .fa,#prayer-form .fa{
     color: #90949c;
     width: 1.07rem;

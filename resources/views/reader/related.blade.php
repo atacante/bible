@@ -1,7 +1,7 @@
 {{-- ---------------- RELATED POSTS ---------------- --}}
 @if($content['showRelated'] && $content['relatedItems']->count() && !Request::input('compare',false))
 
-    <div class="my1-col-md-4 related-records">
+
         <div class="c-reader-content2"></div>
         <div class="inner-pad1 bord1">
             <h3 class="h3-related"><i class="bs-staroutlined cu-staroutlined"></i>Related Records <span class="ins-count">({{$content['relatedItems']->count()}})</span></h3>
@@ -52,5 +52,5 @@
 
 
 
-    </div>
+
 @endif

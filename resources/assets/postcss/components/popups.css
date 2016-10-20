@@ -401,12 +401,25 @@ ul.c-chapter-list li a.active {
 #popup .modal-dialog .modal-content .modal-title .s-full-screen-btn{
     margin: 0 45px;
 }
+@media(--xsmall){
+    #popup .modal-dialog .modal-content .modal-title .s-full-screen-btn{
+        margin: 0 0 0 25px;
+        padding: 5px;
+        border-width: 1px;
+    }
+}
 #popup .modal-dialog .modal-content .modal-header .modal-header-btn{
     position: relative;
     top: 12px;
     margin-left: 45px;
     border-left: 1px solid #b7b7b7;
     line-height:initial;
+}
+@media(--xsmall){
+    #popup .modal-dialog .modal-content .modal-header .modal-header-btn{
+        margin-left: 0px;
+        border-left: none;
+    }
 }
 #popup .modal-dialog .modal-content .modal-header .modal-header-btn i.bs-study{
     vertical-align: text-bottom;
@@ -420,6 +433,15 @@ ul.c-chapter-list li a.active {
     vertical-align: text-top;
     line-height: 2.5rem;
 }
+@media(--xsmall){
+    #popup .modal-dialog .modal-content .modal-header i.bs-note,
+    #popup .modal-dialog .modal-content .modal-header i.bs-journal,
+    #popup .modal-dialog .modal-content .modal-header i.bs-pray{
+        line-height: 1.4rem;
+        font-size: 1.4rem;
+        margin: 0 10px 0 0;
+    }
+}
 #popup .modal-dialog .modal-content .modal-header i.bs-journal{
     color: #5d93c2;
 }
@@ -430,11 +452,21 @@ ul.c-chapter-list li a.active {
     color: #00ade7;
     font-size: 1.57rem;
 }
+@media(--xsmall){
+    #popup .modal-dialog .modal-content .modal-header i.bs-close{
+        font-size: 1.2rem;
+    }
+}
 #popup .modal-dialog .modal-content .modal-header .close{
     margin: 20px 28px;
     font-weight: bold;
     opacity: 1;
     text-shadow: none;
+}
+@media(--xsmall){
+    #popup .modal-dialog .modal-content .modal-header .close{
+        margin: 20px 10px;
+    }
 }
 #popup .modal-dialog .modal-content .modal-header .modal-title-text,
 #popup .modal-dialog .modal-content .modal-header h4{
@@ -443,11 +475,23 @@ ul.c-chapter-list li a.active {
     line-height: 5rem;
     text-transform: uppercase;
 }
+@media(--xsmall){
+    #popup .modal-dialog .modal-content .modal-header .modal-title-text,
+    #popup .modal-dialog .modal-content .modal-header h4{
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+    }
+}
 #popup .modal-dialog .modal-content .modal-body{
     padding: 0;
 }
 #popup .modal-dialog .modal-content .modal-body .box-body{
     padding: 40px 40px 0 40px;
+}
+@media(--xsmall){
+    #popup .modal-dialog .modal-content .modal-body .box-body{
+        padding: 15px 15px 0 15px;
+    }
 }
 #popup .modal-dialog .modal-content .modal-body .friend-item.box-body{
     padding: 40px;

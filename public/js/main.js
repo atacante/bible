@@ -1801,7 +1801,10 @@ $(document).ready(function(){
 
         e.preventDefault();
     });
-
+    $(".j-btn-related-rec").on("click", function (e) {
+        $(".j-mobile-rel-rec").toggle();
+        e.preventDefault();
+    });
     $(window).resize(function() {
         if ($("body").width() < 768) {
             $(".j-choose-desctop").hide();

@@ -177,6 +177,11 @@ ul.icon-panel li a {
     font-size: 1.14rem;
     font-family: work_sansregular;
 }
+@media(--xsmall){
+    .verse-date {
+        font-size: 1rem;
+    }
+}
 .c-popup-compare {
     width: 430px;
     text-align: left;
@@ -250,6 +255,11 @@ ul.icon-panel li a {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+@media(--xsmall){
+    .h3-related {
+        font-size: 1.16rem;
+    }
+}
 .bord1 {
     border-bottom: 1px solid #f3f3f3;
 }
@@ -261,6 +271,118 @@ ul.icon-panel li a {
     font-size: 1.71rem;
     margin-right: 8px;
     vertical-align: top;
+}
+@media(--xsmall){
+    .cu-staroutlined {
+        font-size: 1.16rem;
+    }
+}
+.related-records .date-order-btn {
+    position: absolute;
+    top: 38px;
+    right: 38px;
+    color: #00b9f7;
+}
+@media(--xsmall){
+    .related-records .date-order-btn {
+        top: 15px;
+        right: 15px;
+    }
+}
+.related-records .date-order-btn a span {
+    color: #00b9f7;
+}
+.related-records .date-order-btn a {
+    text-decoration: none;
+}
+.related-records .related-item .item-body .verse-block {
+    color: #858585;
+    font-size: 1.14rem;
+    font-family: work_sansregular;
+    font-style: italic;
+    position: relative;
+    padding: 10px 0;
+    line-height: 1.71rem;
+}
+@media(--xsmall){
+    .related-records .related-item .item-body .verse-block {
+        font-size: 1rem;
+        line-height: 1.2rem;
+    }
+}
+.verse-block-bott {
+    display: block;
+    padding-left: 26px;
+    padding-top: 10px;
+    position: relative;
+    color: #535353;
+    font-size: 1.14rem;
+    font-family: work_sansmedium;
+    line-height: 1.71rem;
+}
+@media(--xsmall){
+    .verse-block-bott {
+        font-size: 1rem;
+    }
+}
+.verse-icon {
+    position: absolute;
+    display: block;
+    top: 11px;
+    left: 0;
+    color: #535353;
+    font-size: 1.36rem;
+    font-family: "bs" !important;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-decoration: none !important;
+    text-transform: none;
+}
+.verse-icon2 {
+    position: absolute;
+    display: block;
+    background: #79858f;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    -webkit-border-radius: 50px;
+    top: 20px;
+    left: 74px;
+    color: #ffffff;
+    font-size: 0.86rem;
+    font-family: "bs" !important;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1.43rem;
+    text-align: center;
+    text-decoration: none !important;
+    text-transform: none;
+    border: 3px solid #ffffff;
+}
+.c-verse-icon3 {
+    position: absolute;
+    display: block;
+    top: 30px;
+    left: 30px;
+    color: #535353;
+    font-family: "bs" !important;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-decoration: none !important;
+    text-transform: none;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 1px solid;
+    font-size: 1.78rem;
+    height: 60px;
+    width: 60px;
+    line-height: 4.29rem;
+
 }
 .a-study {
     text-decoration: none !important;
@@ -351,8 +473,19 @@ ul.icons-list li i {
     top: 20px;
     right: 20px;
 }
+@media(--xsmall){
+    .btn-reset-compare{
+        top: 5px;
+        right: 5px;
+    }
+}
 .reader-text .j-diff-block:last-child .btn-reset-compare{
     right: 35px;
+}
+@media(--xsmall){
+    .reader-text .j-diff-block:last-child .btn-reset-compare{
+        right: 17px;
+    }
 }
 .legend-block {
     margin-bottom: 10px;
@@ -525,7 +658,9 @@ span.word-definition mark:hover{
     top: 12px;
     right: 20px;
 }
-
+.btn-related-rec-resp {
+    display: none !important;
+}
 @media (--xsmall) {
     .resp-offset {
         padding: 0 15px 5px;
@@ -547,6 +682,10 @@ span.word-definition mark:hover{
         border-bottom: 1px solid #a1a1a1;
         margin: 15px;
     }
+    .btn-related-rec-resp {
+        display: inline-block !important;
+    }
+
 }
 a.my-bookmarks {
     float: right;
@@ -598,4 +737,71 @@ mark {
 .j-highlight-text.j-yellow,.btn-remove-highlighted-text{
     padding-left: 0px;
     padding-right: 20px;
+}
+@media(--xsmall){
+    .j-mobile-rel-rec {
+        padding: 0;
+        & .c-reader-content2 {
+            left: 0;
+            right: 0;
+            bottom: 10px;
+        }
+        & .popup-arrow {
+            background: white;
+            z-index: 9;
+            border: none;
+            right: 167px;
+        }
+    }
+}
+@media(--not-xsmall){
+    .j-mobile-rel-rec {
+        display: none !important;
+    }
+}
+@media(--xsmall){
+    .j-bible-text.col-xs-4 {
+        & h4.version-title {
+            font-size: 0.8rem;
+            line-height: 0.9rem;
+            padding-bottom: 10px;
+            padding-right: 0;
+        }
+        & .inner-pad1 {
+            padding: 30px 10px 10px;
+        }
+        &  .verse-text {
+            font-size: 0.8rem;
+            line-height: 0.9rem;
+        }
+        &  .verse-text b a {
+            font-size: 0.8rem;
+            line-height: 0.9rem;
+        }
+        & .btn-reset {
+            font-size: 2rem;
+        }
+    }
+    .j-bible-text.col-xs-6 {
+        & h4.version-title {
+            font-size: 0.8rem;
+            line-height: 0.9rem;
+            padding-bottom: 10px;
+            padding-right: 0;
+        }
+        & .inner-pad1 {
+            padding: 30px 10px 10px;
+        }
+        &  .verse-text {
+            font-size: 0.8rem;
+            line-height: 0.9rem;
+        }
+        &  .verse-text b a {
+            font-size: 0.8rem;
+            line-height: 0.9rem;
+        }
+        & .btn-reset {
+            font-size: 2rem;
+        }
+    }
 }

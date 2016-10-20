@@ -1,0 +1,114 @@
+.bl-register {
+
+  & .bl-form {
+
+    /* iPad portrait */
+    @media (--small) {
+
+      /* col-xs-6 col-md-offset-3 */
+      & > div {
+        width: 100%;
+
+        & form {
+
+          & .form-group {
+            display: flex;
+
+            & label {
+              width: calc(100%/3);
+
+              &.label-checkbox {
+                width: calc(100%/3*2);
+              }
+
+            }
+
+            &.checkbox {
+
+              & > div.col-md-4 {
+                width: calc(100%/3);
+              }
+
+              & > div.col-md-8 {
+                width: calc(100%/3*2);
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  @media (--xsmall) {
+    & {
+      margin-bottom: 0;
+    }
+
+    &.h2-new {
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+    }
+
+    & > .inner-pad5 {
+      padding: 0 8px;
+
+      & .bl-form {
+        padding-top: 10px;
+
+        & .form-group {
+          display: flex;
+          flex-direction: column;
+
+          & label {
+            width: 100%;
+
+            & + div {
+              width: 100%;
+
+              & .input1 {
+                height: 35px;
+                padding-left: 10px;
+              }
+
+              & .select2 {
+
+                & .select2-selection--single {
+                  min-height: 35px;
+
+                  & .select2-selection__rendered {
+                    padding-top: 4px;
+                    padding-left: 10px;
+                  }
+
+                  & .select2-selection__arrow {
+                    top: 4px;
+                  }
+                }
+              }
+            }
+          }
+
+          &.checkbox {
+            padding-top: 0;
+            margin-bottom: 15px;
+
+            & .col-xs-8 {
+              width: 100%;
+
+              & label {
+                margin: 0 !important;
+              }
+            }
+          }
+        }
+
+        & .cu-btn-pad1 {
+          padding: 15px 36px !important;
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+}
