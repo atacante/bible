@@ -76,7 +76,7 @@
                         {!! Form::label('country_id', 'Country', array('class' => 'col-md-4 control-label')) !!}
 
                         <div class="col-xs-8">
-                            {!! Form::select('country_id', ViewHelper::getCountriesList(), old('country_id'),['class' => 'form-control input1 j-select2','data-url'=> '/ajax/users-list','placeholder' => 'Select country...']) !!}
+                            {!! Form::select('country_id', ViewHelper::getCountriesList(), old('country_id'),['class' => 'form-control input1 j-select2-country','data-url'=> '/ajax/users-list','placeholder' => 'Select country...']) !!}
                             @if ($errors->has('country_id'))
                                 <span class="help-block">
                                     {{ $errors->first('country_id') }}
@@ -85,12 +85,22 @@
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }}">
+                    <div class="j-state form-group{{ $errors->has('country_id') ? ' has-error' : '' }} hidden">
                         {!! Form::label('state', 'State', array('class' => 'col-md-4 control-label')) !!}
+                        <div class="col-xs-8">
+                            {!! Form::select('state', ViewHelper::getUsStatesList(), old('state'), ['class' => 'form-control2 input1 j-select2-state','placeholder' => 'Select state...']) !!}
+                            @if ($errors->has('state'))
+                                <span class="help-block">
+                                {{ $errors->first('state') }}
+                            </span>
+                            @endif
+                        </div>
+                    </div>
 
+                    <div class="j-state form-group{{ $errors->has('state') ? ' has-error' : '' }}">
+                        {!! Form::label('state', 'State', array('class' => 'col-md-4 control-label')) !!}
                         <div class="col-xs-8">
                             {!! Form::text('state', old('state'), array('class' => 'form-control input1')) !!}
-
                             @if ($errors->has('state'))
                                 <span class="help-block">
                                     {{ $errors->first('state') }}
