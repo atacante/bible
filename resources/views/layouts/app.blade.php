@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>@section('title') Bible @show</title>
+{{--
+    <title>@section('title') Bible Study Company: An online study Bible and social community @show</title>
+--}}
+    <title> Bible Study Company: An online study Bible and social community </title>
     @section('meta_keywords')
         <meta name="keywords" content="your, awesome, keywords, here"/>
     @show @section('meta_author')
