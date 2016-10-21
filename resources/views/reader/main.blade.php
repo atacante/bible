@@ -169,7 +169,7 @@
                             @role('user')
                             <li class="btn-related-rec-resp">
                                 <a href="#" class="j-btn-related-rec">
-                                    <i class="bs-staroutlined cu-print"></i>
+                                    <i title="Related records" class="bs-staroutlined cu-print"></i>
                                 </a>
                             </li>
                             @endrole
@@ -184,19 +184,19 @@
 
                             <li>
                                 <a href="#" class="j-btn-compare">
-                                    <i class="bs-compare cu-print"></i>
+                                    <i title="Compare versions" class="bs-compare cu-print"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="j-print-chapter">
-                                    <i class="bs-print cu-print"></i>
+                                    <i title="Print" class="bs-print cu-print"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="j-btn-settings">
-                                    <i class="bs-settings cu-print"></i>
+                                    <i title="Settings" class="bs-settings cu-print"></i>
                                     @if(ViewHelper::checkNotifTooltip('got_related_records_tooltip') || ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip'))
-                                    <i class="bs-starsolid cu-starsolid-settings"></i>
+                                    <i title="Settings" class="bs-starsolid cu-starsolid-settings"></i>
                                     @endif
                                 </a>
                             </li>
