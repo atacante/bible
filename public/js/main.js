@@ -1813,6 +1813,8 @@ $(document).ready(function(){
             $(".j-choose-mobile").hide();
             $(".j-choose-desctop").show();
         }
+
+        dinamicArrows();
     });
 
     /* ----------------- CHAPTER ----------------- */
@@ -1939,27 +1941,30 @@ $(document).ready(function(){
         $('.j-short-verses-filters').toggleClass('hidden');
     });
 
-    if($('.j-chapter-content,.j-dynamic-arrows').length > 0){
-        var eTop = $('.j-nav-sel2').offset().top;
-        var arrowsTop = eTop - $(window).scrollTop();
-        var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
-        $('.j-dynamic-arrows').width($('.j-chapter-content').width());
-        $('.j-dynamic-arrows').css('top',($(window).height()/2)-20);
-        if((arrowsTop < -45 && paginationPos < 70) || (paginationPos > 70 && arrowsTop > -45)){
-            $('.j-dynamic-arrows').fadeIn();
-        }
-        $(window).scroll(function() {
+    function dinamicArrows() {
+        if($('.j-chapter-content,.j-dynamic-arrows').length > 0){
+            var eTop = $('.j-nav-sel2').offset().top;
             var arrowsTop = eTop - $(window).scrollTop();
             var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
+            $('.j-dynamic-arrows').width($('.j-chapter-content').width());
+            $('.j-dynamic-arrows').css('top',($(window).height()/2)-20);
             if((arrowsTop < -45 && paginationPos < 70) || (paginationPos > 70 && arrowsTop > -45)){
                 $('.j-dynamic-arrows').fadeIn();
             }
-            if((arrowsTop > -45 || paginationPos > 70) || (paginationPos > 70 && arrowsTop < -45)){
-                $('.j-dynamic-arrows').fadeOut();
-            }
+            $(window).scroll(function() {
+                var arrowsTop = eTop - $(window).scrollTop();
+                var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
+                if((arrowsTop < -45 && paginationPos < 70) || (paginationPos > 70 && arrowsTop > -45)){
+                    $('.j-dynamic-arrows').fadeIn();
+                }
+                if((arrowsTop > -45 || paginationPos > 70) || (paginationPos > 70 && arrowsTop < -45)){
+                    $('.j-dynamic-arrows').fadeOut();
+                }
 
-        });
+            });
+        }
     }
+    dinamicArrows();
 
     if($('.j-compare-verses').length > 0){
         $('body').scrollTo($('.j-compare-verses'),0,{offset:0});
