@@ -322,7 +322,7 @@ class CommunityController extends Controller
             'inviterName' => Auth::user()->name,
             'inviterId' => Auth::user()->id,
             'invite_url' => url('invite/'.Auth::user()->id),
-            'invite_link' => '<a href="'.url('invite/'.Auth::user()->id).'" class="">www.biblestudycompany.com</a>',
+            'invite_link' => '<a href="'.url('invite/'.Auth::user()->id).'" class="">Create An Account</a>',
         ];
 
         if (Request::isMethod('post')){
