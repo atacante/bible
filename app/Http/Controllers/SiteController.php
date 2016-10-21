@@ -103,6 +103,7 @@ class SiteController extends Controller
 
     public function getFaq()
     {
-        return view('site.faq', []);
+        $page = CmsPage::getPage('faq');
+        return view('site.faq', ['page'=>$page]);
     }
 }
