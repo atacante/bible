@@ -76,12 +76,12 @@
                         </li>
                     @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'membership'))
-                        <li>
+                        {{--<li>
                             <a href="{{ URL::to('/site/membership') }}">
                                 <i class="bs-community cu-nav-icons"></i>
                                 Membership
                             </a>
-                        </li>
+                        </li>--}}
                     @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'how_it_works'))
                     <li>
@@ -101,7 +101,7 @@
                     @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'recommended_resources'))
                     <li>
-                        <a href="{{ URL::to('/site/recommended-resources') }}">
+                        <a href="{{ URL::to('/blog') }}">
                             <i class="bs-upload cu-bs-biblestudylogo" style="vertical-align: bottom;"></i>
                             Recommended Resources
                         </a>
@@ -134,12 +134,12 @@
                         </li>
                     @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'partners'))
-                    <li>
+                    {{--<li>
                         <a href="{{ URL::to('/site/partners') }}">
                             <i class="bs-community cu-nav-icons"></i>
                             Partners
                         </a>
-                    </li>
+                    </li>--}}
                     @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'contact_main'))
                     <li>
