@@ -125,6 +125,14 @@
                             {{--FAQ--}}
                         {{--</a>--}}
                     {{--</li>--}}
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'faq'))
+                        <li>
+                            <a href="{{ URL::to('/site/faq') }}">
+                                <i class="bs-faq cu-nav-icons" style="font-size: 1.3rem; vertical-align: top;"></i>
+                                F.A.Q.
+                            </a>
+                        </li>
+                    @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'partners'))
                     <li>
                         <a href="{{ URL::to('/site/partners') }}">

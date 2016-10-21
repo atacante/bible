@@ -76,9 +76,11 @@
             {{--<li>
               <a class="bs-blog" href="{{ URL::to('/blog') }}">Blog</a>
             </li>--}}
-            {{--<li>
-              <a class="bs-faq" href="{{ URL::to('/site/faq') }}">FAQ</a>
-            </li>--}}
+            @if(ViewHelper::checkPublished($data['cmsItems'],'faq'))
+            <li>
+              <a class="bs-faq" href="{{ URL::to('/site/faq') }}">F.A.Q.</a>
+            </li>
+            @endif
             @if(ViewHelper::checkPublished($data['cmsItems'],'partners'))
               <li>
                 <a class="bs-community" href="{{ URL::to('/site/partners') }}">Partners</a>
@@ -266,6 +268,14 @@
                             How It Works
                         </a>
                     </li>
+                    @endif
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'faq'))
+                        <li>
+                            <a href="{{ URL::to('/site/faq') }}">
+                                <i class="fa fa-question-circle-o cu-nav-icons" style="font-size: 1.3rem; vertical-align: text-bottom;"></i>
+                                F.A.Q.
+                            </a>
+                        </li>
                     @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'about'))
                     <li>
