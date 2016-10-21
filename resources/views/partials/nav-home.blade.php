@@ -64,10 +64,12 @@
                   href="{{ URL::to('/site/about') }}">About BSC</a>
               </li>
             @endif
-            @if(ViewHelper::checkPublished($data['cmsItems'],'recommended_resources'))
+            @if(    ViewHelper::checkPublished($data['cmsItems'],'recommended_resources')
+                && ($catId = ViewHelper::getBlogCatId('Recommended Resources'))
+            )
               <li>
                 <a class="bs-upload"
-                  href="{{ URL::to('/blog') }}">Recommended Resources</a>
+                  href="{{ URL::to('/blog?category='.$catId) }}">Recommended Resources</a>
               </li>
             @endif
             <li>
@@ -285,9 +287,11 @@
                         </a>
                     </li>
                     @endif
-                    @if(ViewHelper::checkPublished($data['cmsItems'],'recommended_resources'))
+                    @if(    ViewHelper::checkPublished($data['cmsItems'],'recommended_resources')
+                        && ($catId = ViewHelper::getBlogCatId('Recommended Resources'))
+                    )
                     <li>
-                        <a href="{{ URL::to('/blog') }}">
+                        <a href="{{ URL::to('/blog?category='.$catId) }}">
                             <i class="bs-upload cu-bs-biblestudylogo" style="vertical-align: text-bottom;"></i>
                             Recommended Resources
                         </a>

@@ -99,9 +99,11 @@
                         </a>
                     </li>
                     @endif
-                    @if(ViewHelper::checkPublished($data['cmsItems'],'recommended_resources'))
+                    @if(    ViewHelper::checkPublished($data['cmsItems'],'recommended_resources')
+                        && ($catId = ViewHelper::getBlogCatId('Recommended Resources'))
+                    )
                     <li>
-                        <a href="{{ URL::to('/blog') }}">
+                        <a href="{{ URL::to('/blog?category='.$catId) }}">
                             <i class="bs-upload cu-bs-biblestudylogo" style="vertical-align: bottom;"></i>
                             Recommended Resources
                         </a>
@@ -180,12 +182,16 @@
                             Friends
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ URL::to('/blog') }}">
-                            <i class="bs-blog"></i>
-                            Blog
-                        </a>
-                    </li>
+                    @if(    ViewHelper::checkPublished($data['cmsItems'],'recommended_resources')
+                        && ($catId = ViewHelper::getBlogCatId('Recommended Resources'))
+                    )
+                        <li>
+                            <a href="{{ URL::to('/blog?category='.$catId) }}">
+                                <i class="bs-blog"></i>
+                                Blog
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </li>
             @if(Request::segment(1) == 'reader')
