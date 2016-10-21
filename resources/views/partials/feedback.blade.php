@@ -1,0 +1,4 @@
+<script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+<script type="text/javascript">
+    FreshWidget.init("", {"queryString": "&widgetType=popup&formTitle=Bible+Study+Company+Help+%26+Sup&submitTitle=Submit&submitThanks=Thank+you+for+your+feedback.++If+requested+we+will+contact+you+shortly.&captcha=yes", "utf8": "✓", "widgetType": "popup", "buttonType": "text", "buttonText": "Support", "buttonColor": "white", "buttonBg": "#6063", "alignment": "4", "offset": "235px", "submitThanks": "Thank you for your feedback. If requested we will contact you shortly.", "formHeight": "500px", "captcha": "yes", "url": "https://biblestudycompany.freshdesk.com"} );
+</script>
