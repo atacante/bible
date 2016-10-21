@@ -773,7 +773,7 @@ $(document).ready(function(){
             method: "POST",
             url: '/reader/save-highlight',
             data:{
-                bible_version:$('input[name=version]').val(),
+                bible_version:$('select[name=version]').val(),
                 verse_from_id:reader.startVerseId,
                 verse_to_id:reader.endVerseId,
                 color:color,
