@@ -151,7 +151,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('plan_type') ? ' has-error' : '' }}">
-                        {!! Form::label('plan_type', "Subscription plan", array('class' => 'col-md-4 control-label')) !!}
+                        {!! Form::label('plan_type', "Account Type", array('class' => 'col-md-4 control-label')) !!}
 
                         <div class="col-xs-8">
                             <div class="radio-inline">
@@ -160,7 +160,7 @@
                             </div>
                             <div class="radio-inline">
                                 {!! Form::radio('plan_type', 'premium', false, ["class" => "cust-radio", "id" => "premium"]) !!}
-                                <label class="label-radio cu-label" for="premium">Premium</label>
+                                <label class="label-radio cu-label" for="premium">Beta Tester</label>
                             </div>
                             @if ($errors->has('plan_type'))
                                 <span class="help-block">
@@ -171,13 +171,13 @@
                     </div>
 
                     <div class="premium-only  {!! Request::old('plan_type') == 'premium' || $errors->has('coupon_code')?'':'hidden' !!}">
-                        <div class="form-group {{ $errors->has('plan_name') ? ' has-error' : '' }}">
+                        <div class="hidden form-group {{ $errors->has('plan_name') ? ' has-error' : '' }}">
                             {!! Form::label('plan_name', "Subscription plan period:",['class' => 'col-md-4']) !!}
 
                             <div class="col-xs-8">
                                 @foreach(App\User::getPossiblePlans() as $plan_name => $plan)
                                     <div class="radio-inline">
-                                        {!! Form::radio('plan_name', $plan_name, false, ["class" => "cust-radio", "id" => $plan_name]) !!}
+                                        {!! Form::radio('plan_name', $plan_name, ($plan_name == '3 months')?true: false, ["class" => "cust-radio", "id" => $plan_name]) !!}
                                         <label class="label-radio cu-label" for="{{$plan_name}}">{!! $plan_name.'($'.$plan['amount'].')' !!}</label>
                                     </div>
                                 @endforeach
@@ -190,7 +190,7 @@
                         </div>
 
                         <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
-                            {!! Form::label('coupon_code', 'Coupon Code:',['class' => 'col-md-4']) !!}
+                            {!! Form::label('coupon_code', 'Beta Code:',['class' => 'col-md-4']) !!}
                             <div class="col-xs-8">
                                 {!! Form::text('coupon_code', Request::get('coupon_code'), ['class' => 'input1']) !!}
                                 @if ($errors->has('coupon_code'))
@@ -200,7 +200,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group {{ $errors->has('card_number') ? ' has-error' : '' }}">
+                        <div class="hidden form-group {{ $errors->has('card_number') ? ' has-error' : '' }}">
                             {!! Form::label('card_number', 'New CC Number:',['class' => 'col-md-4']) !!}
                             <div class="col-xs-8">
                                 {!! Form::text('card_number', null, ['class' => 'input1', 'placeholder' => 'XXXXXXXXXXXXXX']) !!}
@@ -211,7 +211,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group {{ $errors->has('card_expiration') ? ' has-error' : '' }}">
+                        <div class="hidden form-group {{ $errors->has('card_expiration') ? ' has-error' : '' }}">
                             {!! Form::label('card_expiration', 'Credit Card Expiration:',['class' => 'col-md-4']) !!}
                             <div class="col-xs-8">
                                 {!! Form::text('card_expiration', null, ['class' => 'input1', 'placeholder' => 'YYYY-MM']) !!}
@@ -223,7 +223,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group {{ $errors->has('card_code') ? ' has-error' : '' }}">
+                        <div class="hidden form-group {{ $errors->has('card_code') ? ' has-error' : '' }}">
                             {!! Form::label('card_code', 'Credit Card Code:', ['class' => 'col-md-4']) !!}
                             <div class="col-xs-8">
                                 {!! Form::text('card_code', null, ['placeholder' => '***', 'class' => 'input1', 'style' => 'width: 125px;']) !!}
@@ -234,7 +234,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group {{ $errors->has('billing_name') ? ' has-error' : '' }}">
+                        <div class="hidden form-group {{ $errors->has('billing_name') ? ' has-error' : '' }}">
                             {!! Form::label('billing_name', 'Billing Name:', ['class' => 'col-md-4']) !!}
                             <div class="col-xs-8">
                                 {!! Form::text('billing_name', null, ['class' => 'input1']) !!}
@@ -245,7 +245,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group {{ $errors->has('billing_address') ? ' has-error' : '' }}">
+                        <div class="hidden form-group {{ $errors->has('billing_address') ? ' has-error' : '' }}">
                             {!! Form::label('billing_address', 'Billing Address:', ['class' => 'col-md-4']) !!}
                              <div class="col-xs-8">
                                 {!! Form::text('billing_address', null, ['class' => 'input1']) !!}
@@ -256,7 +256,7 @@
                                 @endif
                              </div>
                         </div>
-                        <div class="form-group {{ $errors->has('billing_zip') ? ' has-error' : '' }}">
+                        <div class="hidden form-group {{ $errors->has('billing_zip') ? ' has-error' : '' }}">
                             {!! Form::label('billing_zip', 'Billing Zip:', ['class' => 'col-md-4']) !!}
                             <div class="col-xs-8">
                                 {!! Form::text('billing_zip', null, ['class' => 'input1']) !!}
