@@ -148,5 +148,6 @@
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ffb956064f1f1f"></script>
 --}}
     </div>
+@include('partials.feedback')
 </body>
 </html>
