@@ -79,6 +79,7 @@
             padding: 4px 2px;
           }
 
+
           & a {
             font-family: 'ns_widenormal' !important;
             padding: 8px 10px;
@@ -102,6 +103,7 @@
             &:before {
               color: #9da8b1;
             }
+
           }
 
           & .sub-nav {
@@ -418,6 +420,16 @@
 
       }
     }
+
+    & .user-menu-name {
+        white-space: nowrap;
+        display: inline-block;
+        max-width: 80px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-left: 5px;
+    }
+
   }
 
   & .show-menu {
