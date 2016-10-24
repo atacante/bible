@@ -88,6 +88,28 @@
                         </span>
                     @endif
                 </div>
+
+                <div class="form-group {{ $errors->has('background_mobile') ? ' has-error' : '' }}">
+                    {!! Form::label('background_mobile', 'Mobile Background Image:') !!}
+                    <div class="clearfix">
+                        <div id="img-thumb-preview" class="edit-images-thumbs product-images pull-left">
+                            @if($model->background_mobile)
+                                <div class="img-thumb pull-left">
+                                    <img height="100" width="100" src="{!! Config::get('app.homeImages').'thumbs/'.$model->background_mobile !!}" />
+                                </div>
+                            @endif
+                        </div>
+                        <div class="fallback pull-left"> <!-- this is the fallback if JS isn't working -->
+                            <input name="m_file" type="file" />
+                        </div>
+                    </div>
+
+                    @if ($errors->has('background_mobile'))
+                        <span class="help-block">
+                            {{ $errors->first('background_mobile') }}
+                        </span>
+                    @endif
+                </div>
              @endif
 
             @if($model->exists && $model->content_type != App\CmsPage::CONTENT_HOME)
