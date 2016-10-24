@@ -54,7 +54,7 @@
       & nav {
         display: block;
         position: relative;
-        z-index: 1001;
+        z-index: 100001;
 
         & > ul {
           background-color: #313d47;
@@ -316,7 +316,7 @@
           box-shadow: 0 0 15px 5px rgba(100,100,100,0.1);
           min-width: 200px;
           border: 1px solid rgba(0,0,0,.15);
-          z-index: 1000;
+          z-index: 100000;
           margin-top: 12px;
           background-clip: padding-box;
           display: none;
