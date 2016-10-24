@@ -76,9 +76,7 @@ class CmsController extends Controller
             $this->validate($request, $model->rules());
             $data = Input::all();
             if ($model->update($data)) {
-                if(Input::hasFile('file')){
-                    $this->anyUploadImage($model);
-                }
+                $this->anyUploadImage($model);
                 Notification::success(($model->content_type == CmsPage::CONTENT_HOME)?'Homepage has been successfully updated':'CMS has been successfully updated');
             }
             return ($url = Session::get('backUrl'))
@@ -95,28 +93,42 @@ class CmsController extends Controller
 
     public function anyUploadImage($model)
     {
-        if (Input::hasFile('file')) {
-            $file = Input::file('file');
+        $files = ['file', 'm_file'];
 
-            $tmpFilePath = Config::get('app.homeImages');
-            $tmpThumbPath = $tmpFilePath . 'thumbs/';
-            $tmpFileName = time() . '-' . $file->getClientOriginalName();
-            $file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
-            $path = $tmpFilePath . $tmpFileName;
+        foreach($files as $uploaded_file){
+            if (Input::hasFile($uploaded_file)) {
+                $file = Input::file($uploaded_file);
 
-            $this->makeDir(public_path() . $tmpThumbPath);
-            $thumbPath = public_path($tmpThumbPath . $tmpFileName);
-            if($file){
-                $this->unlinkLocationImage($model->background);
-                $model->background = $tmpFileName;
-                $model->save();
+                $tmpFilePath = Config::get('app.homeImages');
+                $tmpThumbPath = $tmpFilePath . 'thumbs/';
+                $tmpFileName = time() . '-' . $file->getClientOriginalName();
+                $file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
+                $path = $tmpFilePath . $tmpFileName;
+
+                $this->makeDir(public_path() . $tmpThumbPath);
+                $thumbPath = public_path($tmpThumbPath . $tmpFileName);
+
+                if($file){
+                    if($uploaded_file == 'file'){
+                        $this->unlinkLocationImage($model->background);
+                        $model->background = $tmpFileName;
+                        // Resizing
+                        Image::make($file->getRealPath())->fit(200, 100)->save($thumbPath)->destroy();
+                    }elseif($uploaded_file == 'm_file'){
+                        $this->unlinkLocationImage($model->background_mobile);
+                        $model->background_mobile = $tmpFileName;
+                        // Resizing
+                        Image::make($file->getRealPath())->fit(100, 100)->save($thumbPath)->destroy();
+                    }
+
+                    $model->save();
+                }
+
             }
-            // Resizing 340x340
-            Image::make($file->getRealPath())->fit(200, 100)->save($thumbPath)->destroy();
-
-            return true;
         }
-        return false;
+
+
+        return true;
     }
 
     private function makeDir($path)
