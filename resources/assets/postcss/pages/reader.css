@@ -362,6 +362,14 @@ ul.icon-panel li a {
     text-transform: none;
     border: 3px solid #ffffff;
 }
+@media(--xsmall){
+    .verse-icon2 {
+        width: 25px;
+        height: 25px;
+        left: 49px;
+        border-width: 2px;
+    }
+}
 .c-verse-icon3 {
     position: absolute;
     display: block;

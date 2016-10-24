@@ -134,6 +134,11 @@ h4.h4-1 {
     font-family: work_sansregular;
     font-size: 1.14rem !important;
 }
+@media(--xsmall){
+    .cu-date1 {
+        font-size: 1rem !important;
+    }
+}
 .cu-date2 {
     color: #a9a9a9;
     font-family: work_sansregular;
@@ -170,6 +175,11 @@ h4.h4-1 {
 }
 .font-size-20 {
     font-size: 1.43rem;
+}
+@media(--xsmall){
+    .font-size-20 {
+        font-size: 1rem;
+    }
 }
 .font-size-22 {
     font-size: 1.57rem;
