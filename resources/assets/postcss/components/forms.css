@@ -80,7 +80,7 @@ label {
     float: left;
     margin-right: 5px;
 }
-@media(--xsmall){
+@media(--medium){
     .search-text-input {
         width: 100% !important;
         max-width: 100% !important;

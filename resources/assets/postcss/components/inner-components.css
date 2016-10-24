@@ -260,9 +260,21 @@ ul.c-social li a:hover, ul.c-social li a:active {
 .load-more-block{
     margin-bottom: 15px;
 }
-@media(--xsmall){
+@media(--medium){
+    .community.wall {
+        & .load-more-block {
+            background: #ffffff;
+        }
+    }
+    .community.find-friends {
+        & .load-more-block {
+            padding-bottom: 25px !important;
+        }
+        & .load-more {
+            margin-top: 25px !important;
+        }
+    }
     .load-more-block {
-        background: #ffffff;
         padding: 50px 30px;
     }
     .load-more-block.mb1 {

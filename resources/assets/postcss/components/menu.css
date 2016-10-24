@@ -2,7 +2,7 @@
     margin-bottom: 30px;
     border-bottom: 2px solid #e3e3e3;
 }
-@media(--xsmall){
+@media(--medium){
     .tabs-nav {
         display: inline-block;
         margin: 0 15px 15px;
@@ -17,7 +17,7 @@ ul.tabs-nav li {
     margin-bottom: -2px;
     margin-right: 20px;
 }
-@media(--xsmall){
+@media(--medium){
     ul.tabs-nav li {
         margin-right: 8px;
         margin-left: 8px;
@@ -37,7 +37,7 @@ ul.tabs-nav li {
     .resp-tab-search {
         & .btn-reset {
             right: 54px !important;
-            top: 7px !important;
+            top: 5px !important;
         }
     }
 }
@@ -57,7 +57,7 @@ ul.tabs-nav li:last-child {
     font-family: ns_widenormal;
     color: #505050;
 }
-@media(--xsmall){
+@media(--medium){
     .tabs-nav.nav-pills>li>a,.user-block .nav-pills>li>a{
         padding: 10px 0 0;
     }
@@ -78,9 +78,17 @@ ul.tabs-nav li:last-child {
         font-size: 0.8rem;
     }
 }
-@media(--xsmall){
-    .nav-pills>li {
-/*        float: none;
-        display: inline-block;*/
+@media(--medium){
+    .u-header {
+        & .nav-pills {
+            text-align: center;
+        }
+        & .nav-pills>li {
+            float: none;
+            display: inline-block;
+        }
+        & .nav-pills>li>a {
+            margin-left: 2px;
+        }
     }
 }

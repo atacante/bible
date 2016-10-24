@@ -343,7 +343,7 @@ h4.h4-sub-kit {
     font-size: 0.93rem;
     line-height: 0.93rem;
 }
-@media(--xsmall){
+@media(--medium){
     .resp-text-center {
         text-align: center;
     }
