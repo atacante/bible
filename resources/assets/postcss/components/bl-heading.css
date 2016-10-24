@@ -7,4 +7,17 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 20px 0 50px;
+    display: flex;
+    justify-content: center;
+
+    & i {
+        font-size: 1.2em;
+        color: var(--mainColor);
+        margin-right: 0.3em;
+    }
+
+    @media (--xsmall) {
+        font-size: 1.2em;
+        margin: 10px 0 30px;
+    }
 }

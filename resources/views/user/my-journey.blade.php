@@ -9,7 +9,7 @@
 
     <section class="bl-my-journey">
         <h2 class="bl-heading">
-            <i class="bs-myjourney cu-gift2"></i>My Journey
+            <i class="bs-myjourney"></i>My Journey
         </h2>
         <sectin class="profile">
             <div class="user">
