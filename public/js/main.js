@@ -748,7 +748,7 @@ $(document).ready(function(){
 
     $("body").on('click','.j-highlight-text',function (e) {
         e.preventDefault();
-        window.getSelection().empty();
+        reader.clearSelection();
         $('.j-reader-actions').remove();
         var color = $(this).data('colorclass');
         // var markId = new Date().getTime();
@@ -780,7 +780,7 @@ $(document).ready(function(){
         var selectedObject = site.getSelected();
         var startElement = selectedObject.anchorNode.parentElement;
         var endElement = selectedObject.focusNode.parentElement;
-        window.getSelection().empty();
+        reader.clearSelection();
         $('.j-reader-actions').remove();
 
         var markIds = [];

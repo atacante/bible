@@ -279,7 +279,7 @@ reader.getActionsHtml = function(){
 }
 
 reader.getHighlightActionsHtml = function(withRemove){
-    return '<div class="j-reader-actions" style="position: absolute;">' +
+    return '<div class="j-reader-actions highlight-actions" style="position: absolute;">' +
         '<a title="Highlight selected text" href="#" class="j-highlight-text j-green btn-reader" data-colorclass="j-green"><i class="bs-journal"></i></a>' +
         // '<div class="spliter1"></div>'+
         '<a title="Highlight selected text" href="#" class="j-highlight-text j-yellow btn-reader" data-colorclass="j-yellow"><i class="bs-journal"></i></a>' +
@@ -301,6 +301,18 @@ reader.highlight = function(keyword,colorClass,markId) {
         $(this).data('id',markId);
     });
 };
+
+reader.clearSelection = function(){
+    if (window.getSelection) {
+        if (window.getSelection().empty) {  // Chrome
+            window.getSelection().empty();
+        } else if (window.getSelection().removeAllRanges) {  // Firefox
+            window.getSelection().removeAllRanges();
+        }
+    } else if (document.selection) {  // IE?
+        document.selection.empty();
+    }
+}
 
 site.initCkeditors = function(){
     if($("#note-text,#journal-text,#prayer-text,.ckeditor").length > 0){

@@ -184,6 +184,6 @@
 
 <div class="box-footer">
     {!! Form::button('Save', ['type'=>'submit','class'=>'btn2-kit cu-btn-pad1']) !!}
-    {!! Html::link((($url = Session::get('backUrl'))?$url:'/journal/list/'),'Cancel', ['class'=>'btn4-kit cu-btn-pad1']) !!}
+    {!! Form::button('Cancel', ['type'=>'button','class'=>'btn4-kit cu-btn-pad1', 'data-dismiss'=>'modal']) !!}
 </div>
 {!! Form::close() !!}
