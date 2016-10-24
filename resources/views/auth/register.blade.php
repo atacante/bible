@@ -141,7 +141,7 @@
                         {!! Form::label('invited_by_id', 'Invited By', array('class' => 'col-md-4 control-label')) !!}
 
                         <div class="col-xs-8">
-                            {!! Form::select('invited_by_id', [Session::pull('inviter_id') => Session::pull('inviter_name')], old('invited_by_id'),['class' => 'form-control j-select2-ajax','data-url'=> '/ajax/users-list','placeholder' => 'Select users...']) !!}
+                            {!! Form::select('invited_by_id', [Session::pull('inviter_id') => Session::pull('inviter_name')], Request::get('invite',old('invited_by_id')),['class' => 'form-control j-select2-ajax','data-url'=> '/ajax/users-list','placeholder' => 'Select users...']) !!}
                             @if ($errors->has('invited_by_id'))
                                 <span class="help-block">
                                     {{ $errors->first('invited_by_id') }}

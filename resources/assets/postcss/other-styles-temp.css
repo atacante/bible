@@ -603,11 +603,6 @@ a.view-details:hover{
 #contact-info dd{
     margin-bottom: 20px;
 }
-.nav-left .divider{
-    height: 1px;
-    background-color: #e3e3e3;
-    margin: 10px 0;
-}
 .friends-list .friend-item{
     padding: 15px 0;
 }
