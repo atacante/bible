@@ -227,19 +227,6 @@ a.view-details:hover{
     font-family: work_sansmedium;
     font-size: 1.14rem;
 }
-.public-wall .related-item .item-body .verse-block {
-    color: #535353;
-    font-size: 1.14rem;
-    font-family: work_sansregular;
-    font-style: italic;
-    line-height: 1.29rem;
-    padding: 15px;
-    background: #f6f6f6;
-    border: 1px solid #e3e3e3;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    margin: 10px 0;
-}
 
 
 
@@ -275,21 +262,7 @@ a.view-details:hover{
     font-weight: bold;
 }
 
-.related-item .item-actions a{
-    text-decoration: none;
-    margin-right: 10px;
-}
 
-.related-item .item-comments{
-    padding: 5px 8px;
-    border-top: 1px solid #e1e1e8;
-}
-
-.related-item-view .verse-block{
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #e1e1e8;
-}
 
 #popup .full-screen-btn{
     font-size: 0.86rem;

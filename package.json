@@ -10,6 +10,7 @@
     "postcss-responsive-type": "^0.4.0"
   },
   "scripts": {
+    "start": "gulp && gulp watch",
     "build": "gulp",
     "build:prod": "gulp"
   },

@@ -49,7 +49,7 @@ class SymbolismEncyclopedia extends BaseModel
         $this->fillSymbolism($action,$nasbPhrases);
         $kjvPhrases = LexiconKjv::where('verse_part','ilike','%'.$termName.'%');
         $this->fillSymbolism($action,$kjvPhrases);
-        $bereanPhrases = LexiconBerean::where('verse_part','ilike','%'.$termName.'%');
+        $bereanPhrases = LexiconBerean::where('verse_part','ilike','%'.$termName.' %');
         $this->fillSymbolism($action,$bereanPhrases);
 
         /* We can try to optimize associating if needed (code below ) */

@@ -98,7 +98,7 @@
 @media(--xsmall){
   .btn4-kit, .btn4-kit:visited {
     min-width: 0;
-    font-size: 0.7rem;
+    font-size: 0.7rem !important;
   }
 }
 /*------------- btn1-icon */
@@ -397,8 +397,9 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   .btn2:visited,
   .btn2:hover,
   .btn2:active {
-    border-width: 2px;
-    padding: 5px 10px;
+        border-width: 2px;
+        padding: 5px 10px;
+      font-size: 1rem;
   }
 }
 .cu-btn2 {
@@ -501,34 +502,50 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   }
 }
 .btn4, .btn4:visited {
-  display: inline-block;
-  border: 3px solid #00b9f7;
-  background: #00b9f7;
-  color: #ffffff;
-  font-family: ns_widemedium;
-  font-size: 1.14rem;
-  text-decoration: none !important;
-  outline: none !important;
-  text-transform: uppercase !important;
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 0 !important;
-  width: 100px;
-  height: 54px;
-  line-height: 3.43rem;
+    display: inline-block;
+    border: 3px solid #00b9f7;
+    background: #00b9f7;
+    color: #ffffff;
+    font-family: ns_widemedium;
+    font-size: 1.14rem;
+    text-decoration: none !important;
+    outline: none !important;
+    text-transform: uppercase !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0 !important;
+    width: 100px;
+    height: 54px;
+    line-height: 3.43rem;
 }
 .btn4:hover, .btn4:active {
-  border: 3px solid #79858f;
-  display: inline-block;
-  background: #79858f;
-  color: #ffffff;
-  text-decoration: none !important;
+    border: 3px solid #79858f;
+    display: inline-block;
+    background: #79858f;
+    color: #ffffff;
+    text-decoration: none !important;
+}
+@media(--xsmall){
+    .btn4, .btn4:visited {
+        font-size: 0.8rem;
+        line-height: 1rem;
+        width: 60px;
+        height: 35px;
+    }
 }
 .btn4-cu1 {
   height: 40px !important;
   line-height: 2.5rem !important;
   width: 85px;
+}
+@media(--xsmall){
+    .btn4-cu1 {
+        font-size: 0.8rem;
+        line-height: 1rem;
+        width: 60px;
+        height: 35px;
+    }
 }
 .btn4-cu2 {
   bottom: 25px;

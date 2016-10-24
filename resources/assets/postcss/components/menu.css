@@ -5,6 +5,7 @@
 @media(--xsmall){
     .tabs-nav {
         display: inline-block;
+        margin-bottom: 15px;
     }
 }
 ul.tabs-nav li {

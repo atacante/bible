@@ -139,4 +139,27 @@ class ModelHelper
 
         $progressBar->finish();
     }
+
+    public static function updateSymbolism($model,$ids){
+        $phrases = $model::whereIn('id',$ids)
+            ->where(function($sq){
+                $sq->orwhere('symbolism','');
+                $sq->orWhere('symbolism',null);
+            })
+            ->get();
+        foreach ($phrases as $phrase) {
+            $phrase->symbolism = '...';
+            $phrase->save();
+        }
+    }
+
+    public static function clearSymbolism($model,$ids){
+        $phrases = $model::whereIn('id',$ids)->where('symbolism','...')->get();
+        foreach ($phrases as $phrase) {
+            if($phrase->symbolism == '...' && $phrase->locations->count() == 0 && $phrase->peoples->count() == 0){
+                $phrase->symbolism = '';
+                $phrase->save();
+            }
+        }
+    }
 }
