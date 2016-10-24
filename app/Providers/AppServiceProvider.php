@@ -142,19 +142,25 @@ class AppServiceProvider extends ServiceProvider
             if($model->isDirty('people_name') && !$model->isDirty('associate_verses') && $model->associate_verses){
                 $model->associateVerses('detach');
                 $model->associateVerses('attach');
+                $model->associateLexicons('detach');
+                $model->associateLexicons('attach');
             }
             if($model->isDirty('associate_verses')){
                 if($model->associate_verses){
                     $model->associateVerses('attach');
+                    $model->associateLexicons('attach');
                 }
                 else{
                     $model->associateVerses('detach');
+                    $model->associateLexicons('detach');
                 }
             }
         });
         People::deleted(function($model)
         {
             $model->verses()->sync([]);
+            $model->lexicons()->sync([]);
+            $model->associateLexicons('detach');
         });
 
         Location::saved(function($model)
@@ -162,19 +168,26 @@ class AppServiceProvider extends ServiceProvider
             if($model->isDirty('location_name') && !$model->isDirty('associate_verses') && $model->associate_verses){
                 $model->associateVerses('detach');
                 $model->associateVerses('attach');
+                $model->associateLexicons('detach');
+                $model->associateLexicons('attach');
             }
             if($model->isDirty('associate_verses')){
                 if($model->associate_verses){
                     $model->associateVerses('attach');
+                    $model->associateLexicons('attach');
                 }
                 else{
                     $model->associateVerses('detach');
+                    $model->associateLexicons('detach');
                 }
             }
         });
         Location::deleted(function($model)
         {
             $model->verses()->sync([]);
+            $model->lexicons()->sync([]);
+            $model->associateLexicons('detach');
+
         });
 
         Coupon::saving(function($model)
