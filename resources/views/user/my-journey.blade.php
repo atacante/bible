@@ -1,10 +1,80 @@
 @extends('layouts.app')
 {{-- Web site Title --}}
+
 @section('title')
     @parent
 @stop
 
 @section('content')
+
+    <section class="bl-my-journey">
+        <h2 class="bl-heading">
+            <i class="bs-myjourney cu-gift2"></i>My Journey
+        </h2>
+        <sectin class="profile">
+            <div class="user">
+                @if(Auth::user() && Auth::user()->avatar)
+                    <div class="userpic" style="background: url('{!!
+                        Auth::user()->avatar != ''
+                            ? Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar
+                            : ''
+                        !!}')"></div>
+                @else
+                    <div class="no-userpic"></div>
+                @endif
+                <div class="user-info">
+                    <div class="user-name">{!! Auth::user()->name !!}</div>
+                    <div>Member Since: {!! Auth::user()->created_at->format('d M, Y') !!}</div>
+                    <div>
+                        <span class="friends">
+                            <i class="bs-friends"></i>
+                            {!! count(array_intersect(Auth::user()->requests->modelKeys(), Auth::user()->friends->modelKeys())) !!}
+                        </span>
+                        <span class="groups">
+                            <i class="bs-s-groups"></i>
+                            {!! Auth::user()->joinedGroups->count()+Auth::user()->myGroups->count() !!}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="notes">
+                <div class="count">
+                    <i class="bs-note"></i> {!! $content['notesCount'] !!}
+                </div>
+                <div class="title">
+                    Note{!! $content['notesCount'] != 1 ? 's' : '' !!}
+                </div>
+            </div>
+
+            <div class="entries">
+                <div class="count">
+                    <i class="bs-journal"></i> {!! $content['journalCount'] !!}
+                </div>
+                <div class="title">
+                    Journal Entr{!! $content['journalCount'] != 1 ? 'ies' : 'y' !!}
+                </div>
+            </div>
+
+            <div class="prayers">
+                <div class="count">
+                    <i class="bs-pray"></i>&nbsp;{!! $content['prayersCount'] !!}
+                </div>
+                <div class="title">
+                    Prayer{!! $content['prayersCount'] != 1?'s':'' !!}
+                </div>
+            </div>
+
+            <a href="#" class="create-record">
+                <i class="bs-add"></i>Create Record
+            </a>
+        </sectin>
+
+    </section>
+
+    <hr>
+
+    {{-- OLD --}}
+
     <h2 class="h2-new mb3">
         <i class="bs-myjourney cu-gift2"></i>
         My Journey
