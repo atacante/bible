@@ -333,3 +333,8 @@ h4.h4-sub-kit {
     font-size: 0.93rem;
     line-height: 0.93rem;
 }
+@media(--xsmall){
+    .resp-text-center {
+        text-align: center;
+    }
+}
