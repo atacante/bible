@@ -192,6 +192,11 @@ $(document).ready(function(){
         $('.def-highlight').removeClass('def-highlight');
         $(that).addClass('def-highlight');
 
+        $('.j-reader-actions').css({
+            top: ($(that).offset().top-66) + "px",
+            left: ($(that).pageX-105) + "px"
+        }).animate( { "opacity": "show", top:($(that).offset().top-75)} , 200 );
+
     });
 
 
@@ -204,7 +209,7 @@ $(document).ready(function(){
             $(this).popover('destroy');
         });
 
-        var definition_word =  $('.word-definition[data-lexid='+definitionId+']').first();
+        var definition_word = reader.getDefinitionWord(definitionId);
 
         var that = $(definition_word).parent();
 
@@ -227,44 +232,23 @@ $(document).ready(function(){
 
                 reader.clearHighlights();
 
-                $(that).append(
+                $(definition_word).after(
 
-                    '<div class="j-lex-content lex-content font-size-16">' +
+                    '<div class="j-lex-content lex-content font-size-16" data-lexid="'+definitionId+'">' +
                         data +
                     '</div>'
                 );
                 $(definition_word).addClass('highlight');
 
-                var definitionWordHeight = $(definition_word).height();
+                reader.recalculateAllActiveLexicons();
 
-                var definitionWordWidth = $(definition_word).width();
-                var definitionStartPosition = $(definition_word).offset().left;
-                var definitionEndPosition = definitionStartPosition + definitionWordWidth;
-
-                var lexiconPopupStartPosition = $('.j-lex-content').offset().left;
-
-                var leftOffset = 0;
-
-                // Check if definition has 2 lines or more
-                if(definitionWordHeight < 40){
-                    leftOffset = (definitionStartPosition + definitionEndPosition)/2 - 15 - lexiconPopupStartPosition;
-                }else{
-                    leftOffset = definitionStartPosition - lexiconPopupStartPosition + 15 ;
-                }
-
-                $('.lex-content .popup-arrow3').css({
-                    left: leftOffset + "px"
-                });
-
-                $('.j-lex-content').on('click','.j-btn-reset', function(){
-                    reader.clearHighlights();
-                });
+                reader.closeDefinition();
             }
         });
-
          return false;
-
     });
+
+
 
     $('body').on('shown.bs.popover', function () {
         $(".j-with-images .people-image").each(function (i) {
@@ -903,9 +887,8 @@ $(document).ready(function(){
                 $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+filteredText);
 
                 $('.j-reader-actions').css({
-                    top: ($(endElement).offset().top-66) + "px",
                     left: (eventObject.pageX-105) + "px"
-                }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
+                });
             }
             else {
                 $('.j-reader-actions').remove();
