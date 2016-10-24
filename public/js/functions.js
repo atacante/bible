@@ -406,12 +406,67 @@ site.FacebookInviteFriends = function ()
     });
 }
 
-reader.clearHighlights = function(){
+reader.clearHighlights = function(definition_obj, definition_word){
     $('.j-reader-actions').remove();
-    $('.j-lex-content').remove();
-    $('.highlight').removeClass('highlight');
-    $('.clicked').removeClass('clicked');
+    if(definition_obj){
+        definition_obj.parent('.j-lex-content').remove();
+    }
+    if(definition_word){
+        $(definition_word).removeClass('highlight');
+        $(definition_word).parent('.j-verse-text').removeClass('clicked');
+        $(definition_word).after(' ');
+    }
+
     $('.def-highlight').removeClass('def-highlight');
+}
+
+reader.closeDefinition = function(){
+    $('.j-lex-content').on('click','.j-btn-reset', function(){
+
+        var definitionId = $(this).parent().data('lexid');
+        var definition_word = reader.getDefinitionWord(definitionId);
+
+        reader.clearHighlights($(this), definition_word);
+        reader.recalculateAllActiveLexicons(definitionId);
+    });
+}
+
+reader.getDefinitionWord = function(definitionId){
+    return $('.word-definition[data-lexid='+definitionId+']').first();
+}
+
+reader.setLexiconArrowOffset = function(definitionId){
+    var definition_word = reader.getDefinitionWord(definitionId);
+    var definitionWordHeight = $(definition_word).height();
+
+    var definitionWordWidth = $(definition_word).width();
+    var definitionStartPosition = $(definition_word).offset().left;
+    var definitionEndPosition = definitionStartPosition + definitionWordWidth;
+
+    var lexicon = $('.j-lex-content[data-lexid="'+definitionId+'"]');
+
+    var lexiconPopupStartPosition = $(lexicon).offset().left;
+
+    var leftOffset = 0;
+
+    // Check if definition has 2 lines or more
+    if(definitionWordHeight < 40){
+        leftOffset = (definitionStartPosition + definitionEndPosition)/2 - 15 - lexiconPopupStartPosition;
+    }else{
+        leftOffset = definitionStartPosition - lexiconPopupStartPosition + 15 ;
+    }
+
+    $(lexicon).children('.popup-arrow3').css({
+        left: leftOffset + "px"
+    });
+}
+
+reader.recalculateAllActiveLexicons = function(){
+    $('.j-lex-content').each(function(){
+        var definitionId = $(this).data('lexid');
+
+        reader.setLexiconArrowOffset(definitionId);
+    })
 }
 
 site.checkNewWallPosts = function(wallType){

@@ -27,7 +27,7 @@
         <div class="col-md-12  medium">DEFINITION</div>
         <div class="col-md-12">{!! $lexiconinfo->definition !!}</div>
     </div>
-    <a class="btn-reset j-btn-reset">x</a>
+    <a class="btn-reset j-btn-reset"><i class="bs-close cu1-close"></i></a>
 @else
     <div class="popup-arrow3"></div>
     <div class="row">

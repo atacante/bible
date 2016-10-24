@@ -235,6 +235,31 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($partners);
         }
 
+        $faq = CmsPage::where('system_name','faq')->first();
+        if(!$faq){
+            $faq = [
+                'content_type' => CmsPage::CONTENT_PAGE,
+                'title' => 'F.A.Q.',
+                'system_name' => 'faq',
+                'text' =>
+                    '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non,
+                placeat sit! Dolore labore magnam repudiandae sapiente?
+                Adipisci cum fuga illo ipsum optio quis voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Ab cum dolorem hic illum incidunt non, placeat sit! Dolore labore magnam repudiandae sapiente? </p>
+                <p>Adipisci cum fuga illo ipsum optio quis voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Ab cum dolorem hic illum incidunt non, placeat sit!
+                Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non,
+                placeat sit! Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum dolorem hic illum incidunt non, placeat sit!
+                Dolore labore magnam repudiandae sapiente? Adipisci cum fuga illo ipsum optio quis voluptatum.</p>',
+                'meta_title' => 'F.A.Q.',
+                'meta_keywords' => 'F.A.Q.',
+                'meta_description' => 'F.A.Q.',
+            ];
+            CmsPage::insert($faq);
+        }
+
         $diffTooltip = CmsPage::where('system_name','diff_explain')->first();
         if(!$diffTooltip){
             $diffTooltip = [

@@ -33,14 +33,16 @@
         </div>
         <div class="col-md-9 public-wall">
             @role('user')
-            <ul class="nav nav-pills tabs-nav">
-                <li role="presentation" class="{!! (!Request::get('type') || Request::get('type') == 'all')?'active':'' !!}">
-                    <a href="{!! url('/community/wall?type=all') !!}">All public records</a>
-                </li>
-                <li role="presentation" class="{!! (Request::get('type') == 'friends')?'active':'' !!}">
-                    <a href="{!! url('/community/wall?type=friends') !!}">My friends records</a>
-                </li>
-            </ul>
+            <div class="resp-text-center">
+                <ul class="nav nav-pills tabs-nav">
+                    <li role="presentation" class="{!! (!Request::get('type') || Request::get('type') == 'all')?'active':'' !!}">
+                        <a href="{!! url('/community/wall?type=all') !!}">All public records</a>
+                    </li>
+                    <li role="presentation" class="{!! (Request::get('type') == 'friends')?'active':'' !!}">
+                        <a href="{!! url('/community/wall?type=friends') !!}">My friends records</a>
+                    </li>
+                </ul>
+            </div>
             @endrole
             <div class="c-white-content j-wall-items" data-walltype="{{App\WallPost::WALL_TYPE_PUBLIC}}">
                 @role('user')

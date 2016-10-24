@@ -192,6 +192,11 @@ $(document).ready(function(){
         $('.def-highlight').removeClass('def-highlight');
         $(that).addClass('def-highlight');
 
+        $('.j-reader-actions').css({
+            top: ($(that).offset().top-66) + "px",
+            left: ($(that).pageX-105) + "px"
+        }).animate( { "opacity": "show", top:($(that).offset().top-75)} , 200 );
+
     });
 
 
@@ -204,7 +209,7 @@ $(document).ready(function(){
             $(this).popover('destroy');
         });
 
-        var definition_word =  $('.word-definition[data-lexid='+definitionId+']').first();
+        var definition_word = reader.getDefinitionWord(definitionId);
 
         var that = $(definition_word).parent();
 
@@ -227,44 +232,23 @@ $(document).ready(function(){
 
                 reader.clearHighlights();
 
-                $(that).append(
+                $(definition_word).after(
 
-                    '<div class="j-lex-content lex-content font-size-16">' +
+                    '<div class="j-lex-content lex-content font-size-16" data-lexid="'+definitionId+'">' +
                         data +
                     '</div>'
                 );
                 $(definition_word).addClass('highlight');
 
-                var definitionWordHeight = $(definition_word).height();
+                reader.recalculateAllActiveLexicons();
 
-                var definitionWordWidth = $(definition_word).width();
-                var definitionStartPosition = $(definition_word).offset().left;
-                var definitionEndPosition = definitionStartPosition + definitionWordWidth;
-
-                var lexiconPopupStartPosition = $('.j-lex-content').offset().left;
-
-                var leftOffset = 0;
-
-                // Check if definition has 2 lines or more
-                if(definitionWordHeight < 40){
-                    leftOffset = (definitionStartPosition + definitionEndPosition)/2 - 15 - lexiconPopupStartPosition;
-                }else{
-                    leftOffset = definitionStartPosition - lexiconPopupStartPosition + 15 ;
-                }
-
-                $('.lex-content .popup-arrow3').css({
-                    left: leftOffset + "px"
-                });
-
-                $('.j-lex-content').on('click','.j-btn-reset', function(){
-                    reader.clearHighlights();
-                });
+                reader.closeDefinition();
             }
         });
-
          return false;
-
     });
+
+
 
     $('body').on('shown.bs.popover', function () {
         $(".j-with-images .people-image").each(function (i) {
@@ -773,7 +757,7 @@ $(document).ready(function(){
             method: "POST",
             url: '/reader/save-highlight',
             data:{
-                bible_version:$('input[name=version]').val(),
+                bible_version:$('select[name=version]').val(),
                 verse_from_id:reader.startVerseId,
                 verse_to_id:reader.endVerseId,
                 color:color,
@@ -903,9 +887,8 @@ $(document).ready(function(){
                 $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+filteredText);
 
                 $('.j-reader-actions').css({
-                    top: ($(endElement).offset().top-66) + "px",
                     left: (eventObject.pageX-105) + "px"
-                }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
+                });
             }
             else {
                 $('.j-reader-actions').remove();
@@ -1801,7 +1784,10 @@ $(document).ready(function(){
 
         e.preventDefault();
     });
-
+    $(".j-btn-related-rec").on("click", function (e) {
+        $(".j-mobile-rel-rec").toggle();
+        e.preventDefault();
+    });
     $(window).resize(function() {
         if ($("body").width() < 768) {
             $(".j-choose-desctop").hide();
@@ -1810,6 +1796,8 @@ $(document).ready(function(){
             $(".j-choose-mobile").hide();
             $(".j-choose-desctop").show();
         }
+
+        dinamicArrows();
     });
 
     /* ----------------- CHAPTER ----------------- */
@@ -1936,27 +1924,30 @@ $(document).ready(function(){
         $('.j-short-verses-filters').toggleClass('hidden');
     });
 
-    if($('.j-chapter-content,.j-dynamic-arrows').length > 0){
-        var eTop = $('.j-nav-sel2').offset().top;
-        var arrowsTop = eTop - $(window).scrollTop();
-        var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
-        $('.j-dynamic-arrows').width($('.j-chapter-content').width());
-        $('.j-dynamic-arrows').css('top',($(window).height()/2)-20);
-        if((arrowsTop < -45 && paginationPos < 70) || (paginationPos > 70 && arrowsTop > -45)){
-            $('.j-dynamic-arrows').fadeIn();
-        }
-        $(window).scroll(function() {
+    function dinamicArrows() {
+        if($('.j-chapter-content,.j-dynamic-arrows').length > 0){
+            var eTop = $('.j-nav-sel2').offset().top;
             var arrowsTop = eTop - $(window).scrollTop();
             var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
+            $('.j-dynamic-arrows').width($('.j-chapter-content').width());
+            $('.j-dynamic-arrows').css('top',($(window).height()/2)-20);
             if((arrowsTop < -45 && paginationPos < 70) || (paginationPos > 70 && arrowsTop > -45)){
                 $('.j-dynamic-arrows').fadeIn();
             }
-            if((arrowsTop > -45 || paginationPos > 70) || (paginationPos > 70 && arrowsTop < -45)){
-                $('.j-dynamic-arrows').fadeOut();
-            }
+            $(window).scroll(function() {
+                var arrowsTop = eTop - $(window).scrollTop();
+                var paginationPos = $(window).height() - ($('.j-reader-pagination').offset().top  - $(window).scrollTop());
+                if((arrowsTop < -45 && paginationPos < 70) || (paginationPos > 70 && arrowsTop > -45)){
+                    $('.j-dynamic-arrows').fadeIn();
+                }
+                if((arrowsTop > -45 || paginationPos > 70) || (paginationPos > 70 && arrowsTop < -45)){
+                    $('.j-dynamic-arrows').fadeOut();
+                }
 
-        });
+            });
+        }
     }
+    dinamicArrows();
 
     if($('.j-compare-verses').length > 0){
         $('body').scrollTo($('.j-compare-verses'),0,{offset:0});
@@ -2064,5 +2055,14 @@ $(document).ready(function(){
                 $('#popup-sm .modal-body .j-my-bookmarks-list').append(data);
             }
         });
+    });
+
+    $('.j-hide-menu li.active a').on("click", function (e) {
+        $('.j-hide-menu').toggleClass("hide-menu");
+        e.preventDefault();
+    });
+    $('.j-hide-menu li.active .caret').on("click", function (e) {
+        $('.j-hide-menu').toggleClass("hide-menu");
+        e.preventDefault();
     });
 });

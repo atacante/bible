@@ -166,12 +166,13 @@
 
                         {{-- Right icons panel --}}
                         <ul class="icon-panel top-vertical1">
-                            {{--@role('user')--}}
-                            <li>
+                            @role('user')
+                            <li class="btn-related-rec-resp">
                                 <a href="#" class="j-btn-related-rec">
-                                    <i class="bs-staroutlined cu-print"></i>
+                                    <i title="Related records" class="bs-staroutlined cu-print"></i>
                                 </a>
                             </li>
+                            @endrole
                             <li>
                                 <a href="{!! url('reader/delete-bookmark',[App\User::BOOKMARK_CHAPTER,$content['version_code'],$content['verses'][0]->id]) !!}" class="j-bookmark {!! ViewHelper::checkBookmark(App\User::BOOKMARK_CHAPTER,$content['verses'][0])?'':'hidden' !!}">
                                     <i title="Remove from bookmarks" class="fa fa-bookmark cu-print"></i>
@@ -180,22 +181,22 @@
                                     <i title="Add to bookmarks" class="fa fa-bookmark-o cu-print"></i>
                                 </a>
                             </li>
-                            {{--@endrole--}}
+
                             <li>
                                 <a href="#" class="j-btn-compare">
-                                    <i class="bs-compare cu-print"></i>
+                                    <i title="Compare versions" class="bs-compare cu-print"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="j-print-chapter">
-                                    <i class="bs-print cu-print"></i>
+                                    <i title="Print" class="bs-print cu-print"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="j-btn-settings">
-                                    <i class="bs-settings cu-print"></i>
+                                    <i title="Settings" class="bs-settings cu-print"></i>
                                     @if(ViewHelper::checkNotifTooltip('got_related_records_tooltip') || ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip'))
-                                    <i class="bs-starsolid cu-starsolid-settings"></i>
+                                    <i title="Settings" class="bs-starsolid cu-starsolid-settings"></i>
                                     @endif
                                 </a>
                             </li>
@@ -274,7 +275,9 @@
             {!! Form::close() !!}
 
             <!-- Mobile Related Records -->
-            <div style="display: none">
+
+            <div class="my1-col-md-4 related-records j-mobile-rel-rec" style="display: none">
+                <div class="popup-arrow"></div>
                 @include('reader.related')
             </div>
 
@@ -355,8 +358,9 @@
                     </div>
 
                 </div>
-
-                @include('reader.related')
+                <div class="my1-col-md-4 related-records j-desktop-rel-rec">
+                    @include('reader.related')
+                </div>
 
             </div>
         </div>

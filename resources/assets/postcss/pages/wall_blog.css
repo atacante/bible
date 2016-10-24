@@ -45,6 +45,14 @@ textarea.wall-text-area:focus {
         margin-bottom: 0;
     }
 }
+@media(--xsmall){
+    .c-area-group1 {
+        padding: 0 100px 0 0;
+        & .user-image {
+            display: none;
+        }
+    }
+}
 .c-privacy {
     height: 54px;
     width: 54px;

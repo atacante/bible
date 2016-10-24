@@ -245,12 +245,12 @@
                         </li>
                     @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'membership'))
-                        <li>
+                        {{--<li>
                             <a href="{{ URL::to('/site/membership') }}">
                                 <i class="bs-community cu-nav-icons"></i>
                                 Membership
                             </a>
-                        </li>
+                        </li>--}}
                     @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'how_it_works'))
                     <li>
@@ -268,9 +268,11 @@
                         </a>
                     </li>
                     @endif
-                    @if(ViewHelper::checkPublished($data['cmsItems'],'recommended_resources'))
+                    @if(    ViewHelper::checkPublished($data['cmsItems'],'recommended_resources')
+                        && ($catId = ViewHelper::getBlogCatId('Recommended Resources'))
+                    )
                     <li>
-                        <a href="{{ URL::to('/site/recommended-resources') }}">
+                        <a href="{{ URL::to('/blog?category='.$catId) }}">
                             <i class="bs-upload cu-bs-biblestudylogo" style="vertical-align: bottom;"></i>
                             Recommended Resources
                         </a>
@@ -294,13 +296,21 @@
                             {{--FAQ--}}
                         {{--</a>--}}
                     {{--</li>--}}
+                    @if(ViewHelper::checkPublished($data['cmsItems'],'faq'))
+                        <li>
+                            <a href="{{ URL::to('/site/faq') }}">
+                                <i class="bs-faq cu-nav-icons" style="font-size: 1.3rem; vertical-align: top;"></i>
+                                F.A.Q.
+                            </a>
+                        </li>
+                    @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'partners'))
-                    <li>
+                    {{--<li>
                         <a href="{{ URL::to('/site/partners') }}">
                             <i class="bs-community cu-nav-icons"></i>
                             Partners
                         </a>
-                    </li>
+                    </li>--}}
                     @endif
                     @if(ViewHelper::checkPublished($data['cmsItems'],'contact_main'))
                     <li>
@@ -341,12 +351,16 @@
                             Friends
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ URL::to('/blog') }}">
-                            <i class="bs-blog"></i>
-                            Blog
-                        </a>
-                    </li>
+                    @if(    ViewHelper::checkPublished($data['cmsItems'],'recommended_resources')
+                        && ($catId = ViewHelper::getBlogCatId('Recommended Resources'))
+                    )
+                        <li>
+                            <a href="{{ URL::to('/blog?category='.$catId) }}">
+                                <i class="bs-blog"></i>
+                                Blog
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </li>
             @if(Request::segment(1) == 'reader')

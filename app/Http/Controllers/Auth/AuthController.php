@@ -65,12 +65,27 @@ class AuthController extends Controller
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
             'coupon_code' => 'coupon_exist|coupon_expire|coupon_uses',
-            'g-recaptcha-response' => 'required|captcha',
-            'card_number' => 'numeric',
+            'g-recaptcha-response' => 'required|captcha'
         ];
 
         if(Input::get('plan_type') == User::PLAN_PREMIUM){
             $rules['plan_name'] = 'required';
+
+            if(!Input::get('coupon_code', false)){
+                $rules['card_number'] = 'required|numeric';
+                $rules['card_expiration'] = 'required';
+                $rules['billing_name'] = 'required';
+                $rules['billing_address'] = 'required';
+                $rules['billing_zip'] = 'required';
+            }
+        }else{
+            if(Input::get('card_number') || Input::get('card_expiration')){
+                $rules['card_expiration'] = 'required';
+                $rules['card_number'] = 'required|numeric';
+                $rules['billing_name'] = 'required';
+                $rules['billing_address'] = 'required';
+                $rules['billing_zip'] = 'required';
+            }
         }
 
         return Validator::make($data, $rules,

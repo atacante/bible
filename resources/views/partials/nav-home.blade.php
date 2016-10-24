@@ -47,10 +47,10 @@
               </li>
             @endif
             @if(ViewHelper::checkPublished($data['cmsItems'],'membership'))
-              <li>
+{{--              <li>
                 <a class="bs-community"
                   href="{{ URL::to('/site/membership') }}">Membership</a>
-              </li>
+              </li>--}}
             @endif
             @if(ViewHelper::checkPublished($data['cmsItems'],'how_it_works'))
               <li>
@@ -64,19 +64,29 @@
                   href="{{ URL::to('/site/about') }}">About BSC</a>
               </li>
             @endif
-            @if(ViewHelper::checkPublished($data['cmsItems'],'recommended_resources'))
+            @if(    ViewHelper::checkPublished($data['cmsItems'],'recommended_resources')
+                && ($catId = ViewHelper::getBlogCatId('Recommended Resources'))
+            )
               <li>
                 <a class="bs-upload"
-                  href="{{ URL::to('/site/recommended-resources') }}">Recommended Resources</a>
+                  href="{{ URL::to('/blog?category='.$catId) }}">Recommended Resources</a>
               </li>
             @endif
             <li>
               <a class="bs-gift" href="{{ URL::to('/shop') }}">Gift Shop</a>
             </li>
+            {{--<li>
+              <a class="bs-blog" href="{{ URL::to('/blog') }}">Blog</a>
+            </li>--}}
+            @if(ViewHelper::checkPublished($data['cmsItems'],'faq'))
+            <li>
+              <a class="bs-faq" href="{{ URL::to('/site/faq') }}">F.A.Q.</a>
+            </li>
+            @endif
             @if(ViewHelper::checkPublished($data['cmsItems'],'partners'))
-              <li>
+{{--              <li>
                 <a class="bs-community" href="{{ URL::to('/site/partners') }}">Partners</a>
-              </li>
+              </li>--}}
             @endif
             @if(ViewHelper::checkPublished($data['cmsItems'],'contact_main'))
               <li>
