@@ -360,12 +360,21 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 }
 .cu3-btn1 {
   font-size: 0.93rem;
-  padding: 6px 8px 4px;
+  padding: 6px 8px 3px;
   border-width: 2px;
   border-radius: 0;
   -webkit-border-radius: 0;
   background: transparent;
   float: right;
+}
+@media(--xsmall){
+    .cu3-btn1 {
+        float: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px 8px !important;
+    }
 }
 .btn2, .btn2:visited {
   display: inline-block;

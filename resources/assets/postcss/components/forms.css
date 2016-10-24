@@ -80,8 +80,19 @@ label {
     float: left;
     margin-right: 5px;
 }
+@media(--xsmall){
+    .search-text-input {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
 .cu-search1 {
     font-size: 1.29rem;
+}
+@media(--xsmall){
+    .cu-search1 {
+        vertical-align: middle;
+    }
 }
 .cu-search2 {
     display: inline-block;
