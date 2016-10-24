@@ -1,6 +1,24 @@
 ul.community-menu li {
     margin: 20px;
 }
+@media(--xsmall){
+    ul.community-menu.hide-menu li.active {
+        margin: 0 20px;
+    }
+}
+ul.community-menu li .caret {
+    display: none;
+}
+@media(--xsmall){
+    ul.community-menu li.active .caret {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 13px;
+        color: white;
+        border-width: 7px;
+    }
+}
 ul.community-menu li.active a {
     background-color: #313d47;
     color: white;
@@ -62,5 +80,13 @@ ul.community-menu li a:hover, ul.community-menu li.active a:hover {
 @media(--xsmall){
     .nav-left .divider{
         background-color: #4a5d6d;
+    }
+}
+@media(--xsmall){
+    .hide-menu li {
+        display: none;
+    }
+    .hide-menu li.active {
+        display: block !important;
     }
 }

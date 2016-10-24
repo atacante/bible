@@ -2073,4 +2073,13 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('.j-hide-menu li.active a').on("click", function (e) {
+        $('.j-hide-menu').toggleClass("hide-menu");
+        e.preventDefault();
+    });
+    $('.j-hide-menu li.active .caret').on("click", function (e) {
+        $('.j-hide-menu').toggleClass("hide-menu");
+        e.preventDefault();
+    });
 });
