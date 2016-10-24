@@ -410,16 +410,15 @@
         </ul>
     </div>
 </nav>
-<div class="bl-subnav">
-  @if(Request::segment(1) == 'reader')
-    {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
-    {!! Form::text('q',Request::input('q'),['class' => 'search-text1','placeholder' => 'Search verse everywhere...']) !!}
-    <button class="search-btn1" type="submit"><i class="bs-search"></i></button>
-    {!! Form::close() !!}
-  @endif
-
-  {{-- bookmarks list button --}}
-  @if(Auth::check() && Request::segment(1) == 'reader')
-    <a class="my-bookmarks j-my-bookmarks" href="{{ url('user/my-bookmarks/'.Request::get('version')) }}">{{--<i class="fa fa-bookmark-o" aria-hidden="true"></i>--}}My Bookmarks</a>
-  @endif
-</div>
+@if(Request::segment(1) == 'reader')
+    <div class="bl-subnav">
+        {!! Form::open(['method' => 'get','url' => '/reader/search','id' => 'search-verse']) !!}
+        {!! Form::text('q',Request::input('q'),['class' => 'search-text1','placeholder' => 'Search verse everywhere...']) !!}
+        <button class="search-btn1" type="submit"><i class="bs-search"></i></button>
+        {!! Form::close() !!}
+        {{-- bookmarks list button --}}
+        @if(Auth::check())
+            <a class="my-bookmarks j-my-bookmarks" href="{{ url('user/my-bookmarks/'.Request::get('version')) }}">{{--<i class="fa fa-bookmark-o" aria-hidden="true"></i>--}}My Bookmarks</a>
+        @endif
+    </div>
+@endif
