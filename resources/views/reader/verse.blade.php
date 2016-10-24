@@ -218,8 +218,23 @@
                             <tr>
                                 <td class="orange-bord" colspan="3">
                                     <span class="t-label2">Analysis:</span>
-                                     <br>
-                                    {!! $lexiconinfo->symbolism !!}
+                                     <div>{!! $lexiconinfo->symbolism != '...'?$lexiconinfo->symbolism:'' !!}</div>
+                                     <div class="read-more-mt">
+                                         @if($lexiconinfo->locations->count() || $lexiconinfo->peoples->count())
+                                             Read more about:
+                                             @if($lexiconinfo->peoples->count())
+                                                 @foreach($lexiconinfo->peoples as $pkey => $people)
+                                                     <a class="j-analysis-read-more" href="#people{!! $people->id !!}">{!! $people->people_name !!}</a>{!! $lexiconinfo->peoples->count() > ($pkey+1) || $lexiconinfo->locations->count()?',':'' !!}
+
+                                                 @endforeach
+                                             @endif
+                                             @if($lexiconinfo->locations->count())
+                                                 @foreach($lexiconinfo->locations as $lkey => $location)
+                                                     <a class="j-analysis-read-more" href="#location{!! $location->id !!}">{!! $location->location_name !!}</a>{!! $lexiconinfo->locations->count() > ($lkey+1)?',':'' !!}
+                                                 @endforeach
+                                             @endif
+                                         @endif
+                                     </div>
                                 </td>
                             </tr>
                             @endif
@@ -245,7 +260,7 @@
         <div class="row">
             <div class="col-xs-12">
                 @foreach($content['main_verse']['verse']->locations as $location)
-                    <div class="c-white-item mb4 cu-ci1">
+                    <div data-locationid="{!! $location->id !!}" class="j-location-item c-white-item mb4 cu-ci1">
                         <div class="cu-ci1-inner">
                             @if($location->images->count())
                                 <div id="location-{!! $location->id !!}" class="carousel slide" data-ride="carousel" data-interval="{!! rand(5000,7000) !!}">
@@ -317,7 +332,7 @@
         <div class="row">
             <div class="col-xs-12">
             @foreach($content['main_verse']['verse']->peoples as $people)
-                <div class="c-white-item mb4 cu-ci1 del-photo">
+                <div data-peopleid="{!! $people->id !!}" class="j-people-item c-white-item mb4 cu-ci1 del-photo">
                     <div class="cu-ci1-inner">
                         @if($people->images->count())
                             <div id="people-{!! $people->id !!}" class="carousel slide" data-ride="carousel" data-interval="{!! rand(5000,7000) !!}">

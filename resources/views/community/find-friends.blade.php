@@ -7,9 +7,9 @@
             @include('community.menu')
         </div>
         <div class="col-md-9">
-            <div class="clearfix">
+            <div class="clearfix resp-text-center">
                 @role('user')
-                <ul class="nav nav-pills tabs-nav">
+                <ul class="nav nav-pills tabs-nav resp-padd-search">
                     <li role="presentation" class="{!! (!Request::get('type') || Request::get('type') == 'all')?'active':'' !!}">
                         <a href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'all']))) !!}">All users</a>
                     </li>
@@ -22,7 +22,7 @@
                     <li role="presentation" class="{!! (Request::get('type') == 'inbox-requests' || Request::get('type') == 'sent-requests')?'active':'' !!}">
                         <a href="{!! url('/community/find-friends?'.http_build_query(array_merge(Request::input(),['type' => 'inbox-requests']))) !!}">Friend Requests</a>
                     </li>
-                    <li class="pull-right">
+                    <li class="pull-right resp-tab-search">
                         @include('community.friends-filters')
                     </li>
                 </ul>

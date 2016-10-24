@@ -14,7 +14,7 @@
             <label>
                 {!! Form::hidden('associate_verses', 0) !!}
                 {!! Form::checkbox('associate_verses', 1,true) !!}
-                <span>Associate name with verses <i>(Will be associated with all the verses found by character name)</i></span>
+                <span>Associate name with verses <i>(Will be associated with all the verses and lexicon phrases found by character name)</i></span>
             </label>
         </div>
     </div>

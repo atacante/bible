@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Helpers\ModelHelper;
 use Illuminate\Support\Facades\Request;
 use Validator;
 
@@ -38,6 +39,11 @@ class Location extends BaseModel {
         return $this->belongsToMany(VersesKingJamesEn::class, 'location_verse', 'location_id','verse_id');
     }
 
+    public function lexicons()
+    {
+        return $this->belongsToMany(LexiconNasb::class, 'location_lexicon', 'location_id','lexicon_id');// we using LexiconNasb because this version is a base for all other lexicons
+    }
+
     /* Experimental method */
     public function validate()
     {
@@ -69,6 +75,54 @@ class Location extends BaseModel {
                     $this->verses()->detach($verses->lists('id')->toArray());
                     break;
             }
+        }
+    }
+
+    public function associateLexicons($action = 'attach'){
+        $locationName = $this->location_name;
+        if($action == 'detach'){
+            $locationName = $this->getOriginal('location_name');
+        }
+
+        $nasbPhrases = LexiconNasb::where(function($sq) use($locationName){
+            $sq->orWhere('verse_part','like','% '.$locationName.' %');
+            $sq->orWhere('verse_part','like',$locationName.' %');
+            $sq->orWhere('verse_part','like','% '.$locationName);
+            $sq->orWhere('verse_part','like',$locationName);
+        });
+
+        $kjvPhrases = LexiconKjv::where(function($sq) use($locationName){
+            $sq->orWhere('verse_part','like','% '.$locationName.' %');
+            $sq->orWhere('verse_part','like',$locationName.' %');
+            $sq->orWhere('verse_part','like','% '.$locationName);
+            $sq->orWhere('verse_part','like',$locationName);
+        });
+        $bereanPhrases = LexiconBerean::where(function($sq) use($locationName){
+            $sq->orWhere('verse_part','like','% '.$locationName.' %');
+            $sq->orWhere('verse_part','like',$locationName.' %');
+            $sq->orWhere('verse_part','like','% '.$locationName);
+            $sq->orWhere('verse_part','like',$locationName);
+        });
+
+        $ids = array_unique(array_merge($nasbPhrases->lists('id')->toArray(),$kjvPhrases->lists('id')->toArray(),$bereanPhrases->lists('id')->toArray()));
+
+        if(count($ids)){
+            switch($action){
+                case 'attach':
+                    $this->lexicons()->attach($ids);
+                    ModelHelper::updateSymbolism(LexiconNasb::class,$ids);
+                    ModelHelper::updateSymbolism(LexiconKjv::class,$ids);
+                    ModelHelper::updateSymbolism(LexiconBerean::class,$ids);
+                    break;
+                case 'detach':
+                    $this->lexicons()->detach($ids);
+                    ModelHelper::clearSymbolism(LexiconNasb::class,$ids);
+                    ModelHelper::clearSymbolism(LexiconKjv::class,$ids);
+                    ModelHelper::clearSymbolism(LexiconBerean::class,$ids);
+                    break;
+            }
+
+
         }
     }
 }

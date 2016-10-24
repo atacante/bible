@@ -1082,6 +1082,22 @@ $(document).ready(function(){
         }
     }
 
+    $('.j-analysis-read-more').click(function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var hash = url.substring(url.indexOf('#'));
+        var param = hash.replace(/[0-9]/g, '');
+        var value = hash.replace( /^\D+/g, '');
+
+        if(param == '#location'){
+            var target = $(".j-location-item[data-locationid="+value+"]");
+        }
+        else if(param == '#people'){
+            var target = $(".j-people-item[data-peopleid="+value+"]");
+        }
+        $('body').scrollTo(target,500,{offset:-100});
+    });
+
     $('.j-version-status').change(function(){
         var data = {};
         data.version_code = $(this).data('version');

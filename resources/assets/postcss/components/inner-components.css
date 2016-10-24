@@ -156,6 +156,11 @@ ul.c-social li a:hover, ul.c-social li a:active {
     padding: 30px 30px 30px 120px !important;
     position: relative;
 }
+@media(--xsmall){
+    .public-wall .related-item {
+        padding: 20px 20px 10px 80px !important;
+    }
+}
 .related-records .related-item {
     padding: 0px;
     position: relative;
@@ -255,7 +260,35 @@ ul.c-social li a:hover, ul.c-social li a:active {
 .load-more-block{
     margin-bottom: 15px;
 }
-
+@media(--medium){
+    .community.wall {
+        & .load-more-block {
+            background: #ffffff;
+        }
+    }
+    .community.find-friends {
+        & .load-more-block {
+            padding-bottom: 25px !important;
+        }
+        & .load-more {
+            margin-top: 25px !important;
+        }
+    }
+    .load-more-block {
+        padding: 50px 30px;
+    }
+    .load-more-block.mb1 {
+        margin-bottom: 0 !important;
+    }
+    .load-more-block.mt3 {
+        margin-top: 0 !important;
+    }
+    .comments-list {
+        & .load-more-block {
+            padding: 25px 30px 0;
+        }
+    }
+}
 /* --- social icons --- */
 .at-icon-wrapper {
     background: #00b9f7 !important;

@@ -140,6 +140,11 @@
     -webkit-box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
     box-shadow: 0 0 7px 5px rgba(150,150,150,0.1);
 }
+@media(--xsmall){
+    .pop-should-see {
+        width: 246px;
+    }
+}
 .pp-title {
     color: #010101;
     font-family: ns_widenormal;
@@ -158,6 +163,11 @@
 }
 .pop-should-see .pp-title {
     padding: 20px 30px;
+}
+@media(--xsmall){
+    .pop-should-see .pp-title {
+        padding: 20px;
+    }
 }
 ul.pp-c-items {
     display: block;
