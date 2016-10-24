@@ -20,12 +20,12 @@
                             : ''
                         !!}')"></div>
                 @else
-                    <div class="no-userpic"></div>
+                    <div class="userpic no-photo"></div>
                 @endif
                 <div class="user-info">
-                    <div class="user-name">{!! Auth::user()->name !!}</div>
-                    <div>Member Since: {!! Auth::user()->created_at->format('d M, Y') !!}</div>
-                    <div>
+                    <div class="name">{!! Auth::user()->name !!}</div>
+                    <div class="since">Member Since: {!! Auth::user()->created_at->format('d M, Y') !!}</div>
+                    <div class="relations">
                         <span class="friends">
                             <i class="bs-friends"></i>
                             {!! count(array_intersect(Auth::user()->requests->modelKeys(), Auth::user()->friends->modelKeys())) !!}
@@ -37,30 +37,33 @@
                     </div>
                 </div>
             </div>
-            <div class="notes">
-                <div class="count">
-                    <i class="bs-note"></i> {!! $content['notesCount'] !!}
-                </div>
-                <div class="title">
-                    Note{!! $content['notesCount'] != 1 ? 's' : '' !!}
-                </div>
-            </div>
 
-            <div class="entries">
-                <div class="count">
-                    <i class="bs-journal"></i> {!! $content['journalCount'] !!}
+            <div class="counters">
+                <div class="counter notes">
+                    <div class="count">
+                        <i class="bs-note"></i> {!! $content['notesCount'] !!}
+                    </div>
+                    <div class="title">
+                        Note{!! $content['notesCount'] != 1 ? 's' : '' !!}
+                    </div>
                 </div>
-                <div class="title">
-                    Journal Entr{!! $content['journalCount'] != 1 ? 'ies' : 'y' !!}
-                </div>
-            </div>
 
-            <div class="prayers">
-                <div class="count">
-                    <i class="bs-pray"></i>&nbsp;{!! $content['prayersCount'] !!}
+                <div class="counter entries">
+                    <div class="count">
+                        <i class="bs-journal"></i> {!! $content['journalCount'] !!}
+                    </div>
+                    <div class="title">
+                        Journal Entr{!! $content['journalCount'] != 1 ? 'ies' : 'y' !!}
+                    </div>
                 </div>
-                <div class="title">
-                    Prayer{!! $content['prayersCount'] != 1?'s':'' !!}
+
+                <div class="counter prayers">
+                    <div class="count">
+                        <i class="bs-pray"></i>&nbsp;{!! $content['prayersCount'] !!}
+                    </div>
+                    <div class="title">
+                        Prayer{!! $content['prayersCount'] != 1?'s':'' !!}
+                    </div>
                 </div>
             </div>
 
