@@ -603,49 +603,12 @@ a.view-details:hover{
 #contact-info dd{
     margin-bottom: 20px;
 }
-.nav-left .divider{
-    height: 1px;
-    background-color: #e3e3e3;
-    margin: 10px 0;
-}
 .friends-list .friend-item{
     padding: 15px 0;
 }
 .friends-list .friend-item:last-child{
     border: 0;
 }
-.tabs-nav {
-    margin-bottom: 30px;
-    border-bottom: 2px solid #e3e3e3;
-}
-ul.tabs-nav li {
-    margin-bottom: -2px;
-    margin-right: 20px;
-}
-ul.tabs-nav li > a {
-    background-color: transparent !important;
-}
-ul.tabs-nav li:last-child {
-    margin-right: 0;
-}
-.tabs-nav.nav-pills>li>a,.user-block .nav-pills>li>a{
-    padding: 10px 0;
-    line-height: 20px;
-    border-radius: 0;
-    -webkit-border-radius: 0;
-    text-transform: uppercase;
-    font-size: 1.07rem;
-    font-family: ns_widenormal;
-    color: #505050;
-}
-.tabs-nav.nav-pills>li.active>a, .tabs-nav.nav-pills>li:hover>a {
-    background: transparent !important;
-    color: #00b9f7;
-    font-family: ns_widedemibold;
-    font-size: 1.07rem;
-    border-bottom: 2px solid #00b9f7;
-}
-
 #avatar.dropzone {
     width: 140px;
     max-height: 140px;
