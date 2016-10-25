@@ -192,11 +192,6 @@ $(document).ready(function(){
         $('.def-highlight').removeClass('def-highlight');
         $(that).addClass('def-highlight');
 
-        $('.j-reader-actions').css({
-            top: ($(that).offset().top-66) + "px",
-            left: ($(that).pageX-105) + "px"
-        }).animate( { "opacity": "show", top:($(that).offset().top-75)} , 200 );
-
     });
 
 
@@ -851,7 +846,10 @@ $(document).ready(function(){
 
         if($(eventObject.target)[0].localName == 'span' || $(eventObject.target)[0].localName == 'mark'){
 
-            reader.clearHighlights();
+            $('.j-verse-text').removeClass('clicked');
+            $('.j-reader-actions').remove();
+            $('.def-highlight').removeClass('def-highlight');
+
             selectedObject.addClass('clicked');
 
             var text = selectedObject.text();
@@ -898,9 +896,13 @@ $(document).ready(function(){
                 $('.j-create-journal').attr('href','/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+filteredText);
                 $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+filteredText);
 
+                var mouseX = eventObject.pageX;
+                var mouseY = eventObject.pageY;
+
                 $('.j-reader-actions').css({
-                    left: (eventObject.pageX-105) + "px"
-                });
+                    top: (mouseY-70) + "px",
+                    left: (mouseX - 95) + "px"
+                }).animate( { "opacity": "show", top:(mouseY-90)} , 200 );
             }
             else {
                 $('.j-reader-actions').remove();
