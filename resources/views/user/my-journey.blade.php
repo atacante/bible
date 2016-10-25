@@ -100,78 +100,13 @@
 
     </section>
 
-    {{-- @include('user.my-journey-filters') --}}
-
-    <hr>
-
-    {{-- OLD --}}
-
-    <h2 class="h2-new mb3">
-        <i class="bs-myjourney cu-gift2"></i>
-        My Journey
-    </h2>
-
-    <div class="row">
-        <div class="col-xs-12">
-            <ul class="journey-top-panel">
-                <li class="pull-left">
-                    <div class="c-user-journey">
-                        @if(Auth::user() && Auth::user()->avatar)
-                            <div class="user-image jorney-ui" style="background: url('{!! Auth::user()->avatar!=''?Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar:'' !!}') center no-repeat;"></div>
-                        @else
-                            <div class="user-image jorney-ui"></div>
-                        @endif
-                        <div class="text-left user-descr">
-                            <div class="user-name">{!! Auth::user()->name !!}</div>
-                            <div>Member Since: {!! Auth::user()->created_at->format('d M, Y') !!}</div>
-                            <div><i class="bs-friends"></i>&nbsp;{!! count(array_intersect(Auth::user()->requests->modelKeys(), Auth::user()->friends->modelKeys())) !!} &nbsp;&nbsp;&nbsp; <i class="bs-s-groups"></i>&nbsp;{!! Auth::user()->joinedGroups->count()+Auth::user()->myGroups->count() !!} &nbsp;</div>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="pull-right">
-                    <a href="#" class="create-record j-create-record">
-                        <i class="bs-add"></i>
-                        Create Record
-                    </a>
-                </li>
-                <li class="w1">
-                    <a href="#" class="a-create-journey color5">
-                        <div class="acj-counter">
-                            <i class="bs-pray"></i>&nbsp;{!! $content['prayersCount'] !!}
-                        </div>
-                        <div class="acj-title">Prayer{!! $content['prayersCount'] != 1?'s':'' !!}</div>
-                    </a>
-                </li>
-                <li class="w1">
-                    <a href="#" class="a-create-journey color6">
-                        <div class="acj-counter">
-                            <i class="bs-journal"></i> {!! $content['journalCount'] !!}
-                        </div>
-                        <div class="acj-title">Journal Entr{!! $content['journalCount'] != 1?'ies':'y' !!}</div>
-                    </a>
-                </li>
-                <li class="w1">
-                    <a href="#" class="a-create-journey color7">
-                        <div class="acj-counter">
-                            <i class="bs-note"></i> {!! $content['notesCount'] !!}
-                        </div>
-                        <div class="acj-title">Note{!! $content['notesCount'] != 1?'s':'' !!}</div>
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-
     @include('user.my-journey-filters')
+
 
     <div class="row my-entries-list j-my-entries-list">
         <div class="col-md-12" style="line-height: 30px;">
             @if($content['entries']->count())
-
-
-                <ul class="journey-list">
+                <ul class="bl-journey-list journey-list">
                     @foreach($content['entries'] as $entry)
                         <li>
                             {{-- Journey Top Panel --}}
@@ -322,19 +257,4 @@
         </div>
     </div>
 
-    <div class="popup-new popup-create-record j-popup-create-record" style="display: none">
-        <div class="popup-arrow"></div>
-
-        <div>
-            <div class="pp-title">
-                Create...
-            </div>
-            <ul class="">
-                <li><a class="j-create-note" href="{{ url('/notes/create') }}"><i class="bs-note"></i>Note</a></li>
-                <li><a class="j-create-journal" href="{{ url('/journal/create') }}"><i class="bs-journal"></i>Journal Entry</a></li>
-                <li><a class="j-create-prayer" href="{{ url('/prayers/create') }}"><i class="bs-pray"></i>Prayer</a></li>
-            </ul>
-
-        </div>
-    </div>
 @stop

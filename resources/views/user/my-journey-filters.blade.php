@@ -1,4 +1,4 @@
-<div class="j-short-verses-filters
+<div class="bl-filters j-short-verses-filters
     {!! Request::input('adv')?'hidden':'' !!}">
     {!! Form::open(['method' => 'get','url' => '/user/my-journey']) !!}
         <div class="form-group relative c-white-block">
@@ -17,7 +17,7 @@
 </div>
 
 
-<div class="j-admin-verses-filters {!! Request::input('adv')?'':'hidden' !!} ">
+<div class="bl-filters j-admin-verses-filters {!! Request::input('adv')?'':'hidden' !!} ">
     {!! Form::open(['method' => 'get','url' => '/user/my-journey']) !!}
     <div class="c-white-content mb3">
         <div class="inner-pad4">

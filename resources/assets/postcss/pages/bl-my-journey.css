@@ -297,5 +297,49 @@
             }
         }
     }
-    
+}
+
+@media (--xsmall) {
+    .journey-list.journey-list {
+
+        & li {
+            padding: 20px 20px 20px 70px;
+        }
+
+        & .c-verse-icon3 {
+            width: 30px;
+            height: 30px;
+            top: 20px;
+            left: 20px;
+            font-size: 1.2rem;
+            line-height: 2.1rem;
+        }
+
+        & .c-journey-tags {
+            float: none;
+        }
+
+        & .c-journey-relations {
+            float: none;
+        }
+
+    }
+
+    .bl-filters {
+        & .c-white-block {
+            margin: 11px;
+        }
+
+        & .adv-search {
+            width: 30px;
+            overflow: hidden;
+            padding: 0 10px;
+            color: transparent;
+
+            & i {
+                color: var(--mainColor);
+            }
+        }
+
+    }
 }
