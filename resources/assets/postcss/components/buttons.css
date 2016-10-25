@@ -232,6 +232,11 @@
         padding: 10px 0 !important;
         font-size: 0.8rem !important;
     }
+    .locations.list {
+        & a.cu2-btn1 {
+            bottom: -30px;
+        }
+    }
 }
 .cu2-1-btn1 {
   font-size: 0.93rem !important;
