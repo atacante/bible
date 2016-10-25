@@ -11,7 +11,7 @@
                 <li><a href="{{ URL::to('/site/membership') }}">Membership Levels</a></li>
             </ul>
             <p class="copyright">
-                &copy; 2016 Bible Project
+                &copy; 2016 Bible Study Company
             </p>
         </div>
     </div>
