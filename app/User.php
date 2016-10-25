@@ -27,6 +27,9 @@ class User extends Authenticatable
     const BOOKMARK_CHAPTER = 'chapter';
     const BOOKMARK_VERSE = 'verse';
 
+    const BETA_TESTERS_LIMIT = 1000;
+    const BETA_TESTERS_LIMIT_MSG = 'Our Beta Testing team is currently filled. If you would like to be notified when we complete our beta phase please register to receive our newsletter.';
+
 //    public $coupon_code;
     /**
      * The attributes that are mass assignable.
@@ -494,6 +497,28 @@ class User extends Authenticatable
         return self::whereHas('roles', function ($q) {
             $q->whereIn('slug',[Config::get('app.role.admin')]);
         })->pluck('email')->toArray();
+    }
+
+    public static function checkBetaTestersLimit()
+    {
+        $betaMode = CmsPage::where('system_name','beta_mode')->first();
+
+        $limit = self::BETA_TESTERS_LIMIT;
+        $msg = self::BETA_TESTERS_LIMIT_MSG;
+        if($betaMode->meta_title){
+            $limit = $betaMode->meta_title;
+        }
+        if($betaMode->meta_description){
+            $msg = $betaMode->meta_description;
+        }
+
+        $usersCount = self::whereHas('roles', function ($q) {
+            $q->whereIn('slug',[Config::get('app.role.user')]);
+        })->count();
+        if($usersCount <= $limit){
+            return false;
+        }
+        return $msg;
     }
 
 }

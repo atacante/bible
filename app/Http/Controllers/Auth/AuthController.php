@@ -186,6 +186,10 @@ class AuthController extends Controller
      */
     public function register(\Illuminate\Http\Request $request)
     {
+        if(User::checkBetaTestersLimit()){
+            return redirect('auth/register');
+        }
+
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
