@@ -20,7 +20,7 @@
     </div>
     <div class="form-group {{ $errors->has('text') ? ' has-error' : '' }}">
         {!! Form::label('text', 'Text:') !!}
-        {!! Form::textarea('text',null,['id' => 'location-desc']) !!}
+        {!! Form::textarea('text',null,['class' => 'ckeditor']) !!}
         @if ($errors->has('text'))
             <span class="help-block">
                 {{ $errors->first('text') }}
