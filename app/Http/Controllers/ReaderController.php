@@ -765,8 +765,11 @@ class ReaderController extends Controller
         $model->verse_to_id = Input::get('verse_to_id');
         $model->highlighted_text = Input::get('highlighted_text');
         $model->color = Input::get('color');
-        $model->save();
-        return $model->id;
+        if(!empty(trim($model->highlighted_text))){
+            $model->save();
+            return $model->id;
+        }
+        return 0;
     }
 
     public function anyRemoveHighlight()
