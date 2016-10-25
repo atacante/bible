@@ -32,7 +32,7 @@
 
                         <div class="verse-date">{!! $item->created_at->format($item::DFORMAT2) !!}</div>
                     </div>
-                    <div class="item-body j-item-body" data-itemid="{!! $item->id !!}" , data-itemtype="{!! $item->type !!}">
+                    <div class="item-body j-item-body j-{!! $item->type !!}-text" data-itemid="{!! $item->id !!}" , data-itemtype="{!! $item->type !!}">
                         @if($item->highlighted_text)
                             <div class="verse-block">
                                 Verse: {!! str_limit(strip_tags($item->highlighted_text,'<p></p>'), $limit = 99999, $end = '...') !!}
