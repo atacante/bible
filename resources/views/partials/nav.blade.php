@@ -232,6 +232,9 @@
                         <li><a href="{{ url('user/profile') }}">My Profile</a></li>
                         @endrole
                         <li><a href="{{ url('auth/logout') }}">Logout</a></li>
+                        @role('administrator')
+                            <li><a href="{{ url('admin') }}">Admin</a></li>
+                        @endrole
                         @if(Session::has('adminAsUser'))
                             <li><a href="{{ url('auth/admin-logout') }}">Back To Admin</a></li>
                         @endif
