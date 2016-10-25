@@ -594,7 +594,11 @@ $(document).ready(function(){
     });
 
 // Text selection
-    $(".j-bible-text").mouseup(function(eventObject) {
+    $(".j-bible-text").bind( "touchcancel",function(eventObject) {
+        alert('touchcancel');
+    });
+    $(".j-bible-text").bind( "mouseup touchend touchcancel",function(eventObject) {
+        alert('touchend');
         var selectedObject = site.getSelected();
         var text = selectedObject.toString();
         if(text){
