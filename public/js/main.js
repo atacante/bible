@@ -685,6 +685,7 @@ $(document).ready(function(){
 
 // Text selection
     $(".j-bible-text").bind( "mouseup touchend",function(eventObject) {
+        alert('touchend');
         var selectedObject = site.getSelected();
         var text = selectedObject.toString();
         if(text){
