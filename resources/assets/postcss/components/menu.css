@@ -10,7 +10,9 @@
         text-align: center;
     }
     .tabs-nav.resp-padd-search {
-        margin-bottom: 50px;
+      /*  margin-bottom: 50px;*/
+        width: 100%;
+        margin: 0 0 50px;
     }
 }
 ul.tabs-nav li {

@@ -346,5 +346,6 @@ h4.h4-sub-kit {
 @media(--medium){
     .resp-text-center {
         text-align: center;
+        padding: 0 15px;
     }
 }
