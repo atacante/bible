@@ -1,9 +1,53 @@
 ul.community-menu li {
     margin: 20px;
 }
+ul.community-menu.hide-menu li.new-posts {
+    margin-left: 0px;
+}
+ul.community-menu.hide-menu li.new-posts a {
+    background: #00b9f7;
+    color: #ffffff;
+    border-radius: 50px;
+}
+ul.community-menu.hide-menu li.new-posts a i {
+    color: white;
+}
 @media(--xsmall){
     ul.community-menu.hide-menu li.active {
         margin: 0 20px;
+    }
+    ul.community-menu.hide-menu li.new-posts {
+        position: fixed;
+        left: 0;
+        bottom: -10px;
+        display: block;
+    }
+    ul.community-menu.hide-menu li.new-posts a {
+        font-size: 0.8rem;
+        padding: 0 10px 5px 10px;
+        background: #00b9f7;
+        color: #ffffff;
+        border-radius: 50px;
+    }
+    ul.community-menu.hide-menu li.new-posts .caret {
+        display: none !important;
+    }
+    ul.community-menu.hide-menu li.new-posts a i {
+        font-size: 1rem;
+        vertical-align: top;
+        color: white;
+    }
+    .inmplayer-panel-header,
+    .inmplayer-trigger {
+        background: rgba(0,0,0,0.2) !important;
+        box-shadow: none !important;
+        color: #ffffff !important;
+        font-size: 1rem !important;
+        border-radius: 50px !important;
+        line-height: 2.2rem !important;
+        bottom: 10px !important;
+        right: 15px !important;
+        border: none !important;
     }
 }
 ul.community-menu li .caret {
@@ -42,6 +86,12 @@ ul.community-menu li a:hover, ul.community-menu li.active a:hover {
     font-family: ns_widemedium;
     text-transform: uppercase;
     padding: 12px 25px;
+}
+@media(--medium){
+    .community-menu > li > a {
+        font-size: 0.8rem;
+        padding: 12px;
+    }
 }
 @media(--xsmall){
     .community-menu > li > a {
