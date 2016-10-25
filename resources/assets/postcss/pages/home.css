@@ -56,19 +56,19 @@
   }
 
 
-  /* --------- backgrounds for sections -------- */
-  & .h-ill1 {
+    /* --------- backgrounds for sections -------- */
+    & .h-ill1 {
     padding-top: 39.2%;
-  }
-  & .h-ill2 {
+    }
+    & .h-ill2 {
     padding-top: 39.2%;
-  }
-  & .h-ill3 {
+    }
+    & .h-ill3 {
     padding-top: 39.2%;
-  }
-  & .h-ill4 {
+    }
+    & .h-ill4 {
     padding-top: 39.2%;
-  }
+    }
 
     & .h-ill1 {
         background-position-x: center;
