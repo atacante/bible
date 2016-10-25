@@ -594,7 +594,6 @@ $(document).ready(function(){
         var text = selectedObject.toString();
         if(text){
             reader.highlightMode = true;
-            reader.selectedText = text;
             var startElement = selectedObject.anchorNode.parentElement;
             var endElement = selectedObject.focusNode.parentElement;
             var version = $(startElement).data('version');
@@ -686,7 +685,7 @@ $(document).ready(function(){
                 _token:$('input[name="_token"]').val()
             },
             success:function(data){
-                reader.highlight(reader.selectedText,color,data);
+                reader.highlight(text,color,data);
             },
             error:function(e){
                 if(e.status == 403){
