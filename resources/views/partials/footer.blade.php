@@ -8,7 +8,6 @@
                 <li><a href="{{ URL::to('/shop') }}">Gift Shop</a></li>
                 <li><a href="{{ URL::to('/site/faq') }}">FAQ</a></li>
                 <li><a href="{{ URL::to('/site/contact') }}">Contact Us</a></li>
-                <li><a href="{{ URL::to('/site/membership') }}">Membership Levels</a></li>
             </ul>
             <p class="copyright">
                 &copy; 2016 Bible Study Company
