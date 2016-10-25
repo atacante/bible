@@ -137,7 +137,7 @@ class AuthController extends Controller
             }
             $user->assignRole(Config::get('app.role.user'));
 
-            Mail::queue('emails.welcome', ['user' => $user], function($message) use($user)
+            Mail::send('emails.welcome', ['user' => $user], function($message) use($user)
             {
                 $message->to($user->email)->subject('Welcome to BSC');
             });
