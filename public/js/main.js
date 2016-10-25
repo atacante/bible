@@ -594,7 +594,6 @@ $(document).ready(function(){
         var text = selectedObject.toString();
         if(text){
             reader.highlightMode = true;
-            reader.selectedText = text;
             var startElement = selectedObject.anchorNode.parentElement;
             var endElement = selectedObject.focusNode.parentElement;
             var version = $(startElement).data('version');
@@ -670,6 +669,7 @@ $(document).ready(function(){
 
     $("body").on('click','.j-highlight-text',function (e) {
         e.preventDefault();
+        var text = site.getSelected().toString();
         reader.clearSelection();
         $('.j-reader-actions').remove();
         var color = $(this).data('colorclass');
@@ -681,11 +681,11 @@ $(document).ready(function(){
                 verse_from_id:reader.startVerseId,
                 verse_to_id:reader.endVerseId,
                 color:color,
-                highlighted_text:site.getSelected().toString(),
+                highlighted_text:text,
                 _token:$('input[name="_token"]').val()
             },
             success:function(data){
-                reader.highlight(reader.selectedText,color,data);
+                reader.highlight(text,color,data);
             },
             error:function(e){
                 if(e.status == 403){
