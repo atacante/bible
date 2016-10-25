@@ -27,13 +27,72 @@
 
             <div class="in-inner-container">
                 <div class="c-center-content site-index">
+                    <style>
+                        /* -------------- desctop ---------------- */
+                        .h-ill1 {
+                            @if (!$homedata['home_reader_block']->background)
+                                background-image: url('/images/p1-home.png');
+                            @else
+                                background-image: url('{{Config::get('app.homeImages').$homedata['home_reader_block']->background}}');
+                            @endif
+                        }
+                        .h-ill2 {
+                            @if (!$homedata['home_journey_block']->background)
+                                background-image: url('/images/p2-home.png');
+                            @else
+                                background-image: url('{{Config::get('app.homeImages').$homedata['home_journey_block']->background}}');
+                            @endif
+                        }
+                        .h-ill3 {
+                            @if (!$homedata['home_community_block']->background)
+                                background-image: url('/images/p3-home.png');
+                            @else
+                                background-image: url('{{Config::get('app.homeImages').$homedata['home_community_block']->background}}');
+                            @endif
+                        }
+                        .h-ill4 {
+                            @if (!$homedata['home_explore_block']->background)
+                                 background-image: url('/images/p4-home.png');
+                            @else
+                                background-image: url('{{Config::get('app.homeImages').$homedata['home_explore_block']->background}}');
+                            @endif
+                        }
 
-                    <section data-mobile="{{ (!$homedata['home_reader_block']->background_mobile)? '/images/p1-home-m.png':
-                                                Config::get('app.homeImages').$homedata['home_reader_block']->background_mobile }}"
-                             class="home-ill-section h-ill1"
-                             style="background:
-                                     url('{{ (!$homedata['home_reader_block']->background)? '/images/p1-home.png':
-                                                Config::get('app.homeImages').$homedata['home_reader_block']->background }}') center top no-repeat;">
+
+                        /* -------------- mobile ---------------- */
+                        @media (max-width: 768px) {
+                             .h-ill1 {
+                                 @if (!$homedata['home_reader_block']->background_mobile)
+                                    background-image: url('/images/p1-home-m.png');
+                                 @else
+                                     background-image: url('{{Config::get('app.homeImages').$homedata['home_reader_block']->background_mobile}}');
+                                 @endif
+                             }
+                             .h-ill2 {
+                                 @if (!$homedata['home_journey_block']->background_mobile)
+                                     background-image: url('/images/p2-home-m.png');
+                                 @else
+                                     background-image: url('{{Config::get('app.homeImages').$homedata['home_journey_block']->background_mobile}}');
+                                 @endif
+                             }
+                             .h-ill3 {
+                                 @if (!$homedata['home_community_block']->background_mobile)
+                                    background-image: url('/images/p3-home-m.png');
+                                 @else
+                                     background-image: url('{{Config::get('app.homeImages').$homedata['home_community_block']->background_mobile}}');
+                                 @endif
+                             }
+                             .h-ill4 {
+                                 @if (!$homedata['home_explore_block']->background_mobile)
+                                    background-image: url('/images/p4-home-m.png');
+                                 @else
+                                    background-image: url('{{Config::get('app.homeImages').$homedata['home_explore_block']->background_mobile}}');
+                                 @endif
+                             }
+                        }
+                    </style>
+
+                    <section class="home-ill-section h-ill1">
                         <div class="ill-text-pos1">
                             <h2 class="h2-1">
                                 {!! $homedata['home_reader_block']->text !!}
@@ -43,12 +102,7 @@
                         </div>
                     </section>
 
-                    <section data-mobile="{{ (!$homedata['home_journey_block']->background_mobile)? '/images/p2-home-m.png':
-                                                Config::get('app.homeImages').$homedata['home_journey_block']->background_mobile }}"
-                             class="home-ill-section h-ill2"
-                             style="background:
-                                     url('{{ (!$homedata['home_journey_block']->background)? '/images/p2-home.png':
-                                                Config::get('app.homeImages').$homedata['home_journey_block']->background }}') right center no-repeat;">
+                    <section class="home-ill-section h-ill2">
                         <div class="ill-text-pos2">
                             <h2 class="h2-1 color3">
                                 {!! $homedata['home_journey_block']->text !!}
@@ -58,12 +112,7 @@
                         </div>
                     </section>
 
-                    <section data-mobile="{{ (!$homedata['home_community_block']->background_mobile)? '/images/p3-home.jpg':
-                                                Config::get('app.homeImages').$homedata['home_community_block']->background_mobile }}"
-                             class="home-ill-section h-ill3"
-                             style="background:
-                                     url('{{ (!$homedata['home_community_block']->background)? '/images/p3-home.jpg':
-                                                Config::get('app.homeImages').$homedata['home_community_block']->background }}') center center no-repeat;">
+                    <section class="home-ill-section h-ill3">
                         <div class="ill-text-pos3">
                             <h2 class="h2-1 color1">
                                 {!! $homedata['home_community_block']->text !!}
@@ -73,12 +122,7 @@
                         </div>
                     </section>
 
-                    <section data-mobile="{{ (!$homedata['home_explore_block']->background_mobile)? '/images/p4-home-m.png':
-                                                Config::get('app.homeImages').$homedata['home_explore_block']->background_mobile }}"
-                             class="home-ill-section h-ill4"
-                             style="background:
-                                     url('{{ (!$homedata['home_explore_block']->background)? '/images/p4-home.png':
-                                                Config::get('app.homeImages').$homedata['home_explore_block']->background }}') right center no-repeat;">
+                    <section class="home-ill-section h-ill4">
                         <div class="ill-text-pos4">
                             <h2 class="h2-1">
                                 {!! $homedata['home_explore_block']->text !!}
