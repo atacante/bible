@@ -221,6 +221,13 @@
     padding-right: 15px;
     vertical-align: sub;
 }
+@media(--xsmall){
+    .cu-gift2 {
+        font-size: 1.6rem;
+        vertical-align: calc(-3px);
+        padding-right: 0;
+    }
+}
 .cu-add {
     color: #00b9f7;
     font-size: 1.29rem;
