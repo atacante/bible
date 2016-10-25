@@ -95,9 +95,7 @@ class ShopProductsController extends Controller
                 $this->anyUploadImage($model->id);
                 Notification::success('Product has been successfully updated');
             }
-            return ($url = Session::get('backUrl'))
-                ? Redirect::to($url)
-                : Redirect::to(ViewHelper::adminUrlSegment() . '/shop-products/list/');
+            return Redirect::to(ViewHelper::adminUrlSegment() . '/shop-products/list/');
         }
         return view('admin.shop.products.update',
             [
@@ -122,9 +120,7 @@ class ShopProductsController extends Controller
             }
             Notification::success('Product has been successfully deleted');
         }
-        return ($url = Session::get('backUrl'))
-            ? Redirect::to($url)
-            : Redirect::to(ViewHelper::adminUrlSegment() . '/shop-products/list/');
+        return Redirect::to(ViewHelper::adminUrlSegment() . '/shop-products/list/');
     }
 
     public function anyUploadImage($productId)

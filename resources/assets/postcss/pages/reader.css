@@ -856,3 +856,7 @@ mark {
         }
     }
 }
+
+.related-item .j-item-body:hover{
+    cursor: pointer;
+}

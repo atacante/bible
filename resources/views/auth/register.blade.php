@@ -16,6 +16,11 @@
                 <div class="alert alert-info" role="alert" style="color: #31708f; background-color: #d9edf7; border: 1px solid #bce8f1;">
                     {!! $text !!}
                 </div>
+                @if($text = ViewHelper::checkBetaTestersAmount())
+                    <div class="alert alert-warning" role="alert" style="color: #a94442; background-color: #f2dede; border-color: #ebccd1;">
+                        {!! $text !!}
+                    </div>
+                @endif
                 @endif
                     {!! Form::open(array('url' => URL::to('auth/register'), 'method' => 'post', 'files'=> true,'class' =>'form-horizontal')) !!}
                     {!! csrf_field() !!}

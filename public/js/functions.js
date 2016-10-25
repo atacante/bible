@@ -169,7 +169,7 @@ site.getNote = function(id){
         dataType: "html",
         data:{id:id},
         success:function(data){
-            $('#popup').find('.modal-header .modal-title').text('Note');
+            $('#popup').find('.modal-header .modal-title').html('<div class="pull-left modal-title-text"><i class="bs-note"></i> Note</div>');
             $('#popup').find('.modal-body').html(data);
             //$('#popup').find('.modal-footer').html('<a title="Print note" href="#" data-noteid="'+id+'" class="j-print-note pull-left"><i class="fa fa-print fa-2x"style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>');
             $('#popup').find('.modal-footer').html('');
@@ -185,7 +185,7 @@ site.getJournal = function(id){
         dataType: "html",
         data:{id:id},
         success:function(data){
-            $('#popup').find('.modal-header .modal-title').text('Journal Entry');
+            $('#popup').find('.modal-header .modal-title').html('<div class="pull-left modal-title-text"><i class="bs-journal"></i> Journal Entry</div>');
             $('#popup').find('.modal-body').html(data);
             //$('#popup').find('.modal-footer').html('<a title="Print note" href="#" data-noteid="'+id+'" class="j-print-journal pull-left"><i class="fa fa-print fa-2x"style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>');
             $('#popup').find('.modal-footer').html('');
@@ -200,7 +200,7 @@ site.getPrayer = function(id){
         dataType: "html",
         data:{id:id},
         success:function(data){
-            $('#popup').find('.modal-header .modal-title').text('Prayer');
+            $('#popup').find('.modal-header .modal-title').html('<div class="pull-left modal-title-text"><i class="bs-pray"></i> Prayer</div>');
             $('#popup').find('.modal-body').html(data);
             //$('#popup').find('.modal-footer').html('<a title="Print note" href="#" data-noteid="'+id+'" class="j-print-journal pull-left"><i class="fa fa-print fa-2x"style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>');
             $('#popup').find('.modal-footer').html('');

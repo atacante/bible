@@ -44,7 +44,11 @@
                                             </div>
                                         @endif
                                     </td>
-                                    <td>{!! $product->category->title !!}</td>
+                                    @if($product->category)
+                                        <td>{!! $product->category->title !!}</td>
+                                    @else
+                                       <td><b>No category</b></td>
+                                    @endif
                                     <td>{!! $product->name !!}</td>
                                     <td>{!! $product->short_description !!}</td>
                                     <td>{!! $product->price !!}</td>

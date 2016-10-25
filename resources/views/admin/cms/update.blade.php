@@ -56,6 +56,17 @@
                 @endif
             </div>
 
+            @if($model->exists && $model->system_name == 'beta_mode')
+                <div class="form-group">
+                    {!! Form::label('meta_title', 'Beta testers limit:') !!}
+                    {!! Form::text('meta_title') !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('meta_title', 'Message if beta testers limit has been reached:') !!}
+                    {!! Form::textarea('meta_description') !!}
+                </div>
+            @endif
+
             @if($model->exists && $model->content_type == App\CmsPage::CONTENT_HOME)
                 <div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
                     {!! Form::label('description', 'Description:') !!}
