@@ -26,8 +26,20 @@ label {
     border-radius: 0;
     margin: 20px 2px;
 }
+@media(--xsmall){
+    .pagination {
+        text-align: center;
+        padding: 0 25px;
+        margin: 20px 2px 0;
+    }
+}
 .pagination li {
     border-radius: 0;
+}
+@media(--xsmall){
+    .pagination li {
+        display: inline-block;
+    }
 }
 .pagination > li > a, .pagination > li > span {
     border-radius: 0 !important;
@@ -43,6 +55,9 @@ label {
     -webkit-box-shadow: 0 0 1px 1px rgba(100,100,100,0.1);
     box-shadow: 0 0 1px 1px rgba(100,100,100,0.1);
 }
+@media(--xsmall){
+
+}
 .pagination > li:first-child > a,
 .pagination > li:first-child > span,
 .pagination > li:last-child > a,
@@ -51,6 +66,17 @@ label {
     font-size: 2.29rem;
     font-weight: lighter;
     padding-top: 3px;
+}
+@media(--xsmall){
+    .pagination > li:first-child > a,
+    .pagination > li:first-child > span {
+        margin-right: -2px;
+    }
+
+    .pagination > li:last-child > a,
+    .pagination > li:last-child > span {
+        margin-left: -2px;
+    }
 }
 .pagination > .active > a,
 .pagination > .active > a:focus,
