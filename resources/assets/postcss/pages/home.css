@@ -70,20 +70,38 @@
     padding-top: 39.2%;
   }
 
-  @media (--xsmall) {
     & .h-ill1 {
-      background: url('/images/p1-home-m.png') left center no-repeat;
+        background-position-x: center;
+        background-position-y: top;
+        background-repeat: no-repeat;
     }
     & .h-ill2 {
-      background: url('/images/p2-home-m.png') left center no-repeat;
+        background-position-x: right;
+        background-position-y: center;
+        background-repeat: no-repeat;
     }
     & .h-ill3 {
-      background: url('/images/p3-home.jpg') left center no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        background-repeat: no-repeat;
     }
     & .h-ill4 {
-      background: url('/images/p4-home-m.png') left center no-repeat;
+        background-position-x: right;
+        background-position-y: center;
+        background-repeat: no-repeat;
     }
-  }
+
+    @media(--xsmall){
+    & .h-ill1,
+    & .h-ill2,
+    & .h-ill3,
+    & .h-ill4  {
+        background-position-x: left;
+        background-position-y: center;
+        background-repeat: no-repeat;
+    }
+    }
+
 
   & .ill-text-pos1 {
     position: absolute;
