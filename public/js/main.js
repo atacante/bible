@@ -156,11 +156,6 @@ $(document).ready(function(){
         $('.def-highlight').removeClass('def-highlight');
         $(that).addClass('def-highlight');
 
-        $('.j-reader-actions').css({
-            top: ($(that).offset().top-66) + "px",
-            left: ($(that).pageX-105) + "px"
-        }).animate( { "opacity": "show", top:($(that).offset().top-75)} , 200 );
-
     });
 
 
@@ -594,11 +589,7 @@ $(document).ready(function(){
     });
 
 // Text selection
-    $(".j-bible-text").bind( "touchcancel",function(eventObject) {
-        alert('touchcancel');
-    });
     $(".j-bible-text").bind( "mouseup touchend touchcancel",function(eventObject) {
-        alert('touchend');
         var selectedObject = site.getSelected();
         var text = selectedObject.toString();
         if(text){
@@ -662,9 +653,14 @@ $(document).ready(function(){
 
             $('body').append(reader.getHighlightActionsHtml(hasMark));
 
+
+            var pageX = eventObject.pageX;
+            if(!pageX){
+                pageX = eventObject.originalEvent.changedTouches[0].pageX;
+            }
             $('.j-reader-actions').css({
                 top: ($(endElement).offset().top-66) + "px",
-                left: (eventObject.pageX-(text.length > 3?60:43)) + "px"
+                left: (pageX-(text.length > 3?60:43)) + "px"
             }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
         }
         else {
@@ -685,7 +681,7 @@ $(document).ready(function(){
                 verse_from_id:reader.startVerseId,
                 verse_to_id:reader.endVerseId,
                 color:color,
-                highlighted_text:reader.selectedText,
+                highlighted_text:site.getSelected().toString(),
                 _token:$('input[name="_token"]').val()
             },
             success:function(data){
@@ -763,7 +759,10 @@ $(document).ready(function(){
 
         if($(eventObject.target)[0].localName == 'span' || $(eventObject.target)[0].localName == 'mark'){
 
-            reader.clearHighlights();
+            $('.j-verse-text').removeClass('clicked');
+            $('.j-reader-actions').remove();
+            $('.def-highlight').removeClass('def-highlight');
+
             selectedObject.addClass('clicked');
 
             var text = selectedObject.text();
@@ -806,9 +805,13 @@ $(document).ready(function(){
                 $('.j-create-journal').attr('href','/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+filteredText);
                 $('.j-create-prayer').attr('href','/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+filteredText);
 
+                var mouseX = eventObject.pageX;
+                var mouseY = eventObject.pageY;
+
                 $('.j-reader-actions').css({
-                    left: (eventObject.pageX-105) + "px"
-                });
+                    top: (mouseY-70) + "px",
+                    left: (mouseX - 95) + "px"
+                }).animate( { "opacity": "show", top:(mouseY-90)} , 200 );
             }
             else {
                 $('.j-reader-actions').remove();
