@@ -136,6 +136,11 @@ class AuthController extends Controller
                 $user->downgradeToFree();
             }
             $user->assignRole(Config::get('app.role.user'));
+
+            Mail::queue('emails.welcome', ['user' => $user], function($message) use($user)
+            {
+                $message->to($user->email)->subject('Welcome to BSC');
+            });
         }
 
         return $user;
