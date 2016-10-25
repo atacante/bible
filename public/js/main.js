@@ -280,6 +280,9 @@ $(document).ready(function(){
     $('body').on('click','.j-note-text',function(ev) {
         ev.preventDefault();
         var id = $(this).data('noteid');
+        if(!id){
+            id = $(this).data('itemid');
+        }
         site.getNote(id);
     });
 
@@ -310,18 +313,27 @@ $(document).ready(function(){
     $('body').on('click','.j-journal-text',function(ev) {
         ev.preventDefault();
         var id = $(this).data('journalid');
+        if(!id){
+            id = $(this).data('itemid');
+        }
         site.getJournal(id);
     });
 
     $('body').on('click','.j-prayer-text',function(ev) {
         ev.preventDefault();
         var id = $(this).data('prayerid');
+        if(!id){
+            id = $(this).data('itemid');
+        }
         site.getPrayer(id);
     });
 
     $('body').on('click','.j-status-text',function(ev) {
         ev.preventDefault();
         var id = $(this).data('statusid');
+        if(!id){
+            id = $(this).data('itemid');
+        }
         site.getStatus(id);
     });
 

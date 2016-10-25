@@ -11,7 +11,7 @@
             @foreach($content['prayers'] as $prayer)
                 <li>
 
-                    <div class="note-text j-note-text" data-noteid="{!! $prayer->id !!}">
+                    <div class="prayer-text j-prayer-text" data-prayerid="{!! $prayer->id !!}">
                         {!! str_limit(strip_tags($prayer->prayer_text,'<p></p>'), $limit = 300, $end = '...') !!}
                     </div>
                     @if($prayer->answered)
