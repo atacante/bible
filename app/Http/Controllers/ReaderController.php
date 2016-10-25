@@ -106,7 +106,7 @@ class ReaderController extends Controller
         $compare['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsToCompareList($version,$book), 'version_code', 'version_name');
         $compareResetParams = Request::input();
         unset($compareResetParams['compare']);
-        unset($compareResetParams['diff']);
+//        unset($compareResetParams['diff']);
         $compare['resetParams'] = $compareResetParams;
         if ($compareVersions = Request::input('compare', false)) {
             foreach ($compareVersions as $compareVersion) {

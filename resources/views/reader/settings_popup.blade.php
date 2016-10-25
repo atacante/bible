@@ -35,7 +35,9 @@
                             @if(ViewHelper::checkNotifTooltip('got_chapter_diff_tooltip') || ViewHelper::checkNotifTooltip('got_verse_diff_tooltip'))
                                 <div class="cu-starsolid-settings-popup">i</div>
                             @endif
-                            {!! Form::hidden('diff','off') !!}
+                            @if(Request::input('compare', false) || Request::segment(2) == 'verse')
+                                {!! Form::hidden('diff','off') !!}
+                            @endif
                             {!! Form::checkbox('diff', null, ((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff',false) || Request::input('diff',false) == 'on'))?1:0, ['id'=>'check-diff','class'=>'cust-radio',Request::input('compare', false) || Request::segment(2) == 'verse'?'':'disabled']) !!}
                             <label class="label-checkbox" for="check-diff">Show difference</label>
                         </div>
