@@ -9,7 +9,7 @@
         @if($content['journal']->count())
             @foreach($content['journal'] as $journal)
                 <li>
-                    <div class="note-text j-note-text" data-journalid="{!! $journal->id !!}">
+                    <div class="journal-text j-journal-text" data-journalid="{!! $journal->id !!}">
                         {!! str_limit(strip_tags($journal->journal_text,'<p></p>'), $limit = 300, $end = '...') !!}
                     </div>
 
