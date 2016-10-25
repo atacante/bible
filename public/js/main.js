@@ -84,10 +84,6 @@ $(document).ready(function(){
     $('.datepicker').datepicker(
         {
             autoclose:true,
-/*            showOn: "button",
-            buttonImage: "/crudv2/public/overcast/images/calendar19.gif",
-            buttonImageOnly: true*/
-            //format: 'mm/dd/yyyy'
         }
     ).on('changeDate', function(e) {
         var name = $(this).attr('name');
@@ -141,38 +137,6 @@ $(document).ready(function(){
             });
         }
     });
-
-    //Old reader logic
-/*    $('body').on('click','.word-definition',function(e){
-        var definitionId = $(this).data('lexid');
-        var lexversion = $(this).data('lexversion');
-        e.stopPropagation();
-        $('.word-definition').each(function(){
-            $(this).popover('destroy');
-        });
-        var that = this;
-
-        $.ajax({
-            method: "GET",
-            url: "/ajax/lexicon-info",
-            dataType: "html",
-            data:{lexversion:lexversion,definition_id:definitionId},
-            success:function(data){
-                $(that).popover('destroy');
-                $(that).popover(
-                    {
-                        html: true,
-                        placement:'auto',
-                        title: "Lexicon - \""+$(that).html()+'"',
-                        content: '<div class="j-lex-content text-center" style="">'+data+'</div>',//loader <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-                    }
-                );
-                $(that).popover('show');
-            }
-        });
-
-        $(that).popover('show');
-    });*/
 
     //New reader logic
     $('body').on('click','.word-definition',function(e) {
@@ -281,30 +245,6 @@ $(document).ready(function(){
         site.getNote(id);
     });
 
-/*
-    $('body').on('click','.j-item-body',function(ev) {
-        var id = $(this).data('itemid');
-        var type = $(this).data('itemtype');
-        if($(ev.target).hasClass('j-image-thumb')){
-            return false;
-        }
-        switch (type){
-            case 'note':
-                site.getNote(id);
-                break;
-            case 'journal':
-                site.getJournal(id);
-                break;
-            case 'prayer':
-                site.getPrayer(id);
-                break;
-            case 'status':
-                site.getStatus(id);
-                break;
-        }
-    });
-*/
-
     $('body').on('click','.j-journal-text',function(ev) {
         ev.preventDefault();
         var id = $(this).data('journalid');
@@ -337,13 +277,6 @@ $(document).ready(function(){
         var id = $(this).data('userid');
         site.getUser(id);
     });
-
-/*    $('body').on('change','select[name=readerMode]',function(){
-        location.href = '/reader/mode/'+$(this).val();
-    });
-    $('body').on('change','input[type=radio][name=readerMode]',function(){
-        location.href = '/reader/mode/'+$(this).val();
-    });*/
 
     $('.j-verses-filters').on('focus','select[name=version]',function(){
         $(this).data('prevval', $(this).val());
@@ -442,13 +375,6 @@ $(document).ready(function(){
             dataType: "html",
             data:$('.j-verses-filters form').serialize(),
             success:function(data){
-                //var printContents = data;
-                //var originalContents = $('body').html();
-                //$('body').html(printContents);
-                //window.print();
-                //$('body').html(originalContents);
-                //location.reload();
-
                 var printChapter = window.open('', '', 'height='+$(window).height()+',width='+$(window).width());
                 printChapter.document.write(data);
                 printChapter.print();
@@ -614,13 +540,6 @@ $(document).ready(function(){
         $(".check").prop('checked', $(this).prop('checked'));
     });
 
-    //$('.edit-images-thumbs').on('mouseover','.img-thumb',function(){
-    //    $(this).find('img').fadeTo(500, 0.5);
-    //});
-    //$('.edit-images-thumbs').on('mouseout','.img-thumb',function(){
-    //    $(this).find('img').fadeTo(500, 1);
-    //});
-
     $(document).on({
         mouseenter: function () {
             $(this).find('img').stop().animate({"opacity": "0.5"}, "slow");
@@ -664,22 +583,13 @@ $(document).ready(function(){
 
     //site.dropzoneInit();
     $("body").mousedown(function(eventObject) {
-        /*if(!$(eventObject.target).hasClass('j-create-note') && !$(eventObject.target).parent().hasClass('j-create-note')){
-            $('.j-create-note').remove();
-        }
-        if(!$(eventObject.target).hasClass('j-create-journal') && !$(eventObject.target).parent().hasClass('j-create-journal')){
-            $('.j-create-journal').remove();
-        }
-        if(!$(eventObject.target).hasClass('j-create-prayer') && !$(eventObject.target).parent().hasClass('j-create-prayer')){
-            $('.j-create-prayer').remove();
-        }*/
         if(!$(eventObject.target).hasClass('j-reader-actions') && !$(eventObject.target).parent().parent().hasClass('j-reader-actions')){
             $('.j-reader-actions').remove();
         }
     });
 
 // Text selection
-    $(".j-bible-text").bind( "mouseup touchend",function(eventObject) {
+    $(".j-bible-text").bind( "mouseup touchend touchcancel",function(eventObject) {
         var selectedObject = site.getSelected();
         var text = selectedObject.toString();
         if(text){
@@ -743,9 +653,14 @@ $(document).ready(function(){
 
             $('body').append(reader.getHighlightActionsHtml(hasMark));
 
+
+            var pageX = eventObject.pageX;
+            if(!pageX){
+                pageX = eventObject.originalEvent.changedTouches[0].pageX;
+            }
             $('.j-reader-actions').css({
                 top: ($(endElement).offset().top-66) + "px",
-                left: (eventObject.pageX-(text.length > 3?60:43)) + "px"
+                left: (pageX-(text.length > 3?60:43)) + "px"
             }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
         }
         else {
@@ -758,8 +673,6 @@ $(document).ready(function(){
         reader.clearSelection();
         $('.j-reader-actions').remove();
         var color = $(this).data('colorclass');
-        // var markId = new Date().getTime();
-        // reader.highlight(reader.selectedText,color,markId);
         $.ajax({
             method: "POST",
             url: '/reader/save-highlight',
@@ -883,10 +796,6 @@ $(document).ready(function(){
                 else{
                     verseId = Math.min((startVerseId || 0), (endVerseId || 0));
                 }
-
-                /*var menu = '<a title="Create note" href="/notes/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-note" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-sticky-note"></i></a>';
-                 menu += '<a title="Create Journal Entry" href="/journal/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-journal" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 9px;"><i class="fa fa-btn fa-book"></i></a>';
-                 menu += '<a title="Create prayer" href="/prayers/create?version='+(version || '')+'&verse_id='+verseId+'&text='+text+'" class="j-create-prayer" style="position: absolute; width: 32px; height: 32px; background: #367fa9; color:white; font-size: 1.2em; border-radius: 16px; padding: 5px 5px 5px 8px;"><i class="fa fa-btn fa-hand-paper-o"></i></a>';*/
 
                 $('body').append(reader.getActionsHtml());
 
@@ -1054,37 +963,6 @@ $(document).ready(function(){
         return false;
     });
 
-    /*$("body").on('click','.j-full-screen-btn',function (e) {
-        if($('.j-my-study-verse').length > 0 || $('.j-my-study-item').length > 0){
-            e.preventDefault();
-            var url = $(this).attr('href');
-            var type = $(this).data('type');
-            $('#'+type+'-form input[name="full_screen"]').val(1);
-            $('#'+type+'-form').attr('action',url);
-            $('#'+type+'-form').submit();
-        }
-
-        //var noteText = $('textarea[name="note_text"]').val();
-        //var journalText = $('textarea[name="journal_text"]').val();
-        //var prayerText = $('textarea[name="prayer_text"]').val();
-        //
-        //alert(noteText);
-        //
-        //var url = $(this).attr('href');
-        //
-        //if(noteText){
-        //    url = url+'&note_text='+noteText;
-        //}
-        //if(journalText){
-        //    url = url+'&journal_text='+journalText;
-        //}
-        //if(prayerText){
-        //    url = url+'&prayer_text='+prayerText;
-        //}
-        //alert(url);
-        //location.href = url;
-    });*/
-
     if($('.j-reader-block.j-bible-text').length > 0){
         var hash = window.location.hash;
         var param = hash.replace(/[0-9]/g, '');
@@ -1205,14 +1083,11 @@ $(document).ready(function(){
     $('.related-records').on('click','.j-highlight-verse',function(e){
         e.preventDefault();
         var verseId = $(this).data('verseid');
-        /*$('.related-item').addClass('blur');*/
         $('.related-item').removeClass('highlight');
-        /*$(this).parents('.related-item').addClass('highlight');*/
         var target = $(".j-verse-text[data-verseid="+verseId+"]");
         $('body').scrollTo(target,500,{offset:-100});
         $('.j-verse-text').removeClass('highlight');
         target.addClass('highlight');
-        //target.effect( "highlight", {color:"#e1e1e8"});
     });
 
     $('.my-study-verse .star-link,.my-study-item .star-link').click(function(e){
@@ -1257,7 +1132,6 @@ $(document).ready(function(){
                 else{
                     var parent = $(that).parents('.g-body');
                     var parent2 = $(that).parents('.j-group-items');
-                    //$('body .load-more-block').remove();
                     $(that).parents('.load-more-block').remove();
                     $('.j-wall-items,.j-friends-items,.j-members-list .row').append(data);
                     parent2.append(data);
@@ -1306,7 +1180,7 @@ $(document).ready(function(){
         });
     });
 
-    $('/*.j-friends-list,.j-members-list,*/#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request,.j-ignore-friend-request',function(e){
+    $('#cancel-request-sm').on('click','.j-remove-friend,.j-reject-friend-request,.j-cancel-friend-request,.j-ignore-friend-request',function(e){
         e.preventDefault();
         var url = $(this).attr('href');
         var that = this;
@@ -1347,9 +1221,6 @@ $(document).ready(function(){
             url: url,
             success:function(data){
                 location.reload();
-                /*var childClass = $(that).hasClass('j-ban-member')?'.j-unban-member':'.j-ban-member';
-                $(that).parent().children(childClass).toggleClass('hidden');
-                $(that).toggleClass('hidden');*/
             }
         });
     });
@@ -1512,7 +1383,6 @@ $(document).ready(function(){
 
     $('.j-wall-items').on('click','.j-wall-item-comments',function(e){
         e.preventDefault();
-        //$('.j-item-comments').html('');
         site.loadComments(this);
     });
 
@@ -1574,9 +1444,6 @@ $(document).ready(function(){
         setTimeout(function(){
             if(!($('.popover:hover').length/* || $('.j-wall-like-btn:hover').length*/)){
                 $(that).parent().find('.j-wall-like-btn').popover('destroy');
-                //$('.j-wall-like-btn').each(function () {
-                //    $(that).popover('destroy');
-                //});
             }
         },1000);
     });
@@ -1764,7 +1631,6 @@ $(document).ready(function(){
     $(".j-version-list li a").on("click", function(e){
         $(".j-version-list li a").removeClass("active");
         $(this).addClass("active");
-       /* alert($(this).data("val"));*/
         var curSelVal = $(this).data("val");
         var curSelText = $(this).html();
         $(".j-select-version").val(curSelVal);
@@ -1879,9 +1745,6 @@ $(document).ready(function(){
         e.preventDefault();
     });
 
-/*    $(".j-popup-settings .j-btn-ok").on("click", function(e){
-        $(".j-popup-settings").hide();
-    });*/
 
     // Hide Popups
     $(document).mouseup(function (e){
@@ -1902,10 +1765,14 @@ $(document).ready(function(){
         var popCompare3 = $(".j-compare-versions");
         var popCompare4 = $(".select2-container");
 
+        var leftMenu = $(".j-hide-menu");
 
         if (!popCompare.is(e.target) && popCompare.has(e.target).length === 0 && !popCompare2.is(e.target) && popCompare2.has(e.target).length === 0 && !popCompare3.is(e.target) && popCompare3.has(e.target).length === 0 && !popCompare4.is(e.target) && popCompare4.has(e.target).length === 0 && hidev==true) {
             popCompare.hide();
             hidev=true;
+        }
+        if (!leftMenu.is(e.target) && leftMenu.has(e.target).length === 0) {
+            leftMenu.addClass("hide-menu");
         }
     });
 
