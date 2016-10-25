@@ -30,4 +30,16 @@ $(document).ready(function(){
     evt.preventDefault();
     $('.bl-header.opened').removeClass('opened');
   })
+
+  $('.create-record .button').click(function (evt) {
+    evt.preventDefault();
+    $('.bl-my-journey .profile').toggleClass('opened');
+  });
+
+  $('.create-record .dropdown a').click(function (evt) {
+    evt.preventDefault();
+    $('.bl-my-journey .profile').removeClass('opened');
+  });
+
+
 });

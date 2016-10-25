@@ -67,12 +67,40 @@
                 </div>
             </div>
 
-            <a href="#" class="create-record">
-                <i class="bs-add"></i>Create Record
-            </a>
+            <div class="create-record">
+                <a href="#" class="button">
+                    <i class="bs-add"></i>Create Record
+                </a>
+                <div class="dropdown">
+                    <div class="title">
+                        Create...
+                    </div>
+                    <ul>
+                        <li>
+                            <a class="j-create-note" href="{{ url('/notes/create') }}">
+                                <i class="bs-note"></i>Note
+                            </a>
+                            </li>
+                        <li>
+                            <a class="j-create-journal" href="{{ url('/journal/create') }}">
+                                <i class="bs-journal"></i>Journal Entry
+                            </a>
+                        </li>
+                        <li>
+                            <a class="j-create-prayer" href="{{ url('/prayers/create') }}">
+                                <i class="bs-pray"></i>Prayer
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
         </sectin>
 
+
     </section>
+
+    {{-- @include('user.my-journey-filters') --}}
 
     <hr>
 
