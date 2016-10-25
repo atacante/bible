@@ -60,6 +60,11 @@ class Coupon extends BaseModel
         $this->attributes['expire_at'] = $value?Carbon::createFromTimestamp(strtotime($value)):null;
     }
 
+    public function setCouponCodeAttribute($value)
+    {
+        $this->attributes['coupon_code'] = strtolower($value);
+    }
+
     public function users() {
         return $this->belongsToMany(User::class, 'coupons_users', 'coupon_id', 'user_id')->withPivot('is_used');
     }
