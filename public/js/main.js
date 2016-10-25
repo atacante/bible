@@ -594,11 +594,7 @@ $(document).ready(function(){
     });
 
 // Text selection
-    $(".j-bible-text").bind( "touchcancel",function(eventObject) {
-        alert('touchcancel');
-    });
     $(".j-bible-text").bind( "mouseup touchend touchcancel",function(eventObject) {
-        alert('touchend');
         var selectedObject = site.getSelected();
         var text = selectedObject.toString();
         if(text){
@@ -662,9 +658,14 @@ $(document).ready(function(){
 
             $('body').append(reader.getHighlightActionsHtml(hasMark));
 
+
+            var pageX = eventObject.pageX;
+            if(!pageX){
+                pageX = eventObject.originalEvent.changedTouches[0].pageX;
+            }
             $('.j-reader-actions').css({
                 top: ($(endElement).offset().top-66) + "px",
-                left: (eventObject.pageX-(text.length > 3?60:43)) + "px"
+                left: (pageX-(text.length > 3?60:43)) + "px"
             }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
         }
         else {
