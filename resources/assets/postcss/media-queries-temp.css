@@ -1,9 +1,9 @@
 
 /* Medium devices (Small desktops 1280px max) */
 @media (--medium) {
-    .my-item {
+/*    .my-item {
         width: 33.333333%;
-    }
+    }*/
     input.datepicker {
         padding: 0 20px;
     }
@@ -14,9 +14,6 @@
 
 /* Small devices (tablets, 992px max) */
 @media (--small) {
-    .my-item {
-        width: 50%;
-    }
     .navbar-header {
         float: none;
         display: inline-block;
@@ -34,9 +31,7 @@
 
 /* Extra small devices (phones, less than 768px) */
 @media (--xsmall) {
-    .my-item {
-        width: 100%;
-    }
+
     .navbar-header .navbar-brand {
         font-size: 13px;
     }

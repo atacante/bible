@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="row wall">
-        <div class="col-xs-3">
+        <div class="col-md-3">
             @include('blog.categories')
         </div>
-        <div class="col-xs-9">
+        <div class="col-md-9">
             <ul class="nav nav-pills tabs-nav">
                 <li class="pull-left friends-nav mb6">
                     <h1 class="blog-cat-title">
