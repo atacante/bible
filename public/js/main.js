@@ -681,7 +681,7 @@ $(document).ready(function(){
                 verse_from_id:reader.startVerseId,
                 verse_to_id:reader.endVerseId,
                 color:color,
-                highlighted_text:reader.selectedText,
+                highlighted_text:site.getSelected().toString(),
                 _token:$('input[name="_token"]').val()
             },
             success:function(data){
