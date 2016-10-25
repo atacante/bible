@@ -31,8 +31,7 @@
         <span class="caret"></span>
     </li>
     <!-- Button for async new Posts -->
-    <li class="active new-posts hidden j-new-posts" role="presentation">
+    <li class="new-posts hidden j-new-posts" role="presentation">
         <a href="{{ url(Request::url()) }}"><i class="bs-publicwall"></i>New Posts ( <span class="font-size-18"></span> )</a>
-        <span class="caret"></span>
     </li>
 </ul>
