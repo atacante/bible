@@ -10,10 +10,12 @@ use App\Journal;
 use App\Note;
 use App\Prayer;
 use App\Tag;
+use App\User;
 use App\UsStates;
 use App\VersionsListEn;
 use App\WallPost;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -458,5 +460,10 @@ class ViewHelper
     public static function getUsStatesList()
     {
         return UsStates::pluck('name','name')->toArray();
+    }
+
+    public static function checkBetaTestersAmount()
+    {
+        return User::checkBetaTestersLimit();
     }
 }
