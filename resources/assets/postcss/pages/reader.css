@@ -283,6 +283,12 @@ ul.icon-panel li a {
         font-size: 1.16rem;
     }
 }
+@media(--small){
+    .h3-related {
+        font-size: 1rem;
+        padding-right: 30px;
+    }
+}
 .bord1 {
     border-bottom: 1px solid #f3f3f3;
 }
@@ -298,6 +304,13 @@ ul.icon-panel li a {
 @media(--xsmall){
     .cu-staroutlined {
         font-size: 1.16rem;
+    }
+}
+@media(--small){
+    .h3-related{
+        & .cu-staroutlined {
+            font-size: 1rem;
+        }
     }
 }
 .related-records .date-order-btn {

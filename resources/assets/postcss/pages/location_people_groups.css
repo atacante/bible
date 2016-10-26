@@ -49,7 +49,20 @@
     .cu1-row {
         padding: 0 4px;
     }
+    .groups {
+        & .cu1-row {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+    }
 }
+.groups {
+    & .cu1-row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+}
+
 .my-inner-location-item .carousel-inner > .item > a > img,
 .my-inner-location-item .carousel-inner > .item > img,
 .my-inner-location-item .img-responsive, .thumbnail a > img, .thumbnail > img {
