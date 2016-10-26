@@ -763,7 +763,9 @@ $(document).ready(function(){
         var selectedObject = $(this);
 
         if($(eventObject.target)[0].localName == 'span' || $(eventObject.target)[0].localName == 'mark'){
-
+            if($(eventObject.target).hasClass('glyphicon')){
+                return true;
+            }
             $('.j-verse-text').removeClass('clicked');
             $('.j-reader-actions').remove();
             $('.def-highlight').removeClass('def-highlight');
