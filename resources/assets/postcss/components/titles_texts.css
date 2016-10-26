@@ -347,6 +347,12 @@ h4.h4-sub-kit {
         font-size: 1.27rem;
         letter-spacing: 1px;
     }
+    .login {
+        & .h2-new {
+            font-size: 2rem;
+            line-height: 2.5rem;
+        }
+    }
 }
 .sub-text-radio {
     font-family: work_sansregular;
