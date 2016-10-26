@@ -72,7 +72,7 @@
         })(document, 'script');
     </script>--}}
 
-    <link rel="shortcut icon" href="{!! asset('assets/site/ico/favicon.ico')  !!} ">
+    <link rel="shortcut icon" href="{!! asset('favicon.ico')  !!} ">
 </head>
 <body class="{{ Request::segment(1)}} {{ Request::segment(2)}}">
     <script>window.inlineManualOptions = { language: 'en'};</script>
