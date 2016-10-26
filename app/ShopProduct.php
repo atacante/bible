@@ -11,6 +11,9 @@ class ShopProduct extends BaseModel implements Buyable{
 	protected $fillable = ['category_id', 'name', 'photo', 'short_description', 'long_description', 'price', 'external_link', 'homepage_position'];
 	protected $dates = ['created_at', 'updated_at'];
 
+    public static $sizes = ['default' => 'Default','small'=>'Small','medium' => 'Medium','large'=>'Large'];
+    public static $colors = ['default' => 'Default', 'black' => 'Black', 'green' => 'Green', 'red' => 'Red', 'blue' => 'Blue'];
+
 	public function rules()
 	{
 		$rules = [

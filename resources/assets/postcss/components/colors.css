@@ -22,3 +22,6 @@
 .color8 {
     color: #a9a9a9 !important;
 }
+.bg-color-transparent{
+    background-color: transparent;
+}

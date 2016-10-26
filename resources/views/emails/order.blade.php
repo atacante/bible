@@ -73,6 +73,8 @@
                     </td>
                     <td>
                         <p>{!! $row->product->name !!}</p>
+                        <p>{!! 'Size: '.$row->size !!}</p>
+                        <p>{!! 'Color: '.$row->color !!}</p>
                     </td>
                     <td>{!! $row->qty !!}</td>
                     <td style="padding-right: 5px">${!! $row->product->price !!}</td>
