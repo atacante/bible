@@ -113,7 +113,7 @@
 
             @media (max-width: 1150px) {
               & {
-                flex: 1;
+                flex-grow: 1;
               }
             }
 
@@ -179,7 +179,7 @@
                 background-color: var(--mainColor);
                 display: flex;
                 align-items: center;
-                padding: 22px 32px;
+                padding: 28px 32px;
                 font-size: 1.29em;
                 font-family: 'ns_widenormal';
                 text-transform: uppercase;
@@ -297,6 +297,10 @@
             }
         }
     }
+}
+
+.bl-filters {
+    margin-top: 15px;
 }
 
 @media (--xsmall) {

@@ -95,6 +95,15 @@ class OrderController extends Controller
                     $orderItem->order_id=$order->id;
                     $orderItem->product_id=$item->model->id;
                     $orderItem->qty=$item->qty;
+
+                    if(isset($item->options['color'])){
+                        $orderItem->color=$item->options['color'];
+                    }
+
+                    if(isset($item->options['size'])){
+                        $orderItem->size=$item->options['size'];
+                    }
+
                     $orderItem->save();
                 }
 

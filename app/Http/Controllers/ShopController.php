@@ -88,7 +88,10 @@ class ShopController extends Controller {
 	public function getAddToCart($id)
 	{
 		$product = ShopProduct::find($id);
-        Cart::add($product, 1);//->setTaxRate('10');
+		$color = Request::input('color', 'default');
+		$size = Request::input('size', 'default');
+
+        Cart::add($product, 1, ['color'=>$color, 'size'=>$size]);//->setTaxRate('10');
 		return Redirect::to('/shop/cart');
 	}
 

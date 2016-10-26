@@ -14,7 +14,7 @@
         <sectin class="profile">
             <div class="user">
                 @if(Auth::user() && Auth::user()->avatar)
-                    <div class="userpic" style="background: url('{!!
+                    <div class="userpic" style="background-image: url('{!!
                         Auth::user()->avatar != ''
                             ? Config::get('app.userAvatars').Auth::user()->id.'/thumbs/'.Auth::user()->avatar
                             : ''
