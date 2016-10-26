@@ -52,7 +52,12 @@ class CustomValidator{
 
     public function validateCouponUnique($attribute, $value, $parameters)
     {
-        $coupon = Coupon::getCoupon($value);
+        if($parameters && $parameters[0]){
+            $coupon = Coupon::where('coupon_code', 'ILIKE', $value)->where('id','!=',$parameters[0])->first();
+        }else{
+            $coupon = Coupon::getCoupon($value);
+        }
+
         if(!$coupon){
             return true;
         }

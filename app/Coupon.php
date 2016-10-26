@@ -23,6 +23,14 @@ class Coupon extends BaseModel
             'amount' => 'required|numeric',
         ];
 
+        switch(Request::method())
+        {
+            case 'PUT':
+            {
+                $rules['coupon_code'] = 'required|coupon_unique:'.$this->id;
+            }
+                break;
+        }
         return $rules;
     }
 
