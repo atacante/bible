@@ -253,6 +253,15 @@
   box-sizing: border-box;
   text-transform: uppercase;
 }
+@media(--xsmall){
+    .cu2-1-btn1 {
+        font-size: 0.7rem !important;
+        padding: 3px 0 !important;
+        bottom: 28px;
+        left: 55px;
+        right: 18px;
+    }
+}
 .cu2-2-btn1 {
   font-size: 0.93rem !important;
   padding: 7px 0 !important;
@@ -384,7 +393,7 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
 }
 .cu3-btn1 {
   font-size: 0.93rem;
-  padding: 6px 8px 3px;
+  padding: 6px 8px 5px;
   border-width: 2px;
   border-radius: 0;
   -webkit-border-radius: 0;
@@ -529,6 +538,12 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     right: 50px;
     text-decoration: none !important;
 }
+@media(--xsmall){
+    .btn-reset {
+        height: 20px;
+        width: 20px;
+    }
+}
 .btn-reset:hover {
     background: #00b9f7;
     color: white;
@@ -594,6 +609,16 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   line-height: 2.14rem !important;
   top: auto;
   width: 41px;
+}
+@media(--xsmall){
+    .btn4-cu2 {
+        bottom: 28px;
+        height: 30px !important;
+        left: 20px;
+        line-height: 2.14rem !important;
+        top: auto;
+        width: 30px !important;
+    }
 }
 .cu-study-btn {
   position: absolute;

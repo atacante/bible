@@ -135,6 +135,7 @@
 @media(--xsmall){
     .cu1-h2 {
         padding: 0;
+        margin: 0 0 40px;
     }
 }
 .fa-btn {

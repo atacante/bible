@@ -169,6 +169,9 @@
         padding: 20px;
     }
 }
+#popup iframe{
+    width: 100%;
+}
 ul.pp-c-items {
     display: block;
     overflow: hidden;
@@ -408,6 +411,12 @@ ul.c-chapter-list li a.active {
     background-color: #e3e3e3;
     height: 95px;
 }
+@media(--xsmall){
+    #popup .modal-dialog .modal-content .modal-header{
+        background-color: #e3e3e3;
+        height: auto;
+    }
+}
 #popup .modal-dialog .modal-content .modal-title .s-full-screen-btn{
     margin: 0 45px;
 }
@@ -490,6 +499,12 @@ ul.c-chapter-list li a.active {
     #popup .modal-dialog .modal-content .modal-header h4{
         font-size: 1.2rem;
         line-height: 1.2rem;
+    }
+    .locations {
+        & #popup .modal-dialog .modal-content .modal-header .modal-title-text,
+        & #popup .modal-dialog .modal-content .modal-header h4{
+            padding-top: 22px;
+        }
     }
 }
 #popup .modal-dialog .modal-content .modal-body{

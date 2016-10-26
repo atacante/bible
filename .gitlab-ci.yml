@@ -13,10 +13,13 @@ job_for_dev:
   before_script:
     - export PATH=/opt/remi/php70/root/bin/:$PATH
     - path_to_vhost='/var/www/clients/client3/web1/web/'
-  script:
     - cd $path_to_vhost
     - php -v
+    - curl -s http://getcomposer.org/installer | php
+    - php composer.phar self-update
+  script:
     - git pull origin dev
+    - php composer.phar install
     - php artisan migrate --force --no-interaction
     - php artisan asset:dist
     - php artisan clear-compiled
@@ -49,10 +52,13 @@ job_for_alpha:
   before_script:
     - export PATH=/opt/remi/php70/root/bin/:$PATH
     - path_to_vhost='/home/bible_alpha/web/'
-  script:
     - cd $path_to_vhost
     - php -v
+    - curl -s http://getcomposer.org/installer | php
+    - php composer.phar self-update
+  script:
     - git pull origin alpha
+    - php composer.phar install
     - php artisan migrate --force --no-interaction
     - php artisan asset:dist
     - php artisan clear-compiled

@@ -184,9 +184,6 @@ a.view-details:hover{
     margin-left: 10px;
     margin-bottom: 10px;
 }
-#popup iframe{
-    width: 568px;
-}
 .main-container{
     min-height: 400px;
 }
