@@ -337,6 +337,12 @@ h4.h4-sub-kit {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
+@media(--xsmall){
+    .h2-new {
+        font-size: 1.27rem;
+        letter-spacing: 1px;
+    }
+}
 .sub-text-radio {
     font-family: work_sansregular;
     color: #a1a1a1;

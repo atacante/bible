@@ -232,6 +232,11 @@
         padding: 10px 0 !important;
         font-size: 0.8rem !important;
     }
+    .locations.list {
+        & a.cu2-btn1 {
+            bottom: -30px;
+        }
+    }
 }
 .cu2-1-btn1 {
   font-size: 0.93rem !important;
@@ -431,96 +436,103 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   }
 }
 .cu-btn2 {
-  font-size: 0.93rem;
-  padding: 7px 25px;
-  border-width: 2px;
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  vertical-align: top;
+    font-size: 0.93rem;
+    padding: 7px 25px;
+    border-width: 2px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    vertical-align: top;
 }
 .cu-btn2:hover, .cu-btn2:active, .cu-btn2:focus {
-  border: 2px solid #404040 !important;
-  background-color: #404040 !important;
-  color: white !important;
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  font-size: 0.93rem;
-  padding: 7px 25px;
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  vertical-align: top;
+    border: 2px solid #404040 !important;
+    background-color: #404040 !important;
+    color: white !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    font-size: 0.93rem;
+    padding: 7px 25px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    vertical-align: top;
 }
 .btn3, .btn3:visited {
-  display: inline-block;
-  border: 3px solid #ffffff;
-  color: #ffffff;
-  font-family: ns_widedemibold;
-  font-size: responsive 11px 18px;
-  padding: 15px 50px;
-  text-decoration: none !important;
-  outline: none !important;
+    display: inline-block;
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    font-family: ns_widedemibold;
+    font-size: responsive 11px 18px;
+    padding: 15px 50px;
+    text-decoration: none !important;
+    outline: none !important;
 }
 .btn3:hover, .btn3:active {
-  display: inline-block;
-  border: 3px solid #ffffff;
-  background: #ffffff;
-  color: #404040;
-  font-family: ns_widedemibold;
-  font-size: responsive 11px 18px;
-  padding: 15px 50px;
-  text-decoration: none !important;
+    display: inline-block;
+    border: 3px solid #ffffff;
+    background: #ffffff;
+    color: #404040;
+    font-family: ns_widedemibold;
+    font-size: responsive 11px 18px;
+    padding: 15px 50px;
+    text-decoration: none !important;
 }
 .btn5, .btn5:visited {
-  display: inline-block;
-  border: 3px solid #64cd93;
-  color: #64cd93;
-  font-family: ns_widedemibold;
-  font-size: 1.29rem;
-  padding: 15px 50px;
-  text-decoration: none !important;
-  outline: none !important;
-  text-transform: uppercase;
+    display: inline-block;
+    border: 3px solid #64cd93;
+    color: #64cd93;
+    font-family: ns_widedemibold;
+    font-size: 1.29rem;
+    padding: 15px 50px;
+    text-decoration: none !important;
+    outline: none !important;
+    text-transform: uppercase;
 }
 .btn5:hover, .btn5:active {
-  display: inline-block;
-  background: #64cd93;
-  color: #ffffff;
-  text-decoration: none !important;
+    display: inline-block;
+    background: #64cd93;
+    color: #ffffff;
+    text-decoration: none !important;
 }
 .cu-shop-btn1 {
-  border: 2px solid;
-  font-size: 0.79rem;
-  padding: 10px;
-  position: absolute;
-  right: 0;
-  text-transform: uppercase;
-  top: 2px;
+    border: 2px solid;
+    font-size: 0.79rem;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    text-transform: uppercase;
+    top: 2px;
+}
+@media(--xsmall){
+    .cu-shop-btn1 {
+        position: relative;
+        top: 10px;
+        border-width: 2px;
+    }
 }
 .btn-settings {
-  position: absolute;
-  display: block;
-  top: 3px;
-  right: 0;
-  text-decoration: none !important;
+    position: absolute;
+    display: block;
+    top: 3px;
+    right: 0;
+    text-decoration: none !important;
 }
 .btn-reset {
-  color: #00b9f7;
-  text-align: center;
-  font-size: 1.93rem;
-  line-height: 1.71rem;
-  font-family: work_sansregular;
-  border: 2px solid #00b9f7;
-  height: 26px;
-  width: 26px;
-  position: absolute;
-  top: 40px;
-  right: 50px;
-  text-decoration: none !important;
+    color: #00b9f7;
+    text-align: center;
+    font-size: 1.93rem;
+    line-height: 1.71rem;
+    font-family: work_sansregular;
+    border: 2px solid #00b9f7;
+    height: 26px;
+    width: 26px;
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    text-decoration: none !important;
 }
 .btn-reset:hover {
-  background: #00b9f7;
-  color: white;
-  text-decoration: none !important;
+    background: #00b9f7;
+    color: white;
+    text-decoration: none !important;
 }
 @media (--xsmall) {
   .btn-reset{

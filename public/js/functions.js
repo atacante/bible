@@ -570,20 +570,22 @@ order.fillBillingInfo = function(){
 }
 
 reader.getHighlights = function(){
-    $.ajax({
-        method: "GET",
-        url: '/reader/get-highlights',
-        dataType:'json',
-        data:{
-            version:$('input[name=version]').val(),
-            book:$('input[name=book]').val(),
-            chapter:$('input[name=chapter]').val(),
-        },
-        success:function(data){
-            $.each(data,function (index,item) {
-                reader.highlight(item.highlighted_text,item.color,item.id);
-            });
-        }
-    });
+    if($('.j-diff-block').length == 0){
+        $.ajax({
+            method: "GET",
+            url: '/reader/get-highlights',
+            dataType:'json',
+            data:{
+                version:$('input[name=version]').val(),
+                book:$('input[name=book]').val(),
+                chapter:$('input[name=chapter]').val(),
+            },
+            success:function(data){
+                $.each(data,function (index,item) {
+                    reader.highlight(item.highlighted_text,item.color,item.id);
+                });
+            }
+        });
+    }
 }
 
