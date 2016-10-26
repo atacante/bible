@@ -2,7 +2,7 @@
 
 class OrderItem extends BaseModel {
 
-	protected $fillable = ['order_id', 'product_id', 'qty'];
+	protected $fillable = ['order_id', 'product_id', 'qty', 'color', 'size'];
 	protected $dates = ['created_at', 'updated_at'];
 
 	public function rules()
