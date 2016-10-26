@@ -6,6 +6,7 @@
 
 @section('content')
     {{--    @include('reader.filters')--}}
+    {!! Form::open(['method' => 'get','url' => '/shop/add-to-cart/'.$product->id]) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="c-white-content">
@@ -73,16 +74,22 @@
                                      ${!! $product->price !!}
                                 </div>
 
-                                <h4 class="h4-sub-kit mt8">
+                                <h4 class="h4-sub-kit mt13">
                                     Description:
                                 </h4>
                                 <div class="p-medium">
                                     {!! $product->long_description !!}
                                 </div>
+                                <div class="form-group">
+                                    {!! Form::label('color', 'Color') !!}
+                                    {!! Form::select('color', $product::$colors, 'default',['class' => 'form-control', 'style' => 'width:20%']) !!}
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::label('size', 'Size') !!}
+                                    {!! Form::select('size', $product::$sizes, 'default',['class' => 'form-control', 'style' => 'width:20%']) !!}
+                                </div>
                             </div>
                         </div>
-
-
                 </div>
             </div>
         </div>
@@ -90,7 +97,8 @@
     <div class="row mt14 mb1">
         <div class="col-xs-12 text-right">
             {!! Html::link((($url = Session::get('backUrl'))?$url:'/shop'),'Back to list', ['class'=>'btn2 ml1']) !!}
-            {!! Html::link(url('/shop/add-to-cart/'.$product->id,[]),'Add To Cart', ['class'=>'btn1 ml1']) !!}
+            {!! Form::button('Add To Cart', ['type'=>'submit', 'class'=>'bg-color-transparent btn1 ml1']) !!}
         </div>
     </div>
+    {!! Form::close() !!}
 @stop

@@ -31,7 +31,9 @@
                              @endif
                         </td>
                         <td>
-                         <p><strong>{!! $row->name !!}</strong></p>
+                            <p><strong>{!! $row->name !!}</strong></p>
+                            <p>{!! (isset($row->options['size']))?'Size: '.$row->options['size']:'' !!}</p>
+                            <p>{!! (isset($row->options['color']))?'Color: '.$row->options['color']:'' !!}</p>
                         </td>
                         <td>{!! Form::text('qty',$row->qty, ['class'=>'input1','style'=>'width:125px']) !!}</td>
                         <td>${!! $row->price !!}</td>
