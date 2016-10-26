@@ -4,8 +4,7 @@
   font-family: 'ns_widedemibold';
   display: flex;
   align-items: center;
-  /*padding: 40px 0 30px;*/
-  padding-top: 40px;
+  padding: 40px 0 30px;
   font-size: 14px;
 
   @media (max-width: 1340px) {

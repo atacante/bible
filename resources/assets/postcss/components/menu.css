@@ -1,6 +1,6 @@
 .tabs-nav {
-    margin-bottom: 30px;
     border-bottom: 2px solid #e3e3e3;
+    margin: 0 15px 20px;
 }
 @media(--medium){
     .tabs-nav {
