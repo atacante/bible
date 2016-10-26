@@ -10,3 +10,12 @@
 @section('meta_keywords')
     <meta name="keywords" content="{!! $page->meta_keywords !!}"/>
 @stop
+
+@section('meta_twitter')
+@stop
+
+@section('meta_fb')
+@stop
+
+@section('meta_google')
+@stop
