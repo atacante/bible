@@ -17,7 +17,7 @@ job_for_dev:
     - php -v
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar self-update
-    script:
+  script:
     - git pull origin dev
     - php composer.phar install
     - php artisan migrate --force --no-interaction
