@@ -256,6 +256,9 @@ $(document).ready(function(){
 
     $('body').on('click','.j-prayer-text',function(ev) {
         ev.preventDefault();
+        if($(this).find('j-custom-sharing')){
+            return false;
+        }
         var id = $(this).data('prayerid');
         if(!id){
             id = $(this).data('itemid');

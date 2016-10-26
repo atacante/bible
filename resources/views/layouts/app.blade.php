@@ -8,12 +8,12 @@
 
     <title>@section('title') Bible Study Company: An online study Bible and social community @show</title>
     @section('meta_keywords')
-        <meta name="keywords" content="your, awesome, keywords, here"/>
+        <meta name="keywords" content="Bible Study Company"/>
     @show @section('meta_author')
-        <meta name="author" content="Jon Doe"/>
+        <meta name="author" content="Bible Study Company"/>
     @show @section('meta_description')
         <meta name="description"
-              content=""/>
+              content="Bible Study Company: An online study Bible and social community"/>
     @show @section('meta_twitter')
         <meta property="twitter:card" content="summary">
         <meta property="twitter:title" content="">
