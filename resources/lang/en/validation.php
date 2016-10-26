@@ -113,6 +113,7 @@ return [
             'coupon_expire' => 'Coupon code is expired',
             'coupon_uses' => 'Coupon code uses limit is reached',
             'coupon_user_uses' => 'Coupon can be used only once',
+            'coupon_unique' => 'Coupon code should be unique',
         ],
     ],
 

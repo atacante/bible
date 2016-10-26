@@ -358,7 +358,7 @@ class User extends Authenticatable
     {
         $premiumCost = self::getPremiumCost($plan_name);
         if($coupon_code = Input::get('coupon_code')){
-            $coupon = Coupon::where('coupon_code', $coupon_code)->first();
+            $coupon = Coupon::getCoupon($coupon_code);
             $premiumCost -= $coupon->amount;
             $coupon->used++;
             $coupon->save();

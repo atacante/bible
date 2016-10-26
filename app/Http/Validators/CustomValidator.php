@@ -9,7 +9,7 @@ use Illuminate\Validation\Validator;
 class CustomValidator{
     public function validateCouponExist($attribute, $value, $parameters)
     {
-        $coupon = $this->getCoupon($value);
+        $coupon = Coupon::getCoupon($value);
         if($coupon && $coupon->member_type){
             if(Auth::check()){
                 if(!Auth::user()->is($coupon->member_type)){
@@ -30,19 +30,19 @@ class CustomValidator{
 
     public function validateCouponExpire($attribute, $value, $parameters)
     {
-        $coupon = $this->getCoupon($value);
+        $coupon = Coupon::getCoupon($value);
         return ($coupon && (!$coupon->expire_at || strtotime($coupon->expire_at) > time()));
     }
 
     public function validateCouponUses($attribute, $value, $parameters)
     {
-        $coupon = $this->getCoupon($value);
+        $coupon = Coupon::getCoupon($value);
         return ($coupon && (!$coupon->uses_limit || $coupon->used < $coupon->uses_limit));
     }
 
     public function validateCouponUserUses($attribute, $value, $parameters)
     {
-        $coupon = $this->getCoupon($value);
+        $coupon = Coupon::getCoupon($value);
         $couponUser = false;
         if($coupon){
             $couponUser = $coupon->users()->wherePivot('is_used',true)->wherePivot('user_id',Auth::user()->id)->first();
@@ -50,7 +50,13 @@ class CustomValidator{
         return ($coupon && ($coupon->is_permanent || !$couponUser));
     }
 
-    private function getCoupon($value){
-        return Coupon::where('coupon_code', 'ILIKE', $value)->first();
+    public function validateCouponUnique($attribute, $value, $parameters)
+    {
+        $coupon = Coupon::getCoupon($value);
+        if(!$coupon){
+            return true;
+        }
+
+        return false;
     }
 }

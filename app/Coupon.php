@@ -18,19 +18,10 @@ class Coupon extends BaseModel
     public function rules()
     {
         $rules =  [
-            'coupon_code' => 'required|unique:coupons',
+            'coupon_code' => 'required|coupon_unique',
             'expire_at' => 'date',
             'amount' => 'required|numeric',
         ];
-
-        switch(Request::method())
-        {
-            case 'PUT':
-            {
-                $rules['coupon_code'] = 'required|unique:coupons,coupon_code,'.$this->id;
-            }
-                break;
-        }
 
         return $rules;
     }
@@ -45,6 +36,10 @@ class Coupon extends BaseModel
         "Already Used"=>false,
         "Created"=>"created_at"
     ];
+
+    public static function getCoupon($value){
+        return self::where('coupon_code', 'ILIKE', $value)->first();
+    }
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id', 'id');
