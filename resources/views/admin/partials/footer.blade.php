@@ -4,9 +4,9 @@
         </div>
         <strong>
             Copyright © 2016
-            {{--<a href="#">Bible Study Company</a>--}}
+            Bible Study Company
         </strong>
-        All Rights Reserved
+        All Rights Reserved -
         <a href="http://www.cleart.com">Web Development by ClearTech Interactive</a>
     </div>
 </footer>
