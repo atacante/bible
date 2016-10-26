@@ -54,7 +54,7 @@
       & nav {
         display: block;
         position: relative;
-        z-index: 1001;
+        z-index: 100001;
 
         & > ul {
           background-color: #313d47;
@@ -79,6 +79,7 @@
             padding: 4px 2px;
           }
 
+
           & a {
             font-family: 'ns_widenormal' !important;
             padding: 8px 10px;
@@ -102,6 +103,7 @@
             &:before {
               color: #9da8b1;
             }
+
           }
 
           & .sub-nav {
@@ -206,7 +208,7 @@
   }
 
   & nav {
-    height: 55px;
+    /*height: 55px;*/
     display: flex;
     align-items: center;
     flex: 1;
@@ -258,7 +260,7 @@
             height: 0;
             margin-left: 5px;
             border: none;
-            border-top: 4px dashed white;
+            border-top: 4px dashed;
             border-right: 4px dashed transparent;
             border-left: 4px dashed transparent;
           }
@@ -287,7 +289,7 @@
 
             &:after {
               border: none;
-              border-bottom: 4px dashed white;
+              border-bottom: 4px dashed;
               border-right: 4px dashed transparent;
               border-left: 4px dashed transparent;
             }
@@ -314,7 +316,7 @@
           box-shadow: 0 0 15px 5px rgba(100,100,100,0.1);
           min-width: 200px;
           border: 1px solid rgba(0,0,0,.15);
-          z-index: 1000;
+          z-index: 100000;
           margin-top: 12px;
           background-clip: padding-box;
           display: none;
@@ -418,6 +420,16 @@
 
       }
     }
+
+    & .user-menu-name {
+        white-space: nowrap;
+        display: inline-block;
+        max-width: 80px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-left: 5px;
+    }
+
   }
 
   & .show-menu {
@@ -439,6 +451,102 @@
       height: 2px;
       border-radius: 1px;
       background-color: var(--mainColor);
+    }
+  }
+
+  &.bl-inner {
+    font-size: 13px;
+
+    @media (max-width: 1340px) {
+      & {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 1280px) {
+      & {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 1220px) {
+      & {
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 1160px) {
+      & {
+        flex-direction: row;
+      }
+    }
+
+
+    & .logo {
+      margin: 0;
+      padding: 5px 18px;
+      align-self: flex-start;
+
+      &:before {
+        font-size: 2.8em;
+        margin: 0;
+      }
+    }
+
+    & a {
+      color: #6b6b6b;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    & nav {
+
+      & ul {
+
+        & li {
+
+          &.with-items {
+
+            & a {
+
+              &:hover {
+
+                &:before {
+                  color: white;
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.bl-subnav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+
+  & form {
+    width: 320px;
+    position: relative;
+  }
+
+  & .my-bookmarks {
+    position: absolute;
+    right: 0;
+  }
+
+  @media (--small) {
+    & {
+      margin: 10px 20px 20px;
     }
   }
 }

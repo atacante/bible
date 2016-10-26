@@ -35,12 +35,12 @@
     height: auto;
 }
 .cu1-row {
-    margin-left: -7px;
-    margin-right: -7px;
+    margin-left: 7px;
+    margin-right: 7px;
 }
 @media(--xsmall){
     .cu1-row {
-        padding: 0 15px;
+        padding: 0 4px;
     }
 }
 .my-inner-location-item .carousel-inner > .item > a > img,
@@ -64,6 +64,11 @@
 }
 .my-inner-location-item .item {
     height: 260px;
+}
+@media(--xsmall){
+    .my-inner-location-item .item {
+        height: 190px;
+    }
 }
 .my-inner-location-item p {
     margin: 0;
@@ -95,6 +100,7 @@ h4.h4-locations {
 @media(--xsmall){
     h4.h4-locations {
         font-size: 1rem;
+        line-height: 1.2rem;
         margin: 20px 0 10px;
     }
 }
@@ -190,4 +196,9 @@ h4.h4-locations {
     position: absolute;
     left: 50%;
     margin-left: -40px;
+}
+@media(--xsmall){
+    .location-map-btn {
+        top: 10px;
+    }
 }

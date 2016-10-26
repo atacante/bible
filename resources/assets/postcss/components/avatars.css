@@ -56,9 +56,20 @@
     padding: 60px;
     background-color: #79858F;
 }
+@media(--xsmall){
+    .location-image {
+        height: 190px;
+        padding: 60px 20px 0;
+    }
+}
 .location-image i{
     font-size: 10rem;
     color: #D2D7DC;
+}
+@media(--xsmall){
+    .location-image i{
+        font-size: 5rem;
+    }
 }
 .verse-image i{
     font-size: 5rem;

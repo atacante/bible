@@ -589,83 +589,85 @@ $(document).ready(function(){
     });
 
 // Text selection
-    $(".j-bible-text").bind( "mouseup touchend touchcancel",function(eventObject) {
-        var selectedObject = site.getSelected();
-        var text = selectedObject.toString();
-        if(text){
-            reader.highlightMode = true;
-            var startElement = selectedObject.anchorNode.parentElement;
-            var endElement = selectedObject.focusNode.parentElement;
-            var version = $(startElement).data('version');
-            if(!version){
-                version = $(startElement).parents('.j-verse-text').data('version');
-            }
-            if(!version){
-                version = $(endElement).data('version');
+    if($('.j-diff-block').length == 0){
+        $(".j-bible-text").bind( "mouseup touchend touchcancel",function(eventObject) {
+            var selectedObject = site.getSelected();
+            var text = selectedObject.toString();
+            if(text){
+                reader.highlightMode = true;
+                var startElement = selectedObject.anchorNode.parentElement;
+                var endElement = selectedObject.focusNode.parentElement;
+                var version = $(startElement).data('version');
                 if(!version){
-                    version = $(endElement).parents('.j-verse-text').data('version');
+                    version = $(startElement).parents('.j-verse-text').data('version');
                 }
-            }
-
-            var startVerseId = $(startElement).data('verseid');
-            if(!startVerseId){
-                startVerseId = $(startElement).parents('.j-verse-text').data('verseid');
-            }
-            reader.startVerseId = startVerseId;
-            var endVerseId = $(endElement).data('verseid');
-            if(!endVerseId){
-                endVerseId = $(endElement).parents('.j-verse-text').data('verseid');
-            }
-            reader.endVerseId = endVerseId;
-
-            var verseId = 0;
-            if(!startVerseId || !endVerseId){
-                verseId = Math.max((startVerseId || 0), (endVerseId || 0));
-            }
-            else{
-                verseId = Math.min((startVerseId || 0), (endVerseId || 0));
-            }
-
-            var startParent = $(startElement).parents('.j-verse-text');
-            var endParent = $(endElement).parents('.j-verse-text');
-            var hasMark = false;
-            if($(startElement).parent().context.localName == 'mark'){
-                hasMark = true;
-            }
-            if($(endElement).parent().context.localName == 'mark'){
-                hasMark = true;
-            }
-            if(!hasMark){
-                if($(startElement).index() <= $(endElement).index()){
-                    var marks = $(startElement).nextUntil($(endElement).next()).andSelf().find('mark');
-                    if(marks.length > 0){
-                        hasMark = true;
+                if(!version){
+                    version = $(endElement).data('version');
+                    if(!version){
+                        version = $(endElement).parents('.j-verse-text').data('version');
                     }
+                }
+
+                var startVerseId = $(startElement).data('verseid');
+                if(!startVerseId){
+                    startVerseId = $(startElement).parents('.j-verse-text').data('verseid');
+                }
+                reader.startVerseId = startVerseId;
+                var endVerseId = $(endElement).data('verseid');
+                if(!endVerseId){
+                    endVerseId = $(endElement).parents('.j-verse-text').data('verseid');
+                }
+                reader.endVerseId = endVerseId;
+
+                var verseId = 0;
+                if(!startVerseId || !endVerseId){
+                    verseId = Math.max((startVerseId || 0), (endVerseId || 0));
                 }
                 else{
-                    var marks = $(startElement).prevUntil($(endElement).prev()).andSelf().find('mark');
-                    if(marks.length > 0){
-                        hasMark = true;
+                    verseId = Math.min((startVerseId || 0), (endVerseId || 0));
+                }
+
+                var startParent = $(startElement).parents('.j-verse-text');
+                var endParent = $(endElement).parents('.j-verse-text');
+                var hasMark = false;
+                if($(startElement).parent().context.localName == 'mark'){
+                    hasMark = true;
+                }
+                if($(endElement).parent().context.localName == 'mark'){
+                    hasMark = true;
+                }
+                if(!hasMark){
+                    if($(startElement).index() <= $(endElement).index()){
+                        var marks = $(startElement).nextUntil($(endElement).next()).andSelf().find('mark');
+                        if(marks.length > 0){
+                            hasMark = true;
+                        }
+                    }
+                    else{
+                        var marks = $(startElement).prevUntil($(endElement).prev()).andSelf().find('mark');
+                        if(marks.length > 0){
+                            hasMark = true;
+                        }
                     }
                 }
+
+                $('body').append(reader.getHighlightActionsHtml(hasMark));
+
+
+                var pageX = eventObject.pageX;
+                if(!pageX){
+                    pageX = eventObject.originalEvent.changedTouches[0].pageX;
+                }
+                $('.j-reader-actions').css({
+                    top: ($(endElement).offset().top-66) + "px",
+                    left: (pageX-(text.length > 3?60:43)) + "px"
+                }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
             }
-
-            $('body').append(reader.getHighlightActionsHtml(hasMark));
-
-
-            var pageX = eventObject.pageX;
-            if(!pageX){
-                pageX = eventObject.originalEvent.changedTouches[0].pageX;
+            else {
+                $('.j-reader-actions').remove();
             }
-            $('.j-reader-actions').css({
-                top: ($(endElement).offset().top-66) + "px",
-                left: (pageX-(text.length > 3?60:43)) + "px"
-            }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
-        }
-        else {
-            $('.j-reader-actions').remove();
-        }
-    });
+        });
+    }
 
     $("body").on('click','.j-highlight-text',function (e) {
         e.preventDefault();
