@@ -14,6 +14,12 @@
     font-size: 1.36rem;
     line-height: 2.21rem;
 }
+@media(--xsmall){
+    .cu-cart {
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+}
 .cu-cart2 {
     font-size: 0.86rem;
     padding-right: 2px;
