@@ -167,6 +167,11 @@ h4.h4-1 {
 .font-size-13 {
     font-size: 0.93rem;
 }
+@media(--xsmall){
+    .font-size-13 {
+        font-size: 0.65rem;
+    }
+}
 .font-size-16 {
     font-size: 1.14rem;
 }

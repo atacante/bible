@@ -166,8 +166,11 @@ h4.h4-locations {
 }
 @media(--xsmall){
     .friend-name {
-        font-size: 1rem;
+        font-size: 0.9rem;
         text-transform: uppercase;
+        display: block;
+        overflow: hidden;
+        height: 35px;
     }
 }
 .c-group-type {
@@ -175,6 +178,11 @@ h4.h4-locations {
     text-transform: capitalize;
     color: #a9a9a9;
     display: inline-block;
+}
+@media(--xsmall){
+    .c-group-type {
+        margin-left: 10px;
+    }
 }
 .btns-group1 {
     bottom: 20px;
@@ -208,5 +216,8 @@ h4.h4-locations {
 @media(--xsmall){
     .location-map-btn {
         top: 10px;
+    }
+    .group-ind {
+        font-size: 0.8rem;
     }
 }
