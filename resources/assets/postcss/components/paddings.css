@@ -46,6 +46,11 @@
 .mt15 {
     margin-top: 10px !important;
 }
+@media(--xsmall){
+    .mt15 {
+        margin-top: 6px !important;
+    }
+}
 .mt16 {
     margin-top: 15px !important;
 }
