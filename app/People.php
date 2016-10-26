@@ -60,6 +60,10 @@ class People extends BaseModel
             $sq->orWhere('verse_part','like',$characterName.' %');
             $sq->orWhere('verse_part','like','% '.$characterName);
             $sq->orWhere('verse_part','like',$characterName);
+            $sq->orWhere('verse_part','like',$characterName.',%');
+            $sq->orWhere('verse_part','like',$characterName.'.%');
+            $sq->orWhere('verse_part','like','% '.$characterName.',%');
+            $sq->orWhere('verse_part','like','% '.$characterName.'.%');
         });
 
         $kjvPhrases = LexiconKjv::where(function($sq) use($characterName){
@@ -67,12 +71,20 @@ class People extends BaseModel
             $sq->orWhere('verse_part','like',$characterName.' %');
             $sq->orWhere('verse_part','like','% '.$characterName);
             $sq->orWhere('verse_part','like',$characterName);
+            $sq->orWhere('verse_part','like',$characterName.',%');
+            $sq->orWhere('verse_part','like',$characterName.'.%');
+            $sq->orWhere('verse_part','like','% '.$characterName.',%');
+            $sq->orWhere('verse_part','like','% '.$characterName.'.%');
         });
         $bereanPhrases = LexiconBerean::where(function($sq) use($characterName){
             $sq->orWhere('verse_part','like','% '.$characterName.' %');
             $sq->orWhere('verse_part','like',$characterName.' %');
             $sq->orWhere('verse_part','like','% '.$characterName);
             $sq->orWhere('verse_part','like',$characterName);
+            $sq->orWhere('verse_part','like',$characterName.',%');
+            $sq->orWhere('verse_part','like',$characterName.'.%');
+            $sq->orWhere('verse_part','like','% '.$characterName.',%');
+            $sq->orWhere('verse_part','like','% '.$characterName.'.%');
         });
 
         $ids = array_unique(array_merge($nasbPhrases->lists('id')->toArray(),$kjvPhrases->lists('id')->toArray(),$bereanPhrases->lists('id')->toArray()));
