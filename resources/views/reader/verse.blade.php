@@ -209,7 +209,7 @@
                     @foreach($content['lexicon'] as $lexiconinfo)
                         @if(!empty($lexiconinfo->verse_part))
                             <tr>
-                                <td class="orange-bord t-label1" @if($lexiconinfo->symbolism) rowspan="2" @endif >{!! $lexiconinfo->verse_part !!}</td>
+                                <td class="orange-bord t-label1 td-resp" @if($lexiconinfo->symbolism) rowspan="2" @endif >{!! $lexiconinfo->verse_part !!}</td>
                                 <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif><span class="t-label2">Definition:</span> {!! $lexiconinfo->definition !!}</td>
                                 <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif><span class="t-label2">Strong's:</span> {!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num) !!}</td>
                                 <td @if(!$lexiconinfo->symbolism) class="orange-bord" @endif><span class="t-label2">Transliteration:</span> {!! $lexiconinfo->transliteration !!}</td>
