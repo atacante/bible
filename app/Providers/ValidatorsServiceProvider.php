@@ -23,6 +23,7 @@ class ValidatorsServiceProvider extends ServiceProvider {
         Validator::extend('coupon_expire', 'App\Validators\CustomValidator@validateCouponExpire');
         Validator::extend('coupon_uses', 'App\Validators\CustomValidator@validateCouponUses');
         Validator::extend('coupon_user_uses', 'App\Validators\CustomValidator@validateCouponUserUses');
+        Validator::extend('coupon_unique', 'App\Validators\CustomValidator@validateCouponUnique');
     }
 
     /**
