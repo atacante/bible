@@ -5,10 +5,13 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-84561258-1', 'auto');
+    ga('create', 'UA-84561258-2', 'auto', {'name': 'ccProductionTracker'});
     ga('create', 'UA-84986968-1', 'auto', {'name': 'betaTracker'});
     ga('create', 'UA-86039074-1', 'auto', {'name': 'productionTracker'});
+
 
     ga('send', 'pageview');
     ga('betaTracker.send', 'pageview');
     ga('productionTracker.send', 'pageview');
+    ga('ccProductionTracker.send', 'pageview');
 </script>
