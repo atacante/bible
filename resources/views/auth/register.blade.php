@@ -54,7 +54,7 @@
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label" for="password">Password <span class="req">*</span></label>
                         <div class="col-xs-8">
-                            {!! Form::password('password', array('class' => 'form-control input1')) !!}
+                            {!! Form::input('password','password', old('password'), array('class' => 'form-control input1')) !!}
 
                             @if ($errors->has('password'))
                                 <span class="help-block">
@@ -67,7 +67,7 @@
                     <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label" for="password_confirmation">Confirm Password <span class="req">*</span></label>
                         <div class="col-xs-8">
-                            {!! Form::password('password_confirmation', array('class' => 'form-control input1')) !!}
+                            {!! Form::input('password','password_confirmation', old('password_confirmation'), array('class' => 'form-control input1')) !!}
 
                             @if ($errors->has('password_confirmation'))
                                 <span class="help-block">
