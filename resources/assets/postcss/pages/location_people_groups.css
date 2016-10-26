@@ -196,6 +196,7 @@ h4.h4-locations {
     position: absolute;
     left: 50%;
     margin-left: -40px;
+    z-index: 999;
 }
 @media(--xsmall){
     .location-map-btn {
