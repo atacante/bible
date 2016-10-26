@@ -10,7 +10,9 @@
                 <li><a href="{{ URL::to('/site/contact') }}">Contact Us</a></li>
             </ul>
             <p class="copyright">
-                &copy; 2016 Bible Study Company
+                Copyright © 2016
+                All Rights Reserved
+                <a href="http://www.cleart.com">Web Development by ClearTech Interactive</a>
             </p>
         </div>
     </div>
