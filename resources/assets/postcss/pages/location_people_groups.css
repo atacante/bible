@@ -31,6 +31,13 @@
     margin-bottom: 0;
     background: white;
 }
+@media(--medium){
+    .shop {
+        & .my-inner-location-item {
+            height: 482px;
+        }
+    }
+}
 .my-inner-people-item{
     height: auto;
 }
@@ -99,7 +106,7 @@ h4.h4-locations {
 }
 @media(--xsmall){
     h4.h4-locations {
-        font-size: 1rem;
+        font-size: 0.95rem;
         line-height: 1.2rem;
         margin: 20px 0 10px;
     }
