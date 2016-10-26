@@ -71,7 +71,7 @@
         })(document, 'script');
     </script>--}}
 
-    <link rel="shortcut icon" href="{!! asset('assets/site/ico/favicon.ico')  !!} ">
+    <link rel="shortcut icon" href="{!! asset('favicon.ico')  !!} ">
 </head>
 <body class="home">
     <script>window.inlineManualOptions = { language: 'en'};</script>
