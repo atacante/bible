@@ -12,7 +12,7 @@
             <div class="c-white-content">
                 <div class="inner-pad1">
                         <div class="row">
-                            <div class="col-xs-4">
+                            <div class="col-md-4">
 
 
                             @if($product->images->count())
@@ -64,7 +64,7 @@
 
                             </div>
 
-                            <div class="col-xs-8">
+                            <div class="col-md-8">
                                 <h3 class="h3-kit">{!! $product->name !!}</h3>
 
                                 <h4 class="h4-sub-kit mt8">
