@@ -301,7 +301,7 @@
             <div class="{!! !$content['showRelated'] || !$content['relatedItems']->count() || Request::input('compare',false)?'row':'my1-row' !!}">
 
                 {{-- ---------------- READER CONTENT ---------------- --}}
-                <div class="{!! !$content['showRelated'] || !$content['relatedItems']->count() || Request::input('compare',false)?'col-md-12':'my1-col-md-8' !!}">
+                <div class="{!! !$content['showRelated'] || !$content['relatedItems']->count() || Request::input('compare',false)?'col-md-12':'my1-col-md-8' !!} {!! Request::input('compare', false)?'compare-mode':'' !!}">
                     <div class="c-reader-content2"></div>
                     <div class="row reader-text" style="position: relative">
                             {!! (Request::input('compare',false)?count(Request::input('compare',false)) == 1?'<div class="comp-bord1"></div>':'<div class="comp-bord2"></div><div class="comp-bord3"></div>':"") !!}
