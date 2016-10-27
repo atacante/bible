@@ -107,6 +107,11 @@
             min-height: 567px !important;
         }
     }
+    .shop.product {
+        & .c-white-content {
+            margin: 15px;
+        }
+    }
 }
 @media(--vxsmall){
     .auth.login {
