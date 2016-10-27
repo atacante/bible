@@ -319,6 +319,14 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     top: 13px;
     font-size: 1.36rem;
 }
+@media(--xsmall){
+    .notes .c-white-content{
+        margin: 10px;
+    }
+    .create-item .entry-full-page{
+        padding: 15px 15px 0 15px;
+    }
+}
 .entry-form textarea{
     border: 1px solid #a9a9a9;
     border-radius: 0;

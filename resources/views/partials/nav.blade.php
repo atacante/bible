@@ -68,10 +68,12 @@
                   href="{{ URL::to('/site/about') }}">About BSC</a>
               </li>
             @endif
-            @if(ViewHelper::checkPublished($data['cmsItems'],'recommended_resources'))
+            @if(    ViewHelper::checkPublished($data['cmsItems'],'recommended_resources')
+                && ($catId = ViewHelper::getBlogCatId('Recommended Resources'))
+            )
               <li>
                 <a class="bs-upload"
-                  href="{{ URL::to('/site/recommended-resources') }}">Recommended Resources</a>
+                  href="{{ URL::to('/blog?category='.$catId) }}">Recommended Resources</a>
               </li>
             @endif
             <li>

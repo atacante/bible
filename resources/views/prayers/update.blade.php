@@ -9,7 +9,7 @@
             </h2>
         </div>
     </div>
-    <div class="c-white-content">
+    <div class="c-white-content create-item">
         <div class="entry-full-page">
             <div class="row">
                 <div class="col-xs-12">
