@@ -161,11 +161,16 @@ site.getSelected = function(){
     }
 
     if(site.isAppleMobile()){
-        if (window.getSelection) {
-            t = window.getSelection().getRangeAt(0);
-        } else {
-            t = document.getSelection().getRangeAt(0);
+        try{
+            if (window.getSelection) {
+                t = window.getSelection().getRangeAt(0);
+            } else {
+                t = document.getSelection().getRangeAt();
+            }
+        }catch(err){
+
         }
+
     }
 
     return t;
