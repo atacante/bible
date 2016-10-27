@@ -69,7 +69,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        <div class="my1-col-md-4 related-records">
+        <div class="my1-col-md-4">
             <div class="c-reader-content2"></div>
             <div class="inner-pad1">
                 <aside id="contact-info" style="position: relative;">
