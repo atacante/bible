@@ -353,6 +353,12 @@ h4.h4-sub-kit {
             line-height: 2.5rem;
         }
     }
+    .password.reset {
+        & .h2-new {
+              font-size: 2rem;
+              line-height: 2.5rem;
+          }
+    }
 }
 .sub-text-radio {
     font-family: work_sansregular;

@@ -96,12 +96,23 @@
             min-height: 567px !important;
         }
     }
+    .password.reset {
+    & .c-white-content {
+          margin: 10px;
+          min-height: 567px !important;
+      }
+    }
 }
 @media(--vxsmall){
     .auth.login {
         & .c-white-content {
             min-height: 10px !important;
         }
+    }
+    .password.reset {
+        & .c-white-content {
+              min-height: 10px !important;
+          }
     }
 }
 .c-reader-content2 {
@@ -180,6 +191,11 @@
         & .inner-pad5 {
             padding: 20px;
         }
+    }
+    .password.reset {
+        & .inner-pad5 {
+              padding: 20px;
+          }
     }
 }
 .c-white-item {

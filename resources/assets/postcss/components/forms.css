@@ -578,6 +578,11 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     margin-left: -15px;
     margin-right: -15px;
 }
+@media(--xsmall){
+    .contact .my1-row {
+        display: block;
+    }
+}
 .my1-col-md-8 {
     width: 66.6667%;
     display: table-cell;
@@ -590,6 +595,10 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
 @media(--xsmall){
     .my1-col-md-8 {
         width: 100%;
+    }
+    .contact .my1-col-md-8 {
+        display: block;
+        margin-bottom: 20px;
     }
     .j-desktop-rel-rec {
         display: none !important;
@@ -606,4 +615,11 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     padding-right: 15px;
     position: relative;
     vertical-align: top;
+}
+
+@media(--xsmall){
+    .contact .my1-col-md-4 {
+        width: 100%;
+        display: block;
+    }
 }
