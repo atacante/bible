@@ -113,35 +113,39 @@
                             <div class="c-journey-top">
                                 <div class="journey-title">
                                     {!! ViewHelper::getEntryIcon($entry->type) !!}
-                                    <span class="tu-text">
-                                        {!! $entry->type !!}
-                                    </span>
-                                    @if($entry->verse)
-                                        <span> for </span>
-                                        {!! Html::link('/reader/verse?'.http_build_query(
-                                            [
-                                                'version' => $entry->bible_version,
-                                                'book' => $entry->verse->book_id,
-                                                'chapter' => $entry->verse->chapter_num,
-                                                'verse' => $entry->verse->verse_num
-                                            ]
-                                            ),ViewHelper::getVerseNum($entry->verse), ['class'=>'']) !!}
+                                    <div class="type">
+                                        <span>
+                                            <span class="tu-text">{!! $entry->type !!}</span>
+                                            @if($entry->verse) for @endif
+                                        </span>
+                                        @if($entry->verse)
+                                            <span class="link">
+                                                {!! Html::link('/reader/verse?'.http_build_query(
+                                                    [
+                                                        'version' => $entry->bible_version,
+                                                        'book' => $entry->verse->book_id,
+                                                        'chapter' => $entry->verse->chapter_num,
+                                                        'verse' => $entry->verse->verse_num
+                                                    ]
+                                                    ),ViewHelper::getVerseNum($entry->verse), ['class'=>'']) !!}
 
 
-                                        <a href="{{url('reader/read?'.http_build_query(
-                                            [
-                                                'version' => $entry->bible_version,
-                                                'book' => $entry->verse->book_id,
-                                                'chapter' => $entry->verse->chapter_num,
-                                            ])."#verse".$entry->verse->id,[],false)}}" style="text-decoration: none !important;">
-                                            <i class="bs-arrowrt" title="Go to Reader"></i>
-                                        </a>
-                                    @endif
-                                    @if($entry->type == 'prayer' && $entry->answered)
-                                        <div class="i-ansvered">
-                                            <i class="fa fa-check-circle" aria-hidden="true" style="color: #00a65a;"></i> Answered
-                                        </div>
-                                    @endif
+                                                <a href="{{url('reader/read?'.http_build_query(
+                                                    [
+                                                        'version' => $entry->bible_version,
+                                                        'book' => $entry->verse->book_id,
+                                                        'chapter' => $entry->verse->chapter_num,
+                                                    ])."#verse".$entry->verse->id,[],false)}}" style="text-decoration: none !important;">
+                                                    <i class="bs-arrowrt" title="Go to Reader"></i>
+                                                </a>
+                                            </span>
+                                        @endif
+                                        @if($entry->type == 'prayer' && $entry->answered)
+                                            <div class="i-ansvered">
+                                                <i class="fa fa-check-circle" aria-hidden="true" style="color: #00a65a;"></i>&nbsp;Answered
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="c-journey-date cu-date1">
                                     {!! $entry->humanLastUpdate($entry::DFORMAT) !!}
