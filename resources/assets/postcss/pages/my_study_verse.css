@@ -33,6 +33,14 @@
             z-index: 99;
         }
     }
+    .reader.strongs {
+        & .btns-panel {
+            top: 65px;
+            right: 17px !important;
+            position: absolute;
+            z-index: 99;
+        }
+    }
 }
 .cu-ci1 {
     padding-left: 170px;
