@@ -81,12 +81,10 @@
         }();
     </script>
     @include('partials.ga')
-    <div class="bg-home"
-         data-mobile="{{ (!$homedata['home_main_block']->background_mobile)? '/images/bg-home-header.jpg':
-                                                Config::get('app.homeImages').$homedata['home_main_block']->background_mobile }}"
-         style="background:
-                 url('{{(!$homedata['home_main_block']->background)? '/images/bg-home-header.jpg':
-                        Config::get('app.homeImages'). $homedata['home_main_block']->background }}') center top no-repeat;">
+    <div class="bg-home" data-mobile="{{ (!$homedata['home_main_block']->background_mobile)? '/images/bg-home-header3.jpg':Config::get('app.homeImages').$homedata['home_main_block']->background_mobile }}"
+         style="background-image:
+                 url('{{(!$homedata['home_main_block']->background)? '/images/bg-home-header3.jpg':
+                        Config::get('app.homeImages'). $homedata['home_main_block']->background }}');">
         <script>
             window.fbAsyncInit = function() {
                 FB.init({
