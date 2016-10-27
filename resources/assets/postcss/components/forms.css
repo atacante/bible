@@ -630,4 +630,14 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
         width: 100%;
         display: block;
     }
+
+    .user.profile .profile-btn-resp{
+        background: white;
+        overflow: hidden;
+    }
+
+    .user.profile .profile-btn-resp .pull-right{
+        float: right !important;
+        margin: 5px 20px 20px !important;
+    }
 }
