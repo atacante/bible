@@ -184,6 +184,7 @@ return [
         'Maatwebsite\Excel\ExcelServiceProvider',
         'EscapeWork\Assets\AssetsServiceProvider',
         'Usps\UspsServiceProvider',
+        'Jenssegers\Agent\AgentServiceProvider',
     ],
 
     /*
@@ -271,6 +272,7 @@ return [
         'Excel' => 'Maatwebsite\Excel\Facades\Excel',
         'Cart'  => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Usps' => 'Usps\Facades\Usps',
+        'Agent' => 'Jenssegers\Agent\Facades\Agent',
     ],
     /*
     |--------------------------------------------------------------------------

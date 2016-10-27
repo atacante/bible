@@ -242,6 +242,11 @@
     padding-right: 10px;
     vertical-align: text-bottom;
 }
+@media(--xsmall){
+    .cu-lexicon {
+        font-size: 1.3rem;
+    }
+}
 .cu-places {
     color: #00b9f7;
     font-size: 2.43rem;

@@ -231,6 +231,11 @@ input.datepicker:before {
     text-decoration: underline;
     margin-top: 26px;
 }
+@media(--xsmall){
+    .forgot-link {
+        margin-top: 16px;
+    }
+}
 label.label-checkbox {
     display: inline-block;
     cursor: pointer;
