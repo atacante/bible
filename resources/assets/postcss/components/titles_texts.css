@@ -283,6 +283,11 @@ h4.h4-sub-kit {
     margin: 0;
     padding: 0;
 }
+@media(--xsmall){
+    h4.h4-sub-kit {
+        line-height: 1.4rem;
+    }
+}
 .p-regular {
     color: #535353;
     font-family: work_sansregular;
