@@ -666,8 +666,8 @@ $(document).ready(function(){
                 var offsetAnimate = 75;
 
                 if(site.isAppleMobile()){
-                    offset = -80;
-                    offsetAnimate = -60;
+                    offset = -50;
+                    offsetAnimate = -30;
                 }
 
                 $('.j-reader-actions').css({
@@ -684,6 +684,7 @@ $(document).ready(function(){
     $("body").on('click','.j-highlight-text',function (e) {
         e.preventDefault();
         var text = site.getSelected().toString();
+        alert(text);
         reader.clearSelection();
         $('.j-reader-actions').remove();
         var color = $(this).data('colorclass');
