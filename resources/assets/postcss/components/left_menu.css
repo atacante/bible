@@ -18,7 +18,7 @@ ul.community-menu.hide-menu li.new-posts a i {
     }
     ul.community-menu.hide-menu li.new-posts {
         position: fixed;
-        left: 0;
+        left: 5px;
         bottom: -10px;
         display: block;
     }

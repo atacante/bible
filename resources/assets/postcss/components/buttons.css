@@ -12,6 +12,15 @@
   font-family: ns_widemedium;
   text-align: center;
 }
+@media(--xsmall){
+    .reader.verse {
+        & .btn1-kit,
+        & .btn1-kit:visited {
+            padding: 5px;
+            font-size: 0.65rem;
+        }
+    }
+}
 .btn1-kit:hover, .btn1-kit:active {
   display: inline-block;
   background: #00b9f7;
@@ -524,6 +533,16 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     right: 0;
     text-decoration: none !important;
 }
+@media(--xsmall){
+    .reader.verse {
+        & .btn-settings {
+            right: 10px;
+            & i.bs-settings {
+                color: #00b9f7 !important;
+            }
+        }
+    }
+}
 .btn-reset {
     color: #00b9f7;
     text-align: center;
@@ -631,6 +650,12 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
   top: 3px;
   left: 0;
   padding: 7px 20px;
+}
+@media(--xsmall){
+    .cu1-btn {
+        top: 65px;
+        left: 3px;
+    }
 }
 .a-kit {
   text-decoration: underline;

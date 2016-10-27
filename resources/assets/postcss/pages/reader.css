@@ -533,6 +533,7 @@ ul.icons-list li i {
 }
 .legend-block {
     margin-bottom: 10px;
+    padding: 0 30px;
 }
 .legend-item {
     display: inline-block;
