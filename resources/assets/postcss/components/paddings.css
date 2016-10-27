@@ -84,6 +84,13 @@
 .mb4 {
     margin-bottom: 20px !important;
 }
+@media(--xsmall){
+    .reader.strongs {
+        & .mb4 {
+            margin-bottom: 70px !important;
+        }
+    }
+}
 .mb5 {
     margin-bottom: 15px !important;
 }

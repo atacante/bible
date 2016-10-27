@@ -98,6 +98,11 @@ ul.c-social li a:hover, ul.c-social li a:active {
     .genesis-arrow {
         padding: 5px 0 0;
     }
+    .reader.strongs {
+        & .genesis-arrow {
+            padding: 0;
+        }
+    }
     .genesis-arrow > i {
         font-size: 1.4rem;
     }
@@ -106,6 +111,9 @@ ul.c-social li a:hover, ul.c-social li a:active {
     }
     .ga-right {
         float: right;
+    }
+    .resp-pad-bott {
+        margin-bottom: 20px;
     }
 }
 .spinner {

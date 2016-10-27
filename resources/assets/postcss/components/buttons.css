@@ -20,6 +20,16 @@
             font-size: 0.65rem;
         }
     }
+    .reader.strongs {
+        & .btn1-kit,
+        & .btn1-kit:visited {
+            padding: 5px;
+            font-size: 0.65rem !important;
+            top: 65px !important;
+            z-index: 99;
+            left: 17px !important;
+        }
+    }
 }
 .btn1-kit:hover, .btn1-kit:active {
   display: inline-block;
