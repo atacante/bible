@@ -254,12 +254,22 @@
     padding-right: 5px;
     vertical-align: text-bottom;
 }
+@media(--xsmall){
+    .cu-places {
+        font-size: 1.8rem;
+    }
+}
 .cu-people {
     color: #00b9f7;
     font-size: 2.43rem;
     display: inline-block;
     padding-right: 5px;
     vertical-align: text-bottom;
+}
+@media(--xsmall){
+    .cu-people {
+        font-size: 1.5rem;
+    }
 }
 .cu-print {
     font-size: 1.79rem;

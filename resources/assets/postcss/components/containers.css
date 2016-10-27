@@ -136,6 +136,11 @@
     position: relative;
     text-align: center;
 }
+@media(--xsmall){
+    .c-title-and-icons3 {
+        padding: 0 35px;
+    }
+}
 .c-title-and-icons4 {
     padding: 0 150px;
     position: relative;
@@ -185,6 +190,11 @@
 }
 .inner-pad3 {
     padding: 25px;
+}
+@media(--xsmall){
+    .inner-pad3 {
+        padding: 20px;
+    }
 }
 .inner-pad6 {
     padding: 10px;
