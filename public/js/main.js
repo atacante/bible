@@ -666,8 +666,8 @@ $(document).ready(function(){
                 var offsetAnimate = 75;
 
                 if(site.isAppleMobile()){
-                    offset = -80;
-                    offsetAnimate = -60;
+                    offset = -60;
+                    offsetAnimate = -40;
                 }
 
                 $('.j-reader-actions').css({
