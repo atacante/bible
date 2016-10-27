@@ -11,8 +11,8 @@
             <div class="c-white-content">
                 <div class="inner-pad1">
                     <div class="row">
-                        <div class="col-xs-12">
-                            <div class="col-xs-4">
+                        <div class="col-md-12">
+                            <div class="detail-view-carousel">
                                 @if($model->images->count())
                                     <div id="location-{!! $model->id !!}" class="carousel slide" data-ride="carousel"
                                          data-interval="{!! rand(5000,7000) !!}">
@@ -61,26 +61,23 @@
 
                             </div>
 
-                            @if($model->g_map)
-                                <div class="pull-right g-map-embed">
-                                    {!! $model->g_map !!}
-                                </div>
-                            @endif
-
                             <h3 class="h3-kit">{!! $model->location_name !!}</h3>
 
                             <div class="location-description p-medium mt8">
                                 {!! $model->location_description !!}
                             </div>
+                            @if($model->g_map)
+                                <div class="g-map-embed">
+                                    {!! $model->g_map !!}
+                                </div>
+                            @endif
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-    <div class="row mt14 mb1">
+    <div class="row m-btn mt14 mb1">
         <div class="col-xs-12 text-right">
             {!! Html::link((($url = Session::get('backUrl'))?$url:'/locations/list/'),'Back to list', ['class'=>'btn1 ml1']) !!}
         </div>
