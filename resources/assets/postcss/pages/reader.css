@@ -884,3 +884,9 @@ mark {
 .related-item .j-item-body:hover{
     cursor: pointer;
 }
+
+@media(--xsmall){
+    .reader.search .c-white-content.old-testament{
+        margin-bottom: 20px;
+    }
+}

@@ -13,7 +13,7 @@
     </div>
     <div class="row j-bible-text" style="line-height: 30px;">
             <div class="col-md-6">
-                <div class="c-white-content">
+                <div class="c-white-content old-testament">
                     <div class="inner-pad1">
                         <div class="row">
                             <div class="col-md-12">
