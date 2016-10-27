@@ -684,7 +684,7 @@ $(document).ready(function(){
         });
     }
 
-    $("body").on('click','.j-highlight-text',function (e) {
+    $("body").on('click touchend touch','.j-highlight-text',function (e) {
         e.preventDefault();
         var text = site.getSelected().toString();
         //alert(text);
