@@ -714,7 +714,7 @@ $(document).ready(function(){
         });
     });
 
-    $("body").on('click','.j-remove-highlighted-text',function (e) {
+    $("body").on('click touchend touch','.j-remove-highlighted-text',function (e) {
         e.preventDefault();
         var selectedObject = site.getSelected();
         reader.getSelectedNodes(selectedObject);
