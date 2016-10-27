@@ -173,7 +173,7 @@ site.getSelected = function(){
                 }
             }
         }catch(err){
-
+alert(4);
         }
 
     }
