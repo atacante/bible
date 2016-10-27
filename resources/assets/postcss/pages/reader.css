@@ -18,8 +18,12 @@
     }
 }
 
-.highlight-actions.mobile{
-    rotation: 180deg;
+.highlight-actions.imobile{
+    transform: rotate(180deg);
+}
+
+.highlight-actions.imobile i{
+    transform: rotate(180deg);
 }
 
 .btn-top-label1 {
