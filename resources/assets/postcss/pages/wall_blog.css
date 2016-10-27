@@ -193,7 +193,14 @@ textarea.wall-text-area:focus {
     padding: 10px 15px 2px;
 }
 @media(--xsmall){
-    font-size: 1rem;
+    .c-area-group2 textarea {
+        font-size: 1rem;
+    }
+    .blog.article {
+        & .c-area-group2 textarea {
+            padding: 10px 5px 2px;
+        }
+    }
 }
 .c-people-comment {
     border-bottom: 1px solid #e3e3e3;
@@ -205,6 +212,18 @@ textarea.wall-text-area:focus {
         font-size: 1rem;
         line-height: 1.2rem;
         margin-left: 20px;
+    }
+    .blog.article {
+        & .c-people-comment {
+            margin-left: 0px;
+        }
+        & .m-btn {
+            background: white;
+            margin: -20px 15px 15px !important;
+            padding: 10px 0px;
+            z-index: 9;
+            position: relative;
+        }
     }
 }
 .public-wall .item-comments .c-people-comment:last-child {
