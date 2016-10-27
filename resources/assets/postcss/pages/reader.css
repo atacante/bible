@@ -17,8 +17,10 @@
         }
     }
 }
-body { -webkit-touch-callout: none !important; }
-a { -webkit-user-select: none !important; }
+body {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+}
 .btn-top-label1 {
     line-height: 1.29rem;
     text-transform: uppercase;
