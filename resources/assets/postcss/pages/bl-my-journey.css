@@ -128,7 +128,6 @@
             align-items: center;
             padding: 22px;
             flex: 1;
-            background-color: red;
 
             & .count {
                 font-size: 3.57em;
