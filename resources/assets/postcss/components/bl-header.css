@@ -259,9 +259,9 @@
             height: 0;
             margin-left: 5px;
             border: none;
-            border-top: 4px dashed;
-            border-right: 4px dashed transparent;
-            border-left: 4px dashed transparent;
+            border-top: 4px solid;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
           }
 
         }
@@ -288,9 +288,9 @@
 
             &:after {
               border: none;
-              border-bottom: 4px dashed;
-              border-right: 4px dashed transparent;
-              border-left: 4px dashed transparent;
+              border-bottom: 4px solid;
+              border-right: 4px solid transparent;
+              border-left: 4px solid transparent;
             }
           }
 
