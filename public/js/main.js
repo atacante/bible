@@ -687,6 +687,8 @@ $(document).ready(function(){
     $("body").on('click','.j-highlight-text',function (e) {
         e.preventDefault();
         var text = site.getSelected().toString();
+        alert(text);
+
         reader.clearSelection();
         $('.j-reader-actions').remove();
         var color = $(this).data('colorclass');
