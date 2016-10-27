@@ -161,11 +161,21 @@ site.getSelected = function(){
     }
 
     if(site.isAppleMobile()){
-        if (window.getSelection) {
-            t = window.getSelection().getRangeAt(0);
-        } else {
-            t = document.getSelection().getRangeAt(0);
+        try{
+            if(t == ''){
+                alert(3);
+                if (window.getSelection) {
+                    t = window.getSelection().getRangeAt(0);
+                    alert(1);
+                } else {
+                    t = document.getSelection().getRangeAt(0);
+                    alert(2);
+                }
+            }
+        }catch(err){
+alert(err);
         }
+
     }
 
     return t;
@@ -617,4 +627,16 @@ site.isAppleMobile = function()
     return false;
 }
 
+reader.getSelectedNodes = function(selectedObject){
+         reader.startElement = '';
+         reader.endElement = '';
 
+        if(selectedObject.startContainer && selectedObject.endContainer){
+            reader.startElement = selectedObject.startContainer.parentElement;
+            reader.endElement = selectedObject.endContainer.parentElement;
+        }else{
+            reader.startElement = selectedObject.anchorNode.parentElement;
+            reader.endElement = selectedObject.focusNode.parentElement;
+        }
+    return true;
+}

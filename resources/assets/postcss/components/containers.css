@@ -252,3 +252,26 @@
         overflow-x: hidden;
     }
 }
+.locations.view .g-map-embed iframe{
+    width: 100%;
+}
+.locations.view .detail-view-carousel{
+    width: 340px;
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+@media (--xsmall) {
+    .locations.view .detail-view-carousel{
+        width: 100%;
+        float: none;
+        margin: 0 20px 20px 0;
+    }
+    .locations.view .m-btn {
+        background: white;
+        margin: 0px 0px 15px !important;
+        padding: 10px 0px;
+        z-index: 9;
+        position: relative;
+    }
+}
