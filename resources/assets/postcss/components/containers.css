@@ -267,7 +267,8 @@
         float: none;
         margin: 0 20px 20px 0;
     }
-    .locations.view .m-btn {
+    .locations.view .m-btn,
+    .peoples.view .m-btn{
         background: white;
         margin: 0px 0px 15px !important;
         padding: 10px 0px;
