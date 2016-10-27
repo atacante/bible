@@ -30,7 +30,7 @@ label {
     .pagination {
         text-align: center;
         padding: 0 25px;
-        margin: 20px 2px 0;
+        margin: 20px 2px 20px;
     }
 }
 .pagination li {
@@ -230,6 +230,11 @@ input.datepicker:before {
     font-family: work_sansmedium;
     text-decoration: underline;
     margin-top: 26px;
+}
+@media(--xsmall){
+    .forgot-link {
+        margin-top: 16px;
+    }
 }
 label.label-checkbox {
     display: inline-block;
@@ -573,6 +578,11 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     margin-left: -15px;
     margin-right: -15px;
 }
+@media(--xsmall){
+    .contact .my1-row {
+        display: block;
+    }
+}
 .my1-col-md-8 {
     width: 66.6667%;
     display: table-cell;
@@ -585,6 +595,10 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
 @media(--xsmall){
     .my1-col-md-8 {
         width: 100%;
+    }
+    .contact .my1-col-md-8 {
+        display: block;
+        margin-bottom: 20px;
     }
     .j-desktop-rel-rec {
         display: none !important;
@@ -601,4 +615,11 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     padding-right: 15px;
     position: relative;
     vertical-align: top;
+}
+
+@media(--xsmall){
+    .contact .my1-col-md-4 {
+        width: 100%;
+        display: block;
+    }
 }

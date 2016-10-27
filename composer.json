@@ -24,7 +24,8 @@
         "skovmand/mailchimp-laravel": "1.*",
         "gloudemans/shoppingcart":"dev-master",
         "escapework/laravel-asset-versioning":"0.3.*",
-        "johnpaulmedina/laravel-usps": "dev-master"
+        "johnpaulmedina/laravel-usps": "dev-master",
+        "jenssegers/agent": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

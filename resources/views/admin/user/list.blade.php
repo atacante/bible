@@ -73,7 +73,7 @@
                                         @endif
                                         <a title="Edit user" href="{!! url('/admin/user/update',$user->id) !!}"><i class="fa fa-edit"
                                                                                                  style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
-                                        @if($role->slug != Config::get('app.role.admin'))
+                                        @if(isset($role) && $role->slug != Config::get('app.role.admin'))
                                             <a title="Delete user" href="{!! url('/admin/user/delete',$user->id) !!}" data-toggle="modal"
                                                data-target="#confirm-delete" data-header="Delete Confirmation"
                                                data-confirm="Are you sure you want to delete this item?"><i

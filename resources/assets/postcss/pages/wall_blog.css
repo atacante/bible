@@ -263,3 +263,8 @@ textarea.wall-text-area:focus {
     margin-bottom: 10px;
     border-bottom: 1px solid #e1e1e8;
 }
+@media(--medium){
+    .related-item .item-actions .popover{
+        display: none !important;
+    }
+}

@@ -46,6 +46,11 @@
 .mt15 {
     margin-top: 10px !important;
 }
+@media(--xsmall){
+    .mt15 {
+        margin-top: 6px !important;
+    }
+}
 .mt16 {
     margin-top: 15px !important;
 }
@@ -61,8 +66,20 @@
 .mb2 {
     margin-bottom: 100px;
 }
+@media(--xsmall){
+    .contact .mb2 {
+        margin-bottom: 20px;
+    }
+}
 .mb3 {
     margin-bottom: 50px;
+}
+@media(--xsmall){
+    .reader.verse {
+        & .mb3 {
+            margin-bottom: 20px;
+        }
+    }
 }
 .mb4 {
     margin-bottom: 20px !important;

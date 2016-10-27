@@ -283,6 +283,12 @@ ul.icon-panel li a {
         font-size: 1.16rem;
     }
 }
+@media(--small){
+    .h3-related {
+        font-size: 1rem;
+        padding-right: 30px;
+    }
+}
 .bord1 {
     border-bottom: 1px solid #f3f3f3;
 }
@@ -298,6 +304,13 @@ ul.icon-panel li a {
 @media(--xsmall){
     .cu-staroutlined {
         font-size: 1.16rem;
+    }
+}
+@media(--small){
+    .h3-related{
+        & .cu-staroutlined {
+            font-size: 1rem;
+        }
     }
 }
 .related-records .date-order-btn {
@@ -520,6 +533,7 @@ ul.icons-list li i {
 }
 .legend-block {
     margin-bottom: 10px;
+    padding: 0 30px;
 }
 .legend-item {
     display: inline-block;
@@ -667,6 +681,9 @@ span.word-definition mark:hover{
     .lex-content {
         margin: 30px -30px;
         background-color: #e3e3e3;
+    }
+    .compare-mode .lex-content {
+        margin: 30px -26px -30px -11px;
     }
 }
 .lex-content:hover {

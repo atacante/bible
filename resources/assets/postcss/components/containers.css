@@ -18,12 +18,7 @@
 }
 @media (--small) {
     .in-inner-container {
-        padding: 0 0 30px;
-    }
-    .community {
-        & .in-inner-container {
-            padding: 0;
-        }
+        padding: 0;
     }
 }
 
@@ -35,6 +30,11 @@
     background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,230,230,1) 680px,rgba(229,230,230,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(229,230,230,1) 680px,rgba(229,230,230,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e6e6',GradientType=0 ); /* IE6-9 */
+}
+@media(--xsmall){
+    .bg-g2 {
+        min-height: 0;
+    }
 }
 .c-center-content {
     width: 100%;
@@ -90,6 +90,30 @@
         -webkit-box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
         box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
     }
+    .auth.login {
+        & .c-white-content {
+            margin: 10px;
+            min-height: 567px !important;
+        }
+    }
+    .password.reset {
+    & .c-white-content {
+          margin: 10px;
+          min-height: 567px !important;
+      }
+    }
+}
+@media(--vxsmall){
+    .auth.login {
+        & .c-white-content {
+            min-height: 10px !important;
+        }
+    }
+    .password.reset {
+        & .c-white-content {
+              min-height: 10px !important;
+          }
+    }
 }
 .c-reader-content2 {
     background: #ffffff;
@@ -122,6 +146,11 @@
     padding: 0 50px;
     position: relative;
     text-align: center;
+}
+@media(--xsmall){
+    .c-title-and-icons3 {
+        padding: 0 35px;
+    }
 }
 .c-title-and-icons4 {
     padding: 0 150px;
@@ -157,6 +186,18 @@
     line-height: 2.14rem;
     position: relative;
 }
+@media(--xsmall){
+    .login {
+        & .inner-pad5 {
+            padding: 20px;
+        }
+    }
+    .password.reset {
+        & .inner-pad5 {
+              padding: 20px;
+          }
+    }
+}
 .c-white-item {
     background: white;
     -webkit-box-shadow: 0 0 10px 2px rgba(150,150,150,0.1);
@@ -165,6 +206,11 @@
 }
 .inner-pad3 {
     padding: 25px;
+}
+@media(--xsmall){
+    .inner-pad3 {
+        padding: 20px;
+    }
 }
 .inner-pad6 {
     padding: 10px;

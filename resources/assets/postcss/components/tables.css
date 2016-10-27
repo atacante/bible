@@ -60,6 +60,17 @@ table.table-lexicon {
     -webkit-box-shadow: 0 0 10px 2px rgba(150,150,150,0.1);
     box-shadow: 0 0 10px 2px rgba(150,150,150,0.1);
 }
+@media(--xsmall){
+    table.table-lexicon {
+        display: block;
+        max-width: 100%;
+        margin-bottom: 0;
+    }
+    table.table-lexicon tr {
+        display: block;
+        max-width: 100%;
+    }
+}
 table.table-lexicon tr td {
     border-bottom: 1px solid #e8e8e8;
     padding: 20px 25px;
@@ -69,6 +80,23 @@ table.table-lexicon tr td {
     color: #535353;
     font-weight: normal;
     font-size: 1.14rem;
+}
+@media(--xsmall){
+    table.table-lexicon tr td {
+        display: block;
+        max-width: 100%;
+        border-bottom: none !important;
+        padding: 10px 20px;
+    }
+    table.table-lexicon tr td.td-resp,
+    table.table-lexicon tr td.td-resp:last-child,
+    table.table-lexicon tr:last-child td.td-resp {
+        border-bottom: 1px solid #e8e8e8 !important;
+        border-top: 1px solid #faa744 !important;
+    }
+    table.table-lexicon tr:first-child td.td-resp {
+        border-top: none !important;
+    }
 }
 table.table-lexicon tr td {
     border-left: 1px solid #e8e8e8;
@@ -89,6 +117,11 @@ table.table-lexicon .t-label2 {
     color: #010101;
     font-size: 1rem;
     text-transform: uppercase;
+}
+@media(--xsmall){
+    table.table-lexicon .t-label2 {
+        display: block;
+    }
 }
 table.table-lexicon a {
     text-decoration: underline;

@@ -27,7 +27,7 @@
                                         @foreach($location->images as $key => $image)
                                             <div class="item {!! ($key == 0?'active':'') !!} j-with-images">
                                                 <img src="{!! Config::get('app.locationImages').'thumbs/'.$image->image !!}"
-                                                     class="img-thumbnail" alt="" style="cursor: pointer;">
+                                                     class="img-thumbnail" alt="" style="cursor: pointer; width: auto;">
                                                 {{--<div class="carousel-caption">--}}
                                                 {{--</div>--}}
                                             </div>
@@ -38,12 +38,12 @@
                                     @if($location->images->count() > 1)
                                         <a class="left carousel-control" href="#location-{!! $location->id !!}"
                                            role="button" data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-chevron-left mt13" aria-hidden="true"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="right carousel-control" href="#location-{!! $location->id !!}"
                                            role="button" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-chevron-right mt13" aria-hidden="true"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
                                     @endif

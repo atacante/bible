@@ -18,14 +18,16 @@
                     <i title="{!! ucfirst($item->type) !!} Entry" class="verse-icon2 {!! ViewHelper::getRelatedItemIcon($item->type) !!}"></i>
                     @endif
                     <div class="cu-date1">&nbsp; {!! $item->humanLastUpdate() !!} - <i class="{{ $item->getAccessIconStyle() }} font-size-13"></i>&nbsp;</div>
-                    <span class="wall-text1">
+                    <div class="wall-text1 pull-left">
                         <strong>{!! (Auth::user() && $item->user && Auth::user()->id == $item->user->id)?"You":($item->user?$item->user->name:'somebody') !!}</strong>
+                    </div>
+                    <div class="wall-text1" style="clear: both">
                         @if($item->type == 'status')
                             posted status update
                         @else
                             shared a {!! ucfirst($item->type) !!} Entry&nbsp;
                         @endif
-                    </span>
+                    </div>
                     <span class="">
                         @if(isset($item->verse))
                             <span >for&nbsp;</span>

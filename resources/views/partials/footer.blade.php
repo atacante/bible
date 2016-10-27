@@ -11,7 +11,8 @@
             </ul>
             <p class="copyright">
                 Copyright © 2016
-                All Rights Reserved
+                Bible Study Company
+                All Rights Reserved -
                 <a href="http://www.cleart.com">Web Development by ClearTech Interactive</a>
             </p>
         </div>

@@ -167,6 +167,11 @@ h4.h4-1 {
 .font-size-13 {
     font-size: 0.93rem;
 }
+@media(--xsmall){
+    .font-size-13 {
+        font-size: 0.65rem;
+    }
+}
 .font-size-16 {
     font-size: 1.14rem;
 }
@@ -341,6 +346,18 @@ h4.h4-sub-kit {
     .h2-new {
         font-size: 1.27rem;
         letter-spacing: 1px;
+    }
+    .login {
+        & .h2-new {
+            font-size: 2rem;
+            line-height: 2.5rem;
+        }
+    }
+    .password.reset {
+        & .h2-new {
+              font-size: 2rem;
+              line-height: 2.5rem;
+          }
     }
 }
 .sub-text-radio {
