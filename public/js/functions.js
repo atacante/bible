@@ -159,6 +159,15 @@ site.getSelected = function(){
     } else if(document.selection) {
         t = document.selection.createRange().text;
     }
+
+    if(site.isAppleMobile()){
+        if (window.getSelection) {
+            t = window.getSelection().getRangeAt(0);
+        } else {
+            t = document.getSelection().getRangeAt(0);
+        }
+    }
+
     return t;
 }
 
