@@ -14,19 +14,47 @@
     text-align: center;
     margin-top: 50px;
 }
+@media(--xsmall){
+    .c-verse-text-top {
+        margin-top: 55px;
+    }
+}
 .btns-panel {
     top: 3px;
     right: 0;
     position: absolute;
 }
+@media(--xsmall){
+    .reader.verse {
+        & .btns-panel {
+            top: 65px;
+            right: 3px;
+            position: absolute;
+            z-index: 99;
+        }
+    }
+}
 .cu-ci1 {
     padding-left: 170px;
     min-height: 184px;
+}
+@media(--xsmall){
+    .cu-ci1 {
+        padding: 0;
+        min-height: 10px;
+    }
 }
 .cu-ci1-inner {
     margin-left: -170px;
     width: 170px;
     float: left;
+}
+@media(--xsmall){
+    .cu-ci1-inner {
+        margin-left: 0;
+        width: 100%;
+        float: none;
+    }
 }
 h4.title-people {
     font-family: ns_widemedium;
@@ -50,6 +78,11 @@ h4.title-people {
 }
 .paralel-link:hover {
     text-decoration: none;
+}
+@media(--xsmall){
+    .paralel-link {
+        font-size: 1rem;
+    }
 }
 .study-top-panel {
     background: #e3e3e3;
