@@ -18,6 +18,14 @@
     }
 }
 
+.highlight-actions.imobile{
+    transform: rotate(180deg);
+}
+
+.highlight-actions.imobile i{
+    transform: rotate(180deg);
+}
+
 .btn-top-label1 {
     line-height: 1.29rem;
     text-transform: uppercase;
@@ -879,4 +887,10 @@ mark {
 
 .related-item .j-item-body:hover{
     cursor: pointer;
+}
+
+@media(--xsmall){
+    .reader.search .c-white-content.old-testament{
+        margin-bottom: 20px;
+    }
 }

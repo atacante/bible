@@ -36,7 +36,7 @@
 
     <div class="form-group">
         {!! Form::label('tags', 'Tags:') !!}
-        {!! Form::select('tags[]', $model->availableTags(), $model->tags->pluck('id')->toArray(),['multiple' => true,'class' => 'clear-fix '.(Agent::isMobile()?'':'j-tags'), 'style' => '']) !!}
+        {!! Form::select('tags[]', $model->availableTags(), $model->tags->pluck('id')->toArray(),['multiple' => true,'class' => 'clear-fix '.(Agent::isMobile()?'j-tags':'j-tags'), 'style' => '']) !!}
     </div>
 
     <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }}">

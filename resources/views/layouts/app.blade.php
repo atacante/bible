@@ -26,7 +26,7 @@
     @show
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css')!!}
         {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')!!}
-        {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css')!!}
+        {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css')!!}
         {!!Html::style('js/bootstrap-datepicker/css/bootstrap-datepicker3.css')!!}
 {{--        {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css')!!}--}}
         {!!Html::style('js/dropzone/dist/min/basic.min.css')!!}
@@ -41,7 +41,7 @@
         {!!Html::script('//code.jquery.com/ui/1.11.4/jquery-ui.js')!!}
         {!!Html::script('//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js')!!}
         {!!Html::script('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')!!}
-        {!!Html::script('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.full.min.js')!!}
+        {!!Html::script('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js')!!}
         {!!Html::script('js/dropzone/dist/min/dropzone.min.js')!!}
         <!-- Add mousewheel plugin (this is optional) -->
         {!!Html::script('js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js')!!}

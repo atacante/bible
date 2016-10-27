@@ -248,7 +248,7 @@
       }
 
       & li {
-        margin: 0 8px;
+        /*margin: 0 8px;*/
 
         &.with-items {
           position: relative;
@@ -545,7 +545,7 @@
         width: 250px;
     }
 
-    @media (max-width: 320px) {
+    @media (max-width: 355px) {
         width: 210px;
     }
 
@@ -555,7 +555,7 @@
   & .my-bookmarks {
     position: absolute;
     right: 0;
-    @media (max-width: 320px) {
+    @media (max-width: 767px) {
         right: -15px;
     }
   }

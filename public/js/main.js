@@ -661,10 +661,19 @@ $(document).ready(function(){
                 if(!pageX){
                     pageX = eventObject.originalEvent.changedTouches[0].pageX;
                 }
+
+                var offset = 66;
+                var offsetAnimate = 75;
+
+                if(site.isAppleMobile()){
+                    offset = -90;
+                    offsetAnimate = -70;
+                }
+
                 $('.j-reader-actions').css({
-                    top: ($(endElement).offset().top-66) + "px",
+                    top: ($(endElement).offset().top-offset) + "px",
                     left: (pageX-(text.length > 3?60:43)) + "px"
-                }).animate( { "opacity": "show", top:($(endElement).offset().top-75)} , 200 );
+                }).animate( { "opacity": "show", top:($(endElement).offset().top-offsetAnimate)} , 200 );
             }
             else {
                 $('.j-reader-actions').remove();
