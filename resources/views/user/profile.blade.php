@@ -16,10 +16,8 @@
         <div class="c-white-content">
             <div class="inner-pad2">
             <div class="row">
-                <div class="col-xs-6">
-
+                <div class="col-xs-12 col-md-6">
                     <div class="c-cont-w-avatar">
-
                         <div class="left-avatar {{ $errors->has('avatar') ? ' has-error' : '' }}">
                             <div id="avatar" class="dropzone">
                                 <div id="img-thumb-preview" class="pull-left">
@@ -136,12 +134,8 @@
                         </div>
                     </div>
                 </div>
-
-
                 {{-- COL 2 --}}
-
-
-                <div class="col-xs-6">
+                <div class="col-xs-12 col-md-6">
 
                     <div class="form-group{{ $errors->has('church_name') ? ' has-error' : '' }}">
                         {!! Form::label('church_name', 'Church Name', array('class' => 'control-label')) !!}
@@ -294,14 +288,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.box-body -->
-
-
             </div>
             </div>
         </div>
-
-        <div>
+        <div class="profile-btn-resp">
             {!! Form::button('Save', ['type'=>'submit','class'=>'btn2-kit m-btn pull-right']) !!}
         </div>
         {!! Form::close() !!}
