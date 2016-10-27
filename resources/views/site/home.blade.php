@@ -1,12 +1,12 @@
 @extends('layouts.home')
 @section('meta_description')
-    <meta name="description" content="{{ strip_tags($verse_day) }}"/>
+    <meta name="description" content="{{ $verse_day_text }}"/>
 @stop
 
 @section('meta_twitter')
     <meta property="twitter:card" content="summary">
     <meta property="twitter:title" content="Verse of a Day">
-    <meta property="twitter:description" content="{{ strip_tags($verse_day) }}">
+    <meta property="twitter:description" content="{{ $verse_day_text }}">
 @stop
 
 @section('content')

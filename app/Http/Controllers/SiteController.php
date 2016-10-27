@@ -7,6 +7,7 @@ use App\CmsPage;
 //use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\ShopProduct;
+use App\VerseOfDay;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
@@ -16,11 +17,9 @@ class SiteController extends Controller
 {
     public function getHome()
     {
-         $verse_day = 'Do not judge, and you will not be judged.<br>
-               Do not condemn, and you will not be condemned.<br>
-                              Forgive, and you will be forgiven.<br>
-                                              <br>
-                 <span class="ital">LUKE 6:37</span>';
+        $verse_day = VerseOfDay::getTodayVerse();
+
+        $verse_day_text = strip_tags($verse_day->verse->verse_text. ' '. strtoupper($verse_day->verse->booksListEn->book_name).' '.$verse_day->verse->chapter_num.':'.$verse_day->verse->verse_num );
 
         $products = ShopProduct::whereIn('homepage_position',[1,2,3])->orderBy('homepage_position', 'ASC')->get();
 
@@ -31,7 +30,7 @@ class SiteController extends Controller
         $homedata['home_community_block'] = CmsPage::getPage('home_community_block');
         $homedata['home_explore_block'] = CmsPage::getPage('home_explore_block');
 
-        return view('site.home', ['verse_day' => $verse_day, 'products' => $products, 'homedata'=>$homedata]);
+        return view('site.home', ['verse_day_text' => $verse_day_text, 'verse_day' => $verse_day, 'products' => $products, 'homedata'=>$homedata]);
     }
 
     public function getAbout()

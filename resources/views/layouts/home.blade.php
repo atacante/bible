@@ -11,16 +11,16 @@
 --}}
     <title>Bible Study Company: An online study Bible and social community</title>
     @section('meta_keywords')
-        <meta name="keywords" content="your, awesome, keywords, here"/>
+        <meta name="keywords" content="Bible Study Company"/>
     @show @section('meta_author')
-        <meta name="author" content="Jon Doe"/>
+        <meta name="author" content="Bible Study Company"/>
     @show @section('meta_description')
         <meta name="description"
-              content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei."/>
+              content="Bible Study Company: An online study Bible and social community"/>
     @show @section('meta_twitter')
         <meta property="twitter:card" content="summary">
-        <meta property="twitter:title" content="Bible">
-        <meta property="twitter:description" content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei.">
+        <meta property="twitter:title" content="Bible Study Company: An online study Bible and social community">
+        <meta property="twitter:description" content="Bible Study Company: An online study Bible and social community">
     @show
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css')!!}
         {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')!!}
