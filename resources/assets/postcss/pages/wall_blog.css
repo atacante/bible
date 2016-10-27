@@ -240,11 +240,9 @@ textarea.wall-text-area:focus {
 @media(--xsmall){
     .c-blog .related-item {
         padding: 15px !important;
-        border-bottom: none;
     }
     .c-blog {
         margin: 0 15px 15px 15px;
-        padding: 5px;
     }
 }
 .right-position {
