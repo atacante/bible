@@ -51,10 +51,10 @@
               </li>
             @endif
             @if(ViewHelper::checkPublished($data['cmsItems'],'membership'))
-              <li>
+              {{-- <li>
                 <a class="bs-community"
                   href="{{ URL::to('/site/membership') }}">Membership</a>
-              </li>
+              </li> --}}
             @endif
             @if(ViewHelper::checkPublished($data['cmsItems'],'how_it_works'))
               <li>
@@ -77,10 +77,15 @@
             <li>
               <a class="bs-gift" href="{{ URL::to('/shop') }}">Gift Shop</a>
             </li>
+            @if(ViewHelper::checkPublished($data['cmsItems'],'faq'))
+            <li>
+              <a class="bs-faq" href="{{ URL::to('/site/faq') }}">F.A.Q.</a>
+            </li>
+            @endif
             @if(ViewHelper::checkPublished($data['cmsItems'],'partners'))
-              <li>
+              {{-- <li>
                 <a class="bs-community" href="{{ URL::to('/site/partners') }}">Partners</a>
-              </li>
+              </li> --}}
             @endif
             @if(ViewHelper::checkPublished($data['cmsItems'],'contact_main'))
               <li>
