@@ -218,6 +218,16 @@ textarea.wall-text-area:focus {
     border-bottom: 1px solid #e3e3e3;
     padding: 30px !important;
 }
+@media(--xsmall){
+    .c-blog .related-item {
+        padding: 15px !important;
+        border-bottom: none;
+    }
+    .c-blog {
+        margin: 0 15px 15px 15px;
+        padding: 5px;
+    }
+}
 .right-position {
      left: auto !important;
      right: 20px !important;

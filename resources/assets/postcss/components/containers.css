@@ -102,6 +102,11 @@
           min-height: 567px !important;
       }
     }
+    .blog {
+        & .c-blog {
+            min-height: 567px !important;
+        }
+    }
 }
 @media(--vxsmall){
     .auth.login {
@@ -113,6 +118,11 @@
         & .c-white-content {
               min-height: 10px !important;
           }
+    }
+    .blog {
+        & .c-blog {
+            min-height: 10px !important;
+        }
     }
 }
 .c-reader-content2 {
