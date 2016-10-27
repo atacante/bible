@@ -6,10 +6,10 @@
 
 @section('content')
     <div class="row wall">
-        <div class="col-xs-3">
+        <div class="col-md-3">
             @include('blog.categories')
         </div>
-        <div class="col-xs-9">
+        <div class="col-md-9">
             <div class="row">
                 <div class="col-md-12">
                     <div class="c-white-content c-blog">
