@@ -594,7 +594,6 @@ $(document).ready(function(){
 // Text selection
     if($('.j-diff-block').length == 0){
         $(".j-bible-text").bind( "mouseup touchend touchcancel",function(eventObject) {
-            eventObject.preventDefault();
             var selectedObject = site.getSelected();
             var text = selectedObject.toString();
             if(text){
