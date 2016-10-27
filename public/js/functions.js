@@ -162,10 +162,12 @@ site.getSelected = function(){
 
     if(site.isAppleMobile()){
         try{
-            if (window.getSelection) {
-                t = window.getSelection().getRangeAt(0);
-            } else {
-                t = document.getSelection().getRangeAt(0);
+            if(t == ''){
+                if (window.getSelection) {
+                    t = window.getSelection().getRangeAt(0);
+                } else {
+                    t = document.getSelection().getRangeAt(0);
+                }
             }
         }catch(err){
 
