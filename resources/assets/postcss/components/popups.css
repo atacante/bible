@@ -494,11 +494,19 @@ ul.c-chapter-list li a.active {
     line-height: 5rem;
     text-transform: uppercase;
 }
+@media(--small){
+    #popup.create-item .modal-dialog .modal-content .modal-header .modal-title-text.pull-left{
+        float: none !important;
+    }
+}
 @media(--xsmall){
     #popup .modal-dialog .modal-content .modal-header .modal-title-text,
     #popup .modal-dialog .modal-content .modal-header h4{
         font-size: 1.2rem;
         line-height: 1.2rem;
+    }
+    #popup.create-item .modal-dialog .modal-content .modal-header .modal-title-text.pull-left{
+        float: none;
     }
     .locations {
         & #popup .modal-dialog .modal-content .modal-header .modal-title-text,
