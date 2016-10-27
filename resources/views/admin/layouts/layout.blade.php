@@ -33,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     {!!Html::style('js/dropzone/dist/min/basic.min.css')!!}
     {!!Html::style('js/dropzone/dist/min/dropzone.min.css')!!}
     {!!Html::style('js/bootstrap-datepicker/css/bootstrap-datepicker3.css')!!}
-    {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css')!!}
+    {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css')!!}
 
     {!!Html::style(Asset::v('/css/admin-style.css'))!!}
 </head>
@@ -90,7 +90,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 {!!Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js')!!}
 {!!Html::script('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')!!}
-{!!Html::script('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js')!!}
+{!!Html::script('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js')!!}
 
 {{--<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>--}}
 {{--{!!Html::script(asset('vendor/jsvalidation/js/jsvalidation.js'))!!}--}}

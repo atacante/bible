@@ -279,7 +279,13 @@ reader.getActionsHtml = function(){
 }
 
 reader.getHighlightActionsHtml = function(withRemove){
-    return '<div class="j-reader-actions highlight-actions" style="position: absolute;">' +
+    // Class for Iphone/Ipad/Ipod
+    var imobile = '';
+    if(site.isAppleMobile()){
+        imobile = 'imobile';
+    }
+
+    return '<div class="j-reader-actions highlight-actions '+imobile+'" style="position: absolute;">' +
         '<a title="Highlight selected text" href="#" class="j-highlight-text j-green btn-reader" data-colorclass="j-green"><i class="bs-journal"></i></a>' +
         // '<div class="spliter1"></div>'+
         '<a title="Highlight selected text" href="#" class="j-highlight-text j-yellow btn-reader" data-colorclass="j-yellow"><i class="bs-journal"></i></a>' +
@@ -588,4 +594,18 @@ reader.getHighlights = function(){
         });
     }
 }
+
+site.isAppleMobile = function()
+{
+    if (navigator && navigator.userAgent && navigator.userAgent != null)
+    {
+        var strUserAgent = navigator.userAgent.toLowerCase();
+        var arrMatches = strUserAgent.match(/(iphone|ipod|ipad)/);
+        if (arrMatches != null)
+            return true;
+    } // End if (navigator && navigator.userAgent)
+
+    return false;
+}
+
 
