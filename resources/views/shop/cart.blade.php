@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-        <table class="kit-table1">
+        <table class="kit-table1 cart-desctop">
             <thead>
                 <tr>
                     <th style="width: 140px">Product</th>

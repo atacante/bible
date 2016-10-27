@@ -90,8 +90,12 @@
         -webkit-box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
         box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
     }
-    .community.invite-people .community-menu.c-white-content.hide-menu{
+    .community.invite-people .community-menu.c-white-content.hide-menu,
+    .groups .community-menu.c-white-content.hide-menu{
         margin: 0 30px 30px;
+    }
+    .groups .group-form .c-white-content{
+        min-height: 567px !important;
     }
     .community.invite-people .select2-container{
         width: 100% !important;
@@ -111,6 +115,11 @@
     .blog {
         & .c-blog {
             min-height: 567px !important;
+        }
+    }
+    .shop.product {
+        & .c-white-content {
+            margin: 15px;
         }
     }
 }

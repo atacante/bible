@@ -222,6 +222,13 @@ h3.h3-kit {
     padding: 0;
     letter-spacing: 2px;
 }
+@media(--xsmall){
+    .shop.product {
+        & h3.h3-kit {
+            margin-top: 20px;
+        }
+    }
+}
 h4.h4-kit {
     font-family: ns_widenormal;
     font-size: 1.43rem;

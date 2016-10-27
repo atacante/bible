@@ -24,3 +24,20 @@
     font-size: 0.86rem;
     padding-right: 2px;
 }
+@media(--xsmall){
+    .shop.product {
+        & .form-group {
+            margin-top: 20px;
+            & select {
+                width: 100% !important;
+                max-width: 300px;
+            }
+        }
+        & .text-right {
+            text-align: center;
+            & a:first-child {
+                margin-left: 0 !important;
+            }
+        }
+    }
+}
