@@ -327,6 +327,30 @@
             float: none;
         }
 
+        & .c-journey-top {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+
+        & .type {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        & .c-journey-date {
+            text-align: right;
+        }
+
+        & .i-ansvered {
+            white-space: nowrap;
+        }
+
+        & .link {
+            white-space: nowrap;
+        }
+
     }
 
     .bl-filters {
