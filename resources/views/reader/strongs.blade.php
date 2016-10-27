@@ -34,7 +34,7 @@
             {!! Form::hidden('verse_id',$verse['verse']->id) !!}
             <div class="j-verse-text hidden">{!! $verse['verse']->verse_text !!}</div>
         @endif
-        <div class="col-md-6">
+        <div class="col-md-6 resp-pad-bott">
             <div class="c-white-content">
                 <div class="inner-pad1">
                     @if(count($content['strongs_concordance']) && ($content['strongs_concordance']->original_word || $content['strongs_concordance']->transliteration || $content['strongs_concordance']->definition_short || $content['strongs_concordance']->definition_full))
