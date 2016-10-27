@@ -18,6 +18,10 @@
     }
 }
 
+.highlight-actions.mobile{
+    rotation: 180deg;
+}
+
 .btn-top-label1 {
     line-height: 1.29rem;
     text-transform: uppercase;
