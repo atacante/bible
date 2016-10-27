@@ -16,6 +16,10 @@
             padding: 0 !important;
         }
     }
+    @media (--medium) {
+        body { -webkit-touch-callout: none !important; }
+        a { -webkit-user-select: none !important; }
+    }
 }
 .btn-top-label1 {
     line-height: 1.29rem;
