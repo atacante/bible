@@ -165,7 +165,7 @@ site.getSelected = function(){
             if (window.getSelection) {
                 t = window.getSelection().getRangeAt(0);
             } else {
-                t = document.getSelection().getRangeAt();
+                t = document.getSelection().getRangeAt(0);
             }
         }catch(err){
 
