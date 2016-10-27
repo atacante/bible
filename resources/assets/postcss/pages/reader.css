@@ -682,6 +682,9 @@ span.word-definition mark:hover{
         margin: 30px -30px;
         background-color: #e3e3e3;
     }
+    .compare-mode .lex-content {
+        margin: 30px -26px -30px -11px;
+    }
 }
 .lex-content:hover {
     color: #535353;
