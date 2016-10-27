@@ -622,4 +622,16 @@ site.isAppleMobile = function()
     return false;
 }
 
+reader.getSelectedNodes = function(selectedObject){
+         reader.startElement = '';
+         reader.endElement = '';
 
+    if(site.isAppleMobile()){
+        reader.startElement = selectedObject.startContainer.parentElement;
+        reader.endElement = selectedObject.endContainer.parentElement;
+    }else{
+        reader.startElement = selectedObject.anchorNode.parentElement;
+        reader.endElement = selectedObject.focusNode.parentElement;
+    }
+    return true;
+}

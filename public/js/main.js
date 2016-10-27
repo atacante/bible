@@ -596,10 +596,13 @@ $(document).ready(function(){
         $(".j-bible-text").bind( "mouseup touchend touchcancel",function(eventObject) {
             var selectedObject = site.getSelected();
             var text = selectedObject.toString();
+
             if(text){
                 reader.highlightMode = true;
-                var startElement = selectedObject.anchorNode.parentElement;
-                var endElement = selectedObject.focusNode.parentElement;
+                reader.getSelectedNodes(selectedObject);
+                var startElement = reader.startElement;
+                var endElement = reader.endElement;
+
                 var version = $(startElement).data('version');
                 if(!version){
                     version = $(startElement).parents('.j-verse-text').data('version');
@@ -684,7 +687,6 @@ $(document).ready(function(){
     $("body").on('click','.j-highlight-text',function (e) {
         e.preventDefault();
         var text = site.getSelected().toString();
-        alert(text);
         reader.clearSelection();
         $('.j-reader-actions').remove();
         var color = $(this).data('colorclass');
@@ -713,8 +715,9 @@ $(document).ready(function(){
     $("body").on('click','.j-remove-highlighted-text',function (e) {
         e.preventDefault();
         var selectedObject = site.getSelected();
-        var startElement = selectedObject.anchorNode.parentElement;
-        var endElement = selectedObject.focusNode.parentElement;
+        reader.getSelectedNodes(selectedObject);
+        var startElement = reader.startElement;
+        var endElement = reader.endElement;
         reader.clearSelection();
         $('.j-reader-actions').remove();
 
