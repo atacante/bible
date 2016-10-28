@@ -22,11 +22,13 @@
                             @endif
                         </div>
                         <ul class="icons-list pull-right">
+                            @if(Agent::isModile())
                             <li>
                                 <a title="Print journal entry" href="#" data-journalid="{!! $journal->id !!}" class="j-print-journal">
                                     <i class="bs-print"></i>
                                 </a>
                             </li>
+                            @endif
                             <li>
                                 <a title="Edit journal entry" class="j-create-journal" href="{!! url('/journal/update/'.$journal->id) !!}">
                                     <i class="bs-edit"></i>

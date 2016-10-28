@@ -189,11 +189,13 @@
                                     <i title="Compare versions" class="bs-compare cu-print"></i>
                                 </a>
                             </li>
+                            @if(Agent::isModile())
                             <li>
                                 <a href="#" class="j-print-chapter">
                                     <i title="Print" class="bs-print cu-print"></i>
                                 </a>
                             </li>
+                            @endif
                             <li>
                                 <a href="#" class="j-btn-settings">
                                     <i title="Settings" class="bs-settings cu-print"></i>

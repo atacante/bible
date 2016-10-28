@@ -31,7 +31,7 @@ class Group extends BaseModel
         {
             case 'PUT':
             {
-                $rules['group_email'] = 'required|unique:groups,group_email,'.$this->id;
+             //   $rules['group_email'] = 'required|unique:groups,group_email,'.$this->id;
             }
                 break;
         }
