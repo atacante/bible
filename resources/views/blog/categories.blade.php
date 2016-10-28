@@ -1,5 +1,6 @@
+@if($categories->count())
 <ul class="nav nav-pills nav-stacked nav-left community-menu c-white-content hide-menu j-hide-menu" role="menu">
-    @if($categories->count())
+
          <li class="{{ (!Request::input('category') && !isset($article)) ? 'active' : '' }}" role="presentation">
              <a href="{{ url('blog') }}">All Categories</a>
              <span class="caret"></span>
@@ -12,7 +13,11 @@
             </li>
         @endforeach
         @if($key > 9)
-            <a href="#" class="btn1 load-more j-show-more">See More<i class='fa fa-angle-down' aria-hidden='true'></i></a>
+            <li>
+                <a href="#" class="j-show-more">
+                    See More
+                </a>
+            </li>
         @endif
-    @endif
 </ul>
+@endif
