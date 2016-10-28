@@ -22,7 +22,7 @@ class VerseOfDay extends Model
         $verse = self::where('show_at',Carbon::today())->orderBy('id', 'DESC')->first();
         if(!$verse){
             $todayVerse = self::getRandomVerse();
-            self::createById($todayVerse->id);
+            $verse = self::createById($todayVerse->id);
         }
         return $verse;
     }
