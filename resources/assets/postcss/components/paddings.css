@@ -63,6 +63,13 @@
 .mb1 {
     margin-bottom: 50px;
 }
+@media(--xsmall){
+    .groups.view {
+        & .mb1 {
+            margin-bottom: 0;
+        }
+    }
+}
 .mb2 {
     margin-bottom: 100px;
 }
