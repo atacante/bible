@@ -1,9 +1,11 @@
 <div id="journal" class="verse-journal my-journal-list j-my-journal-list mt3">
-    <h4 class="h4-study mb3">
-        <i class="bs-journal cu-jornal"></i>
-        My <span>Journal Entries</span> for this Study Verse
+    <div class="sub-header">
+        <div class="sub-header-title">
+            <i class="bs-journal cu-jornal"></i>
+            My <span>Journal Entries</span> for this Study Verse
+        </div>
         {!! Html::link('/journal/create','Create Journal Entry', ['class'=>'btn1-kit cu-study-btn j-create-journal']) !!}
-    </h4>
+    </div>
     <ul class="study-list">
 
         @if($content['journal']->count())

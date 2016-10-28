@@ -1,9 +1,13 @@
 <div id="prayers" class="verse-prayers my-prayers-list j-my-prayers-list mt3">
-    <h4 class="h4-study mb3">
-        <i class="bs-pray cu-pray"></i>
-        My <span>Prayers</span> for this Study Verse
+
+    <div class="sub-header">
+        <div class="sub-header-title">
+            <i class="bs-pray cu-pray"></i>
+            My <span>Prayers</span> for this Study Verse
+        </div>
         {!! Html::link('/prayers/create','Create Prayer', ['class'=>'btn1-kit cu-study-btn j-create-prayer']) !!}
-    </h4>
+    </div>
+
 
     <ul class="study-list">
 
@@ -15,7 +19,7 @@
                         {!! str_limit(strip_tags($prayer->prayer_text,'<p></p>'), $limit = 300, $end = '...') !!}
                     </div>
                     @if($prayer->answered)
-                        <div style="color: #00a65a;">
+                        <div style="color: #00a65a; font-size: 1rem;">
                             <i class="fa fa-check-circle" aria-hidden="true" style="color: #00a65a;"></i> Answered
                         </div>
                     @endif

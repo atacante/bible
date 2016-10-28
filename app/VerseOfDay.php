@@ -11,7 +11,7 @@ class VerseOfDay extends Model
 
     public $timestamps = false;
 
-    protected $fillable =  ['verse_id', 'show_at'];
+    protected $fillable =  ['verse_id', 'show_at','image','image_mobile'];
 
     public function verse() {
         return $this->belongsTo(\App\VersesNasbEn::class, 'verse_id', 'id');
