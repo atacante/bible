@@ -112,7 +112,7 @@ ul.tabs-nav li:last-child {
 .tabs-nav.nav-pills>li.active>a, .tabs-nav.nav-pills>li:hover>a {
     background: transparent !important;
     color: #00b9f7;
-    font-family: ns_widedemibold;
+    /*font-family: ns_widedemibold;*/
     font-size: 1.07rem;
     border-bottom: 2px solid #00b9f7;
 }
