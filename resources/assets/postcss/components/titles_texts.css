@@ -191,7 +191,13 @@ h4.h4-1 {
 }
 @media(--xsmall){
     .font-size-22 {
-        font-size: 1.3rem;
+        font-size: 0.9rem;
+    }
+    .compare-mode .lex-content .medium{
+        margin-bottom: 5px;
+    }
+    .compare-mode .lex-content .lex-verse-part{
+        margin-top: 5px;
     }
 }
 h1.h1-kit {

@@ -692,7 +692,8 @@ span.word-definition mark:hover{
         background-color: #e3e3e3;
     }
     .compare-mode .lex-content {
-        margin: 30px -26px -30px -11px;
+        margin: 30px -26px -20px -11px;
+        font-size: 0.9rem;
     }
 }
 .lex-content:hover {
@@ -829,7 +830,7 @@ mark {
             background: white;
             z-index: 9;
             border: none;
-            right: 167px;
+            right: 129px;
         }
     }
 }

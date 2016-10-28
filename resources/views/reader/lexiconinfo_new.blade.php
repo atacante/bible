@@ -4,7 +4,9 @@
         <div class="col-md-12 font-size-22" style="padding-right: 46px">
             <i class="bs-lexicon"></i> <span class="medium">LEXICON - </span>
             <br>
-            <i>"{!! strtoupper($lexiconinfo->verse_part) !!}"</i>
+            <div class="lex-verse-part">
+                <i>"{!! strtoupper($lexiconinfo->verse_part) !!}"</i>
+            </div>
         </div>
     </div>
     <hr class="mt0"/>
@@ -33,7 +35,9 @@
     <div class="row">
         <div class="col-md-12 font-size-22" style="padding-right: 46px"><i class="bs-lexicon"></i>
             <span class="medium">LEXICON - </span>
-            <i>"{!! strtoupper($lexiconinfo->verse_part) !!}"</i>
+            <div class="lex-verse-part">
+                <i>"{!! strtoupper($lexiconinfo->verse_part) !!}"</i>
+            </div>
         </div>
     </div>
     <hr class="mt0"/>
