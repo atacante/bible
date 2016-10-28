@@ -68,9 +68,7 @@ class SymbolismEncyclopediaController extends Controller
             if ($model->update($data)) {
                 Notification::success('Term has been successfully updated');
             }
-            return ($url = Session::get('backUrl'))
-                ? Redirect::to($url)
-                : Redirect::to(ViewHelper::adminUrlSegment() . '/symbolism-encyclopedia/list/');
+            return Redirect::to(ViewHelper::adminUrlSegment() . '/symbolism-encyclopedia/list/');
         }
         return view('admin.symbolism-encyclopedia.update',
             [
@@ -89,8 +87,6 @@ class SymbolismEncyclopediaController extends Controller
         if (SymbolismEncyclopedia::destroy($id)) {
             Notification::success('Term has been successfully deleted');
         }
-        return ($url = Session::get('backUrl'))
-            ? Redirect::to($url)
-            : Redirect::to(ViewHelper::adminUrlSegment() . '/symbolism-encyclopedia/list/');
+        return Redirect::to(ViewHelper::adminUrlSegment() . '/symbolism-encyclopedia/list/');
     }
 }
