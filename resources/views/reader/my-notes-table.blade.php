@@ -1,9 +1,11 @@
 <div id="notes" class="verse-notes my-notes-list j-my-notes-list">
-    <h4 class="h4-study mb3">
-        <i class="bs-note cu-note"></i>
-        My <span>Notes</span> for this Study Verse
+    <div class="sub-header">
+        <div class="sub-header-title">
+            <i class="bs-note cu-note"></i>
+            My <span>Notes</span> for this Study Verse
+        </div>
         {!! Html::link('/notes/create','Create Note', ['class'=>'btn1-kit cu-study-btn j-create-note']) !!}
-    </h4>
+    </div>
 
     <ul class="study-list">
         @if($content['notes']->count())
