@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row wall">
-        <div class="col-xs-3">
+        <div class="col-md-3">
             @include('community.menu')
             <div class="c-white-content group-info mt13 mb1">
                 <div class="inner-pad3">
@@ -59,7 +59,7 @@
 
 
         {{-- -------- COLUMN RIGHT ---------  --}}
-        <div class="col-xs-9">
+        <div class="col-md-9">
             <div class="group-details" style="background: url('{!!  $model->group_image?Config::get('app.groupImages').$model->id.'/'.$model->group_image:'/images/nocatimg-m.jpg' !!}'); {!! $model->group_image?'background-size: 100%;':'' !!} background-position: center center;">
                 <div class="header" style="">
                     <h3 class="title">
