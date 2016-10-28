@@ -12,6 +12,19 @@ table.kit-table1 {
             width: auto !important;
             margin: 15px;
         }
+        & .resp-table {
+            display: block;
+        }
+        & .c-content-order {
+            clear: both;
+            margin: 15px;
+            padding: 15px;
+            overflow: hidden;
+        }
+        & .c-white-item {
+            margin: 15px;
+            padding: 15px;
+        }
     }
 }
 table.kit-table1 tr {

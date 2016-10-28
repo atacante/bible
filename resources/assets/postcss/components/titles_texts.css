@@ -228,6 +228,15 @@ h3.h3-kit {
             margin-top: 20px;
         }
     }
+    .order.show {
+        & h3.h3-kit {
+            padding: 20px 0 10px;
+            font-size: 1.4rem;
+        }
+        & p {
+           font-size: 1rem;
+        }
+    }
 }
 h4.h4-kit {
     font-family: ns_widenormal;
