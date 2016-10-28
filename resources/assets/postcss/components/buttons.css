@@ -371,6 +371,12 @@
   font-weight: normal !important;
   background-color: transparent !important;
 }
+@media(--xsmall) {
+    .community.find-friends .cu6-btn1:hover,
+    .community.find-friends .cu6-btn1:active {
+        vertical-align: inherit;
+    }
+}
 .cu9-btn1 {
   font-size: 0.93rem !important;
   padding: 5px !important;
