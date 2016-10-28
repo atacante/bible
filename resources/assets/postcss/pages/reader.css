@@ -895,3 +895,12 @@ mark {
         margin-bottom: 20px;
     }
 }
+
+.btn-prev{
+    margin-right: 30px;
+}
+@media(--xsmall){
+    .btn-prev{
+        margin: auto auto 10px;
+    }
+}
