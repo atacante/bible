@@ -1559,7 +1559,7 @@ $(document).ready(function(){
     $('body').on('click','.j-show-more',function(e){
         e.preventDefault();
 
-        var parent = $(e.target).parent();
+        var parent = $(e.target).parents('ul');
         var button = $(e.target);
 
         var field = $(parent).find('.j-hidden');
@@ -1568,8 +1568,7 @@ $(document).ready(function(){
 
         var text = button.text();
 
-        button.html(
-            (text == 'See More') ? "See Less" : "See More");
+        button.html((text == 'See More') ? "See Less" : "See More");
 
     });
 
