@@ -24,6 +24,14 @@
         width: 100%;
         margin: 0 0 50px;
     }
+    .groups.view {
+        & .tabs-nav {
+            background: white;
+            margin: 0;
+            width: 100%;
+            padding: 15px;
+        }
+    }
 }
 ul.tabs-nav li {
     margin-bottom: -2px;
