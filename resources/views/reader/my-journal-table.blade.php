@@ -1,7 +1,7 @@
 <div id="journal" class="verse-journal my-journal-list j-my-journal-list mt3">
     <div class="sub-header">
         <div class="sub-header-title">
-            <i class="bs-note cu-note"></i>
+            <i class="bs-journal cu-jornal"></i>
             My <span>Journal Entries</span> for this Study Verse
         </div>
         {!! Html::link('/journal/create','Create Journal Entry', ['class'=>'btn1-kit cu-study-btn j-create-journal']) !!}
