@@ -447,7 +447,7 @@
         <div class="col-xs-12 text-center pagination j-reader-pagination">
             <div class="btn-group" role="group" aria-label="...">
                 @if($versePrev = $content['pagination']['versePrev'])
-                    {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[]), 'Prev Verse', ['class' => 'btn2','style' => 'min-width:250px; margin-right: 30px'], true)}}
+                    {{ Html::link(url('reader/verse?'.http_build_query($versePrev),[]), 'Prev Verse', ['class' => 'btn2 btn-prev','style' => 'min-width:250px;'], true)}}
                 @endif
                 @if($verseNext = $content['pagination']['verseNext'])
                     {{ Html::link(url('reader/verse?'.http_build_query($verseNext),[]), 'Next Verse', ['class' => 'btn1','style' => 'min-width:250px;'], true)}}
