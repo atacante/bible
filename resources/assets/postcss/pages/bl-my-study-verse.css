@@ -1,0 +1,84 @@
+.bl-my-study-verse {
+    font-size: 10px;
+    position: relative;
+
+    & .reader {
+        text-align: center;
+        position: absolute;
+        right: 0;
+    }
+
+    & .btn1-kit {
+        font-size: 1.2em;
+        padding: 0.7em 1.2em;
+
+        & i {
+            font-size: 0.8em;
+        }
+    }
+
+    & .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        font-size: 2em;
+        letter-spacing: 1px;
+        margin: 15px 0;
+        text-align: center;
+    }
+
+    & .part {
+        font-family: 'ns_widedemibold';
+        /*display: block;*/
+
+        & span {
+            font-size: 1.25em;
+        }
+    }
+
+    & .version {
+        font-family: 'ns_widenormal';
+        color: #a9a9a9;
+    }
+
+    & .arrow-left, & .arrow-right {
+        font-size: 1.15em;
+        margin: 0 1.5em;
+
+        & i {
+            position: relative;
+            top: 0.25em;
+        }
+    }
+
+    & .study-top-panel {
+        font-size: 3em;
+        padding: 2em 1em;
+    }
+
+    @media (max-width: 1024px) {
+        font-size: 9px;
+
+        & .reader {
+            position: relative;
+        }
+    }
+
+    @media (max-width: 768px) {
+        font-size: 8px;
+    }
+
+    @media (max-width: 375px) {
+        font-size: 7px;
+
+        & .part {
+            display: block;
+        }
+    }
+
+    @media (max-width: 320px) {
+        font-size: 6px;
+    }
+
+}

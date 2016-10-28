@@ -4,7 +4,7 @@
         <span class="caret"></span>
     </li>
     <li role="separator" class="divider" style=""></li>
-    <li class="{!! ViewHelper::classActivePath(['groups']) !!}" role="presentation">
+    <li class="{!! ViewHelper::classActivePath(['groups.index']) !!}" role="presentation">
         <a href="{{ url('groups') }}"><i class="bs-s-groups"></i>Groups</a>
         <span class="caret"></span>
     </li>

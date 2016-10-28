@@ -78,8 +78,10 @@ class ViewHelper
             $segment = 1;
             foreach($path as $p) {
                 if((request()->segment($segment) == $p) == false) {
-                    $segment = false;
-                    break;
+                    if(!($segment == 2 && $p == 'index' && !request()->segment($segment))){
+                        $segment = false;
+                        break;
+                    }
                 }
                 $segment++;
             }
