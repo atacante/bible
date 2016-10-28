@@ -23,6 +23,11 @@
         width: 50% !important;
     }
 }
+@media(--vxsmall){
+    .my-item {
+        width: 100% !important;
+    }
+}
 .my-inner-location-item {
     overflow: hidden;
     position: relative;

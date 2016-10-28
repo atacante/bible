@@ -87,6 +87,24 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('colors') ? ' has-error' : '' }}">
+        {!! Form::label('colors', 'Colors(comma separated):') !!}
+        {!! Form::text('colors', $model->colors, ['placeholder'=>'red,green,blue']) !!}
+        @if ($errors->has('colors'))
+            <span class="help-block">
+                {{ $errors->first('colors') }}
+            </span>
+        @endif
+    </div>
+    <div class="form-group {{ $errors->has('sizes') ? ' has-error' : '' }}">
+        {!! Form::label('sizes', 'Sizes(comma separated):') !!}
+        {!! Form::text('sizes', $model->sizes, ['placeholder'=>'small,medium,large']) !!}
+        @if ($errors->has('sizes'))
+            <span class="help-block">
+                {{ $errors->first('sizes') }}
+            </span>
+        @endif
+    </div>
 </div>
 <!-- /.box-body -->
 

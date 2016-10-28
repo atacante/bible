@@ -195,7 +195,7 @@ ul.pp-c-items li a {
 }
 @media(--xsmall) {
     ul.pp-c-items li a {
-        color: #77838d;
+        color: #c9d6e0;
         border-color: #4c5963;
         font-size: 0.8rem;
         text-align: left;
@@ -207,7 +207,7 @@ ul.pp-c-items li a:hover {
 }
 ul.pp-c-items li a.active {
     background: #313d47;
-    color: white;
+    color: #00b9f7;
 }
 
 /* ------------- Reader - Verse select popup ------------ */
@@ -243,14 +243,14 @@ table.t-choose-book tr td a:hover {
 }
 table.t-choose-book tr td a.active {
     background: #313d47;
-    color: white;
+    color: #00b9f7;
 }
 @media (--xsmall) {
     table.t-choose-book tr td {
         border: 1px solid #4c5963;
     }
     table.t-choose-book tr td a {
-        color: #77838d;
+        color: #c9d6e0;
         font-size: 11px;
         text-align: left;
     }
@@ -282,7 +282,7 @@ ul.c-chapter-list li a:hover {
 }
 ul.c-chapter-list li a.active {
     background: #313d47;
-    color: white;
+    color: #00b9f7;
 }
 @media (--xsmall){
     ul.c-chapter-list {
@@ -303,7 +303,7 @@ ul.c-chapter-list li a.active {
         min-width: 30px;
         min-height: 30px;
         text-decoration: none !important;
-        color: #77838d;
+        color: #c9d6e0;
         padding: 0;
         text-align: center;
         font-size: 11px;

@@ -24,6 +24,9 @@ class SymbolismEncyclopedia extends BaseModel
                 $model->associateLexicons('detach');
                 $model->associateLexicons('attach');
             }
+            if(!$model->isDirty('term_name') && $model->isDirty('term_description') && !$model->isDirty('associate_lexicons') && $model->associate_lexicons){
+                $model->associateLexicons('attach');
+            }
             if($model->wasRecentlyCreated || $model->isDirty('associate_lexicons')){
                 if($model->associate_lexicons){
                     $model->associateLexicons('attach');
@@ -49,7 +52,7 @@ class SymbolismEncyclopedia extends BaseModel
         $this->fillSymbolism($action,$nasbPhrases);
         $kjvPhrases = LexiconKjv::where('verse_part','ilike','%'.$termName.'%');
         $this->fillSymbolism($action,$kjvPhrases);
-        $bereanPhrases = LexiconBerean::where('verse_part','ilike','%'.$termName.' %');
+        $bereanPhrases = LexiconBerean::where('verse_part','ilike','%'.$termName.'%');
         $this->fillSymbolism($action,$bereanPhrases);
 
         /* We can try to optimize associating if needed (code below ) */

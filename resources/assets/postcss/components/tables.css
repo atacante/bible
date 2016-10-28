@@ -8,16 +8,32 @@ table.kit-table1 {
 }
 @media(--xsmall){
     .order.show {
-        & table.kit-table1 {
-            width: auto !important;
+        & table.resp-table {
+            width: 100% !important;
+            float: none;
+            display: table;
+            margin-bottom: 15px;
+        }
+        & table.kit-table1 tbody,
+        & table.kit-table1 thead,
+        & table.kit-table1 tr {
+            width: 100% !important;
+        }
+        & .resp-table {
+            display: block;
+        }
+        & .c-content-order {
+            clear: both;
             margin: 15px;
+            padding: 15px;
+            overflow: hidden;
+        }
+        & .c-white-item {
+            margin: 15px;
+            padding: 15px;
         }
     }
 }
-table.kit-table1 tr {
-
-}
-
 table.kit-table1 tr td {
     border-top: 2px solid #e9e9e9;
     padding: 25px 5px;

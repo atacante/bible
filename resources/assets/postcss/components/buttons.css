@@ -54,10 +54,15 @@
   line-height: 1.21rem;
 }
 @media(--xsmall){
-  .btn2-kit, .btn2-kit:visited {
-    min-width: 0;
-    font-size: 0.7rem;
-  }
+    .btn2-kit, .btn2-kit:visited {
+        min-width: 0;
+        font-size: 0.7rem;
+    }
+    .order.show {
+        & .btn2-kit, & .btn2-kit:visited {
+            margin-right: 15px;
+        }
+    }
 }
 .btn2-kit:hover, .btn2-kit:active {
   display: inline-block;
@@ -365,6 +370,12 @@
   margin-right: 4px;
   font-weight: normal !important;
   background-color: transparent !important;
+}
+@media(--xsmall) {
+    .community.find-friends .cu6-btn1:hover,
+    .community.find-friends .cu6-btn1:active {
+        vertical-align: inherit;
+    }
 }
 .cu9-btn1 {
   font-size: 0.93rem !important;

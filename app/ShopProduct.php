@@ -8,11 +8,8 @@ use Illuminate\Support\Facades\File;
 
 class ShopProduct extends BaseModel implements Buyable{
 
-	protected $fillable = ['category_id', 'name', 'photo', 'short_description', 'long_description', 'price', 'external_link', 'homepage_position'];
+	protected $fillable = ['category_id', 'name', 'sizes', 'colors', 'photo', 'short_description', 'long_description', 'price', 'external_link', 'homepage_position'];
 	protected $dates = ['created_at', 'updated_at'];
-
-    public static $sizes = ['default' => 'Default','small'=>'Small','medium' => 'Medium','large'=>'Large'];
-    public static $colors = ['default' => 'Default', 'black' => 'Black', 'green' => 'Green', 'red' => 'Red', 'blue' => 'Blue'];
 
 	public function rules()
 	{
@@ -86,5 +83,29 @@ class ShopProduct extends BaseModel implements Buyable{
         $free_positions = array_diff($allPositions,$usedPositions);
 
         return $free_positions;
+    }
+
+    public function getColors(){
+        $colors = explode(',',$this->colors);
+
+        $colors_for_select = [];
+
+        foreach($colors as $color){
+            $color = trim($color);
+            $colors_for_select[$color] = ucfirst($color);
+        }
+        return $colors_for_select;
+    }
+
+    public function getSizes(){
+        $sizes = explode(',',$this->sizes);
+
+        $sizes_for_select = [];
+
+        foreach($sizes as $size){
+            $size = trim($size);
+            $sizes_for_select[$size] = ucfirst($size);
+        }
+        return $sizes_for_select;
     }
 }

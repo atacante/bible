@@ -61,10 +61,12 @@ class OrderController extends Controller
         }
 
         //Retrieve cart information
-        $subtotal = Cart::total();
+        $subtotal = Cart::total(2,'.','');
         $tax = 0.00;
 
-        if(strtolower(trim($data['shipping_state'])) == 'florida'){
+        $state = strtolower(trim($data['shipping_state']));
+
+        if(($state == 'florida')||($state == 'fl')){
             $tax = round(0.07 * $subtotal, 2);
         }
 

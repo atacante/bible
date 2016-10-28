@@ -80,14 +80,18 @@
                                 <div class="p-medium">
                                     {!! $product->long_description !!}
                                 </div>
-                                <div class="form-group">
-                                    {!! Form::label('color', 'Color') !!}
-                                    {!! Form::select('color', $product::$colors, 'default',['class' => 'form-control', 'style' => 'width:20%']) !!}
-                                </div>
-                                <div class="form-group">
-                                    {!! Form::label('size', 'Size') !!}
-                                    {!! Form::select('size', $product::$sizes, 'default',['class' => 'form-control', 'style' => 'width:20%']) !!}
-                                </div>
+                                @if($product->colors)
+                                    <div class="form-group">
+                                        {!! Form::label('color', 'Color') !!}
+                                        {!! Form::select('color', $product->getColors(), null,['class' => 'form-control', 'style' => 'width:20%']) !!}
+                                    </div>
+                                @endif
+                                @if($product->sizes)
+                                    <div class="form-group">
+                                        {!! Form::label('size', 'Size') !!}
+                                        {!! Form::select('size', $product->getSizes(), null,['class' => 'form-control', 'style' => 'width:20%']) !!}
+                                    </div>
+                                @endif
                             </div>
                         </div>
                 </div>
