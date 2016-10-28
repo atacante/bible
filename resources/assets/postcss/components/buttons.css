@@ -54,10 +54,15 @@
   line-height: 1.21rem;
 }
 @media(--xsmall){
-  .btn2-kit, .btn2-kit:visited {
-    min-width: 0;
-    font-size: 0.7rem;
-  }
+    .btn2-kit, .btn2-kit:visited {
+        min-width: 0;
+        font-size: 0.7rem;
+    }
+    .order.show {
+        & .btn2-kit, & .btn2-kit:visited {
+            margin-right: 15px;
+        }
+    }
 }
 .btn2-kit:hover, .btn2-kit:active {
   display: inline-block;

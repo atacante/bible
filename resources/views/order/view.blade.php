@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <table class="kit-table1 pull-left" style="width:49%">
+    <table class="kit-table1 pull-left resp-table" style="width:49%">
         <thead>
         <tr>
             <th colspan="2">
@@ -54,7 +54,10 @@
         </tr>
         </tbody>
     </table>
-    <table class="kit-table1 pull-right" style="width:50%">
+
+
+    {{-- Desktop --}}
+    <table class="kit-table1 pull-right cart-desktop" style="width:50%">
         <thead>
         <tr>
             <th style="width: 140px">Order Placed</th>
@@ -118,6 +121,74 @@
         </tr>
         </tfoot>
     </table>
+    <div class="clerfix"></div>
+
+
+
+    {{-- Mobile --}}
+    <div class="kit-table1 cart-mobile">
+
+        @if($order->orderItems->count())
+            <div class="c-white-content c-content-order">
+            @foreach($order->orderItems as $row)
+
+                <div>
+                    <div>
+                        @if($row->product->images->count())
+                            <img class="img-thumbnail" data-dz-thumbnail="" alt="" src="{!! Config::get('app.productImages').'thumbs/'.$row->product->images[0]->image !!}" />
+                        @else
+                            <div class="no-avatar img-thumbnail">
+                                <div class="no-avatar-text text-center"><i class="fa fa-shopping-cart fa-4x"></i></div>
+                            </div>
+                        @endif
+                    </div>
+                    <div>
+                        <h3 class="h3-kit">{!! $row->product->name !!}</h3>
+                        <p>{!! 'Size: '.$row->size !!}</p>
+                        <p>{!! 'Color: '.$row->color !!}</p>
+                    </div>
+                    <div>
+                        <h3>Quantity</h3>
+                        {!! $row->qty !!}
+                    </div>
+                    <div>
+                        <h3>Price</h3>
+                        ${!! $row->product->price !!}
+                    </div>
+                </div>
+            @endforeach
+        @else
+
+            <div>
+                <p class="text-center">No items added</p>
+            </div>
+
+        @endif
+        </div>
+            <div class="c-white-item">
+                <div class="mb-resp">
+                    <h3 class="h3-kit">Subtotal</h3>
+                    <div>${!! $order->subtotal !!}</div>
+                </div>
+                <div class="mb-resp">
+                    <h3 class="h3-kit">Tax</h3>
+                    <div>${!! $order->tax !!}</div>
+                </div>
+                <div class="mb-resp">
+                    <h3 class="h3-kit">Shipping Rate</h3>
+                    <div>${!! $order->shipping_rate !!}</div>
+                </div>
+                <div class="mb-resp">
+                    <h3 class="h3-kit">Total</h3>
+                    <div>${!! $order->total_paid !!}</div>
+                </div>
+            </div>
+
+
+    </div>
+
+
+
 
     <div class="clearfix"></div>
     <div class="mb1">
