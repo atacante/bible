@@ -6,6 +6,14 @@ table.kit-table1 {
     -webkit-box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
     box-shadow: 0 0 30px 2px rgba(100,100,100,0.1);
 }
+@media(--xsmall){
+    .order.show {
+        & table.kit-table1 {
+            width: auto !important;
+            margin: 15px;
+        }
+    }
+}
 table.kit-table1 tr {
 
 }
@@ -50,6 +58,11 @@ table.kit-table1 .label1 {
     color: #010101;
     text-transform: uppercase;
     font-weight: normal;
+}
+@media(--xsmall){
+    table.kit-table1 .label1 {
+        padding-right: 20px;
+    }
 }
 /* ------- lexicon table */
 table.table-lexicon {
