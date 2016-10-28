@@ -61,7 +61,7 @@ class OrderController extends Controller
         }
 
         //Retrieve cart information
-        $subtotal = Cart::total();
+        $subtotal = Cart::total(2,'.','');
         $tax = 0.00;
 
         $state = strtolower(trim($data['shipping_state']));
