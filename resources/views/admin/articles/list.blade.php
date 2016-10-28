@@ -23,7 +23,7 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
-                            <th>User</th>
+                            <th>Author</th>
                             <th>Category</th>
                             <th>Title</th>
                             <th>Text</th>
@@ -33,7 +33,7 @@
                         @if(count($content['articles']))
                             @foreach($content['articles'] as $article)
                                 <tr>
-                                    <td>{!! $article->user?$article->user->name:'(removed)' !!}</td>
+                                    <td>{!! ($article->author_name?$article->author_name:($article->user?$article->user->name:'(removed)')) !!}</td>
                                     <td>{!! $article->category?$article->category->title:'<i>(not selected)</i>' !!}</td>
                                     <td>{!! $article->title !!}</td>
                                     <td>{!! str_limit($article->text, $limit = 800, $end = '... ')!!}</td>
