@@ -27,6 +27,15 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('author_name') ? ' has-error' : '' }}">
+        {!! Form::label('author_name', 'Author name (administrator name by default):') !!}
+        {!! Form::text('author_name') !!}
+        @if ($errors->has('author_name'))
+            <span class="help-block">
+                        {{ $errors->first('author_name') }}
+                    </span>
+        @endif
+    </div>
 </div>
 <!-- /.box-body -->
 
