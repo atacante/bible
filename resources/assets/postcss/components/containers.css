@@ -20,6 +20,11 @@
     .in-inner-container {
         padding: 0;
     }
+    .order.create {
+        & .in-inner-container {
+            margin: 15px;
+        }
+    }
 }
 
 .bg-g2 {
