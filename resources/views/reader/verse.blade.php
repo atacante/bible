@@ -90,7 +90,7 @@
                                 'book' => $content['main_verse']['verse']->book_id,
                                 'chapter' => $content['main_verse']['verse']->chapter_num
                             ])."#verse".$content['main_verse']['verse']->id,[],false) !!}"
-                            class="btn1-kit cu1-btn">
+                            class="btn1-kit cu1-btn" style="z-index: 1">
                             <i class="bs-arrowback cu-arrowback"></i>
                             Back to Reader
                         </a>
