@@ -162,7 +162,11 @@
         </div>
 
         <div class="mb1 c-resp-checkout">
-            {!! Html::link(url('/order/create'),'Checkout', ['class'=>'btn2-kit pull-right']) !!}
+            @if(Cart::count())
+                {!! Html::link(url('/order/create'),'Checkout', ['class'=>'btn2-kit pull-right']) !!}
+            @else
+                {!! Html::link(url('/shop'),'Back To Shop', ['class'=>'btn2-kit pull-right']) !!}
+            @endif
             <div class="clearfix"></div>
         </div>
         <!-- /.box-body -->
