@@ -8,9 +8,15 @@ table.kit-table1 {
 }
 @media(--xsmall){
     .order.show {
-        & table.kit-table1 {
-            width: auto !important;
-            margin: 15px;
+        & table.resp-table {
+            width: 100% !important;
+            float: none;
+            display: table;
+        }
+        & table.kit-table1 tbody,
+        & table.kit-table1 thead,
+        & table.kit-table1 tr {
+            width: 100% !important;
         }
         & .resp-table {
             display: block;
