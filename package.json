@@ -1,6 +1,7 @@
 {
   "private": true,
   "devDependencies": {
+    "csscomb": "^3.1.7",
     "gulp": "^3.8.8",
     "install": "^0.8.1",
     "laravel-elixir-postcss": "^0.4.1",
