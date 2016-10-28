@@ -57,6 +57,43 @@
         padding: 2em 1em;
     }
 
+    & .sub-header {
+        margin: 1em 0 5em;
+        font-family: 'ns_widenormal';
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+
+        & .sub-header-title {
+            font-size: 2em;
+
+            & i {
+                font-size: 1.3em;
+                margin-right: 0.4em;
+            }
+        }
+
+        & span {
+            font-family: 'ns_widedemibold';
+        }
+
+        & .cu-study-btn {
+            /*position: relative;*/
+        }
+    }
+
+    & .study-list > li p {
+        font-size: 1rem;
+    }
+
+    & .text-center {
+        font-size: 1rem;
+    }
+
+    & .study-second-panel li {
+        font-size: 1.5em;
+    }
+
     @media (max-width: 1024px) {
         font-size: 9px;
 
@@ -69,16 +106,40 @@
         font-size: 8px;
     }
 
+    @media (max-width: 767px) {
+        & .sub-header {
+            & .sub-header-title {
+                display: block;
+            }
+
+            & .cu-study-btn {
+                position: relative;
+                margin-top: 1em;
+            }
+        }
+    }
+
     @media (max-width: 375px) {
         font-size: 7px;
 
         & .part {
             display: block;
         }
+
+        & .c-journey-date {
+            margin-top: 10px;
+        }
+
+        & .study-second-panel li {
+            padding: 0 15px;
+            margin: 0;
+        }
+
     }
 
     @media (max-width: 320px) {
         font-size: 6px;
+
     }
 
 }
