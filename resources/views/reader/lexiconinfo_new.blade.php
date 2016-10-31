@@ -19,11 +19,13 @@
         <div class="col-md-12 medium">TRANSLITERATION</div>
         <div class="col-md-12">{!! $lexiconinfo->transliteration !!}</div>
     </div>
+    @if ($lexiconinfo->symbolism)
     <hr class="mt0"/>
     <div class="row">
         <div class="col-md-12 medium">ANALYSIS</div>
         <div class="col-md-12">{!! $lexiconinfo->symbolism?$lexiconinfo->symbolism:'-' !!}</div>
     </div>
+    @endif
     <hr class="mt0"/>
     <div class="row">
         <div class="col-md-12  medium">DEFINITION</div>
