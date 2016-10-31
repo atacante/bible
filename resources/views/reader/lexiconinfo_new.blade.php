@@ -50,11 +50,13 @@
         <div class="col-md-2 medium">TRANSLITERATION</div>
         <div class="col-md-7">{!! $lexiconinfo->transliteration !!}</div>
     </div>
+    @if ($lexiconinfo->symbolism)
     <hr class="mt0"/>
     <div class="row">
         <div class="col-md-1 mr4p medium">ANALYSIS</div>
         <div class="col-md-10">{!! $lexiconinfo->symbolism?$lexiconinfo->symbolism:'-' !!}</div>
     </div>
+    @endif
     <hr class="mt0"/>
     <div class="row">
         <div class="col-md-1 mr4p medium">DEFINITION</div>
