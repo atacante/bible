@@ -158,27 +158,39 @@ class BibleController extends Controller
 
     public function anyUploadImage($model)
     {
-        if (Input::hasFile('file')) {
-            $file = Input::file('file');
+        $files = ['image', 'image_mobile'];
 
-            $tmpFilePath = Config::get('app.verseOfDayImages');
-            $tmpThumbPath = $tmpFilePath . 'thumbs/';
-            $tmpFileName = time() . '-' . $file->getClientOriginalName();
-            $file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
-            $path = $tmpFilePath . $tmpFileName;
+        foreach($files as $uploaded_file){
+            if (Input::hasFile($uploaded_file)) {
+                $file = Input::file($uploaded_file);
 
-            $this->makeDir(public_path() . $tmpThumbPath);
-            $thumbPath = public_path($tmpThumbPath . $tmpFileName);
-            if($file){
-                $model->image = $tmpFileName;
-                $model->save();
+                $tmpFilePath = Config::get('app.verseOfDayImages');
+                $tmpThumbPath = $tmpFilePath . 'thumbs/';
+                $tmpFileName = time() . '-' . $file->getClientOriginalName();
+                $file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
+                $path = $tmpFilePath . $tmpFileName;
+
+                $this->makeDir(public_path() . $tmpThumbPath);
+                $thumbPath = public_path($tmpThumbPath . $tmpFileName);
+
+                if($file){
+                    if($uploaded_file == 'image'){
+                        $this->unlinkLocationImage($model->image);
+                        $model->image = $tmpFileName;
+                        // Resizing
+                        Image::make($file->getRealPath())->fit(200, 100)->save($thumbPath)->destroy();
+                    }elseif($uploaded_file == 'image_mobile'){
+                        $this->unlinkLocationImage($model->image_mobile);
+                        $model->image_mobile = $tmpFileName;
+                        // Resizing
+                        Image::make($file->getRealPath())->fit(100, 100)->save($thumbPath)->destroy();
+                    }
+
+                    $model->save();
+                }
             }
-            // Resizing 340x340
-            Image::make($file->getRealPath())->fit(100, 100)->save($thumbPath)->destroy();
-
-            return true;
         }
-        return false;
+        return true;
     }
 
     private function makeDir($path)
@@ -187,5 +199,18 @@ class BibleController extends Controller
             return mkdir($path);
         }
         return true;
+    }
+
+    private function unlinkLocationImage($filename)
+    {
+        $tmpFilePath = public_path(Config::get('app.verseOfDayImages').$filename);
+        $tmpThumbPath = public_path(Config::get('app.verseOfDayImages').'thumbs/'.$filename);
+
+        if (is_file($tmpFilePath)) {
+            unlink($tmpFilePath);
+        }
+        if (is_file($tmpThumbPath)) {
+            unlink($tmpThumbPath);
+        }
     }
 }
