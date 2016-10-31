@@ -191,7 +191,11 @@
                                 <div>
                                     @foreach(App\User::getPossiblePlans() as $plan_name => $plan)
                                         <div class="radio-inline">
+{{--
                                             {!! Form::radio('plan_name', $plan_name, ($model->getActivePlan() == $plan_name), ["class" => "cust-radio", "id" => $plan_name]) !!}
+                                            <label class="label-radio cu-label" for="{{$plan_name}}"> {!! $plan_name.' ($'.$plan['amount'].')' !!}</label>
+--}}
+                                            {!! Form::radio('plan_name', $plan_name, ('3 months' == $plan_name), ["class" => "cust-radio", "id" => $plan_name]) !!}
                                             <label class="label-radio cu-label" for="{{$plan_name}}"> {!! $plan_name.' ($'.$plan['amount'].')' !!}</label>
                                         </div>
                                     @endforeach
