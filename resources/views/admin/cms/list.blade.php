@@ -13,7 +13,9 @@
                             <th>Content Type</th>
                             <th>System Name</th>
                             <th>Title</th>
+                            @if(Request::segment(3) != 'home')
                             <th class="text-center">Published</th>
+                            @endif
                             {{--<th>Content</th>--}}
                             {{--<th>Meta Title</th>--}}
                             {{--<th>Meta Keywords</th>--}}
@@ -26,6 +28,7 @@
                                     <td>{!! $page->content_type !!}</td>
                                     <td>{!! $page->system_name !!}</td>
                                     <td>{!! $page->title !!}</td>
+                                    @if(Request::segment(3) != 'home')
                                     <td class="text-center">
                                         @if($page->published)
                                             <span class="label label-success">yes</span>
@@ -33,6 +36,7 @@
                                             <span class="label label-danger">no</span>
                                         @endif
                                     </td>
+                                    @endif
                                     {{--<td>{!! $page->text !!}</td>--}}
                                     {{--<td>{!! $page->meta_title !!}</td>--}}
                                     {{--<td>{!! $page->meta_keywords !!}</td>--}}
@@ -42,6 +46,19 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @if(Request::segment(3) == 'home')
+                                <tr>
+                                    <td>home</td>
+                                    <td>verse_of_the_day</td>
+                                    <td>Verse of the day</td>
+                                    {{--<td class="text-center">
+                                        <span class="label label-success">yes</span>
+                                    </td>--}}
+                                    <td class="text-center" style="width: 50px;">
+                                        <a title="Edit CMS" href="{{ url('admin/bible/verseday') }}"><i class="fa fa-edit" style="color: #367fa9; font-size: 1.4em; margin-right: 5px;"></i></a>
+                                    </td>
+                                </tr>
+                            @endif
                         @else
                             <tr>
                                 <td colspan="9">
