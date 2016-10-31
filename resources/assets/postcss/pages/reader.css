@@ -904,3 +904,6 @@ mark {
         margin: auto auto 10px;
     }
 }
+.def-highlight {
+    text-transform: uppercase;
+}

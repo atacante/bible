@@ -598,9 +598,9 @@ reader.getHighlights = function(){
             url: '/reader/get-highlights',
             dataType:'json',
             data:{
-                version:$('input[name=version]').val(),
-                book:$('input[name=book]').val(),
-                chapter:$('input[name=chapter]').val(),
+                version:$('select[name=version]').val(),
+                book:$('select[name=book]').val(),
+                chapter:$('select[name=chapter]').val(),
             },
             success:function(data){
                 $.each(data,function (index,item) {

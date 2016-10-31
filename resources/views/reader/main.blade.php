@@ -424,7 +424,7 @@
                 <div class="col-xs-12 reader-banner">
                     <h2 class="h2-2 color1 text-center text-uppercase">
                         want to keep your study<br>
-                        progress and share with a new friends?<br>
+                        progress and share with new friends?<br>
                         <a href="{{url('/auth/register')}}" class="btn2-kit banner-btn">Sign Up Now</a>
                     </h2>
                 </div>
