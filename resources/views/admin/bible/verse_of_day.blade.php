@@ -33,7 +33,7 @@
             {!! Form::token() !!}
 
             <div class="form-group">
-                {!! Form::label('image', 'Verse Image:') !!}
+                {!! Form::label('image', 'Verse Image (desktop):') !!}
                 <div class="clearfix">
                     <div id="img-thumb-preview" class="edit-images-thumbs product-images">
                         @if($verseOfDay->image)
@@ -43,7 +43,22 @@
                         @endif
                     </div>
                     <div class="fallback"> <!-- this is the fallback if JS isn't working -->
-                        <input name="file" type="file" />
+                        <input name="image" type="file" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                {!! Form::label('image', 'Verse Image (mobile):') !!}
+                <div class="clearfix">
+                    <div id="img-thumb-preview" class="edit-images-thumbs product-images">
+                        @if($verseOfDay->image_mobile)
+                            <div class="img-thumb">
+                                <img height="100" width="100" src="{!! Config::get('app.verseOfDayImages').'thumbs/'.$verseOfDay->image_mobile !!}" />
+                            </div>
+                        @endif
+                    </div>
+                    <div class="fallback"> <!-- this is the fallback if JS isn't working -->
+                        <input name="image_mobile" type="file" />
                     </div>
                 </div>
             </div>
