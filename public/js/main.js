@@ -1559,8 +1559,8 @@ $(document).ready(function(){
     $('body').on('click','.j-show-more',function(e){
         e.preventDefault();
 
-        var parent = $(e.target).parents('ul');
-        var button = $(e.target);
+        var parent = $(this).parents('.j-item-body');
+        var button = $(this);
 
         var field = $(parent).find('.j-hidden');
 
