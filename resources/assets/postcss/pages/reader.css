@@ -907,3 +907,23 @@ mark {
 .def-highlight {
     text-transform: uppercase;
 }
+.lex-verse-part-icon {
+    float: left;
+    margin-right: 8px;
+}
+.lex-verse-part-first {
+    float: left;
+}
+.lex-verse-part {
+    float: left;
+}
+.hr-resp {
+    display: none;
+}
+@media(--xsmall){
+    .hr-resp {
+        display: block;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+}
