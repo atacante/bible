@@ -10,14 +10,14 @@
     </div>
     <hr class="mt0"/>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6 medium">STRONG'S</div>
                 <div class="col-md-6">{!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num, ['class' => 'clicked']) !!}</div>
             </div>
         </div>
         <hr class="mt0 hr-resp"/>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6 medium">TRANSLITERATION</div>
                 <div class="col-md-6">{!! $lexiconinfo->transliteration !!}</div>
@@ -34,15 +34,17 @@
     @endif
     <hr class="mt0"/>
     <div class="row">
-        <div class="col-md-3  medium">DEFINITION</div>
-        <div class="col-md-9">{!! $lexiconinfo->definition !!}</div>
+        <div class="col-md-6  medium">DEFINITION</div>
+        <div class="col-md-6">{!! $lexiconinfo->definition !!}</div>
     </div>
     <a class="btn-reset j-btn-reset"><i class="bs-close cu1-close"></i></a>
 @else
+
+
     <div class="popup-arrow3"></div>
     <div class="row">
-        <div class="col-md-12 font-size-22" style="padding-right: 46px"><i class="bs-lexicon"></i>
-            <span class="medium">LEXICON - </span>
+        <div class="col-md-12 font-size-22" style="padding-right: 46px"><i class="bs-lexicon lex-verse-part-icon"></i>
+            <span class="medium lex-verse-part-first">LEXICON - </span>
             <div class="lex-verse-part">
                 <i>"{!! strtoupper($lexiconinfo->verse_part) !!}"</i>
             </div>
