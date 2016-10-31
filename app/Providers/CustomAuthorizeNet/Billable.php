@@ -108,52 +108,9 @@ trait Billable
      */
     public function createAsAuthorizeCustomer($creditCardDetails)
     {
-        $creditCard = new AnetAPI\CreditCardType();
-        $creditCard->setCardNumber($creditCardDetails['number']);
-        $creditCard->setExpirationDate($creditCardDetails['expiration']);
-        if($creditCardDetails['code']){
-            $creditCard->setCardCode($creditCardDetails['code']);
-        }
+        $paymentCreditCard = self::setPaymentCreditCard($creditCardDetails);
 
-        $paymentCreditCard = new AnetAPI\PaymentType();
-        $paymentCreditCard->setCreditCard($creditCard);
-
-        if(isset($creditCardDetails['billing_name'])){
-            $name = explode(' ', $creditCardDetails['billing_name']);
-        }else{
-            $name = explode(' ', $this->name);
-        }
-
-        $billto = new AnetAPI\CustomerAddressType();
-        $billto->setFirstName($name[0]);
-        if(isset($name[1])){
-            $billto->setLastName($name[1]);
-        }else{
-            $billto->setLastName($name[0]);
-        }
-
-        if(isset($creditCardDetails['billing_address'])){
-            $billto->setAddress($creditCardDetails['billing_address']);
-        }elseif($this->address){
-            $billto->setAddress($this->address);
-        }else{
-            $billto->setAddress('Default');
-        }
-
-        $billto->setCity($this->city);
-        $billto->setState($this->state);
-
-        if(isset($creditCardDetails['billing_zip'])){
-            $billto->setZip($creditCardDetails['billing_zip']);
-        }elseif($this->zip){
-            $billto->setZip($this->zip);
-        }else{
-            $billto->setZip(11111);
-        }
-
-        if($this->country){
-            $billto->setCountry($this->country->nicename);
-        }
+        $billto = $this->setBillTo($creditCardDetails);
 
         $paymentprofile = new AnetAPI\CustomerPaymentProfileType();
         $paymentprofile->setCustomerType('individual');
@@ -220,55 +177,9 @@ trait Billable
         $request->setCustomerProfileId($this->authorize_id);
         $controller = new AnetController\GetCustomerProfileController($request);
 
-        // We're updating the billing address but everything has to be passed in an update
-        // For card information you can pass exactly what comes back from an GetCustomerPaymentProfile
-        // if you don't need to update that info
-        $creditCard = new AnetAPI\CreditCardType();
-        $creditCard->setCardNumber($card['number']);
-        $creditCard->setExpirationDate($card['expiration']);
-        if($card['code']){
-           $creditCard->setCardCode($card['code']);
-        }
+        $paymentCreditCard = self::setPaymentCreditCard($card);
 
-        $paymentCreditCard = new AnetAPI\PaymentType();
-        $paymentCreditCard->setCreditCard($creditCard);
-
-        if(isset($card['billing_name'])){
-            $name = explode(' ', $card['billing_name']);
-        }else{
-            $name = explode(' ', $this->name);
-        }
-
-        $billto = new AnetAPI\CustomerAddressType();
-        $billto->setFirstName($name[0]);
-        if(isset($name[1])){
-            $billto->setLastName($name[1]);
-        }else{
-            $billto->setLastName($name[0]);
-        }
-
-        if(isset($card['billing_address'])){
-            $billto->setAddress($card['billing_address']);
-        }elseif($this->address){
-            $billto->setAddress($this->address);
-        }else{
-            $billto->setAddress('Default');
-        }
-
-        $billto->setCity($this->city);
-        $billto->setState($this->state);
-
-        if(isset($card['billing_zip'])){
-            $billto->setZip($card['billing_zip']);
-        }elseif($this->zip){
-            $billto->setZip($this->zip);
-        }else{
-            $billto->setZip(11111);
-        }
-
-        if($this->country){
-            $billto->setCountry($this->country->nicename);
-        }
+        $billto = $this->setBillTo($card);
 
         // Create the Customer Payment Profile object
         $paymentprofile = new AnetAPI\CustomerPaymentProfileExType();
@@ -423,22 +334,15 @@ trait Billable
     public static function chargeCreditCard($amount, $card){
 
         // Create the payment data for a credit card
-        $creditCard = new AnetAPI\CreditCardType();
-        $creditCard->setCardNumber($card['number']);
-        $creditCard->setExpirationDate($card['expiration']);
-
-        if(!empty($card['code'])){
-            $creditCard->setCardCode($card['code']);
-        }
-
-        $paymentOne = new AnetAPI\PaymentType();
-        $paymentOne->setCreditCard($creditCard);
+        $paymentOne = self::setPaymentCreditCard($card);
+        $billto = self::setBillToForUnauthorized($card);
 
         //create a transaction
         $transactionRequestType = new AnetAPI\TransactionRequestType();
         $transactionRequestType->setTransactionType("authCaptureTransaction");
         $transactionRequestType->setAmount($amount);
         $transactionRequestType->setPayment($paymentOne);
+        $transactionRequestType->setBillTo($billto);
 
         $requestor = new Requestor();
         $request = $requestor->prepare((new AnetAPI\CreateTransactionRequest()));
@@ -480,5 +384,117 @@ trait Billable
         }
 
         return false;
+    }
+
+    protected static function setPaymentCreditCard($card){
+        // We're updating the billing address but everything has to be passed in an update
+        // For card information you can pass exactly what comes back from an GetCustomerPaymentProfile
+        // if you don't need to update that info
+        $creditCard = new AnetAPI\CreditCardType();
+        $creditCard->setCardNumber($card['number']);
+        $creditCard->setExpirationDate($card['expiration']);
+
+        if($card['code']){
+            $creditCard->setCardCode($card['code']);
+        }
+
+        $paymentCreditCard = new AnetAPI\PaymentType();
+        $paymentCreditCard->setCreditCard($creditCard);
+
+        return $paymentCreditCard;
+    }
+
+    protected function setBillTo($card){
+        if(isset($card['billing_name'])){
+            $name = explode(' ', $card['billing_name']);
+        }else{
+            $name = explode(' ', $this->name);
+        }
+
+        $billto = new AnetAPI\CustomerAddressType();
+        $billto->setFirstName($name[0]);
+        if(isset($name[1])){
+            $billto->setLastName($name[1]);
+        }else{
+            $billto->setLastName($name[0]);
+        }
+
+        if(isset($card['billing_address'])){
+            $billto->setAddress($card['billing_address']);
+        }elseif($this->address){
+            $billto->setAddress($this->address);
+        }else{
+            $billto->setAddress('Default');
+        }
+
+        $billto->setCity($this->city);
+        $billto->setState($this->state);
+
+        if(isset($card['billing_zip'])){
+            $billto->setZip($card['billing_zip']);
+        }elseif($this->zip){
+            $billto->setZip($this->zip);
+        }else{
+            $billto->setZip(11111);
+        }
+
+        if($this->country){
+            $billto->setCountry($this->country->nicename);
+        }
+
+        return $billto;
+
+    }
+
+    // ToDo Need to Refactor
+    protected static function setBillToForUnauthorized($card){
+
+        $billto = new AnetAPI\CustomerAddressType();
+
+        if(isset($card['billing_first_name'])){
+            $billto->setFirstName($card['billing_first_name']);
+        }else{
+            $billto->setFirstName('');
+        }
+
+        if(isset($card['billing_last_name'])){
+            $billto->setLastName($card['billing_last_name']);
+        }else{
+            $billto->setLastName('');
+        }
+
+        if(isset($card['billing_address'])){
+            $billto->setAddress($card['billing_address']);
+        }else{
+            $billto->setAddress('Default');
+        }
+
+        if(isset($card['billing_city'])){
+            $billto->setCity($card['billing_city']);
+        }else{
+            $billto->setCity('Default');
+        }
+
+
+        if(isset($card['billing_state'])){
+            $billto->setState($card['billing_state']);
+        }else{
+            $billto->setState('Default');
+        }
+
+        if(isset($card['billing_zip'])){
+            $billto->setZip($card['billing_zip']);
+        }else{
+            $billto->setZip(11111);
+        }
+
+        if(isset($card['billing_country'])){
+            $billto->setCountry($card['billing_country']);
+        }else{
+            $billto->setCountry('USA');
+        }
+
+        return $billto;
+
     }
 }

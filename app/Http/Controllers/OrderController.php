@@ -74,7 +74,16 @@ class OrderController extends Controller
 
         /* Charge Part */
         // Guests and Users
-        $card = ['number' => $data['card_number'], 'code' => $data['card_code'], 'expiration' => $data['card_expiration']];
+        $card = ['number' => $data['card_number'],
+                 'code' => $data['card_code'],
+                 'expiration' => $data['card_expiration'],
+                 'billing_first_name' => $data['billing_first_name'],
+                 'billing_last_name' => $data['billing_last_name'],
+                 'billing_city' => $data['billing_city'],
+                 'billing_zip' => $data['billing_postcode'],
+                 'billing_country' => $data['billing_country'],
+                 'billing_state' => $data['billing_state'],
+        ];
         $charged = User::chargeCreditCard($total, $card);
 
         if(is_array($charged) && $charged['transId']){
