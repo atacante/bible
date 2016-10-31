@@ -185,7 +185,8 @@
 <div class="box-footer">
     {!! Form::button('Save', ['type'=>'submit','class'=>'btn2-kit cu-btn-pad1']) !!}
     @if(!Request::ajax())
-        {!! Html::link((($url = Session::get('backUrl'))?$url:'/user/my-journey'),'Cancel', ['class'=>'btn4-kit cu-btn-pad1']) !!}
+{{--        {!! Html::link((($url = Session::get('backUrl'))?$url:'/user/my-journey'),'Cancel', ['class'=>'btn4-kit cu-btn-pad1']) !!}--}}
+        {!! Html::link(URL::previous(),'Cancel', ['class'=>'btn4-kit cu-btn-pad1']) !!}
     @else
         {!! Form::button('Cancel', ['type'=>'button','class'=>'btn4-kit cu-btn-pad1', 'data-dismiss'=>'modal']) !!}
     @endif
