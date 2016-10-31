@@ -73,7 +73,7 @@
             {!! Form::token() !!}
 
             <div class="form-group">
-                {!! Form::label('image', 'Verse Image (desktop):') !!}
+                {!! Form::label('image', 'Verse Image - Desktop (Leave empty to use previously selected images pair):') !!}
                 <div class="clearfix">
                     {{--<div id="img-thumb-preview" class="edit-images-thumbs product-images">
                         @if($verseOfDay->image)
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="form-group">
-                {!! Form::label('image', 'Verse Image (mobile):') !!}
+                {!! Form::label('image', 'Verse Image - Mobile (Leave empty to use previously selected images pair):') !!}
                 <div class="clearfix">
                     {{--<div id="img-thumb-preview" class="edit-images-thumbs product-images">
                         @if($verseOfDay->image_mobile)
