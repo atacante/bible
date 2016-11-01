@@ -13,7 +13,7 @@
 
     <div class="row-lex">
         <div class="col-lex-title medium">STRONG'S</div>
-        <div class="col-lex-val">{!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num, ['class' => 'clicked']) !!}</div>
+        <div class="col-lex-val">{!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo).'?verse='.Request::input('verse'),$lexiconinfo->strong_num, ['class' => 'clicked']) !!}</div>
     </div>
 
     <hr class="mt0 hr-resp"/>
@@ -53,7 +53,7 @@
     <hr class="mt0"/>
     <div class="row">
         <div class="col-md-1 mr4p medium">STRONG'S</div>
-        <div class="col-md-1 mr2p">{!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num, ['class' => 'clicked']) !!}</div>
+        <div class="col-md-1 mr2p">{!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo).'?verse='.Request::input('verse'),$lexiconinfo->strong_num, ['class' => 'clicked']) !!}</div>
         <span class="resp-line"></span>
         <div class="col-md-2 medium">TRANSLITERATION</div>
         <div class="col-md-7">{!! $lexiconinfo->transliteration !!}</div>

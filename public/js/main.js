@@ -152,6 +152,7 @@ $(document).ready(function(){
 
         $('.j-show-definition').attr('data-lexid',definitionId);
         $('.j-show-definition').attr('data-lexversion',lexversion);
+        $('.j-show-definition').attr('data-verse',$(that).parents('.j-verse-text').data('verseid'));
 
         $('.def-highlight').removeClass('def-highlight');
         $(that).addClass('def-highlight');
@@ -161,6 +162,7 @@ $(document).ready(function(){
 
      $('body').on('click','.j-show-definition',function(e) {
 
+        var verseId = $(this).data('verse');
         var definitionId = $(this).data('lexid');
         var lexversion = $(this).data('lexversion');
 
@@ -183,6 +185,7 @@ $(document).ready(function(){
             url: "/ajax/lexicon-info",
             dataType: "html",
             data:{
+                verse:verseId,
                 lexversion:lexversion,
                 definition_id:definitionId,
                 compare:compare
