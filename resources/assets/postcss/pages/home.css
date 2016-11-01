@@ -95,12 +95,17 @@
         background-position-y: center;
         background-repeat: no-repeat;
     }
-
+    & .h-ill5 {
+      background-position-x: center;
+      background-position-y: center;
+      background-repeat: no-repeat;
+    }
     @media(--xsmall){
     & .h-ill1,
     & .h-ill2,
     & .h-ill3,
-    & .h-ill4  {
+    & .h-ill4,
+    & .h-ill5 {
         background-position-x: left;
         background-position-y: center;
         background-repeat: no-repeat;
@@ -128,7 +133,26 @@
     top: 20%;
     right: 10%;
   }
+  & .ill-text-pos5 {
+      color: #ffffff;
+      padding-top: 100px;
 
+      & .p-2 {
+          color: #ffffff;
+          text-align: center;
+
+          & a {
+              color: #ffffff;
+          }
+      }
+      & .c-share-panel {
+          border-color: #ffffff;
+          text-align: center;
+      }
+      & .h4-1 {
+          color: white;
+      }
+  }
   @media (--xsmall) {
     & .ill-text-pos1,
     & .ill-text-pos2,
@@ -137,6 +161,15 @@
       right: 10%;
       left: 35%;
       top: 10%;
+    }
+
+    & .ill-text-pos5 {
+        position: relative;
+        padding-top: 50px;
+        & .p-2 {
+            font-size: 11px;
+            line-height: 13px;
+        }
     }
 
     & .btn2, & .btn2:hover,
@@ -180,10 +213,9 @@
 
   @media (--xsmall) {
     & .h-ill5 {
-      background-size: cover;
-      width: 100%;
-      padding-top: 100%;
-      min-height: 100%;
+        background-size: cover;
+        width: 100%;
+        min-height: 100%;
     }
     & .c-center-content-shop .mt10 {
       margin-top: 0 !important;
@@ -227,12 +259,18 @@
     max-width: 680px;
     padding: 65px 55px 40px;
   }
+
   @media (--medium) {
     & .col-left1,
     & .col-right1 {
       display: inline-block;
       float: none;
     }
+      & .c-center-content2 {
+          min-height: 10px;
+          margin: 10px 0 0;
+          padding: 0;
+      }
   }
   & .luke {
     margin-top: 400px;
@@ -291,16 +329,15 @@
   @media (--medium) {
     & .c-share-panel {
       border: none;
-      background: white;
       margin-left: -10px;
       margin-right: -10px;
-      padding: 20px 0 !important;
+      padding: 0!important;
     }
     & .c-share-panel h4.h4-1 {
       font-size: responsive 13px 23px;
     }
     & .at-share-btn-elements .at-icon-wrapper {
-      background: white !important;
+      background: transparent !important;
       color: #00b9f7 !important;
       height: 50px !important;
       width: 50px !important;
@@ -361,8 +398,6 @@
       border-radius: 0;
       -webkit-border-radius: 0;
       width: auto;
-      margin-left: 10px;
-      margin-right: 10px;
     }
     & .mt1 {
       margin-top: 50px !important;
