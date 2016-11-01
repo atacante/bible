@@ -47,6 +47,7 @@ class ReaderController extends Controller
     public function getRead()
     {
         Session::flash('backUrl', Request::fullUrl());
+        Session::set('verseUrl', ['title' => 'Back to Reader','link' => Request::fullUrl()]);
 
         $version = Request::input('version', Config::get('app.defaultBibleVersion'));
         if ($version == 'all') {
@@ -287,7 +288,7 @@ class ReaderController extends Controller
     public function getVerse()
     {
         Session::flash('backUrl', Request::fullUrl());
-        Session::set('verseUrl', Request::fullUrl());
+        Session::set('verseUrl', ['title' => 'Back to Lexicon   ','link' => Request::fullUrl()]);
 
         $version_code = Request::input('version', Config::get('app.defaultBibleVersion'));
         if($version_code == 'all'){
