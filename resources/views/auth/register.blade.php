@@ -159,12 +159,12 @@
                         {!! Form::label('plan_type', "Account Type", array('class' => 'col-md-4 control-label')) !!}
 
                         <div class="col-xs-8">
-                            <div class="radio-inline">
-                                {!! Form::radio('plan_type', 'free', true, ["class" => "cust-radio", "id" => "free"]) !!}
+                            {{--<div class="radio-inline">
+                                {!! Form::radio('plan_type', 'free', false, ["class" => "cust-radio", "id" => "free"]) !!}
                                 <label class="label-radio cu-label" for="free">Free</label>
-                            </div>
+                            </div>--}}
                             <div class="radio-inline">
-                                {!! Form::radio('plan_type', 'premium', false, ["class" => "cust-radio", "id" => "premium"]) !!}
+                                {!! Form::radio('plan_type', 'premium', true, ["class" => "cust-radio", "id" => "premium"]) !!}
                                 <label class="label-radio cu-label" for="premium">Beta Tester</label>
                             </div>
                             @if ($errors->has('plan_type'))
@@ -194,10 +194,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
+                        <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : ' hidden' }}">
                             {!! Form::label('coupon_code', 'Beta Code:',['class' => 'col-md-4']) !!}
                             <div class="col-xs-8">
-                                {!! Form::text('coupon_code', Request::get('coupon_code'), ['class' => 'input1']) !!}
+                                {!! Form::text('coupon_code', Request::get('coupon_code','lamp16'), ['class' => 'input1']) !!}
                                 @if ($errors->has('coupon_code'))
                                     <span class="help-block">
                                         {{ $errors->first('coupon_code') }}
