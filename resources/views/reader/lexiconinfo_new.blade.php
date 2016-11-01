@@ -8,34 +8,34 @@
             </div>
         </div>
     </div>
+
     <hr class="mt0"/>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-6 medium">STRONG'S</div>
-                <div class="col-md-6">{!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num, ['class' => 'clicked']) !!}</div>
-            </div>
-        </div>
-        <hr class="mt0 hr-resp"/>
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-6 medium">TRANSLITERATION</div>
-                <div class="col-md-6">{!! $lexiconinfo->transliteration !!}</div>
-            </div>
-        </div>
+
+    <div class="row-lex">
+        <div class="col-lex-title medium">STRONG'S</div>
+        <div class="col-lex-val">{!! link_to('/reader/strongs/'.preg_replace("/[^0-9]/","",$lexiconinfo->strong_num).$lexiconinfo->strong_num_suffix."/".ViewHelper::detectStrongsDictionary($lexiconinfo),$lexiconinfo->strong_num, ['class' => 'clicked']) !!}</div>
     </div>
+
+    <hr class="mt0 hr-resp"/>
+
+    <div class="row-lex">
+        <div class="col-lex-title medium">TRANSLITERATION</div>
+        <div class="col-lex-val">{!! $lexiconinfo->transliteration !!}</div>
+    </div>
+
+
 
     @if ($lexiconinfo->symbolism)
     <hr class="mt0"/>
-    <div class="row">
-        <div class="col-md-6 medium">ANALYSIS</div>
-        <div class="col-md-6">{!! $lexiconinfo->symbolism?$lexiconinfo->symbolism:'-' !!}</div>
+    <div class="row-lex">
+        <div class="col-lex-title medium">ANALYSIS</div>
+        <div class="col-lex-val">{!! $lexiconinfo->symbolism?$lexiconinfo->symbolism:'-' !!}</div>
     </div>
     @endif
     <hr class="mt0"/>
-    <div class="row">
-        <div class="col-md-6  medium">DEFINITION</div>
-        <div class="col-md-6">{!! $lexiconinfo->definition !!}</div>
+    <div class="row-lex">
+        <div class="col-lex-title  medium">DEFINITION</div>
+        <div class="col-lex-val">{!! $lexiconinfo->definition !!}</div>
     </div>
     <a class="btn-reset j-btn-reset"><i class="bs-close cu1-close"></i></a>
 @else

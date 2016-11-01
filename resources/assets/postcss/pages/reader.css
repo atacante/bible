@@ -923,7 +923,29 @@ mark {
 @media(--xsmall){
     .hr-resp {
         display: block;
-        margin-right: 15px;
-        margin-left: 15px;
+    }
+}
+.row-lex {
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 40px;
+}
+.col-lex-title {
+    float: left;
+    padding-right: 10px;
+    padding-top: 1px;
+}
+.col-lex-val {
+    float: left;
+}
+
+@media(--xsmall){
+    .col-lex-title {
+        float: none;
+        padding-right: 10px;
+        padding-top: 1px;
+    }
+    .col-lex-val {
+        float: none;
     }
 }
