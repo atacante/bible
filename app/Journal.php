@@ -46,6 +46,13 @@ class Journal extends BaseModel
         "Created"=>"created_at"
     ];
 
+    protected static function boot() {
+        parent::boot();
+        static::deleting(function($model) {
+            return true;
+        });
+    }
+
     public function setAccessLevelAttribute($value)
     {
         $this->attributes['access_level'] = Request::get('share_for_groups',$value);

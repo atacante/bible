@@ -357,6 +357,7 @@ class NotesController extends Controller
     public function anySaveComment(\Illuminate\Http\Request $request)
     {
         $note = Note::find(Input::get('id'));
+        $note->type = 'note';
         if (!$note) {
             abort(404);
         }
@@ -368,7 +369,25 @@ class NotesController extends Controller
 
         $commentCreated = $note->comments()->create($data);
         if ($commentCreated) {
-            return view('community.wall-comment-item', ['comment' => $commentCreated]);
+            return view('community.wall-comment-item', ['comment' => $commentCreated,'item' => $note]);
+        }
+        return 0;
+    }
+
+    public function anyDeleteComment($id)
+    {
+        if (!Auth::check()) {
+            abort(403);
+        }
+        $model = Note::whereHas('comments', function ($q) use($id) {
+            $q->where('id',$id);
+            $q->where('user_id',Auth::user()->id);
+        })->first();
+        if (!$model) {
+            abort(404);
+        }
+        if($model->comments()->where('id',$id)->delete()){
+            return 1;
         }
         return 0;
     }

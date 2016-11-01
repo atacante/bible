@@ -3,6 +3,7 @@
 {{ Form::hidden('lastPrayerId', $lastIds['prayer'], ['id'=>'j-last-prayer-id']) }}
 {{ Form::hidden('lastJournalId', $lastIds['journal'], ['id'=>'j-last-journal-id']) }}
 {{ Form::hidden('lastStatusId', $lastIds['status'], ['id'=>'j-last-status-id']) }}
+
 @if($content['entries']->count())
     @if(!ViewHelper::isRoute('groups.view') || (ViewHelper::isRoute('groups.view') && ViewHelper::checkWallAccess($model)))
         @foreach($content['entries'] as $item)
