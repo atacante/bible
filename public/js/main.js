@@ -843,6 +843,10 @@ $(document).ready(function(){
     });
 
     $("body").on('click','.j-create-note',function (e) {
+        if(isMobile.any()){
+            location.href = $(this).attr('href');
+            return false;
+        }
         e.preventDefault();
         var that = this;
         var url = $(this).attr('href');
@@ -893,6 +897,10 @@ $(document).ready(function(){
     });
 
     $("body").on('click','.j-create-journal',function (e) {
+        if(isMobile.any()){
+            location.href = $(this).attr('href');
+            return false;
+        }
         e.preventDefault();
         var that = this;
         var url = $(this).attr('href');
@@ -941,6 +949,10 @@ $(document).ready(function(){
     });
 
     $("body").on('click','.j-create-prayer',function (e) {
+        if(isMobile.any()){
+            location.href = $(this).attr('href');
+            return false;
+        }
         e.preventDefault();
         var that = this;
         var url = $(this).attr('href');

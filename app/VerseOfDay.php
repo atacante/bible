@@ -36,7 +36,15 @@ class VerseOfDay extends Model
     {
         $showAt = ($tomorrow)? Carbon::tomorrow() : Carbon::today();
 
-        $verse = self::create(['verse_id' => $verseId,'show_at' => $showAt]);
+        $data = ['verse_id' => $verseId,'show_at' => $showAt];
+
+        $prevVerseWithImages = self::whereNotNull('image')->orderBy('id', 'DESC')->first();
+        if($prevVerseWithImages){
+            $data['image'] = $prevVerseWithImages->image;
+            $data['image_mobile'] = $prevVerseWithImages->image_mobile;
+        }
+
+        $verse = self::create($data);
 
         return $verse;
     }
