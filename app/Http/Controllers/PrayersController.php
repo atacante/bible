@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Intervention\Image\Facades\Image;
 use Krucas\Notification\Facades\Notification;
 
@@ -53,7 +54,7 @@ class PrayersController extends Controller
 
         if(!empty($this->dateTo)){
             $prayerModel->whereRaw('created_at <= to_timestamp('.strtotime($this->dateTo." 23:59:59").")");
-        }
+        }return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to(URL::previous());
 
         if(!empty($this->version) && $this->version != 'all'){
             $prayerModel->where('bible_version', $this->version);
@@ -90,6 +91,8 @@ class PrayersController extends Controller
     }
 
     public function getList(){
+        return $this->redirectToBackUrl();
+        /*
         Session::flash('backUrl', Request::fullUrl());
 
         $this->sortby = Input::get('sortby','created_at');
@@ -107,13 +110,12 @@ class PrayersController extends Controller
         $content['order'] = $this->order;
 
         return view('prayers.list', ['content' => $content]);
+        */
     }
 
     public function anyCreate(\Illuminate\Http\Request $request)
     {
-        if (Session::has('backUrl')) {
-            Session::keep('backUrl');
-        }
+        $this->keepPreviousUrl();
 
         $model = new Prayer();
         $model->bible_version = Input::get('version',false);
@@ -161,9 +163,7 @@ class PrayersController extends Controller
                 Notification::success('Prayer record has been successfully created');
             }
             if(!Request::ajax()){
-                return ($url = Session::get('backUrl'))
-                    ? Redirect::to($url)
-                    : Redirect::to('/prayers/list/');
+                return $this->redirectToBackUrl();
             }
             else{
                 return 1;
@@ -188,9 +188,8 @@ class PrayersController extends Controller
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
     {
-        if (Session::has('backUrl')) {
-            Session::keep('backUrl');
-        }
+        $this->keepPreviousUrl();
+
         $model = Prayer::query()->where('user_id',Auth::user()->id)->find($id);
         $model->journal_text = Input::get('journal_text',false);
         $model->note_text = Input::get('note_text',false);
@@ -214,9 +213,7 @@ class PrayersController extends Controller
                 Notification::success('Prayer has been successfully updated');
             }
             if(!Request::ajax()){
-                return ($url = Session::get('backUrl'))
-                    ? Redirect::to($url)
-                    : Redirect::to('/prayers/list/');
+                return $this->redirectToBackUrl();
             }
             else{
                 return 1;
@@ -241,9 +238,8 @@ class PrayersController extends Controller
 
     public function anyDelete($id)
     {
-        if (Session::has('backUrl')) {
-            Session::keep('backUrl');
-        }
+        $this->keepPreviousUrl();
+
         $model = Prayer::query()->where('user_id',Auth::user()->id)->find($id);
         if(!$model){
             abort(404);
@@ -251,9 +247,8 @@ class PrayersController extends Controller
         if ($model->destroy($id)) {
             Notification::success('Prayer record has been successfully deleted');
         }
-        return ($url = Session::get('backUrl'))
-            ? Redirect::to($url)
-            : Redirect::to('/prayers/list/');
+
+        return $this->redirectToBackUrl();
     }
 
     private function saveNote($model)

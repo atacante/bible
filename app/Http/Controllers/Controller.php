@@ -6,6 +6,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class Controller extends BaseController
 {
@@ -20,5 +23,17 @@ class Controller extends BaseController
             }
         }
         return $optionsArr;
+    }
+
+    protected function keepPreviousUrl(){
+        if (Session::has('backUrl')) {
+            Session::keep('backUrl');
+        }else{
+            Session::set('backUrl', URL::previous());
+        }
+    }
+
+    protected function redirectToBackUrl(){
+        return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to(URL::previous());
     }
 }
