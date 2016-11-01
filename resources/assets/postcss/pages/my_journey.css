@@ -272,6 +272,13 @@ a.create-record i {
     -webkit-box-shadow: none;
     padding-right: 240px;
 }
+@media(--xsmall){
+    .white-search {
+        padding-right: 85px;
+        padding-left: 10px;
+        font-size: 0.8rem;
+    }
+}
 .white-search:hover {
     border: 1px solid #00b9f7;
 }
