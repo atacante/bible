@@ -174,7 +174,7 @@ $(document).ready(function(){
 
         var compare = 0;
 
-         if($('.j-diff-block').length > 0){
+         if($('.j-diff-block').length > 0 || $('.related-item').length > 0 ){
              compare = 1;
          }
 
