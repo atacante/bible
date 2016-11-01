@@ -1444,6 +1444,26 @@ $(document).ready(function(){
         });
     });
 
+    $('.j-wall-items').on('click','.j-delete-comment',function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var that = this;
+        /*$('#confirm-delete-sm').find('.modal-header .modal-title').text('Delete Confirmation');
+         $('#confirm-delete-sm').find('.modal-body').text('Are you sure you want to delete this comment?');
+         $('#confirm-delete-sm').find('.btn-ok').attr('href', href).addClass('.j-delete-comment .confirmed');
+         $('#confirm-delete-sm').modal({show:true});*/
+        // if($(that).hasClass('confirmed')){
+            $.ajax({
+                method: "GET",
+                url: url,
+                success:function(data){
+                    $(that).parents('.j-wall-comment').remove();
+                }
+            });
+        // }
+        return false;
+    });
+
     $('.j-wall-items').on('click','.j-wall-like-btn',function(e){
         e.preventDefault();
         $(this).popover('destroy');

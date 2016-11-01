@@ -31,6 +31,13 @@ class WallPost extends BaseModel
         ];
     }
 
+    protected static function boot() {
+        parent::boot();
+        static::deleting(function($model) {
+            return true;
+        });
+    }
+
     public function text() {
         return $this->status_text;
     }
