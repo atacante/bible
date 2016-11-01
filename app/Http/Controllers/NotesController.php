@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Request;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Intervention\Image\Facades\Image;
 use Krucas\Notification\Facades\Notification;
 
@@ -107,6 +108,7 @@ class NotesController extends Controller
 
     public function getList()
     {
+
         Session::flash('backUrl', Request::fullUrl());
 
         $this->sortby = Input::get('sortby', 'created_at');
@@ -176,7 +178,7 @@ class NotesController extends Controller
                 Notification::success('Note has been successfully created');
             }
             if (!Request::ajax()) {
-                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/notes/list/');
+                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to(url()->previous());
             }
             else{
                 return 1;

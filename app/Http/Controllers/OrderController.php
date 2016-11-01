@@ -83,6 +83,7 @@ class OrderController extends Controller
                  'billing_zip' => $data['billing_postcode'],
                  'billing_country' => $data['billing_country'],
                  'billing_state' => $data['billing_state'],
+                 'billing_address' => $data['billing_address'],
         ];
         $charged = User::chargeCreditCard($total, $card);
 
