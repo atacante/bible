@@ -82,6 +82,7 @@
         }();
     </script>
     @include('partials.ga')
+    @include('partials.inline-manual-tracking')
     <div class="bg-inner-page">
         <script>
             window.fbAsyncInit = function() {
