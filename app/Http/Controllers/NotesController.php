@@ -108,7 +108,8 @@ class NotesController extends Controller
 
     public function getList()
     {
-
+        return $this->redirectToBackUrl();
+        /*
         Session::flash('backUrl', Request::fullUrl());
 
         $this->sortby = Input::get('sortby', 'created_at');
@@ -126,13 +127,12 @@ class NotesController extends Controller
         $content['order'] = $this->order;
 
         return view('notes.list', ['content' => $content]);
+        */
     }
 
     public function anyCreate(\Illuminate\Http\Request $request)
     {
-        if (Session::has('backUrl')) {
-            Session::keep('backUrl');
-        }
+        $this->keepPreviousUrl();
 
         $model = new Note();
         $model->bible_version = Input::get('version', false);
@@ -178,7 +178,7 @@ class NotesController extends Controller
                 Notification::success('Note has been successfully created');
             }
             if (!Request::ajax()) {
-                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to(url()->previous());
+                return $this->redirectToBackUrl();
             }
             else{
                 return 1;
@@ -198,9 +198,8 @@ class NotesController extends Controller
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
     {
-        if (Session::has('backUrl')) {
-            Session::keep('backUrl');
-        }
+        $this->keepPreviousUrl();
+
         $model = Note::query()->where('user_id', Auth::user()->id)->find($id);
         $model->journal_text = Input::get('journal_text', false);
         $model->prayer_text = Input::get('prayer_text', false);
@@ -226,7 +225,7 @@ class NotesController extends Controller
                 Notification::success('Note has been successfully updated');
             }
             if (!Request::ajax()) {
-                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/notes/list/');
+                return $this->redirectToBackUrl();
             }
             else{
                 return 1;
@@ -246,9 +245,8 @@ class NotesController extends Controller
 
     public function anyDelete($id)
     {
-        if (Session::has('backUrl')) {
-            Session::keep('backUrl');
-        }
+        $this->keepPreviousUrl();
+
         $model = Note::query()->where('user_id', Auth::user()->id)->find($id);
         if (!$model) {
             abort(404);
@@ -258,7 +256,7 @@ class NotesController extends Controller
             $model->prayers()->detach();
             Notification::success('Note has been successfully deleted');
         }
-        return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/notes/list/');
+        return $this->redirectToBackUrl();
     }
 
     private function saveJournal($model)
@@ -359,6 +357,7 @@ class NotesController extends Controller
     public function anySaveComment(\Illuminate\Http\Request $request)
     {
         $note = Note::find(Input::get('id'));
+        $note->type = 'note';
         if (!$note) {
             abort(404);
         }
@@ -370,7 +369,25 @@ class NotesController extends Controller
 
         $commentCreated = $note->comments()->create($data);
         if ($commentCreated) {
-            return view('community.wall-comment-item', ['comment' => $commentCreated]);
+            return view('community.wall-comment-item', ['comment' => $commentCreated,'item' => $note]);
+        }
+        return 0;
+    }
+
+    public function anyDeleteComment($id)
+    {
+        if (!Auth::check()) {
+            abort(403);
+        }
+        $model = Note::whereHas('comments', function ($q) use($id) {
+            $q->where('id',$id);
+            $q->where('user_id',Auth::user()->id);
+        })->first();
+        if (!$model) {
+            abort(404);
+        }
+        if($model->comments()->where('id',$id)->delete()){
+            return 1;
         }
         return 0;
     }

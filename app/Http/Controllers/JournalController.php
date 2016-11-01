@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Intervention\Image\Facades\Image;
 use Krucas\Notification\Facades\Notification;
 
@@ -91,6 +92,8 @@ class JournalController extends Controller
     }
 
     public function getList(){
+        return $this->redirectToBackUrl();
+        /*
         Session::flash('backUrl', Request::fullUrl());
 
         $this->sortby = Input::get('sortby','created_at');
@@ -108,13 +111,12 @@ class JournalController extends Controller
         $content['order'] = $this->order;
 
         return view('journal.list', ['content' => $content]);
+        */
     }
 
     public function anyCreate(\Illuminate\Http\Request $request)
     {
-        if (Session::has('backUrl')) {
-            Session::keep('backUrl');
-        }
+        $this->keepPreviousUrl();
 
         $model = new Journal();
         $model->bible_version = Input::get('version',false);
@@ -161,8 +163,7 @@ class JournalController extends Controller
                 Notification::success('Journal record has been successfully created');
             }
             if(!Request::ajax()) {
-                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/journal/list/');
-            }
+                return $this->redirectToBackUrl();            }
             else{
                 return 1;
             }
@@ -186,9 +187,8 @@ class JournalController extends Controller
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
     {
-        if (Session::has('backUrl')) {
-            Session::keep('backUrl');
-        }
+        $this->keepPreviousUrl();
+
         $model = Journal::query()->where('user_id',Auth::user()->id)->find($id);
         $model->note_text = Input::get('note_text',false);
         $model->prayer_text = Input::get('prayer_text',false);
@@ -212,7 +212,7 @@ class JournalController extends Controller
                 Notification::success('Journal record has been successfully updated');
             }
             if(!Request::ajax()) {
-                return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/journal/list/');
+                return $this->redirectToBackUrl();
             }
             else{
                 return 1;
@@ -237,9 +237,8 @@ class JournalController extends Controller
 
     public function anyDelete($id)
     {
-        if (Session::has('backUrl')) {
-            Session::keep('backUrl');
-        }
+        $this->keepPreviousUrl();
+
         $model = Journal::query()->where('user_id',Auth::user()->id)->find($id);
         if(!$model){
             abort(404);
@@ -247,9 +246,8 @@ class JournalController extends Controller
         if ($model->destroy($id)) {
             Notification::success('Journal record has been successfully deleted');
         }
-        return ($url = Session::get('backUrl'))
-            ? Redirect::to($url)
-            : Redirect::to('/journal/list/');
+
+        return $this->redirectToBackUrl();
     }
 
     private function saveNote($model)
@@ -320,6 +318,7 @@ class JournalController extends Controller
     public function anySaveComment(\Illuminate\Http\Request $request)
     {
         $note = Journal::find(Input::get('id'));
+        $note->type = 'journal';
         if (!$note) {
             abort(404);
         }
@@ -331,7 +330,25 @@ class JournalController extends Controller
 
         $commentCreated = $note->comments()->create($data);
         if ($commentCreated) {
-            return view('community.wall-comment-item', ['comment' => $commentCreated]);
+            return view('community.wall-comment-item', ['comment' => $commentCreated,'item' => $note]);
+        }
+        return 0;
+    }
+
+    public function anyDeleteComment($id)
+    {
+        if (!Auth::check()) {
+            abort(403);
+        }
+        $model = Journal::whereHas('comments', function ($q) use($id) {
+            $q->where('id',$id);
+            $q->where('user_id',Auth::user()->id);
+        })->first();
+        if (!$model) {
+            abort(404);
+        }
+        if($model->comments()->where('id',$id)->delete()){
+            return 1;
         }
         return 0;
     }
