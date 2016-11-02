@@ -153,13 +153,15 @@
           color: white;
       }
   }
+
+
   @media (--xsmall) {
     & .ill-text-pos1,
     & .ill-text-pos2,
     & .ill-text-pos3,
     & .ill-text-pos4 {
       right: 10%;
-      left: 35%;
+      left: 55%;
       top: 10%;
     }
 
@@ -187,6 +189,16 @@
 
   }
 
+    @media (--vxsmall2) {
+        & .ill-text-pos1,
+        & .ill-text-pos2,
+        & .ill-text-pos3,
+        & .ill-text-pos4 {
+            right: 10%;
+            left: 35%;
+            top: 10%;
+        }
+    }
 
   /* ----------- SEND A GIFT OF LOVE TO A FRIEND  ---------- */
   & .cu-verseoftheday {
