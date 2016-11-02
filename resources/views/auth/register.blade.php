@@ -175,7 +175,7 @@
                         </div>
                     </div>
 
-                    <div class="premium-only  {!! Request::old('plan_type') == 'premium' || $errors->has('coupon_code')?'':'hidden' !!}">
+                    <div class="premium-only  {!! Request::old('plan_type') == 'premium' || $errors->has('coupon_code')?'':'' !!}">
                         <div class="hidden form-group {{ $errors->has('plan_name') ? ' has-error' : '' }}">
                             {!! Form::label('plan_name', "Subscription plan period:",['class' => 'col-md-4']) !!}
 
@@ -194,7 +194,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : ' hidden' }}">
+                        <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
                             {!! Form::label('coupon_code', 'Beta Code:',['class' => 'col-md-4']) !!}
                             <div class="col-xs-8">
                                 {!! Form::text('coupon_code', Request::get('coupon_code','lamp16'), ['class' => 'input1']) !!}
