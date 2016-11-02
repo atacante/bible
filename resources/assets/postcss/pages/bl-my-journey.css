@@ -333,11 +333,7 @@
             justify-content: space-between;
         }
 
-        & .type {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+
 
         & .c-journey-date {
             text-align: right;
@@ -369,5 +365,14 @@
             }
         }
 
+    }
+}
+@media(--vxsmall){
+    .journey-list.journey-list {
+        & .type {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
     }
 }
