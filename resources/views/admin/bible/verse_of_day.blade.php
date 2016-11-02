@@ -73,7 +73,7 @@
             {!! Form::token() !!}
 
             <div class="form-group">
-                {!! Form::label('image', 'Verse Image - Desktop (Leave empty to use previously selected images pair):') !!}
+                {!! Form::label('image', 'Verse Image - Desktop(1140x447):') !!}
                 <div class="clearfix">
                     {{--<div id="img-thumb-preview" class="edit-images-thumbs product-images">
                         @if($verseOfDay->image)
@@ -82,13 +82,14 @@
                             </div>
                         @endif
                     </div>--}}
+                    *Leave empty to use previously selected images pair
                     <div class="fallback"> <!-- this is the fallback if JS isn't working -->
                         <input name="image" type="file" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                {!! Form::label('image', 'Verse Image - Mobile (Leave empty to use previously selected images pair):') !!}
+                {!! Form::label('image', 'Verse Image - Mobile (750x530):') !!}
                 <div class="clearfix">
                     {{--<div id="img-thumb-preview" class="edit-images-thumbs product-images">
                         @if($verseOfDay->image_mobile)
@@ -97,6 +98,7 @@
                             </div>
                         @endif
                     </div>--}}
+                    *Leave empty to use previously selected images pair
                     <div class="fallback"> <!-- this is the fallback if JS isn't working -->
                         <input name="image_mobile" type="file" />
                     </div>
