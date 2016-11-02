@@ -115,7 +115,7 @@
         @endif
     </div>
 </div>
-<div class="add-journal {!! Request::get('extraFields')?'':'hidden' !!} {{ $errors->has('journal_text') ? ' has-error' : '' }}">
+<div class="add-journal {!! $model->verse?'':'hidden' !!} {{ $errors->has('journal_text') ? ' has-error' : '' }}">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
@@ -143,7 +143,7 @@
         </div>
     </div>
 </div>
-<div class="add-prayer {!! Request::get('extraFields')?'':'hidden' !!} {{ $errors->has('prayer_text') ? ' has-error' : '' }}">
+<div class="add-prayer {!! $model->verse?'':'hidden' !!} {{ $errors->has('prayer_text') ? ' has-error' : '' }}">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingTwo">
