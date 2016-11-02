@@ -197,7 +197,7 @@
                         <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
                             {!! Form::label('coupon_code', 'Beta Code:',['class' => 'col-md-4']) !!}
                             <div class="col-xs-8">
-                                {!! Form::text('coupon_code', Request::get('coupon_code','lamp16'), ['class' => 'input1', 'disabled'=>true]) !!}
+                                {!! Form::text('coupon_code', Request::get('coupon_code','lamp16'), ['class' => 'input1', 'readonly'=>true]) !!}
                                 @if ($errors->has('coupon_code'))
                                     <span class="help-block">
                                         {{ $errors->first('coupon_code') }}
