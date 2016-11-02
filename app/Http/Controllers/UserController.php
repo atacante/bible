@@ -441,6 +441,7 @@ class UserController extends Controller
         $limit = 10;
         $page = Input::get('page',1);
         $offset = $limit*($page-1);
+        $orderDirection = Input::get('bookmarks-order','desc');
 
         $content['bible_version'] = $bibleVersion?$bibleVersion:Config::get('app.defaultBibleVersion');
 
@@ -449,7 +450,7 @@ class UserController extends Controller
         $user = Auth::user();
         $content['bookmarks'] = $user->bookmarks($versesModel);
         $totalCount = $content['bookmarks']->count();
-        $content['bookmarks']->orderBy('bookmarks.id','desc')->limit($limit)->offset($offset);
+        $content['bookmarks']->orderBy('bookmarks.id',$orderDirection)->limit($limit)->offset($offset);
 
         $content['bookmarks'] = new LengthAwarePaginator(
             $content['bookmarks']->get(),

@@ -279,13 +279,19 @@ site.changeStatusIcon = function(status){
     icon.addClass(icon_class + ' cu-print font-size-20 j-status-icon color9');
 }
 
-reader.getActionsHtml = function(){
-    return '<div class="j-reader-actions" style="position: absolute;">' +
+reader.getActionsHtml = function(context){
+    var versionId = $(context).data('version');
+    var verseId = $(context).data('verseid');
+    return '<div class="j-reader-actions" data-verseid="'+verseId+'" style="position: absolute;">' +
                 '<a title="Create note" href="#" class="j-create-note btn-create-note btn-reader"><i class="bs-note"></i></a>' +
                 '<div class="spliter1"></div>'+
                 '<a title="Create Journal Entry" href="#" class="j-create-journal btn-create-journal btn-reader"><i class="bs-journal"></i></a>' +
                 '<div class="spliter1"></div>'+
                 '<a title="Create prayer" href="#" class="j-create-prayer btn-create-prayer btn-reader"><i class="bs-pray"></i></a>' +
+                '<div class="spliter1"></div>'+
+                // '<a title="Bookmark verse" href="#" class="j-bookmark-verse btn-bookmark-verse btn-reader"><i class="fa fa-bookmark-o"></i></a>' +
+                '<a href="http://bible.local/reader/delete-bookmark/verse/'+versionId+'/'+verseId+'" class="j-bookmark btn-bookmark-verse btn-reader '+($(context).hasClass('j-bookmarked')?"":"hidden")+'"><i title="Remove verse from bookmarks" class="fa fa-bookmark cu-print"></i></a>' +
+                '<a href="http://bible.local/reader/bookmark/verse/'+versionId+'/'+verseId+'" class="j-bookmark btn-bookmark-verse btn-reader '+($(context).hasClass('j-bookmarked')?"hidden":"")+'"><i title="Add verse to bookmarks" class="fa fa-bookmark-o cu-print"></i></a>' +
                 '<div class="spliter1 hidden"></div>'+
                 '<a title="Show definition" href="#" class="hidden j-show-definition btn-show-definition btn-reader"><i class="bs-lexicon"></i></a>' +
                 /*'<div class="spliter1"></div>'+
