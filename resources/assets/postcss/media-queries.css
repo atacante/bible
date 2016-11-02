@@ -1,4 +1,5 @@
 @custom-media --vxsmall (max-width: 375px);
+@custom-media --vxsmall2 (max-width: 450px);
 @custom-media --xsmall (max-width: 768px);
 @custom-media --small (max-width: 992px);
 @custom-media --medium (max-width: 1280px);

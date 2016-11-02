@@ -246,9 +246,13 @@
       &.additional {
         margin-left: auto;
       }
-
+      & li.log-pop {
+        & a {
+          padding: 5px 11px !important;
+        }
+      }
       & li {
-        /*margin: 0 8px;*/
+        margin: 0 8px;
 
         &.with-items {
           position: relative;
@@ -297,6 +301,7 @@
           &.outline {
             border: 2px solid var(--mainColor);
             color: var(--mainColor);
+            padding: 9px 16px;
 
             &:hover {
               color: white;

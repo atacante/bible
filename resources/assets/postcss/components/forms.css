@@ -320,7 +320,9 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
     font-size: 1.36rem;
 }
 @media(--xsmall){
-    .notes .c-white-content{
+    .notes .c-white-content,
+    .journal .c-white-content,
+    .prayers .c-white-content{
         margin: 10px;
     }
     .create-item .entry-full-page{
@@ -500,6 +502,9 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
         padding: 8px 15px 7px;
         position: relative;
     }
+    .entry-full-page .panel-body{
+        padding: 15px 0 !important;
+    }
 }
 .entry-form .panel-group{
     margin-bottom: 2px;
@@ -640,4 +645,9 @@ input[type=checkbox].cust-radio, input[type=radio].cust-radio {
         float: right !important;
         margin: 5px 20px 20px !important;
     }
+}
+
+.entry-form-full .study-verse-full{
+    margin: 20px 0 10px;
+    text-align: center;
 }
