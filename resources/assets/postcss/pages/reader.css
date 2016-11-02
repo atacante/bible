@@ -457,6 +457,11 @@ ul.icon-panel li a {
     position: relative;
     padding: 25px 30px;
 }
+.reader.my-study-verse {
+    & .study-list > li {
+        overflow: hidden;
+    }
+}
 .study-list > li:hover {
     background: #f3f6f9;
 }
@@ -473,6 +478,11 @@ ul.icon-panel li a {
     overflow: hidden;
     margin-top: 20px;
 }
+/*.reader.my-study-verse {
+    & .c-study-bottom {
+        float: right;
+    }
+}*/
 ul.icons-list {
     display: block;
     padding-left: 10px;
