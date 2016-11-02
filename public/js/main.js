@@ -148,7 +148,7 @@ $(document).ready(function(){
         var lexversion = $(that).data('lexversion');
         e.stopPropagation();
 
-        $('.j-reader-actions div,.j-reader-actions a').removeClass('hidden');
+        $('.j-reader-actions div,.j-reader-actions a.j-show-definition').removeClass('hidden');
 
         $('.j-show-definition').attr('data-lexid',definitionId);
         $('.j-show-definition').attr('data-lexversion',lexversion);
@@ -822,7 +822,7 @@ $(document).ready(function(){
                     verseId = Math.min((startVerseId || 0), (endVerseId || 0));
                 }
 
-                $('body').append(reader.getActionsHtml());
+                $('body').append(reader.getActionsHtml(this));
 
                 var filteredText = text.replace(/^\s+\d+\s+/,'');
 
@@ -1968,15 +1968,16 @@ $(document).ready(function(){
     });
     $('body').on('click','.j-bookmark',function(e){
         e.preventDefault();
-        $(that).toggleClass('hidden');
         var url = $(this).attr('href');
         var that = this;
+        var verseId = $(that).parents('.j-reader-actions').data('verseid');
         $.ajax({
             method: "GET",
             url: url,
             success:function(data){
                 if(data){
-                    $('.j-bookmark').toggleClass('hidden');
+                    $(that).parent().find('.j-bookmark').toggleClass('hidden');
+                    $('.j-verse-text[data-verseid='+verseId+']').toggleClass('j-bookmarked');
                 }
             },
             error:function(err){

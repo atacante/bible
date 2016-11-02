@@ -321,7 +321,7 @@
                                         <h4 class="version-title">{!! $content['version'] !!}</h4>
                                     @endif
                                     @foreach($content['verses'] as $verse)
-                                        <span class="verse-text j-verse-text" data-version="{!! $content['version_code'] !!}"
+                                        <span class="verse-text j-verse-text {!! (Auth::check() && in_array(Auth::user()->id,$verse->bookmarks->modelKeys())?'j-bookmarked':'') !!}" data-version="{!! $content['version_code'] !!}"
                                               data-verseid="{!! $verse->id !!}" style="word-wrap: normal">
                                                 <b>{!! link_to('reader/verse?'.http_build_query([
                                                                             'version' => $content['version_code'],
