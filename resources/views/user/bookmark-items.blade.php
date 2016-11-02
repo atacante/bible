@@ -1,5 +1,13 @@
 @if($content['bookmarks']->count())
     <div class="bookmarks-list clearfix">
+        @if(Request::input('page') < 2)
+        <div class="date-order-btn j-date-order-btn pull-right">
+            <a class="j-my-bookmarks" href="{!! url('user/my-bookmarks/'.Request::segment(3).'?'.http_build_query(array_merge(Request::input(),['bookmarks-order' => Request::get('bookmarks-order','desc') == 'asc'?'desc':'asc'])),[]) !!}">
+                <span class="fa fa-calendar"></span>
+                <span class="fa fa-sort-amount-{!! Request::get('bookmarks-order','desc') !!}"></span>
+            </a>
+        </div>
+        @endif
         @foreach($content['bookmarks'] as $bookmark)
             <div class="bookmark-item">
                 @if($bookmark->pivot->bookmark_type == App\User::BOOKMARK_CHAPTER)

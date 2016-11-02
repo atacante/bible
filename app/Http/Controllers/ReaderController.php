@@ -61,7 +61,7 @@ class ReaderController extends Controller
         $content['version'] = VersionsListEn::getVersionByCode($version);
         $content['version_code'] = $version;
         $content['heading'] = BooksListEn::find($book)->book_name . " " . $chapter;
-        $content['verses'] = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
+        $content['verses'] = $versesModel::query()->with('bookmarks')->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
         if(!$content['verses']->count()){
             return $this->flashNotification('Requested content does not provided in '.$content['version'].' version');
         }
