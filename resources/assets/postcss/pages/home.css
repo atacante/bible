@@ -1,4 +1,11 @@
 .home {
+    & .btn2, & .btn2:visited {
+        max-width: 410px;
+        text-align: center !important;
+    }
+    & h2.h2-1 {
+        margin-top: 0;
+    }
   & .c-search1 {
     margin: 20px auto 0;
     width: 320px;
@@ -113,26 +120,47 @@
     }
 
 
-  & .ill-text-pos1 {
+/*  & .ill-text-pos1 {
     position: absolute;
     top: 17%;
     right: 10%;
-  }
-  & .ill-text-pos2 {
-    position: absolute;
-    top: 21%;
-    right: 13%;
-  }
-  & .ill-text-pos3 {
-    position: absolute;
-    top: 17%;
-    right: 32%;
-  }
-  & .ill-text-pos4 {
-    position: absolute;
-    top: 20%;
-    right: 10%;
-  }
+  }*/
+    & .ill-text-pos1 {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    & .ill-text-pos2 {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        right: 13%;
+    }
+    & .ill-text-pos3 {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        right: 32%;
+    }
+    & .ill-text-pos4 {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
   & .ill-text-pos5 {
       color: #ffffff;
       padding-top: 100px;
@@ -162,7 +190,7 @@
     & .ill-text-pos4 {
       right: 10%;
       left: 55%;
-      top: 10%;
+      top: 0;
     }
 
     & .ill-text-pos5 {
@@ -176,15 +204,16 @@
 
     & .btn2, & .btn2:hover,
     & .btn2:visited, & .btn2:focus {
-      padding: 10px 15px;
-      border-width: 2px;
-      text-align: center;
+        padding: 10px 15px;
+        border-width: 2px;
+        text-align: center;
     }
 
     & .btn3, & .btn3:visited,
     & .btn3:hover, & .btn3:focus {
-      padding: 10px 15px;
-      border-width: 2px;
+        padding: 10px 15px;
+        border-width: 2px;
+        text-align: center;
     }
 
   }
@@ -196,7 +225,7 @@
         & .ill-text-pos4 {
             right: 10%;
             left: 35%;
-            top: 10%;
+            top: 0;
         }
     }
 

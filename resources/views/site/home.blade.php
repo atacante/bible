@@ -82,7 +82,6 @@
                              }
                         }
                     </style>
-
                     <section class="home-ill-section h-ill1">
                         <div class="ill-text-pos1">
                             <h2 class="h2-1">
