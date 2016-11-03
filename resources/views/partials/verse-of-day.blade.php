@@ -10,6 +10,7 @@
         @section('meta_og')
             <meta property="og:title" content="Bible Study Company: Verse of a Day" />
             <meta property="og:image" content="{!! url('/images/logo.png') !!}" />
+            <meta property="og:image:secure_url" content="{!! url('/images/logo.png') !!}" />
             <meta property="og:description" content="{{ $verse_day_text }}" />
         @stop
 

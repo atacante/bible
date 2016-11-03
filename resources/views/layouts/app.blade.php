@@ -22,6 +22,7 @@
     @show @section('meta_og')
         <meta property="og:title" content="Bible Study Company: An online study Bible and social community" />
         <meta property="og:image" content="{!! url('/images/logo.png') !!}" />
+        <meta property="og:image:secure_url" content="{!! url('/images/logo.png') !!}" />
         <meta property="og:description" content="Bible Study Company: An online study Bible and social community" />
     @show @section('meta_google')
         <meta itemprop="image" content="{!! url('/images/logo.png') !!}"/>

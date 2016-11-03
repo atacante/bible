@@ -11,6 +11,7 @@
 @section('meta_og')
     <meta property="og:title" content="{!! $content['heading'] !!}" />
     <meta property="og:image" content="{!! url('/images/logo.png') !!}" />
+    <meta property="og:image:secure_url" content="{!! url('/images/logo.png') !!}" />
     <meta property="og:description" content="{{$content['verses'][0]->verse_text}}" />
 @stop
 
