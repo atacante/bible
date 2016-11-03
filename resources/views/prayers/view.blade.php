@@ -18,7 +18,7 @@
                         ),ViewHelper::getVerseNum($model->verse).($model->bible_version?' ('.ViewHelper::getVersionName($model->bible_version).')':''), ['class'=>'form-verse-num','style' => '']) !!}
                 </div>
                 <div class="form-highlighted-text">
-                    <i>{!! $model->highlighted_text !!}</i>
+                    <i>{!! $model->verse->verse_text !!}</i>
                 </div>
             </div>
         @else

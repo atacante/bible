@@ -118,9 +118,9 @@
 
                         {{-- Right icons panel --}}
                         <div class="btns-panel">
-                            <a href="{{ url('/notes/create') }}" class="btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
-                            <a href="{{ url('/journal/create') }}" class="btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
-                            <a href="{{ url('/prayers/create') }}" class="btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
+                            <a href="{{ url('/notes/create?'.http_build_query(['version' => $content['main_verse']['version_code'],'verse_id' => $content['main_verse']['verse']->id])) }}" class="btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
+                            <a href="{{ url('/journal/create?'.http_build_query(['version' => $content['main_verse']['version_code'],'verse_id' => $content['main_verse']['verse']->id])) }}" class="btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
+                            <a href="{{ url('/prayers/create?'.http_build_query(['version' => $content['main_verse']['version_code'],'verse_id' => $content['main_verse']['verse']->id])) }}" class="btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
                         </div>
                     </div>
 

@@ -70,13 +70,43 @@
                     </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('plan_type') ? ' has-error' : '' }}">
+        {!! Form::label('plan_type', "Account Type:") !!}
+
+        <div>
+            <div class="radio-inline mt15">
+                {!! Form::radio('plan_type', 'free', true, ["class" => "cust-radio", 'id' => 'free']) !!}
+                <label for="free" class="label-radio cu-label">Free</label>
+            </div>
+            <div class="radio-inline mt15">
+                {!! Form::radio('plan_type', 'premium', false, ["class" => "cust-radio", 'id' => 'premium']) !!}
+                <label for="premium" class="label-radio cu-label">Beta Tester {!! $model->isPremiumPaid()?'(Active - Expires '.$model->getPlanExpiresAt().')' :'' !!}</label>
+            </div>
+            @if ($errors->has('plan_type'))
+                <span class="help-block">
+                                        {{ $errors->first('plan_type') }}
+                                </span>
+            @endif
+        </div>
+    </div>
+    <div class="premium-only {!! $model->plan_type == 'free'?'hidden':'' !!}" >
+        <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
+            {!! Form::label('coupon_code', 'Beta Code:') !!}
+            {!! Form::text('coupon_code', $model->coupon_code, ["class" => "input1"]) !!}
+            @if ($errors->has('coupon_code'))
+                <span class="help-block">
+                                    {{ $errors->first('coupon_code') }}
+                                </span>
+            @endif
+        </div>
+    </div>
     <div class="form-group {{ $errors->has('about_me') ? ' has-error' : '' }}">
         {!! Form::label('about_me', 'About Me:') !!}
         {!! Form::textarea('about_me') !!}
         @if ($errors->has('about_me'))
             <span class="help-block">
-                        {{ $errors->first('about_me') }}
-                    </span>
+                {{ $errors->first('about_me') }}
+            </span>
         @endif
     </div>
     <div class="form-group{{ $errors->has('country_id') ? ' has-error' : '' }}">

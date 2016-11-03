@@ -23,11 +23,13 @@
                     <a class="genesis-arrow" title="Next Strong's Number" href="{!! url('reader/strongs/'.$nextNum.'/'.$content['dictionaryType'],[]) !!}"><i class="bs-arrowright cu-arrowright"></i></a>
                 @endif
             </h3>
-            <div class="btns-panel" style="right: 15px;">
-                <a href="{{ url('/notes/create') }}" class="btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
-                <a href="{{ url('/journal/create') }}" class="btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
-                <a href="{{ url('/prayers/create') }}" class="btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
-            </div>
+            @if($verse = Session::get('prevVerse'))
+                <div class="btns-panel" style="right: 15px;">
+                    <a href="{{ url('/notes/create?'.http_build_query(['version' => $verse['version_code'],'verse_id' => $verse['verse']->id])) }}" class="btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
+                    <a href="{{ url('/journal/create?'.http_build_query(['version' => $verse['version_code'],'verse_id' => $verse['verse']->id])) }}" class="btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
+                    <a href="{{ url('/prayers/create?'.http_build_query(['version' => $verse['version_code'],'verse_id' => $verse['verse']->id])) }}" class="btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
+                </div>
+            @endif
         </div>
     </div>
     <div class="row strongs-page j-strongs-page" style="line-height: 30px;">

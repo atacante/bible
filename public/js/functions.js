@@ -290,8 +290,8 @@ reader.getActionsHtml = function(context){
                 '<a title="Create prayer" href="#" class="j-create-prayer btn-create-prayer btn-reader"><i class="bs-pray"></i></a>' +
                 '<div class="spliter1"></div>'+
                 // '<a title="Bookmark verse" href="#" class="j-bookmark-verse btn-bookmark-verse btn-reader"><i class="fa fa-bookmark-o"></i></a>' +
-                '<a href="http://bible.local/reader/delete-bookmark/verse/'+versionId+'/'+verseId+'" class="j-bookmark btn-bookmark-verse btn-reader '+($(context).hasClass('j-bookmarked')?"":"hidden")+'"><i title="Remove verse from bookmarks" class="fa fa-bookmark cu-print"></i></a>' +
-                '<a href="http://bible.local/reader/bookmark/verse/'+versionId+'/'+verseId+'" class="j-bookmark btn-bookmark-verse btn-reader '+($(context).hasClass('j-bookmarked')?"hidden":"")+'"><i title="Add verse to bookmarks" class="fa fa-bookmark-o cu-print"></i></a>' +
+                '<a href="/reader/delete-bookmark/verse/'+versionId+'/'+verseId+'" class="j-bookmark btn-bookmark-verse btn-reader '+($(context).hasClass('j-bookmarked')?"":"hidden")+'"><i title="Remove verse from bookmarks" class="fa fa-bookmark cu-print"></i></a>' +
+                '<a href="/reader/bookmark/verse/'+versionId+'/'+verseId+'" class="j-bookmark btn-bookmark-verse btn-reader '+($(context).hasClass('j-bookmarked')?"hidden":"")+'"><i title="Add verse to bookmarks" class="fa fa-bookmark-o cu-print"></i></a>' +
                 '<div class="spliter1 hidden"></div>'+
                 '<a title="Show definition" href="#" class="hidden j-show-definition btn-show-definition btn-reader"><i class="bs-lexicon"></i></a>' +
                 /*'<div class="spliter1"></div>'+
