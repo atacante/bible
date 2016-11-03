@@ -8,9 +8,16 @@
     <meta name="description" content="{{$content['verses'][0]->verse_text}}"/>
 @stop
 
+@section('meta_og')
+    <meta property="og:title" content="{!! $content['heading'] !!}" />
+    <meta property="og:image" content="{!! url('/images/logo.png') !!}" />
+    <meta property="og:description" content="{{$content['verses'][0]->verse_text}}" />
+@stop
+
 @section('meta_twitter')
     <meta property="twitter:card" content="summary">
     <meta property="twitter:title" content="{!! $content['heading'] !!}">
+    <meta property="twitter:image" content="{!! url('/images/logo.png') !!}" />
     <meta property="twitter:description" content="{{$content['verses'][0]->verse_text}}">
 @stop
 

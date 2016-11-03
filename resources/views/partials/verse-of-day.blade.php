@@ -1,4 +1,22 @@
 @if($data['verseOfDay'])
+    @if(Request::input('vod',false))
+        @section('meta_description')
+            <meta name="description" content="{{ $verse_day_text }}"/>
+        @stop
+
+        @section('meta_og')
+            <meta property="og:title" content="Bible Study Company: Verse of a Day" />
+            <meta property="og:image" content="{!! url('/images/logo.png') !!}" />
+            <meta property="og:description" content="{{ $verse_day_text }}" />
+        @stop
+
+        @section('meta_twitter')
+            <meta property="twitter:card" content="summary">
+            <meta property="twitter:title" content="Bible Study Company: Verse of a Day">
+            <meta property="twitter:image" content="{!! url('/images/logo.png') !!}" />
+            <meta property="twitter:description" content="{{ $verse_day_text }}">
+        @stop
+    @endif
 <h2 class="h2-2 mt7" id="day-verse">
     <i class="bs-verseoftheday cu-verseoftheday"></i>
     VERSE OF THE DAY
@@ -50,7 +68,7 @@
                     SHARE WITH:
                 </h4>
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox c-social"></div>
+                <div class="addthis_inline_share_toolbox c-social" data-url="{!! url('?vod=1') !!}"></div>
             </div>
         </div>
 
