@@ -26,6 +26,7 @@
         <meta property="twitter:image" content="{!! url('/images/logo.png') !!}">
         <meta property="twitter:description" content="Bible Study Company: An online study Bible and social community">
     @show
+    <link rel="image_src" href="{!! url('/images/logo.png') !!}"/>
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css')!!}
         {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')!!}
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css')!!}
