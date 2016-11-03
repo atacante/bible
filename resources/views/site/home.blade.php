@@ -1,13 +1,4 @@
 @extends('layouts.home')
-@section('meta_description')
-    <meta name="description" content="{{ $verse_day_text }}"/>
-@stop
-
-@section('meta_twitter')
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:title" content="Verse of a Day">
-    <meta property="twitter:description" content="{{ $verse_day_text }}">
-@stop
 
 @section('content')
     <div class="container-fluid main-container">

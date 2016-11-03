@@ -8,7 +8,7 @@
 
     <title>@section('title') Bible Study Company: An online study Bible and social community @show</title>
     @section('meta_keywords')
-        <meta name="keywords" content="Bible Study Company"/>
+        <meta name="keywords" content="Bible Study Company: An online study Bible and social community"/>
     @show @section('meta_author')
         <meta name="author" content="Bible Study Company"/>
     @show @section('meta_description')
@@ -16,13 +16,15 @@
               content="Bible Study Company: An online study Bible and social community"/>
     @show @section('meta_twitter')
         <meta property="twitter:card" content="summary">
-        <meta property="twitter:title" content="">
-        <meta property="twitter:description" content="">
-        <meta property="twitter:image" content="" />
-    @show @section('meta_fb')
-        <meta property="og:image" content="" />
+        <meta property="twitter:title" content="Bible Study Company: An online study Bible and social community">
+        <meta property="twitter:description" content="Bible Study Company: An online study Bible and social community">
+        <meta property="twitter:image" content="{!! url('/images/logo.png') !!}" />
+    @show @section('meta_og')
+        <meta property="og:title" content="Bible Study Company: An online study Bible and social community" />
+        <meta property="og:image" content="{!! url('/images/logo.png') !!}" />
+        <meta property="og:description" content="Bible Study Company: An online study Bible and social community" />
     @show @section('meta_google')
-        <meta itemprop="image" content=""/>
+        <meta itemprop="image" content="{!! url('/images/logo.png') !!}"/>
     @show
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css')!!}
         {!!Html::style('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')!!}
