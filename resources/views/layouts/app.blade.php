@@ -6,26 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>@section('title') Bible Study Company: An online study Bible and social community @show</title>
+    <title>@section('title') Bible Study Company: An online study Bible and social community@show</title>
+
     @section('meta_keywords')
         <meta name="keywords" content="Bible Study Company: An online study Bible and social community"/>
     @show @section('meta_author')
         <meta name="author" content="Bible Study Company"/>
     @show @section('meta_description')
         <meta name="description"
-              content="Bible Study Company: An online study Bible and social community"/>
+              content="Bible Study Company - ONLINE STUDY BIBLE COMMUNITY - Studying Scripture to Live a Praiseworthy Life to God"/>
     @show @section('meta_twitter')
         <meta property="twitter:card" content="summary">
         <meta property="twitter:title" content="Bible Study Company: An online study Bible and social community">
-        <meta property="twitter:description" content="Bible Study Company: An online study Bible and social community">
-        <meta property="twitter:image" content="{!! url('/images/logo.png') !!}" />
+        <meta property="twitter:description" content="Bible Study Company - ONLINE STUDY BIBLE COMMUNITY - Studying Scripture to Live a Praiseworthy Life to God">
+        <meta property="twitter:image" content="{!! url('/images/meta_logo.png') !!}" />
     @show @section('meta_og')
         <meta property="og:title" content="Bible Study Company: An online study Bible and social community" />
-        <meta property="og:image" content="{!! url('/images/logo.png') !!}" />
-        <meta property="og:image:secure_url" content="{!! url('/images/logo.png') !!}" />
-        <meta property="og:description" content="Bible Study Company: An online study Bible and social community" />
+        <meta property="og:image" content="{!! url('/images/meta_logo.png') !!}" />
+        {{--<meta property="og:image:secure_url" content="{!! url('/images/meta_logo.png') !!}" />--}}
+        <meta itemprop="og:description" property="og:description" content="Bible Study Company - ONLINE STUDY BIBLE COMMUNITY - Studying Scripture to Live a Praiseworthy Life to God" />
+        <meta property="fb:app_id" content="848687605263767" />
     @show @section('meta_google')
-        <meta itemprop="image" content="{!! url('/images/logo.png') !!}"/>
+        <meta itemprop="image" content="{!! url('/images/meta_logo.png') !!}"/>
     @show
     <link rel="image_src" href="{!! url('/images/logo.png') !!}"/>
         {!!Html::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css')!!}

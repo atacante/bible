@@ -1,7 +1,7 @@
 @if($data['verseOfDay'])
-    @if(Request::input('vod',false))
+    @if(Request::has('vod'))
         @section('title')
-            <title>Bible Study Company: Verse of a Day</title>
+            Bible Study Company: Verse of a Day
         @stop
         @section('meta_description')
             <meta name="description" content="{{ $verse_day_text }}"/>
@@ -9,15 +9,16 @@
 
         @section('meta_og')
             <meta property="og:title" content="Bible Study Company: Verse of a Day" />
-            <meta property="og:image" content="{!! url('/images/logo.png') !!}" />
-            <meta property="og:image:secure_url" content="{!! url('/images/logo.png') !!}" />
-            <meta property="og:description" content="{{ $verse_day_text }}" />
+            <meta property="og:image" content="{!! url('/images/meta_logo.png') !!}" />
+            {{--<meta property="og:image:secure_url" content="{!! url('/images/logo.png') !!}" />--}}
+            <meta itemprop="og:description" property="og:description" content="{{ $verse_day_text }}" />
+            <meta property="fb:app_id" content="848687605263767" />
         @stop
 
         @section('meta_twitter')
             <meta property="twitter:card" content="summary">
             <meta property="twitter:title" content="Bible Study Company: Verse of a Day">
-            <meta property="twitter:image" content="{!! url('/images/logo.png') !!}" />
+            <meta property="twitter:image" content="{!! url('/images/meta_logo.png') !!}" />
             <meta property="twitter:description" content="{{ $verse_day_text }}">
         @stop
     @endif
@@ -72,7 +73,7 @@
                     SHARE WITH:
                 </h4>
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox c-social" data-url="{!! url('?vod=1') !!}"></div>
+                <div class="addthis_inline_share_toolbox c-social" data-url="{!! url('?vod=1#day-verse') !!}" data-title="Bible Study Company: Verse of a Day" data-description="{{ $verse_day_text }}"></div>
             </div>
         </div>
 
