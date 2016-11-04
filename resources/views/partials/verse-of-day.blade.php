@@ -11,7 +11,7 @@
             <meta property="og:title" content="Bible Study Company: Verse of a Day" />
             <meta property="og:image" content="{!! url('/images/meta_logo.png') !!}" />
             {{--<meta property="og:image:secure_url" content="{!! url('/images/logo.png') !!}" />--}}
-            <meta property="og:description" content="{{ $verse_day_text }}" />
+            <meta itemprop="og:description" property="og:description" content="{{ $verse_day_text }}" />
             <meta property="fb:app_id" content="848687605263767" />
         @stop
 
