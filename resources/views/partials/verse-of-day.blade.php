@@ -73,7 +73,7 @@
                     SHARE WITH:
                 </h4>
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox c-social" data-url="{!! url('?vod=1') !!}"></div>
+                <div class="addthis_inline_share_toolbox c-social" data-url="{!! url('?vod=1#day-verse') !!}" data-title="Bible Study Company: Verse of a Day" data-description="{{ $verse_day_text }}"></div>
             </div>
         </div>
 
