@@ -3,6 +3,7 @@
 namespace App\Providers\CustomAuthorizeNet;
 
 use App\UsersMeta;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Laravel\CashierAuthorizeNet\Subscription;
 use net\authorize\api\contract\v1 as AnetAPI;
@@ -66,7 +67,13 @@ trait Billable
         if($this->askToCreateSubscription($plan)){
             if(!$this->hasPaymentAccount() || $amount <= 0){
                 if($this->newSubscription($plan, $amount)->createTrial()){
-                    $result['subscription'] = ['success' => true, 'message' => 'Your have a trial premium account - ends at '.date_format($this->subscription()->ends_at, 'Y-m-d')];
+                    if(Auth::user()->is(Config::get('app.role.admin'))){
+                        $user = 'User '.$this->name;
+                    }
+                    else{
+                        $user = 'Your';
+                    }
+                    $result['subscription'] = ['success' => true, 'message' => $user.' have a trial premium account - ends at '.date_format($this->subscription()->ends_at, 'Y-m-d')];
                 }else{
                     $result['subscription'] =  ['success' => false, 'message' => 'You must have Credit Card'];
                 }

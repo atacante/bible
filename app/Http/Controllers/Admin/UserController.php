@@ -48,6 +48,12 @@ class UserController extends Controller
         if (Request::isMethod('post')) {
             $this->validate($request,$model->rules());
             if($model->create(Input::all())){
+                if((Input::get('plan_type') == User::PLAN_PREMIUM) && Input::get('plan_name')){
+                    $model->upgradeToPremium(Input::get('plan_name'));
+                }else{
+                    $model->downgradeToFree();
+                    $model->createAccountAndOrSubscribe();
+                }
                 Notification::success('User has been successfully created');
             }
             return Redirect::to(ViewHelper::adminUrlSegment().'/user/list/');
@@ -70,6 +76,12 @@ class UserController extends Controller
         if (Request::isMethod('put')) {
             $this->validate($request,$model->rules());
             if($model->update(Input::all())){
+                if((Input::get('plan_type') == User::PLAN_PREMIUM) && Input::get('plan_name')){
+                    $model->upgradeToPremium(Input::get('plan_name'));
+                }else{
+                    $model->downgradeToFree();
+                    $model->createAccountAndOrSubscribe();
+                }
                 Notification::success('User has been successfully updated');
             }
             return ($url = Session::get('backUrl'))
@@ -83,6 +95,7 @@ class UserController extends Controller
                 'roles' => ViewHelper::prepareForSelectBox($roles,'slug','name')
             ]);
     }
+
     public function anyDelete($id)
     {
         if (Session::has('backUrl')) {

@@ -103,6 +103,10 @@ class User extends Authenticatable
             'coupon_code' => 'coupon_exist|coupon_expire|coupon_uses|coupon_user_uses'
         ];
 
+        if(Auth::check() && Auth::user()->is(Config::get('app.role.admin')) && $this->plan_type == self::PLAN_FREE && Request::input('plan_type') != self::PLAN_FREE){
+            $rules['coupon_code'] = 'required|coupon_exist|coupon_expire|coupon_uses|coupon_user_uses';
+        }
+
         switch(Request::method())
         {
             case 'PUT':
