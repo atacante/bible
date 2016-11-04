@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-    <title>@section('title') Bible Study Company: An online study Bible and social community @show</title>
+    @section('title')
+        <title> Bible Study Company: An online study Bible and social community </title>
+    @show
     {{--<title>Bible Study Company: An online study Bible and social community</title>--}}
     @section('meta_keywords')
         <meta name="keywords" content="Bible Study Company"/>
