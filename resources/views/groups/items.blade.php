@@ -10,7 +10,7 @@
                 @endif
 
                 <div class="c-group">
-                    <a href="{!! url('/groups/view/'.$group->id,[] ) !!}" class="friend-name">{!! $group->group_name !!}</a>
+                    <a href="{!! url('/groups/view/'.$group->id,[] ) !!}" class="friend-name" title="{!! $group->group_name !!}">{!! $group->group_name !!}</a>
                     <div class="group-ind mt15">
                         <i class="bs-friends color8 font-size-13" title="Private" aria-hidden="true"></i>
                         <span class="color8">{!! $group->members->count()+1 !!}</span>

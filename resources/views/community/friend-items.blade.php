@@ -10,7 +10,7 @@
                 <div class="c-friend">
                     <div class="c-friend-text">
                         <a class="j-friend-item friend-name" data-userid="{!! $people->id !!}" href="{!! url('/user/view',[$people->id]) !!}">{!! $people->name !!}</a>
-                        <br>
+
                         {!! str_limit(strip_tags($people->about_me,'<p></p>'), $limit = 15, $end = '... ') !!}
                     </div>
                 </div>

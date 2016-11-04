@@ -167,9 +167,9 @@ h4.h4-locations {
     overflow: hidden;
 }
 .c-friend {
-    display: table;
+    display: block;
     width: 100%;
-    padding: 0 25px;
+    padding: 20px 25px;
 }
 @media(--xsmall){
     .c-friend {
@@ -177,10 +177,15 @@ h4.h4-locations {
     }
 }
 .friend-name {
-    display: inline;
+    display: block;
     font-family: work_sansmedium;
     font-size: 1.14rem;
     color: #010101;
+    text-overflow: ellipsis;
+    height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
 }
 @media(--xsmall){
     .friend-name {
@@ -211,7 +216,7 @@ h4.h4-locations {
 }
 .c-friend-text {
     color: #535353;
-    display: table-cell;
+    display: block;
     font-family: work_sansregular;
     font-size: 1rem;
     height: 65px;
