@@ -258,7 +258,7 @@
     }
     .locations.list {
         & a.cu2-btn1 {
-            bottom: -30px;
+            bottom: 20px;
         }
     }
 }
@@ -318,7 +318,7 @@
 @media(--xsmall){
     .cu4-btn1 {
         font-size: 0.8rem !important;
-        padding: 5px 0 !important;
+        padding: 10px 0 !important;
         bottom: 20px;
         left: 20px;
         right: 20px;
@@ -577,6 +577,12 @@ li.active .cu6-btn1, .cu6-btn1:hover, .cu6-btn1:active {
     top: 40px;
     right: 50px;
     text-decoration: none !important;
+}
+@media(--medium){
+    .btn-reset {
+        font-family: work_sanslight;
+        border: none;
+    }
 }
 @media(--xsmall){
     .btn-reset {

@@ -35,6 +35,12 @@
     background-size: cover !important;
     -webkit-background-size: cover !important;
 }
+@media(--xsmall){
+    .friend-image ,
+    .group-image {
+        height: 280px;
+    }
+}
 .people-image {
     /*display: none;*/
     width: 100%;
@@ -55,10 +61,11 @@
     -webkit-background-size: cover !important;
     padding: 60px;
     background-color: #79858F;
+    background-position-y: top !important;
 }
 @media(--xsmall){
     .location-image {
-        height: 190px;
+        height: 280px;
         padding: 60px 20px 0;
     }
 }
@@ -68,7 +75,7 @@
 }
 @media(--xsmall){
     .location-image i{
-        font-size: 5rem;
+        font-size: 8rem;
     }
 }
 .verse-image i{
@@ -83,7 +90,7 @@
 }
 .product-image {
     width: 100%;
-    height: 190px;
+    height: 280px;
     position: relative;
     overflow: hidden;
     background: #79858f;

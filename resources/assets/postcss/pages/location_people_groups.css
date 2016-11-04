@@ -39,7 +39,7 @@
 @media(--medium){
     .shop {
         & .my-inner-location-item {
-            height: 482px;
+            height: 540px;
         }
     }
 }
@@ -75,7 +75,7 @@
 }
 .c-inner-location-text {
     padding: 10px 30px 85px;
-    height: 282px !important;
+    height: 242px !important;
     position: relative;
 }
 @media(--xsmall){
@@ -92,7 +92,7 @@
 }
 @media(--xsmall){
     .my-inner-location-item .item {
-        height: 190px;
+        height: 280px;
     }
 }
 .my-inner-location-item p {
@@ -132,7 +132,7 @@ h4.h4-locations {
 .my-inner-friends-item {
     overflow: hidden;
     position: relative;
-    height: 310px;
+    height: 420px;
     text-align: center;
     margin-bottom: 0;
     background: white;
@@ -150,6 +150,11 @@ h4.h4-locations {
     text-align: center;
     margin-bottom: 0;
     background: white;
+}
+@media(--xsmall){
+    .my-inner-groups-item {
+        height: 460px;
+    }
 }
 .c-group {
     display: block;
@@ -173,7 +178,7 @@ h4.h4-locations {
 }
 @media(--xsmall){
     .c-friend {
-        padding: 0 20px;
+        padding: 20px;
     }
 }
 .friend-name {
