@@ -213,7 +213,7 @@ ul.c-social li a:hover, ul.c-social li a:active {
 .carousel-control .glyphicon-chevron-right,
 .carousel-control .icon-next,
 .carousel-control .icon-prev {
-    margin-top: 45px;
+    margin-top: -5px;
 }
 .carousel-control .bs-arrowleft,
 .carousel-control .bs-arrowright {

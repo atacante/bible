@@ -80,23 +80,40 @@
             </div>
             <div class="radio-inline mt15">
                 {!! Form::radio('plan_type', 'premium', false, ["class" => "cust-radio", 'id' => 'premium']) !!}
-                <label for="premium" class="label-radio cu-label">Beta Tester {!! $model->isPremiumPaid()?'(Active - Expires '.$model->getPlanExpiresAt().')' :'' !!}</label>
+                <label for="premium" class="label-radio cu-label">Premium (Beta Tester) {!! $model->isPremiumPaid()?'(Active - Expires '.$model->getPlanExpiresAt().')' :'' !!}</label>
             </div>
             @if ($errors->has('plan_type'))
                 <span class="help-block">
-                                        {{ $errors->first('plan_type') }}
-                                </span>
+                    {{ $errors->first('plan_type') }}
+                </span>
             @endif
         </div>
     </div>
-    <div class="premium-only {!! $model->plan_type == 'free'?'hidden':'' !!}" >
+    <div class="premium-only {!! ($model->plan_type == 'free' && Request::old('plan_type') != 'premium')?'hidden':'' !!}" >
+        <div class="form-group {{ $errors->has('plan_name') ? ' has-error' : '' }}">
+            {!! Form::label('plan_name', "Subscription plan period:") !!}
+
+            <div>
+                @foreach(App\User::getPossiblePlans() as $plan_name => $plan)
+                    <div class="radio-inline">
+                        {!! Form::radio('plan_name', $plan_name, $model->getActivePlan()?($model->getActivePlan() == $plan_name):('3 months' == $plan_name), ["class" => "cust-radio", "id" => $plan_name]) !!}
+                        <label class="label-radio cu-label" for="{{$plan_name}}"> {!! $plan_name !!}</label>
+                    </div>
+                @endforeach
+                @if ($errors->has('plan_name'))
+                    <span class="help-block">
+                        {{ $errors->first('plan_name') }}
+                    </span>
+                @endif
+            </div>
+        </div>
         <div class="form-group {{ $errors->has('coupon_code') ? ' has-error' : '' }}">
             {!! Form::label('coupon_code', 'Beta Code:') !!}
             {!! Form::text('coupon_code', $model->coupon_code, ["class" => "input1"]) !!}
             @if ($errors->has('coupon_code'))
                 <span class="help-block">
-                                    {{ $errors->first('coupon_code') }}
-                                </span>
+                    {{ $errors->first('coupon_code') }}
+                </span>
             @endif
         </div>
     </div>

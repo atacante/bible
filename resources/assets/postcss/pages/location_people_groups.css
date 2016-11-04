@@ -39,7 +39,7 @@
 @media(--medium){
     .shop {
         & .my-inner-location-item {
-            height: 482px;
+            height: 540px;
         }
     }
 }
@@ -75,7 +75,7 @@
 }
 .c-inner-location-text {
     padding: 10px 30px 85px;
-    height: 282px !important;
+    height: 242px !important;
     position: relative;
 }
 @media(--xsmall){
@@ -92,7 +92,7 @@
 }
 @media(--xsmall){
     .my-inner-location-item .item {
-        height: 190px;
+        height: 280px;
     }
 }
 .my-inner-location-item p {
@@ -132,7 +132,7 @@ h4.h4-locations {
 .my-inner-friends-item {
     overflow: hidden;
     position: relative;
-    height: 310px;
+    height: 420px;
     text-align: center;
     margin-bottom: 0;
     background: white;
@@ -151,6 +151,11 @@ h4.h4-locations {
     margin-bottom: 0;
     background: white;
 }
+@media(--xsmall){
+    .my-inner-groups-item {
+        height: 460px;
+    }
+}
 .c-group {
     display: block;
     padding: 0 25px;
@@ -167,20 +172,25 @@ h4.h4-locations {
     overflow: hidden;
 }
 .c-friend {
-    display: table;
+    display: block;
     width: 100%;
-    padding: 0 25px;
+    padding: 20px 25px;
 }
 @media(--xsmall){
     .c-friend {
-        padding: 0 20px;
+        padding: 20px;
     }
 }
 .friend-name {
-    display: inline;
+    display: block;
     font-family: work_sansmedium;
     font-size: 1.14rem;
     color: #010101;
+    text-overflow: ellipsis;
+    height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
 }
 @media(--xsmall){
     .friend-name {
@@ -211,7 +221,7 @@ h4.h4-locations {
 }
 .c-friend-text {
     color: #535353;
-    display: table-cell;
+    display: block;
     font-family: work_sansregular;
     font-size: 1rem;
     height: 65px;
