@@ -18,12 +18,13 @@
         <meta property="twitter:card" content="summary">
         <meta property="twitter:title" content="Bible Study Company: An online study Bible and social community">
         <meta property="twitter:description" content="Bible Study Company: An online study Bible and social community">
-        <meta property="twitter:image" content="{!! url('/images/logo.png') !!}" />
+        <meta property="twitter:image" content="{!! url('/images/meta_logo.png') !!}" />
     @show @section('meta_og')
         <meta property="og:title" content="Bible Study Company: An online study Bible and social community" />
-        <meta property="og:image" content="{!! url('/images/logo.png') !!}" />
-        <meta property="og:image:secure_url" content="{!! url('/images/logo.png') !!}" />
+        <meta property="og:image" content="{!! url('/images/meta_logo.png') !!}" />
+        {{--<meta property="og:image:secure_url" content="{!! url('/images/meta_logo.png') !!}" />--}}
         <meta property="og:description" content="Bible Study Company: An online study Bible and social community" />
+        <meta property="fb:app_id" content="848687605263767" />
     @show @section('meta_google')
         <meta itemprop="image" content="{!! url('/images/logo.png') !!}"/>
     @show
