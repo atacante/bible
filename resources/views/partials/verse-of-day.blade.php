@@ -1,7 +1,7 @@
 @if($data['verseOfDay'])
     @if(Request::has('vod'))
         @section('title')
-            <title>Bible Study Company: Verse of a Day</title>
+            Bible Study Company: Verse of a Day
         @stop
         @section('meta_description')
             <meta name="description" content="{{ $verse_day_text }}"/>
