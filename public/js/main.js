@@ -1906,7 +1906,7 @@ $(document).ready(function(){
     dinamicArrows();
 
     if($('.j-compare-verses').length > 0){
-        $('body').scrollTo($('.j-compare-verses'),0,{offset:0});
+        // $('body').scrollTo($('.j-compare-verses'),0,{offset:0});
     }
     $('#popup, .entry-form').on('click','.j-collapse',function(){
         if($(this).hasClass('collapsed')){
