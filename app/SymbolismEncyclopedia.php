@@ -48,14 +48,43 @@ class SymbolismEncyclopedia extends BaseModel
             $termName = $this->getOriginal('term_name');
         }
 
-        $nasbPhrases = LexiconNasb::where('verse_part','ilike','%'.$termName.'%');
+        $nasbPhrases = LexiconNasb::where(function($sq) use($termName){
+            $sq->orWhere('verse_part','like','% '.$termName.' %');
+            $sq->orWhere('verse_part','like',$termName.' %');
+            $sq->orWhere('verse_part','like','% '.$termName);
+            $sq->orWhere('verse_part','like',$termName);
+            $sq->orWhere('verse_part','like',$termName.',%');
+            $sq->orWhere('verse_part','like',$termName.'.%');
+            $sq->orWhere('verse_part','like','% '.$termName.',%');
+            $sq->orWhere('verse_part','like','% '.$termName.'.%');
+        });
         $this->fillSymbolism($action,$nasbPhrases);
-        $kjvPhrases = LexiconKjv::where('verse_part','ilike','%'.$termName.'%');
+
+        $kjvPhrases = LexiconKjv::where(function($sq) use($termName){
+            $sq->orWhere('verse_part','like','% '.$termName.' %');
+            $sq->orWhere('verse_part','like',$termName.' %');
+            $sq->orWhere('verse_part','like','% '.$termName);
+            $sq->orWhere('verse_part','like',$termName);
+            $sq->orWhere('verse_part','like',$termName.',%');
+            $sq->orWhere('verse_part','like',$termName.'.%');
+            $sq->orWhere('verse_part','like','% '.$termName.',%');
+            $sq->orWhere('verse_part','like','% '.$termName.'.%');
+        });
         $this->fillSymbolism($action,$kjvPhrases);
-        $bereanPhrases = LexiconBerean::where('verse_part','ilike','%'.$termName.'%');
+
+        $bereanPhrases = LexiconBerean::where(function($sq) use($termName){
+            $sq->orWhere('verse_part','like','% '.$termName.' %');
+            $sq->orWhere('verse_part','like',$termName.' %');
+            $sq->orWhere('verse_part','like','% '.$termName);
+            $sq->orWhere('verse_part','like',$termName);
+            $sq->orWhere('verse_part','like',$termName.',%');
+            $sq->orWhere('verse_part','like',$termName.'.%');
+            $sq->orWhere('verse_part','like','% '.$termName.',%');
+            $sq->orWhere('verse_part','like','% '.$termName.'.%');
+        });
         $this->fillSymbolism($action,$bereanPhrases);
 
-        /* We can try to optimize associating if needed (code below ) */
+        /* ToDo: We can try to optimize associating if needed (initial code below ) */
         /*switch($action){
             case 'attach':
                 $nasbPhrases = LexiconNasb::where('verse_part','ilike','%'.$termName.'%');
