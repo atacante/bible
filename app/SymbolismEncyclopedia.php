@@ -49,38 +49,38 @@ class SymbolismEncyclopedia extends BaseModel
         }
 
         $nasbPhrases = LexiconNasb::where(function($sq) use($termName){
-            $sq->orWhere('verse_part','like','% '.$termName.' %');
-            $sq->orWhere('verse_part','like',$termName.' %');
-            $sq->orWhere('verse_part','like','% '.$termName);
-            $sq->orWhere('verse_part','like',$termName);
-            $sq->orWhere('verse_part','like',$termName.',%');
-            $sq->orWhere('verse_part','like',$termName.'.%');
-            $sq->orWhere('verse_part','like','% '.$termName.',%');
-            $sq->orWhere('verse_part','like','% '.$termName.'.%');
+            $sq->orWhere('verse_part','ilike','% '.$termName.' %');
+            $sq->orWhere('verse_part','ilike',$termName.' %');
+            $sq->orWhere('verse_part','ilike','% '.$termName);
+            $sq->orWhere('verse_part','ilike',$termName);
+            $sq->orWhere('verse_part','ilike',$termName.',%');
+            $sq->orWhere('verse_part','ilike',$termName.'.%');
+            $sq->orWhere('verse_part','ilike','% '.$termName.',%');
+            $sq->orWhere('verse_part','ilike','% '.$termName.'.%');
         });
         $this->fillSymbolism($action,$nasbPhrases);
 
         $kjvPhrases = LexiconKjv::where(function($sq) use($termName){
-            $sq->orWhere('verse_part','like','% '.$termName.' %');
-            $sq->orWhere('verse_part','like',$termName.' %');
-            $sq->orWhere('verse_part','like','% '.$termName);
-            $sq->orWhere('verse_part','like',$termName);
-            $sq->orWhere('verse_part','like',$termName.',%');
-            $sq->orWhere('verse_part','like',$termName.'.%');
-            $sq->orWhere('verse_part','like','% '.$termName.',%');
-            $sq->orWhere('verse_part','like','% '.$termName.'.%');
+            $sq->orWhere('verse_part','ilike','% '.$termName.' %');
+            $sq->orWhere('verse_part','ilike',$termName.' %');
+            $sq->orWhere('verse_part','ilike','% '.$termName);
+            $sq->orWhere('verse_part','ilike',$termName);
+            $sq->orWhere('verse_part','ilike',$termName.',%');
+            $sq->orWhere('verse_part','ilike',$termName.'.%');
+            $sq->orWhere('verse_part','ilike','% '.$termName.',%');
+            $sq->orWhere('verse_part','ilike','% '.$termName.'.%');
         });
         $this->fillSymbolism($action,$kjvPhrases);
 
         $bereanPhrases = LexiconBerean::where(function($sq) use($termName){
-            $sq->orWhere('verse_part','like','% '.$termName.' %');
-            $sq->orWhere('verse_part','like',$termName.' %');
-            $sq->orWhere('verse_part','like','% '.$termName);
-            $sq->orWhere('verse_part','like',$termName);
-            $sq->orWhere('verse_part','like',$termName.',%');
-            $sq->orWhere('verse_part','like',$termName.'.%');
-            $sq->orWhere('verse_part','like','% '.$termName.',%');
-            $sq->orWhere('verse_part','like','% '.$termName.'.%');
+            $sq->orWhere('verse_part','ilike','% '.$termName.' %');
+            $sq->orWhere('verse_part','ilike',$termName.' %');
+            $sq->orWhere('verse_part','ilike','% '.$termName);
+            $sq->orWhere('verse_part','ilike',$termName);
+            $sq->orWhere('verse_part','ilike',$termName.',%');
+            $sq->orWhere('verse_part','ilike',$termName.'.%');
+            $sq->orWhere('verse_part','ilike','% '.$termName.',%');
+            $sq->orWhere('verse_part','ilike','% '.$termName.'.%');
         });
         $this->fillSymbolism($action,$bereanPhrases);
 
