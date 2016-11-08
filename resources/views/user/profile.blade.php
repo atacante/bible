@@ -43,10 +43,19 @@
 
                         <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                             {!! Form::label('name', 'Name:') !!}
-                            {!! Form::text('name',  $model->name, array('class' => 'input1')) !!}
+                            {!! Form::text('name',  $model->getRawName(), array('class' => 'input1')) !!}
                             @if ($errors->has('name'))
                                 <span class="help-block">
                                     {{ $errors->first('name') }}
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group {{ $errors->has('lastname') ? ' has-error' : '' }}">
+                            {!! Form::label('lastname', 'Last Name:') !!}
+                            {!! Form::text('lastname',  $model->lastname, array('class' => 'input1')) !!}
+                            @if ($errors->has('lastname'))
+                                <span class="help-block">
+                                    {{ $errors->first('lastname') }}
                                 </span>
                             @endif
                         </div>
