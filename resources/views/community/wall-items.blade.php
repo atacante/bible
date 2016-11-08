@@ -52,8 +52,14 @@
                             Verse: <i>{!! str_limit(strip_tags($item->highlighted_text,'<p></p>'), $limit = 100, $end = '...') !!}</i>
                         </div>
                     @endif
-                    <div class="wall-text1 j-hidden">{!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}</div>
-                    <div class="wall-text1 hidden j-hidden">{!! strip_tags($item->text,'<p></p>') !!}</div>
+                    <div class="wall-text1 j-hidden">
+                        @if(strlen(strip_tags($item->text,'<p></p>')) <= 100)
+                            {!! $item->text !!}
+                        @else
+                            {!! str_limit(strip_tags($item->text,'<p></p>'), $limit = 100, $end = '...') !!}
+                        @endif
+                    </div>
+                    <div class="wall-text1 hidden j-hidden">{!! $item->text !!}</div>
                     @if(strlen(strip_tags($item->text,'<p></p>')) > 100)
                         <a class="j-show-more show-more">See More</a>
                     @endif
