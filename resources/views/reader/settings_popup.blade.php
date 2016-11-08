@@ -22,9 +22,6 @@
                         {{--{!! Form::hidden('version', Request::input('version', Config::get('app.defaultBibleVersion'))) !!}--}}
                         {{--{!! Form::hidden('book', Request::input('book', Config::get('app.defaultBookNumber'))) !!}--}}
                         {{--{!! Form::hidden('chapter', Request::input('chapter', Config::get('app.defaultChapterNumber'))) !!}--}}
-                        @if(Request::segment(2) == 'verse')
-                            {!! Form::hidden('verse', Request::input('verse', false)) !!}
-                        @endif
 
                         {{--@if($compareVersions = Request::input('compare', false))
                             @foreach($compareVersions as $version)
