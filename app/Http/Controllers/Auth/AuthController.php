@@ -60,6 +60,7 @@ class AuthController extends Controller
     {
         $rules = [
             'name' => 'required|max:255',
+            'lastname' => 'required|max:255',
 //            'username' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
@@ -118,6 +119,7 @@ class AuthController extends Controller
 
         $user = User::create([
             'name' => $data['name'],
+            'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'plan_type' => $data['plan_type'],

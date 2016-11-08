@@ -38,6 +38,19 @@
                         </div>
                     </div>
 
+                    <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label" for="lastname">Last Name <span class="req">*</span></label>
+                        <div class="col-xs-8">
+                            {!! Form::text('lastname', old('lastname'), array('class' => 'form-control input1')) !!}
+
+                            @if ($errors->has('lastname'))
+                                <span class="help-block">
+                                    {{ $errors->first('lastname') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label" for="email">Email <span class="req">*</span></label>
                         <div class="col-xs-8">

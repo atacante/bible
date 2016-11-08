@@ -37,7 +37,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','plan_type','about_me','avatar','invited_by_id', 'subscribed','church_name','country_id','state','city','last_reader_url'
+        'name','lastname', 'email', 'password','plan_type','about_me','avatar','invited_by_id', 'subscribed','church_name','country_id','state','city','last_reader_url'
     ];
 
     /**
@@ -94,6 +94,7 @@ class User extends Authenticatable
     {
         $rules = [
             'name' => 'required|max:255',
+            'lastname' => 'required|max:255',
 //            'role' => 'required',
 //            'username' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -523,6 +524,14 @@ class User extends Authenticatable
             return false;
         }
         return $msg;
+    }
+
+    public function getNameAttribute($value){
+        return $value.' '.$this->lastname;
+    }
+
+    public function getRawName(){
+        return str_replace(' '.$this->lastname,'',$this->name);
     }
 
 }
