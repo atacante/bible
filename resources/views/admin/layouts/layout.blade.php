@@ -102,7 +102,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
             filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
             filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}',
-            scayt_autoStartup: true
+            removePlugins: 'wsc,scayt',
+            disableNativeSpellChecker:true,
+            scayt_autoStartup: false,
+            removeButtons: 'Scayt',
         });
     }
 </script>

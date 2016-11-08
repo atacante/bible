@@ -19,7 +19,9 @@ CKEDITOR.editorConfig = function( config ) {
 		[
 			{name: 'ckwebspeech'}  //Add the CKWebSpeech button on the toolbar
 		];
-	config.scayt_autoStartup = true;
+	config.removePlugins = 'wsc,scayt';
+	config.removeButtons = 'Scayt';
+	// config.scayt_autoStartup = true;
 	//config.startupFocus  = true,
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
