@@ -272,3 +272,21 @@ ul.nav.navbar-nav li a.cu-drop-menu-item:visited,
     height: 23px;
     vertical-align: middle;
 }
+.sub-nav li i {
+    color: #00b9f7;
+    margin-right: 8px;
+}
+.sub-nav li a:hover i {
+    color: #ffffff;
+    margin-right: 8px;
+}
+@media(--xsmall){
+    .sub-nav li i {
+        color: #9da8b1;
+        margin-right: 8px;
+    }
+    .sub-nav li a:hover i {
+        color: #ffffff;
+        margin-right: 8px;
+    }
+}

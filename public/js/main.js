@@ -436,7 +436,6 @@ $(document).ready(function(){
             }
         });
     });
-
     $('.j-locations-list').parent().on('click','.j-view-embed-map',function(e){
         e.preventDefault();
         $.ajax({
@@ -846,6 +845,7 @@ $(document).ready(function(){
     });
 
     $("body").on('click','.j-create-note',function (e) {
+        $(".sub-nav").hide();
         if(isMobile.any()){
             location.href = $(this).attr('href');
             return false;
@@ -900,6 +900,7 @@ $(document).ready(function(){
     });
 
     $("body").on('click','.j-create-journal',function (e) {
+        $(".sub-nav").hide();
         if(isMobile.any()){
             location.href = $(this).attr('href');
             return false;
@@ -952,6 +953,7 @@ $(document).ready(function(){
     });
 
     $("body").on('click','.j-create-prayer',function (e) {
+        $(".sub-nav").hide();
         if(isMobile.any()){
             location.href = $(this).attr('href');
             return false;
