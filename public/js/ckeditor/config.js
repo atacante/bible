@@ -12,9 +12,9 @@ CKEDITOR.editorConfig = function( config ) {
 		['Bold','Italic','Underline','StrikeThrough','-','Undo','Redo','-','Cut','Copy','Paste','Find','Replace','-','Outdent','Indent','-','Print'],
 		//'/',
 		['NumberedList','BulletedList','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-		['Image','Table','-','Link','Flash','Smiley','TextColor','BGColor']
+		['Image','Table','-','Link','Flash','Smiley','TextColor','BGColor'],
+		// ['Link','Unlink','Anchor']
 	];
-
 	config.toolbarGroups =
 		[
 			{name: 'ckwebspeech'}  //Add the CKWebSpeech button on the toolbar
