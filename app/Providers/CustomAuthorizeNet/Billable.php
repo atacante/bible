@@ -67,7 +67,7 @@ trait Billable
         if($this->askToCreateSubscription($plan)){
             if(!$this->hasPaymentAccount() || $amount <= 0){
                 if($this->newSubscription($plan, $amount)->createTrial()){
-                    if(Auth::user()->is(Config::get('app.role.admin'))){
+                    if(Auth::check() && Auth::user()->is(Config::get('app.role.admin'))){
                         $user = 'User '.$this->name;
                     }
                     else{

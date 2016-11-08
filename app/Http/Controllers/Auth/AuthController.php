@@ -130,12 +130,13 @@ class AuthController extends Controller
         ]);
 
         if($user){
+            $user->assignRole(Config::get('app.role.user'));
+
             if(Input::get('plan_type') == User::PLAN_PREMIUM){
                 $user->upgradeToPremium(Input::get('plan_name'));
             }else{
                 $user->downgradeToFree();
             }
-            $user->assignRole(Config::get('app.role.user'));
 
             Mail::send('emails.welcome', ['user' => $user], function($message) use($user)
             {
