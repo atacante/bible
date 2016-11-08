@@ -133,6 +133,7 @@
         {!!Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js')!!}
         {!!Html::script('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')!!}
         {!!Html::script('js/bootstrap-datepicker/js/bootstrap-datepicker.min.js')!!}
+        {!!Html::script('js/ckeditor/ckeditor-patch.js')!!}
         <script>
             site.initCkeditors();
         </script>
