@@ -17,7 +17,7 @@
                             <div class="clearfix">
                                 <div class="item-header mb5">
                                     <div class="cu-date1">&nbsp; {!! $article->humanLastUpdate() !!}</div>
-                                    <h3 class="h3-sub-kit pull-left">{{$article->title}}</h3>
+                                    <h1 class="h1-sub-kit pull-left">{{$article->title}}</h1>
                                 </div>
                                 <div class="item-body wall-text2">{!! $article->text !!}</div>
                                 <span class="pull-right">Posted by <b>{!! $article->author_name?$article->author_name:$article->user->name !!}</b></span>

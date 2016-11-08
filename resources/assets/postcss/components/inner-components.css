@@ -330,3 +330,6 @@ ul.c-social li a:hover, ul.c-social li a:active {
         margin-right: 20px !important;
     }
 }
+.cursor-pointer{
+    cursor: pointer;
+}
