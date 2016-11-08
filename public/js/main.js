@@ -1421,7 +1421,7 @@ $(document).ready(function(){
         }
     });
 
-    $('.j-wall-items').on('click','.j-wall-item-comments',function(e){
+    $('.j-wall-items').on('click','.j-wall-item-comments,.j-load-more-comments',function(e){
         e.preventDefault();
         site.loadComments(this);
     });
@@ -1432,7 +1432,7 @@ $(document).ready(function(){
         var form = $(that).parents('.j-comment-form');
         site.ajaxForm(form,function(data){
             form[0].reset();
-            form.parents('.j-item-comments').find('.j-comments-list').prepend(data);
+            form.parents('.j-item-comments').find('.j-comments-list').append(data);
 
             var curCommentsCount = parseInt(form.parents('.j-item-footer').find('.j-comments-count').html());
             if($(that).hasClass('liked')){
