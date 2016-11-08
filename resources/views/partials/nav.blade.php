@@ -137,8 +137,28 @@
         </li>
       @else
         @role('user')
-          <li>
-            <a class="bs-myjourney" href="{{ url('user/my-journey') }}">My Journey</a>
+          <li class="with-items">
+                <a class="bs-myjourney" href="{{ url('user/my-journey') }}">My Journey</a>
+                <ul class="sub-nav">
+                    <li>
+                        <a class="bs-myjourney" href="{{ url('user/my-journey') }}">My Journey</a>
+                    </li>
+                    <li>
+                        <a class="j-create-note" href="{{ url('/notes/create') }}">
+                            <i class="bs-note"></i>Create Note
+                        </a>
+                    </li>
+                    <li>
+                        <a class="j-create-journal" href="{{ url('/journal/create') }}">
+                            <i class="bs-journal"></i>Create Journal Entry
+                        </a>
+                    </li>
+                    <li>
+                        <a class="j-create-prayer" href="{{ url('/prayers/create') }}">
+                            <i class="bs-pray"></i>Create Prayer
+                        </a>
+                    </li>
+                </ul>
           </li>
         @endrole
           <li class="with-items log-pop">
