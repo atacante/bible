@@ -1,4 +1,7 @@
 <div class="item-comments">
+    <div class="comments-list j-comments-list">
+        @include('community.wall-comment-items')
+    </div>
     @role('user')
     <div class="add-comment c-wall-comment">
         <div class="c-area-group2">
@@ -18,8 +21,4 @@
         </div>
     </div>
     @endrole
-
-    <div class="comments-list j-comments-list">
-        @include('community.wall-comment-items')
-    </div>
 </div>
