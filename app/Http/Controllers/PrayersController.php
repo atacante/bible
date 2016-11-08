@@ -293,7 +293,9 @@ class PrayersController extends Controller
     {
         $limit = 5;
         $page = Input::get('page',1);
-        $offset = $limit*($page-1);
+        if($page == 'all'){
+            $limit = null;
+        }
 
         $model = Prayer::/*with('comments')->*/find($id);
         if (!$model) {
@@ -303,10 +305,10 @@ class PrayersController extends Controller
 
         $comments = $model->comments();
         $totalCount = $model->comments->count();
-        $noteComments = $comments->limit($limit)->offset($offset)->get();
+        $noteComments = $comments->limit($limit)->get();
 
         $content['comments'] = $noteComments;
-        $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
+        $content['otherCommentsCount'] = $limit?$totalCount-$limit:0;
 
         $view = 'community.wall-comments';
         if($page > 1){
