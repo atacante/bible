@@ -67,6 +67,11 @@
                         {!! $model->group_name !!}
 
                         <div class="controls pull-right">
+                            <div class="btns-panel" style="right: 15px;">
+                                <a href="{{ url('/notes/create') }}" class="j-create-note btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
+                                <a href="{{ url('/journal/create') }}" class="j-create-journal btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
+                                <a href="{{ url('/prayers/create') }}" class="j-create-prayer btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
+                            </div>
                             @if((Auth::user() && $model->owner_id == Auth::user()->id))
                                 <a title="Delete group" href="{!! url('/groups/delete/'.$model->id,[]) !!}" class="pull-right j-remove-group" data-toggle="modal"
                                    data-target="#confirm-delete" data-header="Delete Confirmation"

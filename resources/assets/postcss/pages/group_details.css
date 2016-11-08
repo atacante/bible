@@ -112,3 +112,10 @@
 .group-info .info-block{
     margin-bottom: 15px;
 }
+.groups.view {
+    & .btns-panel {
+        position: relative;
+        float: left;
+        top: 0;
+    }
+}
