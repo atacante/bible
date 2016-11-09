@@ -119,3 +119,19 @@
         top: 0;
     }
 }
+@media(--xsmall){
+    .group-details .controls .group-controls{
+        margin-right: 15px;
+    }
+}
+@media(--vxsmall){
+    .group-details .controls .group-controls{
+        width:100%;
+        margin-top: 15px;
+    }
+}
+@media(--vxsmall){
+    .group-details .btns-panel {
+        float: none !important;
+    }
+}

@@ -73,10 +73,12 @@
                                 <a href="{{ url('/prayers/create') }}" class="j-create-prayer btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
                             </div>
                             @if((Auth::user() && $model->owner_id == Auth::user()->id))
-                                <a title="Delete group" href="{!! url('/groups/delete/'.$model->id,[]) !!}" class="pull-right j-remove-group" data-toggle="modal"
-                                   data-target="#confirm-delete" data-header="Delete Confirmation"
-                                   data-confirm="Are you sure you want to delete this item?"><i class=" bs-remove"></i></a>
-                                <a href="{!! url('/groups/update/'.$model->id,[]) !!}" class="pull-right"><i class="bs-settings"></i></a>
+                                <div class="group-controls pull-right">
+                                    <a title="Delete group" href="{!! url('/groups/delete/'.$model->id,[]) !!}" class="pull-right j-remove-group" data-toggle="modal"
+                                       data-target="#confirm-delete" data-header="Delete Confirmation"
+                                       data-confirm="Are you sure you want to delete this item?"><i class=" bs-remove"></i></a>
+                                    <a href="{!! url('/groups/update/'.$model->id,[]) !!}" class="pull-right"><i class="bs-settings"></i></a>
+                                </div>
                             @else
                                 <div class="pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
                                     @if(Auth::check())
