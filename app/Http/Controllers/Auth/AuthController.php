@@ -120,7 +120,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
-            'email' => $data['email'],
+            'email' => strtolower($data['email']),
             'password' => bcrypt($data['password']),
             'plan_type' => $data['plan_type'],
             'subscribed' => $data['subscribed'],
@@ -229,4 +229,20 @@ class AuthController extends Controller
 //    {
 //        return redirect()->intended('/dashboard');
 //    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function getCredentials(\Illuminate\Http\Request  $request){
+        $credentials =  $request->only($this->loginUsername(), 'password');
+
+        // Client asks to lowercase email trying log in
+        if(!empty($credentials['email'])){
+            $credentials['email'] = strtolower($credentials['email']);
+        }
+        return $credentials;
+    }
 }
