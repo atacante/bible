@@ -17,7 +17,6 @@
                 This will help us to refine the process a bit.</br>
                 Thank you for your feedback!</br>
             </div>
-            {!!  Html::link('/site/contact','Support', ['class'=>'btn2-kit mt16 pull-left cu-btn-pad1']) !!}
         </div>
     </div>
 @endsection
