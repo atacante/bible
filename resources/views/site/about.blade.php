@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-xs-12">
             <h2 class="h2-new mb3">
-                {!! $page->title !!}
+                {!! JUSTFORTESTING $page->title !!}
             </h2>
         </div>
     </div>
