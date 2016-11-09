@@ -3,6 +3,7 @@
 namespace App\Validators;
 
 use App\Coupon;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
 
