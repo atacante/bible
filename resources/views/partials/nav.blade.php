@@ -139,7 +139,7 @@
         @role('user')
           <li class="with-items">
                 <a class="bs-myjourney" href="{{ url('user/my-journey') }}">My Journey</a>
-                <ul class="sub-nav">
+{{--                <ul class="sub-nav">
                     <li>
                         <a class="bs-myjourney" href="{{ url('user/my-journey') }}">My Journey</a>
                     </li>
@@ -158,7 +158,7 @@
                             <i class="bs-pray"></i>Create Prayer
                         </a>
                     </li>
-                </ul>
+                </ul>--}}
           </li>
         @endrole
           <li class="with-items log-pop">
