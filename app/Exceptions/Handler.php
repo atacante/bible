@@ -59,6 +59,9 @@ class Handler extends ExceptionHandler
 //            Notification::info($e->getMessage());
             return redirect()->guest('auth/login');
         }
+        if ($e instanceof \ErrorException || $e instanceof HttpException && $e->getStatusCode() == 500){
+            return response()->view('errors.500', [], 500);
+        }
 
         return parent::render($request, $e);
     }
