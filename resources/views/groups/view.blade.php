@@ -63,35 +63,37 @@
             <div class="group-details" style="background: url('{!!  $model->group_image?Config::get('app.groupImages').$model->id.'/'.$model->group_image:'/images/nocatimg-m.jpg' !!}'); {!! $model->group_image?'background-size: 100%;':'' !!} background-position: center center;">
                 <div class="header" style="">
                     <h3 class="title">
-                        <i class="bs-s-groups"></i>
-                        {!! $model->group_name !!}
-
-                        <div class="controls pull-right">
-                            <div class="btns-panel" style="right: 15px;">
-                                <a href="{{ url('/notes/create') }}" class="j-create-note btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
-                                <a href="{{ url('/journal/create') }}" class="j-create-journal btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
-                                <a href="{{ url('/prayers/create') }}" class="j-create-prayer btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-4 col-xs-12">
+                                <i class="bs-s-groups"></i>{!! $model->group_name !!}
                             </div>
-                            @if((Auth::user() && $model->owner_id == Auth::user()->id))
-                                <div class="group-controls pull-right">
-                                    <a title="Delete group" href="{!! url('/groups/delete/'.$model->id,[]) !!}" class="pull-right j-remove-group" data-toggle="modal"
-                                       data-target="#confirm-delete" data-header="Delete Confirmation"
-                                       data-confirm="Are you sure you want to delete this item?"><i class=" bs-remove"></i></a>
-                                    <a href="{!! url('/groups/update/'.$model->id,[]) !!}" class="pull-right"><i class="bs-settings"></i></a>
+                            <div class="controls col-lg-6 col-md-8 col-xs-12">
+                                <div class="btns-panel" style="right: 15px;">
+                                    <a href="{{ url('/notes/create') }}" class="j-create-note btn1-kit j-create-note"><i class="bs-add"></i> Note</a>
+                                    <a href="{{ url('/journal/create') }}" class="j-create-journal btn1-kit j-create-journal"><i class="bs-add"></i> Journal</a>
+                                    <a href="{{ url('/prayers/create') }}" class="j-create-prayer btn1-kit j-create-prayer"><i class="bs-add"></i> Prayer</a>
                                 </div>
-                            @else
-                                <div class="group-controls pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
-                                    @if(Auth::check())
-                                        <a title="Cancel Request" href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[]) !!}" class="btn2-icon j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" data-toggle="modal"
-                                           data-target="#cancel-request-sm" data-header="Cancel Request"
-                                           data-confirm="Are you sure you want to cancel this request?">
-                                            <i class="bs-close cu-btn-ic"></i>
-                                        </a>
-                                    @endif
-                                    <a href="{!! url('/groups/leave-group/'.$model->id,[]) !!}" class="btn1-kit j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}">Leave Group</a>
-                                    <a href="{!! url('/groups/join-group/'.$model->id,[]) !!}" class="btn1-kit j-join-group {!! in_array($model->id,$content['joinedGroupsKeys']) || (Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}">Join Group</a>
-                                </div>
-                            @endif
+                                @if((Auth::user() && $model->owner_id == Auth::user()->id))
+                                    <div class="group-controls pull-right">
+                                        <a title="Delete group" href="{!! url('/groups/delete/'.$model->id,[]) !!}" class="pull-right j-remove-group" data-toggle="modal"
+                                           data-target="#confirm-delete" data-header="Delete Confirmation"
+                                           data-confirm="Are you sure you want to delete this item?"><i class=" bs-remove"></i></a>
+                                        <a href="{!! url('/groups/update/'.$model->id,[]) !!}" class="pull-right"><i class="bs-settings"></i></a>
+                                    </div>
+                                @else
+                                    <div class="group-controls pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
+                                        @if(Auth::check())
+                                            <a title="Cancel Request" href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[]) !!}" class="btn2-icon j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" data-toggle="modal"
+                                               data-target="#cancel-request-sm" data-header="Cancel Request"
+                                               data-confirm="Are you sure you want to cancel this request?">
+                                                <i class="bs-close cu-btn-ic"></i>
+                                            </a>
+                                        @endif
+                                        <a href="{!! url('/groups/leave-group/'.$model->id,[]) !!}" class="btn1-kit j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}">Leave Group</a>
+                                        <a href="{!! url('/groups/join-group/'.$model->id,[]) !!}" class="btn1-kit j-join-group {!! in_array($model->id,$content['joinedGroupsKeys']) || (Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}">Join Group</a>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </h3>
                 </div>

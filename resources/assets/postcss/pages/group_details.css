@@ -119,18 +119,18 @@
         top: 0;
     }
 }
-@media(--xsmall){
-    .group-details .controls .group-controls{
-        margin-right: 15px;
-    }
-}
-@media(--vxsmall){
+@media(--vxsmall2){
     .group-details .controls .group-controls{
         width:100%;
         margin-top: 15px;
     }
 }
-@media(--vxsmall){
+@media(--xsmall){
+    .group-details .controls .group-controls{
+        margin-right: 20px;
+    }
+}
+@media(--vxsmall2){
     .group-details .btns-panel {
         float: none !important;
     }
