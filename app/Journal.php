@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 
-class Journal extends BaseModel
+class Journal extends BaseModel implements WallItem
 {
     const ACCESS_PRIVATE = 'private';
     const ACCESS_PUBLIC_ALL = 'public_for_all';

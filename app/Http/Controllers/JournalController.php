@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 //use Illuminate\Http\Request;
 
 use App\BaseModel;
+use App\Helpers\NotificationsHelper;
 use App\Http\Requests;
 use App\Journal;
 use App\Note;
@@ -306,7 +307,7 @@ class JournalController extends Controller
         $totalCount = $model->comments->count();
         $noteComments = $comments->limit($limit)->get();
 
-        $content['comments'] = $noteComments;
+        $content['comments'] = $noteComments->reverse();
         $content['otherCommentsCount'] = $limit?$totalCount-$limit:0;
 
         $view = 'community.wall-comments';
@@ -332,6 +333,7 @@ class JournalController extends Controller
 
         $commentCreated = $note->comments()->create($data);
         if ($commentCreated) {
+            NotificationsHelper::groupWallItemComment($note);
             return view('community.wall-comment-item', ['comment' => $commentCreated,'item' => $note]);
         }
         return 0;

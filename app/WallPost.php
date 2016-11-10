@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WallPost extends BaseModel
+class WallPost extends BaseModel implements WallItem
 {
     const ACCESS_PRIVATE = 'private';
     const ACCESS_PUBLIC_ALL = 'public_all';

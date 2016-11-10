@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\NotificationsHelper;
 use App\Http\Requests;
 use App\WallComment;
 use Illuminate\Support\Facades\Auth;
@@ -82,6 +83,7 @@ class WallPostsController extends Controller
 
         $commentCreated = $note->comments()->create($data);
         if ($commentCreated) {
+            NotificationsHelper::publicWallItemComment($note);
             return view('community.wall-comment-item', ['comment' => $commentCreated,'item' => $note]);
         }
         return 0;

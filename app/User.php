@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\NotificationsHelper;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
@@ -323,6 +324,7 @@ class User extends Authenticatable
     public function followFriend(User $user)
     {
         $this->friends()->attach($user->id);
+        NotificationsHelper::friendRequest($user);
     }
 
     public function removeRequest(User $user)

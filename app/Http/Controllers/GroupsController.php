@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 //use Illuminate\Http\Request;
 
 use App\Group;
+use App\Helpers\NotificationsHelper;
 use App\Http\Requests;
 
 use App\Journal;
@@ -40,6 +41,10 @@ class GroupsController extends Controller
             $content['myGroupsRequests'] = $this->getMyGroupsRequests();
             $content['joinedGroups'] = $this->getJoinedGroups();
             $content['groupsRequested'] = $this->getGroupsRequested();
+        }
+
+        if(Input::get('type') == 'my' && !Auth::check()){
+            abort(401);
         }
 
         $content['joinedGroupsKeys'] = [];
@@ -654,6 +659,10 @@ class GroupsController extends Controller
         if($users){
             $group = Group::find($groupId);
             $group->joinRequests()->attach($users);
+            $users = User::whereIn('id',$users)->get();
+            foreach ($users as $user) {
+                NotificationsHelper::groupInvitation($user);
+            }
             Notification::success('Request successfully sent');
         }
         else{

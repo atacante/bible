@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BaseModel;
+use App\Helpers\NotificationsHelper;
 use App\Http\Requests;
 use App\Journal;
 use App\Note;
@@ -307,7 +308,7 @@ class PrayersController extends Controller
         $totalCount = $model->comments->count();
         $noteComments = $comments->limit($limit)->get();
 
-        $content['comments'] = $noteComments;
+        $content['comments'] = $noteComments->reverse();
         $content['otherCommentsCount'] = $limit?$totalCount-$limit:0;
 
         $view = 'community.wall-comments';
@@ -333,6 +334,13 @@ class PrayersController extends Controller
 
         $commentCreated = $note->comments()->create($data);
         if ($commentCreated) {
+            if($note->groupsShares->count()){
+                NotificationsHelper::groupWallItemComment($note);
+            }
+            else{
+                NotificationsHelper::publicWallItemComment($note);
+            }
+
             return view('community.wall-comment-item', ['comment' => $commentCreated,'item' => $note]);
         }
         return 0;
