@@ -701,7 +701,7 @@ class GroupsController extends Controller
             Session::keep('backUrl');
         }
         $group = Group::find($id);
-        if(Auth::user()->isPremium()){
+        if(Auth::check() && Auth::user()->isPremium()){
             $alreadyJoined = $group->members()->where('user_id',Auth::user()->id);
             if(!$alreadyJoined->get()->count()){
                 Auth::user()->joinGroup($group);
