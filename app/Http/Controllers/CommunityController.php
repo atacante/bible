@@ -212,6 +212,9 @@ class CommunityController extends Controller
                 if(Auth::user()){
                     $users->whereIn('id',$myFriends);
                 }
+                else{
+                    abort(401);
+                }
                 break;
             case "new":
                 if(Auth::user()){
@@ -224,11 +227,17 @@ class CommunityController extends Controller
                     $users->whereNotIn('id',$ignoredRequests);
                     $users->whereIn('id',$requests);
                 }
+                else{
+                    abort(401);
+                }
                 break;
             case "sent-requests":
                 if(Auth::user()){
                     $users->whereNotIn('id',$myFriends);
                     $users->whereIn('id',$myRequests);
+                }
+                else{
+                    abort(401);
                 }
                 break;
         }

@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Helpers\NotificationsHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 
-class Prayer extends BaseModel
+class Prayer extends BaseModel implements WallItem
 {
     const ACCESS_PRIVATE = 'private';
     const ACCESS_PUBLIC_ALL = 'public_for_all';
@@ -150,5 +151,11 @@ class Prayer extends BaseModel
             $groups = Input::get('groups',[]);
         }
         $this->groupsShares()->sync($groups);
+
+        if($this->groupsShares->count()){
+            foreach ($this->groupsShares as $group) {
+                NotificationsHelper::groupWallItem($group);
+            }
+        }
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
+use App\Helpers\NotificationsHelper;
 use App\Http\Requests;
 use App\WallComment;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +29,10 @@ class WallPostsController extends Controller
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
             if ($model = $model->create($data)) {
-//                Notification::success('Group has been successfully created');
+                if($model->rel_id){
+                    $group = Group::find($model->rel_id);
+                    NotificationsHelper::groupWallItem($group);
+                }
             }
             if (!Request::ajax()) {
                 return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::back();
@@ -82,6 +87,7 @@ class WallPostsController extends Controller
 
         $commentCreated = $note->comments()->create($data);
         if ($commentCreated) {
+            NotificationsHelper::publicWallItemComment($note);
             return view('community.wall-comment-item', ['comment' => $commentCreated,'item' => $note]);
         }
         return 0;

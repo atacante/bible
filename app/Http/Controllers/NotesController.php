@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\Helpers\NotificationsHelper;
 use App\Http\Requests;
 use App\BaseModel;
 use App\Helpers\ViewHelper;
@@ -345,7 +346,7 @@ class NotesController extends Controller
         $totalCount = $model->comments->count();
         $noteComments = $comments->limit($limit)->get();
 
-        $content['comments'] = $noteComments;
+        $content['comments'] = $noteComments->reverse();
         $content['otherCommentsCount'] = $limit?$totalCount-$limit:0;
 
         $view = 'community.wall-comments';
@@ -371,6 +372,7 @@ class NotesController extends Controller
 
         $commentCreated = $note->comments()->create($data);
         if ($commentCreated) {
+            NotificationsHelper::groupWallItemComment($note);
             return view('community.wall-comment-item', ['comment' => $commentCreated,'item' => $note]);
         }
         return 0;

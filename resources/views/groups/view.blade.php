@@ -80,7 +80,7 @@
                                     <a href="{!! url('/groups/update/'.$model->id,[]) !!}" class="pull-right"><i class="bs-settings"></i></a>
                                 </div>
                             @else
-                                <div class="pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
+                                <div class="group-controls pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
                                     @if(Auth::check())
                                         <a title="Cancel Request" href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[]) !!}" class="btn2-icon j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" data-toggle="modal"
                                            data-target="#cancel-request-sm" data-header="Cancel Request"
@@ -88,7 +88,7 @@
                                             <i class="bs-close cu-btn-ic"></i>
                                         </a>
                                     @endif
-                                    <a href="{!! url('/groups/leave-group/'.$model->id,[]) !!}" class="btn4-kit j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}">Leave Group</a>
+                                    <a href="{!! url('/groups/leave-group/'.$model->id,[]) !!}" class="btn1-kit j-leave-group {!! in_array($model->id,$content['joinedGroupsKeys'])?'':'hidden' !!}">Leave Group</a>
                                     <a href="{!! url('/groups/join-group/'.$model->id,[]) !!}" class="btn1-kit j-join-group {!! in_array($model->id,$content['joinedGroupsKeys']) || (Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'hidden':'' !!} {!! Auth::user() && Auth::user()->isPremium()?'':'disabled' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'disabled':'' !!}">Join Group</a>
                                 </div>
                             @endif
