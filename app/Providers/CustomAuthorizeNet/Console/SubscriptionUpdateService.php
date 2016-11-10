@@ -20,7 +20,7 @@ class SubscriptionUpdateService
             'terminated',
         ];
 
-        $subscriptions = Subscription::all();
+        $subscriptions = Subscription::where('authorize_id','!=','111111111111')->get();
 
         foreach ($subscriptions as $subscription) {
             $requestor = new Requestor;
