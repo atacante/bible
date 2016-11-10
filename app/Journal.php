@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\NotificationsHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -150,5 +151,11 @@ class Journal extends BaseModel implements WallItem
             $groups = Input::get('groups',[]);
         }
         $this->groupsShares()->sync($groups);
+
+        if($this->groupsShares->count()){
+            foreach ($this->groupsShares as $group) {
+                NotificationsHelper::groupWallItem($group);
+            }
+        }
     }
 }

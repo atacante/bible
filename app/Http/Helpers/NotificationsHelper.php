@@ -31,7 +31,7 @@ class NotificationsHelper
         $data['message'] = '
             <p>Dear '.$group->owner->name.',</p>
             <p>There has been some activity at BSC associated to your account.<br />
-            You have a "new post" from another user on your "'.$group->name.'" group wall. View it <a href="'.url('groups/view/'.$group->id).'">here</a>.</p>
+            You have a "new post" from another user on your "'.$group->group_name.'" group wall. View it <a href="'.url('groups/view/'.$group->id).'">here</a>.</p>
             ';
         return self::sendNotification($data);
     }
