@@ -105,6 +105,16 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('taxable') ? ' has-error' : '' }}">
+        {!! Form::label('taxable', 'Taxable:') !!}
+        <input type="hidden" name="taxable" value="0"/>
+        {!! Form::checkbox('taxable', true, $model->taxable) !!}
+        @if ($errors->has('taxable'))
+            <span class="help-block">
+                {{ $errors->first('taxable') }}
+            </span>
+        @endif
+    </div>
 </div>
 <!-- /.box-body -->
 

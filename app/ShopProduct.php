@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\File;
 
 class ShopProduct extends BaseModel implements Buyable{
 
-	protected $fillable = ['category_id', 'name', 'sizes', 'colors', 'photo', 'short_description', 'long_description', 'price', 'external_link', 'homepage_position'];
+	protected $fillable = ['category_id', 'name', 'sizes', 'colors', 'photo', 'short_description', 'long_description', 'price', 'external_link', 'homepage_position', 'taxable'];
 	protected $dates = ['created_at', 'updated_at'];
 
 	public function rules()

@@ -56,7 +56,7 @@ class OrderController extends Controller
 
         $usps_rate = $this->getUspsRateAjax($data['shipping_postcode']);
 
-        if(!is_numeric($usps_rate)){
+        if(!is_numeric($usps_rate) || !$this->isTaxable()){
             $usps_rate = 0.00;
         }
 
@@ -66,7 +66,7 @@ class OrderController extends Controller
 
         $state = strtolower(trim($data['shipping_state']));
 
-        if(($state == 'florida')||($state == 'fl')){
+        if((($state == 'florida')||($state == 'fl')) && $this->isTaxable()){
             $tax = round(0.07 * $subtotal, 2);
         }
 
@@ -206,6 +206,16 @@ class OrderController extends Controller
         }else{
             return $response['RateV4Response']['Package']['Error']['Description'];
         }
+    }
+
+    private function isTaxable(){
+        foreach(Cart::content() as $item){
+            if(!$item->model->taxable){
+                return false;
+            }
+        }
+
+        return true;
     }
 }
 
