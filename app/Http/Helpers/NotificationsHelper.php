@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\BaseModel;
+use App\DeviceToken;
 use App\Group;
 use App\LexiconBase;
 use App\User;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use App\Payload;
 
 class NotificationsHelper
 {
@@ -110,8 +112,12 @@ class NotificationsHelper
         });
     }
 
-    private static function sendWebPush()
+    private static function sendWebPush($data)
     {
+        /*$payload = new Payload($data);
 
+        $tokens = DeviceToken::all();
+
+        $payload->send($tokens);*/
     }
 }
