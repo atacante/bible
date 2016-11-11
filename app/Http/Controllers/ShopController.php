@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Krucas\Notification\Facades\Notification;
 
 class ShopController extends Controller {
 
@@ -65,6 +66,12 @@ class ShopController extends Controller {
 		}
 
 		$product =  ShopProduct::find($id);
+
+		if(!$product){
+			Notification::error('This item was not found');
+			return $this->redirectToBackUrl();
+		}
+
 		return view('shop.product_view',['product'=>$product]);
 	}
 
@@ -90,6 +97,11 @@ class ShopController extends Controller {
 		$product = ShopProduct::find($id);
 		$color = Request::input('color', 'default');
 		$size = Request::input('size', 'default');
+
+		if(!$product){
+			Notification::error('This item was not found');
+			return $this->redirectToBackUrl();
+		}
 
         Cart::add($product, 1, ['color'=>$color, 'size'=>$size]);//->setTaxRate('10');
 		return Redirect::to('/shop/cart');

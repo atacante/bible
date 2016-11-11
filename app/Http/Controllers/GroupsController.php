@@ -727,7 +727,10 @@ class GroupsController extends Controller
     public function getLeaveGroup($id)
     {
         $group = Group::find($id);
-        Auth::user()->leaveGroup($group);
+
+        if(Auth::check()){
+            Auth::user()->leaveGroup($group);
+        }
 
         if(Request::ajax()){
             return 1;

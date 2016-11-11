@@ -411,10 +411,10 @@ class UserController extends Controller
         $myRequests = [];
         $myFriends = [];
         $relatedGroups = [];
-        if($user->myGroups->count()){
+        if($user && $user->myGroups->count()){
             $relatedGroups = array_merge($relatedGroups,$user->myGroups->all());
         }
-        if($user->joinedGroups->count()){
+        if($user && $user->joinedGroups->count()){
             $relatedGroups = array_merge($relatedGroups,$user->joinedGroups->all());
         }
         if(Auth::user()){
