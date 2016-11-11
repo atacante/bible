@@ -84,6 +84,17 @@ class NotificationsHelper
         return self::sendNotification($data);
     }
 
+    public static function groupRequest(Group $group){
+        $data['to'] = $group->owner->email;
+        $data['subject'] = "Bible Study Company: Notification";
+        $data['message'] = '
+            <p>Dear '.$group->owner->name.',</p>
+            <p>There has been some activity at BSC associated to your account.<br />
+            You have received a "group request" from another user to join your "'.$group->group_name.'" group. View it <a href="'.url('groups/view/'.$group->id.'?p=requests').'">here</a>.</p>
+            ';
+        return self::sendNotification($data);
+    }
+
     private static function checkData(array $data)
     {
         if(!isset($data['to']) || !isset($data['subject']) || !isset($data['message'])){

@@ -282,14 +282,24 @@ class GroupsController extends Controller
             $content['nextPage'] = $membersData['nextPage'];
         }
         elseif(Input::get('p') == 'requests'){
-            $requestsData = $this->getRequests($id);
-            $content['requests'] = $requestsData['requests'];
-            $content['nextPage'] = $requestsData['nextPage'];
+            if(Auth::check() && Auth::user()->id == $model->owner_id){
+                $requestsData = $this->getRequests($id);
+                $content['requests'] = $requestsData['requests'];
+                $content['nextPage'] = $requestsData['nextPage'];
+            }
+            else{
+                abort(401);
+            }
         }
         elseif(Input::get('p') == 'invitations'){
-            $requestsData = $this->getInvitations($id);
-            $content['invitations'] = $requestsData['invitations'];
-            $content['nextPage'] = $requestsData['nextPage'];
+            if(Auth::check() && Auth::user()->id == $model->owner_id){
+                $requestsData = $this->getInvitations($id);
+                $content['invitations'] = $requestsData['invitations'];
+                $content['nextPage'] = $requestsData['nextPage'];
+            }
+            else{
+                abort(401);
+            }
         }
         else {
             $statusesQuery = WallPost::with(['user', 'images'])
