@@ -25,7 +25,9 @@
         "gloudemans/shoppingcart":"dev-master",
         "escapework/laravel-asset-versioning":"0.3.*",
         "johnpaulmedina/laravel-usps": "dev-master",
-        "jenssegers/agent": "^2.3"
+        "jenssegers/agent": "^2.3",
+        "laravel-notification-channels/backport": "^1.0",
+        "developerdynamo/laravel-push-notification": "0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

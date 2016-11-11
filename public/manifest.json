@@ -1,0 +1,15 @@
+{
+  "short_name": "BSC",
+  "name": "Bible Study Company",
+  "icons": [
+    {
+      "src": "public/images/meta_logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "//": "Some browsers will use this to enable push notifications.",
+  "//": "It is the same for all projects, this is not your project's sender ID",
+  "gcm_sender_id": "103953800507"
+}

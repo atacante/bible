@@ -175,6 +175,9 @@ return [
         Laravel\CashierAuthorizeNet\CashierServiceProvider::class,
         Skovmand\Mailchimp\MailchimpServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
+//        NotificationChannels\WebPush\WebPushServiceProvider::class,
+        DeveloperDynamo\PushNotification\PushNotificationProvider::class,
 
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
@@ -273,6 +276,7 @@ return [
         'Cart'  => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Usps' => 'Usps\Facades\Usps',
         'Agent' => 'Jenssegers\Agent\Facades\Agent',
+        'NotificationBridge' => DeveloperDynamo\PushNotification\Facades\PushNotificationBridge::class,
     ],
     /*
     |--------------------------------------------------------------------------

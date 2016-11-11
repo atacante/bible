@@ -5,7 +5,7 @@
 {{ Form::hidden('lastStatusId', $lastIds['status'], ['id'=>'j-last-status-id']) }}
 
 @if($content['entries']->count())
-    @if(!ViewHelper::isRoute('groups.view') || (ViewHelper::isRoute('groups.view') && ViewHelper::checkWallAccess($model)))
+    @if(!ViewHelper::isRoute('groups.view') || (ViewHelper::isRoute('groups.view') && $model->checkAccess()))
         @foreach($content['entries'] as $item)
             <div class="related-item j-wall-item">
                 {{--<div class="user-image cu-ui1"></div>--}}

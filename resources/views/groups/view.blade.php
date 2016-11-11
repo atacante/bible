@@ -9,16 +9,20 @@
                     <div class="clearfix info-block">
                         <div class="widget-group-title">
                             {!! $model->group_name !!}
-                            <a class="count-members" href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">
-                                <i class="bs-friends"></i>
-                                {!! $model->members->count()+1 !!}
-                            </a>
+                            @if($model->checkAccess())
+
+                                <a class="count-members" href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">
+                                    <i class="bs-friends"></i>
+                                    {!! $model->members->count()+1 !!}
+                                </a>
+                            @endif
                         </div>
 
                         <div class="c-description-w">
                             {!! nl2br($model->group_desc) !!}
                         </div>
-                        @if($model->access_level != App\Group::ACCESS_SECRET || (Auth::user() && $model->owner_id == Auth::user()->id) || in_array($model->id,$content['joinedGroupsKeys']))
+
+                        @if($model->checkAccess())
                         <div>
                             <div class="widget-group-title2">
                                 Members
@@ -83,7 +87,7 @@
                                 @else
                                     <div class="group-controls pull-right" title="{!! Auth::user() && Auth::user()->isPremium() || in_array($model->id,$content['joinedGroupsKeys'])?'':'Premium Feature' !!} {!! Auth::user() && Auth::user()->isBanned('group',$model->id)?'You were banned from being part of this group':'' !!}">
                                         @if(Auth::check())
-                                            <a title="Cancel Request" href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[]) !!}" class="btn2-icon j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" data-toggle="modal"
+                                            <a title="Cancel Request" href="{!! url('/groups/cancel-request/'.$model->id.'/'.Auth::user()->id,[]) !!}" class="btn1-kit j-cancel-request {{(Auth::check() && in_array($model->id,Auth::user()->myGroupsRequests->modelKeys()))?'':'hidden'}}" data-toggle="modal"
                                                data-target="#cancel-request-sm" data-header="Cancel Request"
                                                data-confirm="Are you sure you want to cancel this request?">
                                                 <i class="bs-close cu-btn-ic"></i>
@@ -104,7 +108,7 @@
                     <li role="presentation" class="{!! !Request::get('p')?'active':'' !!}">
                         <a href="{!! url('/groups/view/'.$model->id) !!}">Feed</a>
                     </li>
-                    @if($model->access_level != App\Group::ACCESS_SECRET || (Auth::user() && $model->owner_id == Auth::user()->id) || in_array($model->id,$content['joinedGroupsKeys']))
+                    @if($model->checkAccess())
                     <li role="presentation" class="{!! (Request::get('p') == 'members' && !Request::get('type'))?'active':'' !!}">
                         <a href="{!! url('/groups/view/'.$model->id.'?p=members') !!}">Members</a>
                     </li>
@@ -129,14 +133,15 @@
             {{--@endrole--}}
 
                 @if(Request::get('p') == 'members')
-                    <div class="row cu1-row">
-                        <div class="col-xs-12 related-records j-members-list">
-                            <div class="row">
-                                @include('groups.members')
+                    @if($model->checkAccess())
+                        <div class="row cu1-row">
+                            <div class="col-xs-12 related-records j-members-list">
+                                <div class="row">
+                                    @include('groups.members')
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    @endif
                 @elseif(Request::get('p') == 'invitations')
                     <div class="row cu1-row">
                         <div class="col-xs-12 related-records j-members-list">
@@ -157,12 +162,12 @@
                     <div class="row">
                         <div class="col-xs-12 group-wall">
                             <div class="c-white-content related-records public-wall j-wall-items" data-walltype="{{App\WallPost::WALL_TYPE_GROUP}}">
-                                @if(Auth::check() && Auth::user()->is('user') && (in_array(Auth::user()->id,$model->members->modelKeys()) || Auth::user()->id == $model->owner_id))
+                                @if(Auth::check() && Auth::user()->is('user') && $model->isUserInGroup())
                                     @include('wall-posts.status-form',['wallType' => App\WallPost::WALL_TYPE_GROUP,'groupId' => $model->id])
                                 @endif
                                 @include('community.wall-items')
                             </div>
-                            @if(ViewHelper::checkWallAccess($model) && $content['nextPage'])
+                            @if($model->checkAccess() && $content['nextPage'])
                                 <div class="load-more-block mt3 mb1">
                                     <div class="text-center">
                                         {!! Html::link('/groups/view/'.$model->id.'?'.http_build_query(

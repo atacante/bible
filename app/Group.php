@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 
@@ -10,7 +11,6 @@ class Group extends BaseModel
 {
     const ACCESS_PUBLIC = 'public';
     const ACCESS_SECRET = 'private';
-    const ACCESS_PUBLIC_MEMBERS = 'public_members';
 
     public $timestamps = true;
 
@@ -95,5 +95,22 @@ class Group extends BaseModel
             return in_array($this->id,$user->groupsBanned->modelKeys());
         }
         return false;
+    }
+
+    public function checkAccess()
+    {
+        return
+            ($this->access_level == self::ACCESS_PUBLIC) ||
+            $this->isUserInGroup();
+    }
+
+    public function isUserInGroup()
+    {
+        return
+            Auth::check() &&
+            (
+                (in_array(Auth::user()->id,$this->members->modelKeys()) ||
+                (Auth::user() && $this->owner_id == Auth::user()->id))
+            );
     }
 }
