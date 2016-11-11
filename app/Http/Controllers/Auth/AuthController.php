@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Helpers\ViewHelper;
 use App\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
@@ -162,7 +163,29 @@ class AuthController extends Controller
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
         }
-        return $this->showLoginForm();
+        $view = property_exists($this, 'loginView')
+            ? $this->loginView : 'auth.authenticate';
+
+        if (view()->exists($view)) {
+            return view($view);
+        }
+
+        if(Request::ajax()){
+            return view('auth.login_popup_form');
+        }
+        return view('auth.login');
+    }
+
+    protected function sendFailedLoginResponse(\Illuminate\Http\Request $request)
+    {
+        if (($request->ajax() && ! $request->pjax()) || $request->wantsJson()) {
+            return new JsonResponse([$this->loginUsername() => [$this->getFailedLoginMessage()]], 422);
+        }
+        return redirect()->back()
+            ->withInput($request->only($this->loginUsername(), 'remember'))
+            ->withErrors([
+                $this->loginUsername() => $this->getFailedLoginMessage(),
+            ]);
     }
 
     public function getRegister()

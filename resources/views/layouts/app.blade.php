@@ -80,7 +80,7 @@
 
     <link rel="shortcut icon" href="{!! asset('favicon.ico')  !!} ">
 </head>
-<body class="{{ Request::segment(1)}} {{ Request::segment(2)}}">
+<body class="{{ Request::segment(1)}} {{ Request::segment(2)}}" data-logged="{!! (int)Auth::check() !!}">
     <script>window.inlineManualOptions = { language: 'en'};</script>
     <script>!function () {
             var e = document.createElement("script"), t = document.getElementsByTagName("script")[0];

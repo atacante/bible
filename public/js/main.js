@@ -1,5 +1,9 @@
 
 $(document).ready(function(){
+
+    if($('body[data-logged=0].community .public-wall').length > 0){
+        site.showLoginPopup();
+    }
     var clipboard = new Clipboard('.copy');
     var hidev = true;
     clipboard.on('success', function(e) {
@@ -710,7 +714,7 @@ $(document).ready(function(){
             },
             error:function(e){
                 if(e.status == 403){
-                    site.showAuthWarning();
+                    site.showLoginPopup();
                 }
             }
         });
@@ -892,7 +896,7 @@ $(document).ready(function(){
             },
             error:function(e){
                 if(e.status = 401){
-                    location.href = url;
+                    site.showLoginPopup();
                 }
             }
         });
@@ -945,7 +949,7 @@ $(document).ready(function(){
             },
             error:function(e){
                 if(e.status = 401){
-                    location.href = url;
+                    site.showLoginPopup();
                 }
             }
         });
@@ -998,7 +1002,7 @@ $(document).ready(function(){
             },
             error:function(e){
                 if(e.status = 401){
-                    location.href = url;
+                    site.showLoginPopup();
                 }
             }
         });
@@ -1116,7 +1120,7 @@ $(document).ready(function(){
         });
     });
 
-    $('#popup').on('click','#note-form button[type="submit"], #journal-form button[type="submit"],#prayer-form button[type="submit"]',function(e){
+    $('#popup,#popup-sm').on('click','#login-form button[type="submit"],#note-form button[type="submit"], #journal-form button[type="submit"],#prayer-form button[type="submit"]',function(e){
         e.preventDefault();
         var form = $(this).parents('form');
         site.ajaxForm(form);
@@ -1216,8 +1220,10 @@ $(document).ready(function(){
                     $(that).toggleClass('hidden');
                 }
             },
-            error:function(data){
-                location.href = url;
+            error:function(err){
+                if(err.status == 401) {
+                    site.showLoginPopup();
+                }
             }
         });
     });
@@ -1984,7 +1990,7 @@ $(document).ready(function(){
             },
             error:function(err){
                 if(err.status){
-                    site.showAuthWarning();
+                    site.showLoginPopup();
                 }
             }
         });

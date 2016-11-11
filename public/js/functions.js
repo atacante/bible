@@ -413,9 +413,9 @@ site.ajaxForm = function(form,callback){
         },
         error:function(data){
             $.each(data.responseJSON, function(index,value){
-                var formGroup = $(':input[name="'+index+'"],:input[name="'+index+'[]"]').parent('.form-group');
+                var formGroup = $(':input[name="'+index+'"],:input[name="'+index+'[]"]').parents('.form-group');
                 formGroup.addClass('has-error');
-                formGroup.append('<span class="help-block">'+value[0]+'</span>');
+                formGroup.append('<span class="help-block">'+(data.responseJSON.length == 1?value:value[0])+'</span>');
             });
         }
     });
@@ -564,6 +564,20 @@ site.showAuthWarning = function(text){
         '<a href="/auth/login" class="btn2-kit cu-btn-pad1 btn-ok" style="margin-left: 7px;">Login</a>' +
         '');
     $('#popup-sm').modal({show:true});
+}
+
+site.showLoginPopup = function(){
+    $.ajax({
+        method: "GET",
+        url: "/auth/login",
+        dataType: "html",
+        success:function(data){
+            $('#popup-sm').find('.modal-header .modal-title').html('<i class="bs-login cu-login" style="vertical-align: middle;"></i> Login');
+            $('#popup-sm').find('.modal-body').css('padding','30px 30px 0px').html(data);
+            $('#popup-sm').find('.modal-footer').html('');
+            $('#popup-sm').modal({show:true});
+        }
+    });
 }
 
 site.showPremiumWarning = function(){

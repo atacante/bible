@@ -78,7 +78,7 @@
 
     <link rel="shortcut icon" href="{!! asset('favicon.ico')  !!} ">
 </head>
-<body class="home">
+<body class="home" data-logged="{!! (int)Auth::check() !!}">
     <script>window.inlineManualOptions = { language: 'en'};</script>
     <script>!function () {
             var e = document.createElement("script"), t = document.getElementsByTagName("script")[0];
