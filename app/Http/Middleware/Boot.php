@@ -25,9 +25,6 @@ class Boot
             if(ViewHelper::isRoute('reader.read') || ViewHelper::isRoute('reader.verse')){
                 $user->last_reader_url = str_replace(Request::root(),'',Request::fullUrl());
             }
-            elseif(!ViewHelper::isRoute('auth.logout')){
-                $user->last_reader_url = null;
-            }
             $user->save();
         }
         return $next($request);
