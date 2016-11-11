@@ -441,10 +441,10 @@ class ReaderController extends Controller
         $content['totalReferences'] = $references['totalRef'];
 
         $strong_num = $content['title'] = $num;
-        if($content['strongs_concordance']->count()){
+        if($content['strongs_concordance']){
             $strong_num .= " - ".$content['strongs_concordance']->transliteration;
         }
-        elseif($content['strongs_nasec']->count()){
+        elseif($content['strongs_nasec']){
             $strong_num .= " - ".$content['strongs_nasec']->transliteration;
         }
         $content['title'] = $strong_num;

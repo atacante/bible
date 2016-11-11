@@ -23,6 +23,9 @@ class BaseModel extends Model {
 
     public static function getVersesModelByVersionCode($name)
     {
+        if($name == 'all'){
+            $name = Config::get('app.defaultBibleVersion');
+        }
         $locale = Config::get('app.locale');// temporary static variable
         $tables_prefix = 'verses_';
         $tables_suffix = '_'.$locale;
