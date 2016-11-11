@@ -41,5 +41,9 @@ return [
 
     'usps' => [
         'username' => env('USPS_USERNAME'),
-    ]
+    ],
+    'gcm' => [
+        'key' => 'AIzaSyDV7HoNFd1wo2FB3Zpy1JPBPnepHNn01WU',
+        'sender_id' => '',
+    ],
 ];
