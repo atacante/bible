@@ -227,6 +227,9 @@ class User extends Authenticatable
         if($group->access_level != Group::ACCESS_SECRET || $group->joinRequests()->where('user_id',$this->id)->first()){
             $data['approved'] = true;
         }
+        else{
+            NotificationsHelper::groupRequest($group);
+        }
         $this->joinedGroups()->attach($group->id,$data);
         $group->joinRequests()->detach($this->id);
     }

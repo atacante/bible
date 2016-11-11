@@ -152,7 +152,7 @@ class AuthController extends Controller
 
     public function authenticated()
     {
-        if(Auth::check() && Auth::user()->is(Config::get('app.role.user')) && Auth::user()->last_reader_url){
+        if(!Session::has('url.intended') && Auth::check() && Auth::user()->is(Config::get('app.role.user')) && Auth::user()->last_reader_url){
             return redirect(Auth::user()->last_reader_url);
         }
         return redirect()->intended($this->redirectPath());
