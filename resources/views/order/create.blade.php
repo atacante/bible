@@ -226,6 +226,7 @@
                     </div>
                 </div>
                 <hr />
+                @if($taxable)
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         {!! Form::button('Quote Shipping Rate', ['type'=>'button','class'=>'btn2-kit j-quote-rate']) !!}
@@ -233,6 +234,7 @@
                     </div>
                 </div>
                 <hr />
+                @endif
                 <div class="row">
                     <div class="col-xs-12 col-md-3">
                         <div class="form-group {{ $errors->has('card_number') ? ' has-error' : '' }}">

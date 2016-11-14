@@ -166,6 +166,7 @@ class OrderController extends Controller
 
         return view('order.create',
             [
+                'taxable'=>$this->isTaxable(),
                 'model' => $model,
                 'user_id' => $user_id,
                 'page_title' => 'Create New Order'
