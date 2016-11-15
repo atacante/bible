@@ -62,12 +62,13 @@ class OrderController extends Controller
 
         //Retrieve cart information
         $subtotal = Cart::total(2,'.','');
+        $taxable = $subtotal - $this->getUntaxablePrice();
         $tax = 0.00;
 
         $state = strtolower(trim($data['shipping_state']));
 
-        if((($state == 'florida')||($state == 'fl')) && $this->isTaxable()){
-            $tax = round(0.07 * $subtotal, 2);
+        if((($state == 'florida')||($state == 'fl'))){
+            $tax = round(0.07 * $taxable, 2);
         }
 
         $total = $subtotal + $tax + $usps_rate;
@@ -166,6 +167,7 @@ class OrderController extends Controller
 
         return view('order.create',
             [
+                'taxable'=>$this->isTaxable(),
                 'model' => $model,
                 'user_id' => $user_id,
                 'page_title' => 'Create New Order'
@@ -210,12 +212,24 @@ class OrderController extends Controller
 
     private function isTaxable(){
         foreach(Cart::content() as $item){
-            if(!$item->model->taxable){
-                return false;
+            if($item->model->taxable){
+                return true;
             }
         }
 
-        return true;
+        return false;
+    }
+
+    private function getUntaxablePrice(){
+        $price = 0.00;
+
+        foreach(Cart::content() as $item){
+            if(!$item->model->taxable){
+                $price += $item->model->price;
+            }
+        }
+
+        return $price;
     }
 }
 

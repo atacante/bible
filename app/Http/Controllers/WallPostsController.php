@@ -31,7 +31,9 @@ class WallPostsController extends Controller
             if ($model = $model->create($data)) {
                 if($model->rel_id){
                     $group = Group::find($model->rel_id);
-                    NotificationsHelper::groupWallItem($group);
+                    if($model->access_level != 'private'){
+                        NotificationsHelper::groupWallItem($group);
+                    }
                 }
             }
             if (!Request::ajax()) {
