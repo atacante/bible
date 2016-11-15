@@ -18,7 +18,7 @@ use App\Providers\CustomAuthorizeNet\Billable;
 
 class User extends Authenticatable
 {
-use Notifiable;
+    use Notifiable;
     use HasRole;
     use Billable;
 
