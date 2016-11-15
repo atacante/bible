@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WallComment extends BaseModel
 {
-    protected $fillable = array('user_id', 'text');
+    protected $fillable = ['user_id', 'text'];
 
     public function user()
     {

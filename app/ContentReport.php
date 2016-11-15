@@ -4,7 +4,7 @@ namespace App;
 
 class ContentReport extends BaseModel
 {
-    protected $fillable = array('user_id', 'reason_text');
+    protected $fillable = ['user_id', 'reason_text'];
 
     public function rules()
     {

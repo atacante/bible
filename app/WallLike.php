@@ -4,7 +4,7 @@ namespace App;
 
 class WallLike extends BaseModel
 {
-    protected $fillable = array('user_id');
+    protected $fillable = ['user_id'];
 
     public function user()
     {

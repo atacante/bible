@@ -11,7 +11,7 @@ class VersesEn extends BaseModel
     protected $table = 'verses_king_james_en';
     protected $fillable = ['id', 'book_id', 'chapter_num', 'verse_num', 'verse_text'];
 
-    public function __construct($value = null, array $attributes = array())
+    public function __construct($value = null, array $attributes = [])
     {
         parent::__construct($attributes);
         if ($value) {

@@ -15,7 +15,7 @@ class Lexicon extends BaseModel
     protected $table = 'lexicon_kjv';
     protected $fillable = ['id', 'book_id','chapter_num','verse_num','verse_part','strong_num','strong_1_word_def','transliteration','symbolism','definition','verse_part_el','verse_part_he'];
 
-    public function __construct($value = null, array $attributes = array())
+    public function __construct($value = null, array $attributes = [])
     {
         parent::__construct($attributes);
         if ($value) {

@@ -149,7 +149,7 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'community', 'uses' => 'CommunityController@getWall'
     ]);
 
-    Route::get('/notes/comments', array('uses' => 'NotesController@getComments'));
+    Route::get('/notes/comments', ['uses' => 'NotesController@getComments']);
 
     Route::controllers([
         'auth' => 'Auth\AuthController',
@@ -161,11 +161,11 @@ Route::get('invite/{id}', function ($id) {
     return redirect('auth/register?invite='.$id);
 });
 
-Route::get('notes/comments/{id}', array('middleware' => 'web', 'uses' => 'NotesController@getComments'));
-Route::get('journal/comments/{id}', array('middleware' => 'web', 'uses' => 'JournalController@getComments'));
-Route::get('prayers/comments/{id}', array('middleware' => 'web', 'uses' => 'PrayersController@getComments'));
-Route::get('wall-posts/comments/{id}', array('middleware' => 'web', 'uses' => 'WallPostsController@getComments'));
-Route::get('user/view/{id}', array('middleware' => 'web', 'uses' => 'UserController@getView'));
+Route::get('notes/comments/{id}', ['middleware' => 'web', 'uses' => 'NotesController@getComments']);
+Route::get('journal/comments/{id}', ['middleware' => 'web', 'uses' => 'JournalController@getComments']);
+Route::get('prayers/comments/{id}', ['middleware' => 'web', 'uses' => 'PrayersController@getComments']);
+Route::get('wall-posts/comments/{id}', ['middleware' => 'web', 'uses' => 'WallPostsController@getComments']);
+Route::get('user/view/{id}', ['middleware' => 'web', 'uses' => 'UserController@getView']);
 
 Route::group([
         'middleware' => ['auth', 'acl'],

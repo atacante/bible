@@ -791,7 +791,7 @@ class GroupsController extends Controller
             }
             // Resizing 340x340
             Image::make($file->getRealPath())->fit(200, 200)->save($thumbPath)->destroy();
-            return response()->json(array('filename'=> $fileName), 200);
+            return response()->json(['filename'=> $fileName], 200);
         }
         return false;
     }
