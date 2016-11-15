@@ -26,10 +26,10 @@ class ClearRelationsSeeder extends Seeder
         $usersIds = User::whereHas('roles', function ($q) {
             $q->whereNotIn('slug', [Config::get('app.role.admin')]);
         })
-            ->lists('id')
+            ->pluck('id')
             ->toArray();
-        $groupsIds = Group::lists('id')->toArray();
-        $blogIds = BlogArticle::lists('id')->toArray();
+        $groupsIds = Group::pluck('id')->toArray();
+        $blogIds = BlogArticle::pluck('id')->toArray();
 
         Group::whereNotIn('owner_id', $usersIds)->delete();
         GroupUser::whereNotIn('user_id', $usersIds)->delete();

@@ -565,7 +565,7 @@ class ReaderController extends Controller
     {
         $orderDirection = Input::get('relations-order', 'desc');
         $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
-        $versesIds = $versesModel::where('book_id', $book)->where('chapter_num', $chapter)->lists('id')->toArray();
+        $versesIds = $versesModel::where('book_id', $book)->where('chapter_num', $chapter)->pluck('id')->toArray();
         $journalQuery = Journal::with('verse')
             ->selectRaw('id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type')
             ->where('user_id', Auth::user()?Auth::user()->id:null)

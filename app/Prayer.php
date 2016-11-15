@@ -127,7 +127,7 @@ class Prayer extends BaseModel implements WallItem
 
     public function availableTags()
     {
-        return Tag::where('type', Tag::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->lists('tag_name', 'id')->toArray();
+        return Tag::where('type', Tag::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->pluck('tag_name', 'id')->toArray();
     }
 
     public function syncTags($tags)

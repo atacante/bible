@@ -39,6 +39,6 @@ class Tag extends BaseModel
 
     public static function availableTags()
     {
-        return self::where('type', self::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->lists('tag_name', 'id')->toArray();
+        return self::where('type', self::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->pluck('tag_name', 'id')->toArray();
     }
 }

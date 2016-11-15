@@ -98,7 +98,7 @@ class ReportsController extends Controller
             $q->whereNotIn('slug', [Config::get('app.role.admin')]);
 });
         $users = $this->prepareFilters($users);
-        $userIds = $users->lists('id')->toArray();
+        $userIds = $users->pluck('id')->toArray();
         $content['users'] = $users->paginate(20);
 
         $content['notesCount'] = Note::whereIn('user_id', $userIds)->count();

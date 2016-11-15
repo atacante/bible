@@ -72,10 +72,10 @@ class Location extends BaseModel
         if ($verses->get()->count()) {
             switch ($action) {
                 case 'attach':
-                    $this->verses()->attach($verses->lists('id')->toArray());
+                    $this->verses()->attach($verses->pluck('id')->toArray());
                     break;
                 case 'detach':
-                    $this->verses()->detach($verses->lists('id')->toArray());
+                    $this->verses()->detach($verses->pluck('id')->toArray());
                     break;
             }
         }
@@ -120,7 +120,7 @@ class Location extends BaseModel
             $sq->orWhere('verse_part', 'like', '% '.$locationName.'.%');
         });
 
-        $ids = array_unique(array_merge($nasbPhrases->lists('id')->toArray(), $kjvPhrases->lists('id')->toArray(), $bereanPhrases->lists('id')->toArray()));
+        $ids = array_unique(array_merge($nasbPhrases->pluck('id')->toArray(), $kjvPhrases->pluck('id')->toArray(), $bereanPhrases->pluck('id')->toArray()));
 
         if (count($ids)) {
             switch ($action) {

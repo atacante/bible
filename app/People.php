@@ -45,10 +45,10 @@ class People extends BaseModel
         if ($verses->get()->count()) {
             switch ($action) {
                 case 'attach':
-                    $this->verses()->attach($verses->lists('id')->toArray());
+                    $this->verses()->attach($verses->pluck('id')->toArray());
                     break;
                 case 'detach':
-                    $this->verses()->detach($verses->lists('id')->toArray());
+                    $this->verses()->detach($verses->pluck('id')->toArray());
                     break;
             }
         }
@@ -92,7 +92,7 @@ class People extends BaseModel
             $sq->orWhere('verse_part', 'like', '% '.$characterName.'.%');
         });
 
-        $ids = array_unique(array_merge($nasbPhrases->lists('id')->toArray(), $kjvPhrases->lists('id')->toArray(), $bereanPhrases->lists('id')->toArray()));
+        $ids = array_unique(array_merge($nasbPhrases->pluck('id')->toArray(), $kjvPhrases->pluck('id')->toArray(), $bereanPhrases->pluck('id')->toArray()));
 
         if (count($ids)) {
             switch ($action) {
@@ -112,7 +112,7 @@ class People extends BaseModel
 
 //                ->update(['symbolism' => '...']);
 //            ModelHelper::cacheSymbolismForBeginnerMode($versesModel::query()->get(),LexiconsListEn::getLexiconCodeByBibleVersion($version));
-            /*LexiconKjv::whereIn('id',$this->lexicons()->lists('lexicon_id')->toArray())
+            /*LexiconKjv::whereIn('id',$this->lexicons()->pluck('lexicon_id')->toArray())
                 ->where(function($sq){
                     $sq->orwhere('symbolism','');
                     $sq->orWhere('symbolism',null);
@@ -120,7 +120,7 @@ class People extends BaseModel
                 ->get(['id']);*/
 //                ->update(['symbolism' => '...']);
 //            ModelHelper::cacheSymbolismForBeginnerMode($versesModel::query()->get(),LexiconsListEn::getLexiconCodeByBibleVersion($version));
-            /*LexiconBerean::whereIn('id',$this->lexicons()->lists('lexicon_id')->toArray())
+            /*LexiconBerean::whereIn('id',$this->lexicons()->pluck('lexicon_id')->toArray())
                 ->where(function($sq){
                     $sq->orwhere('symbolism','');
                     $sq->orWhere('symbolism',null);

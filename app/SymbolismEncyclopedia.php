@@ -87,7 +87,7 @@ class SymbolismEncyclopedia extends BaseModel
         /*switch($action){
             case 'attach':
                 $nasbPhrases = LexiconNasb::where('verse_part','ilike','%'.$termName.'%');
-                $nasbVerses = VersesNasbEn::whereIn('id',$nasbPhrases->lists('verse_id')->toArray());
+                $nasbVerses = VersesNasbEn::whereIn('id',$nasbPhrases->pluck('verse_id')->toArray());
                 $nasbPhrases->update(['symbolism' => $this->term_description]);
                 $bereanPhrases = LexiconBerean::where('verse_part','ilike','%'.$termName.'%')->update(['symbolism' => $this->term_description]);
                 $kjvPhrases = LexiconKjv::where('verse_part','ilike','%'.$termName.'%')->update(['symbolism' => $this->term_description]);
