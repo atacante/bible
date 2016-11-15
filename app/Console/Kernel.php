@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
         Commands\CacheLexicon::class,
         Commands\CacheSymbolism::class,
         Commands\CheckCouponExpiration::class,
+        Commands\RecacheSomeLexiconItems::class,
         \App\Providers\CustomAuthorizeNet\Console\SubscriptionUpdates::class,
 
     ];

@@ -38,9 +38,14 @@ class ModelHelper
                 }
 
                 foreach ($parts as $key => $part) {
-                    $part = str_replace('[','<i>',$part);
-                    $part = str_replace(']','</i>',$part);
-                    $verse->verse_text_with_lexicon = str_replace($part,"<-$key->".$part."<|>",$verse->verse_text_with_lexicon);
+                    $partNew = str_replace('[','<i>',$part);
+                    $partNew = str_replace(']','</i>',$partNew);
+                    $verse->verse_text_with_lexicon = str_replace($partNew,"<-$key->".$partNew."<|>",$verse->verse_text_with_lexicon,$count);
+                    if($count == 0){
+                        $partNew = str_replace('[','',$part);
+                        $partNew = str_replace(']','',$partNew);
+                        $verse->verse_text_with_lexicon = str_replace($partNew,"<-$key->".$partNew."<|>",$verse->verse_text_with_lexicon);
+                    }
                 }
 
                 $verse->verse_text_with_lexicon = str_replace("<-","<span class='word-definition'  data-lexversion= \"".$version."\" data-lexid=\"",$verse->verse_text_with_lexicon);
