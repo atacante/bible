@@ -12,8 +12,7 @@ class DropColumnImgFromArticle extends Migration
      */
     public function up()
     {
-        Schema::table('blog_articles', function($table)
-        {
+        Schema::table('blog_articles', function ($table) {
             $table->dropColumn('img');
         });
     }
@@ -25,8 +24,7 @@ class DropColumnImgFromArticle extends Migration
      */
     public function down()
     {
-        Schema::table('blog_articles', function($table)
-        {
+        Schema::table('blog_articles', function ($table) {
             $table->string('img');
         });
     }

@@ -31,38 +31,41 @@ class WallPost extends BaseModel implements WallItem
         ];
     }
 
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
-        static::deleting(function($model) {
+        static::deleting(function ($model) {
             return true;
         });
     }
 
-    public function text() {
+    public function text()
+    {
         return $this->status_text;
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function comments()
     {
-        return $this->morphMany('App\WallComment','item','type')->orderBy('created_at','desc');
+        return $this->morphMany('App\WallComment', 'item', 'type')->orderBy('created_at', 'desc');
     }
 
     public function contentReports()
     {
-        return $this->morphMany('App\ContentReport','item','item_type')->orderBy('created_at','desc');
+        return $this->morphMany('App\ContentReport', 'item', 'item_type')->orderBy('created_at', 'desc');
     }
 
     public function images()
     {
-        return $this->morphMany('App\WallImage','item','item_type');
+        return $this->morphMany('App\WallImage', 'item', 'item_type');
     }
 
     public function likes()
     {
-        return $this->morphToMany('App\User','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+        return $this->morphToMany('App\User', 'item', 'wall_likes')->orderBy('wall_likes.created_at', 'desc');
     }
 }

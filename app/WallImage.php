@@ -11,7 +11,8 @@ class WallImage extends Model
     protected $table = 'wall_images';
     protected $fillable = ['user_id','image'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 

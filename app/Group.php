@@ -27,11 +27,10 @@ class Group extends BaseModel
 //            'group_email' => 'required|unique:groups',
         ];
 
-        switch(Request::method())
-        {
+        switch (Request::method()) {
             case 'PUT':
             {
-             //   $rules['group_email'] = 'required|unique:groups,group_email,'.$this->id;
+                 //   $rules['group_email'] = 'required|unique:groups,group_email,'.$this->id;
             }
                 break;
         }
@@ -39,13 +38,15 @@ class Group extends BaseModel
         return $rules;
     }
 
-    public function owner() {
+    public function owner()
+    {
         return $this->belongsTo(User::class, 'owner_id', 'id');
     }
 
-    public function members() {
+    public function members()
+    {
         $members = $this->belongsToMany(User::class, 'groups_users', 'group_id', 'user_id')->withTimestamps();
-        $members->where('banned',false)->where('approved',true);
+        $members->where('banned', false)->where('approved', true);
 //        if(Input::get('type') == 'banned'){
 //            $members->where('banned',true);
 //        }
@@ -55,10 +56,11 @@ class Group extends BaseModel
         return $members;
     }
 
-    public function userRequests() {
+    public function userRequests()
+    {
         return $this->belongsToMany(User::class, 'groups_users', 'group_id', 'user_id')
-            ->where('banned',false)
-            ->where('approved',false)
+            ->where('banned', false)
+            ->where('approved', false)
             ->withTimestamps();
     }
 
@@ -84,15 +86,14 @@ class Group extends BaseModel
 
     public function checkUserBanned($userId = false)
     {
-        if($userId){
+        if ($userId) {
             $user = User::find($userId);
-        }
-        else{
+        } else {
             $user = Auth::user();
         }
 
-        if($user){
-            return in_array($this->id,$user->groupsBanned->modelKeys());
+        if ($user) {
+            return in_array($this->id, $user->groupsBanned->modelKeys());
         }
         return false;
     }
@@ -109,7 +110,7 @@ class Group extends BaseModel
         return
             Auth::check() &&
             (
-                (in_array(Auth::user()->id,$this->members->modelKeys()) ||
+                (in_array(Auth::user()->id, $this->members->modelKeys()) ||
                 (Auth::user() && $this->owner_id == Auth::user()->id))
             );
     }

@@ -36,7 +36,7 @@ class PeopleSeeder extends Seeder
             DB::statement("ALTER SEQUENCE people_images_id_seq RESTART WITH 1");
 
             foreach ($excelData as $key => $row) {
-                if($row['person_place'] == 'Person' && !empty($row['word'])){
+                if ($row['person_place'] == 'Person' && !empty($row['word'])) {
                     $data['associate_verses'] = true;
                     $data['people_name'] = $row['word'];
                     $data['people_description'] = !empty($row['short_tag_definition'])?$row['short_tag_definition']:' ';

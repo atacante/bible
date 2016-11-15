@@ -45,41 +45,39 @@ class RecacheSomeLexiconItems extends Command
     public function handle()
     {
         ini_set('memory_limit', '768M');
-        if ($this->confirm('Cache process may reduce server performance during execution and may take a lot of time. Do you wish to continue? [yes|no]'))
-        {
-            $nasbPhrases = LexiconNasb::where(function($sq){
-                $sq->orWhere('verse_part','like','%[%');
-                $sq->orWhere('verse_part','like','%]%');
+        if ($this->confirm('Cache process may reduce server performance during execution and may take a lot of time. Do you wish to continue? [yes|no]')) {
+            $nasbPhrases = LexiconNasb::where(function ($sq) {
+                $sq->orWhere('verse_part', 'like', '%[%');
+                $sq->orWhere('verse_part', 'like', '%]%');
             })->get();
-            if($nasbPhrases->count() > 0){
+            if ($nasbPhrases->count() > 0) {
                 foreach ($nasbPhrases as $nasbPhrase) {
                     $nasbPhrase->cacheVerse();
                 }
             }
 
-            $kjvPhrases = LexiconKjv::where(function($sq){
-                $sq->orWhere('verse_part','like','%[%');
-                $sq->orWhere('verse_part','like','%]%');
+            $kjvPhrases = LexiconKjv::where(function ($sq) {
+                $sq->orWhere('verse_part', 'like', '%[%');
+                $sq->orWhere('verse_part', 'like', '%]%');
             })->get();
-            if($kjvPhrases->count() > 0){
+            if ($kjvPhrases->count() > 0) {
                 foreach ($kjvPhrases as $kjvPhrase) {
                     $kjvPhrase->cacheVerse();
                 }
             }
 
-            $bereanPhrases = LexiconBerean::where(function($sq){
-                $sq->orWhere('verse_part','like','%[%');
-                $sq->orWhere('verse_part','like','%]%');
+            $bereanPhrases = LexiconBerean::where(function ($sq) {
+                $sq->orWhere('verse_part', 'like', '%[%');
+                $sq->orWhere('verse_part', 'like', '%]%');
             })->get();
-            if($bereanPhrases->count() > 0){
+            if ($bereanPhrases->count() > 0) {
                 foreach ($bereanPhrases as $bereanPhrase) {
                     $bereanPhrase->cacheVerse();
                 }
             }
 
             $this->info('Caching has been completed successfully!');
-        }
-        else{
+        } else {
             $this->error('Caching has been canceled!');
         }
     }

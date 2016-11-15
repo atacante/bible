@@ -43,19 +43,17 @@ class CacheSymbolism extends Command
     public function handle()
     {
         ini_set('memory_limit', '768M');
-        if(!$version = $this->option('ver')){
+        if (!$version = $this->option('ver')) {
             $version = 'king_james';
         }
-        if ($this->confirm('Cache process may reduce server performance during execution and may take a lot of time. Do you wish to continue? [yes|no]'))
-        {
+        if ($this->confirm('Cache process may reduce server performance during execution and may take a lot of time. Do you wish to continue? [yes|no]')) {
             $this->info('Bible Version - '.$version);
             $versesModel = BaseModel::getVersesModelByVersionCode($version);
             $this->info('Caching in process...');
 //            $versesModel::cacheSymbolismForBeginnerMode();
-            ModelHelper::cacheSymbolismForBeginnerMode($versesModel::query()->get(),LexiconsListEn::getLexiconCodeByBibleVersion($version));
+            ModelHelper::cacheSymbolismForBeginnerMode($versesModel::query()->get(), LexiconsListEn::getLexiconCodeByBibleVersion($version));
             $this->info('Caching has been completed successfully!');
-        }
-        else{
+        } else {
             $this->error('Caching has been canceled!');
         }
     }

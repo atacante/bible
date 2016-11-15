@@ -12,8 +12,7 @@ class AlterTableOrders extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function($table)
-        {
+        Schema::table('orders', function ($table) {
             $table->string('transaction_id')->nullable()->change();
         });
     }
@@ -25,8 +24,7 @@ class AlterTableOrders extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function($table)
-        {
+        Schema::table('orders', function ($table) {
             $table->integer('transaction_id', false, true)->nullable()->change();
         });
     }

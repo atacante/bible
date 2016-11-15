@@ -12,8 +12,7 @@ class AlterShopProductAddTaxable extends Migration
      */
     public function up()
     {
-        Schema::table('shop_products', function($table)
-        {
+        Schema::table('shop_products', function ($table) {
             $table->boolean('taxable')->default(true);
         });
     }
@@ -25,8 +24,7 @@ class AlterShopProductAddTaxable extends Migration
      */
     public function down()
     {
-        Schema::table('shop_products', function($table)
-        {
+        Schema::table('shop_products', function ($table) {
             $table->dropColumn('taxable');
         });
     }

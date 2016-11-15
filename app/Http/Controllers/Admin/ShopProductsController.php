@@ -26,14 +26,14 @@ class ShopProductsController extends Controller
         $categoryFilter = Input::get('category', false);
 
         if (!empty($searchFilter)) {
-            $model->where(function($ow) use ($searchFilter) {
+            $model->where(function ($ow) use ($searchFilter) {
                 $ow->where('name', 'ilike', '%' . $searchFilter . '%');
                 $ow->orWhere('short_description', 'ilike', '%' . $searchFilter . '%');
                 $ow->orWhere('long_description', 'ilike', '%' . $searchFilter . '%');
             });
         }
 
-        if(!empty($categoryFilter)){
+        if (!empty($categoryFilter)) {
             $model->where('category_id', $categoryFilter);
         }
 
@@ -50,18 +50,20 @@ class ShopProductsController extends Controller
         $productModel = $this->prepareFilters($productModel);
 
         $content['products'] = $productModel->with(['category','images'])->orderBy('created_at', SORT_DESC)->paginate(20);
-        return view('admin.shop.products.list',
+        return view(
+            'admin.shop.products.list',
             [
                 'page_title' => 'Products',
                 'content' => $content,
                 'filterAction' => 'shop-products/list/',
-            ]);
+            ]
+        );
     }
 
     public function anyCreate(\Illuminate\Http\Request $request)
     {
         $model = new ShopProduct();
-        $categories = ShopCategory::get()->pluck('title','id')->toArray();
+        $categories = ShopCategory::get()->pluck('title', 'id')->toArray();
         if (Request::isMethod('post')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
@@ -72,13 +74,15 @@ class ShopProductsController extends Controller
             return Redirect::to(ViewHelper::adminUrlSegment() . '/shop-products/list/');
         }
 
-        return view('admin.shop.products.create',
+        return view(
+            'admin.shop.products.create',
             [
                 'model' => $model,
                 'categories' => $categories,
                 'user_id' => Auth::user()->id,
                 'page_title' => 'Create New Product'
-            ]);
+            ]
+        );
     }
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
@@ -87,8 +91,8 @@ class ShopProductsController extends Controller
             Session::keep('backUrl');
         }
         $model = ShopProduct::query()->find($id);
-        $categories = ShopCategory::get()->pluck('title','id')->toArray();
-        if (Request::isMethod('put')){
+        $categories = ShopCategory::get()->pluck('title', 'id')->toArray();
+        if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
             if ($model->update($data)) {
@@ -97,13 +101,15 @@ class ShopProductsController extends Controller
             }
             return Redirect::to(ViewHelper::adminUrlSegment() . '/shop-products/list/');
         }
-        return view('admin.shop.products.update',
+        return view(
+            'admin.shop.products.update',
             [
                 'model' => $model,
                 'categories' => $categories,
                 'user_id' => $model->user_id,
                 'page_title' => 'Edit Product'
-            ]);
+            ]
+        );
     }
 
     public function anyDelete($id)
@@ -113,7 +119,7 @@ class ShopProductsController extends Controller
         }
         $product = ShopProduct::query()->with('images')->find($id);
         if ($product->delete()) {
-            if($product->images){
+            if ($product->images) {
                 foreach ($product->images as $image) {
                     $this->anyDeleteImage($image->image);
                 }
@@ -136,7 +142,7 @@ class ShopProductsController extends Controller
 
                 $this->makeDir(public_path() . $tmpThumbPath);
                 $thumbPath = public_path($tmpThumbPath . $tmpFileName);
-                if($file){
+                if ($file) {
                     $image = new ProductImages();
                     $image->product_id = $productId;
                     $image->image = $tmpFileName;
@@ -144,7 +150,6 @@ class ShopProductsController extends Controller
                 }
                 // Resizing 340x340
                 Image::make($file->getRealPath())->fit(200, 200)->save($thumbPath)->destroy();
-
             }
 //            return response()->json(array('filename'=> $tmpFileName), 200);
             return true;
@@ -162,7 +167,7 @@ class ShopProductsController extends Controller
 
     public function anyDeleteImage($filename = false)
     {
-        if(!$filename){
+        if (!$filename) {
             $filename = Input::get('filename');
         }
 

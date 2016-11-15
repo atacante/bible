@@ -41,7 +41,7 @@ class StrongsNasecSeeder extends Seeder
             foreach ($excelData as $key => $row) {
                 $part++;
                 $data[$key]['dictionary_type'] = StrongsNasec::DICTIONARY_HEBREW;
-                if(trim($row['greek_hebrew']) == "Strong's Greek Dictionary:"){
+                if (trim($row['greek_hebrew']) == "Strong's Greek Dictionary:") {
                     $data[$key]['dictionary_type'] = StrongsNasec::DICTIONARY_GREEK;
                 }
                 $data[$key]['strong_num'] = intval($row['number']);
@@ -49,21 +49,21 @@ class StrongsNasecSeeder extends Seeder
 
                 $searchHe = "~/hebrew/(.*?).htm~";
                 preg_match($searchHe, $row['word_origin'], $outputHe);
-                if(isset($outputHe[1])){
+                if (isset($outputHe[1])) {
                     $num = $outputHe[1];
                     $replace = "/reader/strongs/".$num."/hebrew";
-                    $row['word_origin'] =  preg_replace($searchHe,$replace,$row['word_origin']);
+                    $row['word_origin'] =  preg_replace($searchHe, $replace, $row['word_origin']);
                 }
 
                 $searchEl = "~/greek/(.*?).htm~";
                 preg_match($searchEl, $row['word_origin'], $outputEl);
-                if(isset($outputEl[1])){
+                if (isset($outputEl[1])) {
                     $num = $outputEl[1];
                     $replace = "/reader/strongs/".$num."/greek";
-                    $row['word_origin'] =  preg_replace($searchEl,$replace,$row['word_origin']);
+                    $row['word_origin'] =  preg_replace($searchEl, $replace, $row['word_origin']);
                 }
 
-                $data[$key]['original_word'] = str_replace('|','"',$row['word_origin']);
+                $data[$key]['original_word'] = str_replace('|', '"', $row['word_origin']);
 
                 $data[$key]['definition'] = $row['definition'];
                 $data[$key]['nasb_translation'] = $row['nasb_translation'];

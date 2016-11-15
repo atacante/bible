@@ -1,7 +1,8 @@
 <?php
 namespace App;
 
-class BooksListEn extends BaseModel {
+class BooksListEn extends BaseModel
+{
 
     /**
      * Generated
@@ -13,9 +14,8 @@ class BooksListEn extends BaseModel {
     protected $fillable = ['id', 'book_name'];
 
 
-    public function versesAmericanStandardEns() {
+    public function versesAmericanStandardEns()
+    {
         return $this->hasMany(\App\VersesAmericanStandardEn::class, 'book_id', 'id');
     }
-
-
 }

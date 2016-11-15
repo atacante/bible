@@ -1,5 +1,6 @@
 <?php namespace App;
 
-interface WallItem{
+interface WallItem
+{
 
 }

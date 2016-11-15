@@ -5,7 +5,8 @@ use App\Helpers\ModelHelper;
 use Illuminate\Support\Facades\Request;
 use Validator;
 
-class Location extends BaseModel {
+class Location extends BaseModel
+{
 
     /**
      * Generated
@@ -26,22 +27,24 @@ class Location extends BaseModel {
         ];
     }
 
-    public function booksListEn() {
+    public function booksListEn()
+    {
         return $this->belongsTo(BooksListEn::class, 'book_id', 'id');
     }
 
-    public function images() {
+    public function images()
+    {
         return $this->hasMany(LocationImages::class, 'location_id', 'id');
     }
 
     public function verses()
     {
-        return $this->belongsToMany(VersesKingJamesEn::class, 'location_verse', 'location_id','verse_id');
+        return $this->belongsToMany(VersesKingJamesEn::class, 'location_verse', 'location_id', 'verse_id');
     }
 
     public function lexicons()
     {
-        return $this->belongsToMany(LexiconNasb::class, 'location_lexicon', 'location_id','lexicon_id');// we using LexiconNasb because this version is a base for all other lexicons
+        return $this->belongsToMany(LexiconNasb::class, 'location_lexicon', 'location_id', 'lexicon_id');// we using LexiconNasb because this version is a base for all other lexicons
     }
 
     /* Experimental method */
@@ -51,23 +54,23 @@ class Location extends BaseModel {
         $v = Validator::make($data, [
             'location_name' => 'required',
             'location_description' => 'required',
-        ],[]);
+        ], []);
 
-        if ($v->fails())
-        {
+        if ($v->fails()) {
             return redirect()->refresh()->withErrors($v->errors());
         }
         return true;
     }
 
-    public function associateVerses($action = 'attach'){
+    public function associateVerses($action = 'attach')
+    {
         $locationName = $this->location_name;
-        if($action == 'detach'){
+        if ($action == 'detach') {
             $locationName = $this->getOriginal('location_name');
         }
         $verses = BaseModel::searchEverywhere(pg_escape_string($locationName));
-        if($verses->get()->count()){
-            switch($action){
+        if ($verses->get()->count()) {
+            switch ($action) {
                 case 'attach':
                     $this->verses()->attach($verses->lists('id')->toArray());
                     break;
@@ -78,63 +81,62 @@ class Location extends BaseModel {
         }
     }
 
-    public function associateLexicons($action = 'attach'){
+    public function associateLexicons($action = 'attach')
+    {
         $locationName = $this->location_name;
-        if($action == 'detach'){
+        if ($action == 'detach') {
             $locationName = $this->getOriginal('location_name');
         }
 
-        $nasbPhrases = LexiconNasb::where(function($sq) use($locationName){
-            $sq->orWhere('verse_part','like','% '.$locationName.' %');
-            $sq->orWhere('verse_part','like',$locationName.' %');
-            $sq->orWhere('verse_part','like','% '.$locationName);
-            $sq->orWhere('verse_part','like',$locationName);
-            $sq->orWhere('verse_part','like',$locationName.',%');
-            $sq->orWhere('verse_part','like',$locationName.'.%');
-            $sq->orWhere('verse_part','like','% '.$locationName.',%');
-            $sq->orWhere('verse_part','like','% '.$locationName.'.%');
+        $nasbPhrases = LexiconNasb::where(function ($sq) use ($locationName) {
+            $sq->orWhere('verse_part', 'like', '% '.$locationName.' %');
+            $sq->orWhere('verse_part', 'like', $locationName.' %');
+            $sq->orWhere('verse_part', 'like', '% '.$locationName);
+            $sq->orWhere('verse_part', 'like', $locationName);
+            $sq->orWhere('verse_part', 'like', $locationName.',%');
+            $sq->orWhere('verse_part', 'like', $locationName.'.%');
+            $sq->orWhere('verse_part', 'like', '% '.$locationName.',%');
+            $sq->orWhere('verse_part', 'like', '% '.$locationName.'.%');
         });
 
-        $kjvPhrases = LexiconKjv::where(function($sq) use($locationName){
-            $sq->orWhere('verse_part','like','% '.$locationName.' %');
-            $sq->orWhere('verse_part','like',$locationName.' %');
-            $sq->orWhere('verse_part','like','% '.$locationName);
-            $sq->orWhere('verse_part','like',$locationName);
-            $sq->orWhere('verse_part','like',$locationName.',%');
-            $sq->orWhere('verse_part','like',$locationName.'.%');
-            $sq->orWhere('verse_part','like','% '.$locationName.',%');
-            $sq->orWhere('verse_part','like','% '.$locationName.'.%');
+        $kjvPhrases = LexiconKjv::where(function ($sq) use ($locationName) {
+            $sq->orWhere('verse_part', 'like', '% '.$locationName.' %');
+            $sq->orWhere('verse_part', 'like', $locationName.' %');
+            $sq->orWhere('verse_part', 'like', '% '.$locationName);
+            $sq->orWhere('verse_part', 'like', $locationName);
+            $sq->orWhere('verse_part', 'like', $locationName.',%');
+            $sq->orWhere('verse_part', 'like', $locationName.'.%');
+            $sq->orWhere('verse_part', 'like', '% '.$locationName.',%');
+            $sq->orWhere('verse_part', 'like', '% '.$locationName.'.%');
         });
-        $bereanPhrases = LexiconBerean::where(function($sq) use($locationName){
-            $sq->orWhere('verse_part','like','% '.$locationName.' %');
-            $sq->orWhere('verse_part','like',$locationName.' %');
-            $sq->orWhere('verse_part','like','% '.$locationName);
-            $sq->orWhere('verse_part','like',$locationName);
-            $sq->orWhere('verse_part','like',$locationName.',%');
-            $sq->orWhere('verse_part','like',$locationName.'.%');
-            $sq->orWhere('verse_part','like','% '.$locationName.',%');
-            $sq->orWhere('verse_part','like','% '.$locationName.'.%');
+        $bereanPhrases = LexiconBerean::where(function ($sq) use ($locationName) {
+            $sq->orWhere('verse_part', 'like', '% '.$locationName.' %');
+            $sq->orWhere('verse_part', 'like', $locationName.' %');
+            $sq->orWhere('verse_part', 'like', '% '.$locationName);
+            $sq->orWhere('verse_part', 'like', $locationName);
+            $sq->orWhere('verse_part', 'like', $locationName.',%');
+            $sq->orWhere('verse_part', 'like', $locationName.'.%');
+            $sq->orWhere('verse_part', 'like', '% '.$locationName.',%');
+            $sq->orWhere('verse_part', 'like', '% '.$locationName.'.%');
         });
 
-        $ids = array_unique(array_merge($nasbPhrases->lists('id')->toArray(),$kjvPhrases->lists('id')->toArray(),$bereanPhrases->lists('id')->toArray()));
+        $ids = array_unique(array_merge($nasbPhrases->lists('id')->toArray(), $kjvPhrases->lists('id')->toArray(), $bereanPhrases->lists('id')->toArray()));
 
-        if(count($ids)){
-            switch($action){
+        if (count($ids)) {
+            switch ($action) {
                 case 'attach':
                     $this->lexicons()->attach($ids);
-                    ModelHelper::updateSymbolism(LexiconNasb::class,$ids);
-                    ModelHelper::updateSymbolism(LexiconKjv::class,$ids);
-                    ModelHelper::updateSymbolism(LexiconBerean::class,$ids);
+                    ModelHelper::updateSymbolism(LexiconNasb::class, $ids);
+                    ModelHelper::updateSymbolism(LexiconKjv::class, $ids);
+                    ModelHelper::updateSymbolism(LexiconBerean::class, $ids);
                     break;
                 case 'detach':
                     $this->lexicons()->detach($ids);
-                    ModelHelper::clearSymbolism(LexiconNasb::class,$ids);
-                    ModelHelper::clearSymbolism(LexiconKjv::class,$ids);
-                    ModelHelper::clearSymbolism(LexiconBerean::class,$ids);
+                    ModelHelper::clearSymbolism(LexiconNasb::class, $ids);
+                    ModelHelper::clearSymbolism(LexiconKjv::class, $ids);
+                    ModelHelper::clearSymbolism(LexiconBerean::class, $ids);
                     break;
             }
-
-
         }
     }
 }

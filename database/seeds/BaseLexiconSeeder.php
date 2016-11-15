@@ -39,11 +39,11 @@ class BaseLexiconSeeder extends Seeder
             $data = [];
             foreach ($oldTestament->data as $key => $row) {
                 $part++;
-                $book = explode(':',trim($row['KJV Verse']));
-                $bookAndChapter = explode(' ',$book[0]);
+                $book = explode(':', trim($row['KJV Verse']));
+                $bookAndChapter = explode(' ', $book[0]);
                 $chapter = array_pop($bookAndChapter);
-                $book_name = implode(' ',$bookAndChapter);
-                $bookObj = BooksListEn::query()->where('book_name',$book_name)->first(['id']);
+                $book_name = implode(' ', $bookAndChapter);
+                $bookObj = BooksListEn::query()->where('book_name', $book_name)->first(['id']);
                 $verse_num = $book[1];
 
                 $data[$key]['book_id'] = $bookObj->id;
@@ -51,7 +51,7 @@ class BaseLexiconSeeder extends Seeder
                 $data[$key]['verse_num'] = $verse_num;
                 $data[$key]['strong_num'] = utf8_encode($row["Strong's - Troidl and Kimball - http://openscriptures.org"]);
                 $data[$key]['transliteration'] = utf8_encode($row['Translit Romanized']);
-                $data[$key]['verse_part_he'] = mb_convert_encoding($oldTestamentHe->data[$key]['WLC - Troidl and Kimball'],'UTF-8');
+                $data[$key]['verse_part_he'] = mb_convert_encoding($oldTestamentHe->data[$key]['WLC - Troidl and Kimball'], 'UTF-8');
 
                 if ($part == 500) {
                     LexiconBase::insert($data);
@@ -67,13 +67,13 @@ class BaseLexiconSeeder extends Seeder
             $oldTestament = [];
             $oldTestamentHe = [];
             $newTestament = new \parseCSV(base_path('resources/data/berean_lexicon_goog.csv'));
-            if(count($newTestament->data)){
+            if (count($newTestament->data)) {
                 $progressBar = new ProgressBarHelper(count($newTestament->data), 10);
                 $progressBar->start('Started seeding data for lexicon BASE - New Testament');
                 $part = 0;
                 $data = [];
                 foreach ($newTestament->data as $key => $row) {
-                    if(!empty($row["Transliteration"])) {
+                    if (!empty($row["Transliteration"])) {
                         $part++;
                         $book = explode(':', trim($row['Verse']));
                         $bookAndChapter = explode('|', $book[0]);
@@ -87,7 +87,7 @@ class BaseLexiconSeeder extends Seeder
                         $data[$key]['verse_num'] = $verse_num;
                         $data[$key]['strong_num'] = utf8_encode("H" . $row["Strong's"]);
                         $data[$key]['transliteration'] = $row['Transliteration'];
-                        $data[$key]['verse_part_el'] = mb_convert_encoding($row['BGB - Berean Greek Bible'],'UTF-8');
+                        $data[$key]['verse_part_el'] = mb_convert_encoding($row['BGB - Berean Greek Bible'], 'UTF-8');
 
                         if ($part == 500) {
                             LexiconBase::insert($data);

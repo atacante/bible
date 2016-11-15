@@ -22,18 +22,20 @@ class SymbolismEncyclopediaController extends Controller
 
         $termsModel = SymbolismEncyclopedia::query();
 
-        if(!empty($search = Request::input('search', false))){
+        if (!empty($search = Request::input('search', false))) {
             $termsModel->where('term_name', 'ilike', '%'.$search.'%');
             $termsModel->orWhere('term_description', 'ilike', '%'.$search.'%');
         }
 
         $content['terms'] = $termsModel->orderBy('term_name')->paginate(10);
-        return view('admin.symbolism-encyclopedia.list',
+        return view(
+            'admin.symbolism-encyclopedia.list',
             [
                 'page_title' => 'Terms',
                 'content' => $content,
                 'filterAction' => 'symbolism-encyclopedia/list/',
-            ]);
+            ]
+        );
     }
 
     public function anyCreate(\Illuminate\Http\Request $request)
@@ -48,11 +50,13 @@ class SymbolismEncyclopediaController extends Controller
             }
             return Redirect::to(ViewHelper::adminUrlSegment() . '/symbolism-encyclopedia/list/');
         }
-        return view('admin.symbolism-encyclopedia.create',
+        return view(
+            'admin.symbolism-encyclopedia.create',
             [
                 'model' => $model,
                 'page_title' => 'Create New Term'
-            ]);
+            ]
+        );
     }
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
@@ -70,16 +74,18 @@ class SymbolismEncyclopediaController extends Controller
             }
             return Redirect::to(ViewHelper::adminUrlSegment() . '/symbolism-encyclopedia/list/');
         }
-        return view('admin.symbolism-encyclopedia.update',
+        return view(
+            'admin.symbolism-encyclopedia.update',
             [
                 'model' => $model,
                 'page_title' => 'Edit Term',
-            ]);
+            ]
+        );
     }
 
     public function anyDelete($id)
     {
-        ini_set("max_execution_time","0");
+        ini_set("max_execution_time", "0");
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
         }

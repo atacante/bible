@@ -12,8 +12,7 @@ class AlterLocationsTableChangeDescriptionType extends Migration
      */
     public function up()
     {
-        Schema::table('locations', function($table)
-        {
+        Schema::table('locations', function ($table) {
             $table->text('location_description')->change();
         });
     }
@@ -25,8 +24,7 @@ class AlterLocationsTableChangeDescriptionType extends Migration
      */
     public function down()
     {
-        Schema::table('locations', function($table)
-        {
+        Schema::table('locations', function ($table) {
             $table->string('location_description')->change();
         });
     }

@@ -2,13 +2,13 @@
 
 namespace App\Http\Composers;
 
-
 use App\BlogCategory;
 use App\Helpers\ViewHelper;
 use App\VerseOfDay;
 use Illuminate\Contracts\View\View;
 
-class VerseOfDayComposer {
+class VerseOfDayComposer
+{
 
     /**
      * Bind data to the view.
@@ -21,5 +21,4 @@ class VerseOfDayComposer {
         $data['verseOfDay'] = VerseOfDay::getTodayVerse();
         $view->with('data', $data);
     }
-
 }

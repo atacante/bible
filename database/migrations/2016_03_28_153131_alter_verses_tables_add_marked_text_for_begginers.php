@@ -19,10 +19,8 @@ class AlterVersesTablesAddMarkedTextForBegginers extends Migration
                 foreach ($versions as $version) {
                     $this->version = $version['version_code'];
                     $table = 'verses_' . $this->version . '_en';
-                    if (Schema::hasTable($table))
-                    {
-                        Schema::table($table, function(Blueprint $table)
-                        {
+                    if (Schema::hasTable($table)) {
+                        Schema::table($table, function (Blueprint $table) {
                             $table->text('verse_text_with_symbolism')->nullable();
                         });
                     }
@@ -45,7 +43,7 @@ class AlterVersesTablesAddMarkedTextForBegginers extends Migration
                     $this->version = $version['version_code'];
                     $table = 'verses_' . $this->version . '_en';
                     if (Schema::hasTable($table)) {
-                        Schema::table($table, function(Blueprint $table) {
+                        Schema::table($table, function (Blueprint $table) {
                             $table->dropColumn('verse_text_with_symbolism');
                         });
                     }

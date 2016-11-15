@@ -21,13 +21,13 @@ class BasicRolesSeeder extends Seeder
         /* Create User type and role */
 
         $userRole = Config::get('app.role.user');
-        $user = User::query()->where('email','user@user.com')->first();
-        if($user){
+        $user = User::query()->where('email', 'user@user.com')->first();
+        if ($user) {
             $user->revokeAllRoles();
             $user->delete();
         }
-        $role = Role::query()->where('slug',$userRole);
-        if($role){
+        $role = Role::query()->where('slug', $userRole);
+        if ($role) {
             $role->delete();
         }
 
@@ -48,13 +48,13 @@ class BasicRolesSeeder extends Seeder
         /* Create Teacher type and role */
 
         $teacherRole = Config::get('app.role.teacher');
-        $teacher = User::query()->where('email','teacher@teacher.com')->first();
-        if($teacher){
+        $teacher = User::query()->where('email', 'teacher@teacher.com')->first();
+        if ($teacher) {
             $teacher->revokeAllRoles();
             $teacher->delete();
         }
-        $role = Role::query()->where('slug',$teacherRole);
-        if($role){
+        $role = Role::query()->where('slug', $teacherRole);
+        if ($role) {
             $role->delete();
         }
 

@@ -13,14 +13,13 @@ class AlterVersionsListEngTable extends Migration
      */
     public function up()
     {
-        Schema::table('versions_list_en', function($table)
-        {
+        Schema::table('versions_list_en', function ($table) {
             $table->string('version_code', 255)->default('');
         });
         $versions = VersionsListEn::all();
-        if($versions){
-            foreach($versions as $version){
-                $version->version_code = str_replace(' ','_',strtolower($version->version_name));
+        if ($versions) {
+            foreach ($versions as $version) {
+                $version->version_code = str_replace(' ', '_', strtolower($version->version_name));
                 $version->save();
             }
         }
@@ -33,8 +32,7 @@ class AlterVersionsListEngTable extends Migration
      */
     public function down()
     {
-        Schema::table('versions_list_en', function($table)
-        {
+        Schema::table('versions_list_en', function ($table) {
             $table->dropColumn('version_code');
         });
     }

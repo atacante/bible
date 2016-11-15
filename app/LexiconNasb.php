@@ -14,38 +14,43 @@ class LexiconNasb extends BaseModel
 
     protected $dates = ['symbolism_updated_at'];
 
-    public function booksListEn() {
+    public function booksListEn()
+    {
         return $this->belongsTo(BooksListEn::class, 'book_id', 'id');
     }
 
-    public function cacheVerse($ids = []){
+    public function cacheVerse($ids = [])
+    {
         $verses[] = VersesNasbEn::query()
-            ->where('book_id',$this->book_id)
-            ->where('chapter_num',$this->chapter_num)
-            ->where('verse_num',$this->verse_num)
+            ->where('book_id', $this->book_id)
+            ->where('chapter_num', $this->chapter_num)
+            ->where('verse_num', $this->verse_num)
             ->first();
-        ModelHelper::cacheLexicon($verses,'nasb',$ids = []);
+        ModelHelper::cacheLexicon($verses, 'nasb', $ids = []);
     }
 
-    public function cacheSymbolismForBeginnerMode(){
+    public function cacheSymbolismForBeginnerMode()
+    {
         $verses[] = VersesNasbEn::query()
-            ->where('book_id',$this->book_id)
-            ->where('chapter_num',$this->chapter_num)
-            ->where('verse_num',$this->verse_num)
+            ->where('book_id', $this->book_id)
+            ->where('chapter_num', $this->chapter_num)
+            ->where('verse_num', $this->verse_num)
             ->first();
-        ModelHelper::cacheSymbolismForBeginnerMode($verses,'nasb');
+        ModelHelper::cacheSymbolismForBeginnerMode($verses, 'nasb');
     }
 
-    public function locations() {
+    public function locations()
+    {
         return $this->belongsToMany(Location::class, 'location_lexicon', 'lexicon_id', 'location_id');
     }
 
-    public function peoples() {
+    public function peoples()
+    {
         return $this->belongsToMany(People::class, 'people_lexicon', 'lexicon_id', 'people_id');
     }
 
     public function views()
     {
-        return $this->morphToMany('App\User','item','users_views')->withTimestamps();
+        return $this->morphToMany('App\User', 'item', 'users_views')->withTimestamps();
     }
 }

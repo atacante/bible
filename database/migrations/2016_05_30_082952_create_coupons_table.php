@@ -18,7 +18,7 @@ class CreateCouponsTable extends Migration
             $table->string('member_type')->nullable();
             $table->string('coupon_type')->nullable();
             $table->boolean('status')->default(true);
-            $table->decimal('amount',11,2);
+            $table->decimal('amount', 11, 2);
             $table->string('coupon_code')->unique();
             $table->integer('uses_limit')->nullable()->default(0);
             $table->integer('used')->nullable();

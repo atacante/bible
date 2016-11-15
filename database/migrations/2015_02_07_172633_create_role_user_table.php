@@ -30,5 +30,4 @@ class CreateRoleUserTable extends Migration
     {
         Schema::drop('role_user');
     }
-
 }

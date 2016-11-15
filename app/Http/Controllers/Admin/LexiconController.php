@@ -40,29 +40,31 @@ class LexiconController extends Controller
         $lexiconModel = BaseModel::getModelByTableName('lexicon_'.$code);
 
         $lexiconinfo = $lexiconModel::query()->with('booksListEn');
-        if(!empty($book)){
-            $lexiconinfo->where('book_id',$book);
+        if (!empty($book)) {
+            $lexiconinfo->where('book_id', $book);
         }
 
-        if(!empty($chapter)){
-            $lexiconinfo->where('chapter_num',$chapter);
+        if (!empty($chapter)) {
+            $lexiconinfo->where('chapter_num', $chapter);
         }
 
-        if(!empty($verse)){
-            $lexiconinfo->where('verse_num',$verse);
+        if (!empty($verse)) {
+            $lexiconinfo->where('verse_num', $verse);
         }
         $content['lexiconinfo'] = $lexiconinfo->orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num')->orderBy('id')->paginate(20);
-        return view('admin.lexicon.view',
+        return view(
+            'admin.lexicon.view',
             [
                 'page_title' => $lexicon,
                 'content' => $content,
                 'filterAction' => 'lexicon/view/'.$code,
                 'lexiconCode' => $code,
                 'lexiconName' => $lexicon
-            ]);
+            ]
+        );
     }
 
-    public function anyUpdate(\Illuminate\Http\Request $request,$code,$id)
+    public function anyUpdate(\Illuminate\Http\Request $request, $code, $id)
     {
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
@@ -74,8 +76,8 @@ class LexiconController extends Controller
 //        $lexiconModel = new Lexicon('lexicon_'.$code);
 //        $lexicon = $lexiconModel->with('locations')->find($id);
 
-        $locations = ViewHelper::prepareForSelectBox(Location::query()->get()->toArray(),'id','location_name');
-        $peoples = ViewHelper::prepareForSelectBox(People::query()->get()->toArray(),'id','people_name');
+        $locations = ViewHelper::prepareForSelectBox(Location::query()->get()->toArray(), 'id', 'location_name');
+        $peoples = ViewHelper::prepareForSelectBox(People::query()->get()->toArray(), 'id', 'people_name');
         if (Request::isMethod('put')) {
             $this->validate($request, [
                 'verse_part' => 'required',
@@ -84,8 +86,8 @@ class LexiconController extends Controller
                 'definition' => 'required',
             ]);
             if ($lexicon->update(Input::all())) {
-                $lexicon->locations()->sync(Input::get('locations',[]));
-                $lexicon->peoples()->sync(Input::get('peoples',[]));
+                $lexicon->locations()->sync(Input::get('locations', []));
+                $lexicon->peoples()->sync(Input::get('peoples', []));
                 $this->updateLexicons($id);
 
                 Notification::success('Lexicon has been successfully updated');
@@ -100,13 +102,14 @@ class LexiconController extends Controller
         $lexicons = [];
         foreach ($lexiconsList as $key => $lexiconsItem) {
             $lexiconListModel = LexiconsListEn::getLexiconModelByVersionCode($lexiconsItem['lexicon_code']);
-            if($lexiconsListItem = $lexiconListModel->find($id)){
+            if ($lexiconsListItem = $lexiconListModel->find($id)) {
                 $lexicons[$key] = $lexiconsItem;
                 $lexicons[$key]['phrase'] = $lexiconsListItem->verse_part;
             }
         }
 
-        return view('admin.lexicon.update',
+        return view(
+            'admin.lexicon.update',
             [
                 'page_title' => 'Update Lexicon Item',
                 'model' => $lexicon,
@@ -115,15 +118,16 @@ class LexiconController extends Controller
                 'locations' => $locations,
                 'peoples' => $peoples,
                 'lexicons' => $lexicons,
-            ]);
+            ]
+        );
     }
 
     private function updateLexicons($id)
     {
-        if($lexicons = Input::get("lexicons",false)){
+        if ($lexicons = Input::get("lexicons", false)) {
             foreach ($lexicons as $lexiconCode) {
                 $lexiconModel = LexiconsListEn::getLexiconModelByVersionCode($lexiconCode);
-                if($lexicon = $lexiconModel->find($id)){
+                if ($lexicon = $lexiconModel->find($id)) {
                     $lexicon->symbolism = Input::get("symbolism");
                     $lexicon->save();
                 }

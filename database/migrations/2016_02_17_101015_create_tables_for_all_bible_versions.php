@@ -45,8 +45,7 @@ class CreateTablesForAllBibleVersions extends Migration
         if ($versions) {
             foreach ($versions as $version) {
                 $this->version = $version['version_code'];
-                if (Schema::hasTable('verses_' . $this->version . '_en'))
-                {
+                if (Schema::hasTable('verses_' . $this->version . '_en')) {
                     Schema::drop('verses_' . $this->version . '_en');
                 }
             }
@@ -58,8 +57,7 @@ class CreateTablesForAllBibleVersions extends Migration
             $table->integer('verse_num');
             $table->text('verse_text')->nullable();
         });
-        Schema::table('verses_american_standard_en', function(Blueprint $table)
-        {
+        Schema::table('verses_american_standard_en', function (Blueprint $table) {
             $table->foreign('book_id', 'verses_american_standard_en_fk')->references('id')->on('books_list_en')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }

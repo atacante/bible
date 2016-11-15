@@ -12,8 +12,7 @@ class AlterUsersTableAddAvatarAndAboutFields extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->string('avatar')->nullable();
             $table->text('about_me')->nullable();
         });
@@ -26,8 +25,7 @@ class AlterUsersTableAddAvatarAndAboutFields extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->dropColumn('avatar');
             $table->dropColumn('about_me');
         });

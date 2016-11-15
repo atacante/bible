@@ -15,18 +15,19 @@ class ProgressBarHelper
     private $itemsCounter = 0;
     private $status = 0;
 
-    public function __construct($itemsCount,$persentStep)
+    public function __construct($itemsCount, $persentStep)
     {
         $this->itemsCount = $itemsCount;
         $this->persentStep = $persentStep;
         $this->progressBarPart = round($this->itemsCount / (100 / $this->persentStep));
     }
 
-    public function start($message = false){
-        if($message){
+    public function start($message = false)
+    {
+        if ($message) {
             $this->startMessage = $message;
         }
-        if($this->itemsCount > 1){
+        if ($this->itemsCount > 1) {
             echo $this->startMessage."\n";
         }
     }
@@ -34,8 +35,8 @@ class ProgressBarHelper
     public function update()
     {
         $this->itemsCounter++;
-        if($this->itemsCounter == $this->progressBarPart){
-            if($this->itemsCount > 1) {
+        if ($this->itemsCounter == $this->progressBarPart) {
+            if ($this->itemsCount > 1) {
                 echo "Progress " . ($this->status + $this->persentStep) . "%\n";
             }
             $this->status += $this->persentStep;
@@ -45,10 +46,10 @@ class ProgressBarHelper
 
     public function finish($message = false)
     {
-        if($message){
+        if ($message) {
             $this->finishMessage = $message;
         }
-        if($this->itemsCount > 1) {
+        if ($this->itemsCount > 1) {
             echo $this->finishMessage . "\n";
         }
     }

@@ -11,7 +11,8 @@ class PeopleImages extends BaseModel
     protected $table = 'people_images';
     protected $fillable = ['id','people_id','image'];
 
-    public function people() {
+    public function people()
+    {
         return $this->belongsTo(People::class, 'people_id', 'id');
     }
 }

@@ -40,46 +40,45 @@ class NasbLexiconSeeder extends Seeder
             foreach ($excelData as $key => $row) {
                 $part++;
                 $matches = 0;
-                $book = explode(':',trim($row['verse']));
+                $book = explode(':', trim($row['verse']));
                 $verse_num = $book[1];
-                $bookAndChapter = explode(' ',$book[0]);
+                $bookAndChapter = explode(' ', $book[0]);
                 $chapter = array_pop($bookAndChapter);
-                $book_name = implode(' ',$bookAndChapter);
-                $bookObj = BooksListEn::query()->where('book_name',$book_name)->first(['id']);
-                $html = new Htmldom(str_replace('|','"',$row['lexicon']));
+                $book_name = implode(' ', $bookAndChapter);
+                $bookObj = BooksListEn::query()->where('book_name', $book_name)->first(['id']);
+                $html = new Htmldom(str_replace('|', '"', $row['lexicon']));
                 $lexiconBase = LexiconBase::
-                where('book_id',$bookObj->id)
-                    ->where('chapter_num',$chapter)
-                    ->where('verse_num',$verse_num)
+                where('book_id', $bookObj->id)
+                    ->where('chapter_num', $chapter)
+                    ->where('verse_num', $verse_num)
                     ->orderBy('id')
                     ->get();
                 foreach ($lexiconBase as $lexicoItem) {
                     $phrase = $lexicoItem->toArray();
                     unset($phrase['id']);
                     $trs = $html->find('tr');
-                    foreach($trs as $trkey => $tr){
-                        if($trkey > 0){
+                    foreach ($trs as $trkey => $tr) {
+                        if ($trkey > 0) {
                             $tds = $tr->find('td');
-                            if($bookObj->id < 40){
+                            if ($bookObj->id < 40) {
                                 $verse_compare = $lexicoItem->verse_part_he;
-                            }
-                            else{
+                            } else {
                                 $verse_compare = $lexicoItem->verse_part_el;
                             }
-                            if(strtolower($verse_compare) == strtolower($tds[1]->plaintext) ||
+                            if (strtolower($verse_compare) == strtolower($tds[1]->plaintext) ||
                                 strtolower($lexicoItem->transliteration) == strtolower($tds[2]->plaintext) ||
-                                strtolower($lexicoItem->strong_num) == strtolower('H'.intval($tds[3]->plaintext))){
+                                strtolower($lexicoItem->strong_num) == strtolower('H'.intval($tds[3]->plaintext))) {
                                 $phrase['verse_part'] = utf8_encode($tds[0]->plaintext);
                                 $phrase['definition'] = utf8_encode($tds[4]->plaintext);
                                 $phrase['origin'] = $tds[5]->plaintext;
                                 $matches++;
-                                if(strtolower($verse_compare) == strtolower($tds[1]->plaintext) || strtolower($lexicoItem->transliteration) == strtolower($tds[2]->plaintext)){
+                                if (strtolower($verse_compare) == strtolower($tds[1]->plaintext) || strtolower($lexicoItem->transliteration) == strtolower($tds[2]->plaintext)) {
                                     break;
                                 }
                             }
                         }
                     }
-                    if(!isset($phrase['verse_part'])){
+                    if (!isset($phrase['verse_part'])) {
                         $phrase['verse_part'] = null;
                         $phrase['definition'] = null;
                         $phrase['origin'] = null;
@@ -88,7 +87,7 @@ class NasbLexiconSeeder extends Seeder
                     $data[] = $phrase;
                 }
 
-                if(count($trs)-1 > $matches){
+                if (count($trs)-1 > $matches) {
 //                    echo $book_name." ".$chapter.":".$verse_num."\n";
                     $ignored++;
                 }

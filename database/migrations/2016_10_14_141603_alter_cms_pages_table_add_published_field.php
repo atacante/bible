@@ -12,8 +12,7 @@ class AlterCmsPagesTableAddPublishedField extends Migration
      */
     public function up()
     {
-        Schema::table('cms_pages', function($table)
-        {
+        Schema::table('cms_pages', function ($table) {
             $table->boolean('published')->default(true);
         });
     }
@@ -25,8 +24,7 @@ class AlterCmsPagesTableAddPublishedField extends Migration
      */
     public function down()
     {
-        Schema::table('cms_pages', function($table)
-        {
+        Schema::table('cms_pages', function ($table) {
             $table->dropColumn('published');
         });
     }

@@ -12,8 +12,7 @@ class AlterUsersMetaDropFk extends Migration
      */
     public function up()
     {
-        Schema::table('users_meta', function(Blueprint $table)
-        {
+        Schema::table('users_meta', function (Blueprint $table) {
             $table->dropForeign('user_meta_fk');
         });
     }
@@ -26,11 +25,8 @@ class AlterUsersMetaDropFk extends Migration
      */
     public function down()
     {
-        Schema::table('users_meta', function(Blueprint $table)
-        {
+        Schema::table('users_meta', function (Blueprint $table) {
             $table->foreign('user_id', 'user_meta_fk')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
-
-
     }
 }

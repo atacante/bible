@@ -20,14 +20,14 @@ class AdministratorSeeder extends Seeder
     public function run()
     {
         $adminRole = Config::get('app.role.admin');
-        $admin = User::query()->where('email','admin@admin.com')->first();
-        if($admin){
+        $admin = User::query()->where('email', 'admin@admin.com')->first();
+        if ($admin) {
             $admin->revokeRole($adminRole);
             $admin->revokeAllRoles();
             $admin->delete();
         }
-        $role = Role::query()->where('slug',$adminRole);
-        if($role){
+        $role = Role::query()->where('slug', $adminRole);
+        if ($role) {
             $role->delete();
         }
 

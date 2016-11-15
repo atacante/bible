@@ -9,7 +9,8 @@ class ProductImages extends BaseModel
     protected $table = 'product_images';
     protected $fillable = ['id','product_id','image'];
 
-    public function product() {
+    public function product()
+    {
         return $this->belongsTo(ShopProduct::class, 'product_id', 'id');
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\BlogArticle;
 use App\Group;
 use App\GroupUser;
@@ -48,15 +47,14 @@ class ReportsController extends Controller
         }
 
         if (!empty($this->viewDateFrom)) {
-            $model->where(function($q){
+            $model->where(function ($q) {
                 $q->orWhereRaw('created_at >= to_timestamp(' . strtotime($this->viewDateFrom . " 00:00:00") . ")");
                 $q->orWhereRaw('updated_at >= to_timestamp(' . strtotime($this->viewDateFrom . " 00:00:00") . ")");
             });
-
         }
 
         if (!empty($this->viewDateTo)) {
-            $model->where(function($q){
+            $model->where(function ($q) {
                 $q->orWhereRaw('created_at <= to_timestamp(' . strtotime($this->viewDateTo . " 23:59:59") . ")");
                 $q->orWhereRaw('updated_at <= to_timestamp(' . strtotime($this->viewDateTo . " 23:59:59") . ")");
             });
@@ -77,7 +75,8 @@ class ReportsController extends Controller
         return $model;
     }
 
-    public function index(){
+    public function index()
+    {
         $users = User::selectRaw('
             users.*,
             (SELECT count(*) FROM users as invites WHERE invites.invited_by_id = users.id) as invites_count,
@@ -96,31 +95,33 @@ class ReportsController extends Controller
             (SELECT count(*) FROM users_views WHERE users.id = users_views.user_id AND item_category = \''.UsersViews::CAT_BLOG.'\') as blog_views_count
 
         ')->whereHas('roles', function ($q) {
-            $q->whereNotIn('slug',[Config::get('app.role.admin')]);
-        });
+            $q->whereNotIn('slug', [Config::get('app.role.admin')]);
+});
         $users = $this->prepareFilters($users);
         $userIds = $users->lists('id')->toArray();
         $content['users'] = $users->paginate(20);
 
-        $content['notesCount'] = Note::whereIn('user_id',$userIds)->count();
-        $content['journalsCount'] = Journal::whereIn('user_id',$userIds)->count();
-        $content['prayersCount'] = Prayer::whereIn('user_id',$userIds)->count();
-        $content['answeredPrayersCount'] = Prayer::whereIn('user_id',$userIds)->where('answered',true)->count();
-        $content['statusesCount'] = WallPost::whereIn('user_id',$userIds)->count();
-        $content['groupsCount'] = Group::whereIn('owner_id',$userIds)->count();
-        $content['groupJoinsCount'] = GroupUser::whereIn('user_id',$userIds)->count();
-        $content['readerViewsCount'] = UsersViews::whereIn('user_id',$userIds)->where('item_category',UsersViews::CAT_READER)->count();
-        $content['lexiconViewsCount'] = UsersViews::whereIn('user_id',$userIds)->where('item_category',UsersViews::CAT_LEXICON)->count();
-        $content['strongsViewsCount'] = UsersViews::whereIn('user_id',$userIds)->where('item_category',UsersViews::CAT_STRONGS)->count();
-        $content['blogViewsCount'] = UsersViews::whereIn('user_id',$userIds)->where('item_category',UsersViews::CAT_BLOG)->count();
-        $content['referredUsersCount'] = User::whereIn('invited_by_id',$userIds)/*->where('invited_by_id','>',0)*/->count();
+        $content['notesCount'] = Note::whereIn('user_id', $userIds)->count();
+        $content['journalsCount'] = Journal::whereIn('user_id', $userIds)->count();
+        $content['prayersCount'] = Prayer::whereIn('user_id', $userIds)->count();
+        $content['answeredPrayersCount'] = Prayer::whereIn('user_id', $userIds)->where('answered', true)->count();
+        $content['statusesCount'] = WallPost::whereIn('user_id', $userIds)->count();
+        $content['groupsCount'] = Group::whereIn('owner_id', $userIds)->count();
+        $content['groupJoinsCount'] = GroupUser::whereIn('user_id', $userIds)->count();
+        $content['readerViewsCount'] = UsersViews::whereIn('user_id', $userIds)->where('item_category', UsersViews::CAT_READER)->count();
+        $content['lexiconViewsCount'] = UsersViews::whereIn('user_id', $userIds)->where('item_category', UsersViews::CAT_LEXICON)->count();
+        $content['strongsViewsCount'] = UsersViews::whereIn('user_id', $userIds)->where('item_category', UsersViews::CAT_STRONGS)->count();
+        $content['blogViewsCount'] = UsersViews::whereIn('user_id', $userIds)->where('item_category', UsersViews::CAT_BLOG)->count();
+        $content['referredUsersCount'] = User::whereIn('invited_by_id', $userIds)/*->where('invited_by_id','>',0)*/->count();
 
-        return view('admin.reports.main',
+        return view(
+            'admin.reports.main',
             [
                 'page_title' => 'User Reports',
                 'content' => $content,
-//                'id' => $id,
-            ]);
+            //                'id' => $id,
+            ]
+        );
     }
 
     public function getUserNotes($id)
@@ -129,13 +130,15 @@ class ReportsController extends Controller
         $user = User::find($id);
         $userNotes = $user->notes();
         $userNotes = $this->prepareFilters($userNotes);
-        $content['userNotes'] = $userNotes->orderBy('notes.created_at','DESC')->paginate(20);
-        return view('admin.reports.user-notes',
+        $content['userNotes'] = $userNotes->orderBy('notes.created_at', 'DESC')->paginate(20);
+        return view(
+            'admin.reports.user-notes',
             [
                 'page_title' => 'User "'.$user->name.'" Notes',
                 'content' => $content,
                 'id' => $id,
-            ]);
+            ]
+        );
     }
 
     public function getUserJournals($id)
@@ -144,13 +147,15 @@ class ReportsController extends Controller
         $user = User::find($id);
         $userJournals = $user->journals();
         $userJournals = $this->prepareFilters($userJournals);
-        $content['userJournals'] = $userJournals->orderBy('journal.created_at','DESC')->paginate(20);
-        return view('admin.reports.user-journals',
+        $content['userJournals'] = $userJournals->orderBy('journal.created_at', 'DESC')->paginate(20);
+        return view(
+            'admin.reports.user-journals',
             [
                 'page_title' => 'User "'.$user->name.'" Journals',
                 'content' => $content,
                 'id' => $id,
-            ]);
+            ]
+        );
     }
 
     public function getUserPrayers($id)
@@ -159,13 +164,15 @@ class ReportsController extends Controller
         $user = User::find($id);
         $userPrayers = $user->prayers();
         $userPrayers = $this->prepareFilters($userPrayers);
-        $content['userPrayers'] = $userPrayers->orderBy('prayers.created_at','DESC')->paginate(20);
-        return view('admin.reports.user-prayers',
+        $content['userPrayers'] = $userPrayers->orderBy('prayers.created_at', 'DESC')->paginate(20);
+        return view(
+            'admin.reports.user-prayers',
             [
                 'page_title' => 'User "'.$user->name.'" Prayers',
                 'content' => $content,
                 'id' => $id,
-            ]);
+            ]
+        );
     }
 
     public function getUserStatusUpdates($id)
@@ -174,35 +181,38 @@ class ReportsController extends Controller
         $user = User::find($id);
         $userStatuses = $user->statuses();
         $userStatuses = $this->prepareFilters($userStatuses);
-        $content['userStatuses'] = $userStatuses->orderBy('wall_posts.created_at','DESC')->paginate(20);
-        return view('admin.reports.user-statuses',
+        $content['userStatuses'] = $userStatuses->orderBy('wall_posts.created_at', 'DESC')->paginate(20);
+        return view(
+            'admin.reports.user-statuses',
             [
                 'page_title' => 'User "'.$user->name.'" Status Updates',
                 'content' => $content,
                 'id' => $id,
-            ]);
+            ]
+        );
     }
 
     public function getUserGroups($id)
     {
         Session::flash('backUrl', Request::fullUrl());
-        $type = Input::get('type','created');
+        $type = Input::get('type', 'created');
         $user = User::find($id);
-        if($type == 'joined'){
+        if ($type == 'joined') {
             $userGroups = $user->joinedGroups(true);
-        }
-        else{
+        } else {
             $userGroups = $user->myGroups();
         }
 
         $userGroups = $this->prepareFilters($userGroups);
-        $content['userGroups'] = $userGroups->orderBy('groups.created_at','DESC')->paginate(20);
-        return view('admin.reports.user-groups',
+        $content['userGroups'] = $userGroups->orderBy('groups.created_at', 'DESC')->paginate(20);
+        return view(
+            'admin.reports.user-groups',
             [
                 'page_title' => 'User "'.$user->name.'" Groups',
                 'content' => $content,
                 'id' => $id,
-            ]);
+            ]
+        );
     }
 
     public function getUserReaderPages($id)
@@ -211,13 +221,15 @@ class ReportsController extends Controller
         $user = User::find($id);
         $userViews = $user->readerViews();
         $userViews = $this->prepareFilters($userViews);
-        $content['userViews'] = $userViews->orderBy('updated_at','DESC')->paginate(20);
-        return view('admin.reports.user-reader-pages',
+        $content['userViews'] = $userViews->orderBy('updated_at', 'DESC')->paginate(20);
+        return view(
+            'admin.reports.user-reader-pages',
             [
                 'page_title' => 'User "'.$user->name.'" Reader Pages Views',
                 'content' => $content,
                 'id' => $id,
-            ]);
+            ]
+        );
     }
 
     public function getUserLexiconPages($id)
@@ -226,13 +238,15 @@ class ReportsController extends Controller
         $user = User::find($id);
         $userViews = $user->lexiconViews();
         $userViews = $this->prepareFilters($userViews);
-        $content['userViews'] = $userViews->orderBy('updated_at','DESC')->paginate(20);
-        return view('admin.reports.user-lexicon-pages',
+        $content['userViews'] = $userViews->orderBy('updated_at', 'DESC')->paginate(20);
+        return view(
+            'admin.reports.user-lexicon-pages',
             [
                 'page_title' => 'User "'.$user->name.'" Lexicon Pages Views',
                 'content' => $content,
                 'id' => $id,
-            ]);
+            ]
+        );
     }
 
     public function getUserStrongsPages($id)
@@ -241,13 +255,15 @@ class ReportsController extends Controller
         $user = User::find($id);
         $userViews = $user->strongsViews();
         $userViews = $this->prepareFilters($userViews);
-        $content['userViews'] = $userViews->orderBy('updated_at','DESC')->paginate(20);
-        return view('admin.reports.user-strongs-pages',
+        $content['userViews'] = $userViews->orderBy('updated_at', 'DESC')->paginate(20);
+        return view(
+            'admin.reports.user-strongs-pages',
             [
                 'page_title' => 'User "'.$user->name.'" Strongs Pages Views',
                 'content' => $content,
                 'id' => $id,
-            ]);
+            ]
+        );
     }
 
     public function getUserBlogPages($id)
@@ -256,26 +272,30 @@ class ReportsController extends Controller
         $user = User::find($id);
         $userViews = $user->blogViews();
         $userViews = $this->prepareFilters($userViews);
-        $content['userViews'] = $userViews->orderBy('updated_at','DESC')->paginate(20);
-        return view('admin.reports.user-blog-pages',
+        $content['userViews'] = $userViews->orderBy('updated_at', 'DESC')->paginate(20);
+        return view(
+            'admin.reports.user-blog-pages',
             [
                 'page_title' => 'User "'.$user->name.'" Blog Pages Views',
                 'content' => $content,
                 'id' => $id,
-            ]);
+            ]
+        );
     }
 
     public function getReferredUsers($id)
     {
         Session::flash('backUrl', Request::fullUrl());
-        $users = User::query()->where('invited_by_id',$id);
+        $users = User::query()->where('invited_by_id', $id);
         $users = $this->prepareFilters($users);
-        $content['users'] = $users->orderBy('users.created_at','DESC')->paginate(20);
-        return view('admin.reports.referred-people',
+        $content['users'] = $users->orderBy('users.created_at', 'DESC')->paginate(20);
+        return view(
+            'admin.reports.referred-people',
             [
                 'page_title' => 'Users',
                 'content' => $content,
                 'id' => $id,
-            ]);
+            ]
+        );
     }
 }

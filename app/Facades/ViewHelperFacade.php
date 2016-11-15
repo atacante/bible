@@ -3,6 +3,10 @@ namespace App\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class ViewHelperFacade extends Facade{
-    protected static function getFacadeAccessor() { return 'viewhelper'; }
+class ViewHelperFacade extends Facade
+{
+    protected static function getFacadeAccessor()
+    {
+        return 'viewhelper';
+    }
 }

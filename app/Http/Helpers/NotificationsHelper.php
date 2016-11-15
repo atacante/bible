@@ -16,7 +16,8 @@ use App\Payload;
 
 class NotificationsHelper
 {
-    public static function friendRequest(User $user){
+    public static function friendRequest(User $user)
+    {
         $data['to'] = $user->email;
         $data['subject'] = "Bible Study Company: Notification";
         $data['message'] = '
@@ -27,7 +28,8 @@ class NotificationsHelper
         return self::sendNotification($data);
     }
 
-    public static function groupWallItem(Group $group){
+    public static function groupWallItem(Group $group)
+    {
         $data['to'] = $group->owner->email;
         $data['subject'] = "Bible Study Company: Notification";
         $data['message'] = '
@@ -38,8 +40,9 @@ class NotificationsHelper
         return self::sendNotification($data);
     }
 
-    public static function groupWallItemComment(WallItem $wallItem){
-        if(Auth::user()->id == $wallItem->user->id){
+    public static function groupWallItemComment(WallItem $wallItem)
+    {
+        if (Auth::user()->id == $wallItem->user->id) {
             return false;
         }
         $data['to'] = $wallItem->user->email;
@@ -58,8 +61,9 @@ class NotificationsHelper
         return self::sendNotification($data);
     }
 
-    public static function publicWallItemComment(WallItem $wallItem){
-        if(Auth::user()->id == $wallItem->user->id){
+    public static function publicWallItemComment(WallItem $wallItem)
+    {
+        if (Auth::user()->id == $wallItem->user->id) {
             return false;
         }
         $data['to'] = $wallItem->user->email;
@@ -73,7 +77,8 @@ class NotificationsHelper
         return self::sendNotification($data);
     }
 
-    public static function groupInvitation(User $user){
+    public static function groupInvitation(User $user)
+    {
         $data['to'] = $user->email;
         $data['subject'] = "Bible Study Company: Notification";
         $data['message'] = '
@@ -84,7 +89,8 @@ class NotificationsHelper
         return self::sendNotification($data);
     }
 
-    public static function groupRequest(Group $group){
+    public static function groupRequest(Group $group)
+    {
         $data['to'] = $group->owner->email;
         $data['subject'] = "Bible Study Company: Notification";
         $data['message'] = '
@@ -97,15 +103,16 @@ class NotificationsHelper
 
     private static function checkData(array $data)
     {
-        if(!isset($data['to']) || !isset($data['subject']) || !isset($data['message'])){
+        if (!isset($data['to']) || !isset($data['subject']) || !isset($data['message'])) {
             return false;
         }
         return $data;
     }
 
-    private static function sendNotification($data){
+    private static function sendNotification($data)
+    {
         $data = self::checkData($data);
-        if($data){
+        if ($data) {
             self::sendEmail($data);
             self::sendWebPush($data);
         }
@@ -114,8 +121,7 @@ class NotificationsHelper
 
     private static function sendEmail($data)
     {
-        return Mail::send([],[], function($message) use($data)
-        {
+        return Mail::send([], [], function ($message) use ($data) {
             $message
                 ->to($data['to'])
                 ->subject($data['subject'])

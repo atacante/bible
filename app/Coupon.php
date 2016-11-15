@@ -23,8 +23,7 @@ class Coupon extends BaseModel
             'amount' => 'required|numeric',
         ];
 
-        switch(Request::method())
-        {
+        switch (Request::method()) {
             case 'PUT':
             {
                 $rules['coupon_code'] = 'required|coupon_unique:'.$this->id;
@@ -45,11 +44,13 @@ class Coupon extends BaseModel
         "Created"=>"created_at"
     ];
 
-    public static function getCoupon($value){
+    public static function getCoupon($value)
+    {
         return self::where('coupon_code', 'ILIKE', $value)->first();
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
@@ -68,7 +69,8 @@ class Coupon extends BaseModel
         $this->attributes['coupon_code'] = strtolower($value);
     }
 
-    public function users() {
+    public function users()
+    {
         return $this->belongsToMany(User::class, 'coupons_users', 'coupon_id', 'user_id')->withPivot('is_used');
     }
 }

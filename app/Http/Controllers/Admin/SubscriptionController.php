@@ -11,14 +11,15 @@ use Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 
-
 class SubscriptionController extends Controller
 {
-    public function getAdd() {
+    public function getAdd()
+    {
          $e = MailchimpComponent::addEmailToList("pinchuk.maksim@gmail.com");
         return $e;
     }
-    public function getDel() {
+    public function getDel()
+    {
         $e = MailchimpComponent::removeEmailFromList("pinchuk.maksim@gmail.com");
         return $e;
     }
@@ -26,13 +27,12 @@ class SubscriptionController extends Controller
     {
         $subscribedFilter = Input::get('subscription', false);
 
-        if(!empty($subscribedFilter)){
-            if($subscribedFilter==1) {
+        if (!empty($subscribedFilter)) {
+            if ($subscribedFilter==1) {
                 $model->where('subscribed', true);
             } else {
                 $model->where('subscribed', false);
             }
-
         }
 
         return $model;
@@ -44,14 +44,16 @@ class SubscriptionController extends Controller
         $userModel =  User::query();
         $userModel = $this->prepareFilters($userModel);
         $content['users'] = $userModel->whereHas('roles', function ($q) {
-                                $q->whereNotIn('slug',[Config::get('app.role.admin')]);
-                            })->orderBy('created_at', SORT_DESC)->paginate(20);
-        return view('admin.subscription.list',
+                                $q->whereNotIn('slug', [Config::get('app.role.admin')]);
+        })->orderBy('created_at', SORT_DESC)->paginate(20);
+        return view(
+            'admin.subscription.list',
             [
                 'page_title' => 'Subscription List',
                 'content' => $content,
                 'filterAction' => 'subscription/list/',
-            ]);
+            ]
+        );
     }
 
     public function getUpdateSubscribed()
@@ -59,12 +61,12 @@ class SubscriptionController extends Controller
         $user_id = Request::input('id');
         $is_subscribed = Request::input('subscribed');
         $userModel = User::find($user_id);
-        if($is_subscribed) {
+        if ($is_subscribed) {
             $e = MailchimpComponent::addEmailToList($userModel->email);
         } else {
             $e = MailchimpComponent::removeEmailFromList($userModel->email);
         }
-        if($e==''){
+        if ($e=='') {
             $userModel->update(Request::input());
         }
         return  ['e'=>$e];

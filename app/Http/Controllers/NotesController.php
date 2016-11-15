@@ -97,7 +97,7 @@ class NotesController extends Controller
 
         if (!empty($this->tags)) {
             $noteModel->whereHas('tags', function ($q) {
-                $q->where(function($ow) {
+                $q->where(function ($ow) {
                     foreach ($this->tags as $tag) {
                         $ow->orWhere('tag_id', $tag);
                     }
@@ -152,14 +152,13 @@ class NotesController extends Controller
         }
 
         if (Request::isMethod('post') && Input::get('full_screen') == 0) {
-            $this->validate($request, $model->rules(),$model->messages());
+            $this->validate($request, $model->rules(), $model->messages());
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
-            if(!$model->verse){
-                if($rel = Input::get('rel', false)){
+            if (!$model->verse) {
+                if ($rel = Input::get('rel', false)) {
                     $data['rel_code'] = $rel;
-                }
-                else{
+                } else {
                     $data['rel_code'] = BaseModel::generateRelationCode();
                 }
             }
@@ -180,14 +179,13 @@ class NotesController extends Controller
             }
             if (!Request::ajax()) {
                 return $this->redirectToBackUrl();
-            }
-            else{
+            } else {
                 return 1;
             }
         }
 
-        $myGroups = Auth::user()->myGroups()->pluck('group_name','groups.id')->toArray();
-        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name','groups.id')->toArray();
+        $myGroups = Auth::user()->myGroups()->pluck('group_name', 'groups.id')->toArray();
+        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name', 'groups.id')->toArray();
         $content['groups'] = $myGroups+$joinedGroups;
 
         $view = 'notes.create';
@@ -210,7 +208,7 @@ class NotesController extends Controller
         }
 
         if (Request::isMethod('put')) {
-            $this->validate($request, $model->rules(),$model->messages());
+            $this->validate($request, $model->rules(), $model->messages());
             if ($model->update(Input::all())) {
                 $this->anyUploadImage($model->id);
                 $model->syncTags(Input::get('tags'));
@@ -227,14 +225,13 @@ class NotesController extends Controller
             }
             if (!Request::ajax()) {
                 return $this->redirectToBackUrl();
-            }
-            else{
+            } else {
                 return 1;
             }
         }
 
-        $myGroups = Auth::user()->myGroups()->pluck('group_name','groups.id')->toArray();
-        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name','groups.id')->toArray();
+        $myGroups = Auth::user()->myGroups()->pluck('group_name', 'groups.id')->toArray();
+        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name', 'groups.id')->toArray();
         $content['groups'] = $myGroups+$joinedGroups;
 
         $view = 'notes.update';
@@ -331,8 +328,8 @@ class NotesController extends Controller
     public function getComments($id)
     {
         $limit = 5;
-        $page = Input::get('page',1);
-        if($page == 'all'){
+        $page = Input::get('page', 1);
+        if ($page == 'all') {
             $limit = null;
         }
 
@@ -350,7 +347,7 @@ class NotesController extends Controller
         $content['otherCommentsCount'] = $limit?$totalCount-$limit:0;
 
         $view = 'community.wall-comments';
-        if($page > 1){
+        if ($page > 1) {
             $view = 'community.wall-comment-items';
         }
 
@@ -383,26 +380,26 @@ class NotesController extends Controller
         if (!Auth::check()) {
             abort(403);
         }
-        $model = Note::whereHas('comments', function ($q) use($id) {
-            $q->where('id',$id);
-            $q->where('user_id',Auth::user()->id);
+        $model = Note::whereHas('comments', function ($q) use ($id) {
+            $q->where('id', $id);
+            $q->where('user_id', Auth::user()->id);
         })->first();
         if (!$model) {
             abort(404);
         }
-        if($model->comments()->where('id',$id)->delete()){
+        if ($model->comments()->where('id', $id)->delete()) {
             return 1;
         }
         return 0;
     }
 
-    public function getLikes($id,$type = 'simple')
+    public function getLikes($id, $type = 'simple')
     {
         $limit = 5;
-        if($type == 'full'){
+        if ($type == 'full') {
             $limit = 6;
         }
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $model = Note::find($id);
@@ -421,9 +418,9 @@ class NotesController extends Controller
         $ignoredRequests = [];
         $myRequests = [];
         $myFriends = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $requests = Auth::user()->requests->modelKeys();
-            $ignoredRequests = Auth::user()->requests()->where('ignore',true)->get()->modelKeys();
+            $ignoredRequests = Auth::user()->requests()->where('ignore', true)->get()->modelKeys();
             $myRequests = Auth::user()->friends->modelKeys();
             $myFriends = array_intersect($requests, $myRequests);
         }
@@ -447,7 +444,7 @@ class NotesController extends Controller
             abort(404);
         }
         $liked = 0;
-        if(!$model->likes()->where('user_id',Auth::user()->id)->get()->count()){
+        if (!$model->likes()->where('user_id', Auth::user()->id)->get()->count()) {
             $model->likes()->attach(Auth::user()->id);
             $liked = 1;
         }
@@ -462,7 +459,7 @@ class NotesController extends Controller
         }
 
         $unliked = 0;
-        if($model->likes()->where('user_id',Auth::user()->id)->get()->count()){
+        if ($model->likes()->where('user_id', Auth::user()->id)->get()->count()) {
             $model->likes()->detach(Auth::user()->id);
             $unliked = 1;
         }
@@ -471,7 +468,7 @@ class NotesController extends Controller
 
     public function anyUploadImage($id = false)
     {
-        $itemId = Request::get('item_id',$id);
+        $itemId = Request::get('item_id', $id);
         if (Input::hasFile('file')) {
             $files = Input::file('file');
             foreach ($files as $file) {
@@ -505,7 +502,7 @@ class NotesController extends Controller
 
     public function anyDeleteImage($filename = false)
     {
-        if(!$filename){
+        if (!$filename) {
             $filename = Input::get('filename');
         }
 

@@ -20,10 +20,10 @@ class Boot
      */
     public function handle($request, Closure $next)
     {
-        if(!Request::ajax() && Auth::check() && Auth::user()->is(Config::get('app.role.user'))){
+        if (!Request::ajax() && Auth::check() && Auth::user()->is(Config::get('app.role.user'))) {
             $user = Auth::user();
-            if(ViewHelper::isRoute('reader.read') || ViewHelper::isRoute('reader.verse')){
-                $user->last_reader_url = str_replace(Request::root(),'',Request::fullUrl());
+            if (ViewHelper::isRoute('reader.read') || ViewHelper::isRoute('reader.verse')) {
+                $user->last_reader_url = str_replace(Request::root(), '', Request::fullUrl());
             }
             $user->save();
         }

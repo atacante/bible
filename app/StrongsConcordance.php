@@ -16,6 +16,6 @@ class StrongsConcordance extends BaseModel
 
     public function views()
     {
-        return $this->morphToMany('App\User','item','users_views')->withTimestamps();
+        return $this->morphToMany('App\User', 'item', 'users_views')->withTimestamps();
     }
 }

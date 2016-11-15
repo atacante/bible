@@ -40,7 +40,7 @@ class StrongsConcordanceSeeder extends Seeder
             foreach ($excelData as $key => $row) {
                 $part++;
                 $data[$key]['dictionary_type'] = StrongsConcordance::DICTIONARY_HEBREW;
-                if(trim($row['greek_hebrew']) == "Strong's Greek Dictionary:"){
+                if (trim($row['greek_hebrew']) == "Strong's Greek Dictionary:") {
                     $data[$key]['dictionary_type'] = StrongsConcordance::DICTIONARY_GREEK;
                 }
                 $data[$key]['strong_num'] = intval($row['number']);
@@ -53,17 +53,17 @@ class StrongsConcordanceSeeder extends Seeder
                 $searchEl = "~/greek/(.*?).htm~";
                 preg_match($searchHe, $row['strongs_exhaustive_concordance'], $outputHe);
                 preg_match($searchEl, $row['strongs_exhaustive_concordance'], $outputEl);
-                if(isset($outputHe[1])){
+                if (isset($outputHe[1])) {
                     $num = $outputHe[1];
                     $replace = "/reader/strongs/".$num."/hebrew";
-                    $row['strongs_exhaustive_concordance'] =  preg_replace($searchHe,$replace,$row['strongs_exhaustive_concordance']);
+                    $row['strongs_exhaustive_concordance'] =  preg_replace($searchHe, $replace, $row['strongs_exhaustive_concordance']);
                 }
-                if(isset($outputEl[1])){
+                if (isset($outputEl[1])) {
                     $num = $outputEl[1];
                     $replace = "/reader/strongs/".$num."/greek";
-                    $row['strongs_exhaustive_concordance'] =  preg_replace($searchEl,$replace,$row['strongs_exhaustive_concordance']);
+                    $row['strongs_exhaustive_concordance'] =  preg_replace($searchEl, $replace, $row['strongs_exhaustive_concordance']);
                 }
-                $data[$key]['exhaustive_concordance'] = str_replace('|','"',$row['strongs_exhaustive_concordance']);
+                $data[$key]['exhaustive_concordance'] = str_replace('|', '"', $row['strongs_exhaustive_concordance']);
                 if ($part == 500) {
                     StrongsConcordance::insert($data);
                     $data = [];

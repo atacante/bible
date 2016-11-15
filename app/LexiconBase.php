@@ -11,5 +11,4 @@ class LexiconBase extends BaseModel
 
     protected $table = 'lexicon_base';
     protected $fillable = ['id', 'book_id','chapter_num','verse_num','strong_num','transliteration','verse_part_el','verse_part_he'];
-
 }

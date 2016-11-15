@@ -21,23 +21,25 @@ class ShopOrdersController extends Controller
         $orderModel = Order::query();
 
         $content['orders'] = $orderModel->with('user')->orderBy('id')->paginate(20);
-        return view('admin.shop.orders.list',
+        return view(
+            'admin.shop.orders.list',
             [
                 'page_title' => 'Orders',
                 'content' => $content,
                 'filterAction' => 'shop-orders/list/',
-            ]);
+            ]
+        );
     }
 
-    public function getView($orderId){
+    public function getView($orderId)
+    {
         $order = Order::find($orderId);
 
-        if(!$order){
+        if (!$order) {
             Notification::error('There no such order!');
             return Redirect::to('shop-orders/list');
         }
 
-        return view('admin.shop.orders.view',['order'=>$order,'page_title' => 'Order Details',]);
+        return view('admin.shop.orders.view', ['order'=>$order,'page_title' => 'Order Details',]);
     }
-
 }

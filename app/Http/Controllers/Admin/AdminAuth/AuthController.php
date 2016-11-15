@@ -52,18 +52,21 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        return Validator::make(
+            $data,
+            [
             'name' => 'required|max:255',
             'username' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
-//            'g-recaptcha-response' => 'required|captcha',
-        ],
-        [
+            //            'g-recaptcha-response' => 'required|captcha',
+            ],
+            [
             'g-recaptcha-response.required' => 'The recaptcha field is required.',
             'g-recaptcha-response.captcha'  => 'The recaptcha field is required.',
-        ]);
+            ]
+        );
     }
 
     /**

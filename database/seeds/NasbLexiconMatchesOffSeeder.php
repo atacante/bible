@@ -37,26 +37,25 @@ class NasbLexiconMatchesOffSeeder extends Seeder
             $data = [];
             foreach ($excelData as $key => $row) {
                 $part++;
-                $book = explode(':',trim($row['verse']));
+                $book = explode(':', trim($row['verse']));
                 $verse_num = $book[1];
-                $bookAndChapter = explode(' ',$book[0]);
+                $bookAndChapter = explode(' ', $book[0]);
                 $chapter = array_pop($bookAndChapter);
-                $book_name = implode(' ',$bookAndChapter);
-                $bookObj = BooksListEn::query()->where('book_name',$book_name)->first(['id']);
-                $html = new Htmldom(str_replace('|','"',$row['lexicon']));
+                $book_name = implode(' ', $bookAndChapter);
+                $bookObj = BooksListEn::query()->where('book_name', $book_name)->first(['id']);
+                $html = new Htmldom(str_replace('|', '"', $row['lexicon']));
                 $trs = $html->find('tr');
-                foreach($trs as $trkey => $tr){
-                    if($trkey > 0){
+                foreach ($trs as $trkey => $tr) {
+                    if ($trkey > 0) {
                         $tds = $tr->find('td');
                         $data[$trkey]['book_id'] = $bookObj->id;
                         $data[$trkey]['chapter_num'] = $chapter;
                         $data[$trkey]['verse_num'] = $verse_num;
                         $data[$trkey]['strong_num'] = 'H'.intval($tds[3]->plaintext);
                         $data[$trkey]['transliteration'] = $tds[2]->plaintext;
-                        if($bookObj->id < 40){
+                        if ($bookObj->id < 40) {
                             $data[$trkey]['verse_part_he'] = $tds[1]->plaintext;
-                        }
-                        else{
+                        } else {
                             $data[$trkey]['verse_part_el'] = $tds[1]->plaintext;
                         }
                         $data[$trkey]['verse_part'] = utf8_encode($tds[0]->plaintext);

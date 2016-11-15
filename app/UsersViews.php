@@ -14,15 +14,15 @@ class UsersViews extends BaseModel
 
 //    protected $fillable = array('user_id', 'views');
 
-    public static function thackView($model,$category,$version = null){
-        if(Auth::user()->is('administrator')){
+    public static function thackView($model, $category, $version = null)
+    {
+        if (Auth::user()->is('administrator')) {
             return false;
         }
-        if($model->views()->where('user_id',Auth::user()->id)->where('item_category', $category)->get()->count()){
+        if ($model->views()->where('user_id', Auth::user()->id)->where('item_category', $category)->get()->count()) {
             $model->views()->wherePivot('item_category', $category)->updateExistingPivot(Auth::user()->id, ['views' => DB::raw('views+1')]);
-        }
-        else{
-            $model->views()->attach(Auth::user()->id,['item_category' => $category,'views' => 1,'bible_version'=>$version]);
+        } else {
+            $model->views()->attach(Auth::user()->id, ['item_category' => $category,'views' => 1,'bible_version'=>$version]);
         }
     }
 

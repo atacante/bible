@@ -2,20 +2,22 @@
 
 namespace App;
 
-class ShopCategory extends BaseModel {
+class ShopCategory extends BaseModel
+{
 
-	protected $fillable = ['title'];
+    protected $fillable = ['title'];
 
-	public function rules()
-	{
-		$rules = [
-			'title' => 'required|max:255',
-		];
+    public function rules()
+    {
+        $rules = [
+            'title' => 'required|max:255',
+        ];
 
-		return $rules;
-	}
+        return $rules;
+    }
 
-	public function products(){
-		return $this->hasMany(ShopProducts::class, 'category_id', 'id');
-	}
+    public function products()
+    {
+        return $this->hasMany(ShopProducts::class, 'category_id', 'id');
+    }
 }

@@ -15,8 +15,7 @@ class CreateBereanVersionTable extends Migration
     public function up()
     {
         $this->tableName = 'verses_' . $this->version . '_en';
-        if (!Schema::hasTable($this->tableName))
-        {
+        if (!Schema::hasTable($this->tableName)) {
             Schema::create($this->tableName, function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('book_id');

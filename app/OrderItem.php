@@ -1,22 +1,23 @@
 <?php namespace App;
 
-class OrderItem extends BaseModel {
+class OrderItem extends BaseModel
+{
 
-	protected $fillable = ['order_id', 'product_id', 'qty', 'color', 'size'];
-	protected $dates = ['created_at', 'updated_at'];
+    protected $fillable = ['order_id', 'product_id', 'qty', 'color', 'size'];
+    protected $dates = ['created_at', 'updated_at'];
 
-	public function rules()
-	{
-		$rules = [
-			'order_id' => 'required',
-			'product_id' => 'required'
-		];
+    public function rules()
+    {
+        $rules = [
+            'order_id' => 'required',
+            'product_id' => 'required'
+        ];
 
-		return $rules;
-	}
+        return $rules;
+    }
 
-	public function product() {
-		return $this->belongsTo(ShopProduct::class, 'product_id', 'id');
-	}
-
+    public function product()
+    {
+        return $this->belongsTo(ShopProduct::class, 'product_id', 'id');
+    }
 }

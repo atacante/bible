@@ -31,11 +31,11 @@ class SubscriptionBuilder extends ASubscriptionBuilder
         $this->user = $user;
         $this->plan = $plan;
         $this->name = Config::get('cashier-authorize')[$this->plan]['name'];
-        if($amount === false){
+        if ($amount === false) {
             $amount = round(floatval(Config::get('cashier-authorize')[$this->plan]['amount']) * floatval('1.'.$this->getTaxPercentageForPayload()), 2);
         }
 
-        $this->amount = round($amount,2);
+        $this->amount = round($amount, 2);
         $this->requestor = new Requestor;
     }
 
@@ -88,7 +88,7 @@ class SubscriptionBuilder extends ASubscriptionBuilder
 
         $response = $controller->executeWithApiResponse($requestor->env);
 
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok") ) {
+        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             if ($this->skipTrial) {
                 $trialEndsAt = null;
             } else {
@@ -112,7 +112,6 @@ class SubscriptionBuilder extends ASubscriptionBuilder
                 'success' => true,
                 'message' => 'You Now Have A Premium Account. Your Payment Will Be Proceed Soon'
             ];
-
         } else {
             $errorMessages = $response->getMessages()->getMessage();
 
@@ -125,9 +124,10 @@ class SubscriptionBuilder extends ASubscriptionBuilder
         return $result;
     }
 
-    public function createTrial(){
+    public function createTrial()
+    {
 
-        if($this->amount > 0){
+        if ($this->amount > 0) {
             return false;
         }
 

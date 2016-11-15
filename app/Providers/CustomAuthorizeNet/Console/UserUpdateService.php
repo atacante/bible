@@ -11,15 +11,14 @@ class UserUpdateService
         $users = User::all();
 
         foreach ($users as $user) {
-            if($user->isPremiumPaid()){
+            if ($user->isPremiumPaid()) {
                 $user->plan_type = User::PLAN_PREMIUM;
-            }else{
-                if($user->upgrade_plan){
+            } else {
+                if ($user->upgrade_plan) {
                     $user->upgradeToPremium($user->upgrade_plan);
-                }else{
+                } else {
                     $user->plan_type = User::PLAN_FREE;
                 }
-
             }
 
             $user->save();

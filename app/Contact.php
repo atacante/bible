@@ -16,7 +16,8 @@ class Contact extends BaseModel
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
             'g-recaptcha-response.required' => 'The recaptcha field is required.',
             'g-recaptcha-response.captcha'  => 'The recaptcha field is required.',

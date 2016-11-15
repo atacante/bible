@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class HelpersServiceProvider extends ServiceProvider {
+class HelpersServiceProvider extends ServiceProvider
+{
 
     /**
      * Register bindings in the container.
@@ -13,7 +14,6 @@ class HelpersServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-
     }
 
     /**
@@ -23,7 +23,7 @@ class HelpersServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        foreach (glob(app_path().'/Http/Helpers/*.php') as $filename){
+        foreach (glob(app_path().'/Http/Helpers/*.php') as $filename) {
             require_once($filename);
         }
     }

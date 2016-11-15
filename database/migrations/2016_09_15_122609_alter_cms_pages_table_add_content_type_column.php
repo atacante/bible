@@ -13,8 +13,7 @@ class AlterCmsPagesTableAddContentTypeColumn extends Migration
      */
     public function up()
     {
-        Schema::table('cms_pages', function($table)
-        {
+        Schema::table('cms_pages', function ($table) {
             $table->string('content_type')->default(CmsPage::CONTENT_PAGE);
             $table->string('title')->nullable()->change();
             $table->string('meta_title')->nullable()->change();
@@ -30,8 +29,7 @@ class AlterCmsPagesTableAddContentTypeColumn extends Migration
      */
     public function down()
     {
-        Schema::table('cms_pages', function($table)
-        {
+        Schema::table('cms_pages', function ($table) {
             $table->dropColumn('content_type');
             $table->string('title')->nullable(false)->change();
             $table->string('meta_title')->nullable(false)->change();

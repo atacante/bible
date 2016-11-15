@@ -3,23 +3,23 @@
 return [
 
     "aps" => [
-    	/*
+        /*
     	 * A valid PEM certificate generated from Apple Push Service certificate
     	 */
-        "certificate" 	=> storage_path('app')."/aps.pem",
-    		
-    	/*
+        "certificate"   => storage_path('app')."/aps.pem",
+            
+        /*
     	 * Password used to generate a certificate
     	 */
-        "passPhrase"  	=> ""
+        "passPhrase"    => ""
     ],
-	
+    
     "gcm" => [
-    	/*
+        /*
     	 * Google GCM api key
     	 * You can retrieve your key in Google Developer Console
     	 */
-        "apiKey"      	=> "AIzaSyD24B_gd3xP51iilI7I9akJZjMv1n1kIuw",
+        "apiKey"        => "AIzaSyD24B_gd3xP51iilI7I9akJZjMv1n1kIuw",
     ]
 
 ];

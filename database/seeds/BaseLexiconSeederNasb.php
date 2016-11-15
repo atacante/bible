@@ -37,16 +37,16 @@ class BaseLexiconSeederNasb extends Seeder
             $data = [];
             foreach ($excelData as $key => $row) {
                 $part++;
-                $book = explode(':',trim($row['verse']));
+                $book = explode(':', trim($row['verse']));
                 $verse_num = $book[1];
-                $bookAndChapter = explode(' ',$book[0]);
+                $bookAndChapter = explode(' ', $book[0]);
                 $chapter = array_pop($bookAndChapter);
-                $book_name = implode(' ',$bookAndChapter);
-                $bookObj = BooksListEn::query()->where('book_name',$book_name)->first(['id']);
-                $html = new Htmldom(str_replace('|','"',$row['lexicon']));
+                $book_name = implode(' ', $bookAndChapter);
+                $bookObj = BooksListEn::query()->where('book_name', $book_name)->first(['id']);
+                $html = new Htmldom(str_replace('|', '"', $row['lexicon']));
                 $trs = $html->find('tr');
-                foreach($trs as $trkey => $tr){
-                    if($trkey > 0){
+                foreach ($trs as $trkey => $tr) {
+                    if ($trkey > 0) {
                         $tds = $tr->find('td');
                         $data[$trkey]['book_id'] = $bookObj->id;
                         $data[$trkey]['chapter_num'] = $chapter;

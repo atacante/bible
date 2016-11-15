@@ -11,7 +11,8 @@ class LocationImages extends BaseModel
     protected $table = 'location_images';
     protected $fillable = ['id','location_id','image'];
 
-    public function location() {
+    public function location()
+    {
         return $this->belongsTo(Location::class, 'location_id', 'id');
     }
 }

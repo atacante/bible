@@ -1,6 +1,7 @@
 <?php namespace App;
 
-class Migration extends BaseModel {
+class Migration extends BaseModel
+{
 
     /**
      * Generated
@@ -8,7 +9,4 @@ class Migration extends BaseModel {
 
     protected $table = 'migrations';
     protected $fillable = ['migration', 'batch'];
-
-
-
 }

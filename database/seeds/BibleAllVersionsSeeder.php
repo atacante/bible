@@ -22,7 +22,7 @@ class BibleAllVersionsSeeder extends Seeder
         ini_set('memory_limit', '512M');
         $csv = new \parseCSV(base_path('resources/data/bibles.csv'));
         $data = [];
-        if(count($csv->data)){
+        if (count($csv->data)) {
             /* !!!IMPORTANT!!!  "version_name" value should match with headers in bibles.csv during seeding data */
             $progressBar = new ProgressBarHelper(count($csv->data)*9, 10);
             $progressBar->start('Started seeding data for 9 Bible versions');
@@ -31,8 +31,7 @@ class BibleAllVersionsSeeder extends Seeder
             if ($versions) {
                 foreach ($versions as $version) {
                     $this->version = $version['version_code'];
-                    if (Schema::hasTable('verses_' . $this->version . '_en'))
-                    {
+                    if (Schema::hasTable('verses_' . $this->version . '_en')) {
                         DB::statement('TRUNCATE TABLE verses_' . $this->version . '_en');
                         DB::statement('ALTER SEQUENCE verses_' . $this->version . '_en_id_seq RESTART WITH 1');
                     }
@@ -47,17 +46,17 @@ class BibleAllVersionsSeeder extends Seeder
 //            VersionsListEn::create(['version_name' => 'American Standard Version','version_code' => str_replace(' ','_',strtolower('American Standard Version'))]);
             $prevBook = '';
             $bookId = 0;
-            foreach($csv->data as $row){
+            foreach ($csv->data as $row) {
                 foreach ($versions as $version) {
                     $this->version = $version['version_name'];
 
-                    $book = explode(':',trim($row['Verse']));
-                    $bookAndChapter = explode(' ',$book[0]);
+                    $book = explode(':', trim($row['Verse']));
+                    $bookAndChapter = explode(' ', $book[0]);
                     $chapter = array_pop($bookAndChapter);
                     $verse_num = $book[1];
-                    $book = implode(' ',$bookAndChapter);//array_pop() result
+                    $book = implode(' ', $bookAndChapter);//array_pop() result
                     $verse = $row[$this->version];
-                    if($book != $prevBook){
+                    if ($book != $prevBook) {
                         $bookModel = BooksListEn::create(['id' => $bookId+1,'book_name' => $book]);
                         $prevBook = $book;
                         $bookId = $bookModel->id;

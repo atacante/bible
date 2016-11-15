@@ -12,8 +12,7 @@ class AlterCommentsTableChangeTextFieldType extends Migration
      */
     public function up()
     {
-        Schema::table('wall_comments', function($table)
-        {
+        Schema::table('wall_comments', function ($table) {
             $table->text('text')->change();
         });
     }
@@ -25,8 +24,7 @@ class AlterCommentsTableChangeTextFieldType extends Migration
      */
     public function down()
     {
-        Schema::table('wall_comments', function($table)
-        {
+        Schema::table('wall_comments', function ($table) {
             $table->string('text')->change();
         });
     }

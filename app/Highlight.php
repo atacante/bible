@@ -21,7 +21,7 @@ class Highlight extends Model
 
     public function verseFrom()
     {
-        if(!$this->version){
+        if (!$this->version) {
             $this->version = Config::get('app.defaultBibleVersion');
         }
         $versesModel = BaseModel::getVersesModelByVersionCode($this->version);
@@ -30,7 +30,7 @@ class Highlight extends Model
 
     public function verseTo()
     {
-        if(!$this->version){
+        if (!$this->version) {
             $this->version = Config::get('app.defaultBibleVersion');
         }
         $versesModel = BaseModel::getVersesModelByVersionCode($this->version);

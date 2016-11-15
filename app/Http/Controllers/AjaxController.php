@@ -25,33 +25,32 @@ class AjaxController extends Controller
 {
     public function getBooksList()
     {
-        $version = Request::input('version',false);
-        if($version == 'berean'){
+        $version = Request::input('version', false);
+        if ($version == 'berean') {
             $booksQuery = BooksListEn::where('id', '>', 39)->get();
-        }
-        else{
+        } else {
             $booksQuery = BooksListEn::all();
         }
 
-        return response()->json(ViewHelper::prepareForSelectBox($booksQuery,'id','book_name'));
+        return response()->json(ViewHelper::prepareForSelectBox($booksQuery, 'id', 'book_name'));
     }
     public function getUsersList()
     {
-        $term = Request::input('term',false);
-        $users = User::where('name','ilike', '%' . $term . '%')
+        $term = Request::input('term', false);
+        $users = User::where('name', 'ilike', '%' . $term . '%')
             ->whereHas('roles', function ($q) {
-                $q->whereIn('slug',[Config::get('app.role.user')]);
+                $q->whereIn('slug', [Config::get('app.role.user')]);
             })
-            ->pluck('name','id');
+            ->pluck('name', 'id');
         $usersSelect = [];
-        $users->each(function ($item, $key) use(&$usersSelect) {
+        $users->each(function ($item, $key) use (&$usersSelect) {
             $usersSelect[] = ['id' => $key, 'text' => $item];
         });
         return response()->json($usersSelect);
     }
     public function getChaptersList()
     {
-        $book = Request::input('book_id',Config::get('app.defaultBookNumber'));
+        $book = Request::input('book_id', Config::get('app.defaultBookNumber'));
         $chapters = ViewHelper::prepareChaptersForSelectBox(BaseModel::getChapters($book));
         return response()->json($chapters);
 
@@ -68,9 +67,9 @@ class AjaxController extends Controller
 
     public function getVersesList()
     {
-        $book = Request::input('book_id',Config::get('app.defaultBookNumber'));
-        $chapter = Request::input('chapter',Config::get('app.defaultChapterNumber'));
-        $verses = ViewHelper::prepareVersesForSelectBox(BaseModel::getVerses($book,$chapter));
+        $book = Request::input('book_id', Config::get('app.defaultBookNumber'));
+        $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
+        $verses = ViewHelper::prepareVersesForSelectBox(BaseModel::getVerses($book, $chapter));
         return response()->json($verses);
     }
 
@@ -88,63 +87,72 @@ class AjaxController extends Controller
         return view('reader.printchapter', ['content' => $content]);
     }
 
-    public function getLexiconInfo(){
+    public function getLexiconInfo()
+    {
         $definitionId = Request::input('definition_id');
         $lexiconModel = BaseModel::getLexiconModelByVersionCode(Request::input('lexversion'));
-        $lexiconinfo = $lexiconModel::query()->with('locations')->where('id',$definitionId)->first();
+        $lexiconinfo = $lexiconModel::query()->with('locations')->where('id', $definitionId)->first();
         $view = 'symbolism_new';
-        if(Request::cookie('readerMode') == 'intermediate'){
+        if (Request::cookie('readerMode') == 'intermediate') {
             $view = 'lexiconinfo_new';
         }
         return view('reader.'.$view, ['lexiconinfo' => $lexiconinfo]);
     }
 
-    public function getViewNote(){
+    public function getViewNote()
+    {
         $id = Request::input('id');
         $note = Note::query()->/*where('user_id',Auth::user()->id)->*/find($id);
         return view('notes.view', ['model' => $note]);
     }
 
-    public function getPrintNote(){
+    public function getPrintNote()
+    {
         $ids = (array)Request::input('id');
-        $notes = Note::query()->where('user_id',Auth::user()->id)->whereIn('id',$ids)->orderBy('created_at','desc')->get();
+        $notes = Note::query()->where('user_id', Auth::user()->id)->whereIn('id', $ids)->orderBy('created_at', 'desc')->get();
         return view('notes.print', ['model' => $notes]);
     }
 
-    public function getPrintJournal(){
+    public function getPrintJournal()
+    {
         $ids = (array)Request::input('id');
-        $journal = Journal::query()->where('user_id',Auth::user()->id)->whereIn('id',$ids)->orderBy('created_at','desc')->get();
+        $journal = Journal::query()->where('user_id', Auth::user()->id)->whereIn('id', $ids)->orderBy('created_at', 'desc')->get();
         return view('journal.print', ['model' => $journal]);
     }
 
-    public function getPrintPrayer(){
+    public function getPrintPrayer()
+    {
         $ids = (array)Request::input('id');
-        $prayers = Prayer::query()->where('user_id',Auth::user()->id)->whereIn('id',$ids)->orderBy('created_at','desc')->get();
+        $prayers = Prayer::query()->where('user_id', Auth::user()->id)->whereIn('id', $ids)->orderBy('created_at', 'desc')->get();
         return view('prayers.print', ['model' => $prayers]);
     }
 
-    public function getViewJournal(){
+    public function getViewJournal()
+    {
         $id = Request::input('id');
         $journal = Journal::query()->/*where('user_id',Auth::user()->id)->*/find($id);
         return view('journal.view', ['model' => $journal]);
     }
 
-    public function getViewPrayer(){
+    public function getViewPrayer()
+    {
         $id = Request::input('id');
         $prayer = Prayer::query()->/*where('user_id',Auth::user()->id)->*/find($id);
         return view('prayers.view', ['model' => $prayer]);
     }
 
-    public function getViewStatus(){
+    public function getViewStatus()
+    {
         $id = Request::input('id');
         $status = WallPost::query()->/*where('user_id',Auth::user()->id)->*/find($id);
         return view('wall-posts.view', ['model' => $status]);
     }
 
-    public function getLocationMapEmbedCode(){
+    public function getLocationMapEmbedCode()
+    {
         $id = Request::input('id');
         $location = Location::find($id);
-        if($location){
+        if ($location) {
             return $location->g_map;
         }
         return 0;

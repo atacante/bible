@@ -7,7 +7,6 @@ use App\BlogCategory;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-
 class BlogController extends Controller
 {
     public function getList()
@@ -15,11 +14,13 @@ class BlogController extends Controller
         $content['categoriesCount'] = BlogCategory::query()->count();
         $content['articlesCount'] = BlogArticle::query()->count();
 
-        return view('admin.blog.list',
+        return view(
+            'admin.blog.list',
             [
                 'page_title' => 'CMS',
                 'content' => $content,
                 'filterAction' => 'blog/list/',
-            ]);
+            ]
+        );
     }
 }

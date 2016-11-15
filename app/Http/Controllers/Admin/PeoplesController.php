@@ -26,19 +26,21 @@ class PeoplesController extends Controller
 
         $peoplesModel = People::query();
 
-        if(!empty($search = Request::input('search', false))){
+        if (!empty($search = Request::input('search', false))) {
             $peoplesModel->where('people_name', 'ilike', '%'.$search.'%');
             $peoplesModel->orWhere('people_description', 'ilike', '%'.$search.'%');
         }
 
         $peoplesModel->with('images');
         $content['peoples'] = $peoplesModel->orderBy('people_name')->paginate(10);
-        return view('admin.peoples.list',
+        return view(
+            'admin.peoples.list',
             [
                 'page_title' => 'People',
                 'content' => $content,
                 'filterAction' => 'peoples/list/',
-            ]);
+            ]
+        );
     }
 
     public function anyCreate(\Illuminate\Http\Request $request)
@@ -52,11 +54,13 @@ class PeoplesController extends Controller
             }
             return Redirect::to(ViewHelper::adminUrlSegment() . '/peoples/list/');
         }
-        return view('admin.peoples.create',
+        return view(
+            'admin.peoples.create',
             [
                 'model' => $model,
                 'page_title' => 'Create New People'
-            ]);
+            ]
+        );
     }
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
@@ -77,11 +81,13 @@ class PeoplesController extends Controller
                 ? Redirect::to($url)
                 : Redirect::to(ViewHelper::adminUrlSegment() . '/peoples/list/');
         }
-        return view('admin.peoples.update',
+        return view(
+            'admin.peoples.update',
             [
                 'model' => $model,
                 'page_title' => 'Edit People',
-            ]);
+            ]
+        );
     }
 
     public function anyDelete($id)
@@ -90,7 +96,7 @@ class PeoplesController extends Controller
             Session::keep('backUrl');
         }
         $people = People::query()->with('images')->find($id);
-        if($people->images){
+        if ($people->images) {
             foreach ($people->images as $image) {
                 $this->anyDeleteImage($image->image);
             }
@@ -116,7 +122,7 @@ class PeoplesController extends Controller
 
                 $this->makeDir(public_path() . $tmpThumbPath);
                 $thumbPath = public_path($tmpThumbPath . $tmpFileName);
-                if($file){
+                if ($file) {
                     $image = new PeopleImages();
                     $image->people_id = $peopleId;
                     $image->image = $tmpFileName;
@@ -124,7 +130,6 @@ class PeoplesController extends Controller
                 }
                 // Resizing 200x200
                 Image::make($file->getRealPath())->fit(200, 200)->save($thumbPath)->destroy();
-
             }
             return true;
         }
@@ -141,7 +146,7 @@ class PeoplesController extends Controller
 
     public function anyDeleteImage($filename = false)
     {
-        if(!$filename){
+        if (!$filename) {
             $filename = Input::get('filename');
         }
 

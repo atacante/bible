@@ -2,11 +2,11 @@
 
 namespace App\Http\Composers;
 
-
 use App\ShopCategory;
 use Illuminate\Contracts\View\View;
 
-class ShopCategoryFiltersComposer {
+class ShopCategoryFiltersComposer
+{
 
     /**
      * Bind data to the view.
@@ -16,8 +16,7 @@ class ShopCategoryFiltersComposer {
      */
     public function compose(View $view)
     {
-        $filters['categories'] = ShopCategory::get()->pluck('title','id')->toArray();
+        $filters['categories'] = ShopCategory::get()->pluck('title', 'id')->toArray();
         $view->with('filters', $filters);
     }
-
 }

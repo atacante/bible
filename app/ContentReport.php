@@ -13,7 +13,8 @@ class ContentReport extends BaseModel
         ];
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
@@ -25,7 +26,7 @@ class ContentReport extends BaseModel
     public function type()
     {
         $type = '';
-        switch($this->item_type){
+        switch ($this->item_type) {
             case 'App\Note':
                 $type = 'note';
                 break;

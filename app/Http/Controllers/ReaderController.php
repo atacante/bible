@@ -39,7 +39,8 @@ class ReaderController extends Controller
 {
     private $readerMode = 'intermediate';
 
-    private function flashNotification($message){
+    private function flashNotification($message)
+    {
         Notification::info($message);
         return Redirect::to((URL::previous() && URL::previous() != Request::fullUrl())?URL::previous():'/reader/overview');
     }
@@ -62,13 +63,13 @@ class ReaderController extends Controller
         $content['version_code'] = $version;
         $content['heading'] = BooksListEn::find($book)->book_name . " " . $chapter;
         $content['verses'] = $versesModel::query()->with('bookmarks')->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
-        if(!$content['verses']->count()){
+        if (!$content['verses']->count()) {
             return $this->flashNotification('Requested content does not provided in '.$content['version'].' version');
         }
 
         /* Track user views */
-        if(Auth::check()){
-            UsersViews::thackView($content['verses'][0],UsersViews::CAT_READER,$version);
+        if (Auth::check()) {
+            UsersViews::thackView($content['verses'][0], UsersViews::CAT_READER, $version);
         }
         /* End Track user views */
 
@@ -104,7 +105,7 @@ class ReaderController extends Controller
 
         $content['pagination'] = $this->pagination($chapter, $book);
 
-        $compare['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsToCompareList($version,$book), 'version_code', 'version_name');
+        $compare['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsToCompareList($version, $book), 'version_code', 'version_name');
         $compareResetParams = Request::input();
         unset($compareResetParams['compare']);
 //        unset($compareResetParams['diff']);
@@ -116,7 +117,7 @@ class ReaderController extends Controller
                 $compareVersesModel = BaseModel::getVersesModelByVersionCode($compareVersion);
                 $compare['data'][$compareVersion]['verses'] = $compareVersesModel::query()->where('book_id', $book)->where('chapter_num', $chapter)->orderBy('verse_num')->get();
 
-                if(!$compare['data'][$compareVersion]['verses']->count()){
+                if (!$compare['data'][$compareVersion]['verses']->count()) {
                     return $this->flashNotification('Requested content does not provided in '.$compareVersion.' version');
                 }
                 if ((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff', false) || Request::input('diff', false) == 'on')) {
@@ -128,31 +129,31 @@ class ReaderController extends Controller
                     }
                 }
 
-                if(Request::input('diff', false) == 'off' && Auth::check()){
+                if (Request::input('diff', false) == 'off' && Auth::check()) {
                     Auth::user()->setNotifTooltip('got_chapter_diff_tooltip');
                 }
             }
         }
 
         $mode = Request::input('readerMode', false);
-        if($mode){
+        if ($mode) {
             Cookie::queue(Cookie::forever('readerMode', $mode));
-        }else{
+        } else {
             $mode = Cookie::get('readerMode', 'intermediate');
         }
 
         $related = Request::input('related', false);
-        if($related !== false){
+        if ($related !== false) {
             Cookie::queue(Cookie::forever('related', $related));
-        }else{
+        } else {
             $related = Cookie::get('related', 'on');
         }
 
-        if(Auth::check() && Request::input('related') == 'on'){
+        if (Auth::check() && Request::input('related') == 'on') {
             Auth::user()->setNotifTooltip('got_related_records_tooltip');
         }
 
-        $content['relatedItems'] = $this->getRelatedItems($version,$book,$chapter);
+        $content['relatedItems'] = $this->getRelatedItems($version, $book, $chapter);
         $content['showRelated'] = $related;
         $content['readerMode'] = $mode;
 
@@ -189,28 +190,27 @@ class ReaderController extends Controller
         $version = Request::input('version', Config::get('app.defaultBibleVersion'));
 
         // Maybe user wants to find a psalm?
-        if(preg_match_all('/\d+(:\d+)?/',$q, $verseMatches)){
-
+        if (preg_match_all('/\d+(:\d+)?/', $q, $verseMatches)) {
             $verse = false;
             // User wants to find Chapter:Verse
-            if($chapterVerseMatch = preg_grep('/:/',$verseMatches[0])){
-                $chapterVerse = explode(':',head($chapterVerseMatch));
+            if ($chapterVerseMatch = preg_grep('/:/', $verseMatches[0])) {
+                $chapterVerse = explode(':', head($chapterVerseMatch));
                 $chapter = $chapterVerse[0];
                 $verse = $chapterVerse[1];
 
                 $query = str_replace($chapter.':'.$verse, ' ', $q);
-            }else{
+            } else {
             // User wants to find only Chapter
                 $chapter = last($verseMatches[0]);
                 $query = $q;
             }
 
             // Split query string by words
-            if(preg_match_all('/(\d )?[a-zA-Z]+/',$query, $words)){
-                $booklist = BooksListEn::get()->pluck('book_name', 'id' )->toArray();
+            if (preg_match_all('/(\d )?[a-zA-Z]+/', $query, $words)) {
+                $booklist = BooksListEn::get()->pluck('book_name', 'id')->toArray();
 
                 // Let's find if user enter a book
-                if($bookMatches =  array_uintersect($booklist, $words[0], 'strcasecmp')){
+                if ($bookMatches =  array_uintersect($booklist, $words[0], 'strcasecmp')) {
                     $book = key($bookMatches);
 
                     $parameters = [
@@ -223,19 +223,17 @@ class ReaderController extends Controller
                     $versesModel = BaseModel::getVersesModelByVersionCode($version);
                     $verseQuery = $versesModel::query()->where('book_id', $book)->where('chapter_num', $chapter);
 
-                    if($verse){
+                    if ($verse) {
                         $verseQuery->where('verse_num', $verse);
                         $url = '/reader/verse?';
                         $parameters += ['verse' => $verse];
                     }
 
-                    if($verseQuery->count() > 0){
-                       return redirect(url($url.http_build_query($parameters)));
+                    if ($verseQuery->count() > 0) {
+                        return redirect(url($url.http_build_query($parameters)));
                     }
                 }
             }
-
-
         }
 
 
@@ -278,10 +276,10 @@ class ReaderController extends Controller
 //            }
 //        }
 
-        $filteredQuery = preg_replace('/[^\s\w]/','',$q);
+        $filteredQuery = preg_replace('/[^\s\w]/', '', $q);
 
-        $content['oldTestamentVerses'] = BaseModel::searchEverywhere($filteredQuery,'old')->paginate(10);
-        $content['newTestamentVerses'] = BaseModel::searchEverywhere($filteredQuery,'new')->paginate(10);
+        $content['oldTestamentVerses'] = BaseModel::searchEverywhere($filteredQuery, 'old')->paginate(10);
+        $content['newTestamentVerses'] = BaseModel::searchEverywhere($filteredQuery, 'new')->paginate(10);
         return view('reader.search', ['content' => $content]);
     }
 
@@ -291,7 +289,7 @@ class ReaderController extends Controller
         Session::set('verseUrl', ['title' => 'Back to Lexicon   ','link' => Request::fullUrl()]);
 
         $version_code = Request::input('version', Config::get('app.defaultBibleVersion'));
-        if($version_code == 'all'){
+        if ($version_code == 'all') {
             $version_code = Config::get('app.defaultBibleVersion');
         }
         $book = Request::input('book', Config::get('app.defaultBookNumber'));
@@ -314,22 +312,22 @@ class ReaderController extends Controller
             Session::set('prevVerse', $content['main_verse']);
 
             /* Track user views */
-            if(Auth::check() && $content['main_verse']['verse']){
-                UsersViews::thackView($content['main_verse']['verse'],UsersViews::CAT_LEXICON,$version_code);
+            if (Auth::check() && $content['main_verse']['verse']) {
+                UsersViews::thackView($content['main_verse']['verse'], UsersViews::CAT_LEXICON, $version_code);
             }
             /* End Track user views */
 
-            if(!$content['main_verse']['verse']){
+            if (!$content['main_verse']['verse']) {
                 return $this->flashNotification('Requested content does not provided in '.VersionsListEn::getVersionByCode($version_code).' version');
             }
 
             $content['lexicon'] = [];
             $lexiconModel = BaseModel::getLexiconModelByVersionCode(LexiconsListEn::getLexiconCodeByBibleVersion($version_code));
-            if($lexiconModel){
+            if ($lexiconModel) {
                 $content['lexicon'] = $lexiconModel::query()
-                    ->where('book_id',$book)
-                    ->where('chapter_num',$chapter)
-                    ->where('verse_num',$verse)
+                    ->where('book_id', $book)
+                    ->where('chapter_num', $chapter)
+                    ->where('verse_num', $verse)
                     ->orderBy('id')
                     ->get();
             }
@@ -341,7 +339,7 @@ class ReaderController extends Controller
                         ->where('book_id', $book)
                         ->where('chapter_num', $chapter)
                         ->where('verse_num', $verse);
-                    if($query->count()){
+                    if ($query->count()) {
                         $content['verse'][$version['version_code']]['version_name'] = $version['version_name'];
                         $content['verse'][$version['version_code']]['verse'] = $query->first();
                     }
@@ -355,7 +353,7 @@ class ReaderController extends Controller
                 }
             }
 
-            if(Request::input('diff', false) == 'off' && Auth::check()){
+            if (Request::input('diff', false) == 'off' && Auth::check()) {
                 Auth::user()->setNotifTooltip('got_verse_diff_tooltip');
             }
         }
@@ -378,10 +376,9 @@ class ReaderController extends Controller
             $content['verse']['version_name'] = VersionsListEn::getVersionByCode($version_code);
             $content['verse']['version_code'] = $version_code;
             $verseModel = $verseModel::query();
-            if($verse_id && !$verse){
-                $verseModel->where('id',$verse_id);
-            }
-            else{
+            if ($verse_id && !$verse) {
+                $verseModel->where('id', $verse_id);
+            } else {
                 $verseModel
                 ->where('book_id', $book)
                 ->where('chapter_num', $chapter)
@@ -389,14 +386,14 @@ class ReaderController extends Controller
             }
             $content['verse']['verse'] = $verseModel->first();
 
-            if(!$content['verse']['verse']){
+            if (!$content['verse']['verse']) {
                 return $this->flashNotification('Requested content does not provided in '.VersionsListEn::getVersionByCode($version_code).' version');
             }
         }
 
-        $content['notes'] = Note::with(['verse.booksListEn','journal','prayer','tags'])->where('user_id', Auth::user()->id)->where('verse_id',$content['verse']['verse']->id)->orderBy('created_at','desc')->get();
-        $content['journal'] = Journal::with(['verse.booksListEn','note','prayer','tags'])->where('user_id', Auth::user()->id)->where('verse_id',$content['verse']['verse']->id)->orderBy('created_at','desc')->get();
-        $content['prayers'] = Prayer::with(['verse.booksListEn','journal','note','tags'])->where('user_id', Auth::user()->id)->where('verse_id',$content['verse']['verse']->id)->orderBy('created_at','desc')->get();
+        $content['notes'] = Note::with(['verse.booksListEn','journal','prayer','tags'])->where('user_id', Auth::user()->id)->where('verse_id', $content['verse']['verse']->id)->orderBy('created_at', 'desc')->get();
+        $content['journal'] = Journal::with(['verse.booksListEn','note','prayer','tags'])->where('user_id', Auth::user()->id)->where('verse_id', $content['verse']['verse']->id)->orderBy('created_at', 'desc')->get();
+        $content['prayers'] = Prayer::with(['verse.booksListEn','journal','note','tags'])->where('user_id', Auth::user()->id)->where('verse_id', $content['verse']['verse']->id)->orderBy('created_at', 'desc')->get();
 
         $content['pagination'] = $this->pagination($content['verse']['verse']->chapter_num, $content['verse']['verse']->book_id, $content['verse']['verse']->verse_num);
         return view('reader.my-study-verse', ['content' => $content]);
@@ -408,49 +405,48 @@ class ReaderController extends Controller
 
         $rel = Request::input('rel', false);
 
-        $content['notes'] = Note::with(['verse.booksListEn','journal','prayer','tags'])->where('user_id', Auth::user()->id)->where('rel_code',$rel)->orderBy('created_at','desc')->get();
-        $content['journal'] = Journal::with(['verse.booksListEn','note','prayer','tags'])->where('user_id', Auth::user()->id)->where('rel_code',$rel)->orderBy('created_at','desc')->get();
-        $content['prayers'] = Prayer::with(['verse.booksListEn','journal','note','tags'])->where('user_id', Auth::user()->id)->where('rel_code',$rel)->orderBy('created_at','desc')->get();
+        $content['notes'] = Note::with(['verse.booksListEn','journal','prayer','tags'])->where('user_id', Auth::user()->id)->where('rel_code', $rel)->orderBy('created_at', 'desc')->get();
+        $content['journal'] = Journal::with(['verse.booksListEn','note','prayer','tags'])->where('user_id', Auth::user()->id)->where('rel_code', $rel)->orderBy('created_at', 'desc')->get();
+        $content['prayers'] = Prayer::with(['verse.booksListEn','journal','note','tags'])->where('user_id', Auth::user()->id)->where('rel_code', $rel)->orderBy('created_at', 'desc')->get();
 
         return view('reader.my-study-item', ['content' => $content]);
     }
 
-    public function anyStrongs($num,$dictionaryType,$bibleVersion = false,$verseId = false)
+    public function anyStrongs($num, $dictionaryType, $bibleVersion = false, $verseId = false)
     {
 //        Session::flash('backUrl', Request::fullUrl());
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
         }
 
-        $content['strongs_concordance'] = StrongsConcordance::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
-        $content['strongs_nasec'] = StrongsNasec::where('strong_num',$num)->where('dictionary_type',$dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
+        $content['strongs_concordance'] = StrongsConcordance::where('strong_num', $num)->where('dictionary_type', $dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
+        $content['strongs_nasec'] = StrongsNasec::where('strong_num', $num)->where('dictionary_type', $dictionaryType?$dictionaryType:StrongsConcordance::DICTIONARY_HEBREW)->first();
 
         /* Track user views */
-        if(Auth::check()){
+        if (Auth::check()) {
             $strongs = $content['strongs_concordance'];
-            if(!$strongs){
+            if (!$strongs) {
                 $strongs = $content['strongs_nasec'];
             }
-            UsersViews::thackView($strongs,UsersViews::CAT_STRONGS);
+            UsersViews::thackView($strongs, UsersViews::CAT_STRONGS);
         }
         /* End Track user views */
 
-        $references =  $this->getReferences($num,$dictionaryType);
+        $references =  $this->getReferences($num, $dictionaryType);
 
         $content['references'] = $references['data'];
         $content['totalReferences'] = $references['totalRef'];
 
         $strong_num = $content['title'] = $num;
-        if($content['strongs_concordance']){
+        if ($content['strongs_concordance']) {
             $strong_num .= " - ".$content['strongs_concordance']->transliteration;
-        }
-        elseif($content['strongs_nasec']){
+        } elseif ($content['strongs_nasec']) {
             $strong_num .= " - ".$content['strongs_nasec']->transliteration;
         }
         $content['title'] = $strong_num;
         $content['strongNum'] = $num;
         $content['dictionaryType'] = $dictionaryType;
-        $content['pages'] = $this->strongsPagination($num,$dictionaryType);
+        $content['pages'] = $this->strongsPagination($num, $dictionaryType);
 
 //        $content['verse'] = false;
 //        if($bibleVersion && $verseId){
@@ -461,53 +457,52 @@ class ReaderController extends Controller
         return view('reader.strongs', ['content' => $content]);
     }
 
-    private function getReferences($num,$dictionaryType,$limit = 5,$offset = 0){
+    private function getReferences($num, $dictionaryType, $limit = 5, $offset = 0)
+    {
         Session::flash('backUrl', Request::fullUrl());
 
         $lexiconsList = LexiconsListEn::lexiconsList();
         $lexicons = [];
         $totalRef = 0;
         $bigestLexicon = Config::get('app.defaultLexicon');
-        foreach($lexiconsList as $lexicon){
+        foreach ($lexiconsList as $lexicon) {
             $lexiconModel = BaseModel::getLexiconModelByVersionCode($lexicon['lexicon_code']);
 
-            $referencesQuery = $lexiconModel::with('booksListEn')->where('strong_num',"H".$num)->orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num');
-            if($dictionaryType == 'hebrew'){
-                $referencesQuery->where('book_id','<',40);
+            $referencesQuery = $lexiconModel::with('booksListEn')->where('strong_num', "H".$num)->orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num');
+            if ($dictionaryType == 'hebrew') {
+                $referencesQuery->where('book_id', '<', 40);
+            } elseif ($dictionaryType == 'greek') {
+                $referencesQuery->where('book_id', '>', 39);
             }
-            elseif($dictionaryType == 'greek'){
-                $referencesQuery->where('book_id','>',39);
-            }
-            if($limit){
+            if ($limit) {
                 $referencesQuery->limit($limit);
                 $referencesQuery->offset($offset);
             }
             $lexicons[$lexicon['lexicon_code']] = $referencesQuery->get();
-            $t = $lexiconModel::where('strong_num',"H".$num);
-            if($dictionaryType == 'hebrew'){
-                $t->where('book_id','<',40);
-            }
-            elseif($dictionaryType == 'greek'){
-                $t->where('book_id','>',39);
+            $t = $lexiconModel::where('strong_num', "H".$num);
+            if ($dictionaryType == 'hebrew') {
+                $t->where('book_id', '<', 40);
+            } elseif ($dictionaryType == 'greek') {
+                $t->where('book_id', '>', 39);
             }
             $t = $t->count();
-            if($t > $totalRef){
+            if ($t > $totalRef) {
                 $totalRef = $t;
                 $bigestLexicon = $lexicon['lexicon_code'];
             }
         }
         $references = [];
         $links= [];
-        if(count($lexicons)){
+        if (count($lexicons)) {
             foreach ($lexicons as $lexiconCode => $lexiconData) {
-                if(count($lexiconData)){
+                if (count($lexiconData)) {
                     foreach ($lexiconData as $lexiconItem) {
                         $title = $lexiconItem->booksListEn->book_name.' '.$lexiconItem->chapter_num.':'.$lexiconItem->verse_num;
                         $references[$title]['data'][$lexiconCode][] = $lexiconItem->toArray();
                         $references[$title]['bible_version'][$lexiconCode] = LexiconsListEn::getLexiconItemByCode($lexiconCode)['bible_version'];
                         $references[$title]['link'] = ['book_id' => $lexiconItem->book_id,'chapter_num' => $lexiconItem->chapter_num,'verse_num' => $lexiconItem->verse_num];
                         $verseModel = BaseModel::getVersesModelByVersionCode(LexiconsListEn::getLexiconItemByCode($lexiconCode)['bible_version']);
-                        $references[$title]['verse'][$lexiconCode] = $verseModel::where('book_id',$lexiconItem->book_id)->where('chapter_num',$lexiconItem->chapter_num)->where('verse_num', $lexiconItem->verse_num)->first()->toArray();
+                        $references[$title]['verse'][$lexiconCode] = $verseModel::where('book_id', $lexiconItem->book_id)->where('chapter_num', $lexiconItem->chapter_num)->where('verse_num', $lexiconItem->verse_num)->first()->toArray();
                     }
                 }
             }
@@ -515,12 +510,12 @@ class ReaderController extends Controller
         return ['data' => $references,'totalRef' => $totalRef,'bigestLexicon' => $bigestLexicon];
     }
 
-    public function getStrongsReferences($num,$dictionaryType)
+    public function getStrongsReferences($num, $dictionaryType)
     {
         $limit = 10;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
-        $references =  $this->getReferences($num,$dictionaryType,10,$offset);
+        $references =  $this->getReferences($num, $dictionaryType, 10, $offset);
 
         $content['references'] = $references['data'];
         $content['totalReferences'] = $references['totalRef'];
@@ -534,60 +529,62 @@ class ReaderController extends Controller
         );
         $content['dictionaryType'] = $dictionaryType;
         $content['pagination'] = $links;
-        $content['pages'] = $this->strongsPagination($num,$dictionaryType);
+        $content['pages'] = $this->strongsPagination($num, $dictionaryType);
         return view('reader.strongsref', ['content' => $content]);
     }
 
-    private function strongsPagination($currentNum,$dictionaryType){
+    private function strongsPagination($currentNum, $dictionaryType)
+    {
         $strongQuery = new StrongsConcordance();
-        $strong = $strongQuery->where('strong_num',$currentNum)->where('dictionary_type',$dictionaryType)->first();
-        if(!$strong){
+        $strong = $strongQuery->where('strong_num', $currentNum)->where('dictionary_type', $dictionaryType)->first();
+        if (!$strong) {
             $strongQuery = new StrongsNasec();
-            $strong = $strongQuery->where('strong_num',$currentNum)->where('dictionary_type',$dictionaryType)->first();
+            $strong = $strongQuery->where('strong_num', $currentNum)->where('dictionary_type', $dictionaryType)->first();
         }
 
-        $minId = $strongQuery->where('dictionary_type',$dictionaryType)->min('id');
-        $maxId = $strongQuery->where('dictionary_type',$dictionaryType)->max('id');
+        $minId = $strongQuery->where('dictionary_type', $dictionaryType)->min('id');
+        $maxId = $strongQuery->where('dictionary_type', $dictionaryType)->max('id');
         $pagination['prevNum'] = false;
         $pagination['nextNum'] = false;
-        if(($prevId = $strong->id-1) > $minId){
+        if (($prevId = $strong->id-1) > $minId) {
             $pagination['prevNum'] = $strongQuery->find($prevId)->strong_num;
         }
-        if(($nextId = $strong->id+1) < $maxId){
+        if (($nextId = $strong->id+1) < $maxId) {
             $pagination['nextNum'] = $strongQuery->find($nextId)->strong_num;
         }
 
         return $pagination;
-
     }
 
-    public function getRelations(){
-        $content['relatedItems'] = $this->getRelatedItems($version,$book,$chapter);
+    public function getRelations()
+    {
+        $content['relatedItems'] = $this->getRelatedItems($version, $book, $chapter);
     }
 
-    private function getRelatedItems($bibleVersion,$book,$chapter){
-        $orderDirection = Input::get('relations-order','desc');
+    private function getRelatedItems($bibleVersion, $book, $chapter)
+    {
+        $orderDirection = Input::get('relations-order', 'desc');
         $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
-        $versesIds = $versesModel::where('book_id',$book)->where('chapter_num',$chapter)->lists('id')->toArray();
+        $versesIds = $versesModel::where('book_id', $book)->where('chapter_num', $chapter)->lists('id')->toArray();
         $journalQuery = Journal::with('verse')
             ->selectRaw('id,verse_id,created_at,highlighted_text,journal_text as text,\'journal\' as type')
-            ->where('user_id',Auth::user()?Auth::user()->id:null)
-            ->where('bible_version',$bibleVersion)
-            ->whereIn('verse_id',$versesIds);
+            ->where('user_id', Auth::user()?Auth::user()->id:null)
+            ->where('bible_version', $bibleVersion)
+            ->whereIn('verse_id', $versesIds);
         $prayersQuery = Prayer::with('verse')
             ->selectRaw('id,verse_id,created_at,highlighted_text,prayer_text as text,\'prayer\' as type')
-            ->where('user_id',Auth::user()?Auth::user()->id:null)
-            ->where('bible_version',$bibleVersion)
-            ->whereIn('verse_id',$versesIds);
+            ->where('user_id', Auth::user()?Auth::user()->id:null)
+            ->where('bible_version', $bibleVersion)
+            ->whereIn('verse_id', $versesIds);
         $items = Note::with('verse')
             ->selectRaw('id,verse_id,created_at,highlighted_text,note_text as text,\'note\' as type')
-            ->where('user_id',Auth::user()?Auth::user()->id:null)
-            ->where('bible_version',$bibleVersion)
-            ->whereIn('verse_id',$versesIds)
+            ->where('user_id', Auth::user()?Auth::user()->id:null)
+            ->where('bible_version', $bibleVersion)
+            ->whereIn('verse_id', $versesIds)
             ->union($journalQuery)
             ->union($prayersQuery)
             ->orderBy('verse_id')
-            ->orderBy('created_at',$orderDirection)
+            ->orderBy('created_at', $orderDirection)
             ->get();
         return $items;
     }
@@ -598,10 +595,10 @@ class ReaderController extends Controller
         unset($params['verse_id']);
         unset($params['text']);
         unset($params['extraFields']);
-        $version = Request::input('version',false);
+        $version = Request::input('version', false);
 
         $booksQuery = BooksListEn::all();
-        if($version == 'berean'){
+        if ($version == 'berean') {
             $booksQuery = BooksListEn::where('id', '>', 39)->get();
         }
 
@@ -689,7 +686,7 @@ class ReaderController extends Controller
         return Redirect::to(URL::previous());
     }
 
-    public function anyBookmark($type,$bibleVersion,$verseId)
+    public function anyBookmark($type, $bibleVersion, $verseId)
     {
         $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
         $model = $versesModel::find($verseId);
@@ -701,14 +698,14 @@ class ReaderController extends Controller
             abort(403);
         }
         $bookmarked = 0;
-        if(!$model->bookmarks()->where('user_id',Auth::user()->id)->where('bookmark_type', $type)->get()->count()){
-            $model->bookmarks()->attach($user->id,['bookmark_type' => $type,'bible_version' => $bibleVersion]);
+        if (!$model->bookmarks()->where('user_id', Auth::user()->id)->where('bookmark_type', $type)->get()->count()) {
+            $model->bookmarks()->attach($user->id, ['bookmark_type' => $type,'bible_version' => $bibleVersion]);
             $bookmarked = 1;
         }
         return $bookmarked;
     }
 
-    public function anyDeleteBookmark($type,$bibleVersion,$verseId)
+    public function anyDeleteBookmark($type, $bibleVersion, $verseId)
     {
         $versesModel = BaseModel::getVersesModelByVersionCode($bibleVersion);
         $model = $versesModel::find($verseId);
@@ -720,8 +717,8 @@ class ReaderController extends Controller
             abort(403);
         }
         $bookmarked = 0;
-        if($model->bookmarks()->where('user_id',Auth::user()->id)->where('bookmark_type', $type)->get()->count()){
-            $model->bookmarks()->detach($user->id,['bookmark_type' => $type,'bible_version' => $bibleVersion]);
+        if ($model->bookmarks()->where('user_id', Auth::user()->id)->where('bookmark_type', $type)->get()->count()) {
+            $model->bookmarks()->detach($user->id, ['bookmark_type' => $type,'bible_version' => $bibleVersion]);
             $bookmarked = 1;
         }
         return $bookmarked;
@@ -733,18 +730,18 @@ class ReaderController extends Controller
         if (!$user) {
             return "[]";
         }
-        $version = Input::get('version',Config::get('app.defaultBibleVersion'));
-        $book = Input::get('book',1);
-        $chapter = Input::get('chapter',1);
+        $version = Input::get('version', Config::get('app.defaultBibleVersion'));
+        $book = Input::get('book', 1);
+        $chapter = Input::get('chapter', 1);
 
         $highlightsModel = new Highlight();
         $highlightsModel->version = $version;
-        $highlights = $highlightsModel->where('user_id',$user->id)->where(function($w) use($book,$chapter){
-            $w->orWhereHas('verseFrom', function ($q) use($book,$chapter) {
+        $highlights = $highlightsModel->where('user_id', $user->id)->where(function ($w) use ($book, $chapter) {
+            $w->orWhereHas('verseFrom', function ($q) use ($book, $chapter) {
                 $q->where('book_id', $book);
                 $q->where('chapter_num', $chapter);
             });
-            $w->orWhereHas('verseTo', function ($q) use($book,$chapter) {
+            $w->orWhereHas('verseTo', function ($q) use ($book, $chapter) {
                 $q->where('book_id', $book);
                 $q->where('chapter_num', $chapter);
             });
@@ -766,7 +763,7 @@ class ReaderController extends Controller
         $model->verse_to_id = Input::get('verse_to_id');
         $model->highlighted_text = Input::get('highlighted_text');
         $model->color = Input::get('color');
-        if(!empty(trim($model->highlighted_text))){
+        if (!empty(trim($model->highlighted_text))) {
             $model->save();
             return $model->id;
         }
@@ -776,7 +773,7 @@ class ReaderController extends Controller
     public function anyRemoveHighlight()
     {
         $result = Highlight::
-              whereIn('id',Input::get('ids'))
+              whereIn('id', Input::get('ids'))
               /*where('bible_version',Input::get('bible_version'))
             ->where('verse_from_id',Input::get('verse_from_id'))
             ->where('verse_to_id',Input::get('verse_from_id'))*/

@@ -27,7 +27,7 @@ class LexiconsListEn extends BaseModel
     public static function getLexiconByCode($code)
     {
         foreach (self::lexiconsList() as $version) {
-            if($version['lexicon_code'] == $code){
+            if ($version['lexicon_code'] == $code) {
                 return $version['lexicon_name'];
             }
         }
@@ -37,7 +37,7 @@ class LexiconsListEn extends BaseModel
     public static function getLexiconItemByCode($code)
     {
         foreach (self::lexiconsList() as $version) {
-            if($version['lexicon_code'] == $code){
+            if ($version['lexicon_code'] == $code) {
                 return $version;
             }
         }
@@ -47,7 +47,7 @@ class LexiconsListEn extends BaseModel
     public static function getLexiconCodeByBibleVersion($bVersion)
     {
         foreach (self::lexiconsList() as $version) {
-            if($version['bible_version'] == $bVersion){
+            if ($version['bible_version'] == $bVersion) {
                 return $version['lexicon_code'];
             }
         }

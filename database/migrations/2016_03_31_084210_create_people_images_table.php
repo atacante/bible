@@ -15,7 +15,7 @@ class CreatePeopleImagesTable extends Migration
         Schema::create('people_images', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('people_id');
-            $table->string('image',255);
+            $table->string('image', 255);
             $table->timestamps();
             $table->foreign('people_id', 'people_images_fk')->references('id')->on('peoples')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });

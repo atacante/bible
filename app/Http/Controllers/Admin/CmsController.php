@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
 use Krucas\Notification\Facades\Notification;
 
-
 class CmsController extends Controller
 {
 
@@ -26,12 +25,14 @@ class CmsController extends Controller
         $content['categoriesCount'] = BlogCategory::query()->count();
         $content['articlesCount'] = BlogArticle::query()->count();
 
-        return view('admin.blog.list',
+        return view(
+            'admin.blog.list',
             [
                 'page_title' => 'CMS',
                 'content' => $content,
                 'filterAction' => 'blog/list/',
-            ]);
+            ]
+        );
     }
 
     public function getList()
@@ -43,12 +44,14 @@ class CmsController extends Controller
 
         $content['cms'] = CmsPage::where('content_type', '!=', 'home')->orderBy('created_at', SORT_DESC)->paginate(20);
 
-        return view('admin.cms.list',
+        return view(
+            'admin.cms.list',
             [
                 'page_title' => 'Static Pages',
                 'content' => $content,
                 'filterAction' => 'cms/list/',
-            ]);
+            ]
+        );
     }
 
     public function getHome()
@@ -58,12 +61,14 @@ class CmsController extends Controller
 
         $content['cms'] = CmsPage::where('content_type', '=', 'home')->orderBy('created_at', SORT_DESC)->paginate(20);
 
-        return view('admin.cms.list',
+        return view(
+            'admin.cms.list',
             [
                 'page_title' => 'Static Pages',
                 'content' => $content,
                 'filterAction' => 'cms/list/',
-            ]);
+            ]
+        );
     }
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
@@ -72,7 +77,7 @@ class CmsController extends Controller
             Session::keep('backUrl');
         }
         $model = CmsPage::query()->find($id);
-        if (Request::isMethod('put')){
+        if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
             if ($model->update($data)) {
@@ -84,18 +89,20 @@ class CmsController extends Controller
                 : Redirect::to(ViewHelper::adminUrlSegment() .
                     (($model->content_type == CmsPage::CONTENT_HOME)?'/cms/home/' :'/cms/list/'));
         }
-        return view('admin.cms.update',
+        return view(
+            'admin.cms.update',
             [
                 'model' => $model,
                 'page_title' => 'Edit CMS'
-            ]);
+            ]
+        );
     }
 
     public function anyUploadImage($model)
     {
         $files = ['file', 'm_file'];
 
-        foreach($files as $uploaded_file){
+        foreach ($files as $uploaded_file) {
             if (Input::hasFile($uploaded_file)) {
                 $file = Input::file($uploaded_file);
 
@@ -108,13 +115,13 @@ class CmsController extends Controller
                 $this->makeDir(public_path() . $tmpThumbPath);
                 $thumbPath = public_path($tmpThumbPath . $tmpFileName);
 
-                if($file){
-                    if($uploaded_file == 'file'){
+                if ($file) {
+                    if ($uploaded_file == 'file') {
                         $this->unlinkLocationImage($model->background);
                         $model->background = $tmpFileName;
                         // Resizing
                         Image::make($file->getRealPath())->fit(200, 100)->save($thumbPath)->destroy();
-                    }elseif($uploaded_file == 'm_file'){
+                    } elseif ($uploaded_file == 'm_file') {
                         $this->unlinkLocationImage($model->background_mobile);
                         $model->background_mobile = $tmpFileName;
                         // Resizing
@@ -123,7 +130,6 @@ class CmsController extends Controller
 
                     $model->save();
                 }
-
             }
         }
 

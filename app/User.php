@@ -56,14 +56,15 @@ class User extends Authenticatable
         'banned' => 'boolean',
     ];
 
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
-        static::saved(function($user) {
-            if(!$user->getOriginal('id') && !$user->notificationsSettings){
+        static::saved(function ($user) {
+            if (!$user->getOriginal('id') && !$user->notificationsSettings) {
                 $user->notificationsSettings()->create([]);
             }
         });
-        static::deleting(function($user) {
+        static::deleting(function ($user) {
             $user->notes()->delete();
             $user->journals()->delete();
             $user->prayers()->delete();
@@ -105,29 +106,28 @@ class User extends Authenticatable
             'coupon_code' => 'coupon_exist|coupon_expire|coupon_uses|coupon_user_uses'
         ];
 
-        if(Auth::check() && Auth::user()->is(Config::get('app.role.admin')) && $this->plan_type == self::PLAN_FREE && Request::input('plan_type') != self::PLAN_FREE){
+        if (Auth::check() && Auth::user()->is(Config::get('app.role.admin')) && $this->plan_type == self::PLAN_FREE && Request::input('plan_type') != self::PLAN_FREE) {
             $rules['coupon_code'] = 'required|coupon_exist|coupon_expire|coupon_uses|coupon_user_uses';
         }
 
-        switch(Request::method())
-        {
+        switch (Request::method()) {
             case 'PUT':
             {
                 $rules['email'] = 'required|email|max:255|unique:users,email,'.$this->id;
-                if((Input::get('plan_type') == self::PLAN_PREMIUM)
+                if ((Input::get('plan_type') == self::PLAN_PREMIUM)
                     && !$this->isPremium()
                     && !$this->onPlan(Input::get('plan_name'))
-                ){
-                    $rules['plan_name'] = 'required';
-                    if(!$this->hasPaymentAccount() && !Input::get('coupon_code', false)){
+                    ) {
+                        $rules['plan_name'] = 'required';
+                    if (!$this->hasPaymentAccount() && !Input::get('coupon_code', false)) {
                         $rules['card_number'] = 'required|numeric';
                         $rules['card_expiration'] = 'required';
                         $rules['billing_name'] = 'required';
                         $rules['billing_address'] = 'required';
                         $rules['billing_zip'] = 'required';
                     }
-                }else{
-                    if(Input::get('card_number') || Input::get('card_expiration')){
+                } else {
+                    if (Input::get('card_number') || Input::get('card_expiration')) {
                         $rules['card_expiration'] = 'required';
                         $rules['card_number'] = 'required|numeric';
                         $rules['billing_name'] = 'required';
@@ -144,27 +144,31 @@ class User extends Authenticatable
 
     public function bookmarks($model)
     {
-        return $this->morphedByMany($model,'item','bookmarks')->withPivot('bookmark_type', 'bible_version')/*->orderBy('bookmarks.created_at','desc')*/;
+        return $this->morphedByMany($model, 'item', 'bookmarks')->withPivot('bookmark_type', 'bible_version')/*->orderBy('bookmarks.created_at','desc')*/;
     }
 
     public function bookmarksAmericanKingJames()
     {
-        return $this->morphedByMany(VersesAmericanKingJamesEn::class,'item','bookmarks')->withPivot('bookmark_type', 'bible_version')/*->orderBy('bookmarks.created_at','desc')*/;
+        return $this->morphedByMany(VersesAmericanKingJamesEn::class, 'item', 'bookmarks')->withPivot('bookmark_type', 'bible_version')/*->orderBy('bookmarks.created_at','desc')*/;
     }
 
-    public function notificationsSettings() {
+    public function notificationsSettings()
+    {
         return $this->hasOne(NotificationsSettings::class, 'user_id', 'id');
     }
 
-    public function country() {
+    public function country()
+    {
         return $this->hasOne(Country::class, 'id', 'country_id');
     }
 
-    public function inviter() {
+    public function inviter()
+    {
         return $this->belongsTo(User::class, 'invited_by_id', 'id');
     }
 
-    public function invited() {
+    public function invited()
+    {
         return $this->hasMany(User::class, 'invited_by_id', 'id');
     }
 
@@ -200,37 +204,36 @@ class User extends Authenticatable
 
     public function myGroupsRequests($withBanned = false)
     {
-        $groups = $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('approved',false);
-        if(!$withBanned){
-            $groups->where('banned',$withBanned);
+        $groups = $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('approved', false);
+        if (!$withBanned) {
+            $groups->where('banned', $withBanned);
         }
         return $groups->withTimestamps();
     }
 
     public function joinedGroups($withBanned = false)
     {
-        $groups = $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('approved',true);
-        if(!$withBanned){
-            $groups->where('banned',$withBanned);
+        $groups = $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('approved', true);
+        if (!$withBanned) {
+            $groups->where('banned', $withBanned);
         }
         return $groups->withTimestamps();
     }
 
     public function groupsBanned()
     {
-        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('banned',true)->withTimestamps();
+        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id')->where('banned', true)->withTimestamps();
     }
 
     public function joinGroup(Group $group)
     {
         $data = [];
-        if($group->access_level != Group::ACCESS_SECRET || $group->joinRequests()->where('user_id',$this->id)->first()){
+        if ($group->access_level != Group::ACCESS_SECRET || $group->joinRequests()->where('user_id', $this->id)->first()) {
             $data['approved'] = true;
-        }
-        else{
+        } else {
             NotificationsHelper::groupRequest($group);
         }
-        $this->joinedGroups()->attach($group->id,$data);
+        $this->joinedGroups()->attach($group->id, $data);
         $group->joinRequests()->detach($this->id);
     }
 
@@ -251,42 +254,42 @@ class User extends Authenticatable
 
     public function notesLikes()
     {
-        return $this->morphedByMany('App\Note','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+        return $this->morphedByMany('App\Note', 'item', 'wall_likes')->orderBy('wall_likes.created_at', 'desc');
     }
 
     public function journalLikes()
     {
-        return $this->morphedByMany('App\Journal','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+        return $this->morphedByMany('App\Journal', 'item', 'wall_likes')->orderBy('wall_likes.created_at', 'desc');
     }
 
     public function prayersLikes()
     {
-        return $this->morphedByMany('App\Prayer','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+        return $this->morphedByMany('App\Prayer', 'item', 'wall_likes')->orderBy('wall_likes.created_at', 'desc');
     }
 
     public function statusesLikes()
     {
-        return $this->morphedByMany('App\WallPost','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+        return $this->morphedByMany('App\WallPost', 'item', 'wall_likes')->orderBy('wall_likes.created_at', 'desc');
     }
 
     public function notesReports()
     {
-        return $this->morphedByMany('App\Note','item','content_reports')->orderBy('content_reports.created_at','desc');
+        return $this->morphedByMany('App\Note', 'item', 'content_reports')->orderBy('content_reports.created_at', 'desc');
     }
 
     public function journalReports()
     {
-        return $this->morphedByMany('App\Journal','item','content_reports')->orderBy('content_reports.created_at','desc');
+        return $this->morphedByMany('App\Journal', 'item', 'content_reports')->orderBy('content_reports.created_at', 'desc');
     }
 
     public function prayersReports()
     {
-        return $this->morphedByMany('App\Prayer','item','content_reports')->orderBy('content_reports.created_at','desc');
+        return $this->morphedByMany('App\Prayer', 'item', 'content_reports')->orderBy('content_reports.created_at', 'desc');
     }
 
     public function statusesReports()
     {
-        return $this->morphedByMany('App\WallPost','item','content_reports')->orderBy('content_reports.created_at','desc');
+        return $this->morphedByMany('App\WallPost', 'item', 'content_reports')->orderBy('content_reports.created_at', 'desc');
     }
 
     public function friendRequests()
@@ -301,22 +304,22 @@ class User extends Authenticatable
 
     public function readerViews()
     {
-        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with('item')->where('item_category',UsersViews::CAT_READER);
+        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with('item')->where('item_category', UsersViews::CAT_READER);
     }
 
     public function lexiconViews()
     {
-        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with('item')->where('item_category',UsersViews::CAT_LEXICON);
+        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with('item')->where('item_category', UsersViews::CAT_LEXICON);
     }
 
     public function strongsViews()
     {
-        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with('item')->where('item_category',UsersViews::CAT_STRONGS);
+        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with('item')->where('item_category', UsersViews::CAT_STRONGS);
     }
 
     public function blogViews()
     {
-        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with(['item','item.category'])->where('item_category',UsersViews::CAT_BLOG);
+        return $this->hasMany(UsersViews::class, 'user_id', 'id')->with(['item','item.category'])->where('item_category', UsersViews::CAT_BLOG);
     }
 
     public function userMeta()
@@ -337,7 +340,7 @@ class User extends Authenticatable
 
     public function ignoreRequest(User $user)
     {
-        $this->friends()->updateExistingPivot($user->id,['ignore' => true]);
+        $this->friends()->updateExistingPivot($user->id, ['ignore' => true]);
     }
 
     public function removeFriend(User $user)
@@ -349,10 +352,9 @@ class User extends Authenticatable
     public function isOnline()
     {
         $isOnline = Cache::has('user-is-online-' . $this->id);
-        if($isOnline){
+        if ($isOnline) {
             $this->is_online = true;
-        }
-        else{
+        } else {
             $this->is_online = false;
         }
         $this->save();
@@ -367,29 +369,28 @@ class User extends Authenticatable
     public function upgradeToPremium($plan_name)
     {
         $premiumCost = self::getPremiumCost($plan_name);
-        if($coupon_code = Input::get('coupon_code')){
+        if ($coupon_code = Input::get('coupon_code')) {
             $coupon = Coupon::getCoupon($coupon_code);
             $premiumCost -= $coupon->amount;
             $coupon->used++;
             $coupon->save();
             $coupon->users()->detach($this->id);
-            $coupon->users()->attach($this->id,['is_used' => true]);
-            if(Request::is('user/profile')){
+            $coupon->users()->attach($this->id, ['is_used' => true]);
+            if (Request::is('user/profile')) {
                 Notification::successInstant('Coupon was applied');
-            }
-            else{
+            } else {
                 Notification::success('Coupon was applied');
             }
         }
 
         $result = $this->createAccountAndOrSubscribe($plan_name, $premiumCost);
 
-        if($result['subscription']['success']){
+        if ($result['subscription']['success']) {
             $this->upgraded_at = Carbon::now();
             $this->plan_type = self::PLAN_PREMIUM;
             $this->upgrade_plan = null;
             $this->save();
-        }elseif(!empty($result['subscription']['message'])){
+        } elseif (!empty($result['subscription']['message'])) {
             $this->plan_type = self::PLAN_FREE;
             $this->save();
         }
@@ -397,21 +398,19 @@ class User extends Authenticatable
 
     public function downgradeToFree()
     {
-        if($this->subscription()){
-
-            if(!$this->isOnCoupon()){
+        if ($this->subscription()) {
+            if (!$this->isOnCoupon()) {
                 $this->subscription()->cancel();
             }
 
-            if($this->subscription()->onGracePeriod()){
+            if ($this->subscription()->onGracePeriod()) {
                 $this->plan_type = self::PLAN_PREMIUM;
                 $this->save();
                 $message = 'Your will be moved to free account at '.date_format($this->subscription()->ends_at, 'Y-m-d');
 
-                if(Request::is('user/profile')){
+                if (Request::is('user/profile')) {
                     Notification::successInstant($message);
-                }
-                else{
+                } else {
                     Notification::success($message);
                 }
             }
@@ -420,8 +419,8 @@ class User extends Authenticatable
 
     public function isPremiumPaid()
     {
-        foreach(self::getPossiblePlans() as $plan_name => $plan ){
-            if($this->onPlan($plan_name)){
+        foreach (self::getPossiblePlans() as $plan_name => $plan) {
+            if ($this->onPlan($plan_name)) {
                 return true;
             }
         }
@@ -429,35 +428,39 @@ class User extends Authenticatable
         return false;
     }
 
-    public function isBanned($type,$id)
+    public function isBanned($type, $id)
     {
-        switch($type){
+        switch ($type) {
             case 'group':
-                return in_array($id,$this->groupsBanned->modelKeys());
+                return in_array($id, $this->groupsBanned->modelKeys());
         }
         return false;
     }
 
-    public function getActivePlan(){
-        if($this->subscription()){
+    public function getActivePlan()
+    {
+        if ($this->subscription()) {
             return $this->subscription()->authorize_plan;
         }
     }
 
-    public function getPlanExpiresAt(){
-        if(!$this->isPremiumPaid()){
+    public function getPlanExpiresAt()
+    {
+        if (!$this->isPremiumPaid()) {
             return false;
         }
 
-        if($this->subscription()->cancelled()){
+        if ($this->subscription()->cancelled()) {
             $carbonEnd = Carbon::createFromFormat(
-                Carbon::DEFAULT_TO_STRING_FORMAT, $this->subscription()->ends_at
+                Carbon::DEFAULT_TO_STRING_FORMAT,
+                $this->subscription()->ends_at
             );
-        }else{
+        } else {
             $lastUpdate = $this->subscription()->updated_at;
             $days = $this->subscription()->getBillingDays();
             $carbonStart = Carbon::createFromFormat(
-                Carbon::DEFAULT_TO_STRING_FORMAT, $lastUpdate
+                Carbon::DEFAULT_TO_STRING_FORMAT,
+                $lastUpdate
             );
             $carbonEnd = $carbonStart->addDays($days);
         }
@@ -468,7 +471,7 @@ class User extends Authenticatable
     public function checkNotifTooltip($type)
     {
         $notifSettings = $this->notificationsSettings;
-        if(!$notifSettings){
+        if (!$notifSettings) {
             $notifSettings = $this->notificationsSettings()->create([]);
         }
         return !$notifSettings->$type;
@@ -477,7 +480,7 @@ class User extends Authenticatable
     public function setNotifTooltip($type)
     {
         $notifSettings = $this->notificationsSettings;
-        if(!$notifSettings){
+        if (!$notifSettings) {
             $notifSettings = $this->notificationsSettings()->create([]);
         }
         $notifSettings->$type = true;
@@ -486,18 +489,18 @@ class User extends Authenticatable
 
     public function setCountryIdAttribute($value)
     {
-        if(empty($value)){
-            $this->attributes['country_id'] = NULL;
-        }else{
+        if (empty($value)) {
+            $this->attributes['country_id'] = null;
+        } else {
             $this->attributes['country_id'] = $value;
         }
     }
 
     public function setInvitedByIdAttribute($value)
     {
-        if(empty($value)){
-            $this->attributes['invited_by_id'] = NULL;
-        }else{
+        if (empty($value)) {
+            $this->attributes['invited_by_id'] = null;
+        } else {
             $this->attributes['invited_by_id'] = $value;
         }
     }
@@ -505,38 +508,39 @@ class User extends Authenticatable
     public static function adminEmails()
     {
         return self::whereHas('roles', function ($q) {
-            $q->whereIn('slug',[Config::get('app.role.admin')]);
+            $q->whereIn('slug', [Config::get('app.role.admin')]);
         })->pluck('email')->toArray();
     }
 
     public static function checkBetaTestersLimit()
     {
-        $betaMode = CmsPage::where('system_name','beta_mode')->first();
+        $betaMode = CmsPage::where('system_name', 'beta_mode')->first();
 
         $limit = self::BETA_TESTERS_LIMIT;
         $msg = self::BETA_TESTERS_LIMIT_MSG;
-        if($betaMode->meta_title){
+        if ($betaMode->meta_title) {
             $limit = $betaMode->meta_title;
         }
-        if($betaMode->meta_description){
+        if ($betaMode->meta_description) {
             $msg = $betaMode->meta_description;
         }
 
         $usersCount = self::whereHas('roles', function ($q) {
-            $q->whereIn('slug',[Config::get('app.role.user')]);
+            $q->whereIn('slug', [Config::get('app.role.user')]);
         })->count();
-        if($usersCount <= $limit){
+        if ($usersCount <= $limit) {
             return false;
         }
         return $msg;
     }
 
-    public function getNameAttribute($value){
+    public function getNameAttribute($value)
+    {
         return $value.' '.$this->lastname;
     }
 
-    public function getRawName(){
-        return str_replace(' '.$this->lastname,'',$this->name);
+    public function getRawName()
+    {
+        return str_replace(' '.$this->lastname, '', $this->name);
     }
-
 }

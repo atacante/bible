@@ -22,20 +22,20 @@ class BereanLexiconSeeder extends Seeder
         $csv = new \parseCSV(base_path('resources/data/berean_lexicon_goog.csv'));
         $data = [];
         if (count($csv->data)) {
-            $progressBar = new ProgressBarHelper(count($csv->data),10);
+            $progressBar = new ProgressBarHelper(count($csv->data), 10);
             $progressBar->start('Started seeding data for Berean lexicon');
 
             DB::statement("TRUNCATE TABLE lexicon_berean");
             DB::statement("ALTER SEQUENCE lexicon_berean_id_seq RESTART WITH 312513");
             $part = 0;
             foreach ($csv->data as $key => $row) {
-                if(!empty($row["Transliteration"])){
+                if (!empty($row["Transliteration"])) {
                     $part++;
                     $book = explode(':', trim($row['Verse']));
                     $bookAndChapter = explode('|', $book[0]);
                     $chapter = array_pop($bookAndChapter);
                     $book_name = implode(' ', $bookAndChapter);
-                    $bookObj = BooksListEn::query()->where('book_name','ilike', $book_name)->first(['id']);
+                    $bookObj = BooksListEn::query()->where('book_name', 'ilike', $book_name)->first(['id']);
 
                     $verse_num = $book[1];
 

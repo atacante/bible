@@ -36,19 +36,19 @@ class GroupsController extends Controller
         $content['myGroups'] = [];
         $content['joinedGroups'] = [];
         $content['groupsRequested'] = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $content['myGroups'] = $this->getMyGroups();
             $content['myGroupsRequests'] = $this->getMyGroupsRequests();
             $content['joinedGroups'] = $this->getJoinedGroups();
             $content['groupsRequested'] = $this->getGroupsRequested();
         }
 
-        if(Input::get('type') == 'my' && !Auth::check()){
+        if (Input::get('type') == 'my' && !Auth::check()) {
             abort(401);
         }
 
         $content['joinedGroupsKeys'] = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $content['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
         }
         $content['nextPage'] = false;
@@ -56,15 +56,16 @@ class GroupsController extends Controller
         return view('groups.list', ['content' => $content]);
     }
 
-    public function getAllGroups(){
+    public function getAllGroups()
+    {
         $limit = 10;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $groups = Group::query()->with('members');
         $totalCount = $groups->count();
 
-        $content['items'] = $groups->orderBy('created_at','desc')->limit($limit)->offset($offset);
+        $content['items'] = $groups->orderBy('created_at', 'desc')->limit($limit)->offset($offset);
 
         $content['items'] = new LengthAwarePaginator(
             $content['items']->get(),
@@ -76,24 +77,25 @@ class GroupsController extends Controller
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
         $data['groups'] = $content;
         $data['joinedGroupsKeys'] = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $data['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
         }
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('groups.items', ['dataKey' => 'groups','content' => $data]);
         }
         return $content;
     }
 
-    public function getMyGroups(){
+    public function getMyGroups()
+    {
         $limit = 5;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $groups = Auth::user()->myGroups()->with('members');
         $totalCount = $groups->count();
 
-        $content['items'] = $groups->orderBy('created_at','desc')->limit($limit)->offset($offset);
+        $content['items'] = $groups->orderBy('created_at', 'desc')->limit($limit)->offset($offset);
 
         $content['items'] = new LengthAwarePaginator(
             $content['items']->get(),
@@ -105,24 +107,25 @@ class GroupsController extends Controller
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
         $data['myGroups'] = $content;
         $data['joinedGroupsKeys'] = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $data['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
         }
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('groups.items', ['dataKey' => 'myGroups','content' => $data]);
         }
         return $content;
     }
 
-    public function getMyGroupsRequests(){
+    public function getMyGroupsRequests()
+    {
         $limit = 5;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $groups = Auth::user()->myGroupsRequests()->with('members');
         $totalCount = $groups->count();
 
-        $content['items'] = $groups->orderBy('created_at','desc')->limit($limit)->offset($offset);
+        $content['items'] = $groups->orderBy('created_at', 'desc')->limit($limit)->offset($offset);
 
         $content['items'] = new LengthAwarePaginator(
             $content['items']->get(),
@@ -134,25 +137,26 @@ class GroupsController extends Controller
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
         $data['myGroupsRequests'] = $content;
         $data['joinedGroupsKeys'] = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $data['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
         }
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('groups.items', ['dataKey' => 'myGroupsRequests','content' => $data]);
         }
         return $content;
     }
 
-    public function getJoinedGroups(){
+    public function getJoinedGroups()
+    {
         $limit = 5;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $groups = Auth::user()->joinedGroups()->with('members');
         $totalCount = $groups->count();
 
-        $content['items'] = $groups->orderBy('created_at','desc')->limit($limit)->offset($offset);
+        $content['items'] = $groups->orderBy('created_at', 'desc')->limit($limit)->offset($offset);
 
         $content['items'] = new LengthAwarePaginator(
             $content['items']->get(),
@@ -164,11 +168,11 @@ class GroupsController extends Controller
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
         $data['joinedGroups'] = $content;
         $data['joinedGroupsKeys'] = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $data['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
         }
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('groups.items', ['dataKey' => 'joinedGroups','content' => $data]);
         }
         return $content;
@@ -195,8 +199,7 @@ class GroupsController extends Controller
             }
             if (!Request::ajax()) {
                 return Redirect::to('/groups?type=my');
-            }
-            else{
+            } else {
                 return 1;
             }
         }
@@ -224,8 +227,7 @@ class GroupsController extends Controller
             }
             if (!Request::ajax()) {
                 return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to('/groups?type=my');
-            }
-            else{
+            } else {
                 return 1;
             }
         }
@@ -248,17 +250,17 @@ class GroupsController extends Controller
         }
 
         $limit = 10;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $content['joinedGroupsKeys'] = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $content['joinedGroupsKeys'] = Auth::user()->joinedGroups->modelKeys();
         }
 
 
         if (!Request::ajax()) {
-            $content['membersSample'] = $this->getMembers($id,'random')['members'];
+            $content['membersSample'] = $this->getMembers($id, 'random')['members'];
             $content['membersToRequest'] = $this->getMembersToRequest($id);
         }
 
@@ -268,11 +270,11 @@ class GroupsController extends Controller
         $myFriends = [];
         $lastIds = [];
 
-        if(Input::get('p') == 'members'){
+        if (Input::get('p') == 'members') {
             $membersData = $this->getMembers($id);
             $content['members'] = $membersData['members'];
 
-            if(Auth::user()){
+            if (Auth::user()) {
                 $requests = $membersData['requests'];
                 $ignoredRequests = $membersData['ignoredRequests'];
                 $myRequests = $membersData['myRequests'];
@@ -280,28 +282,23 @@ class GroupsController extends Controller
             }
 
             $content['nextPage'] = $membersData['nextPage'];
-        }
-        elseif(Input::get('p') == 'requests'){
-            if(Auth::check() && Auth::user()->id == $model->owner_id){
+        } elseif (Input::get('p') == 'requests') {
+            if (Auth::check() && Auth::user()->id == $model->owner_id) {
                 $requestsData = $this->getRequests($id);
                 $content['requests'] = $requestsData['requests'];
                 $content['nextPage'] = $requestsData['nextPage'];
-            }
-            else{
+            } else {
                 abort(401);
             }
-        }
-        elseif(Input::get('p') == 'invitations'){
-            if(Auth::check() && Auth::user()->id == $model->owner_id){
+        } elseif (Input::get('p') == 'invitations') {
+            if (Auth::check() && Auth::user()->id == $model->owner_id) {
                 $requestsData = $this->getInvitations($id);
                 $content['invitations'] = $requestsData['invitations'];
                 $content['nextPage'] = $requestsData['nextPage'];
-            }
-            else{
+            } else {
                 abort(401);
             }
-        }
-        else {
+        } else {
             $statusesQuery = WallPost::with(['user', 'images'])
                 ->selectRaw('id,user_id,verse_id,created_at,updated_at,null as highlighted_text,status_text as text,type,null as bible_version,published_at,access_level,
                     (SELECT count(*) FROM wall_likes WHERE item_type = \'App\WallPost\' AND item_id = wall_posts.id) as likesCount,
@@ -340,7 +337,7 @@ class GroupsController extends Controller
 
             if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
                 $journalQuery->where('only_show_group_owner', false);
-                if(Auth::check()) {
+                if (Auth::check()) {
                     $journalQuery->orWhere(function ($sq) {
                         $sq->where('only_show_group_owner', true);
                         $sq->where('user_id', Auth::user()->id);
@@ -367,7 +364,7 @@ class GroupsController extends Controller
 
             if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
                 $prayersQuery->where('only_show_group_owner', false);
-                if(Auth::check()){
+                if (Auth::check()) {
                     $prayersQuery->orWhere(function ($sq) {
                         $sq->where('only_show_group_owner', true);
                         $sq->where('user_id', Auth::user()->id);
@@ -394,7 +391,7 @@ class GroupsController extends Controller
 
             if (!Auth::check() || (Auth::check() && Auth::user()->id != $model->owner_id)) {
                 $notesQuery->where('only_show_group_owner', false);
-                if(Auth::check()) {
+                if (Auth::check()) {
                     $notesQuery->orWhere(function ($sq) {
                         $sq->where('only_show_group_owner', true);
                         $sq->where('user_id', Auth::user()->id);
@@ -428,21 +425,21 @@ class GroupsController extends Controller
 
             $content['nextPage'] = ($limit * $page < $totalCount) ? $page + 1 : false;
 
-            if(Request::ajax() && Request::input('checkPosts', null)){
+            if (Request::ajax() && Request::input('checkPosts', null)) {
                 $lastStatusId = Request::input('lastStatusId', 0);
-                $newStatusesCount = $statusesQuery->where('id','>',$lastStatusId)->count();
+                $newStatusesCount = $statusesQuery->where('id', '>', $lastStatusId)->count();
 
                 $lastJournalId = Request::input('lastJournalId', 0);
-                $newJournalCount = $journalQuery->where('id','>',$lastJournalId)->count();
+                $newJournalCount = $journalQuery->where('id', '>', $lastJournalId)->count();
 
                 $lastPrayerId = Request::input('lastPrayerId', 0);
-                $newPrayersCount = $prayersQuery->where('id','>',$lastPrayerId)->count();
+                $newPrayersCount = $prayersQuery->where('id', '>', $lastPrayerId)->count();
 
                 $newTotalCount = $newNotesCount+$newJournalCount+$newPrayersCount+$newStatusesCount;
 
                 return $newTotalCount;
             }
-            if(Request::ajax()){
+            if (Request::ajax()) {
                 $view = 'community.wall-items';
             }
         }
@@ -459,24 +456,23 @@ class GroupsController extends Controller
         ]);
     }
 
-    public function getMembers($groupId,$order = false)
+    public function getMembers($groupId, $order = false)
     {
-        $type = Input::get('type','active');
+        $type = Input::get('type', 'active');
         $limit = 5;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $group = Group::find($groupId);
-        $members = User::leftJoin('groups_users','users.id', '=', 'groups_users.user_id')
+        $members = User::leftJoin('groups_users', 'users.id', '=', 'groups_users.user_id')
             ->addSelect(DB::raw('users.*,(select banned from groups_users where groups_users.user_id = users.id and groups_users.group_id = '.$group->id.') as banned'))
-            ->whereHas($type == 'banned' && $order != 'random'?'groupsBanned':'joinedGroups', function ($q) use ($group,$type)
-                {
+            ->whereHas($type == 'banned' && $order != 'random'?'groupsBanned':'joinedGroups', function ($q) use ($group, $type) {
                     $q->where('group_id', $group->id);
-                });
+            });
 
-        if($type != 'banned' || $order == 'random'){
-            $members->where('approved',true);
-            $members->orWhere('users.id',$group->owner_id);
+        if ($type != 'banned' || $order == 'random') {
+            $members->where('approved', true);
+            $members->orWhere('users.id', $group->owner_id);
         }
 
         $members->groupBy('users.id')->groupBy('groups_users.user_id')/*->groupBy('groups_users.banned')*/;
@@ -485,10 +481,9 @@ class GroupsController extends Controller
 
         $members->limit($limit)->offset($offset);
 
-        if($order == 'random'){
+        if ($order == 'random') {
             $members->orderByRaw("RANDOM()");
-        }
-        else{
+        } else {
             $members->orderByRaw('CASE WHEN users.id='.$group->owner_id.' THEN 0 ELSE MAX(groups_users.id) END desc');
         }
 
@@ -505,9 +500,9 @@ class GroupsController extends Controller
         $content['ignoredRequests'] = [];
         $content['myRequests'] = [];
         $content['myFriends'] = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $content['requests'] = Auth::user()->requests->modelKeys();
-            $content['ignoredRequests'] = Auth::user()->requests()->where('ignore',true)->get()->modelKeys();
+            $content['ignoredRequests'] = Auth::user()->requests()->where('ignore', true)->get()->modelKeys();
             $content['myRequests'] = Auth::user()->friends->modelKeys();
             $content['myFriends'] = array_intersect($content['requests'], $content['myRequests']);
         }
@@ -516,7 +511,7 @@ class GroupsController extends Controller
 
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('groups.members', [
                 'model' => $group,
                 'content' => $content,
@@ -533,11 +528,11 @@ class GroupsController extends Controller
     public function getRequests($groupId)
     {
         $limit = 5;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $group = Group::find($groupId);
-        $requests = User::join('groups_users','users.id', '=', 'groups_users.user_id')
+        $requests = User::join('groups_users', 'users.id', '=', 'groups_users.user_id')
             ->addSelect(DB::raw('users.*,(select banned from groups_users where groups_users.user_id = users.id and groups_users.group_id = '.$group->id.') as banned'));
 
         $requests = $group->userRequests();
@@ -556,7 +551,7 @@ class GroupsController extends Controller
         );
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('groups.requests', ['model' => $group,'content' => $content]);
         }
 
@@ -566,17 +561,16 @@ class GroupsController extends Controller
     public function getInvitations($groupId)
     {
         $limit = 5;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $group = Group::find($groupId);
         $invitations = User::
 //            join('groups_users','users.id', '=', 'groups_users.user_id')
 //            ->addSelect(DB::raw('users.*'))
-            whereHas('groupsRequests', function ($q) use ($group)
-        {
-            $q->where('connect_requests_id', $group->id);
-        });
+            whereHas('groupsRequests', function ($q) use ($group) {
+                $q->where('connect_requests_id', $group->id);
+            });
 
         $totalCount = $invitations->count();
 
@@ -599,7 +593,7 @@ class GroupsController extends Controller
         );
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('groups.invitations', ['model' => $group,'content' => $content]);
         }
 
@@ -609,13 +603,13 @@ class GroupsController extends Controller
     public function getGroupsRequested()
     {
         $limit = 5;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $groups = Auth::user()->groupsRequests()->with('members');
         $totalCount = $groups->count();
 
-        $content['items'] = $groups->orderBy('created_at','desc')->limit($limit)->offset($offset);
+        $content['items'] = $groups->orderBy('created_at', 'desc')->limit($limit)->offset($offset);
 
         $content['items'] = new LengthAwarePaginator(
             $content['items']->get(),
@@ -627,7 +621,7 @@ class GroupsController extends Controller
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
         $data['groupsRequested'] = $content;
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('groups.items', ['dataKey' => 'groupsRequested','content' => $data]);
         }
         return $content;
@@ -639,9 +633,9 @@ class GroupsController extends Controller
         $groupUsers = $group->members->modelKeys();
         $groupRequests = $group->joinRequests()->pluck('user_id')->toArray();
         $users = User::
-            whereNotIn('users.id',array_merge([$group->owner_id],$groupUsers,$groupRequests))
-            ->where('users.plan_type',User::PLAN_PREMIUM);
-        return $users->pluck('name','id')->toArray();
+            whereNotIn('users.id', array_merge([$group->owner_id], $groupUsers, $groupRequests))
+            ->where('users.plan_type', User::PLAN_PREMIUM);
+        return $users->pluck('name', 'id')->toArray();
     }
 
     public function anyDelete($id)
@@ -653,7 +647,7 @@ class GroupsController extends Controller
         if (!$model) {
             abort(404);
         }
-        if($model->group_image){
+        if ($model->group_image) {
             $this->anyDeleteImage($model);
         }
         if ($model->destroy($id)) {
@@ -665,17 +659,16 @@ class GroupsController extends Controller
     public function postRequestUsers()
     {
         $groupId = Input::get('group_id');
-        $users = Input::get('users',false);
-        if($users){
+        $users = Input::get('users', false);
+        if ($users) {
             $group = Group::find($groupId);
             $group->joinRequests()->attach($users);
-            $users = User::whereIn('id',$users)->get();
+            $users = User::whereIn('id', $users)->get();
             foreach ($users as $user) {
                 NotificationsHelper::groupInvitation($user);
             }
             Notification::success('Request successfully sent');
-        }
-        else{
+        } else {
             Notification::error('Request has not been sent. Members have not been selected.');
         }
 
@@ -684,20 +677,20 @@ class GroupsController extends Controller
             : Redirect::back();
     }
 
-    public function anyAcceptRequest($groupId,$userId)
+    public function anyAcceptRequest($groupId, $userId)
     {
         $group = Group::find($groupId);
-        if($group){
+        if ($group) {
             Auth::user()->joinGroup($group);
             return Request::ajax()?1:Redirect::back();
         }
         return Request::ajax()?0:Redirect::back();
     }
 
-    public function anyCancelRequest($groupId,$userId)
+    public function anyCancelRequest($groupId, $userId)
     {
         $group = Group::find($groupId);
-        if($group){
+        if ($group) {
             $group->joinRequests()->detach($userId);
             $group->userRequests()->detach($userId);
             return Request::ajax()?1:Redirect::back();
@@ -711,20 +704,18 @@ class GroupsController extends Controller
             Session::keep('backUrl');
         }
         $group = Group::find($id);
-        if(Auth::check() && Auth::user()->isPremium()){
-            $alreadyJoined = $group->members()->where('user_id',Auth::user()->id);
-            if(!$alreadyJoined->get()->count()){
+        if (Auth::check() && Auth::user()->isPremium()) {
+            $alreadyJoined = $group->members()->where('user_id', Auth::user()->id);
+            if (!$alreadyJoined->get()->count()) {
                 Auth::user()->joinGroup($group);
-                if(Request::ajax()){
-                    if($group->access_level == Group::ACCESS_SECRET){
+                if (Request::ajax()) {
+                    if ($group->access_level == Group::ACCESS_SECRET) {
                         return 'requested';
-                    }
-                    else{
+                    } else {
                         return 'joined';
                     }
                 }
-            }
-            else{
+            } else {
                 Notification::error('You already joined this group');
             }
         }
@@ -738,35 +729,35 @@ class GroupsController extends Controller
     {
         $group = Group::find($id);
 
-        if(Auth::check()){
+        if (Auth::check()) {
             Auth::user()->leaveGroup($group);
         }
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return 1;
         }
 
         return Redirect::back();
     }
 
-    public function anyBanMember($groupId,$userId)
+    public function anyBanMember($groupId, $userId)
     {
         $group = Group::find($groupId);
         $group->members()->updateExistingPivot($userId, ['banned' => true]);
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return 1;
         }
 
         return Redirect::back();
     }
 
-    public function anyUnbanMember($groupId,$userId)
+    public function anyUnbanMember($groupId, $userId)
     {
         $group = Group::find($groupId);
         $group->members()->updateExistingPivot($userId, ['banned' => false]);
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return 1;
         }
 
@@ -775,11 +766,11 @@ class GroupsController extends Controller
 
     public function anyUploadImage($id = false)
     {
-        $groupId = Request::get('group_id',$id);
+        $groupId = Request::get('group_id', $id);
         if (Input::hasFile('file')) {
             $file = Input::file('file');
             $filePath = Config::get('app.groupImages').$groupId.'/';
-            if(!File::isDirectory(public_path() . $filePath)){
+            if (!File::isDirectory(public_path() . $filePath)) {
                 File::makeDirectory(public_path() . $filePath, 0777, true);
             }
             $thumbPath = $filePath . 'thumbs/';
@@ -787,12 +778,12 @@ class GroupsController extends Controller
             $file = $file->move(public_path() . $filePath, $fileName);
 
 //            File::makeDirectory(public_path() . $filePath, 0777, true);
-            if(!File::isDirectory(public_path() . $thumbPath)){
+            if (!File::isDirectory(public_path() . $thumbPath)) {
                 File::makeDirectory(public_path() . $thumbPath, 0777, true);
             }
 
             $thumbPath = public_path($thumbPath . $fileName);
-            if($file){
+            if ($file) {
                 $group = Group::find($groupId);
                 $this->anyDeleteImage($group);
                 $group->group_image = $fileName;
@@ -807,23 +798,22 @@ class GroupsController extends Controller
 
     public function anyDeleteImage(Group $model)
     {
-        $groupId = Request::get('group_id',$model->id);
-        if(!$filename = $model->group_image){
+        $groupId = Request::get('group_id', $model->id);
+        if (!$filename = $model->group_image) {
             $filename = Input::get('filename');
         }
 
         $group = Group::query();
-        if($model->id){
+        if ($model->id) {
             $group->where('id', $groupId);
-        }
-        else{
+        } else {
             $group->where('group_image', $filename);
         }
         $group = $group->first();
         
-        if($group){
+        if ($group) {
             $group->group_image = null;
-            if($group->save()){
+            if ($group->save()) {
                 $filePath = public_path(Config::get('app.groupImages').$group->id.'/'.$filename);
                 $thumbPath = public_path(Config::get('app.groupImages').$group->id.'/thumbs/'.$filename);
                 File::delete($filePath);
@@ -833,26 +823,26 @@ class GroupsController extends Controller
         return response()->json($group, 200);
     }
 
-    public function anyApproveGroupJoinRequest($groupId,$userId)
+    public function anyApproveGroupJoinRequest($groupId, $userId)
     {
         $group = Group::find($groupId);
         $group->userRequests()->updateExistingPivot($userId, ['approved' => true]);
         $group->joinRequests()->detach($userId);
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return 1;
         }
 
         return Redirect::back();
     }
 
-    public function anyRejectGroupJoinRequest($groupId,$userId)
+    public function anyRejectGroupJoinRequest($groupId, $userId)
     {
         $group = Group::find($groupId);
         $group->userRequests()->detach($userId);
         $group->joinRequests()->detach($userId);
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return 1;
         }
 

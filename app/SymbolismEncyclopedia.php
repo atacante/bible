@@ -15,74 +15,73 @@ class SymbolismEncyclopedia extends BaseModel
         ];
     }
 
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
-        self::saved(function($model)
-        {
-            ini_set("max_execution_time","0");
-            if($model->isDirty('term_name') && !$model->isDirty('associate_lexicons') && $model->associate_lexicons){
+        self::saved(function ($model) {
+            ini_set("max_execution_time", "0");
+            if ($model->isDirty('term_name') && !$model->isDirty('associate_lexicons') && $model->associate_lexicons) {
                 $model->associateLexicons('detach');
                 $model->associateLexicons('attach');
             }
-            if(!$model->isDirty('term_name') && $model->isDirty('term_description') && !$model->isDirty('associate_lexicons') && $model->associate_lexicons){
+            if (!$model->isDirty('term_name') && $model->isDirty('term_description') && !$model->isDirty('associate_lexicons') && $model->associate_lexicons) {
                 $model->associateLexicons('attach');
             }
-            if($model->wasRecentlyCreated || $model->isDirty('associate_lexicons')){
-                if($model->associate_lexicons){
+            if ($model->wasRecentlyCreated || $model->isDirty('associate_lexicons')) {
+                if ($model->associate_lexicons) {
                     $model->associateLexicons('attach');
-                }
-                else{
+                } else {
                     $model->associateLexicons('detach');
                 }
             }
         });
-        self::deleted(function($model)
-        {
+        self::deleted(function ($model) {
             $model->associateLexicons('detach');
         });
     }
 
-    public function associateLexicons($action = 'attach'){
+    public function associateLexicons($action = 'attach')
+    {
         $termName = $this->term_name;
-        if($action == 'detach'){
+        if ($action == 'detach') {
             $termName = $this->getOriginal('term_name');
         }
 
-        $nasbPhrases = LexiconNasb::where(function($sq) use($termName){
-            $sq->orWhere('verse_part','ilike','% '.$termName.' %');
-            $sq->orWhere('verse_part','ilike',$termName.' %');
-            $sq->orWhere('verse_part','ilike','% '.$termName);
-            $sq->orWhere('verse_part','ilike',$termName);
-            $sq->orWhere('verse_part','ilike',$termName.',%');
-            $sq->orWhere('verse_part','ilike',$termName.'.%');
-            $sq->orWhere('verse_part','ilike','% '.$termName.',%');
-            $sq->orWhere('verse_part','ilike','% '.$termName.'.%');
+        $nasbPhrases = LexiconNasb::where(function ($sq) use ($termName) {
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName.' %');
+            $sq->orWhere('verse_part', 'ilike', $termName.' %');
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName);
+            $sq->orWhere('verse_part', 'ilike', $termName);
+            $sq->orWhere('verse_part', 'ilike', $termName.',%');
+            $sq->orWhere('verse_part', 'ilike', $termName.'.%');
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName.',%');
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName.'.%');
         });
-        $this->fillSymbolism($action,$nasbPhrases);
+        $this->fillSymbolism($action, $nasbPhrases);
 
-        $kjvPhrases = LexiconKjv::where(function($sq) use($termName){
-            $sq->orWhere('verse_part','ilike','% '.$termName.' %');
-            $sq->orWhere('verse_part','ilike',$termName.' %');
-            $sq->orWhere('verse_part','ilike','% '.$termName);
-            $sq->orWhere('verse_part','ilike',$termName);
-            $sq->orWhere('verse_part','ilike',$termName.',%');
-            $sq->orWhere('verse_part','ilike',$termName.'.%');
-            $sq->orWhere('verse_part','ilike','% '.$termName.',%');
-            $sq->orWhere('verse_part','ilike','% '.$termName.'.%');
+        $kjvPhrases = LexiconKjv::where(function ($sq) use ($termName) {
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName.' %');
+            $sq->orWhere('verse_part', 'ilike', $termName.' %');
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName);
+            $sq->orWhere('verse_part', 'ilike', $termName);
+            $sq->orWhere('verse_part', 'ilike', $termName.',%');
+            $sq->orWhere('verse_part', 'ilike', $termName.'.%');
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName.',%');
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName.'.%');
         });
-        $this->fillSymbolism($action,$kjvPhrases);
+        $this->fillSymbolism($action, $kjvPhrases);
 
-        $bereanPhrases = LexiconBerean::where(function($sq) use($termName){
-            $sq->orWhere('verse_part','ilike','% '.$termName.' %');
-            $sq->orWhere('verse_part','ilike',$termName.' %');
-            $sq->orWhere('verse_part','ilike','% '.$termName);
-            $sq->orWhere('verse_part','ilike',$termName);
-            $sq->orWhere('verse_part','ilike',$termName.',%');
-            $sq->orWhere('verse_part','ilike',$termName.'.%');
-            $sq->orWhere('verse_part','ilike','% '.$termName.',%');
-            $sq->orWhere('verse_part','ilike','% '.$termName.'.%');
+        $bereanPhrases = LexiconBerean::where(function ($sq) use ($termName) {
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName.' %');
+            $sq->orWhere('verse_part', 'ilike', $termName.' %');
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName);
+            $sq->orWhere('verse_part', 'ilike', $termName);
+            $sq->orWhere('verse_part', 'ilike', $termName.',%');
+            $sq->orWhere('verse_part', 'ilike', $termName.'.%');
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName.',%');
+            $sq->orWhere('verse_part', 'ilike', '% '.$termName.'.%');
         });
-        $this->fillSymbolism($action,$bereanPhrases);
+        $this->fillSymbolism($action, $bereanPhrases);
 
         /* ToDo: We can try to optimize associating if needed (initial code below ) */
         /*switch($action){
@@ -104,21 +103,19 @@ class SymbolismEncyclopedia extends BaseModel
         ModelHelper::cacheSymbolismForBeginnerMode($bereanVerses,'berean');*/
     }
 
-    private function fillSymbolism($action,$phrases)
+    private function fillSymbolism($action, $phrases)
     {
-        switch($action){
+        switch ($action) {
             case 'attach':
-                $phrases->each(function ($item){
+                $phrases->each(function ($item) {
                     $item->update(['symbolism' => $this->term_description]);
                 });
                 break;
             case 'detach':
-                $phrases->each(function ($item){
+                $phrases->each(function ($item) {
                     $item->update(['symbolism' => '']);
                 });
                 break;
         }
-
-
     }
 }

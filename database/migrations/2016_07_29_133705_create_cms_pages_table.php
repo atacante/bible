@@ -12,8 +12,7 @@ class CreateCmsPagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cms_pages', function(Blueprint $table)
-        {
+        Schema::create('cms_pages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('system_name');

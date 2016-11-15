@@ -12,8 +12,7 @@ class AlterPrayersTableAddAnsweredField extends Migration
      */
     public function up()
     {
-        Schema::table('prayers', function($table)
-        {
+        Schema::table('prayers', function ($table) {
             $table->boolean('answered')->default(false);
         });
     }
@@ -25,8 +24,7 @@ class AlterPrayersTableAddAnsweredField extends Migration
      */
     public function down()
     {
-        Schema::table('prayers', function($table)
-        {
+        Schema::table('prayers', function ($table) {
             $table->dropColumn('answered');
         });
     }

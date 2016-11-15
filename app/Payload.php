@@ -30,7 +30,8 @@ class Payload extends PayloadBase
         ];
     }
 
-    public function send($tokens, $queue = null){
+    public function send($tokens, $queue = null)
+    {
         return parent::send($tokens, $queue = null);
     }
 }

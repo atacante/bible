@@ -6,7 +6,8 @@ use App\Validators\CustomValidator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
-class ValidatorsServiceProvider extends ServiceProvider {
+class ValidatorsServiceProvider extends ServiceProvider
+{
 
     /**
      * Register bindings in the container.
@@ -33,6 +34,5 @@ class ValidatorsServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-
     }
 }

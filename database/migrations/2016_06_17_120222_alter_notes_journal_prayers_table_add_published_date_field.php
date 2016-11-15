@@ -14,16 +14,13 @@ class AlterNotesJournalPrayersTableAddPublishedDateField extends Migration
     public function up()
     {
         DB::transaction(function () {
-            Schema::table('notes', function($table)
-            {
+            Schema::table('notes', function ($table) {
                 $table->string('published_at')->default(Carbon::now())->nullable();
             });
-            Schema::table('journal', function($table)
-            {
+            Schema::table('journal', function ($table) {
                 $table->string('published_at')->default(Carbon::now())->nullable();
             });
-            Schema::table('prayers', function($table)
-            {
+            Schema::table('prayers', function ($table) {
                 $table->string('published_at')->default(Carbon::now())->nullable();
             });
         });
@@ -37,16 +34,13 @@ class AlterNotesJournalPrayersTableAddPublishedDateField extends Migration
     public function down()
     {
         DB::transaction(function () {
-            Schema::table('notes', function($table)
-            {
+            Schema::table('notes', function ($table) {
                 $table->dropColumn('published_at');
             });
-            Schema::table('journal', function($table)
-            {
+            Schema::table('journal', function ($table) {
                 $table->dropColumn('published_at');
             });
-            Schema::table('prayers', function($table)
-            {
+            Schema::table('prayers', function ($table) {
                 $table->dropColumn('published_at');
             });
         });

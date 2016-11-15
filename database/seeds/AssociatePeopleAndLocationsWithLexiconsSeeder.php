@@ -63,8 +63,9 @@ class AssociatePeopleAndLocationsWithLexiconsSeeder extends Seeder
         }
     }
 
-    public function clearSymbolism($model){
-        $phrases = $model::where('symbolism','...')->get();
+    public function clearSymbolism($model)
+    {
+        $phrases = $model::where('symbolism', '...')->get();
         $progressBar = new ProgressBarHelper($phrases->count(), 10);
         $progressBar->start('Started clearing "..." from '.$model.' lexicon');
         foreach ($phrases as $phrase) {

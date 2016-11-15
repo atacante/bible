@@ -24,7 +24,7 @@ class BibleNasbSeeder extends Seeder
         $csv = new \parseCSV(base_path('resources/data/nasb_bible_short.csv'));
         $data = [];
         if (count($csv->data)) {
-            $progressBar = new ProgressBarHelper(count($csv->data),10);
+            $progressBar = new ProgressBarHelper(count($csv->data), 10);
             $progressBar->start('Started seeding data for NASB version');
 
             DB::statement('TRUNCATE TABLE verses_' . $this->version . '_en');
@@ -35,7 +35,7 @@ class BibleNasbSeeder extends Seeder
                 $chapter = array_pop($bookAndChapter);
                 $verse_num = $book[1];
                 $book = implode(' ', $bookAndChapter);//array_pop() result
-                $verseText = str_replace('|','"',$row["New American Standard Bible"]);
+                $verseText = str_replace('|', '"', $row["New American Standard Bible"]);
 
                 $verse = [
                     'book_id' => BooksListEn::where('book_name', $book)->first()->id,

@@ -12,8 +12,7 @@ class AddColorSizeToOrderItems extends Migration
      */
     public function up()
     {
-        Schema::table('order_items', function($table)
-        {
+        Schema::table('order_items', function ($table) {
             $table->string('color')->nullable();
             $table->string('size')->nullable();
         });
@@ -26,8 +25,7 @@ class AddColorSizeToOrderItems extends Migration
      */
     public function down()
     {
-        Schema::table('order_items', function($table)
-        {
+        Schema::table('order_items', function ($table) {
             $table->dropColumn('color');
             $table->dropColumn('size');
         });

@@ -108,16 +108,16 @@ class VersionsListEn extends BaseModel
             }
         }
         return $versions;*/
-        return VersionsListEn::query()->where('enabled',true)->get()->toArray();
+        return VersionsListEn::query()->where('enabled', true)->get()->toArray();
     }
 
-    public static function versionsToCompareList($basicVersion,$book)
+    public static function versionsToCompareList($basicVersion, $book)
     {
-        $basicVersion = Input::get('version',Config::get('app.defaultBibleVersion'));
-        $versionsToCheck = VersionsListEn::query()->where('enabled_to_compare',true)->whereNotIn('version_code',[$basicVersion]);
+        $basicVersion = Input::get('version', Config::get('app.defaultBibleVersion'));
+        $versionsToCheck = VersionsListEn::query()->where('enabled_to_compare', true)->whereNotIn('version_code', [$basicVersion]);
         /* Manual Exception for Berean (this version does not contain books before 40) */
-        if($book <= 40){
-            $versionsToCheck->whereNotIn('version_code',['berean']);
+        if ($book <= 40) {
+            $versionsToCheck->whereNotIn('version_code', ['berean']);
         }
         return $versionsToCheck->get()->toArray();
 
@@ -137,7 +137,7 @@ class VersionsListEn extends BaseModel
     public static function getVersionByCode($code)
     {
         foreach (self::versionsListAll() as $version) {
-            if($version['version_code'] == $code){
+            if ($version['version_code'] == $code) {
                 return $version['version_name'];
             }
         }

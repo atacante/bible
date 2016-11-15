@@ -7,23 +7,23 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
 
-class CustomValidator{
+class CustomValidator
+{
     public function validateCouponExist($attribute, $value, $parameters)
     {
         $coupon = Coupon::getCoupon($value);
-        if($coupon && $coupon->member_type){
-            if(Auth::check()){
-                if(!Auth::user()->is($coupon->member_type)){
+        if ($coupon && $coupon->member_type) {
+            if (Auth::check()) {
+                if (!Auth::user()->is($coupon->member_type)) {
                     return false;
                 }
-            }
-            else{
-                if($coupon->member_type != 'user'){
+            } else {
+                if ($coupon->member_type != 'user') {
                     return false;
                 }
             }
         }
-        if($coupon && $coupon->user_id > 0){
+        if ($coupon && $coupon->user_id > 0) {
             return (Auth::check() && Auth::user()->id == $coupon->user_id);
         }
         return $coupon;
@@ -45,21 +45,21 @@ class CustomValidator{
     {
         $coupon = Coupon::getCoupon($value);
         $couponUser = false;
-        if($coupon){
-            $couponUser = $coupon->users()->wherePivot('is_used',true)->wherePivot('user_id',Auth::user()->id)->first();
+        if ($coupon) {
+            $couponUser = $coupon->users()->wherePivot('is_used', true)->wherePivot('user_id', Auth::user()->id)->first();
         }
         return ($coupon && ($coupon->is_permanent || !$couponUser));
     }
 
     public function validateCouponUnique($attribute, $value, $parameters)
     {
-        if($parameters && $parameters[0]){
-            $coupon = Coupon::where('coupon_code', 'ILIKE', $value)->where('id','!=',$parameters[0])->first();
-        }else{
+        if ($parameters && $parameters[0]) {
+            $coupon = Coupon::where('coupon_code', 'ILIKE', $value)->where('id', '!=', $parameters[0])->first();
+        } else {
             $coupon = Coupon::getCoupon($value);
         }
 
-        if(!$coupon){
+        if (!$coupon) {
             return true;
         }
 

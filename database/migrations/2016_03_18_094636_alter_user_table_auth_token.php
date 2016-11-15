@@ -12,8 +12,7 @@ class AlterUserTableAuthToken extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->string('auth_token', 255)->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterUserTableAuthToken extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->dropColumn('auth_token');
         });
     }

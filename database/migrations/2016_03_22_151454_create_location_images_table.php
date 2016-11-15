@@ -15,7 +15,7 @@ class CreateLocationImagesTable extends Migration
         Schema::create('location_images', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('location_id');
-            $table->string('image',255);
+            $table->string('image', 255);
             $table->timestamps();
             $table->foreign('location_id', 'location_images_fk')->references('id')->on('locations')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });

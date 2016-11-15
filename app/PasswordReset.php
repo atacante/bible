@@ -1,6 +1,7 @@
 <?php namespace App;
 
-class PasswordReset extends BaseModel {
+class PasswordReset extends BaseModel
+{
 
     /**
      * Generated
@@ -8,7 +9,4 @@ class PasswordReset extends BaseModel {
 
     protected $table = 'password_resets';
     protected $fillable = ['email', 'token'];
-
-
-
 }

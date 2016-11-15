@@ -157,7 +157,7 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 });
 
-Route::get('invite/{id}',function ($id) {
+Route::get('invite/{id}', function ($id) {
     return redirect('auth/register?invite='.$id);
 });
 
@@ -188,7 +188,8 @@ Route::group([
 | User routes
 */
 
-Route::group([
+Route::group(
+    [
     'middleware' => ['auth', 'acl'],
     'is' => 'administrator|user'
     ],
@@ -196,7 +197,8 @@ Route::group([
         Route::controllers([
             'user' => 'UserController',
         ]);
-    });
+    }
+);
 
 //Route::get('user/delete-avatar', [
 //    'uses'        => 'UserController@anyDeleteAvatar',

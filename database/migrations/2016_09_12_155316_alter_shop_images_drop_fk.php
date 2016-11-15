@@ -12,8 +12,7 @@ class AlterShopImagesDropFk extends Migration
      */
     public function up()
     {
-        Schema::table('product_images', function(Blueprint $table)
-        {
+        Schema::table('product_images', function (Blueprint $table) {
             $table->dropForeign('product_images_fk');
         });
     }
@@ -26,11 +25,8 @@ class AlterShopImagesDropFk extends Migration
      */
     public function down()
     {
-        Schema::table('product_images', function(Blueprint $table)
-        {
+        Schema::table('product_images', function (Blueprint $table) {
             $table->foreign('product_id', 'product_images_fk')->references('id')->on('shop_products')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
-
-
     }
 }

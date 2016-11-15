@@ -20,7 +20,7 @@ class SubscriptionUpdateService
             'terminated',
         ];
 
-        $subscriptions = Subscription::where('authorize_id','!=','111111111111')->get();
+        $subscriptions = Subscription::where('authorize_id', '!=', '111111111111')->get();
 
         foreach ($subscriptions as $subscription) {
             $requestor = new Requestor;
@@ -35,7 +35,7 @@ class SubscriptionUpdateService
                     $subscription->ends_at = Carbon::now();
                     $subscription->save();
                 }
-             } else {
+            } else {
                 $errorMessages = $response->getMessages()->getMessage();
                 Log::error("Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText());
             }

@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
 use Kodeine\Acl\Models\Eloquent\Role;
 
-class UserFiltersComposer {
+class UserFiltersComposer
+{
 
     public function __construct()
     {
-
     }
 
     /**
@@ -26,8 +26,7 @@ class UserFiltersComposer {
      */
     public function compose(View $view)
     {
-        $filters['roles'] = ViewHelper::prepareForSelectBox(Role::all()->toArray(),'slug','name');
+        $filters['roles'] = ViewHelper::prepareForSelectBox(Role::all()->toArray(), 'slug', 'name');
         $view->with('filters', $filters);
     }
-
 }

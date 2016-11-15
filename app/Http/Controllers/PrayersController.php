@@ -23,8 +23,8 @@ use Krucas\Notification\Facades\Notification;
 
 class PrayersController extends Controller
 {
-    protected  $sortby;
-    protected  $order;
+    protected $sortby;
+    protected $order;
 
     private $searchFilter;
     private $dateFrom;
@@ -35,7 +35,8 @@ class PrayersController extends Controller
     private $verseFilter;
     private $tags;
 
-    private function prepareFilters($prayerModel){
+    private function prepareFilters($prayerModel)
+    {
         $this->searchFilter = Request::input('search', false);
         $this->dateFrom = Request::input('date_from', false);
         $this->dateTo = Request::input('date_to', false);
@@ -45,43 +46,43 @@ class PrayersController extends Controller
         $this->verseFilter = Request::input('verse', false);
         $this->tags = Request::input('tags', []);
 
-        if(!empty($this->searchFilter)){
+        if (!empty($this->searchFilter)) {
             $prayerModel->where('prayer_text', 'ilike', '%'.$this->searchFilter.'%');
         }
 
-        if(!empty($this->dateFrom)){
+        if (!empty($this->dateFrom)) {
             $prayerModel->whereRaw('created_at >= to_timestamp('.strtotime($this->dateFrom." 00:00:00").")");
         }
 
-        if(!empty($this->dateTo)){
+        if (!empty($this->dateTo)) {
             $prayerModel->whereRaw('created_at <= to_timestamp('.strtotime($this->dateTo." 23:59:59").")");
         }return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to(URL::previous());
 
-        if(!empty($this->version) && $this->version != 'all'){
+        if (!empty($this->version) && $this->version != 'all') {
             $prayerModel->where('bible_version', $this->version);
         }
 
-        if(!empty($this->bookFilter)){
-            $prayerModel->whereHas('verse', function($q){
-                $q->where('book_id',$this->bookFilter);
+        if (!empty($this->bookFilter)) {
+            $prayerModel->whereHas('verse', function ($q) {
+                $q->where('book_id', $this->bookFilter);
             });
         }
 
-        if(!empty($this->chapterFilter)){
-            $prayerModel->whereHas('verse', function($q){
-                $q->where('chapter_num',$this->chapterFilter);
+        if (!empty($this->chapterFilter)) {
+            $prayerModel->whereHas('verse', function ($q) {
+                $q->where('chapter_num', $this->chapterFilter);
             });
         }
 
-        if(!empty($this->verseFilter)){
-            $prayerModel->whereHas('verse', function($q){
-                $q->where('verse_num',$this->verseFilter);
+        if (!empty($this->verseFilter)) {
+            $prayerModel->whereHas('verse', function ($q) {
+                $q->where('verse_num', $this->verseFilter);
             });
         }
 
         if (!empty($this->tags)) {
             $prayerModel->whereHas('tags', function ($q) {
-                $q->where(function($ow) {
+                $q->where(function ($ow) {
                     foreach ($this->tags as $tag) {
                         $ow->orWhere('tag_id', $tag);
                     }
@@ -91,7 +92,8 @@ class PrayersController extends Controller
         return $prayerModel;
     }
 
-    public function getList(){
+    public function getList()
+    {
         return $this->redirectToBackUrl();
         /*
         Session::flash('backUrl', Request::fullUrl());
@@ -119,33 +121,31 @@ class PrayersController extends Controller
         $this->keepPreviousUrl();
 
         $model = new Prayer();
-        $model->bible_version = Input::get('version',false);
-        $model->verse_id = Input::get('verse_id',false);
+        $model->bible_version = Input::get('version', false);
+        $model->verse_id = Input::get('verse_id', false);
 
-        if($prayerText = Input::get('text',false)){
+        if ($prayerText = Input::get('text', false)) {
             $model->highlighted_text = $prayerText;
         }
 
         $model->verse = false;
-        if($model->verse_id){
-            if($model->bible_version){
+        if ($model->verse_id) {
+            if ($model->bible_version) {
                 $versesModel = BaseModel::getVersesModelByVersionCode($model->bible_version);
-            }
-            else{
+            } else {
                 $versesModel = BaseModel::getVersesModelByVersionCode(Config::get('app.defaultBibleVersion'));
             }
             $model->verse = $versesModel::find($model->verse_id);
         }
 
         if (Request::isMethod('post') && Input::get('full_screen') == 0) {
-            $this->validate($request, $model->rules(),$model->messages());
+            $this->validate($request, $model->rules(), $model->messages());
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
-            if(!$model->verse){
-                if($rel = Input::get('rel', false)){
+            if (!$model->verse) {
+                if ($rel = Input::get('rel', false)) {
                     $data['rel_code'] = $rel;
-                }
-                else{
+                } else {
                     $data['rel_code'] = BaseModel::generateRelationCode();
                 }
             }
@@ -153,96 +153,98 @@ class PrayersController extends Controller
                 $this->anyUploadImage($model->id);
                 $model->syncTags(Input::get('tags'));
                 $model->syncGroups();
-                if($model->note_text = Input::get('note_text',false)){
+                if ($model->note_text = Input::get('note_text', false)) {
                     $model->note_id = $this->saveNote($model);
                     $model->save();
                 }
-                if($model->journal_text = Input::get('journal_text',false)){
+                if ($model->journal_text = Input::get('journal_text', false)) {
                     $model->journal_id = $this->saveJournal($model);
                     $model->save();
                 }
                 Notification::success('Prayer record has been successfully created');
             }
-            if(!Request::ajax()){
+            if (!Request::ajax()) {
                 return $this->redirectToBackUrl();
-            }
-            else{
+            } else {
                 return 1;
             }
         }
 
         $view = 'prayers.create';
-        if(Request::ajax()){
+        if (Request::ajax()) {
             $view = 'prayers.form';
         }
 
-        $myGroups = Auth::user()->myGroups()->pluck('group_name','groups.id')->toArray();
-        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name','groups.id')->toArray();
+        $myGroups = Auth::user()->myGroups()->pluck('group_name', 'groups.id')->toArray();
+        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name', 'groups.id')->toArray();
         $content['groups'] = $myGroups+$joinedGroups;
 
-        return view($view,
+        return view(
+            $view,
             [
                 'model' => $model,
                 'content' => $content
-            ]);
+            ]
+        );
     }
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
     {
         $this->keepPreviousUrl();
 
-        $model = Prayer::query()->where('user_id',Auth::user()->id)->find($id);
-        $model->journal_text = Input::get('journal_text',false);
-        $model->note_text = Input::get('note_text',false);
-        if(!$model){
+        $model = Prayer::query()->where('user_id', Auth::user()->id)->find($id);
+        $model->journal_text = Input::get('journal_text', false);
+        $model->note_text = Input::get('note_text', false);
+        if (!$model) {
             abort(404);
         }
         if (Request::isMethod('put')) {
-            $this->validate($request, $model->rules(),$model->messages());
+            $this->validate($request, $model->rules(), $model->messages());
             if ($model->update(Input::all())) {
                 $this->anyUploadImage($model->id);
                 $model->syncTags(Input::get('tags'));
                 $model->syncGroups();
-                if($model->note_text){
+                if ($model->note_text) {
                     $model->note_id = $this->saveNote($model);
                     $model->save();
                 }
-                if($model->journal_text = Input::get('journal_text',false)){
+                if ($model->journal_text = Input::get('journal_text', false)) {
                     $model->journal_id = $this->saveJournal($model);
                     $model->save();
                 }
                 Notification::success('Prayer has been successfully updated');
             }
-            if(!Request::ajax()){
+            if (!Request::ajax()) {
                 return $this->redirectToBackUrl();
-            }
-            else{
+            } else {
                 return 1;
             }
         }
 
-        $myGroups = Auth::user()->myGroups()->pluck('group_name','groups.id')->toArray();
-        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name','groups.id')->toArray();
+        $myGroups = Auth::user()->myGroups()->pluck('group_name', 'groups.id')->toArray();
+        $joinedGroups = Auth::user()->joinedGroups()->pluck('group_name', 'groups.id')->toArray();
         $content['groups'] = $myGroups+$joinedGroups;
 
         $view = 'prayers.update';
-        if(Request::ajax()){
+        if (Request::ajax()) {
             $view = 'prayers.form';
         }
 
-        return view($view,
+        return view(
+            $view,
             [
                 'model' => $model,
                 'content' => $content
-            ]);
+            ]
+        );
     }
 
     public function anyDelete($id)
     {
         $this->keepPreviousUrl();
 
-        $model = Prayer::query()->where('user_id',Auth::user()->id)->find($id);
-        if(!$model){
+        $model = Prayer::query()->where('user_id', Auth::user()->id)->find($id);
+        if (!$model) {
             abort(404);
         }
         if ($model->destroy($id)) {
@@ -255,7 +257,7 @@ class PrayersController extends Controller
     private function saveNote($model)
     {
         $noteModel = new Note();
-        if($model->note){
+        if ($model->note) {
             $noteModel = $model->note;
         }
         $noteModel->user_id = $model->user_id;
@@ -266,7 +268,7 @@ class PrayersController extends Controller
         $noteModel->highlighted_text = $model->highlighted_text;
         $noteModel->note_text = $model->note_text;
         $noteModel->rel_code = $model->rel_code;
-        if($noteModel->save()){
+        if ($noteModel->save()) {
             return $noteModel->id;
         }
     }
@@ -274,7 +276,7 @@ class PrayersController extends Controller
     private function saveJournal($model)
     {
         $journalModel = new Journal();
-        if($model->journal){
+        if ($model->journal) {
             $journalModel = $model->journal;
         }
         $journalModel->user_id = $model->user_id;
@@ -285,7 +287,7 @@ class PrayersController extends Controller
         $journalModel->highlighted_text = $model->highlighted_text;
         $journalModel->journal_text = $model->journal_text;
         $journalModel->rel_code = $model->rel_code;
-        if($journalModel->save()){
+        if ($journalModel->save()) {
             return $journalModel->id;
         }
     }
@@ -293,8 +295,8 @@ class PrayersController extends Controller
     public function getComments($id)
     {
         $limit = 5;
-        $page = Input::get('page',1);
-        if($page == 'all'){
+        $page = Input::get('page', 1);
+        if ($page == 'all') {
             $limit = null;
         }
 
@@ -312,7 +314,7 @@ class PrayersController extends Controller
         $content['otherCommentsCount'] = $limit?$totalCount-$limit:0;
 
         $view = 'community.wall-comments';
-        if($page > 1){
+        if ($page > 1) {
             $view = 'community.wall-comment-items';
         }
 
@@ -334,10 +336,9 @@ class PrayersController extends Controller
 
         $commentCreated = $note->comments()->create($data);
         if ($commentCreated) {
-            if($note->groupsShares->count()){
+            if ($note->groupsShares->count()) {
                 NotificationsHelper::groupWallItemComment($note);
-            }
-            else{
+            } else {
                 NotificationsHelper::publicWallItemComment($note);
             }
 
@@ -351,26 +352,26 @@ class PrayersController extends Controller
         if (!Auth::check()) {
             abort(403);
         }
-        $model = Prayer::whereHas('comments', function ($q) use($id) {
-            $q->where('id',$id);
-            $q->where('user_id',Auth::user()->id);
+        $model = Prayer::whereHas('comments', function ($q) use ($id) {
+            $q->where('id', $id);
+            $q->where('user_id', Auth::user()->id);
         })->first();
         if (!$model) {
             abort(404);
         }
-        if($model->comments()->where('id',$id)->delete()){
+        if ($model->comments()->where('id', $id)->delete()) {
             return 1;
         }
         return 0;
     }
 
-    public function getLikes($id,$type = 'simple')
+    public function getLikes($id, $type = 'simple')
     {
         $limit = 5;
-        if($type == 'full'){
+        if ($type == 'full') {
             $limit = 6;
         }
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $model = Prayer::find($id);
@@ -389,9 +390,9 @@ class PrayersController extends Controller
         $ignoredRequests = [];
         $myRequests = [];
         $myFriends = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $requests = Auth::user()->requests->modelKeys();
-            $ignoredRequests = Auth::user()->requests()->where('ignore',true)->get()->modelKeys();
+            $ignoredRequests = Auth::user()->requests()->where('ignore', true)->get()->modelKeys();
             $myRequests = Auth::user()->friends->modelKeys();
             $myFriends = array_intersect($requests, $myRequests);
         }
@@ -415,7 +416,7 @@ class PrayersController extends Controller
             abort(404);
         }
         $liked = 0;
-        if(!$model->likes()->where('user_id',Auth::user()->id)->get()->count()){
+        if (!$model->likes()->where('user_id', Auth::user()->id)->get()->count()) {
             $model->likes()->attach(Auth::user()->id);
             $liked = 1;
         }
@@ -430,7 +431,7 @@ class PrayersController extends Controller
         }
 
         $unliked = 0;
-        if($model->likes()->where('user_id',Auth::user()->id)->get()->count()){
+        if ($model->likes()->where('user_id', Auth::user()->id)->get()->count()) {
             $model->likes()->detach(Auth::user()->id);
             $unliked = 1;
         }
@@ -439,7 +440,7 @@ class PrayersController extends Controller
 
     public function anyUploadImage($id = false)
     {
-        $itemId = Request::get('item_id',$id);
+        $itemId = Request::get('item_id', $id);
         if (Input::hasFile('file')) {
             $files = Input::file('file');
             foreach ($files as $file) {
@@ -473,7 +474,7 @@ class PrayersController extends Controller
 
     public function anyDeleteImage($filename = false)
     {
-        if(!$filename){
+        if (!$filename) {
             $filename = Input::get('filename');
         }
 

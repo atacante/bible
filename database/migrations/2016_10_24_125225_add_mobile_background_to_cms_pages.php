@@ -12,8 +12,7 @@ class AddMobileBackgroundToCmsPages extends Migration
      */
     public function up()
     {
-        Schema::table('cms_pages', function($table)
-        {
+        Schema::table('cms_pages', function ($table) {
             $table->string('background_mobile')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AddMobileBackgroundToCmsPages extends Migration
      */
     public function down()
     {
-        Schema::table('cms_pages', function($table)
-        {
+        Schema::table('cms_pages', function ($table) {
             $table->dropColumn('background_mobile');
         });
     }

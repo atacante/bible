@@ -12,8 +12,7 @@ class AlterUsersFriendsTableAddIgnoreField extends Migration
      */
     public function up()
     {
-        Schema::table('users_friends', function($table)
-        {
+        Schema::table('users_friends', function ($table) {
             $table->boolean('ignore')->default(false);
         });
     }
@@ -25,8 +24,7 @@ class AlterUsersFriendsTableAddIgnoreField extends Migration
      */
     public function down()
     {
-        Schema::table('users_friends', function($table)
-        {
+        Schema::table('users_friends', function ($table) {
             $table->dropColumn('ignore');
         });
     }

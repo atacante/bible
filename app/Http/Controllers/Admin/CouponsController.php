@@ -26,12 +26,14 @@ class CouponsController extends Controller
         $couponsModel = new Coupon();
 
         $content['coupons'] = $couponsModel->query()->with('user')->orderBy('id')->paginate(20);
-        return view('admin.coupons.list',
+        return view(
+            'admin.coupons.list',
             [
                 'page_title' => 'Coupons',
                 'content' => $content,
                 'filterAction' => 'coupons/list/',
-            ]);
+            ]
+        );
     }
 
     public function anyCreate(\Illuminate\Http\Request $request)
@@ -48,16 +50,17 @@ class CouponsController extends Controller
             return Redirect::to(ViewHelper::adminUrlSegment() . '/coupons/list/');
         }
 
-        return view('admin.coupons.create',
+        return view(
+            'admin.coupons.create',
             [
                 'model' => $model,
                 'page_title' => 'Create New Coupon',
-                'userRoles' => Role::whereNotIn('slug',[Config::get('app.role.admin')])->get()->pluck('name','slug')->toArray(),
-                'users' => User::whereHas('roles', function ($q)
-                {
-                    $q->whereNotIn('slug',[Config::get('app.role.admin')]);
-                })->get()->pluck('name','id')->toArray()
-            ]);
+                'userRoles' => Role::whereNotIn('slug', [Config::get('app.role.admin')])->get()->pluck('name', 'slug')->toArray(),
+                'users' => User::whereHas('roles', function ($q) {
+                    $q->whereNotIn('slug', [Config::get('app.role.admin')]);
+                })->get()->pluck('name', 'id')->toArray()
+            ]
+        );
     }
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
@@ -66,7 +69,7 @@ class CouponsController extends Controller
             Session::keep('backUrl');
         }
         $model = Coupon::query()->find($id);
-        if (Request::isMethod('put')){
+        if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
 //            $data['expire_at'] = $data['expire_at']?strtotime($data['expire_at']):null;
@@ -78,20 +81,20 @@ class CouponsController extends Controller
                 ? Redirect::to($url)
                 : Redirect::to(ViewHelper::adminUrlSegment() . '/coupons/list/');
         }
-        return view('admin.coupons.update',
+        return view(
+            'admin.coupons.update',
             [
                 'model' => $model,
                 'page_title' => 'Edit Coupon',
-                'userRoles' => Role::whereNotIn('slug',[Config::get('app.role.admin')])->get()->pluck('name','slug')->toArray(),
-                'users' => User::whereHas('roles', function ($q) use($model)
-                {
-                    $q->whereNotIn('slug',[Config::get('app.role.admin')]);
-                    if($model->member_type){
-                        $q->where('slug',$model->member_type);
+                'userRoles' => Role::whereNotIn('slug', [Config::get('app.role.admin')])->get()->pluck('name', 'slug')->toArray(),
+                'users' => User::whereHas('roles', function ($q) use ($model) {
+                    $q->whereNotIn('slug', [Config::get('app.role.admin')]);
+                    if ($model->member_type) {
+                        $q->where('slug', $model->member_type);
                     }
-                }
-                )->get()->pluck('name','id')->toArray()
-            ]);
+                })->get()->pluck('name', 'id')->toArray()
+            ]
+        );
     }
 
     public function anyDelete($id)
@@ -113,9 +116,10 @@ class CouponsController extends Controller
         return $this->generateCode();
     }
 
-    private function generateCode(){
+    private function generateCode()
+    {
         $code = str_random(10);
-        if(Coupon::where('coupon_code', $code)->exists()){
+        if (Coupon::where('coupon_code', $code)->exists()) {
             $this->generateCode();
         }
         return $code;

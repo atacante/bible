@@ -12,8 +12,7 @@ class AlterLexiconTableAddSymbolismField extends Migration
      */
     public function up()
     {
-        Schema::table('lexicon_kjv', function($table)
-        {
+        Schema::table('lexicon_kjv', function ($table) {
             $table->text('symbolism')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterLexiconTableAddSymbolismField extends Migration
      */
     public function down()
     {
-        Schema::table('lexicon_kjv', function($table)
-        {
+        Schema::table('lexicon_kjv', function ($table) {
             $table->dropColumn('symbolism');
         });
     }

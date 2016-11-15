@@ -24,21 +24,21 @@ class Tag extends BaseModel
 
     public function notes()
     {
-        return $this->belongsToMany(Note::class, 'notes_tags', 'tag_id','note_id');
+        return $this->belongsToMany(Note::class, 'notes_tags', 'tag_id', 'note_id');
     }
 
     public function journal()
     {
-        return $this->belongsToMany(Journal::class, 'journal_tags', 'tag_id','journal_id');
+        return $this->belongsToMany(Journal::class, 'journal_tags', 'tag_id', 'journal_id');
     }
 
     public function prayers()
     {
-        return $this->belongsToMany(Prayer::class, 'prayers_tags', 'tag_id','prayer_id');
+        return $this->belongsToMany(Prayer::class, 'prayers_tags', 'tag_id', 'prayer_id');
     }
 
     public static function availableTags()
     {
-        return self::where('type', self::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->lists('tag_name','id')->toArray();
+        return self::where('type', self::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->lists('tag_name', 'id')->toArray();
     }
 }

@@ -33,7 +33,7 @@ class ComplaintsController extends Controller
 
         if (!empty($typeFilter)) {
             $type = '';
-            switch($typeFilter){
+            switch ($typeFilter) {
                 case 'note':
                     $type = 'App\Note';
                     break;
@@ -65,16 +65,18 @@ class ComplaintsController extends Controller
 
         $contentReportModel = $this->prepareFilters($contentReportModel);
 
-        $content['complaints'] = $contentReportModel->with('item','user')->orderBy('resolved')->orderBy('created_at','desc')->paginate(20);
-        return view('admin.complaints.list',
+        $content['complaints'] = $contentReportModel->with('item', 'user')->orderBy('resolved')->orderBy('created_at', 'desc')->paginate(20);
+        return view(
+            'admin.complaints.list',
             [
                 'page_title' => 'Complaints',
                 'content' => $content,
                 'filterAction' => 'complaints/list/',
-            ]);
+            ]
+        );
     }
 
-    public function anyUpdate(\Illuminate\Http\Request $request,$type,$id)
+    public function anyUpdate(\Illuminate\Http\Request $request, $type, $id)
     {
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
@@ -82,9 +84,9 @@ class ComplaintsController extends Controller
 
         $contentReportModel = ContentReport::query()->find($id);
 
-        $model = BaseModel::getWallItemModel($type,$contentReportModel->item_id);
+        $model = BaseModel::getWallItemModel($type, $contentReportModel->item_id);
 
-        if (Request::isMethod('put')){
+        if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
             if ($model->update($data)) {
@@ -96,22 +98,24 @@ class ComplaintsController extends Controller
                 ? Redirect::to($url)
                 : Redirect::to(ViewHelper::adminUrlSegment() . '/complaints/list/');
         }
-        return view('admin.complaints.update',
+        return view(
+            'admin.complaints.update',
             [
                 'itemModel' => $model,
                 'contentReportModel' => $contentReportModel,
                 'page_title' => 'Edit Complaint'
-            ]);
+            ]
+        );
     }
 
-    public function anyDelete($type,$id)
+    public function anyDelete($type, $id)
     {
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
         }
 
         $contentReportModel = ContentReport::query()->find($id);
-        $model = BaseModel::getWallItemModel($type,$contentReportModel->item_id);
+        $model = BaseModel::getWallItemModel($type, $contentReportModel->item_id);
         $model->contentReports()->delete();
         if ($model->delete()) {
             Notification::success('Item has been successfully deleted');
@@ -122,14 +126,14 @@ class ComplaintsController extends Controller
             : Redirect::to(ViewHelper::adminUrlSegment() . '/complaints/list/');
     }
 
-    public function anyMakePrivate($type,$id)
+    public function anyMakePrivate($type, $id)
     {
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
         }
 
         $contentReportModel = ContentReport::query()->find($id);
-        $model = BaseModel::getWallItemModel($type,$contentReportModel->item_id);
+        $model = BaseModel::getWallItemModel($type, $contentReportModel->item_id);
         $model->access_level = Note::ACCESS_PRIVATE;
         if ($model->save()) {
             $contentReportModel->resolved = true;

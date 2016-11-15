@@ -27,32 +27,33 @@ class LocationController extends Controller
     private $chapterFilter;
     private $verseFilter;
 
-    private function prepareFilters($locationsModel){
+    private function prepareFilters($locationsModel)
+    {
         $this->searchFilter = Request::input('search', false);
         $this->bookFilter = Request::input('book', false);
         $this->chapterFilter = Request::input('chapter', false);
         $this->verseFilter = Request::input('verse', false);
 
-        if(!empty($this->searchFilter)){
+        if (!empty($this->searchFilter)) {
             $locationsModel->where('location_name', 'ilike', '%'.$this->searchFilter.'%');
 //            $locationsModel->orWhere('location_description', 'ilike', '%'.$this->searchFilter.'%');
         }
 
-        if(!empty($this->bookFilter)){
-            $locationsModel->whereHas('verses', function($q){
-                $q->where('book_id',$this->bookFilter);
+        if (!empty($this->bookFilter)) {
+            $locationsModel->whereHas('verses', function ($q) {
+                $q->where('book_id', $this->bookFilter);
             });
         }
 
-        if(!empty($this->chapterFilter)){
-            $locationsModel->whereHas('verses', function($q){
-                $q->where('chapter_num',$this->chapterFilter);
+        if (!empty($this->chapterFilter)) {
+            $locationsModel->whereHas('verses', function ($q) {
+                $q->where('chapter_num', $this->chapterFilter);
             });
         }
 
-        if(!empty($this->verseFilter)){
-            $locationsModel->whereHas('verses', function($q){
-                $q->where('verse_num',$this->verseFilter);
+        if (!empty($this->verseFilter)) {
+            $locationsModel->whereHas('verses', function ($q) {
+                $q->where('verse_num', $this->verseFilter);
             });
         }
         return $locationsModel;
@@ -68,12 +69,14 @@ class LocationController extends Controller
 
         $content['locations'] = $locationsModel->with('images')->orderBy('location_name')->/*orderBy('chapter_num')->orderBy('verse_num')->*/
         paginate(20);
-        return view('admin.location.list',
+        return view(
+            'admin.location.list',
             [
                 'page_title' => 'Locations',
                 'content' => $content,
                 'filterAction' => 'location/list/',
-            ]);
+            ]
+        );
     }
 
     public function anyCreate(\Illuminate\Http\Request $request)
@@ -88,12 +91,14 @@ class LocationController extends Controller
             }
             return Redirect::to(ViewHelper::adminUrlSegment() . '/location/list/');
         }
-        return view('admin.location.create',
+        return view(
+            'admin.location.create',
             [
                 'model' => $model,
                 'jsValidator' => $jsValidator,
                 'page_title' => 'Create New Location'
-            ]);
+            ]
+        );
     }
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
@@ -103,7 +108,7 @@ class LocationController extends Controller
         }
         $model = Location::query()->with('images')->find($id);
         $validator = JsValidatorFacade::make($model->rules());
-        if (Request::isMethod('put')){
+        if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
             $data['associate_verses'] = (boolean)$data['associate_verses'];
@@ -115,12 +120,14 @@ class LocationController extends Controller
                 ? Redirect::to($url)
                 : Redirect::to(ViewHelper::adminUrlSegment() . '/location/list/');
         }
-        return view('admin.location.update',
+        return view(
+            'admin.location.update',
             [
                 'model' => $model,
                 'jsValidator' => $validator,
                 'page_title' => 'Edit Location',
-            ]);
+            ]
+        );
     }
 
     public function anyDelete($id)
@@ -129,7 +136,7 @@ class LocationController extends Controller
             Session::keep('backUrl');
         }
         $location = Location::query()->with('images')->find($id);
-        if($location->images){
+        if ($location->images) {
             foreach ($location->images as $image) {
                 $this->anyDeleteImage($image->image);
             }
@@ -155,7 +162,7 @@ class LocationController extends Controller
 
                 $this->makeDir(public_path() . $tmpThumbPath);
                 $thumbPath = public_path($tmpThumbPath . $tmpFileName);
-                if($file){
+                if ($file) {
                     $image = new LocationImages();
                     $image->location_id = $locationId;
                     $image->image = $tmpFileName;
@@ -163,7 +170,6 @@ class LocationController extends Controller
                 }
                 // Resizing 340x340
                 Image::make($file->getRealPath())->fit(200, 200)->save($thumbPath)->destroy();
-
             }
 //            return response()->json(array('filename'=> $tmpFileName), 200);
             return true;
@@ -181,7 +187,7 @@ class LocationController extends Controller
 
     public function anyDeleteImage($filename = false)
     {
-        if(!$filename){
+        if (!$filename) {
             $filename = Input::get('filename');
         }
 

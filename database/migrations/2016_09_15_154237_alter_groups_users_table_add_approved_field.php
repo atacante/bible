@@ -12,8 +12,7 @@ class AlterGroupsUsersTableAddApprovedField extends Migration
      */
     public function up()
     {
-        Schema::table('groups_users', function($table)
-        {
+        Schema::table('groups_users', function ($table) {
             $table->boolean('approved')->default(false);
         });
     }
@@ -25,8 +24,7 @@ class AlterGroupsUsersTableAddApprovedField extends Migration
      */
     public function down()
     {
-        Schema::table('groups_users', function($table)
-        {
+        Schema::table('groups_users', function ($table) {
             $table->dropColumn('approved');
         });
     }

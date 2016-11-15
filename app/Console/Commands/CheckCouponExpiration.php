@@ -43,8 +43,8 @@ class CheckCouponExpiration extends Command
      */
     public function handle()
     {
-        $coupons = Coupon::where('status',true)->whereNotNull('expire_at')->where('expire_at','<=',Carbon::now())->get();
-        if($coupons->count()){
+        $coupons = Coupon::where('status', true)->whereNotNull('expire_at')->where('expire_at', '<=', Carbon::now())->get();
+        if ($coupons->count()) {
             foreach ($coupons as $coupon) {
                 $coupon->status = false;
                 $coupon->save();

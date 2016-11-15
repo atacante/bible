@@ -13,8 +13,7 @@ class AlterUserTableAddMembershipField extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->string('plan_type')->default(User::PLAN_FREE);
             $table->boolean('is_premium')->default(false);
         });
@@ -27,8 +26,7 @@ class AlterUserTableAddMembershipField extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->dropColumn('plan_type');
             $table->dropColumn('is_premium');
         });

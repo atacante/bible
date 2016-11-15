@@ -12,8 +12,7 @@ class AlterTableOrderItemsAddQty extends Migration
      */
     public function up()
     {
-        Schema::table('order_items', function($table)
-        {
+        Schema::table('order_items', function ($table) {
             $table->integer('qty')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterTableOrderItemsAddQty extends Migration
      */
     public function down()
     {
-        Schema::table('order_items', function($table)
-        {
+        Schema::table('order_items', function ($table) {
             $table->dropColumn('qty');
         });
     }

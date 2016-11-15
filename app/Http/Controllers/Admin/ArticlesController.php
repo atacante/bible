@@ -23,13 +23,13 @@ class ArticlesController extends Controller
         $categoryFilter = Input::get('category', false);
 
         if (!empty($searchFilter)) {
-            $model->where(function($ow) use ($searchFilter) {
+            $model->where(function ($ow) use ($searchFilter) {
                 $ow->where('text', 'ilike', '%' . $searchFilter . '%');
                 $ow->orWhere('title', 'ilike', '%' . $searchFilter . '%');
             });
         }
 
-        if(!empty($categoryFilter)){
+        if (!empty($categoryFilter)) {
             $model->where('category_id', $categoryFilter);
         }
 
@@ -46,18 +46,20 @@ class ArticlesController extends Controller
         $articleModel = $this->prepareFilters($articleModel);
 
         $content['articles'] = $articleModel->with(['user','category'])->orderBy('published_at', SORT_DESC)->paginate(20);
-        return view('admin.articles.list',
+        return view(
+            'admin.articles.list',
             [
                 'page_title' => 'Articles',
                 'content' => $content,
                 'filterAction' => 'articles/list/',
-            ]);
+            ]
+        );
     }
 
     public function anyCreate(\Illuminate\Http\Request $request)
     {
         $model = new BlogArticle();
-        $categories = BlogCategory::get()->pluck('title','id')->toArray();
+        $categories = BlogCategory::get()->pluck('title', 'id')->toArray();
         if (Request::isMethod('post')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
@@ -67,13 +69,15 @@ class ArticlesController extends Controller
             return Redirect::to(ViewHelper::adminUrlSegment() . '/articles/list/');
         }
 
-        return view('admin.articles.create',
+        return view(
+            'admin.articles.create',
             [
                 'model' => $model,
                 'categories' => $categories,
                 'user_id' => Auth::user()->id,
                 'page_title' => 'Create New Article'
-            ]);
+            ]
+        );
     }
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
@@ -82,8 +86,8 @@ class ArticlesController extends Controller
             Session::keep('backUrl');
         }
         $model = BlogArticle::query()->find($id);
-        $categories = BlogCategory::get()->pluck('title','id')->toArray();
-        if (Request::isMethod('put')){
+        $categories = BlogCategory::get()->pluck('title', 'id')->toArray();
+        if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
             if ($model->update($data)) {
@@ -93,13 +97,15 @@ class ArticlesController extends Controller
                 ? Redirect::to($url)
                 : Redirect::to(ViewHelper::adminUrlSegment() . '/articles/list/');
         }
-        return view('admin.articles.update',
+        return view(
+            'admin.articles.update',
             [
                 'model' => $model,
                 'categories' => $categories,
                 'user_id' => $model->user_id,
                 'page_title' => 'Edit Article'
-            ]);
+            ]
+        );
     }
 
     public function anyDelete($id)

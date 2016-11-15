@@ -26,7 +26,7 @@ class Note extends BaseModel implements WallItem
     public function rules()
     {
         $rules['note_text'] = 'required';
-        if(Request::input('share_for_groups') == self::ACCESS_SPECIFIC_GROUPS){
+        if (Request::input('share_for_groups') == self::ACCESS_SPECIFIC_GROUPS) {
             $rules['groups'] = 'required';
         }
         return $rules;
@@ -47,47 +47,56 @@ class Note extends BaseModel implements WallItem
         "Created"=>"created_at"
     ];
 
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
-        static::deleting(function($model) {
+        static::deleting(function ($model) {
             return true;
         });
     }
 
     public function setAccessLevelAttribute($value)
     {
-        $this->attributes['access_level'] = Request::get('share_for_groups',$value);
+        $this->attributes['access_level'] = Request::get('share_for_groups', $value);
     }
 
-    public function text() {
+    public function text()
+    {
         return $this->note_text;
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(\App\User::class, 'user_id', 'id');
     }
 
-    public function verse() {
+    public function verse()
+    {
         return $this->belongsTo(\App\VersesKingJamesEn::class, 'verse_id', 'id');
     }
 
-    public function journal() {
+    public function journal()
+    {
         return $this->belongsTo(\App\Journal::class, 'journal_id', 'id');
     }
 
-    public function journals() {
+    public function journals()
+    {
         return $this->belongsToMany(Journal::class, 'notes_journal_prayers', 'note_id', 'journal_id');
     }
 
-    public function prayer() {
+    public function prayer()
+    {
         return $this->belongsTo(\App\Prayer::class, 'prayer_id', 'id');
     }
 
-    public function prayers() {
+    public function prayers()
+    {
         return $this->belongsToMany(Prayer::class, 'notes_journal_prayers', 'note_id', 'prayer_id');
     }
 
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class, 'notes_tags', 'note_id', 'tag_id');
     }
 
@@ -98,37 +107,37 @@ class Note extends BaseModel implements WallItem
 
     public function comments()
     {
-        return $this->morphMany('App\WallComment','item','type')->orderBy('created_at','desc');
+        return $this->morphMany('App\WallComment', 'item', 'type')->orderBy('created_at', 'desc');
     }
 
     public function contentReports()
     {
-        return $this->morphMany('App\ContentReport','item','item_type')->orderBy('created_at','desc');
+        return $this->morphMany('App\ContentReport', 'item', 'item_type')->orderBy('created_at', 'desc');
     }
 
     public function images()
     {
-        return $this->morphMany('App\WallImage','item','item_type');
+        return $this->morphMany('App\WallImage', 'item', 'item_type');
     }
 
     public function likes()
     {
-        return $this->morphToMany('App\User','item','wall_likes')->orderBy('wall_likes.created_at','desc');
+        return $this->morphToMany('App\User', 'item', 'wall_likes')->orderBy('wall_likes.created_at', 'desc');
     }
 
     public function availableTags()
     {
-        return Tag::where('type', Tag::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->lists('tag_name','id')->toArray();
+        return Tag::where('type', Tag::TYPE_SYSTEM)->orWhere('user_id', Auth::user()->id)->lists('tag_name', 'id')->toArray();
     }
 
-    public function syncTags($tags){
+    public function syncTags($tags)
+    {
         $tagsToSync = [];
-        if(count($tags)){
+        if (count($tags)) {
             foreach ($tags as $tag) {
-                if(is_numeric($tag)){
+                if (is_numeric($tag)) {
                     $tagsToSync[] = $tag;
-                }
-                else{
+                } else {
                     $tagModel = new Tag();
                     $tagModel->user_id = Auth::user()->id;
                     $tagModel->type = $tagModel::TYPE_USER;
@@ -144,15 +153,14 @@ class Note extends BaseModel implements WallItem
     public function syncGroups()
     {
         $groups = [];
-        if($this->access_level == self::ACCESS_PUBLIC_GROUPS){
+        if ($this->access_level == self::ACCESS_PUBLIC_GROUPS) {
             $groups = Auth::user()->myGroups->modelKeys()+Auth::user()->joinedGroups->modelKeys();
-        }
-        elseif($this->access_level == self::ACCESS_SPECIFIC_GROUPS){
-            $groups = Input::get('groups',[]);
+        } elseif ($this->access_level == self::ACCESS_SPECIFIC_GROUPS) {
+            $groups = Input::get('groups', []);
         }
         $this->groupsShares()->sync($groups);
 
-        if($this->groupsShares->count()){
+        if ($this->groupsShares->count()) {
             foreach ($this->groupsShares as $group) {
                 NotificationsHelper::groupWallItem($group);
             }

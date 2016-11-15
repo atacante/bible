@@ -12,8 +12,7 @@ class AlterUsersViewsTableAddVersionColumn extends Migration
      */
     public function up()
     {
-        Schema::table('users_views', function($table)
-        {
+        Schema::table('users_views', function ($table) {
             $table->string('bible_version')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterUsersViewsTableAddVersionColumn extends Migration
      */
     public function down()
     {
-        Schema::table('users_views', function($table)
-        {
+        Schema::table('users_views', function ($table) {
             $table->dropColumn('bible_version');
         });
     }

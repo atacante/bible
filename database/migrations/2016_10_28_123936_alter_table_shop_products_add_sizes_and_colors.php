@@ -12,8 +12,7 @@ class AlterTableShopProductsAddSizesAndColors extends Migration
      */
     public function up()
     {
-        Schema::table('shop_products', function($table)
-        {
+        Schema::table('shop_products', function ($table) {
             $table->string('colors')->nullable();
             $table->string('sizes')->nullable();
         });
@@ -26,8 +25,7 @@ class AlterTableShopProductsAddSizesAndColors extends Migration
      */
     public function down()
     {
-        Schema::table('shop_products', function($table)
-        {
+        Schema::table('shop_products', function ($table) {
             $table->dropColumn('colors');
             $table->dropColumn('sizes');
         });

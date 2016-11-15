@@ -40,15 +40,15 @@ class NasbLexiconSeederSlow extends Seeder
             $ignored = 0;
             foreach ($excelData as $key => $row) {
                 $part++;
-                $book = explode(':',trim($row['verse']));
+                $book = explode(':', trim($row['verse']));
                 $verse_num = $book[1];
-                $bookAndChapter = explode(' ',$book[0]);
+                $bookAndChapter = explode(' ', $book[0]);
                 $chapter = array_pop($bookAndChapter);
-                $book_name = implode(' ',$bookAndChapter);
-                $bookObj = BooksListEn::query()->where('book_name',$book_name)->first(['id']);
-                $html = new Htmldom(str_replace('|','"',$row['lexicon']));
-                foreach($html->find('tr') as $trkey => $tr){
-                    if($trkey > 0){
+                $book_name = implode(' ', $bookAndChapter);
+                $bookObj = BooksListEn::query()->where('book_name', $book_name)->first(['id']);
+                $html = new Htmldom(str_replace('|', '"', $row['lexicon']));
+                foreach ($html->find('tr') as $trkey => $tr) {
+                    if ($trkey > 0) {
                         $phrase++;
                         $tds = $tr->find('td');
 //                        $data['book_id'] = $bookObj->id;
@@ -62,19 +62,18 @@ class NasbLexiconSeederSlow extends Seeder
 
                         $lexiconQuery =  LexiconNasb::where('book_id', $bookObj->id)->where('chapter_num', $chapter)->where('verse_num', $verse_num);
 
-                        if($bookObj->id < 40){
+                        if ($bookObj->id < 40) {
 //                            $lexiconQuery->where('verse_part_he', $tds[1]->plaintext);
-                            $lexiconQuery->where(function($q) use($tds,$data) {
+                            $lexiconQuery->where(function ($q) use ($tds, $data) {
                                 $q->orWhere('verse_part_he', 'ilike', '%'.$tds[1]->plaintext.'%');
                                 $q->orWhere('transliteration', 'ilike', '%'.$data['transliteration'].'%');
-                                $q->orWhere('strong_num', 'ilike','%H'.intval($tds[3]->plaintext).'%');
+                                $q->orWhere('strong_num', 'ilike', '%H'.intval($tds[3]->plaintext).'%');
 //                                $q->whereRaw("Cast(verse_part_he AS Nvarchar(max))like N'".$tds[1]->plaintext."%'");
                             });
+                        } else {
+                            $lexiconQuery->where('verse_part_el', 'ilike', $tds[1]->plaintext);
                         }
-                        else{
-                            $lexiconQuery->where('verse_part_el','ilike', $tds[1]->plaintext);
-                        }
-                        if(!$lexiconQuery->update($data)){
+                        if (!$lexiconQuery->update($data)) {
                             $ignored++;
                         }
                     }

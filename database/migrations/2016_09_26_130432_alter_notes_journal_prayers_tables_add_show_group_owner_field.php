@@ -13,16 +13,13 @@ class AlterNotesJournalPrayersTablesAddShowGroupOwnerField extends Migration
     public function up()
     {
         DB::transaction(function () {
-            Schema::table('notes', function($table)
-            {
+            Schema::table('notes', function ($table) {
                 $table->boolean('only_show_group_owner')->default(false);
             });
-            Schema::table('journal', function($table)
-            {
+            Schema::table('journal', function ($table) {
                 $table->boolean('only_show_group_owner')->default(false);
             });
-            Schema::table('prayers', function($table)
-            {
+            Schema::table('prayers', function ($table) {
                 $table->boolean('only_show_group_owner')->default(false);
             });
         });
@@ -36,16 +33,13 @@ class AlterNotesJournalPrayersTablesAddShowGroupOwnerField extends Migration
     public function down()
     {
         DB::transaction(function () {
-            Schema::table('notes', function($table)
-            {
+            Schema::table('notes', function ($table) {
                 $table->dropColumn('only_show_group_owner');
             });
-            Schema::table('journal', function($table)
-            {
+            Schema::table('journal', function ($table) {
                 $table->dropColumn('only_show_group_owner');
             });
-            Schema::table('prayers', function($table)
-            {
+            Schema::table('prayers', function ($table) {
                 $table->dropColumn('only_show_group_owner');
             });
         });

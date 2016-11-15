@@ -12,8 +12,7 @@ class AlterShopProductsAddNullable extends Migration
      */
     public function up()
     {
-        Schema::table('shop_products', function($table)
-        {
+        Schema::table('shop_products', function ($table) {
             $table->string('photo')->nullable()->change();
             $table->string('external_link')->nullable()->change();
         });
@@ -26,8 +25,7 @@ class AlterShopProductsAddNullable extends Migration
      */
     public function down()
     {
-        Schema::table('shop_products', function($table)
-        {
+        Schema::table('shop_products', function ($table) {
             $table->string('photo')->nullable(false)->change();
             $table->string('external_link')->nullable(false)->change();
         });

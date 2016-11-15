@@ -31,8 +31,7 @@ class AlterUsersTableAddInfoFields extends Migration
     public function down()
     {
         DB::transaction(function () {
-            Schema::table('users', function($table)
-            {
+            Schema::table('users', function ($table) {
                 $table->dropColumn('church_name');
                 $table->dropColumn('country_id');
                 $table->dropColumn('state');

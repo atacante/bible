@@ -17,7 +17,7 @@ class CreateWallImagesTable extends Migration
             $table->integer('user_id');
             $table->integer('item_id');
             $table->string('item_type');
-            $table->string('image',255);
+            $table->string('image', 255);
             $table->timestamps();
         });
     }

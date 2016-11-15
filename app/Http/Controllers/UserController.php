@@ -31,7 +31,6 @@ use Kodeine\Acl\Models\Eloquent\Role;
 use Krucas\Notification\Facades\Notification;
 use Validator;
 
-
 class UserController extends Controller
 {
     protected $sortby;
@@ -57,7 +56,7 @@ class UserController extends Controller
         "Created"=>"created_at"
     ];
 
-    private function prepareFilters($model,$type)
+    private function prepareFilters($model, $type)
     {
         $this->searchFilter = Request::input('search', false);
         $this->dateFrom = Request::input('date_from', false);
@@ -104,7 +103,7 @@ class UserController extends Controller
 
         if (!empty($this->tags)) {
             $model->whereHas('tags', function ($q) {
-                $q->where(function($ow) {
+                $q->where(function ($ow) {
                     foreach ($this->tags as $tag) {
                         $ow->orWhere('tag_id', $tag);
                     }
@@ -118,7 +117,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        if($inputs = Input::old()){
+        if ($inputs = Input::old()) {
             $user->fill($inputs);
         }
 
@@ -126,8 +125,8 @@ class UserController extends Controller
             $this->validate($request, $user->rules());
 
             $mess = '';
-            if(Input::get('subscribed')!=$user['subscribed']) {
-                if(Input::get('subscribed')) {
+            if (Input::get('subscribed')!=$user['subscribed']) {
+                if (Input::get('subscribed')) {
                     $mess = MailchimpComponent::addEmailToList(Input::get('email'));
                 } else {
                     $mess = MailchimpComponent::removeEmailFromList(Input::get('email'));
@@ -135,23 +134,21 @@ class UserController extends Controller
                 $data['mess'] = $mess;
                 $data['email'] = Input::get('email');
                 $data['name'] = Input::get('name');
-                if ($mess!=''){
-                    Mail::send('emails.mailchimp', $data, function($message) use($data)
-                    {
+                if ($mess!='') {
+                    Mail::send('emails.mailchimp', $data, function ($message) use ($data) {
                         $message->to($data['email'])->subject('Subscription Mailchimp Error');
                     });
                 }
             }
 
-            if($user->update(Input::all())){
-
-                if((Input::get('plan_type') == User::PLAN_PREMIUM) && Input::get('plan_name')){
+            if ($user->update(Input::all())) {
+                if ((Input::get('plan_type') == User::PLAN_PREMIUM) && Input::get('plan_name')) {
                     $user->upgradeToPremium(Input::get('plan_name'));
-                }else{
+                } else {
                     $user->downgradeToFree();
                     $result = $user->createAccountAndOrSubscribe();
 
-                    if(Session::has('url.intended') && $result['account']['success']){
+                    if (Session::has('url.intended') && $result['account']['success']) {
                         Notification::success($result['account']['message']);
                         return redirect()->intended();
                     }
@@ -163,11 +160,13 @@ class UserController extends Controller
             $user = User::find($user->id);
         }
 
-        return view('user.profile',
+        return view(
+            'user.profile',
             [
                 'model' => $user,
                 'page_title' => 'My Profile',
-            ]);
+            ]
+        );
     }
 
     public function getMyJourney()
@@ -175,7 +174,7 @@ class UserController extends Controller
         Session::flash('backUrl', Request::fullUrl());
 
         $limit = 10;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $this->sortby = Input::get('sortby', 'created_at');
@@ -187,14 +186,14 @@ class UserController extends Controller
             CASE WHEN journal.verse_id IS NOT NULL THEN (SELECT count(*) FROM journal as j WHERE j.verse_id = journal.verse_id and user_id = '.Auth::user()->id.') ELSE (SELECT count(*) FROM journal as j WHERE j.rel_code = journal.rel_code) END as journalCount,
             CASE WHEN journal.verse_id IS NOT NULL THEN (SELECT count(*) FROM prayers WHERE journal.verse_id = prayers.verse_id and user_id = '.Auth::user()->id.') ELSE (SELECT count(*) FROM prayers WHERE journal.rel_code = prayers.rel_code) END as prayersCount
             ')
-            ->where('user_id',Auth::user()?Auth::user()->id:null)
+            ->where('user_id', Auth::user()?Auth::user()->id:null)
             /*->whereHas('tags', function($q){
                 $q->where('journal_tags.journal_id', '=', 53);
             })*/;
         $content['journalCount'] = $journalQuery->count();
-        $journalQuery = $this->prepareFilters($journalQuery,'journal');
-        $content['tags']['journal'] = $journalQuery->get()->pluck('tags','id');
-        $content['journal']['notesCount'] = $journalQuery->get()->pluck('tags','id');
+        $journalQuery = $this->prepareFilters($journalQuery, 'journal');
+        $content['tags']['journal'] = $journalQuery->get()->pluck('tags', 'id');
+        $content['journal']['notesCount'] = $journalQuery->get()->pluck('tags', 'id');
         $journalCount = $journalQuery->count();
 
         $prayersQuery = Prayer::with(['verse.booksListEn','tags'])
@@ -203,10 +202,10 @@ class UserController extends Controller
             CASE WHEN prayers.verse_id IS NOT NULL THEN (SELECT count(*) FROM journal WHERE prayers.verse_id = journal.verse_id and user_id = '.Auth::user()->id.') ELSE (SELECT count(*) FROM journal WHERE prayers.rel_code = journal.rel_code) END as journalCount,
             CASE WHEN prayers.verse_id IS NOT NULL THEN (SELECT count(*) FROM prayers as p WHERE p.verse_id = prayers.verse_id and user_id = '.Auth::user()->id.') ELSE (SELECT count(*) FROM prayers as p WHERE p.rel_code = prayers.rel_code) END as prayersCount
             ')
-            ->where('user_id',Auth::user()?Auth::user()->id:null);
+            ->where('user_id', Auth::user()?Auth::user()->id:null);
         $content['prayersCount'] = $prayersQuery->count();
-        $prayersQuery = $this->prepareFilters($prayersQuery,'prayer');
-        $content['tags']['prayer'] = $prayersQuery->get()->pluck('tags','id');
+        $prayersQuery = $this->prepareFilters($prayersQuery, 'prayer');
+        $content['tags']['prayer'] = $prayersQuery->get()->pluck('tags', 'id');
         $prayersCount = $prayersQuery->count();
 
         $notesQuery = Note::with(['verse.booksListEn','tags'])
@@ -215,19 +214,18 @@ class UserController extends Controller
             CASE WHEN notes.verse_id IS NOT NULL THEN (SELECT count(*) FROM journal WHERE notes.verse_id = journal.verse_id and user_id = '.Auth::user()->id.') ELSE (SELECT count(*) FROM journal WHERE notes.rel_code = journal.rel_code) END as journalCount,
             CASE WHEN notes.verse_id IS NOT NULL THEN (SELECT count(*) FROM prayers WHERE notes.verse_id = prayers.verse_id and user_id = '.Auth::user()->id.') ELSE (SELECT count(*) FROM prayers WHERE notes.rel_code = prayers.rel_code) END as prayersCount
             ')
-            ->where('user_id',Auth::user()?Auth::user()->id:null);
+            ->where('user_id', Auth::user()?Auth::user()->id:null);
         $content['notesCount'] = $notesQuery->count();
-        $notesQuery = $this->prepareFilters($notesQuery,'note');
-        $content['tags']['note'] = $notesQuery->get()->pluck('tags','id');
+        $notesQuery = $this->prepareFilters($notesQuery, 'note');
+        $content['tags']['note'] = $notesQuery->get()->pluck('tags', 'id');
         $notesCount = $notesQuery->count();
 
-        $entryTypes = Request::get('types',false);
+        $entryTypes = Request::get('types', false);
         $entriesQuery = false;
-        if(!$entryTypes || count(array_intersect($entryTypes, ['note','journal','prayer'])) == 3){
+        if (!$entryTypes || count(array_intersect($entryTypes, ['note','journal','prayer'])) == 3) {
             $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery);
-        }
-        else{
-            switch(true){
+        } else {
+            switch (true) {
                 case count(array_intersect($entryTypes, ['note','journal'])) == 2:
                     $entriesQuery = $notesQuery->union($journalQuery);
                     $prayersCount = 0;
@@ -240,17 +238,17 @@ class UserController extends Controller
                     $entriesQuery = $journalQuery->union($prayersQuery);
                     $notesCount = 0;
                     break;
-                case in_array('note',$entryTypes):
+                case in_array('note', $entryTypes):
                     $entriesQuery = $notesQuery;
                     $prayersCount = 0;
                     $journalCount = 0;
                     break;
-                case in_array('journal',$entryTypes):
+                case in_array('journal', $entryTypes):
                     $entriesQuery = $journalQuery;
                     $prayersCount = 0;
                     $notesCount = 0;
                     break;
-                case in_array('prayer',$entryTypes):
+                case in_array('prayer', $entryTypes):
                     $entriesQuery = $prayersQuery;
                     $notesCount = 0;
                     $journalCount = 0;
@@ -284,7 +282,7 @@ class UserController extends Controller
         $user = User::find($id);
         Auth::user()->followFriend($user);
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return 1;
         }
 
@@ -303,7 +301,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->removeRequest(Auth::user());
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return 1;
         }
 
@@ -317,7 +315,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->ignoreRequest(Auth::user());
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return 1;
         }
 
@@ -331,7 +329,7 @@ class UserController extends Controller
         $user = User::find($id);
         Auth::user()->removeRequest($user);
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return 1;
         }
 
@@ -345,7 +343,7 @@ class UserController extends Controller
         $user = User::find($id);
         Auth::user()->removeFriend($user);
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return 1;
         }
 
@@ -354,11 +352,11 @@ class UserController extends Controller
 
     public function anyUploadAvatar()
     {
-        $userId = Request::get('user_id',Auth::user()->id);
+        $userId = Request::get('user_id', Auth::user()->id);
         if (Input::hasFile('file')) {
             $file = Input::file('file');
             $filePath = Config::get('app.userAvatars').$userId.'/';
-            if(!File::isDirectory(public_path() . $filePath)){
+            if (!File::isDirectory(public_path() . $filePath)) {
                 File::makeDirectory(public_path() . $filePath, 0777, true);
             }
             $thumbPath = $filePath . 'thumbs/';
@@ -366,12 +364,12 @@ class UserController extends Controller
             $file = $file->move(public_path() . $filePath, $fileName);
 
 //            File::makeDirectory(public_path() . $filePath, 0777, true);
-            if(!File::isDirectory(public_path() . $thumbPath)){
+            if (!File::isDirectory(public_path() . $thumbPath)) {
                 File::makeDirectory(public_path() . $thumbPath, 0777, true);
             }
 
             $thumbPath = public_path($thumbPath . $fileName);
-            if($file){
+            if ($file) {
                 $user = User::find($userId);
                 $user->avatar = $fileName;
                 $user->save();
@@ -385,15 +383,15 @@ class UserController extends Controller
 
     public function anyDeleteAvatar($filename = false)
     {
-        $userId = Request::get('user_id',Auth::user()->id);
-        if(!$filename){
+        $userId = Request::get('user_id', Auth::user()->id);
+        if (!$filename) {
             $filename = Input::get('filename');
         }
 
         $user = User::query()->where('avatar', $filename)->where('id', $userId)->first();
-        if($user){
+        if ($user) {
             $user->avatar = null;
-            if($user->save()){
+            if ($user->save()) {
                 $filePath = public_path(Config::get('app.userAvatars').$userId.'/'.$filename);
                 $thumbPath = public_path(Config::get('app.userAvatars').$userId.'/thumbs/'.$filename);
                 File::delete($filePath);
@@ -411,20 +409,20 @@ class UserController extends Controller
         $myRequests = [];
         $myFriends = [];
         $relatedGroups = [];
-        if($user && $user->myGroups->count()){
-            $relatedGroups = array_merge($relatedGroups,$user->myGroups->all());
+        if ($user && $user->myGroups->count()) {
+            $relatedGroups = array_merge($relatedGroups, $user->myGroups->all());
         }
-        if($user && $user->joinedGroups->count()){
-            $relatedGroups = array_merge($relatedGroups,$user->joinedGroups->all());
+        if ($user && $user->joinedGroups->count()) {
+            $relatedGroups = array_merge($relatedGroups, $user->joinedGroups->all());
         }
-        if(Auth::user()){
+        if (Auth::user()) {
             $requests = Auth::user()->requests->modelKeys();
-            $ignoredRequests = Auth::user()->requests()->where('ignore',true)->get()->modelKeys();
+            $ignoredRequests = Auth::user()->requests()->where('ignore', true)->get()->modelKeys();
             $myRequests = Auth::user()->friends->modelKeys();
             $myFriends = array_intersect($requests, $myRequests);
         }
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('user.view', [
                 'model' => $user,
                 'myFriends' => $myFriends,
@@ -439,9 +437,9 @@ class UserController extends Controller
     public function getMyBookmarks($bibleVersion = false)
     {
         $limit = 10;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
-        $orderDirection = Input::get('bookmarks-order','desc');
+        $orderDirection = Input::get('bookmarks-order', 'desc');
 
         $content['bible_version'] = $bibleVersion?$bibleVersion:Config::get('app.defaultBibleVersion');
 
@@ -450,7 +448,7 @@ class UserController extends Controller
         $user = Auth::user();
         $content['bookmarks'] = $user->bookmarks($versesModel);
         $totalCount = $content['bookmarks']->count();
-        $content['bookmarks']->orderBy('bookmarks.id',$orderDirection)->limit($limit)->offset($offset);
+        $content['bookmarks']->orderBy('bookmarks.id', $orderDirection)->limit($limit)->offset($offset);
 
         $content['bookmarks'] = new LengthAwarePaginator(
             $content['bookmarks']->get(),
@@ -461,12 +459,13 @@ class UserController extends Controller
         );
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('user.bookmark-items', ['content' => $content]);
         }
     }
 
-    public function getIsPremium(){
+    public function getIsPremium()
+    {
         return User::find(Auth::user()->id)->isPremium();
     }
 }

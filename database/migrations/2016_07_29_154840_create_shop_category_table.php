@@ -12,8 +12,7 @@ class CreateShopCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('shop_categories', function(Blueprint $table)
-        {
+        Schema::create('shop_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->timestamps();
@@ -30,5 +29,4 @@ class CreateShopCategoryTable extends Migration
     {
         Schema::drop('shop_categories');
     }
-
 }

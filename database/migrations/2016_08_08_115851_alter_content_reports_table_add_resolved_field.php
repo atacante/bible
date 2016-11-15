@@ -12,8 +12,7 @@ class AlterContentReportsTableAddResolvedField extends Migration
      */
     public function up()
     {
-        Schema::table('content_reports', function($table)
-        {
+        Schema::table('content_reports', function ($table) {
             $table->boolean('resolved')->default(false);
         });
     }
@@ -25,8 +24,7 @@ class AlterContentReportsTableAddResolvedField extends Migration
      */
     public function down()
     {
-        Schema::table('content_reports', function($table)
-        {
+        Schema::table('content_reports', function ($table) {
             $table->dropColumn('resolved');
         });
     }

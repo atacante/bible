@@ -12,8 +12,7 @@ class AlterOrdersAddTaxSubtotal extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function($table)
-        {
+        Schema::table('orders', function ($table) {
             $table->decimal('tax', 11, 2)->nullable();
             $table->decimal('subtotal', 11, 2)->nullable();
         });
@@ -26,8 +25,7 @@ class AlterOrdersAddTaxSubtotal extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function($table)
-        {
+        Schema::table('orders', function ($table) {
             $table->dropColumn('tax');
             $table->dropColumn('subtotal');
         });

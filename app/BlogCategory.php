@@ -2,20 +2,22 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class BlogCategory extends BaseModel {
+class BlogCategory extends BaseModel
+{
 
-	protected $fillable = ['title'];
+    protected $fillable = ['title'];
 
-	public function rules()
-	{
-		$rules = [
-			'title' => 'required|max:255',
-		];
+    public function rules()
+    {
+        $rules = [
+            'title' => 'required|max:255',
+        ];
 
-		return $rules;
-	}
+        return $rules;
+    }
 
-	public function articles(){
-		return $this->hasMany(BlogArticle::class, 'category_id', 'id');
-	}
+    public function articles()
+    {
+        return $this->hasMany(BlogArticle::class, 'category_id', 'id');
+    }
 }

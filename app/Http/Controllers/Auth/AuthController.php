@@ -18,7 +18,6 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Request;
 use App\Http\Components\MailchimpComponent;
 
-
 class AuthController extends Controller
 {
     /*
@@ -70,18 +69,18 @@ class AuthController extends Controller
             'g-recaptcha-response' => 'required|captcha'
         ];
 
-        if(Input::get('plan_type') == User::PLAN_PREMIUM){
+        if (Input::get('plan_type') == User::PLAN_PREMIUM) {
             $rules['plan_name'] = 'required';
 
-            if(!Input::get('coupon_code', false)){
+            if (!Input::get('coupon_code', false)) {
                 $rules['card_number'] = 'required|numeric';
                 $rules['card_expiration'] = 'required';
                 $rules['billing_name'] = 'required';
                 $rules['billing_address'] = 'required';
                 $rules['billing_zip'] = 'required';
             }
-        }else{
-            if(Input::get('card_number') || Input::get('card_expiration')){
+        } else {
+            if (Input::get('card_number') || Input::get('card_expiration')) {
                 $rules['card_expiration'] = 'required';
                 $rules['card_number'] = 'required|numeric';
                 $rules['billing_name'] = 'required';
@@ -90,12 +89,14 @@ class AuthController extends Controller
             }
         }
 
-        return Validator::make($data, $rules,
-        [
+        return Validator::make(
+            $data,
+            $rules,
+            [
             'g-recaptcha-response.required' => 'The recaptcha field is required.',
             'g-recaptcha-response.captcha'  => 'The recaptcha field is required.',
-        ]);
-
+            ]
+        );
     }
 
     /**
@@ -107,13 +108,12 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         $mess = '';
-        if($data['subscribed']) {
+        if ($data['subscribed']) {
             $mess = MailchimpComponent::addEmailToList($data['email']);
         }
         $data['mess'] = $mess;
-        if ($mess != ''){
-            Mail::send('emails.mailchimp', $data, function($message) use($data)
-            {
+        if ($mess != '') {
+            Mail::send('emails.mailchimp', $data, function ($message) use ($data) {
                 $message->to(User::adminEmails())->subject('Subscription Mailchimp Error');
             });
         }
@@ -132,17 +132,16 @@ class AuthController extends Controller
             'church_name' => $data['church_name'],
         ]);
 
-        if($user){
+        if ($user) {
             $user->assignRole(Config::get('app.role.user'));
 
-            if(Input::get('plan_type') == User::PLAN_PREMIUM){
+            if (Input::get('plan_type') == User::PLAN_PREMIUM) {
                 $user->upgradeToPremium(Input::get('plan_name'));
-            }else{
+            } else {
                 $user->downgradeToFree();
             }
 
-            Mail::send('emails.welcome', ['user' => $user], function($message) use($user)
-            {
+            Mail::send('emails.welcome', ['user' => $user], function ($message) use ($user) {
                 $message->to($user->email)->subject('Welcome to BSC');
             });
         }
@@ -152,7 +151,7 @@ class AuthController extends Controller
 
     public function authenticated()
     {
-        if(!Session::has('url.intended') && Auth::check() && Auth::user()->is(Config::get('app.role.user')) && Auth::user()->last_reader_url){
+        if (!Session::has('url.intended') && Auth::check() && Auth::user()->is(Config::get('app.role.user')) && Auth::user()->last_reader_url) {
             return redirect(Auth::user()->last_reader_url);
         }
         return redirect()->intended($this->redirectPath());
@@ -170,7 +169,7 @@ class AuthController extends Controller
             return view($view);
         }
 
-        if(Request::ajax()){
+        if (Request::ajax()) {
             return view('auth.login_popup_form');
         }
         return view('auth.login');
@@ -191,10 +190,10 @@ class AuthController extends Controller
     public function getRegister()
     {
         $invited_by_id = Input::old('invited_by_id');
-        if($invite = Input::get('invite')){
+        if ($invite = Input::get('invite')) {
             $invited_by_id = $invite;
         }
-        if($invited_by_id){
+        if ($invited_by_id) {
             $user = User::find($invited_by_id);
             Session::flash('inviter_id', $user->id);
             Session::flash('inviter_name', $user->name);
@@ -217,7 +216,7 @@ class AuthController extends Controller
      */
     public function register(\Illuminate\Http\Request $request)
     {
-        if(User::checkBetaTestersLimit()){
+        if (User::checkBetaTestersLimit()) {
             return redirect('auth/register');
         }
 
@@ -225,7 +224,8 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             $this->throwValidationException(
-                $request, $validator
+                $request,
+                $validator
             );
         }
 
@@ -242,7 +242,7 @@ class AuthController extends Controller
         $adminAuthToken = Session::get('adminAuthToken');
         $admin = User::where('id', $adminId)->where('auth_token', $adminAuthToken)->first();
         Session::flush();
-        if($admin){
+        if ($admin) {
             Auth::login($admin, $remember = true);
         }
         return redirect($adminBackUrl?$adminBackUrl:ViewHelper::adminUrlSegment());
@@ -259,11 +259,12 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    protected function getCredentials(\Illuminate\Http\Request  $request){
+    protected function getCredentials(\Illuminate\Http\Request  $request)
+    {
         $credentials =  $request->only($this->loginUsername(), 'password');
 
         // Client asks to lowercase email trying log in
-        if(!empty($credentials['email'])){
+        if (!empty($credentials['email'])) {
             $credentials['email'] = strtolower($credentials['email']);
         }
         return $credentials;

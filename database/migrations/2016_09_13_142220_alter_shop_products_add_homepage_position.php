@@ -12,8 +12,7 @@ class AlterShopProductsAddHomepagePosition extends Migration
      */
     public function up()
     {
-        Schema::table('shop_products', function($table)
-        {
+        Schema::table('shop_products', function ($table) {
             $table->string('homepage_position')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterShopProductsAddHomepagePosition extends Migration
      */
     public function down()
     {
-        Schema::table('shop_products', function($table)
-        {
+        Schema::table('shop_products', function ($table) {
             $table->dropColumn('homepage_position');
         });
     }

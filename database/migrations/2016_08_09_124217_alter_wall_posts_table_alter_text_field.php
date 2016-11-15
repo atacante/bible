@@ -12,9 +12,8 @@ class AlterWallPostsTableAlterTextField extends Migration
      */
     public function up()
     {
-        Schema::table('wall_posts', function($table)
-        {
-            $table->renameColumn('text','status_text');
+        Schema::table('wall_posts', function ($table) {
+            $table->renameColumn('text', 'status_text');
         });
     }
 
@@ -25,9 +24,8 @@ class AlterWallPostsTableAlterTextField extends Migration
      */
     public function down()
     {
-        Schema::table('wall_posts', function($table)
-        {
-            $table->renameColumn('status_text','text');
+        Schema::table('wall_posts', function ($table) {
+            $table->renameColumn('status_text', 'text');
         });
     }
 }

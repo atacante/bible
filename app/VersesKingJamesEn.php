@@ -2,7 +2,8 @@
 
 use App\Helpers\ProgressBarHelper;
 
-class VersesKingJamesEn extends BaseModel {
+class VersesKingJamesEn extends BaseModel
+{
 
     /**
      * Generated
@@ -12,42 +13,47 @@ class VersesKingJamesEn extends BaseModel {
     protected $fillable = ['id', 'book_id', 'chapter_num', 'verse_num', 'verse_text','verse_text_with_lexicon'];
 
 
-    public function booksListEn() {
+    public function booksListEn()
+    {
         return $this->belongsTo(BooksListEn::class, 'book_id', 'id');
     }
 
-    public function locations() {
+    public function locations()
+    {
         return $this->belongsToMany(Location::class, 'location_verse', 'verse_id', 'location_id');
     }
 
-    public function peoples() {
+    public function peoples()
+    {
         return $this->belongsToMany(People::class, 'people_verse', 'verse_id', 'people_id');
     }
 
     public function views()
     {
-        return $this->morphToMany('App\User','item','users_views')->withTimestamps();
+        return $this->morphToMany('App\User', 'item', 'users_views')->withTimestamps();
     }
 
     public function bookmarks()
     {
-        return $this->morphToMany('App\User','item','bookmarks')->orderBy('bookmarks.created_at','desc');
+        return $this->morphToMany('App\User', 'item', 'bookmarks')->orderBy('bookmarks.created_at', 'desc');
     }
 
-    public function lexicon() {
+    public function lexicon()
+    {
         return LexiconKjv::query()
-            ->where('book_id',$this->book_id)
-            ->where('chapter_num',$this->chapter_num)
-            ->where('verse_num',$this->verse_num)
+            ->where('book_id', $this->book_id)
+            ->where('chapter_num', $this->chapter_num)
+            ->where('verse_num', $this->verse_num)
             ->orderBy('id')
             ->get();
     }
 
-    public function symbolism() {
+    public function symbolism()
+    {
         return LexiconKjv::query()
-            ->where('book_id',$this->book_id)
-            ->where('chapter_num',$this->chapter_num)
-            ->where('verse_num',$this->verse_num)
+            ->where('book_id', $this->book_id)
+            ->where('chapter_num', $this->chapter_num)
+            ->where('verse_num', $this->verse_num)
             ->whereNotNull('symbolism')
             ->orderBy('id')
             ->get();
@@ -59,12 +65,13 @@ class VersesKingJamesEn extends BaseModel {
 //            ->where('verse_num',$this->verse_num);
 //    }
 
-    public static function cacheLexicon($verses = []){
+    public static function cacheLexicon($verses = [])
+    {
         ini_set('memory_limit', '512M');
-        if(!count($verses)){
+        if (!count($verses)) {
             $verses = self::query()->get();
         }
-        $progressBar = new ProgressBarHelper(count($verses),10);
+        $progressBar = new ProgressBarHelper(count($verses), 10);
         $progressBar->start('Started caching lexicon for king_james version');
 
         foreach ($verses as $verse) {
@@ -73,24 +80,24 @@ class VersesKingJamesEn extends BaseModel {
 
             if ($lexicon) {
                 $parts = [];
-                foreach($lexicon as $vesrePart){
+                foreach ($lexicon as $vesrePart) {
                     $parts[$vesrePart->id] = $vesrePart->verse_part;
                 }
 
                 $parts = array_unique($parts);
-                uasort($parts,function($a,$b){
+                uasort($parts, function ($a, $b) {
                     return strlen($b)-strlen($a);
                 });
 
                 foreach ($parts as $key => $part) {
-                    $part = str_replace('[','<i>',$part);
-                    $part = str_replace(']','</i>',$part);
-                    $verse->verse_text_with_lexicon = str_replace($part,"<-$key->".$part."<|>",$verse->verse_text_with_lexicon);
+                    $part = str_replace('[', '<i>', $part);
+                    $part = str_replace(']', '</i>', $part);
+                    $verse->verse_text_with_lexicon = str_replace($part, "<-$key->".$part."<|>", $verse->verse_text_with_lexicon);
                 }
 
-                $verse->verse_text_with_lexicon = str_replace("<-","<span class='word-definition' data-lexid=\"",$verse->verse_text_with_lexicon);
-                $verse->verse_text_with_lexicon = str_replace("->",'">',$verse->verse_text_with_lexicon);
-                $verse->verse_text_with_lexicon = str_replace("<|>","</span>",$verse->verse_text_with_lexicon);
+                $verse->verse_text_with_lexicon = str_replace("<-", "<span class='word-definition' data-lexid=\"", $verse->verse_text_with_lexicon);
+                $verse->verse_text_with_lexicon = str_replace("->", '">', $verse->verse_text_with_lexicon);
+                $verse->verse_text_with_lexicon = str_replace("<|>", "</span>", $verse->verse_text_with_lexicon);
                 $verse->save();
             }
             $progressBar->update();
@@ -98,9 +105,10 @@ class VersesKingJamesEn extends BaseModel {
         $progressBar->finish();
     }
 
-    public static function cacheSymbolismForBeginnerMode($verses = []){
+    public static function cacheSymbolismForBeginnerMode($verses = [])
+    {
         ini_set('memory_limit', '512M');
-        if(!count($verses)){
+        if (!count($verses)) {
             $verses = self::query()->get();
         }
         $versesCount = count($verses);
@@ -114,32 +122,32 @@ class VersesKingJamesEn extends BaseModel {
             $lexicon = $verse->symbolism();
             if ($lexicon) {
                 $parts = [];
-                foreach($lexicon as $vesrePart){
-                    if(!empty($vesrePart->symbolism)){
+                foreach ($lexicon as $vesrePart) {
+                    if (!empty($vesrePart->symbolism)) {
                         $parts[$vesrePart->id] = $vesrePart->verse_part;
                     }
                 }
 
-                if(count($parts)){
+                if (count($parts)) {
                     $parts = array_unique($parts);
-                    uasort($parts,function($a,$b){
+                    uasort($parts, function ($a, $b) {
                         return strlen($b)-strlen($a);
                     });
 
                     foreach ($parts as $key => $part) {
-                        $part = str_replace('[','<i>',$part);
-                        $part = str_replace(']','</i>',$part);
-                        $verse->verse_text_with_symbolism = str_replace($part,"<-$key->".$part."<|>",$verse->verse_text_with_symbolism);
+                        $part = str_replace('[', '<i>', $part);
+                        $part = str_replace(']', '</i>', $part);
+                        $verse->verse_text_with_symbolism = str_replace($part, "<-$key->".$part."<|>", $verse->verse_text_with_symbolism);
                     }
 
-                    $verse->verse_text_with_symbolism = str_replace("<-","<span class='word-definition' data-lexid=\"",$verse->verse_text_with_symbolism);
-                    $verse->verse_text_with_symbolism = str_replace("->",'">',$verse->verse_text_with_symbolism);
-                    $verse->verse_text_with_symbolism = str_replace("<|>","</span>",$verse->verse_text_with_symbolism);
+                    $verse->verse_text_with_symbolism = str_replace("<-", "<span class='word-definition' data-lexid=\"", $verse->verse_text_with_symbolism);
+                    $verse->verse_text_with_symbolism = str_replace("->", '">', $verse->verse_text_with_symbolism);
+                    $verse->verse_text_with_symbolism = str_replace("<|>", "</span>", $verse->verse_text_with_symbolism);
                 }
 
                 $verse->save();
             }
-            if($i == $progressBarPart){
+            if ($i == $progressBarPart) {
                 echo "Progress ".($progressBarStatus+$progressBarPersentStep)."%\n";
                 $progressBarStatus++;
                 $i = 0;

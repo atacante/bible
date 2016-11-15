@@ -41,29 +41,31 @@ class BibleController extends Controller
         $versesModel = BaseModel::getVersesModelByVersionCode($code);
 
         $verses = $versesModel::query()->with('booksListEn');
-        if(!empty($book)){
-            $verses->where('book_id',$book);
+        if (!empty($book)) {
+            $verses->where('book_id', $book);
         }
 
-        if(!empty($chapter)){
-            $verses->where('chapter_num',$chapter);
+        if (!empty($chapter)) {
+            $verses->where('chapter_num', $chapter);
         }
 
-        if(!empty($verse)){
-            $verses->where('verse_num',$verse);
+        if (!empty($verse)) {
+            $verses->where('verse_num', $verse);
         }
         $content['verses'] = $verses->orderBy('book_id')->orderBy('chapter_num')->orderBy('verse_num')->paginate(20);
-        return view('admin.bible.verses',
+        return view(
+            'admin.bible.verses',
             [
                 'page_title' => $version.' Verses',
                 'content' => $content,
                 'filterAction' => 'bible/verses/'.$code,
                 'versionCode' => $code,
                 'versionName' => $version
-            ]);
+            ]
+        );
     }
 
-    public function anyUpdate(HttpRequest $request,$code,$id)
+    public function anyUpdate(HttpRequest $request, $code, $id)
     {
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
@@ -71,23 +73,24 @@ class BibleController extends Controller
         $versesModel = BaseModel::getVersesModelByVersionCode($code);
         $version = VersionsListEn::getVersionByCode($code);
         $verse = $versesModel::find($id);
-        $locations = ViewHelper::prepareForSelectBox(Location::query()->get()->toArray(),'id','location_name');
-        $peoples = ViewHelper::prepareForSelectBox(People::query()->get()->toArray(),'id','people_name');
+        $locations = ViewHelper::prepareForSelectBox(Location::query()->get()->toArray(), 'id', 'location_name');
+        $peoples = ViewHelper::prepareForSelectBox(People::query()->get()->toArray(), 'id', 'people_name');
         if (Request::isMethod('put')) {
             $this->validate($request, [
                 'verse_text' => 'required',
             ]);
-            if($verse->update(Input::all())){
+            if ($verse->update(Input::all())) {
 //                $this->updateLocations($verse);
-                $verse->locations()->sync(Input::get('locations',[]));
-                $verse->peoples()->sync(Input::get('peoples',[]));
+                $verse->locations()->sync(Input::get('locations', []));
+                $verse->peoples()->sync(Input::get('peoples', []));
                 Notification::success('Verse has been successfully updated');
             }
             return ($url = Session::get('backUrl'))
                 ? Redirect::to($url)
                 : Redirect::to(ViewHelper::adminUrlSegment().'/bible/verses/'.$code);
         }
-        return view('admin.bible.update',
+        return view(
+            'admin.bible.update',
             [
                 'page_title' => 'Update Bible Verse',
                 'model' => $verse,
@@ -96,13 +99,15 @@ class BibleController extends Controller
                 'versionName' => $version,
                 'locations' => $locations,
                 'peoples' => $peoples,
-            ]);
+            ]
+        );
     }
 
-    private function updateLocations($verse){
+    private function updateLocations($verse)
+    {
         LocationVerse::where('verse_id', $verse->id)->delete();
         $locations = Input::get('locations');
-        if(count($locations)){
+        if (count($locations)) {
             foreach ($locations as $location) {
                 LocationVerse::create([
                     'verse_id' => $verse->id,
@@ -115,11 +120,12 @@ class BibleController extends Controller
         }
     }
 
-    public function anyVerseday(){
+    public function anyVerseday()
+    {
         if (Request::isMethod('post')) {
             $data = Input::all();
 
-            if(!isset($data['book']) || !isset($data['chapter']) || !isset($data['verse'])){
+            if (!isset($data['book']) || !isset($data['chapter']) || !isset($data['verse'])) {
                 Notification::error('You should select book, chapter and verse');
 
                 return ($url = Session::get('backUrl'))
@@ -136,8 +142,8 @@ class BibleController extends Controller
 
             $tomorrow = (bool) $data['tomorrow'];
 
-            if($verseOfDay = VerseOfDay::createById($verse->id, $tomorrow)){
-                if(!$this->anyUploadImage($verseOfDay)){
+            if ($verseOfDay = VerseOfDay::createById($verse->id, $tomorrow)) {
+                if (!$this->anyUploadImage($verseOfDay)) {
                       $verseOfDay->image = $previousVerse->image;
                       $verseOfDay->save();
                 }
@@ -160,7 +166,7 @@ class BibleController extends Controller
     {
         $files = ['image', 'image_mobile'];
 
-        foreach($files as $uploaded_file){
+        foreach ($files as $uploaded_file) {
             if (Input::hasFile($uploaded_file)) {
                 $file = Input::file($uploaded_file);
 
@@ -173,13 +179,13 @@ class BibleController extends Controller
                 $this->makeDir(public_path() . $tmpThumbPath);
                 $thumbPath = public_path($tmpThumbPath . $tmpFileName);
 
-                if($file){
-                    if($uploaded_file == 'image'){
+                if ($file) {
+                    if ($uploaded_file == 'image') {
                         $this->unlinkLocationImage($model->image);
                         $model->image = $tmpFileName;
                         // Resizing
                         Image::make($file->getRealPath())->fit(200, 100)->save($thumbPath)->destroy();
-                    }elseif($uploaded_file == 'image_mobile'){
+                    } elseif ($uploaded_file == 'image_mobile') {
                         $this->unlinkLocationImage($model->image_mobile);
                         $model->image_mobile = $tmpFileName;
                         // Resizing

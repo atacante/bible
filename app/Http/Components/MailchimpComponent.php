@@ -2,7 +2,8 @@
 
 namespace App\Http\Components;
 
-class MailchimpComponent {
+class MailchimpComponent
+{
 
     public static function addEmailToList($email)
     {
@@ -22,7 +23,6 @@ class MailchimpComponent {
         } catch (\Mailchimp_Error $e) {
             return $e->getMessage();
         }
-
     }
 
     public static function removeEmailFromList($email)
@@ -41,6 +41,5 @@ class MailchimpComponent {
         } catch (\Mailchimp_Error $e) {
             return $e->getMessage();
         }
-
     }
 }

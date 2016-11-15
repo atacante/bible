@@ -19,9 +19,9 @@ class SiteController extends Controller
     {
         $verse_day = VerseOfDay::getTodayVerse();
 
-        $verse_day_text = strip_tags($verse_day->verse->verse_text. ' '. strtoupper($verse_day->verse->booksListEn->book_name).' '.$verse_day->verse->chapter_num.':'.$verse_day->verse->verse_num );
+        $verse_day_text = strip_tags($verse_day->verse->verse_text. ' '. strtoupper($verse_day->verse->booksListEn->book_name).' '.$verse_day->verse->chapter_num.':'.$verse_day->verse->verse_num);
 
-        $products = ShopProduct::whereIn('homepage_position',[1,2,3])->orderBy('homepage_position', 'ASC')->get();
+        $products = ShopProduct::whereIn('homepage_position', [1,2,3])->orderBy('homepage_position', 'ASC')->get();
 
         $homedata = [];
         $homedata['home_main_block'] = CmsPage::getPage('home_main_block');
@@ -84,16 +84,14 @@ class SiteController extends Controller
         $page_aside = CmsPage::getPage('contact_aside');
 
         if (Request::isMethod('post')) {
-            $this->validate($request, $model->rules(),$model->messages());
+            $this->validate($request, $model->rules(), $model->messages());
             $contactEmail = Input::get('email');//Config::get('app.contactEmail')
-            $send = Mail::send('emails.contact', Input::all(), function($message) use($contactEmail)
-            {
+            $send = Mail::send('emails.contact', Input::all(), function ($message) use ($contactEmail) {
                 $message->to($contactEmail)->subject('Contact From Request');
             });
-            if($send){
+            if ($send) {
                 Notification::successInstant('Message has been successfully sent');
-            }
-            else{
+            } else {
                 Notification::errorInstant('Message has not been sent');
             }
         }

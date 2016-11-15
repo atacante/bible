@@ -12,8 +12,7 @@ class AlterBlogArticlesTableAddAuthorNameField extends Migration
      */
     public function up()
     {
-        Schema::table('blog_articles', function($table)
-        {
+        Schema::table('blog_articles', function ($table) {
             $table->string('author_name')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterBlogArticlesTableAddAuthorNameField extends Migration
      */
     public function down()
     {
-        Schema::table('blog_articles', function($table)
-        {
+        Schema::table('blog_articles', function ($table) {
             $table->dropColumn('author_name');
         });
     }

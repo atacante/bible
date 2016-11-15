@@ -29,7 +29,7 @@ class CommunityController extends Controller
         $this->searchFilter = Request::input('search', false);
 
         if (!empty($this->searchFilter)) {
-            $model->where(function($ow) {
+            $model->where(function ($ow) {
                 $ow->orWhere('name', 'ilike', '%' . $this->searchFilter . '%');
                 $ow->orWhere('email', 'ilike', '%' . $this->searchFilter . '%');
             });
@@ -45,11 +45,11 @@ class CommunityController extends Controller
         $type = Request::input('type', 'all');
 
         $limit = 10;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $myFriends = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $myFriends = Auth::user()->friends->modelKeys();
         }
 
@@ -58,25 +58,25 @@ class CommunityController extends Controller
                 (SELECT count(*) FROM wall_likes WHERE item_type = \'App\WallPost\' AND item_id = wall_posts.id) as likesCount,
                 (SELECT count(*) FROM wall_comments WHERE type = \'App\WallPost\' AND item_id = wall_posts.id) as commentsCount
             ')
-            ->where(function($q) {
-                $q->whereIn('access_level',[WallPost::ACCESS_PUBLIC_ALL]);
-                if(Auth::user()){
-                    $q->orWhere(function($sq) {
-                        $sq->whereIn('access_level',[WallPost::ACCESS_PRIVATE]);
-                        $sq->where('user_id',Auth::user()->id);
+            ->where(function ($q) {
+                $q->whereIn('access_level', [WallPost::ACCESS_PUBLIC_ALL]);
+                if (Auth::user()) {
+                    $q->orWhere(function ($sq) {
+                        $sq->whereIn('access_level', [WallPost::ACCESS_PRIVATE]);
+                        $sq->where('user_id', Auth::user()->id);
                     });
-                    $q->orWhere(function($sq) {
-                        $sq->whereIn('access_level',[WallPost::ACCESS_PUBLIC_FRIENDS]);
-                        $sq->whereIn('user_id',array_merge(Auth::user()->friends->modelKeys(),Auth::user()->requests->modelKeys(),[Auth::user()->id]));
+                    $q->orWhere(function ($sq) {
+                        $sq->whereIn('access_level', [WallPost::ACCESS_PUBLIC_FRIENDS]);
+                        $sq->whereIn('user_id', array_merge(Auth::user()->friends->modelKeys(), Auth::user()->requests->modelKeys(), [Auth::user()->id]));
                     });
                 }
             })
-            ->where('wall_type',WallPost::WALL_TYPE_PUBLIC);
-        if(Auth::user() && $type == 'friends'){
-            $statusesQuery->whereIn('user_id',$myFriends);
+            ->where('wall_type', WallPost::WALL_TYPE_PUBLIC);
+        if (Auth::user() && $type == 'friends') {
+            $statusesQuery->whereIn('user_id', $myFriends);
             $statusesQuery->where('user_id', '!=', Auth::user()->id);
         }
-        $content['wall-posts']['images'] = $statusesQuery->get()->pluck('images','id');
+        $content['wall-posts']['images'] = $statusesQuery->get()->pluck('images', 'id');
         $statusesCount = $statusesQuery->count();
         $lastIds['status'] = (int) $statusesQuery->max('id');
 
@@ -86,12 +86,12 @@ class CommunityController extends Controller
                 (SELECT count(*) FROM wall_comments WHERE type = \'App\Journal\' AND item_id = journal.id) as commentsCount
             ')
 //            ->where('user_id',Auth::user()?Auth::user()->id:null)
-            ->where('access_level',Journal::ACCESS_PUBLIC_ALL);
-        if(Auth::user() && $type == 'friends'){
-            $journalQuery->whereIn('user_id',$myFriends);
+            ->where('access_level', Journal::ACCESS_PUBLIC_ALL);
+        if (Auth::user() && $type == 'friends') {
+            $journalQuery->whereIn('user_id', $myFriends);
             $journalQuery->where('user_id', '!=', Auth::user()->id);
         }
-        $content['journal']['images'] = $journalQuery->get()->pluck('images','id');
+        $content['journal']['images'] = $journalQuery->get()->pluck('images', 'id');
         $journalCount = $journalQuery->count();
         $lastIds['journal'] = (int) $journalQuery->max('id');
 
@@ -101,12 +101,12 @@ class CommunityController extends Controller
                 (SELECT count(*) FROM wall_comments WHERE type = \'App\Prayer\' AND item_id = prayers.id) as commentsCount
             ')
 //            ->where('user_id',Auth::user()?Auth::user()->id:null)
-            ->where('access_level',Journal::ACCESS_PUBLIC_ALL);
-        if(Auth::user() && $type == 'friends'){
-            $prayersQuery->whereIn('user_id',$myFriends);
+            ->where('access_level', Journal::ACCESS_PUBLIC_ALL);
+        if (Auth::user() && $type == 'friends') {
+            $prayersQuery->whereIn('user_id', $myFriends);
             $prayersQuery->where('user_id', '!=', Auth::user()->id);
         }
-        $content['prayers']['images'] = $prayersQuery->get()->pluck('images','id');
+        $content['prayers']['images'] = $prayersQuery->get()->pluck('images', 'id');
         $prayersCount = $prayersQuery->count();
         $lastIds['prayer'] = (int) $prayersQuery->max('id');
 
@@ -116,22 +116,22 @@ class CommunityController extends Controller
                 (SELECT count(*) FROM wall_comments WHERE type = \'App\Note\' AND item_id = notes.id) as commentsCount
             ')
 //            ->where('user_id',Auth::user()?Auth::user()->id:null)
-            ->where('access_level',Journal::ACCESS_PUBLIC_ALL);
-        if(Auth::user() && $type == 'friends'){
-            $notesQuery->whereIn('user_id',$myFriends);
+            ->where('access_level', Journal::ACCESS_PUBLIC_ALL);
+        if (Auth::user() && $type == 'friends') {
+            $notesQuery->whereIn('user_id', $myFriends);
             $notesQuery->where('user_id', '!=', Auth::user()->id);
         }
-        $content['notes']['images'] = $notesQuery->get()->pluck('images','id');
+        $content['notes']['images'] = $notesQuery->get()->pluck('images', 'id');
         $notesCount = $notesQuery->count();
         $lastIds['note'] = (int) $notesQuery->max('id');
 
-        if(Request::ajax() && Request::input('checkPosts', null)) {
+        if (Request::ajax() && Request::input('checkPosts', null)) {
             $lastNoteId = Request::input('lastNoteId', 0);
             $newNotesCount = $notesQuery->where('id', '>', $lastNoteId)->count();
         }
 
         $entriesQuery = $notesQuery->union($journalQuery)->union($prayersQuery)->union($statusesQuery);
-        $entriesQuery->orderBy('published_at','desc')->orderBy('created_at','desc')->limit($limit)->offset($offset);
+        $entriesQuery->orderBy('published_at', 'desc')->orderBy('created_at', 'desc')->limit($limit)->offset($offset);
 
         $entries = $entriesQuery->get();
 
@@ -148,22 +148,21 @@ class CommunityController extends Controller
 
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
         $view = 'community.wall';
-        if(Request::ajax()){
-
-            if(Request::input('checkPosts', null)){
+        if (Request::ajax()) {
+            if (Request::input('checkPosts', null)) {
                 $lastStatusId = Request::input('lastStatusId', 0);
-                $newStatusesCount = $statusesQuery->where('id','>',$lastStatusId)->count();
+                $newStatusesCount = $statusesQuery->where('id', '>', $lastStatusId)->count();
 
                 $lastJournalId = Request::input('lastJournalId', 0);
-                $newJournalCount = $journalQuery->where('id','>',$lastJournalId)->count();
+                $newJournalCount = $journalQuery->where('id', '>', $lastJournalId)->count();
 
                 $lastPrayerId = Request::input('lastPrayerId', 0);
-                $newPrayersCount = $prayersQuery->where('id','>',$lastPrayerId)->count();
+                $newPrayersCount = $prayersQuery->where('id', '>', $lastPrayerId)->count();
 
                 $newTotalCount = $newNotesCount+$newJournalCount+$newPrayersCount+$newStatusesCount;
 
                 return $newTotalCount;
-            }else{
+            } else {
                 $view = "community.wall-items";
             }
         }
@@ -173,7 +172,6 @@ class CommunityController extends Controller
 
     public function getJoin()
     {
-        
     }
 
     public function getGroups()
@@ -188,67 +186,64 @@ class CommunityController extends Controller
         $type = Request::input('type', 'all');
 
         $limit = 10;
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $users = User::whereHas('roles', function ($q) {
-                  $q->whereIn('slug',[Config::get('app.role.user')]);
-              });
+                  $q->whereIn('slug', [Config::get('app.role.user')]);
+        });
         $users = $this->prepareFilters($users);
 
         $requests = [];
         $ignoredRequests = [];
         $myRequests = [];
         $myFriends = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $requests = Auth::user()->requests->modelKeys();
-            $ignoredRequests = Auth::user()->requests()->where('ignore',true)->get()->modelKeys();
+            $ignoredRequests = Auth::user()->requests()->where('ignore', true)->get()->modelKeys();
             $myRequests = Auth::user()->friends->modelKeys();
             $myFriends = array_intersect($requests, $myRequests);
         }
 
-        switch($type){
+        switch ($type) {
             case "my":
-                if(Auth::user()){
-                    $users->whereIn('id',$myFriends);
-                }
-                else{
+                if (Auth::user()) {
+                    $users->whereIn('id', $myFriends);
+                } else {
                     abort(401);
                 }
                 break;
             case "new":
-                if(Auth::user()){
-                    $users->whereNotIn('id',$myFriends);
+                if (Auth::user()) {
+                    $users->whereNotIn('id', $myFriends);
                 }
                 break;
             case "inbox-requests":
-                if(Auth::user()){
-                    $users->whereNotIn('id',$myFriends);
-                    $users->whereNotIn('id',$ignoredRequests);
-                    $users->whereIn('id',$requests);
-                }
-                else{
+                if (Auth::user()) {
+                    $users->whereNotIn('id', $myFriends);
+                    $users->whereNotIn('id', $ignoredRequests);
+                    $users->whereIn('id', $requests);
+                } else {
                     abort(401);
                 }
                 break;
             case "sent-requests":
-                if(Auth::user()){
-                    $users->whereNotIn('id',$myFriends);
-                    $users->whereIn('id',$myRequests);
-                }
-                else{
+                if (Auth::user()) {
+                    $users->whereNotIn('id', $myFriends);
+                    $users->whereIn('id', $myRequests);
+                } else {
                     abort(401);
                 }
                 break;
         }
 
-        if(Auth::user()){
+        if (Auth::user()) {
             $users->where('id', '!=', Auth::user()->id);
         }
 
         $totalCount = $users->count();
 
-        $users->orderBy('created_at','desc')->limit($limit)->offset($offset);
+        $users->orderBy('created_at', 'desc')->limit($limit)->offset($offset);
 
         $content['people'] = $users->get();
         $content['people'] = new LengthAwarePaginator(
@@ -260,7 +255,7 @@ class CommunityController extends Controller
         );
         $content['nextPage'] = ($limit*$page < $totalCount)?$page+1:false;
         $view = 'community.find-friends';
-        if(Request::ajax()){
+        if (Request::ajax()) {
             $view = "community.friend-items";
         }
         return view($view, [
@@ -272,9 +267,9 @@ class CommunityController extends Controller
         ]);
     }
 
-    public function anyReport(\Illuminate\Http\Request $request,$type,$id)
+    public function anyReport(\Illuminate\Http\Request $request, $type, $id)
     {
-        switch($type){
+        switch ($type) {
             case 'note':
                 $model = Note::find($id);
                 break;
@@ -293,7 +288,7 @@ class CommunityController extends Controller
             abort(404);
         }
 
-        if (Request::isMethod('post')){
+        if (Request::isMethod('post')) {
             $reportModel = new ContentReport();
             $text = Input::get('reason_text');
             $data = ['user_id' => Auth::user()->id,'reason_text' => $text];
@@ -301,11 +296,10 @@ class CommunityController extends Controller
 
             $reportCreated = $model->contentReports()->create($data);
             if ($reportCreated) {
-                Mail::queue([],[], function($message) use($data,$type)
-                {
+                Mail::queue([], [], function ($message) use ($data, $type) {
                     $admins = User::whereHas('roles', function ($q) {
-                            $q->whereIn('slug',[Config::get('app.role.admin')]);
-                        })->get();
+                            $q->whereIn('slug', [Config::get('app.role.admin')]);
+                    })->get();
                     foreach ($admins as $admin) {
                         $message
                             ->to($admin->email)
@@ -334,21 +328,20 @@ class CommunityController extends Controller
             'invite_link' => '<a href="'.url('invite/'.Auth::user()->id).'" class="">Create An Account</a>',
         ];
 
-        if (Request::isMethod('post')){
-            $emails = Input::get('emails',false);
-            $invite_text = Input::get('invite_text',false);
+        if (Request::isMethod('post')) {
+            $emails = Input::get('emails', false);
+            $invite_text = Input::get('invite_text', false);
             $rures = [
                 'emails' => 'required',
                 'invite_text' => 'required',
             ];
             $this->validate($request, $rures);
             
-            $data['invite_text'] = str_replace('{invite_url}',$data['invite_url'],$invite_text);
-            $data['invite_text'] = str_replace('{invite_link}',$data['invite_link'],$data['invite_text']);
+            $data['invite_text'] = str_replace('{invite_url}', $data['invite_url'], $invite_text);
+            $data['invite_text'] = str_replace('{invite_link}', $data['invite_link'], $data['invite_text']);
 
             foreach ($emails as $email) {
-                Mail::send([],[], function($message) use($email,$data)
-                {
+                Mail::send([], [], function ($message) use ($email, $data) {
                     $message
                         ->to($email)
                         ->subject($data['inviterName'].' has invited you to join Bible Study Company')

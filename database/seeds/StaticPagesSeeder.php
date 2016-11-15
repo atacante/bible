@@ -20,8 +20,8 @@ class StaticPagesSeeder extends Seeder
      */
     public function run()
     {
-        $pageAbout = CmsPage::where('system_name','about')->first();
-        if(!$pageAbout){
+        $pageAbout = CmsPage::where('system_name', 'about')->first();
+        if (!$pageAbout) {
             $pageAbout = [
                 'content_type' => CmsPage::CONTENT_PAGE,
                 'title' => 'About Us',
@@ -41,8 +41,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($pageAbout);
         }
 
-        $contactMain = CmsPage::where('system_name','contact_main')->first();
-        if(!$contactMain){
+        $contactMain = CmsPage::where('system_name', 'contact_main')->first();
+        if (!$contactMain) {
             $contactMain = [
                 'content_type' => CmsPage::CONTENT_PAGE,
                 'title' => 'Contact Us',
@@ -57,8 +57,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($contactMain);
         }
 
-        $contactAside = CmsPage::where('system_name','contact_aside')->first();
-        if(!$contactAside){
+        $contactAside = CmsPage::where('system_name', 'contact_aside')->first();
+        if (!$contactAside) {
             $contactAside = [
                 'content_type' => CmsPage::CONTENT_PAGE,
                 'title' => 'Contact Aside',
@@ -85,8 +85,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($contactAside);
         }
 
-        $howItWorks = CmsPage::where('system_name','how_it_works')->first();
-        if(!$howItWorks){
+        $howItWorks = CmsPage::where('system_name', 'how_it_works')->first();
+        if (!$howItWorks) {
             $howItWorks = [
                 'content_type' => CmsPage::CONTENT_PAGE,
                 'title' => 'How it works',
@@ -110,8 +110,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($howItWorks);
         }
 
-        $BSCEvents = CmsPage::where('system_name','bsc_events')->first();
-        if(!$BSCEvents){
+        $BSCEvents = CmsPage::where('system_name', 'bsc_events')->first();
+        if (!$BSCEvents) {
             $BSCEvents = [
                 'content_type' => CmsPage::CONTENT_PAGE,
                 'title' => 'BSC Events',
@@ -135,8 +135,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($BSCEvents);
         }
 
-        $seminars = CmsPage::where('system_name','seminars')->first();
-        if(!$seminars){
+        $seminars = CmsPage::where('system_name', 'seminars')->first();
+        if (!$seminars) {
             $seminars = [
                 'content_type' => CmsPage::CONTENT_PAGE,
                 'title' => 'Seminars',
@@ -160,8 +160,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($seminars);
         }
 
-        $membership = CmsPage::where('system_name','membership')->first();
-        if(!$membership){
+        $membership = CmsPage::where('system_name', 'membership')->first();
+        if (!$membership) {
             $membership = [
                 'content_type' => CmsPage::CONTENT_PAGE,
                 'title' => 'Membership Levels',
@@ -185,8 +185,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($membership);
         }
 
-        $recommendedResources = CmsPage::where('system_name','recommended_resources')->first();
-        if(!$recommendedResources){
+        $recommendedResources = CmsPage::where('system_name', 'recommended_resources')->first();
+        if (!$recommendedResources) {
             $recommendedResources = [
                 'content_type' => CmsPage::CONTENT_PAGE,
                 'title' => 'Recommended Resources',
@@ -210,8 +210,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($recommendedResources);
         }
 
-        $partners = CmsPage::where('system_name','partners')->first();
-        if(!$partners){
+        $partners = CmsPage::where('system_name', 'partners')->first();
+        if (!$partners) {
             $partners = [
                 'content_type' => CmsPage::CONTENT_PAGE,
                 'title' => 'Partners',
@@ -235,8 +235,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($partners);
         }
 
-        $faq = CmsPage::where('system_name','faq')->first();
-        if(!$faq){
+        $faq = CmsPage::where('system_name', 'faq')->first();
+        if (!$faq) {
             $faq = [
                 'content_type' => CmsPage::CONTENT_PAGE,
                 'title' => 'F.A.Q.',
@@ -260,8 +260,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($faq);
         }
 
-        $diffTooltip = CmsPage::where('system_name','diff_explain')->first();
-        if(!$diffTooltip){
+        $diffTooltip = CmsPage::where('system_name', 'diff_explain')->first();
+        if (!$diffTooltip) {
             $diffTooltip = [
                 'content_type' => CmsPage::CONTENT_TOOLTIP,
                 'title' => 'Diff tooltip',
@@ -271,8 +271,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($diffTooltip);
         }
 
-        $beginnerTooltip = CmsPage::where('system_name','beginner_mode')->first();
-        if(!$beginnerTooltip){
+        $beginnerTooltip = CmsPage::where('system_name', 'beginner_mode')->first();
+        if (!$beginnerTooltip) {
             $beginnerTooltip = [
                 'content_type' => CmsPage::CONTENT_TOOLTIP,
                 'title' => 'Beginner mode',
@@ -282,8 +282,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($beginnerTooltip);
         }
 
-        $intermediateTooltip = CmsPage::where('system_name','intermediate_mode')->first();
-        if(!$intermediateTooltip){
+        $intermediateTooltip = CmsPage::where('system_name', 'intermediate_mode')->first();
+        if (!$intermediateTooltip) {
             $intermediateTooltip = [
                 'content_type' => CmsPage::CONTENT_TOOLTIP,
                 'title' => 'Intermediate mode',
@@ -293,8 +293,8 @@ class StaticPagesSeeder extends Seeder
             CmsPage::insert($intermediateTooltip);
         }
 
-        $betaModeTooltip = CmsPage::where('system_name','beta_mode')->first();
-        if(!$betaModeTooltip){
+        $betaModeTooltip = CmsPage::where('system_name', 'beta_mode')->first();
+        if (!$betaModeTooltip) {
             $betaModeTooltip = [
                 'content_type' => CmsPage::CONTENT_TOOLTIP,
                 'title' => 'Beta Mode',

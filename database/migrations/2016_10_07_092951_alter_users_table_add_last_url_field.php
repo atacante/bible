@@ -12,8 +12,7 @@ class AlterUsersTableAddLastUrlField extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->text('last_reader_url')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterUsersTableAddLastUrlField extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->dropColumn('last_reader_url');
         });
     }

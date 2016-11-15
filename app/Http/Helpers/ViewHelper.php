@@ -21,11 +21,11 @@ use Illuminate\Support\Facades\Route;
 
 class ViewHelper
 {
-    public static function prepareForSelectBox($items,$value,$text)
+    public static function prepareForSelectBox($items, $value, $text)
     {
         $optionsArr = [];
-        if(count($items)){
-            foreach($items as $item){
+        if (count($items)) {
+            foreach ($items as $item) {
                 $optionsArr[$item[$value]] = $item[$text];
             }
         }
@@ -35,8 +35,8 @@ class ViewHelper
     public static function prepareChaptersForSelectBox($chapters)
     {
         $chaptersArr = [];
-        if(count($chapters)){
-            foreach($chapters as $chapter){
+        if (count($chapters)) {
+            foreach ($chapters as $chapter) {
                 $chaptersArr[$chapter['chapter_num']] = $chapter['chapter_num'];
             }
         }
@@ -46,8 +46,8 @@ class ViewHelper
     public static function prepareVersesForSelectBox($verses)
     {
         $versesArr = [];
-        if(count($verses)){
-            foreach($verses as $verse){
+        if (count($verses)) {
+            foreach ($verses as $verse) {
 //                $versesArr[$verse['verse_num']] = 'Verse'.' '.$verse['verse_num'];
                 $versesArr[$verse['verse_num']] = $verse['verse_num'];
             }
@@ -59,8 +59,8 @@ class ViewHelper
     {
         $path = explode('.', $path);
         $segment = 1;
-        foreach($path as $p) {
-            if((request()->segment($segment) == $p) == false) {
+        foreach ($path as $p) {
+            if ((request()->segment($segment) == $p) == false) {
                 return false;
             }
             $segment++;
@@ -70,22 +70,22 @@ class ViewHelper
 
     public static function classActivePath($paths)
     {
-        if(!is_array($paths)){
+        if (!is_array($paths)) {
             $paths = [$paths];
         }
         foreach ($paths as $path) {
             $path = explode('.', $path);
             $segment = 1;
-            foreach($path as $p) {
-                if((request()->segment($segment) == $p) == false) {
-                    if(!($segment == 2 && $p == 'index' && !request()->segment($segment))){
+            foreach ($path as $p) {
+                if ((request()->segment($segment) == $p) == false) {
+                    if (!($segment == 2 && $p == 'index' && !request()->segment($segment))) {
                         $segment = false;
                         break;
                     }
                 }
                 $segment++;
             }
-            if($segment){
+            if ($segment) {
                 return 'active';
             }
         }
@@ -93,7 +93,7 @@ class ViewHelper
 
     public static function adminUrlSegment()
     {
-        if(\Request::is('admin*')){
+        if (\Request::is('admin*')) {
             return '/admin';
         }
         return '';
@@ -101,49 +101,50 @@ class ViewHelper
 
     public static function prepareVerseText($verse, $allowDiff = false, $readerMode = 'beginner')
     {
-        if((!$readerMode || $readerMode == 'beginner') && !empty($verse->verse_text_with_symbolism) && (!((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff',false) || Request::input('diff',false) == 'on')) || $allowDiff)){
+        if ((!$readerMode || $readerMode == 'beginner') && !empty($verse->verse_text_with_symbolism) && (!((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff', false) || Request::input('diff', false) == 'on')) || $allowDiff)) {
             return $verse->verse_text_with_symbolism;
-        }
-        elseif(!empty($verse->verse_text_with_lexicon) && (!((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff',false) || Request::input('diff',false) == 'on')) || $allowDiff)){
+        } elseif (!empty($verse->verse_text_with_lexicon) && (!((Request::input('compare', false) || Request::segment(2) == 'verse') && (!Request::input('diff', false) || Request::input('diff', false) == 'on')) || $allowDiff)) {
             return $verse->verse_text_with_lexicon;
-        }
-        else{
+        } else {
             return $verse->verse_text;
         }
     }
 
-    public static function highlightLexiconText($phrase,$text)
+    public static function highlightLexiconText($phrase, $text)
     {
-        $phrase = str_replace('[','<i>',$phrase);
-        $phrase = str_replace(']','</i>',$phrase);
-        $text = str_replace($phrase,'<strong>'.$phrase.'</strong>',$text);
+        $phrase = str_replace('[', '<i>', $phrase);
+        $phrase = str_replace(']', '</i>', $phrase);
+        $text = str_replace($phrase, '<strong>'.$phrase.'</strong>', $text);
         return $text;
     }
 
     public static function detectStrongsDictionary($lexiconinfo)
     {
-        if($lexiconinfo->book_id < 40){
+        if ($lexiconinfo->book_id < 40) {
             return 'hebrew';
         }
         return 'greek';
-
     }
 
-    public static function getVerseNum($verseModel){
+    public static function getVerseNum($verseModel)
+    {
         return $verseModel?$verseModel->booksListEn->book_name." ".$verseModel->chapter_num.":".$verseModel->verse_num:'-';
     }
 
-    public static function getChapterNum($verseModel){
+    public static function getChapterNum($verseModel)
+    {
         return $verseModel?$verseModel->booksListEn->book_name." ".$verseModel->chapter_num:'-';
     }
 
-    public static function getVersionName($versionCode){
+    public static function getVersionName($versionCode)
+    {
         return VersionsListEn::getVersionByCode($versionCode);
     }
 
-    public static function getRelatedItemIcon($type){
+    public static function getRelatedItemIcon($type)
+    {
         $icon = '';
-        switch($type){
+        switch ($type) {
             case 'note':
                 $icon = 'bs-note';
                 break;
@@ -161,7 +162,7 @@ class ViewHelper
     {
         $html = '';
 
-        switch($level){
+        switch ($level) {
             case Note::ACCESS_PRIVATE:
                 $html = '<i title="Private" class="bs-s-onlyme color8 font-size-13" aria-hidden="true"></i>';
                 break;
@@ -187,7 +188,7 @@ class ViewHelper
     {
         $html = '';
 
-        switch($level){
+        switch ($level) {
             case Group::ACCESS_SECRET:
                 $html = '<i title="Private" class="bs-s-onlyme color8 font-size-13" aria-hidden="true"></i>';
                 break;
@@ -203,7 +204,7 @@ class ViewHelper
     {
         $html = '';
 
-        switch($type){
+        switch ($type) {
             case 'note':
                 $html = '<i title="Note" class="c-verse-icon3 fa-book color7"></i>';
                 break;
@@ -222,7 +223,7 @@ class ViewHelper
     {
         $action = '';
 
-        switch($entryType){
+        switch ($entryType) {
             case 'note':
                 $action = 'notes';
                 break;
@@ -244,7 +245,7 @@ class ViewHelper
     {
         $ids = [];
 
-        switch($entryType){
+        switch ($entryType) {
             case 'note':
                 $ids = Auth::user()->notesLikes->modelKeys();
                 break;
@@ -265,7 +266,7 @@ class ViewHelper
     {
         $ids = [];
 
-        switch($entryType){
+        switch ($entryType) {
             case 'note':
                 $ids = Auth::user()->notesReports->modelKeys();
                 break;
@@ -282,24 +283,24 @@ class ViewHelper
         return $ids;
     }
 
-    public static function getEntryTags($entryType,$entryId)
+    public static function getEntryTags($entryType, $entryId)
     {
         $tags = '';
 
-        switch($entryType){
+        switch ($entryType) {
             case 'note':
-                $tags = Tag::whereHas('notes', function ($q) use($entryId) {
-                    $q->where('notes.id',$entryId);
+                $tags = Tag::whereHas('notes', function ($q) use ($entryId) {
+                    $q->where('notes.id', $entryId);
                 });
                 break;
             case 'journal':
-                $tags = Tag::whereHas('journal', function ($q) use($entryId) {
-                    $q->where('journal.id',$entryId);
+                $tags = Tag::whereHas('journal', function ($q) use ($entryId) {
+                    $q->where('journal.id', $entryId);
                 });
                 break;
             case 'prayer':
-                $tags = Tag::whereHas('prayers', function ($q) use($entryId) {
-                    $q->where('prayers.id',$entryId);
+                $tags = Tag::whereHas('prayers', function ($q) use ($entryId) {
+                    $q->where('prayers.id', $entryId);
                 });
                 break;
         }
@@ -307,9 +308,9 @@ class ViewHelper
         return $tags->get();
     }
 
-    public static function getEntriesCount($entryType,$model)
+    public static function getEntriesCount($entryType, $model)
     {
-        switch($entryType){
+        switch ($entryType) {
             case 'note':
                 $entryModel = new Note();
                 break;
@@ -322,11 +323,10 @@ class ViewHelper
                 break;
         }
 
-        if($model->verse_id){
-            $entryModel = $entryModel->where('verse_id',$model->verse_id);
-        }
-        else{
-            $entryModel = $entryModel->where('rel_code',$model->rel_code);
+        if ($model->verse_id) {
+            $entryModel = $entryModel->where('verse_id', $model->verse_id);
+        } else {
+            $entryModel = $entryModel->where('rel_code', $model->rel_code);
         }
 
         return $entryModel->count();
@@ -335,7 +335,7 @@ class ViewHelper
     public static function getGroupAction($dataKey)
     {
         $action = '';
-        switch($dataKey){
+        switch ($dataKey) {
             case 'groups':
                 $action = 'all-groups';
                 break;
@@ -362,12 +362,12 @@ class ViewHelper
 
     public static function checkNotifTooltip($type)
     {
-        switch($type){
+        switch ($type) {
             case 'got_related_records_tooltip':
-                return Request::segment(2) == 'read' && !Request::input('compare',false) && Auth::check() && Auth::user()->checkNotifTooltip($type);
+                return Request::segment(2) == 'read' && !Request::input('compare', false) && Auth::check() && Auth::user()->checkNotifTooltip($type);
                 break;
             case 'got_chapter_diff_tooltip':
-                return Request::segment(2) == 'read' && Request::input('compare',false) && Auth::check() && Auth::user()->checkNotifTooltip($type);
+                return Request::segment(2) == 'read' && Request::input('compare', false) && Auth::check() && Auth::user()->checkNotifTooltip($type);
                 break;
             case 'got_verse_diff_tooltip':
                 return Request::segment(2) == 'verse' && Auth::check() && Auth::user()->checkNotifTooltip($type);
@@ -375,10 +375,10 @@ class ViewHelper
         }
     }
 
-    public static function getContent($contentType,$systemName)
+    public static function getContent($contentType, $systemName)
     {
-        $content = CmsPage::where('content_type',$contentType)->where('system_name',$systemName)->first();
-        if(!$content){
+        $content = CmsPage::where('content_type', $contentType)->where('system_name', $systemName)->first();
+        if (!$content) {
             $content = new CmsPage();
         }
         return $content;
@@ -399,45 +399,45 @@ class ViewHelper
 
     public static function getBlogCatId($catName)
     {
-        $cat = BlogCategory::where('title',$catName)->first();
-        if($cat){
+        $cat = BlogCategory::where('title', $catName)->first();
+        if ($cat) {
             return $cat->id;
         }
         return false;
     }
 
-    public static function getBookmarkIcon($type,$verse)
+    public static function getBookmarkIcon($type, $verse)
     {
         $class = 'fa-bookmark-o';
         $title = 'Add to bookmarks';
-        if(self::checkBookmark($type,$verse)){
+        if (self::checkBookmark($type, $verse)) {
             $class = 'fa-bookmark';
             $title = 'Remove from bookmarks';
         }
         return '<i title="'.$title.'" class="fa '.$class.' cu-print" style="font-size: 2rem;"></i>';
     }
 
-    public static function checkBookmark($type,$verse)
+    public static function checkBookmark($type, $verse)
     {
-        if(Auth::check()){
-            return (boolean)$verse->bookmarks()->where('user_id',Auth::user()->id)->where('bookmark_type', $type)->get()->count();
+        if (Auth::check()) {
+            return (boolean)$verse->bookmarks()->where('user_id', Auth::user()->id)->where('bookmark_type', $type)->get()->count();
         }
         return false;
     }
 
     public static function getTooltipText($systemName)
     {
-        $tooltip = CmsPage::where('system_name',$systemName)->where('published',true)->first();
-        if($tooltip){
+        $tooltip = CmsPage::where('system_name', $systemName)->where('published', true)->first();
+        if ($tooltip) {
             return $tooltip->text;
         }
         return false;
     }
 
-    public static function checkPublished($items,$systemName)
+    public static function checkPublished($items, $systemName)
     {
-        $item = $items->where('system_name',$systemName)->first();
-        if($item){
+        $item = $items->where('system_name', $systemName)->first();
+        if ($item) {
             return true;
         }
         return false;
@@ -445,12 +445,12 @@ class ViewHelper
 
     public static function getCountriesList()
     {
-        return Country::orderByRaw('CASE WHEN iso=\'US\' THEN 0 ELSE 1 END, id')->pluck('nicename','id')->toArray();
+        return Country::orderByRaw('CASE WHEN iso=\'US\' THEN 0 ELSE 1 END, id')->pluck('nicename', 'id')->toArray();
     }
 
     public static function getUsStatesList()
     {
-        return UsStates::pluck('name','name')->toArray();
+        return UsStates::pluck('name', 'name')->toArray();
     }
 
     public static function checkBetaTestersAmount()

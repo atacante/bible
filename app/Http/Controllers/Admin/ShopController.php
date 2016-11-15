@@ -8,7 +8,6 @@ use App\ShopCategory;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-
 class ShopController extends Controller
 {
     public function getList()
@@ -17,11 +16,13 @@ class ShopController extends Controller
         $content['productsCount'] = ShopProduct::query()->count();
         $content['ordersCount'] = Order::query()->count();
 
-        return view('admin.shop.list',
+        return view(
+            'admin.shop.list',
             [
                 'page_title' => 'Shop',
                 'content' => $content,
                 'filterAction' => 'shop/list/',
-            ]);
+            ]
+        );
     }
 }

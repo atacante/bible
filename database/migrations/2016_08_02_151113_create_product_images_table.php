@@ -15,7 +15,7 @@ class CreateProductImagesTable extends Migration
         Schema::create('product_images', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id');
-            $table->string('image',255);
+            $table->string('image', 255);
             $table->timestamps();
             $table->foreign('product_id', 'product_images_fk')->references('id')->on('shop_products')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });

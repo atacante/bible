@@ -20,8 +20,7 @@ class AlterVersesTables extends Migration
                 foreach ($versions as $version) {
                     $this->version = $version['version_code'];
                     $table = 'verses_' . $this->version . '_en';
-                    if (Schema::hasTable($table))
-                    {
+                    if (Schema::hasTable($table)) {
                         DB::statement('ALTER TABLE ' .$table. ' ADD COLUMN searchtext TSVECTOR;');
                         DB::statement('UPDATE ' .$table. ' SET searchtext = to_tsvector(\'english\', verse_text);');
                         DB::statement('CREATE INDEX searchtext_'.$table.'_gin ON ' .$table. ' USING GIN(searchtext);');
@@ -45,8 +44,7 @@ class AlterVersesTables extends Migration
                 foreach ($versions as $version) {
                     $this->version = $version['version_code'];
                     $table = 'verses_' . $this->version . '_en';
-                    if (Schema::hasTable($table))
-                    {
+                    if (Schema::hasTable($table)) {
                         DB::statement('ALTER TABLE ' .$table. '  DROP COLUMN searchtext;');
                         DB::statement('DROP TRIGGER ts_searchtext ON ' .$table);
                     }

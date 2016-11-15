@@ -11,11 +11,11 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
 
-class NotesFiltersComposer {
+class NotesFiltersComposer
+{
 
     public function __construct()
     {
-
     }
 
     /**
@@ -26,22 +26,20 @@ class NotesFiltersComposer {
      */
     public function compose(View $view)
     {
-        $version = Request::input('version',false);
+        $version = Request::input('version', false);
         $book = Request::input('book', Config::get('app.defaultBookNumber'));
-        $chapter = Request::input('chapter',Config::get('app.defaultChapterNumber'));
+        $chapter = Request::input('chapter', Config::get('app.defaultChapterNumber'));
         $filters['versions'] = ViewHelper::prepareForSelectBox(VersionsListEn::versionsList(), 'version_code', 'version_name');
-        if($version == 'berean' || Request::segment(4) == 'berean'){
+        if ($version == 'berean' || Request::segment(4) == 'berean') {
             $booksQuery = BooksListEn::where('id', '>', 39)->get();
-        }
-        else{
+        } else {
             $booksQuery = BooksListEn::all();
         }
 
         $filters['books'] = ViewHelper::prepareForSelectBox($booksQuery->toArray(), 'id', 'book_name');
         $filters['chapters'] = ViewHelper::prepareChaptersForSelectBox(BaseModel::getChapters($book));
-        $filters['verses'] = ViewHelper::prepareVersesForSelectBox(BaseModel::getVerses($book,$chapter));
+        $filters['verses'] = ViewHelper::prepareVersesForSelectBox(BaseModel::getVerses($book, $chapter));
         $filters['tags'] = Tag::availableTags();
         $view->with('filters', $filters);
     }
-
 }

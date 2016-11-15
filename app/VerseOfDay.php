@@ -13,14 +13,15 @@ class VerseOfDay extends Model
 
     protected $fillable =  ['verse_id', 'show_at','image','image_mobile'];
 
-    public function verse() {
+    public function verse()
+    {
         return $this->belongsTo(\App\VersesNasbEn::class, 'verse_id', 'id');
     }
 
     public static function getTodayVerse()
     {
-        $verse = self::where('show_at',Carbon::today())->orderBy('id', 'DESC')->first();
-        if(!$verse){
+        $verse = self::where('show_at', Carbon::today())->orderBy('id', 'DESC')->first();
+        if (!$verse) {
             $todayVerse = self::getRandomVerse();
             $verse = self::createById($todayVerse->id);
         }
@@ -39,7 +40,7 @@ class VerseOfDay extends Model
         $data = ['verse_id' => $verseId,'show_at' => $showAt];
 
         $prevVerseWithImages = self::whereNotNull('image')->orderBy('id', 'DESC')->first();
-        if($prevVerseWithImages){
+        if ($prevVerseWithImages) {
             $data['image'] = $prevVerseWithImages->image;
             $data['image_mobile'] = $prevVerseWithImages->image_mobile;
         }
@@ -48,6 +49,4 @@ class VerseOfDay extends Model
 
         return $verse;
     }
-
-
 }

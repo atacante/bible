@@ -12,8 +12,7 @@ class AlterCmsPageAddBackground extends Migration
      */
     public function up()
     {
-        Schema::table('cms_pages', function($table)
-        {
+        Schema::table('cms_pages', function ($table) {
             $table->string('background')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterCmsPageAddBackground extends Migration
      */
     public function down()
     {
-        Schema::table('cms_pages', function($table)
-        {
+        Schema::table('cms_pages', function ($table) {
             $table->dropColumn('background');
         });
     }

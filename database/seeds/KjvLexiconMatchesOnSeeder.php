@@ -28,9 +28,8 @@ class KjvLexiconMatchesOnSeeder extends Seeder
         $he = new \parseCSV(base_path('resources/data/kjv_lexicon_only_he.csv'));
 //        $excelData = Excel::load(base_path('resources/data/kjv_lexicon_only_he.xlsx'), function ($reader) {})->get();
         $data = [];
-        if(count($csv->data) && count($csv->data) == count($he->data)){
-
-            $progressBar = new ProgressBarHelper(count($csv->data),10);
+        if (count($csv->data) && count($csv->data) == count($he->data)) {
+            $progressBar = new ProgressBarHelper(count($csv->data), 10);
             $progressBar->start('Started seeding data for KVJ lexicon');
 
             DB::statement("TRUNCATE TABLE lexicon_kjv");
@@ -39,36 +38,36 @@ class KjvLexiconMatchesOnSeeder extends Seeder
             ModelHelper::createLexiconStructure('kjv');
 
             $part = 0;
-            foreach($csv->data as $key => $row){
+            foreach ($csv->data as $key => $row) {
 //                $timeStart = round(microtime(true) * 1000);
                 $part++;
-                $book = explode(':',trim($row['KJV Verse']));
-                $bookAndChapter = explode(' ',$book[0]);
+                $book = explode(':', trim($row['KJV Verse']));
+                $bookAndChapter = explode(' ', $book[0]);
                 $chapter = array_pop($bookAndChapter);
-                $book_name = implode(' ',$bookAndChapter);
-                $bookObj = BooksListEn::query()->where('book_name',$book_name)->first(['id']);
+                $book_name = implode(' ', $bookAndChapter);
+                $bookObj = BooksListEn::query()->where('book_name', $book_name)->first(['id']);
                 $verse_num = $book[1];
                 LexiconKjv::$FIRE_EVENTS = false;
                 $lexiconQuery = LexiconKjv::
-                      where('book_id',$bookObj->id)
-                    ->where('chapter_num',$chapter)
-                    ->where('verse_num',$verse_num)
-                    ->where('verse_part',NULL)
-                    ->where(function($q) use($row,$he,$key) {
-                        if(!empty(utf8_encode(strtolower($he->data[$key]['WLC - Troidl and Kimball'])))){
+                      where('book_id', $bookObj->id)
+                    ->where('chapter_num', $chapter)
+                    ->where('verse_num', $verse_num)
+                    ->where('verse_part', null)
+                    ->where(function ($q) use ($row, $he, $key) {
+                        if (!empty(utf8_encode(strtolower($he->data[$key]['WLC - Troidl and Kimball'])))) {
                             $q->orWhere('verse_part_he', 'ilike', '%'.utf8_encode(strtolower($he->data[$key]['WLC - Troidl and Kimball'])).'%');
                         }
-                        if(!empty(utf8_encode(strtolower($row['Translit Romanized'])))){
+                        if (!empty(utf8_encode(strtolower($row['Translit Romanized'])))) {
                             $q->orWhere('transliteration', 'ilike', '%'.utf8_encode(strtolower($row['Translit Romanized'])).'%');
                         }
-                        if(!empty(utf8_encode($row["Strong's - Troidl and Kimball - http://openscriptures.org"]))){
+                        if (!empty(utf8_encode($row["Strong's - Troidl and Kimball - http://openscriptures.org"]))) {
 //                          $q->orWhere('strong_num', 'ilike','%'.utf8_encode($row["Strong's - Troidl and Kimball - http://openscriptures.org"]).'%');
-                            $q->orWhere('strong_num',utf8_encode($row["Strong's - Troidl and Kimball - http://openscriptures.org"]));
+                            $q->orWhere('strong_num', utf8_encode($row["Strong's - Troidl and Kimball - http://openscriptures.org"]));
                         }
 //                                $q->whereRaw("Cast(verse_part_he AS Nvarchar(max))like N'".$tds[1]->plaintext."%'");
                     });
 
-                if($lexiconQuery->count() > 1){
+                if ($lexiconQuery->count() > 1) {
                     $lexiconQuery = $lexiconQuery->first();
                 }
 

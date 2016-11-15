@@ -34,12 +34,14 @@ class ShopCategoriesController extends Controller
         $categoryModel = $this->prepareFilters($categoryModel);
 
         $content['categories'] = $categoryModel->orderBy('id')->paginate(20);
-        return view('admin.shop.categories.list',
+        return view(
+            'admin.shop.categories.list',
             [
                 'page_title' => 'Categories',
                 'content' => $content,
                 'filterAction' => 'shop-categories/list/',
-            ]);
+            ]
+        );
     }
 
     public function anyCreate(\Illuminate\Http\Request $request)
@@ -54,11 +56,13 @@ class ShopCategoriesController extends Controller
             return Redirect::to(ViewHelper::adminUrlSegment() . '/shop-categories/list/');
         }
 
-        return view('admin.shop.categories.create',
+        return view(
+            'admin.shop.categories.create',
             [
                 'model' => $model,
                 'page_title' => 'Create New Category'
-            ]);
+            ]
+        );
     }
 
     public function anyUpdate(\Illuminate\Http\Request $request, $id)
@@ -67,7 +71,7 @@ class ShopCategoriesController extends Controller
             Session::keep('backUrl');
         }
         $model = ShopCategory::query()->find($id);
-        if (Request::isMethod('put')){
+        if (Request::isMethod('put')) {
             $this->validate($request, $model->rules());
             $data = Input::all();
             if ($model->update($data)) {
@@ -77,11 +81,13 @@ class ShopCategoriesController extends Controller
                 ? Redirect::to($url)
                 : Redirect::to(ViewHelper::adminUrlSegment() . '/shop-categories/list/');
         }
-        return view('admin.shop.categories.update',
+        return view(
+            'admin.shop.categories.update',
             [
                 'model' => $model,
                 'page_title' => 'Edit Category'
-            ]);
+            ]
+        );
     }
 
     public function anyDelete($id)

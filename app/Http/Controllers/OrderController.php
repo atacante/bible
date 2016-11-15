@@ -20,15 +20,16 @@ use Usps\RatePackage;
 class OrderController extends Controller
 {
 
-    private function sendMails($order){
+    private function sendMails($order)
+    {
         $userEmail = $order->userMeta->shipping_email;
 
-        if(empty($userEmail)){
+        if (empty($userEmail)) {
             $userEmail = $order->user->email;
         }
 
         $adminEmails = User::whereHas('roles', function ($q) {
-            $q->whereIn('slug',[Config::get('app.role.admin')]);
+            $q->whereIn('slug', [Config::get('app.role.admin')]);
         })->pluck('email')->toArray();
 
         $data['order'] = $order;
@@ -36,9 +37,8 @@ class OrderController extends Controller
         array_push($adminEmails, $userEmail);
         $data['emails'] = $adminEmails;
 
-        foreach($data['emails'] as $email){
-            Mail::send('emails.order', $data, function($message) use($data, $email)
-            {
+        foreach ($data['emails'] as $email) {
+            Mail::send('emails.order', $data, function ($message) use ($data, $email) {
                 $message->to($email)->subject('Order Confirmation');
             });
         }
@@ -56,18 +56,18 @@ class OrderController extends Controller
 
         $usps_rate = $this->getUspsRateAjax($data['shipping_postcode']);
 
-        if(!is_numeric($usps_rate) || !$this->isTaxable()){
+        if (!is_numeric($usps_rate) || !$this->isTaxable()) {
             $usps_rate = 0.00;
         }
 
         //Retrieve cart information
-        $subtotal = Cart::total(2,'.','');
+        $subtotal = Cart::total(2, '.', '');
         $taxable = $subtotal - $this->getUntaxablePrice();
         $tax = 0.00;
 
         $state = strtolower(trim($data['shipping_state']));
 
-        if((($state == 'florida')||($state == 'fl'))){
+        if ((($state == 'florida')||($state == 'fl'))) {
             $tax = round(0.07 * $taxable, 2);
         }
 
@@ -88,8 +88,7 @@ class OrderController extends Controller
         ];
         $charged = User::chargeCreditCard($total, $card);
 
-        if(is_array($charged) && $charged['transId']){
-
+        if (is_array($charged) && $charged['transId']) {
             $this->validate($request, $userMeta->rules());
 
             if ($userMeta = $userMeta->create($data)) {
@@ -103,17 +102,17 @@ class OrderController extends Controller
                 $order->transaction_id= $charged['transId'];
                 $order->save();
 
-                foreach(Cart::content() as $item){
+                foreach (Cart::content() as $item) {
                     $orderItem = new OrderItem();
                     $orderItem->order_id=$order->id;
                     $orderItem->product_id=$item->model->id;
                     $orderItem->qty=$item->qty;
 
-                    if(isset($item->options['color'])){
+                    if (isset($item->options['color'])) {
                         $orderItem->color=$item->options['color'];
                     }
 
-                    if(isset($item->options['size'])){
+                    if (isset($item->options['size'])) {
                         $orderItem->size=$item->options['size'];
                     }
 
@@ -127,56 +126,59 @@ class OrderController extends Controller
             $this->sendMails($order);
 
             return redirect('/order/show/'.$order->id);
-
-        }else{
+        } else {
             Notification::error('Your order was not placed! Please add valid credit card');
             return redirect('order/create');
         }
-
     }
 
-    public function getShow($orderId){
+    public function getShow($orderId)
+    {
         $user_id = 0;
 
-        if(Auth::check()){
+        if (Auth::check()) {
             $user_id = Auth::user()->id;
         }
 
         $order = Order::where(['id' => $orderId, 'user_id' => $user_id])->first();
 
-        if(!$order){
+        if (!$order) {
             Notification::error('Your are not allowed to see this order!');
             return Redirect::to('/shop');
         }
 
-        return view('order.view',['order'=>$order]);
+        return view('order.view', ['order'=>$order]);
     }
 
-    public function getCreate(){
+    public function getCreate()
+    {
         $model = false;
         $user_id = 0;
 
-        if(Auth::check()){
+        if (Auth::check()) {
             $user_id = Auth::user()->id;
             $model = UsersMeta::where(['user_id' => $user_id])->orderBy('created_at', SORT_DESC)->first();
         }
 
-        if(!$model){
+        if (!$model) {
             $model = new UsersMeta();
         }
 
-        return view('order.create',
+        return view(
+            'order.create',
             [
                 'taxable'=>$this->isTaxable(),
                 'model' => $model,
                 'user_id' => $user_id,
                 'page_title' => 'Create New Order'
-            ]);
+            ]
+        );
     }
 
-    public function getUspsRateAjax($zip){
+    public function getUspsRateAjax($zip)
+    {
 
-        if(empty($zip)){
+        if (empty($zip)) {
             return 'Please fill Shipping Postcode';
         }
 
@@ -202,17 +204,18 @@ class OrderController extends Controller
 
         $response =  $rate->getArrayResponse();
 
-        if($rate->isSuccess()){
+        if ($rate->isSuccess()) {
             $usps_rate = $response['RateV4Response']['Package']['Postage']['Rate'];
             return $usps_rate;
-        }else{
+        } else {
             return $response['RateV4Response']['Package']['Error']['Description'];
         }
     }
 
-    private function isTaxable(){
-        foreach(Cart::content() as $item){
-            if($item->model->taxable){
+    private function isTaxable()
+    {
+        foreach (Cart::content() as $item) {
+            if ($item->model->taxable) {
                 return true;
             }
         }
@@ -220,11 +223,12 @@ class OrderController extends Controller
         return false;
     }
 
-    private function getUntaxablePrice(){
+    private function getUntaxablePrice()
+    {
         $price = 0.00;
 
-        foreach(Cart::content() as $item){
-            if(!$item->model->taxable){
+        foreach (Cart::content() as $item) {
+            if (!$item->model->taxable) {
                 $price += $item->model->price;
             }
         }
@@ -232,5 +236,3 @@ class OrderController extends Controller
         return $price;
     }
 }
-
-

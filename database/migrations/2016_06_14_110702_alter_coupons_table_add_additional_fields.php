@@ -12,8 +12,7 @@ class AlterCouponsTableAddAdditionalFields extends Migration
      */
     public function up()
     {
-        Schema::table('coupons', function($table)
-        {
+        Schema::table('coupons', function ($table) {
             $table->boolean('is_permanent')->default(false);
         });
     }
@@ -25,8 +24,7 @@ class AlterCouponsTableAddAdditionalFields extends Migration
      */
     public function down()
     {
-        Schema::table('coupons', function($table)
-        {
+        Schema::table('coupons', function ($table) {
             $table->dropColumn('is_permanent');
         });
     }

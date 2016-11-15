@@ -29,17 +29,16 @@ class WallPostsController extends Controller
             $data = Input::all();
             $data['user_id'] = Auth::user()->id;
             if ($model = $model->create($data)) {
-                if($model->rel_id){
+                if ($model->rel_id) {
                     $group = Group::find($model->rel_id);
-                    if($model->access_level != 'private'){
+                    if ($model->access_level != 'private') {
                         NotificationsHelper::groupWallItem($group);
                     }
                 }
             }
             if (!Request::ajax()) {
                 return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::back();
-            }
-            else{
+            } else {
                 return 1;
             }
         }
@@ -48,8 +47,8 @@ class WallPostsController extends Controller
     public function getComments($id)
     {
         $limit = 5;
-        $page = Input::get('page',1);
-        if($page == 'all'){
+        $page = Input::get('page', 1);
+        if ($page == 'all') {
             $limit = null;
         }
 
@@ -67,7 +66,7 @@ class WallPostsController extends Controller
         $content['otherCommentsCount'] = $limit?$totalCount-$limit:0;
 
         $view = 'community.wall-comments';
-        if($page > 1){
+        if ($page > 1) {
             $view = 'community.wall-comment-items';
         }
 
@@ -100,26 +99,26 @@ class WallPostsController extends Controller
         if (!Auth::check()) {
             abort(403);
         }
-        $model = WallPost::whereHas('comments', function ($q) use($id) {
-            $q->where('id',$id);
-            $q->where('user_id',Auth::user()->id);
+        $model = WallPost::whereHas('comments', function ($q) use ($id) {
+            $q->where('id', $id);
+            $q->where('user_id', Auth::user()->id);
         })->first();
         if (!$model) {
             abort(404);
         }
-        if($model->comments()->where('id',$id)->delete()){
+        if ($model->comments()->where('id', $id)->delete()) {
             return 1;
         }
         return 0;
     }
 
-    public function getLikes($id,$type = 'simple')
+    public function getLikes($id, $type = 'simple')
     {
         $limit = 5;
-        if($type == 'full'){
+        if ($type == 'full') {
             $limit = 6;
         }
-        $page = Input::get('page',1);
+        $page = Input::get('page', 1);
         $offset = $limit*($page-1);
 
         $model = WallPost::find($id);
@@ -138,9 +137,9 @@ class WallPostsController extends Controller
         $ignoredRequests = [];
         $myRequests = [];
         $myFriends = [];
-        if(Auth::user()){
+        if (Auth::user()) {
             $requests = Auth::user()->requests->modelKeys();
-            $ignoredRequests = Auth::user()->requests()->where('ignore',true)->get()->modelKeys();
+            $ignoredRequests = Auth::user()->requests()->where('ignore', true)->get()->modelKeys();
             $myRequests = Auth::user()->friends->modelKeys();
             $myFriends = array_intersect($requests, $myRequests);
         }
@@ -164,7 +163,7 @@ class WallPostsController extends Controller
             abort(404);
         }
         $liked = 0;
-        if(!$model->likes()->where('user_id',Auth::user()->id)->get()->count()){
+        if (!$model->likes()->where('user_id', Auth::user()->id)->get()->count()) {
             $model->likes()->attach(Auth::user()->id);
             $liked = 1;
         }
@@ -179,7 +178,7 @@ class WallPostsController extends Controller
         }
 
         $unliked = 0;
-        if($model->likes()->where('user_id',Auth::user()->id)->get()->count()){
+        if ($model->likes()->where('user_id', Auth::user()->id)->get()->count()) {
             $model->likes()->detach(Auth::user()->id);
             $unliked = 1;
         }

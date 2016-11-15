@@ -12,8 +12,7 @@ class AlterUsersTableAddInvitedByField extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->integer('invited_by_id')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterUsersTableAddInvitedByField extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->dropColumn('invited_by_id');
         });
     }

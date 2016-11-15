@@ -12,8 +12,7 @@ class AlterVerseOfDayTableAddImageMobileField extends Migration
      */
     public function up()
     {
-        Schema::table('verse_of_day', function($table)
-        {
+        Schema::table('verse_of_day', function ($table) {
             $table->string('image_mobile')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterVerseOfDayTableAddImageMobileField extends Migration
      */
     public function down()
     {
-        Schema::table('verse_of_day', function($table)
-        {
+        Schema::table('verse_of_day', function ($table) {
             $table->dropColumn('image_mobile');
         });
     }

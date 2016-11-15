@@ -12,8 +12,7 @@ class AlterCmsPageAddDescription extends Migration
      */
     public function up()
     {
-        Schema::table('cms_pages', function($table)
-        {
+        Schema::table('cms_pages', function ($table) {
             $table->text('description')->nullable();
         });
     }
@@ -25,8 +24,7 @@ class AlterCmsPageAddDescription extends Migration
      */
     public function down()
     {
-        Schema::table('cms_pages', function($table)
-        {
+        Schema::table('cms_pages', function ($table) {
             $table->dropColumn('description');
         });
     }

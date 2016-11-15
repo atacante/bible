@@ -27,8 +27,7 @@ class AlterUsersAddAuthorizenet extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table)
-        {
+        Schema::table('users', function ($table) {
             $table->dropColumn('authorize_id');
             $table->dropColumn('authorize_payment_id');
             $table->dropColumn('card_brand');

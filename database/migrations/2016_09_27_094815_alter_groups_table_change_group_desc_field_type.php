@@ -12,8 +12,7 @@ class AlterGroupsTableChangeGroupDescFieldType extends Migration
      */
     public function up()
     {
-        Schema::table('groups', function($table)
-        {
+        Schema::table('groups', function ($table) {
             $table->text('group_desc')->change();
         });
     }
@@ -25,8 +24,7 @@ class AlterGroupsTableChangeGroupDescFieldType extends Migration
      */
     public function down()
     {
-        Schema::table('groups', function($table)
-        {
+        Schema::table('groups', function ($table) {
             $table->string('group_desc')->change();
         });
     }

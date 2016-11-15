@@ -18,7 +18,7 @@ class Headers
     {
         $response = $next($request);
         if ($request->ajax()) {
-            $response->header("Cache-Control","no-cache, no-store, max-age=0, must-revalidate, proxy-revalidate, no-transform");
+            $response->header("Cache-Control", "no-cache, no-store, max-age=0, must-revalidate, proxy-revalidate, no-transform");
             $response->header("Pragma", "no-cache");
         }
         return $response;

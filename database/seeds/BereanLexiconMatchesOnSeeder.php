@@ -26,7 +26,7 @@ class BereanLexiconMatchesOnSeeder extends Seeder
         $csv = new \parseCSV(base_path('resources/data/berean_lexicon_goog.csv'));
         $data = [];
         if (count($csv->data)) {
-            $progressBar = new ProgressBarHelper(count($csv->data),10);
+            $progressBar = new ProgressBarHelper(count($csv->data), 10);
             $progressBar->start('Started seeding data for Berean lexicon');
 
             DB::statement("TRUNCATE TABLE lexicon_berean");
@@ -35,15 +35,14 @@ class BereanLexiconMatchesOnSeeder extends Seeder
             ModelHelper::createLexiconStructure('berean');
 
             $part = 0;
-            foreach($csv->data as $key => $row){
-
-                if(!empty($row["Transliteration"])) {
+            foreach ($csv->data as $key => $row) {
+                if (!empty($row["Transliteration"])) {
                     $part++;
                     $book = explode(':', trim($row['Verse']));
                     $bookAndChapter = explode('|', $book[0]);
                     $chapter = array_pop($bookAndChapter);
                     $book_name = implode(' ', $bookAndChapter);
-                    $bookObj = BooksListEn::query()->where('book_name','ilike', $book_name)->first(['id']);
+                    $bookObj = BooksListEn::query()->where('book_name', 'ilike', $book_name)->first(['id']);
                     $verse_num = $book[1];
 
                     LexiconBerean::$FIRE_EVENTS = false;
@@ -51,7 +50,7 @@ class BereanLexiconMatchesOnSeeder extends Seeder
                     where('book_id', $bookObj->id)
                         ->where('chapter_num', $chapter)
                         ->where('verse_num', $verse_num)
-                        ->where('verse_part', NULL)
+                        ->where('verse_part', null)
                         ->where(function ($q) use ($row, $key) {
                             if (!empty(utf8_encode(strtolower($row['BGB - Berean Greek Bible'])))) {
                                 $q->orWhere('verse_part_el', 'ilike', '%' . utf8_encode(strtolower($row['BGB - Berean Greek Bible'])) . '%');

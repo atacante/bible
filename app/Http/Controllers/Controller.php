@@ -14,26 +14,28 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected function prepareForSelectBox($items,$value,$text)
+    protected function prepareForSelectBox($items, $value, $text)
     {
         $optionsArr = [];
-        if(count($items)){
-            foreach($items as $item){
+        if (count($items)) {
+            foreach ($items as $item) {
                 $optionsArr[$item[$value]] = $item[$text];
             }
         }
         return $optionsArr;
     }
 
-    protected function keepPreviousUrl(){
+    protected function keepPreviousUrl()
+    {
         if (Session::has('backUrl')) {
             Session::keep('backUrl');
-        }else{
+        } else {
             Session::set('backUrl', URL::previous());
         }
     }
 
-    protected function redirectToBackUrl(){
+    protected function redirectToBackUrl()
+    {
         return ($url = Session::get('backUrl')) ? Redirect::to($url) : Redirect::to(URL::previous());
     }
 }
